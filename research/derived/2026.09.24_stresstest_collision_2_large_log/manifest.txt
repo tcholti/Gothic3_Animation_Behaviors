@@ -1,0 +1,138 @@
+CHAT-FRIENDLY LARGE LOG PACKAGE
+ToolVersion: 1
+SourceInput: E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\Gothic3_Animation_Behaviors\research\raw\2026.09.24_stresstest_collision_2.log
+SourceFileName: 2026.09.24_stresstest_collision_2.log
+SourceSHA256: BC7F1447C6F3B6BFE5C765C8A057EDFA81C3EDD205B9DAE7FC9F5DF60A4B06D6
+SourceBytes: 4650022
+SourceLineCount: 20907
+DistinctEventTypes: 1
+EventTimelineRows: 1
+SignalMatches: 4979
+MaxOutputPartBytes: 60000
+FullSourceParts: 82
+EventTimelineParts: 1
+SignalParts: 18
+
+SignalPatterns:
+- C1_INVARIANT_WARNING = C1 INVARIANT WARNING
+- WOULD_REPAIR = WOULD_REPAIR
+- WARNING = (?i)\bWARNING\b
+- ERROR_OR_EXCEPTION = (?i)\b(ERROR|EXCEPTION)\b
+- MISMATCH_OR_DIVERGENCE = (?i)\b(MISMATCH|DIVERGENCE)\b
+- OUTSTANDING_TRUE = (?i)\bOUTSTANDING\b.*(?:[:=]\s*(1|TRUE)\s*$)
+- RAW55_CALLBACK_BOUNDARY = RAW55_[A-Z0-9_]*CALLBACK_BOUNDARY
+- RAW55_GROUP_SUPPRESSION = RAW55_[A-Z0-9_]*GROUP_SUPPRESSION
+- FIST_ACTIVATION = (?i)ACTIVATE_FIST\s*[:=]\s*1
+- AUTHORED_FIST_MARKER = G3AB_COL_FIST
+- CLEAR_TRIGGERED_LIST = (?i)CLEARTRIGGEREDLIST|ClearTriggeredList
+- ON_DAMAGE = (?i)\bONDAMAGE\b|OnDamage
+- COLLISION_GROUP = CORE COLLISION_GROUP
+- C1_CLEANUP_FULFILLED = C1 CLEANUP FULFILLED
+- C1_FINAL = C1_FINAL|C1 FINAL
+- REPAIRED_TO_ITEM_EQUIPPED = REPAIRED_TO_ITEM_EQUIPPED
+- REPAIR_DIVERGED_FROM_ITEM_EQUIPPED = REPAIR_DIVERGED_FROM_ITEM_EQUIPPED
+
+Files:
+- event_counts.tsv
+- full_source_index.tsv
+- event_timeline_part_001.tsv
+- signals_part_001.tsv
+- signals_part_002.tsv
+- signals_part_003.tsv
+- signals_part_004.tsv
+- signals_part_005.tsv
+- signals_part_006.tsv
+- signals_part_007.tsv
+- signals_part_008.tsv
+- signals_part_009.tsv
+- signals_part_010.tsv
+- signals_part_011.tsv
+- signals_part_012.tsv
+- signals_part_013.tsv
+- signals_part_014.tsv
+- signals_part_015.tsv
+- signals_part_016.tsv
+- signals_part_017.tsv
+- signals_part_018.tsv
+- full_source_part_001.txt
+- full_source_part_002.txt
+- full_source_part_003.txt
+- full_source_part_004.txt
+- full_source_part_005.txt
+- full_source_part_006.txt
+- full_source_part_007.txt
+- full_source_part_008.txt
+- full_source_part_009.txt
+- full_source_part_010.txt
+- full_source_part_011.txt
+- full_source_part_012.txt
+- full_source_part_013.txt
+- full_source_part_014.txt
+- full_source_part_015.txt
+- full_source_part_016.txt
+- full_source_part_017.txt
+- full_source_part_018.txt
+- full_source_part_019.txt
+- full_source_part_020.txt
+- full_source_part_021.txt
+- full_source_part_022.txt
+- full_source_part_023.txt
+- full_source_part_024.txt
+- full_source_part_025.txt
+- full_source_part_026.txt
+- full_source_part_027.txt
+- full_source_part_028.txt
+- full_source_part_029.txt
+- full_source_part_030.txt
+- full_source_part_031.txt
+- full_source_part_032.txt
+- full_source_part_033.txt
+- full_source_part_034.txt
+- full_source_part_035.txt
+- full_source_part_036.txt
+- full_source_part_037.txt
+- full_source_part_038.txt
+- full_source_part_039.txt
+- full_source_part_040.txt
+- full_source_part_041.txt
+- full_source_part_042.txt
+- full_source_part_043.txt
+- full_source_part_044.txt
+- full_source_part_045.txt
+- full_source_part_046.txt
+- full_source_part_047.txt
+- full_source_part_048.txt
+- full_source_part_049.txt
+- full_source_part_050.txt
+- full_source_part_051.txt
+- full_source_part_052.txt
+- full_source_part_053.txt
+- full_source_part_054.txt
+- full_source_part_055.txt
+- full_source_part_056.txt
+- full_source_part_057.txt
+- full_source_part_058.txt
+- full_source_part_059.txt
+- full_source_part_060.txt
+- full_source_part_061.txt
+- full_source_part_062.txt
+- full_source_part_063.txt
+- full_source_part_064.txt
+- full_source_part_065.txt
+- full_source_part_066.txt
+- full_source_part_067.txt
+- full_source_part_068.txt
+- full_source_part_069.txt
+- full_source_part_070.txt
+- full_source_part_071.txt
+- full_source_part_072.txt
+- full_source_part_073.txt
+- full_source_part_074.txt
+- full_source_part_075.txt
+- full_source_part_076.txt
+- full_source_part_077.txt
+- full_source_part_078.txt
+- full_source_part_079.txt
+- full_source_part_080.txt
+- full_source_part_081.txt
+- full_source_part_082.txt

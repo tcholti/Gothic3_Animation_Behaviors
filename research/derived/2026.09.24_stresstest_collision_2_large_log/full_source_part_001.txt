@@ -1,0 +1,303 @@
+00000001: Script_FrameCollisionTest diagnostic build loaded.
+00000002: DiagnosticProfile: CORE
+00000003: DeepDiagnostics: DISABLED
+00000004: BehaviorCore: EngineBridge + FrameCollisionMarkers + CollisionSources + CollisionSourceOperations + CollisionLifecycleGuard + EquippedSprintCollision + Raw8FistCollision + PhysicalFistCollision + AttackMotionRouting + RuntimeClock
+00000005: C1Repair: exact outstanding live equipped Item_Attack source -> Item_Equipped after native AISetState opportunity; no ClearTriggeredList.
+00000006: MarkerFamilies: Normal Power Quick SimpleWhirl Whirl Pierce Hack Sprint
+00000007: MarkerOpcodes: RIGHT LEFT BOTH OFF FIST
+00000008: HACK_CALLBACK_IDENTITY TargetRVA=0x433D0 ExactlyOne=1 MatchCount=1 Name=OnAI_HackAttack Source=.\Script\AI\AI_Commands\AI_HackAttack.cpp
+00000009: Installing behavior hooks...
+00000010: Hooks installed.
+00000011: 
+00000012: CORE C1_START ElapsedMs=84392.553 Actor=PC_Hero Generation=1 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000013: CORE C1_STATUS ElapsedMs=84399.898 Event=PERSISTED Actor=PC_Hero Generation=1 Status=PERSISTED Outstanding=0
+00000014: CORE C1_START ElapsedMs=84547.342 Actor=PC_Hero Generation=2 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=1 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000015: CORE C1_BIND ElapsedMs=84547.354 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=2 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00000016: CORE C1_STATUS ElapsedMs=84555.180 Event=PERSISTED Actor=PC_Hero Generation=2 Status=PERSISTED Outstanding=0
+00000017: CORE ATTACK_OWNERSHIP ElapsedMs=84555.238 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00000018: CORE COLLISION_GROUP ElapsedMs=84810.950 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00000019: CORE C1 OFFENSE REQUEST ElapsedMs=84810.977 Actor=PC_Hero Generation=2 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00000020: CORE MARKER ElapsedMs=84810.990 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=2 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+00000021: CORE ONDAMAGE ElapsedMs=84846.325 Ordinal=1 Target=ScorpionKing Arg1=ScorpionKing Arg2=ScorpionKing Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000022: CORE C1_START ElapsedMs=84851.033 Actor=ScorpionKing Generation=3 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+00000023: CORE C1_BIND ElapsedMs=84851.045 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=ScorpionKing Generation=3 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+00000024: CORE C1_STATUS ElapsedMs=84851.833 Event=PERSISTED Actor=ScorpionKing Generation=3 Status=PERSISTED Outstanding=0
+00000025: CORE COLLISION_GROUP ElapsedMs=85020.950 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00000026: CORE C1 CLEANUP FULFILLED ElapsedMs=85020.969 Actor=PC_Hero Generation=2 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00000027: CORE C1_FINAL ElapsedMs=85020.993 Actor=PC_Hero Generation=2 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00000028: CORE C1_START ElapsedMs=85132.530 Actor=PC_Hero Generation=4 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000029: CORE C1_STATUS ElapsedMs=85139.441 Event=PERSISTED Actor=PC_Hero Generation=4 Status=PERSISTED Outstanding=0
+00000030: CORE C1_FINAL ElapsedMs=85152.840 Actor=ScorpionKing Generation=3 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000031: CORE C1_START ElapsedMs=85291.546 Actor=PC_Hero Generation=5 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=4 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000032: CORE C1_BIND ElapsedMs=85291.558 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=5 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00000033: CORE C1_STATUS ElapsedMs=85298.551 Event=PERSISTED Actor=PC_Hero Generation=5 Status=PERSISTED Outstanding=0
+00000034: CORE ATTACK_OWNERSHIP ElapsedMs=85298.585 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00000035: CORE COLLISION_GROUP ElapsedMs=85558.735 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00000036: CORE C1 OFFENSE REQUEST ElapsedMs=85558.763 Actor=PC_Hero Generation=5 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00000037: CORE MARKER ElapsedMs=85558.777 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=5 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+00000038: CORE ONDAMAGE ElapsedMs=85595.897 Ordinal=2 Target=ScorpionKing Arg1=ScorpionKing Arg2=ScorpionKing Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000039: CORE C1_START ElapsedMs=85600.855 Actor=ScorpionKing Generation=6 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+00000040: CORE C1_BIND ElapsedMs=85600.866 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=ScorpionKing Generation=6 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+00000041: CORE C1_STATUS ElapsedMs=85601.562 Event=PERSISTED Actor=ScorpionKing Generation=6 Status=PERSISTED Outstanding=0
+00000042: CORE COLLISION_GROUP ElapsedMs=85771.676 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00000043: CORE C1 CLEANUP FULFILLED ElapsedMs=85771.695 Actor=PC_Hero Generation=5 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00000044: CORE C1_FINAL ElapsedMs=85771.719 Actor=PC_Hero Generation=5 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00000045: CORE C1_FINAL ElapsedMs=85903.946 Actor=ScorpionKing Generation=6 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000046: CORE C1_START ElapsedMs=85932.529 Actor=PC_Hero Generation=7 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000047: CORE C1_STATUS ElapsedMs=85932.629 Event=PERSISTED Actor=PC_Hero Generation=7 Status=PERSISTED Outstanding=0
+00000048: CORE C1_START ElapsedMs=86097.283 Actor=PC_Hero Generation=8 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=7 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000049: CORE C1_BIND ElapsedMs=86097.295 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=8 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00000050: CORE C1_STATUS ElapsedMs=86097.357 Event=PERSISTED Actor=PC_Hero Generation=8 Status=PERSISTED Outstanding=0
+00000051: CORE ATTACK_OWNERSHIP ElapsedMs=86097.374 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00000052: CORE COLLISION_GROUP ElapsedMs=86366.773 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00000053: CORE C1 OFFENSE REQUEST ElapsedMs=86366.803 Actor=PC_Hero Generation=8 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00000054: CORE MARKER ElapsedMs=86366.816 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=8 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+00000055: CORE ONDAMAGE ElapsedMs=86407.625 Ordinal=3 Target=ScorpionKing Arg1=ScorpionKing Arg2=ScorpionKing Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000056: CORE C1_START ElapsedMs=86412.897 Actor=ScorpionKing Generation=9 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+00000057: CORE C1_BIND ElapsedMs=86412.909 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=ScorpionKing Generation=9 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+00000058: CORE C1_STATUS ElapsedMs=86412.961 Event=PERSISTED Actor=ScorpionKing Generation=9 Status=PERSISTED Outstanding=0
+00000059: CORE COLLISION_GROUP ElapsedMs=86569.619 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00000060: CORE C1 CLEANUP FULFILLED ElapsedMs=86569.646 Actor=PC_Hero Generation=8 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00000061: CORE C1_FINAL ElapsedMs=86569.667 Actor=PC_Hero Generation=8 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00000062: CORE C1_START ElapsedMs=86692.327 Actor=PC_Hero Generation=10 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000063: CORE C1_STATUS ElapsedMs=86692.393 Event=PERSISTED Actor=PC_Hero Generation=10 Status=PERSISTED Outstanding=0
+00000064: CORE C1_FINAL ElapsedMs=86716.903 Actor=ScorpionKing Generation=9 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000065: CORE C1_START ElapsedMs=86851.824 Actor=PC_Hero Generation=11 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=10 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000066: CORE C1_BIND ElapsedMs=86851.837 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=11 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00000067: CORE C1_STATUS ElapsedMs=86851.896 Event=PERSISTED Actor=PC_Hero Generation=11 Status=PERSISTED Outstanding=0
+00000068: CORE ATTACK_OWNERSHIP ElapsedMs=86851.913 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00000069: CORE COLLISION_GROUP ElapsedMs=87123.126 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00000070: CORE C1 OFFENSE REQUEST ElapsedMs=87123.153 Actor=PC_Hero Generation=11 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00000071: CORE MARKER ElapsedMs=87123.166 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=11 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+00000072: CORE ONDAMAGE ElapsedMs=87173.031 Ordinal=4 Target=ScorpionKing Arg1=ScorpionKing Arg2=ScorpionKing Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000073: CORE C1_START ElapsedMs=87181.387 Actor=ScorpionKing Generation=12 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+00000074: CORE C1_BIND ElapsedMs=87181.399 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=ScorpionKing Generation=12 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+00000075: CORE C1_STATUS ElapsedMs=87181.454 Event=PERSISTED Actor=ScorpionKing Generation=12 Status=PERSISTED Outstanding=0
+00000076: CORE COLLISION_GROUP ElapsedMs=87320.289 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00000077: CORE C1 CLEANUP FULFILLED ElapsedMs=87320.315 Actor=PC_Hero Generation=11 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00000078: CORE C1_FINAL ElapsedMs=87320.338 Actor=PC_Hero Generation=11 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00000079: CORE C1_START ElapsedMs=87476.298 Actor=PC_Hero Generation=13 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000080: CORE C1_STATUS ElapsedMs=87476.367 Event=PERSISTED Actor=PC_Hero Generation=13 Status=PERSISTED Outstanding=0
+00000081: CORE C1_FINAL ElapsedMs=87486.468 Actor=ScorpionKing Generation=12 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000082: CORE C1_START ElapsedMs=87642.277 Actor=PC_Hero Generation=14 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=13 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000083: CORE C1_BIND ElapsedMs=87642.292 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=14 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00000084: CORE C1_STATUS ElapsedMs=87642.374 Event=PERSISTED Actor=PC_Hero Generation=14 Status=PERSISTED Outstanding=0
+00000085: CORE ATTACK_OWNERSHIP ElapsedMs=87642.395 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00000086: CORE COLLISION_GROUP ElapsedMs=87901.995 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00000087: CORE C1 OFFENSE REQUEST ElapsedMs=87902.023 Actor=PC_Hero Generation=14 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00000088: CORE MARKER ElapsedMs=87902.036 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=14 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+00000089: CORE ONDAMAGE ElapsedMs=87955.782 Ordinal=5 Target=ScorpionKing Arg1=ScorpionKing Arg2=ScorpionKing Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000090: CORE C1_START ElapsedMs=87960.394 Actor=ScorpionKing Generation=15 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+00000091: CORE C1_BIND ElapsedMs=87960.406 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=ScorpionKing Generation=15 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+00000092: CORE C1_STATUS ElapsedMs=87960.458 Event=PERSISTED Actor=ScorpionKing Generation=15 Status=PERSISTED Outstanding=0
+00000093: CORE COLLISION_GROUP ElapsedMs=88103.441 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00000094: CORE C1 CLEANUP FULFILLED ElapsedMs=88103.469 Actor=PC_Hero Generation=14 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00000095: CORE C1_FINAL ElapsedMs=88103.538 Actor=PC_Hero Generation=14 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00000096: CORE C1_FINAL ElapsedMs=88262.648 Actor=ScorpionKing Generation=15 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000097: CORE C1_START ElapsedMs=88301.766 Actor=PC_Hero Generation=16 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000098: CORE C1_BIND ElapsedMs=88301.778 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=16 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+00000099: CORE C1_STATUS ElapsedMs=88308.976 Event=PERSISTED Actor=PC_Hero Generation=16 Status=PERSISTED Outstanding=0
+00000100: CORE C1_FINAL ElapsedMs=88321.267 Actor=PC_Hero Generation=16 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000101: CORE C1_START ElapsedMs=88326.103 Actor=PC_Hero Generation=17 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000102: CORE C1_BIND ElapsedMs=88326.115 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=17 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+00000103: CORE C1_STATUS ElapsedMs=88332.924 Event=PERSISTED Actor=PC_Hero Generation=17 Status=PERSISTED Outstanding=0
+00000104: CORE ATTACK_OWNERSHIP ElapsedMs=88332.958 Actor=PC_Hero Family=QUICK Action=5 Phase=1 Motion=Hero_Stand_None_2H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00000105: CORE COLLISION_GROUP ElapsedMs=88593.537 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00000106: CORE C1 OFFENSE REQUEST ElapsedMs=88593.565 Actor=PC_Hero Generation=17 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00000107: CORE MARKER ElapsedMs=88593.633 Actor=PC_Hero Action=5 Family=QUICK Phase=1 Motion=Hero_Stand_None_2H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=17 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+00000108: CORE ONDAMAGE ElapsedMs=88638.844 Ordinal=6 Target=ScorpionKing Arg1=ScorpionKing Arg2=ScorpionKing Caller=Game.dll+0x00069484 PlayerAction=5 PlayerPhase=1 PlayerMotion=Hero_Stand_None_2H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000109: CORE C1_START ElapsedMs=88646.536 Actor=ScorpionKing Generation=18 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+00000110: CORE C1_BIND ElapsedMs=88646.547 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=ScorpionKing Generation=18 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+00000111: CORE C1_STATUS ElapsedMs=88646.598 Event=PERSISTED Actor=ScorpionKing Generation=18 Status=PERSISTED Outstanding=0
+00000112: CORE COLLISION_GROUP ElapsedMs=88803.222 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00000113: CORE C1 CLEANUP FULFILLED ElapsedMs=88803.241 Actor=PC_Hero Generation=17 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00000114: CORE C1_FINAL ElapsedMs=88894.565 Actor=PC_Hero Generation=17 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00000115: CORE C1_FINAL ElapsedMs=88948.981 Actor=ScorpionKing Generation=18 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000116: CORE C1_START ElapsedMs=88991.896 Actor=PC_Hero Generation=19 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000117: CORE C1_BIND ElapsedMs=88991.908 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=19 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+00000118: CORE C1_STATUS ElapsedMs=88999.606 Event=PERSISTED Actor=PC_Hero Generation=19 Status=PERSISTED Outstanding=0
+00000119: CORE ATTACK_OWNERSHIP ElapsedMs=88999.639 Actor=PC_Hero Family=QUICK Action=4 Phase=1 Motion=Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00000120: CORE COLLISION_GROUP ElapsedMs=89264.886 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00000121: CORE C1 OFFENSE REQUEST ElapsedMs=89264.914 Actor=PC_Hero Generation=19 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00000122: CORE MARKER ElapsedMs=89264.927 Actor=PC_Hero Action=4 Family=QUICK Phase=1 Motion=Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=19 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+00000123: CORE ONDAMAGE ElapsedMs=89304.274 Ordinal=7 Target=ScorpionKing Arg1=ScorpionKing Arg2=ScorpionKing Caller=Game.dll+0x00069484 PlayerAction=4 PlayerPhase=1 PlayerMotion=Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000124: CORE C1_START ElapsedMs=89309.265 Actor=ScorpionKing Generation=20 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+00000125: CORE C1_BIND ElapsedMs=89309.276 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=ScorpionKing Generation=20 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+00000126: CORE C1_STATUS ElapsedMs=89309.328 Event=PERSISTED Actor=ScorpionKing Generation=20 Status=PERSISTED Outstanding=0
+00000127: CORE COLLISION_GROUP ElapsedMs=89472.461 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00000128: CORE C1 CLEANUP FULFILLED ElapsedMs=89472.481 Actor=PC_Hero Generation=19 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00000129: CORE C1_FINAL ElapsedMs=89564.200 Actor=PC_Hero Generation=19 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00000130: CORE C1_FINAL ElapsedMs=89612.938 Actor=ScorpionKing Generation=20 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000131: CORE C1_START ElapsedMs=89803.904 Actor=PC_Hero Generation=21 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000132: CORE C1_STATUS ElapsedMs=89803.996 Event=PERSISTED Actor=PC_Hero Generation=21 Status=PERSISTED Outstanding=0
+00000133: CORE C1_START ElapsedMs=89961.063 Actor=PC_Hero Generation=22 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=21 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000134: CORE C1_BIND ElapsedMs=89961.074 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=22 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00000135: CORE C1_STATUS ElapsedMs=89961.133 Event=PERSISTED Actor=PC_Hero Generation=22 Status=PERSISTED Outstanding=0
+00000136: CORE ATTACK_OWNERSHIP ElapsedMs=89961.149 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00000137: CORE COLLISION_GROUP ElapsedMs=90225.038 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00000138: CORE C1 OFFENSE REQUEST ElapsedMs=90225.068 Actor=PC_Hero Generation=22 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00000139: CORE MARKER ElapsedMs=90225.081 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=22 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+00000140: CORE ONDAMAGE ElapsedMs=90248.923 Ordinal=8 Target=ScorpionKing Arg1=ScorpionKing Arg2=ScorpionKing Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000141: CORE C1_START ElapsedMs=90257.027 Actor=ScorpionKing Generation=23 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+00000142: CORE C1_BIND ElapsedMs=90257.038 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=ScorpionKing Generation=23 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+00000143: CORE C1_STATUS ElapsedMs=90257.088 Event=PERSISTED Actor=ScorpionKing Generation=23 Status=PERSISTED Outstanding=0
+00000144: CORE COLLISION_GROUP ElapsedMs=90431.314 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00000145: CORE C1 CLEANUP FULFILLED ElapsedMs=90431.341 Actor=PC_Hero Generation=22 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00000146: CORE C1_FINAL ElapsedMs=90431.361 Actor=PC_Hero Generation=22 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00000147: CORE C1_FINAL ElapsedMs=90562.602 Actor=ScorpionKing Generation=23 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000148: CORE C1_START ElapsedMs=90619.171 Actor=PC_Hero Generation=24 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000149: CORE C1_STATUS ElapsedMs=90619.237 Event=PERSISTED Actor=PC_Hero Generation=24 Status=PERSISTED Outstanding=0
+00000150: CORE C1_START ElapsedMs=90777.953 Actor=PC_Hero Generation=25 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=24 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000151: CORE C1_BIND ElapsedMs=90777.965 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=25 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00000152: CORE C1_STATUS ElapsedMs=90778.030 Event=PERSISTED Actor=PC_Hero Generation=25 Status=PERSISTED Outstanding=0
+00000153: CORE ATTACK_OWNERSHIP ElapsedMs=90778.047 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00000154: CORE COLLISION_GROUP ElapsedMs=91042.344 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00000155: CORE C1 OFFENSE REQUEST ElapsedMs=91042.371 Actor=PC_Hero Generation=25 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00000156: CORE MARKER ElapsedMs=91042.385 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=25 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+00000157: CORE ONDAMAGE ElapsedMs=91087.741 Ordinal=9 Target=ScorpionKing Arg1=ScorpionKing Arg2=ScorpionKing Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000158: CORE C1_START ElapsedMs=91095.156 Actor=ScorpionKing Generation=26 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+00000159: CORE C1_BIND ElapsedMs=91095.196 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=ScorpionKing Generation=26 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+00000160: CORE C1_STATUS ElapsedMs=91095.279 Event=PERSISTED Actor=ScorpionKing Generation=26 Status=PERSISTED Outstanding=0
+00000161: CORE COLLISION_GROUP ElapsedMs=91249.127 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00000162: CORE C1 CLEANUP FULFILLED ElapsedMs=91249.167 Actor=PC_Hero Generation=25 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00000163: CORE C1_FINAL ElapsedMs=91249.186 Actor=PC_Hero Generation=25 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00000164: CORE C1_FINAL ElapsedMs=91393.431 Actor=ScorpionKing Generation=26 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000165: CORE C1_START ElapsedMs=91450.117 Actor=PC_Hero Generation=27 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000166: CORE C1_STATUS ElapsedMs=91450.189 Event=PERSISTED Actor=PC_Hero Generation=27 Status=PERSISTED Outstanding=0
+00000167: CORE C1_START ElapsedMs=91608.318 Actor=PC_Hero Generation=28 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=27 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000168: CORE C1_BIND ElapsedMs=91608.330 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=28 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00000169: CORE C1_STATUS ElapsedMs=91608.388 Event=PERSISTED Actor=PC_Hero Generation=28 Status=PERSISTED Outstanding=0
+00000170: CORE ATTACK_OWNERSHIP ElapsedMs=91608.406 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00000171: CORE COLLISION_GROUP ElapsedMs=91881.350 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00000172: CORE C1 OFFENSE REQUEST ElapsedMs=91881.378 Actor=PC_Hero Generation=28 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00000173: CORE MARKER ElapsedMs=91881.390 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=28 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+00000174: CORE ONDAMAGE ElapsedMs=91924.355 Ordinal=10 Target=ScorpionKing Arg1=ScorpionKing Arg2=ScorpionKing Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000175: CORE C1_START ElapsedMs=91929.297 Actor=ScorpionKing Generation=29 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+00000176: CORE C1_BIND ElapsedMs=91929.309 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=ScorpionKing Generation=29 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+00000177: CORE C1_STATUS ElapsedMs=91929.508 Event=PERSISTED Actor=ScorpionKing Generation=29 Status=PERSISTED Outstanding=0
+00000178: CORE COLLISION_GROUP ElapsedMs=92086.688 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00000179: CORE C1 CLEANUP FULFILLED ElapsedMs=92086.714 Actor=PC_Hero Generation=28 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00000180: CORE C1_FINAL ElapsedMs=92086.785 Actor=PC_Hero Generation=28 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00000181: CORE C1_FINAL ElapsedMs=92235.098 Actor=ScorpionKing Generation=29 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000182: CORE C1_START ElapsedMs=92255.641 Actor=PC_Hero Generation=30 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000183: CORE C1_STATUS ElapsedMs=92255.706 Event=PERSISTED Actor=PC_Hero Generation=30 Status=PERSISTED Outstanding=0
+00000184: CORE C1_START ElapsedMs=92414.105 Actor=PC_Hero Generation=31 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=30 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000185: CORE C1_BIND ElapsedMs=92414.117 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=31 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00000186: CORE C1_STATUS ElapsedMs=92414.179 Event=PERSISTED Actor=PC_Hero Generation=31 Status=PERSISTED Outstanding=0
+00000187: CORE ATTACK_OWNERSHIP ElapsedMs=92414.196 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00000188: CORE COLLISION_GROUP ElapsedMs=92683.722 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00000189: CORE C1 OFFENSE REQUEST ElapsedMs=92683.751 Actor=PC_Hero Generation=31 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00000190: CORE MARKER ElapsedMs=92683.777 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=31 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+00000191: CORE ONDAMAGE ElapsedMs=92718.082 Ordinal=11 Target=ScorpionKing Arg1=ScorpionKing Arg2=ScorpionKing Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_2H_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000192: CORE C1_START ElapsedMs=92723.115 Actor=ScorpionKing Generation=32 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+00000193: CORE C1_BIND ElapsedMs=92723.144 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=ScorpionKing Generation=32 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+00000194: CORE C1_STATUS ElapsedMs=92723.209 Event=PERSISTED Actor=ScorpionKing Generation=32 Status=PERSISTED Outstanding=0
+00000195: CORE COLLISION_GROUP ElapsedMs=92888.157 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00000196: CORE C1 CLEANUP FULFILLED ElapsedMs=92888.185 Actor=PC_Hero Generation=31 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00000197: CORE C1_FINAL ElapsedMs=92888.207 Actor=PC_Hero Generation=31 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00000198: CORE C1_FINAL ElapsedMs=93029.841 Actor=ScorpionKing Generation=32 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000199: CORE C1_START ElapsedMs=93059.132 Actor=PC_Hero Generation=33 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000200: CORE C1_STATUS ElapsedMs=93059.195 Event=PERSISTED Actor=PC_Hero Generation=33 Status=PERSISTED Outstanding=0
+00000201: CORE C1_START ElapsedMs=93220.999 Actor=PC_Hero Generation=34 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=33 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000202: CORE C1_BIND ElapsedMs=93221.011 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=34 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00000203: CORE C1_STATUS ElapsedMs=93221.078 Event=PERSISTED Actor=PC_Hero Generation=34 Status=PERSISTED Outstanding=0
+00000204: CORE ATTACK_OWNERSHIP ElapsedMs=93221.100 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00000205: CORE COLLISION_GROUP ElapsedMs=93491.838 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00000206: CORE C1 OFFENSE REQUEST ElapsedMs=93491.867 Actor=PC_Hero Generation=34 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00000207: CORE MARKER ElapsedMs=93491.879 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=34 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+00000208: CORE ONDAMAGE ElapsedMs=93534.220 Ordinal=12 Target=ScorpionKing Arg1=ScorpionKing Arg2=ScorpionKing Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_2H_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000209: CORE C1_START ElapsedMs=93539.620 Actor=ScorpionKing Generation=35 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+00000210: CORE C1_BIND ElapsedMs=93539.631 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=ScorpionKing Generation=35 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+00000211: CORE C1_STATUS ElapsedMs=93539.687 Event=PERSISTED Actor=ScorpionKing Generation=35 Status=PERSISTED Outstanding=0
+00000212: CORE COLLISION_GROUP ElapsedMs=93689.365 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00000213: CORE C1 CLEANUP FULFILLED ElapsedMs=93689.394 Actor=PC_Hero Generation=34 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00000214: CORE C1_FINAL ElapsedMs=93689.419 Actor=PC_Hero Generation=34 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00000215: CORE C1_START ElapsedMs=93816.352 Actor=PC_Hero Generation=36 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000216: CORE C1_BIND ElapsedMs=93816.364 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=36 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+00000217: CORE C1_STATUS ElapsedMs=93816.423 Event=PERSISTED Actor=PC_Hero Generation=36 Status=PERSISTED Outstanding=0
+00000218: CORE ATTACK_OWNERSHIP ElapsedMs=93816.438 Actor=PC_Hero Family=QUICK Action=4 Phase=1 Motion=Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00000219: CORE C1_FINAL ElapsedMs=93845.791 Actor=ScorpionKing Generation=35 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000220: CORE COLLISION_GROUP ElapsedMs=94091.460 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00000221: CORE C1 OFFENSE REQUEST ElapsedMs=94091.489 Actor=PC_Hero Generation=36 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00000222: CORE MARKER ElapsedMs=94091.502 Actor=PC_Hero Action=4 Family=QUICK Phase=1 Motion=Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=36 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+00000223: CORE ONDAMAGE ElapsedMs=94151.619 Ordinal=13 Target=ScorpionKing Arg1=ScorpionKing Arg2=ScorpionKing Caller=Game.dll+0x00069484 PlayerAction=4 PlayerPhase=1 PlayerMotion=Hero_Stand_None_2H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000224: CORE C1_START ElapsedMs=94156.887 Actor=ScorpionKing Generation=37 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+00000225: CORE C1_BIND ElapsedMs=94156.898 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=ScorpionKing Generation=37 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+00000226: CORE C1_STATUS ElapsedMs=94156.956 Event=PERSISTED Actor=ScorpionKing Generation=37 Status=PERSISTED Outstanding=0
+00000227: CORE COLLISION_GROUP ElapsedMs=94296.105 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00000228: CORE C1 CLEANUP FULFILLED ElapsedMs=94296.134 Actor=PC_Hero Generation=36 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00000229: CORE C1_FINAL ElapsedMs=94397.233 Actor=PC_Hero Generation=36 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00000230: CORE C1_FINAL ElapsedMs=94460.730 Actor=ScorpionKing Generation=37 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000231: CORE C1_START ElapsedMs=94497.837 Actor=PC_Hero Generation=38 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000232: CORE C1_BIND ElapsedMs=94497.849 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=38 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+00000233: CORE C1_STATUS ElapsedMs=94506.698 Event=PERSISTED Actor=PC_Hero Generation=38 Status=PERSISTED Outstanding=0
+00000234: CORE C1_BIND ElapsedMs=94998.565 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=38 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+00000235: CORE ATTACK_OWNERSHIP ElapsedMs=95005.497 Actor=PC_Hero Family=POWER Action=2 Phase=1 Motion=Hero_Stand_None_2H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00000236: CORE COLLISION_GROUP ElapsedMs=95269.189 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00000237: CORE C1 OFFENSE REQUEST ElapsedMs=95269.216 Actor=PC_Hero Generation=38 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00000238: CORE MARKER ElapsedMs=95269.230 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_None_2H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=38 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+00000239: CORE COLLISION_GROUP ElapsedMs=95475.269 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00000240: CORE C1 CLEANUP FULFILLED ElapsedMs=95475.290 Actor=PC_Hero Generation=38 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00000241: CORE C1_FINAL ElapsedMs=95475.313 Actor=PC_Hero Generation=38 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00000242: CORE C1_START ElapsedMs=95846.356 Actor=PC_Hero Generation=39 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000243: CORE C1_BIND ElapsedMs=95846.369 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=39 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+00000244: CORE C1_STATUS ElapsedMs=95853.307 Event=PERSISTED Actor=PC_Hero Generation=39 Status=PERSISTED Outstanding=0
+00000245: CORE C1_BIND ElapsedMs=96346.021 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=39 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+00000246: CORE ATTACK_OWNERSHIP ElapsedMs=96353.363 Actor=PC_Hero Family=POWER Action=2 Phase=1 Motion=Hero_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00000247: CORE COLLISION_GROUP ElapsedMs=96611.814 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00000248: CORE C1 OFFENSE REQUEST ElapsedMs=96611.879 Actor=PC_Hero Generation=39 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00000249: CORE MARKER ElapsedMs=96611.894 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=39 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+00000250: CORE ONDAMAGE ElapsedMs=96673.344 Ordinal=14 Target=ScorpionKing Arg1=ScorpionKing Arg2=ScorpionKing Caller=Game.dll+0x00069484 PlayerAction=2 PlayerPhase=1 PlayerMotion=Hero_Stand_None_2H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000251: CORE C1_START ElapsedMs=96678.164 Actor=ScorpionKing Generation=40 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+00000252: CORE C1_BIND ElapsedMs=96678.174 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=ScorpionKing Generation=40 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+00000253: CORE C1_STATUS ElapsedMs=96678.232 Event=PERSISTED Actor=ScorpionKing Generation=40 Status=PERSISTED Outstanding=0
+00000254: CORE COLLISION_GROUP ElapsedMs=96829.014 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00000255: CORE C1 CLEANUP FULFILLED ElapsedMs=96829.033 Actor=PC_Hero Generation=39 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00000256: CORE C1_FINAL ElapsedMs=96829.056 Actor=PC_Hero Generation=39 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00000257: CORE C1_FINAL ElapsedMs=96970.869 Actor=ScorpionKing Generation=40 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000258: CORE C1_START ElapsedMs=97269.149 Actor=PC_Hero Generation=41 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000259: CORE C1_BIND ElapsedMs=97269.161 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=41 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+00000260: CORE C1_STATUS ElapsedMs=97269.225 Event=PERSISTED Actor=PC_Hero Generation=41 Status=PERSISTED Outstanding=0
+00000261: CORE C1_BIND ElapsedMs=97760.960 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=41 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+00000262: CORE ATTACK_OWNERSHIP ElapsedMs=97761.040 Actor=PC_Hero Family=POWER Action=2 Phase=1 Motion=Hero_Stand_None_2H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00000263: CORE C1_START ElapsedMs=97801.770 Actor=ScorpionKing Generation=42 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+00000264: CORE C1_BIND ElapsedMs=97801.782 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=ScorpionKing Generation=42 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+00000265: CORE C1_STATUS ElapsedMs=97803.522 Event=PERSISTED Actor=ScorpionKing Generation=42 Status=PERSISTED Outstanding=0
+00000266: CORE C1_BIND ElapsedMs=97979.272 Event=COMBAT_MOVE_REUSED Actor=ScorpionKing Generation=42 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+00000267: CORE RAW8_FIST_OWNERSHIP ElapsedMs=97987.640 Actor=ScorpionKing Action=2 Family=POWER Motion=ScorpionKing_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_100.xmot C1=42 Raw8Fist=Fist Raw8UseType=8 InitialClose=0->1 Result=CONFIRMED
+00000268: CORE ATTACK_OWNERSHIP ElapsedMs=97987.661 Actor=ScorpionKing Family=POWER Action=2 Phase=1 Motion=ScorpionKing_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_100.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=Fist Raw8UseType=8 SuppressNative=0 Classification=ROUTINE
+00000269: CORE COLLISION_GROUP ElapsedMs=97987.674 Source=Fist UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+00000270: CORE RAW8_FIST_TIMING ElapsedMs=98013.289 Actor=ScorpionKing Action=2 Family=POWER Motion=ScorpionKing_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_100.xmot C1=42 Raw8Fist=Fist Raw8UseType=8 AcceptedRearm=1->0 OwnershipMatched=1 Classification=EARLY_PERMISSION_ARMED
+00000271: CORE RAW8_OPPORTUNITY_OPEN ElapsedMs=98013.315 Actor=ScorpionKing Action=2 Family=POWER Motion=ScorpionKing_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_100.xmot C1=42 Raw8Fist=Fist OpportunityOrdinal=1 Reason=ACCEPTED_FIST LatchBefore=1 LatchAfter=0 LatchWriteAttempted=1 LatchWriteConfirmed=1 TimingActive=1
+00000272: CORE MARKER ElapsedMs=98013.328 Actor=ScorpionKing Action=2 Family=POWER Phase=1 Motion=ScorpionKing_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_100.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=42 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Raw8Fist=Fist Raw8UseType=8 Latch=1->0 LatchConfirmed=1
+00000273: CORE RAW8_FIST_TIMING ElapsedMs=98021.333 Actor=ScorpionKing Action=2 Family=POWER Motion=ScorpionKing_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_100.xmot C1=42 Raw8Fist=Fist Raw8UseType=8 PermissionApplied=1 SyntheticApplied=1 Classification=EARLY_PERMISSION_APPLIED
+00000274: CORE RAW8_OPPORTUNITY_CONTACT_CONSUMED ElapsedMs=98021.542 Actor=ScorpionKing Action=2 Family=POWER Motion=ScorpionKing_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_100.xmot C1=42 Raw8Fist=Fist OpportunityOrdinal=1 Reason=EXACT_NATIVE_CONTACT_DISPATCH LatchValue=1
+00000275: CORE RAW8_FIST_TIMING ElapsedMs=98021.557 Actor=ScorpionKing C1=42 PermissionRetired=1 Reason=CONTACT_CONSUMED
+00000276: CORE ONDAMAGE ElapsedMs=98021.571 Ordinal=15 Target=PC_Hero Arg1=Fist Arg2=ScorpionKing Caller=Game.dll+0x0016E348 PlayerAction=2 PlayerPhase=1 PlayerMotion=Hero_Stand_None_2H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000277: CORE C1_START ElapsedMs=98024.952 Actor=PC_Hero Generation=43 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=41 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00000278: CORE C1_STATUS ElapsedMs=98031.617 Event=PERSISTED Actor=PC_Hero Generation=43 Status=PERSISTED Outstanding=0
+00000279: CORE C1_FINAL ElapsedMs=98100.133 Actor=ScorpionKing Generation=42 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000280: CORE C1_START ElapsedMs=99590.594 Actor=ScorpionKing Generation=44 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+00000281: CORE C1_BIND ElapsedMs=99590.605 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=ScorpionKing Generation=44 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+00000282: CORE C1_STATUS ElapsedMs=99593.932 Event=PERSISTED Actor=ScorpionKing Generation=44 Status=PERSISTED Outstanding=0
+00000283: CORE C1_START ElapsedMs=99594.049 Actor=ScorpionKing Generation=45 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+00000284: CORE C1_BIND ElapsedMs=99594.073 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=ScorpionKing Generation=45 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+00000285: CORE C1_STATUS ElapsedMs=99594.125 Event=PERSISTED Actor=ScorpionKing Generation=45 Status=PERSISTED Outstanding=0
+00000286: CORE C1_FINAL ElapsedMs=99951.884 Actor=PC_Hero Generation=43 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000287: CORE COLLISION_GROUP ElapsedMs=99959.971 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00000288: CORE C1_START ElapsedMs=99959.998 Actor=PC_Hero Generation=46 Status=OUTER_BOUND Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=7
+00000289: CORE C1_BIND ElapsedMs=99960.004 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=46 Status=OUTER_BOUND Outstanding=0 Source=It_2H_Sword_Flamberge Script=_AI_GetUpAttack
+00000290: CORE C1 OFFENSE REQUEST ElapsedMs=99960.009 Actor=PC_Hero Generation=46 Status=OUTER_BOUND Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00000291: CORE C1_BIND ElapsedMs=99960.057 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=46 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+00000292: CORE C1_FINAL ElapsedMs=99988.003 Actor=ScorpionKing Generation=44 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000293: CORE C1_FINAL ElapsedMs=99988.399 Actor=ScorpionKing Generation=45 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00000294: CORE C1_START ElapsedMs=99996.392 Actor=ScorpionKing Generation=47 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+00000295: CORE C1_BIND ElapsedMs=99996.404 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=ScorpionKing Generation=47 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+00000296: CORE C1_STATUS ElapsedMs=99996.463 Event=PERSISTED Actor=ScorpionKing Generation=47 Status=PERSISTED Outstanding=0
+00000297: CORE COLLISION_GROUP ElapsedMs=100061.985 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+00000298: CORE C1 OFFENSE REQUEST ElapsedMs=100062.014 Actor=PC_Hero Generation=46 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+00000299: CORE ONDAMAGE ElapsedMs=100230.091 Ordinal=16 Target=ScorpionKing Arg1=ScorpionKing Arg2=ScorpionKing Caller=Game.dll+0x00069484 PlayerAction=30 PlayerPhase=1 PlayerMotion=Hero_SitKnockDown_None_2H_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+00000300: CORE C1_START ElapsedMs=100234.195 Actor=ScorpionKing Generation=48 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=47 ReplacedOutstanding=0 Source[0]=Fist Side=RIGHT Group=0
+00000301: CORE C1_BIND ElapsedMs=100234.205 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=ScorpionKing Generation=48 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+00000302: CORE C1_STATUS ElapsedMs=100234.262 Event=PERSISTED Actor=ScorpionKing Generation=48 Status=PERSISTED Outstanding=0
+00000303: CORE COLLISION_GROUP ElapsedMs=100360.495 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
