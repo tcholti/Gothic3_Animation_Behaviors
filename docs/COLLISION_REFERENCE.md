@@ -141,22 +141,46 @@ The current production scope is exact current RIGHT PhysicalFist/raw55, marker-o
 
 Normal has a proven special native between-contact ALL-clear interaction; the permanent module suppresses/replaces only the exact evidence-backed native clear needed to preserve authored repeated-contact semantics.
 
-Evidence: EV-262–EV-298, EV-317, EV-341, EV-366.  
+### Open New Balance / AttackCollision compatibility exception
+
+EV-376 establishes one current incompatibility in the otherwise frozen raw55 implementation when the User's New Balance/AttackCollision environment is live:
+
+```text
+single-FIST true Power
+-> exact raw55 execution remains valid
+-> authored FIST may arrive at StatePosition=2
+-> current frozen Power gate rejects it
+
+double-FIST true Power
+-> marker1 at SP1 accepted / damage possible
+-> marker2 at SP2 rejected instead of clear-only rearm
+
+Sprint-origin
+-> marker1 Action9 / SPRINT / SP1 accepted
+-> same C1 continues Action9 -> Action2
+-> marker2 current POWER / SP2 rejected
+```
+
+This is **not** evidence for generic SP2 acceptance. The no-target equipped sweep, Goblin equipped control, Sabertooth raw8 control and human raw8 control remain healthy; generic dual-1H Power markers can already operate safely at SP2. The contradiction is therefore bounded to the raw55 Power/Sprint-origin state gate.
+
+Frozen source remains unchanged. The evidence-bounded correction is pending and must not alter Normal, Quick, raw8, generic equipped behavior, C1 identity, or native final cleanup.
+
+Evidence: EV-262–EV-298, EV-317, EV-341, EV-366, EV-376.  
 Architecture: `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`.
 
 ### Audit disposition
 
-Independent audit found no confirmed release-behavior defect. One hypothetical nested marker/callback attribution risk remains evidence-bounded with no source change; one diagnostics-only callback-identity surfacing omission was corrected without behavior change.
+Independent audit found no confirmed release-behavior defect in the standalone environment. One hypothetical nested marker/callback attribution risk remains evidence-bounded with no source change; one diagnostics-only callback-identity surfacing omission was corrected without behavior change. EV-376 is a later external-stack compatibility contradiction, not a reversal of the standalone audit result.
 
-Evidence/current closure: EV-295–EV-298. Historical audit/probe documents are archived and are not ordinary retrieval material.
+Evidence/current closure: EV-295–EV-298, EV-376. Historical audit/probe documents are archived and are not ordinary retrieval material.
 
 ## 6. Sprint transport
 
 SprintAttack is factual `gEAction_SprintAttack = 9`.
 
-For the supported raw8 FIST path, Sprint arrives through the existing physical `OnAI_PowerAttack` transport while factual actor action is already Sprint at callback entry. The Power-named transport/motion does not redefine Sprint as Power.
+For the supported raw8 Fist path, Sprint arrives through the existing physical `OnAI_PowerAttack` transport while factual actor action is already Sprint at callback entry. The Power-named transport/motion does not redefine Sprint as Power.
 
-The permanent raw55 path also supports Sprint-origin PhysicalFist/raw55 FIST behavior. Its immutable origin remains Sprint across the proven same-C1 factual `Action9 -> Action2` transition; later current Action2/POWER state does not transfer ownership to a true-Power execution.
+The permanent raw55 path also supports Sprint-origin PhysicalFist/raw55 FIST behavior. Its immutable origin remains Sprint across the proven same-C1 factual `Action9 -> Action2` transition; later current Action2/POWER state does not transfer ownership to a true-Power execution. EV-376 reconfirms that identity model under New Balance: the origin remains Sprint when the later marker is observed at current Power/SP2; only the frozen SP1 state gate is contradicted.
 
 Equipped Sprint RIGHT/LEFT/BOTH/OFF is permanent supported behavior through `EquippedSprintCollision`.
 
@@ -178,7 +202,7 @@ The bound continuation is exact-identity-only: same actor, C1 generation, motion
 
 Architecture decision: ADR-0003. Permanent owner: `EquippedSprintCollision`.
 
-Evidence: raw8 Sprint EV-250–EV-251 and protected sentinel EV-316/EV-354; raw55 Sprint-origin EV-280–EV-285, EV-294, EV-298 and protected sentinel EV-317; equipped Sprint causal/promotion evidence EV-311, EV-315, EV-320–EV-329.
+Evidence: raw8 Sprint EV-250–EV-251 and protected sentinel EV-316/EV-354; raw55 Sprint-origin EV-280–EV-285, EV-294, EV-298, EV-317 and EV-376; equipped Sprint causal/promotion evidence EV-311, EV-315, EV-320–EV-329.
 
 ## 7. Shield / raw9 boundary
 
@@ -262,7 +286,8 @@ final-source Stage B equipped/cumulative    CLOSED/PASS EV-368
 separation compatibility                    CLOSED/PASS EV-369–EV-372
 mixed stress / standalone final-source      CLOSED/PASS EV-373–EV-374
 Zombie+Axe asset-gap remedy                 PASS EV-375
-New Balance full intended-stack gate        CURRENT
+New Balance full intended-stack gate        BLOCKED/OPEN EV-376
+raw55 Power/Sprint-origin SP2 remediation   CURRENT
 ```
 
 Current validation authority: `COLLISION_TEST_PLAN.md`.
