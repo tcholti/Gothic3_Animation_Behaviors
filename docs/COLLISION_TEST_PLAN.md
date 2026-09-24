@@ -123,6 +123,8 @@ Rapier-separation compatibility
 
 The next gate is runtime compatibility with the **exact New Balance 0.7 distributed bundle as the User actually runs it**, including its DLL set and the relevant Jackydima collision components such as `Script_AttackCollision` where applicable.
 
+For this gate, the User has deliberately removed the Zombie/Axe/Rapier separation mods from the load order. **Separation mods are out of scope for the current New Balance compatibility campaign.** Do not add them back merely for coverage; they can be tested later only if the User deliberately opens that combined environment as a separate goal.
+
 Source-level preflight evidence is not sufficient final certification.
 
 Do not assume arbitrary same-function hook chaining or DLL load-order safety. Do not omit one of the normally installed New Balance DLLs merely to make the first test easier; reduction is appropriate only after a concrete failure needs isolation.
@@ -135,6 +137,7 @@ Before interpreting gameplay:
 exact New Balance bundle installed
 all normally distributed/used New Balance DLLs present
 relevant AttackCollision component present where part of that environment
+Zombie/Axe/Rapier separation mods absent for this gate
 exactly one Gothic3_Animation_Behaviors collision twin live
 startup succeeds
 expected diagnostic banner present when using diagnostic twin
@@ -156,9 +159,6 @@ raw8 body-contact
 
 raw55 PhysicalFist
   -> representative Troll/PhysicalFist marked route
-
-separation-mod compatibility
-  -> at least one already-proven separated Axe or Rapier route if that mod is part of the intended installed environment
 
 mixed stress
   -> actor/target/weapon/C1 churn with the New Balance DLL set live
