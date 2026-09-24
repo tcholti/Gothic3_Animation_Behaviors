@@ -44,7 +44,7 @@ Repeated RIGHT/LEFT/BOTH later in the same Hit can author another contact by rea
 
 Supported/proven equipped attack scope currently includes Normal, Quick, full Whirl, Power, Pierce, SimpleWhirl, tested 2H/Staff Hack routes, and factual equipped Sprint under the permanent `EquippedSprintCollision` policy. Family-specific native target/reaction behavior remains native and is not normalized merely by marker support.
 
-Evidence: EV-106–EV-116, EV-143–EV-147, EV-217–EV-220, EV-241–EV-244, EV-299–EV-306, EV-309–EV-314, EV-318, EV-370–EV-372.
+Evidence: EV-106–EV-116, EV-143–EV-147, EV-217–EV-220, EV-241–EV-244, EV-299–EV-306, EV-309–EV-314, EV-318, EV-370–EV-372, EV-375.
 
 ## 3. Equipped lifecycle / terminal repair
 
@@ -63,7 +63,7 @@ exact outstanding equipped source
 
 If native cleanup already fulfilled the obligation, repair does nothing. LEFT/RIGHT obligations remain independent.
 
-Evidence: EV-180–EV-191, EV-197–EV-215, EV-299–EV-306.  
+Evidence: EV-180–EV-191, EV-197–EV-215, EV-299–EV-306, EV-367, EV-373–EV-374.  
 Architecture: `COLLISION_LIFECYCLE.md`.
 
 ## 4. Raw8 Fist
@@ -76,29 +76,38 @@ Supported/proven marked families:
 Normal + Power + Quick + Sprint
 ```
 
-Current behavior:
+Current permanent behavior:
 
 ```text
 unmarked raw8 Fist
 -> completely native
 
-marked supported raw8 execution
--> close SPU+0x164 opportunity once for the C1 before first FIST
+marked execution begins
+-> native permission closed for the exact C1
 
-each accepted G3AB_COL_FIST
--> SPU+0x164 1 -> 0
--> when needed, arm one exact bounded early timing permission
--> native Gothic path owns contact/target/damage
--> native attempt closes the latch to 1 whether or not damage succeeds
+accepted FIST
+-> one target-directed authored opportunity OPEN
+-> exact bounded early timing permission applied when needed
+
+native miss
+-> opportunity stays OPEN
+-> native one-shot latch is rearmed
+
+first exact native contact dispatch
+-> opportunity CONSUMED
+
+later accepted FIST in same C1
+-> may open a new opportunity, never stack opportunities
+
+exact C1 finalization/replacement
+-> unused opportunity CLOSED
 ```
 
-A later FIST in the same C1 can rearm another native contact opportunity. The marked raw8 mechanism is proven across human, Sabretooth/transformed Sabretooth, Wolf/transformed Wolf, Orc, Minecrawler, Bloodfly, Boar and Bison fixtures; it is source/mechanism behavior, not a human/species special case. EV-340 pairs the marked Wolf proof with an unmarked Wolf control showing factual Fist/raw8 remains completely native when no FIST marker is authored. EV-342–EV-345 further broaden native-creature coverage while preserving the same factual Fist/UseType8 rule.
+Gothic remains authoritative for target selection, block/parry, immunity, reactions, knockdown/get-up vulnerability and HP damage. A native contact resolution consumes the opportunity even when resulting damage is zero.
 
 There is no production `FIST_OFF`, no raw8 equipped-source window, no raw8 `ClearTriggeredList()` mechanism, and no direct/custom raw8 damage.
 
-EV-346–EV-347 expose an active design correction: an early synthetic attempt can miss before the moving body reaches its target, and EV-347 proves the latch still closes on that miss. EV-348 proves that one exact post-miss latch-only rearm can restore a later native opportunity without rearming synthetic timing. EV-349 adds two constraints: visible gameplay damage is not a collision-success oracle, and a diagnostic rearmed latch can remain live across Hit-C1 replacement into Recover unless explicitly closed. The authoring boundary is therefore explicit: this mod opens/rearms/closes native collision/contact opportunity only. Gothic and other behavior systems remain authoritative for block/parry, immunity, knockdown/get-up vulnerability, reactions and HP damage. A native hit/contact resolution consumes the opportunity even when resulting damage is zero; if no such resolution occurs, the opportunity remains available only until the exact Hit/C1 lifetime ends. EV-351 then rules out exact raw8 `gCTouchDamage_PS::CanBeActivatedNow` / `TriggerTarget` callbacks as the contact-consumption boundary on the tested Gargoyle Power combat-loop route: three close/contact cases reached the generic `Game+0x16E348` path with neither callback observed. Direct invocation-level inherited visited-state behavior remains unresolved. EV-352 adds a native human group-combat control: 25 player Fist C1s produced eight exact `Game+0x16E348` raw8 entries, all eight against the locked `ReddockOrcScoutLeader` and none against deliberately interposed/adjacent non-target Orcs. Together with EV-233 and EV-351, this supports a smaller target-directed authoring model: one pending opportunity token per exact marked C1 rather than weapon-style per-target visited bookkeeping.
-
-Evidence: EV-221–EV-251, EV-257, EV-263, EV-297, EV-304–EV-305, EV-307, EV-309, EV-316, EV-337–EV-351.
+Evidence: EV-221–EV-251, EV-257, EV-263, EV-297, EV-304–EV-305, EV-307, EV-309, EV-316, EV-337–EV-364.
 
 ## 5. PhysicalFist / raw55
 
@@ -132,7 +141,7 @@ The current production scope is exact current RIGHT PhysicalFist/raw55, marker-o
 
 Normal has a proven special native between-contact ALL-clear interaction; the permanent module suppresses/replaces only the exact evidence-backed native clear needed to preserve authored repeated-contact semantics.
 
-Evidence: EV-262–EV-298, EV-317, EV-341.  
+Evidence: EV-262–EV-298, EV-317, EV-341, EV-366.  
 Architecture: `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`.
 
 ### Audit disposition
@@ -149,7 +158,7 @@ For the supported raw8 FIST path, Sprint arrives through the existing physical `
 
 The permanent raw55 path also supports Sprint-origin PhysicalFist/raw55 FIST behavior. Its immutable origin remains Sprint across the proven same-C1 factual `Action9 -> Action2` transition; later current Action2/POWER state does not transfer ownership to a true-Power execution.
 
-Equipped Sprint RIGHT/LEFT/BOTH/OFF is now permanent supported behavior through `EquippedSprintCollision`.
+Equipped Sprint RIGHT/LEFT/BOTH/OFF is permanent supported behavior through `EquippedSprintCollision`.
 
 Permanent equipped-Sprint rule:
 
@@ -167,11 +176,9 @@ target/contact/damage remain Gothic-owned
 
 The bound continuation is exact-identity-only: same actor, C1 generation, motion, required-source mask, required-source availability and exact required source identities. Current Action2/POWER remains factual and observable; it is not reclassified globally as Sprint.
 
-Production acceptance is complete. EV-326 proves RIGHT->OFF->RIGHT across seven complete Goblin Sprint C1s on the permanent module; EV-327 proves missing-LEFT BOTH remains fail-closed with native fallback; EV-328 proves ordinary true Power remains isolated from Sprint ownership; EV-329 closes the diagnostics-free behavior-only product smoke. EV-325 is retained only as a safe mixed fixture that did not exercise its filename/intended RIGHT->OFF case.
+Architecture decision: ADR-0003. Permanent owner: `EquippedSprintCollision`.
 
-Architecture decision: ADR-0003. Permanent owner: `EquippedSprintCollision`. The former `EquippedSprintProbe` was research scaffolding and is no longer active source.
-
-Evidence: raw8 Sprint EV-250–EV-251 and protected sentinel EV-316; raw55 Sprint-origin EV-280–EV-285, EV-294, EV-298 and protected sentinel EV-317; equipped Sprint causal/promotion evidence EV-311, EV-315, EV-320–EV-329.
+Evidence: raw8 Sprint EV-250–EV-251 and protected sentinel EV-316/EV-354; raw55 Sprint-origin EV-280–EV-285, EV-294, EV-298 and protected sentinel EV-317; equipped Sprint causal/promotion evidence EV-311, EV-315, EV-320–EV-329.
 
 ## 7. Shield / raw9 boundary
 
@@ -187,7 +194,7 @@ Evidence: EV-306, EV-308.
 
 Authored collision markers are not tied to the original Gothic animation-family token.
 
-Final-source compatibility tests establish all of the following:
+Final-source compatibility tests establish:
 
 ```text
 marker present on separated animation
@@ -202,17 +209,31 @@ separated animation has no marker
 -> native collision behavior remains in control
 ```
 
-This has been proven across three independent separation environments:
+Proven environments:
 
-- **Zombie Separation:** native `Hero_...` routes move to `Zombie_...` assets while factual Fist/raw8, Axe/raw52, Staff/raw12 and 1H+shield source semantics remain correct.
-- **Axe Separation:** native Axe users move from shared `*_2H_*` motions to `*_Axe_*` motions while their factual Axe/UseType52 sources remain unchanged.
-- **Rapier Separation:** `Hero_..._Rapier_...` motions drive the factual `It_1H_Epee_01 / UseType2` source correctly across Normal/Quick/Power/Pierce.
+- **Zombie Separation:** `Zombie_...` assets preserve factual Fist/raw8, Axe/raw52, Staff and 1H+shield source semantics.
+- **Axe Separation:** native Axe users move from shared `*_2H_*` motions to `*_Axe_*` motions while factual Axe/UseType52 sources remain unchanged.
+- **Rapier Separation:** `Hero_..._Rapier_...` motions drive factual `It_1H_Epee_01 / UseType2` correctly across Normal/Quick/Power/Pierce.
 
-No tested case showed an authored marker present on a separated animation but ignored or misapplied by the collision system. Genuinely unmarked replacement assets correctly stayed native.
+No tested case showed a present authored marker on a separated animation being ignored or misapplied. Genuinely unmarked replacement assets correctly stay native.
 
-Earlier combined Zombie Separation + Axe Separation testing showed an animation problem specifically for zombie 2H/Axe use even when Gothic3_Animation_Behaviors was absent. That establishes that the observed combined-route problem was external to this collision mod; it does **not** establish that the two separation mods are fundamentally incompatible. The User now reports that the mods otherwise worked together and considers the likely explanation to be an animation-asset coverage gap: special zombies use axes while their separated zombie set supplies corresponding `2H` animations but no matching `Axe`-named assets after Axe-family separation. Copying the corresponding zombie `2H` animations and renaming the family token to `Axe` is a plausible remedy, but that explanation/fix has not yet been independently verified in project evidence. It is not a current collision responsibility.
+### Zombie + Axe combined asset coverage
 
-Evidence: EV-369–EV-372. The historical EV-370 wording reflects the earlier interpretation of the combined-mod observation; use this current reference for the corrected present interpretation.
+The earlier combined Zombie Separation + Axe Separation problem was specific to zombie 2H/Axe animation availability, not a collision incompatibility. EV-375 verifies the User's proposed remedy on `BenSala_Zombie_02`:
+
+```text
+copy corresponding zombie 2H animation asset
+-> rename family token 2H -> Axe
+-> runtime resolves Zombie_..._Axe_...
+-> factual source remains It_Pickaxe / UseType52
+-> authored markers operate normally
+```
+
+The tested copied/renamed assets cover marked Normal, Power and Whirl; Whirl `RIGHT -> OFF -> RIGHT` works with exact Pickaxe/raw52 activation/cleanup. An unmarked copied/renamed FinishingAttack/Hack asset remains native and cleans correctly. No anomaly/divergence/warning/error was observed and the diagnostic DLL unloaded cleanly.
+
+Therefore Zombie Separation and Axe Separation are **not** treated as fundamentally incompatible. The known issue was an animation asset-coverage/naming gap for the tested special-zombie Axe route. This does not claim every possible special-zombie Axe asset is already supplied; missing assets still require corresponding animation coverage.
+
+Evidence: EV-369–EV-372, EV-375.
 
 ## 9. Key engine / hook facts
 
@@ -229,61 +250,22 @@ For exact RVAs, call stacks, hook signatures, and build-specific source facts, u
 
 ## 10. Validation status
 
-Focused raw55 acceptance is CLOSED/PASS at EV-298.
-
-Standalone regression has closed the human marked-attack matrix. EV-299–EV-306 used Golem as a consistent target fixture while testing the human attack routes themselves. Sabretooth marked single-marker compatibility/Quick support is established through EV-247–EV-249, and its later same-C1 double-FIST control passed at EV-307.
+Current release-candidate collision status:
 
 ```text
-EV-299  human 1H                    PASS
-EV-300  human 1H+torch              PASS
-EV-301  human dual 1H               PASS
-EV-302  human 2H                    PASS
-EV-303  human Staff                 PASS
-EV-304  human raw8 single FIST      PASS
-EV-305  human raw8 double FIST      PASS
-EV-306  human 1H+shield             PASS
-EV-307  Sabretooth double FIST      PASS
-EV-308  shield-bash LEFT/raw9       NEGATIVE CONTROL / DEFERRED
-EV-309  Orc Staff + raw8 Fist       PASS
-EV-310  Orc 2H animation set        PASS
-EV-311  Goblin 1H/raw2              PASS + equipped-Sprint scope deferred
-EV-312  Demon 2H/raw3               PASS
-EV-313  Ogre Axe/raw52              PASS
-EV-314  Stalker Axe/raw52           PASS
-EV-315  Goblin equipped Sprint probe  CAUSAL PASS / promotion pending
-EV-316  Sabretooth raw8 Sprint sentinel PASS
-EV-317  Troll raw55 Sprint sentinel      PASS
-EV-318  equipped 2H true-Power sentinel  PASS
-EV-319  Ogre raw52 Sprint attempt          NOT EXERCISED / regression healthy
-EV-320  Goblin Sprint RIGHT->OFF            CONTINUATION GAP / correction required
-EV-321  Goblin Sprint BOTH missing LEFT     NEGATIVE PASS / native fallback
-EV-322  Goblin Sprint RIGHT->OFF correction  PASS
-EV-323  Goblin Sprint BOTH missing LEFT rerun PASS
-EV-324  equipped 2H true-Power protected control PASS
-EV-325  promoted right-off-named mixed fixture      NOT EXERCISED AS NAMED / safe
-EV-326  promoted Sprint RIGHT->OFF->RIGHT           PASS
-EV-327  promoted Sprint BOTH missing LEFT           NEGATIVE PASS
-EV-328  promoted ordinary true-Power protection     PASS
-EV-329  diagnostics-free behavior-only Sprint smoke PASS
-EV-330  Orc Whirl RIGHT->OFF->RIGHT + player 1H recheck PASS
-EV-331  Orc repeated-RIGHT/raw8 + player 1H+torch recheck PASS
-EV-332  dual-1H player vs Ogre/raw52 mixed regression PASS
-EV-333  player 1H vs Orc Raider/raw52 mixed regression PASS
-EV-334  player 1H+shield vs Demon/raw3 mixed regression PASS
-EV-335  player 2H vs Stalker/raw52 mixed regression PASS
-EV-336  player raw8 Fist vs Goblin/raw2 + Sprint mixed regression PASS
-EV-337  Sabretooth native+transformed double-FIST raw8 PASS
-EV-338  Sabretooth native+transformed single-FIST raw8 PASS
-EV-339  Wolf native+transformed marked raw8 PASS
-EV-340  Wolf native+transformed unmarked raw8 fallback PASS
-EV-341  Troll raw55 single/double + player Staff mixed regression PASS
+focused raw55 acceptance                    CLOSED/PASS EV-298
+human/equipped regression matrix            CLOSED/PASS EV-299–EV-336
+permanent raw8 focused acceptance           CLOSED/PASS EV-355–EV-364
+final-source Stage A body-contact           CLOSED/PASS EV-365–EV-366
+supplemental destructive C1-R1 stress       PASS EV-367
+final-source Stage B equipped/cumulative    CLOSED/PASS EV-368
+separation compatibility                    CLOSED/PASS EV-369–EV-372
+mixed stress / standalone final-source      CLOSED/PASS EV-373–EV-374
+Zombie+Axe asset-gap remedy                 PASS EV-375
+New Balance full intended-stack gate        CURRENT
 ```
 
-Orc Phase 2 and weapon-using creature/NPC Phase 3 are CLOSED/PASS for their prepared regression scopes. Goblin/Demon/Ogre were deliberately rerun after raw55 integration and remain healthy; Stalker adds another current Axe/raw52 fixture. The equipped-Sprint scope discovered at EV-311 is now CLOSED/PASS as permanent behavior through EV-329.
-
-EV-330–EV-331 additionally corroborate the accepted current build across Orc Whirl OFF-gap/reactivation, repeated-RIGHT rearm, Orc/player raw8, ordinary player 1H and player 1H+torch source separation. EV-332–EV-336 broaden that current-build regression across player dual-1H, single 1H, 1H+shield, 2H and raw8 Fist against Ogre/raw52, Orc Raider/raw52, Demon/raw3, Stalker/raw52 and Goblin/raw2, including permanent equipped Sprint under ordinary mixed combat. These are regression confirmations, not semantic extensions.
-
-Phase 4 non-weapon creature regression is ACTIVE. EV-337–EV-341 establish the first current-build body-contact batch: Sabretooth raw8 single/double behavior in native and transformed-player form, Wolf marked raw8 plus paired unmarked native fallback in native/transformed form, and Troll permanent raw55 single/double behavior while the player uses Staff. More creature fixtures remain planned before Phase 4 closure. Current validation plan: `COLLISION_TEST_PLAN.md`.
+Current validation authority: `COLLISION_TEST_PLAN.md`.
 
 ## 11. Evidence escalation rule
 
@@ -292,35 +274,7 @@ Use the evidence chain only when needed:
 1. `COLLISION_REFERENCE.md` for current fact.
 2. Owning architecture/reference for exact current semantics.
 3. `EVIDENCE_INDEX.md` for the relevant EV range.
-4. The exact archived ledger entry for proof wording/provenance.
+4. The exact archived/current ledger entry for proof wording/provenance.
 5. Raw/derived source only for disputed or missing details.
 
 A settled fact should not require chronological evidence reconstruction during ordinary work.
-
-
-### Raw8 pending-opportunity causal closure — EV-353
-
-Diagnostic causal proof now supports the intended marked raw8 semantic:
-
-```text
-marked execution begins -> native permission closed
-accepted FIST -> one target-directed opportunity OPEN
-native miss -> opportunity remains OPEN; native one-shot latch is rearmed
-first exact Game+0x16E348 raw8 contact dispatch -> opportunity CONSUMED
-later FIST -> one opportunity reopened, never stacked
-exact C1 finalization/replacement -> unused opportunity CLOSED
-unmarked raw8 -> native
-```
-
-Runtime causal accounting across Gargoyle Power and marked human Normal/Power produced 81 opens: 59 contact-consumed, 21 lifecycle-closed and one same-C1 FIST supersession. Eighteen contacts occurred only after one or more miss-rearms. Three already-open human opportunities closed on factual C1 generation replacement during reaction churn, with no old-opportunity contact before a later new FIST. Native and marked group-combat controls remained target-directed.
-
-This closes the **diagnostic causal model**, not production promotion. The temporary probe must not be treated as permanent architecture until a separate production review/freeze.
-
-
-### Raw8 Sprint-origin action transport — EV-354
-
-For the tested native Sabretooth raw8 route, Sprint is a factual `Action9 / SPRINT` state/origin using the same PowerAttack-named Hit motion as Power. The same motion/C1 can later be observed as factual `Action2 / POWER`.
-
-EV-354 captured 20 single-FIST opportunities that opened under Action9/SPRINT and were later consumed under Action2/POWER in the same C1. Two decisive samples first missed/rearmed under Action9 before the same token contacted under Action2.
-
-Therefore raw8 authored-opportunity lifetime is C1/execution-scoped, not Action/family-scoped. Do not model this as a transition between separate Sprint and Power animation assets.

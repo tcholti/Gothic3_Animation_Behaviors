@@ -91,3 +91,31 @@ Disposition:
 - **Standalone final-source collision regression CLOSED/PASS through EV-374.**
 - New Balance exact distributed-bundle compatibility becomes the current gate.
 - No source change is justified.
+
+### EV-375 — Zombie + Axe separation asset-gap remedy PASS
+
+Observed:
+- The User tested the proposed remedy for the earlier combined Zombie Separation + Axe Separation zombie 2H/Axe animation gap: corresponding zombie `2H` animation assets were copied and the animation-family token was changed to `Axe` so Axe Separation could resolve an Axe-named zombie animation.
+- Runtime directly shows `BenSala_Zombie_02` using the new `Zombie_..._Axe_...` motion family while the factual equipped source remains `It_Pickaxe / UseType52`.
+- Marked copied/renamed Normal, Power and Whirl animations are detected and accepted. Representative examples include `Zombie_Stand_None_Axe_P0/P1_Attack...`, `Zombie_Stand_None_Axe_P0/P1_PowerAttack...`, and `Zombie_Parade_None_Axe_P0_WhirlAttack...`.
+- Whirl exercises repeated authored collision timing on the copied/renamed asset: `RIGHT -> OFF -> RIGHT` is accepted, the exact Pickaxe/raw52 source opens/closes accordingly, and finalization returns `Outstanding=0`.
+- The unmarked copied/renamed FinishingAttack/Hack asset remains native (`MarkerPresent=0 / RequiredMask=0 / SuppressNative=0`) and its factual Pickaxe/raw52 source still cleans normally.
+- Whole-log checks found no `ANOMALY`, `DIVERGENCE`, `WARNING`, or `ERROR` records. The final shown source state is zero-outstanding and the diagnostic DLL unloads cleanly.
+
+Scope / limits:
+- This verifies the proposed asset-gap remedy for the tested Ben Sala zombie Axe/raw52 route and proves that Zombie Separation + Axe Separation can coexist on that route when matching `Zombie_..._Axe_...` assets are supplied.
+- It does not claim every special-zombie animation asset or every third-party separation combination is automatically complete; missing assets would still need corresponding coverage.
+- This is not a collision-source change. The result further confirms that the earlier observed failure was an animation asset-availability/naming problem, not a Gothic3_Animation_Behaviors collision incompatibility.
+
+Provenance:
+- frozen collision source: `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`;
+- raw upload commit: `212de868ae1310e2b29d4ce9a947e0a629bfc3a2`;
+- canonical archived runtime: `research/archive/2026.09.24_zombie_axe_asset_gap_fix.log`;
+- raw Git blob: `f5a7e5d9c1d606cd32551606c2896c8a7fe1498a`;
+- raw size: 88,785 bytes / 472 lines.
+
+Disposition:
+- **PASS — proposed Zombie+Axe separation asset-gap remedy verified for the tested route.**
+- Combined Zombie + Axe separation is no longer treated as fundamentally incompatible.
+- All separation mods may remain installed for the upcoming New Balance compatibility environment because that now matches the User's intended load order.
+- No collision source change is justified.

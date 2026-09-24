@@ -19,40 +19,44 @@ No source change absent new contradictory evidence.
 ## Current campaign
 
 ```text
-standalone final-source regression  CLOSED/PASS EV-299–EV-374
-Stage D mixed stress                CLOSED/PASS EV-373–EV-374
-New Balance exact bundle regression CURRENT
+standalone final-source regression   CLOSED/PASS EV-299–EV-374
+Zombie+Axe asset-gap remedy          PASS EV-375
+New Balance full-stack compatibility CURRENT
 ```
 
-EV-374: 4.65 MB / 20,907 lines, one bounded Pickaxe/raw52 C1-R1 repair (`7 -> 5`), no marker anomaly/discovery, warning, error, mismatch/divergence or C1 invariant warning, final obligations zero, clean unload. Stage-D closure is compositional with prior frozen-source raw55/equipped and raw8/raw55 coexistence evidence.
+## EV-375
+
+The User copied the relevant zombie `2H` animations and renamed the family token to `Axe`. Runtime now resolves `Zombie_..._Axe_...` for `BenSala_Zombie_02` while factual source remains `It_Pickaxe / UseType52`.
+
+Marked Normal/Power/Whirl are accepted; Whirl `RIGHT -> OFF -> RIGHT` works; unmarked FinishingAttack/Hack stays native; cleanup reaches group5/zero outstanding; no anomaly/divergence/warning/error; clean unload.
+
+Result: **PASS.** The earlier zombie 2H/Axe failure is verified as an animation asset-coverage/naming problem for the tested route, not fundamental Zombie+Axe separation incompatibility.
 
 ## Current New Balance environment
 
-Test the exact New Balance 0.7 setup the User actually intends to run:
+Test the exact load order the User now intends to keep:
 
 ```text
-New Balance as distributed
+New Balance 0.7 as distributed
 + all normally used/distributed New Balance DLLs
-+ relevant Jackydima collision DLLs including Script_AttackCollision where applicable
++ relevant Script_AttackCollision environment
++ Zombie Separation
++ Axe Separation
++ Rapier Separation
++ EV-375 copied/renamed zombie Axe assets
 + exactly one Gothic3_Animation_Behaviors collision twin
-- Zombie/Axe/Rapier separation mods
 ```
 
-Separation mods are deliberately out of scope for this compatibility round.
-
-Representative gate coverage:
+Representative coverage:
 
 ```text
 1. equipped marker combat
-2. raw8 body-contact incl. knockdown/get-up control
+2. raw8 incl. knockdown/get-up control
 3. raw55 PhysicalFist/Troll
-4. mixed gameplay stress
+4. separation coexistence incl. fixed Zombie+Axe route
+5. mixed gameplay stress
 ```
 
-If a failure appears, reduce the exact DLL composition and factual route before any source change.
-
-## Separation clarification
-
-Earlier Zombie+Axe combined testing showed missing animation behavior specifically for zombie 2H/Axe use even without our DLL. User now reports the mods otherwise worked together; likely explanation is missing `Axe`-named special-zombie assets after Axe-family separation. Copying corresponding zombie `2H` assets and renaming the family token to `Axe` is plausible but not project-verified. Do **not** describe the two mods as fundamentally incompatible. Current interpretation lives in `COLLISION_REFERENCE.md` §8.
+If a failure appears, reduce the exact DLL/mod composition and factual route before any source change.
 
 `research/raw/` should contain only `Keep.txt` before the next batch.

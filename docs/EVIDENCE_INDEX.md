@@ -56,7 +56,8 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | Axe separation compatibility | EV-371 |
 | Rapier separation compatibility | EV-372 |
 | broad mixed-gameplay stress / Stage-D closure | EV-373–EV-374 |
-| New Balance / AttackCollision final compatibility gate | EV-284 preflight + post-EV-374 runtime evidence when added |
+| Zombie+Axe separation asset-gap remedy | EV-375 |
+| New Balance / AttackCollision final compatibility gate | EV-284 preflight + post-EV-375 runtime evidence when added |
 
 ## 3. Current collision closure landmarks
 
@@ -84,6 +85,7 @@ EV-371         Axe Separation PASS
 EV-372         Rapier Separation PASS
 EV-373         broad Stage-D mixed-gameplay stress run 1 PASS
 EV-374         broad Stage-D run 2 PASS; Stage D + standalone final-source regression CLOSED
+EV-375         Zombie+Axe copied/renamed Axe-asset remedy PASS on factual zombie Pickaxe/raw52 route
 ```
 
 ## 4. Current next gate
@@ -92,6 +94,7 @@ EV-374         broad Stage-D run 2 PASS; Stage D + standalone final-source regre
 New Balance 0.7 exact distributed bundle
 + all normally used/distributed New Balance DLLs
 + relevant Jackydima collision components including Script_AttackCollision where applicable
++ intended separation-mod load order (Zombie + Axe + Rapier, including EV-375 zombie Axe asset fix)
 -> representative equipped/raw8/raw55/separation/mixed-stress runtime compatibility
 ```
 
