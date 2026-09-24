@@ -13,17 +13,12 @@
 
 ```text
 frozen collision source = f1f5d2aad3edc3564a9a8b40541840b94f8fa903
-latest runtime evidence = EV-374
+latest runtime evidence = EV-375
 current ledger = EVIDENCE_LEDGER_373_ONWARD.md
 
 standalone final-source collision regression = CLOSED/PASS EV-299–EV-374
-  Stage A body-contact = PASS EV-365–EV-366
-  bad-skip C1-R1 stress = PASS EV-367
-  Stage B equipped/cumulative = PASS EV-368
-  Stage C separation compatibility = PASS EV-369–EV-372
-  Stage D mixed stress = PASS EV-373–EV-374
-
-New Balance exact distributed-bundle compatibility = CURRENT
+Zombie+Axe asset-gap remedy = PASS EV-375
+New Balance full intended-stack compatibility = CURRENT
 active Work task = NONE
 ```
 
@@ -49,25 +44,30 @@ Final behavior SHA256:
 
 ## Latest evidence
 
-- **EV-373:** broad mixed-gameplay stress run 1 PASS; four exact C1-R1 repairs converged group7 -> group5 and two unsupported late/unknown marker callbacks failed closed.
-- **EV-374:** broader 4.65 MB / 20,907-line stress run PASS; exactly one anomaly-class event, a successful exact Pickaxe/raw52 C1-R1 repair. No marker anomaly/discovery, warning, error, mismatch/divergence, or C1 invariant warning was found. Representative raw8/equipped churn remained clean through final zero-outstanding state and clean unload.
-- Stage D is now **CLOSED/PASS** compositionally: EV-373/374 provide long unscripted churn; exact frozen-source raw55/equipped and raw8/raw55 coexistence were already established by EV-366 and EV-359–EV-364.
+- **EV-373–EV-374:** two broad mixed-gameplay stress runs PASS; Stage D and standalone final-source regression CLOSED.
+- **EV-375:** proposed Zombie+Axe asset-gap remedy verified. Copied zombie `2H` assets renamed to `Axe` resolve as `Zombie_..._Axe_...` for `BenSala_Zombie_02`, preserve factual `It_Pickaxe / UseType52`, accept marked Normal/Power/Whirl including Whirl `RIGHT -> OFF -> RIGHT`, clean to group5/zero outstanding, and unload cleanly. The earlier combined-mod problem is therefore an animation asset-coverage/naming issue on the tested route, not fundamental Zombie/Axe separation incompatibility.
 
-Separation note:
-- earlier combined Zombie Separation + Axe Separation testing showed a problem specifically on zombie 2H/Axe animation coverage even with Gothic3_Animation_Behaviors absent;
-- the User now reports the two mods otherwise worked together and considers missing Axe-named special-zombie animation assets the likely explanation;
-- this asset-gap explanation is plausible but not yet project-verified, so do not call the two mods fundamentally incompatible;
-- all separation mods are deliberately removed from the current New Balance compatibility load order.
-
-## Next sequence
+## Current intended New Balance environment
 
 ```text
-CURRENT -> New Balance 0.7 exact distributed bundle
-        -> all normally used/distributed New Balance DLLs
-        -> relevant Script_AttackCollision environment
-        -> NO separation mods in this compatibility round
-        -> representative equipped + raw8 + raw55 + mixed-stress compatibility
-        -> production collision migration only after compatibility PASS
+New Balance 0.7 as distributed
++ all normally used/distributed New Balance DLLs
++ relevant Script_AttackCollision environment
++ Zombie Separation
++ Axe Separation
++ Rapier Separation
++ EV-375 zombie Axe copied/renamed assets
++ exactly one Gothic3_Animation_Behaviors collision twin
+```
+
+Representative gate coverage:
+
+```text
+equipped marker combat
+raw8 incl. knockdown/get-up control
+raw55 PhysicalFist/Troll
+representative separation coexistence incl. fixed Zombie+Axe route
+mixed gameplay stress
 ```
 
 No source change absent newly demonstrated contradictory evidence.
