@@ -78,7 +78,10 @@ New Balance installed as distributed
 + all normally used/distributed New Balance DLLs
 + relevant Jackydima collision DLLs, including Script_AttackCollision where applicable
 + exactly one Gothic3_Animation_Behaviors collision twin
+- Zombie/Axe/Rapier separation mods for this gate
 ```
+
+Separation mods are deliberately removed from the load order for the current compatibility campaign. Do not add a separation fixture to the New Balance matrix unless the User later opens that combined environment as a separate goal.
 
 Across the compatibility gate cover several representative cases rather than one smoke:
 
@@ -86,12 +89,15 @@ Across the compatibility gate cover several representative cases rather than one
 1. equipped marker combat
 2. raw8 body-contact, including knockdown/get-up control
 3. raw55 PhysicalFist/Troll
-4. at least one intended separation-mod route if used in that environment
-5. mixed gameplay stress
+4. mixed gameplay stress
 ```
+
+### Separation clarification
+
+Earlier combined Zombie Separation + Axe Separation testing showed missing animation behavior specifically on zombie 2H/Axe use even when Gothic3_Animation_Behaviors was absent. The User now reports that the two mods otherwise worked together and considers the likely cause to be missing `Axe`-named animation assets for special zombies: those actors use axes but their separated zombie set supplies corresponding `2H` animations, leaving no asset after Axe-family separation. Copying the relevant zombie `2H` animations and renaming the family token to `Axe` is a plausible fix, but this explanation/fix has not been independently verified by project evidence. Do not describe the mods as fundamentally incompatible.
 
 Do not omit a normally installed New Balance DLL pre-emptively. If a failure appears, reduce the exact DLL composition and factual route before considering any source change.
 
 The detailed pre-New-Balance standalone test plan is archived; `COLLISION_TEST_PLAN.md` now owns the compatibility gate directly.
 
-After EV-374 closure, `research/raw/` must contain only `Keep.txt`.
+After EV-374 closure, `research/raw/` contains only `Keep.txt`.
