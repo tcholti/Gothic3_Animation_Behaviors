@@ -1,7 +1,7 @@
 # Collision Reference
 
 **Status:** Current factual reference  
-**Updated:** 2026-09-22  
+**Updated:** 2026-09-24  
 **Purpose:** Compact projection of established Gothic 3 collision facts. Read this before opening evidence ledgers for an already-researched collision question.
 
 > This file states **what is currently established**. It is not the proof record. Each claim routes to EV evidence; open the ledger/raw source only when exact provenance, qualification, contradiction, or re-interpretation matters.
@@ -210,9 +210,9 @@ This has been proven across three independent separation environments:
 
 No tested case showed an authored marker present on a separated animation but ignored or misapplied by the collision system. Genuinely unmarked replacement assets correctly stayed native.
 
-The User separately proved that Zombie Separation and Axe Separation conflict with each other even when Gothic3_Animation_Behaviors is absent. Their mutual incompatibility is therefore not a collision-mod compatibility responsibility; test those third-party separation mods independently.
+Earlier combined Zombie Separation + Axe Separation testing showed an animation problem specifically for zombie 2H/Axe use even when Gothic3_Animation_Behaviors was absent. That establishes that the observed combined-route problem was external to this collision mod; it does **not** establish that the two separation mods are fundamentally incompatible. The User now reports that the mods otherwise worked together and considers the likely explanation to be an animation-asset coverage gap: special zombies use axes while their separated zombie set supplies corresponding `2H` animations but no matching `Axe`-named assets after Axe-family separation. Copying the corresponding zombie `2H` animations and renaming the family token to `Axe` is a plausible remedy, but that explanation/fix has not yet been independently verified in project evidence. It is not a current collision responsibility.
 
-Evidence: EV-369–EV-372.
+Evidence: EV-369–EV-372. The historical EV-370 wording reflects the earlier interpretation of the combined-mod observation; use this current reference for the corrected present interpretation.
 
 ## 9. Key engine / hook facts
 
