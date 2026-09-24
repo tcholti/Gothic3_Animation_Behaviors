@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Index
 
 **Status:** Compact evidence-routing index  
-**Updated:** 2026-09-23
+**Updated:** 2026-09-24
 
 ## Purpose
 
@@ -42,11 +42,11 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | equipped side / UseType semantics | EV-036–EV-065, EV-090–EV-094 |
 | repeated contact / OFF / ClearTriggeredList | EV-106–EV-116, EV-330–EV-331 |
 | occurrence/dedupe / C1 generation | EV-131–EV-167, EV-213–EV-215 |
-| lifecycle / C1-R1 exact-source repair | EV-180–EV-215, EV-367, EV-373 |
+| lifecycle / C1-R1 exact-source repair | EV-180–EV-215, EV-367, EV-373–EV-374 |
 | Power / Pierce / SimpleWhirl / Hack | EV-217–EV-220, EV-241–EV-244, EV-318 |
 | raw55 discovery and permanent four-family route | EV-262–EV-298, EV-341, EV-366 |
 | equipped Sprint permanent behavior | EV-311, EV-315, EV-320–EV-329, EV-368 |
-| standalone collision regression | EV-299 onward |
+| standalone collision regression | EV-299–EV-374 |
 | raw8 permanent persistent-opportunity model | EV-346–EV-364 |
 | final-source body-contact campaign | EV-365–EV-366 |
 | destructive bad-skip C1-R1 stress | EV-367 |
@@ -55,7 +55,8 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | zombie separation compatibility | EV-370 |
 | Axe separation compatibility | EV-371 |
 | Rapier separation compatibility | EV-372 |
-| broad mixed-gameplay stress | EV-373 onward |
+| broad mixed-gameplay stress / Stage-D closure | EV-373–EV-374 |
+| New Balance / AttackCollision final compatibility gate | EV-284 preflight + post-EV-374 runtime evidence when added |
 
 ## 3. Current collision closure landmarks
 
@@ -81,10 +82,22 @@ EV-369         native zombie baseline PASS
 EV-370         Zombie Separation PASS
 EV-371         Axe Separation PASS
 EV-372         Rapier Separation PASS
-EV-373         first broad Stage-D mixed-gameplay stress PASS; Stage D remains active
+EV-373         broad Stage-D mixed-gameplay stress run 1 PASS
+EV-374         broad Stage-D run 2 PASS; Stage D + standalone final-source regression CLOSED
 ```
 
-## 4. Escalation order
+## 4. Current next gate
+
+```text
+New Balance 0.7 exact distributed bundle
++ all normally used/distributed New Balance DLLs
++ relevant Jackydima collision components including Script_AttackCollision where applicable
+-> representative equipped/raw8/raw55/separation/mixed-stress runtime compatibility
+```
+
+Source-level preflight alone is not final compatibility certification.
+
+## 5. Escalation order
 
 ```text
 current reference / owning architecture
@@ -96,7 +109,7 @@ current reference / owning architecture
 
 Do not scan all ledgers or `research/archive/` for an ordinary settled question.
 
-## 5. Evidence storage notes
+## 6. Evidence storage notes
 
 ```text
 research/raw/      active unprocessed intake only

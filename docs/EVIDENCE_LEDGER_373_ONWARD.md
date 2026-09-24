@@ -58,3 +58,36 @@ Disposition:
 - **PASS — Stage-D broad mixed-stress batch 1.**
 - Stage D remains ACTIVE pending a deliberate next-session decision on whether another broad stress run is warranted.
 - No source change is justified.
+
+### EV-374 — Second broad mixed-gameplay stress PASS; Stage D and standalone regression CLOSED
+
+Observed:
+- The User published a second long broad stress session on the unchanged frozen collision source. The POP-07 package contains 20,907 complete source lines / 4,650,022 bytes.
+- The package reports exactly **one** anomaly-class timeline event: one `CORE C1 FINALIZATION ANOMALY / REPAIR`. There are no `CORE MARKER ANOMALY / DISCOVERY` records in the event package.
+- The single repair occurs for `SlaveZombie` with exact RIGHT `It_Pickaxe / UseType52`: `OutstandingBeforeFinalization=1`, `ActualGroupBeforeRepair=7`, `LivenessEstablished=1`, `Outcome=REPAIRED_TO_ITEM_EQUIPPED`, `ActualGroupAfterRepair=5`, `PhysicalCollisionChanged=1`. The repair converges safely and no repair divergence follows.
+- Targeted whole-package checks found no `WARNING`, `ERROR`, `MISMATCH`, `DIVERGENCE`, or `C1 INVARIANT WARNING` records.
+- Representative windows demonstrate substantial mixed churn rather than an isolated smoke: player 2H combat against ScorpionKing; dual-1H BOTH/LEFT/OFF marker traffic interleaved with Snapper raw8 opportunities; Schakal raw8 while player 1H collision activates/cleans; Axe/raw52 zombie traffic mixed with player 1H+torch; Sandcrawler raw8 while player 2H/GetUpAttack collision is active; and terminal dual-1H/native-fallback traffic alongside TRex raw8 Sprint-origin transport.
+- The terminal TRex sequence opens a marked raw8 Sprint opportunity at factual Action9, survives into factual Action2/Power, consumes on exact native contact, retires permission, and finalizes `Outstanding=0`. The final shown equipped player sources also clean back to group5 / `Outstanding=0`, and the DLL ends with `Script_FrameCollisionTest unloading cleanly`.
+- No contradictory runtime evidence requiring a collision-source change was found.
+
+Scope / limits:
+- EV-374 itself does **not** exercise a factual raw55/Troll route. Stage-D closure therefore does not claim that every collision mechanism appeared in this one log.
+- Stage-D closure is compositional under the standing campaign rule: exact frozen-source raw55+equipped coexistence is already established by EV-366; raw8/raw55/equipped coexistence is established by the focused frozen-source acceptance EV-359–EV-364; EV-373 and EV-374 add two long unscripted mixed-gameplay sessions with substantial C1/actor/weapon churn and natural cleanup/repair opportunities.
+- The successful C1-R1 repair is safety-net corroboration, not evidence that native cleanup should be replaced or that the separate paused `AttackContinuationProtection` responsibility should reopen.
+- This is standalone collision evidence only. It does not certify New Balance / AttackCollision compatibility.
+
+Provenance:
+- frozen collision source: `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`;
+- uploaded raw/derived evidence commit: `b6661547bf509ffeebec8f055ada7f857fd835fb`;
+- canonical raw source after POP-06 closure: `research/archive/2026.09.24_stresstest_collision_2.log`;
+- raw Git blob: `f319500a0ebbf0f7d82be5e6e057fd89e478698c`;
+- raw SHA256: `BC7F1447C6F3B6BFE5C765C8A057EDFA81C3EDD205B9DAE7FC9F5DF60A4B06D6`;
+- raw size: 4,650,022 bytes / 20,907 lines;
+- derived retrieval package: `research/derived/2026.09.24_stresstest_collision_2_large_log/` (82 complete-source parts, 18 signal parts).
+
+Disposition:
+- **PASS — Stage-D broad mixed-stress batch 2.**
+- **Stage D mixed stress CLOSED/PASS EV-373–EV-374.**
+- **Standalone final-source collision regression CLOSED/PASS through EV-374.**
+- New Balance exact distributed-bundle compatibility becomes the current gate.
+- No source change is justified.

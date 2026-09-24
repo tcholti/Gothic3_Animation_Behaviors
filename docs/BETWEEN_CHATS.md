@@ -1,7 +1,7 @@
 # Between Chats
 
 **Purpose:** Short-lived exact continuation pointer. Replace, do not accumulate.  
-**Updated:** 2026-09-23
+**Updated:** 2026-09-24
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
@@ -26,30 +26,72 @@ Stage A body-contact                 PASS EV-365–EV-366
 bad-skip C1-R1 stress               PASS EV-367
 Stage B equipped/cumulative         PASS EV-368
 Stage C separation compatibility    PASS EV-369–EV-372
-Stage D mixed stress                ACTIVE
-  broad natural gameplay run 1      PASS EV-373
+Stage D mixed stress                CLOSED/PASS EV-373–EV-374
+
+standalone final-source regression  CLOSED/PASS
+New Balance exact bundle regression CURRENT
 ```
 
-## EV-373 broad mixed stress
-
-User performed one long natural gameplay session with mixed combat/travel/weapon-source churn and reported everything looked/worked normally.
+## EV-374 second broad stress run
 
 POP-07 package:
-- raw SHA256 `0B5596584ED39571CA89CE7CBD90BA7065DF134CF4274BB3C4ADFA7CA5782652`
-- 3,424,951 bytes / 16,693 lines
-- exactly 6 anomaly-class timeline events
+- raw SHA256 `BC7F1447C6F3B6BFE5C765C8A057EDFA81C3EDD205B9DAE7FC9F5DF60A4B06D6`
+- 4,650,022 bytes / 20,907 lines
+- exactly 1 anomaly-class timeline event
 
-Disposition of those six:
-- 4 C1-R1 finalization repairs: all exact live outstanding sources converged group7 -> group5; observed routes included player Staff/Halberd, Stalker Axe/raw52, ordinary 1H sword and a small-axe source with factual UseType2.
-- 2 marker anomaly/discovery records: unsupported late/unknown callbacks failed closed (Action0/no valid C1; Action68/no live source); no stale activation.
-- final observed combat cleanup returned player 1H RIGHT 7 -> 5; final obligations zero; diagnostic DLL unloaded cleanly.
+That single event is a bounded C1-R1 recovery:
 
-Result: **PASS EV-373. No source change.** This corroborates C1-R1/fail-closed behavior under unscripted mixed gameplay.
+```text
+Actor = SlaveZombie
+Source = It_Pickaxe / UseType52
+Side = RIGHT
+OutstandingBeforeFinalization = 1
+ActualGroupBeforeRepair = 7
+LivenessEstablished = 1
+Outcome = REPAIRED_TO_ITEM_EQUIPPED
+ActualGroupAfterRepair = 5
+PhysicalCollisionChanged = 1
+```
 
-## Next
+No marker anomaly/discovery, warning, error, mismatch/divergence, or C1 invariant warning was found.
 
-Do not automatically schedule another test. In the next session decide deliberately whether EV-373 plus the previous structured coverage is sufficient to close Stage D, or whether one more differentiated broad stress run would add useful evidence. If Stage D closes, proceed to the planned New Balance + AttackCollision compatibility gate.
+Representative run windows include:
+- player 2H vs ScorpionKing;
+- dual-1H BOTH/LEFT/OFF traffic interleaved with Snapper raw8;
+- Schakal raw8 while player 1H collision cleans normally;
+- Axe/raw52 zombie traffic mixed with player 1H+torch;
+- Sandcrawler raw8 mixed with player 2H/GetUpAttack collision;
+- terminal dual-1H/native-fallback traffic plus TRex raw8 Sprint-origin opportunity -> exact native contact consumption.
 
-The EV-365–EV-372 ledger has been rotated to archive; current evidence begins at `EVIDENCE_LEDGER_373_ONWARD.md`.
+The final shown equipped obligations are zero, the final TRex raw8 C1 is zero-outstanding, and `Script_FrameCollisionTest` unloads cleanly.
 
-After EV-373 closure, `research/raw/` contains only `Keep.txt`.
+EV-374 itself contains no raw55/Troll route. Stage-D closure is compositional: exact frozen-source raw55+equipped coexistence is already established at EV-366 and raw8/raw55/equipped coexistence at EV-359–EV-364; EV-373/374 provide the missing long unscripted mixed churn.
+
+Result: **PASS EV-374. Stage D and the standalone final-source regression are CLOSED. No source change.**
+
+## Next — New Balance exact bundle compatibility
+
+Test the exact New Balance 0.7 environment the User actually intends to run:
+
+```text
+New Balance installed as distributed
++ all normally used/distributed New Balance DLLs
++ relevant Jackydima collision DLLs, including Script_AttackCollision where applicable
++ exactly one Gothic3_Animation_Behaviors collision twin
+```
+
+Across the compatibility gate cover several representative cases rather than one smoke:
+
+```text
+1. equipped marker combat
+2. raw8 body-contact, including knockdown/get-up control
+3. raw55 PhysicalFist/Troll
+4. at least one intended separation-mod route if used in that environment
+5. mixed gameplay stress
+```
+
+Do not omit a normally installed New Balance DLL pre-emptively. If a failure appears, reduce the exact DLL composition and factual route before considering any source change.
+
+The detailed pre-New-Balance standalone test plan is archived; `COLLISION_TEST_PLAN.md` now owns the compatibility gate directly.
+
+After EV-374 closure, `research/raw/` must contain only `Keep.txt`.
