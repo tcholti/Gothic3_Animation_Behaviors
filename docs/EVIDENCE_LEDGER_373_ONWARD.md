@@ -81,7 +81,7 @@ Provenance:
 - uploaded raw/derived evidence commit: `b6661547bf509ffeebec8f055ada7f857fd835fb`;
 - canonical raw source after POP-06 closure: `research/archive/2026.09.24_stresstest_collision_2.log`;
 - raw Git blob: `f319500a0ebbf0f7d82be5e6e057fd89e478698c`;
-- raw SHA256: `BC7F1447C6F3B6BFE5C765C8A057EDFA81C3EDD205B9DAE7FC9F5DF60A4B06D6`;
+- raw SHA256: `BC7F1447C6F3B6FBE5C765C8A057EDFA81C3EDD205B9DAE7FC9F5DF60A4B06D6`;
 - raw size: 4,650,022 bytes / 20,907 lines;
 - derived retrieval package: `research/derived/2026.09.24_stresstest_collision_2_large_log/` (82 complete-source parts, 18 signal parts).
 
@@ -119,3 +119,35 @@ Disposition:
 - Combined Zombie + Axe separation is no longer treated as fundamentally incompatible.
 - All separation mods may remain installed for the upcoming New Balance compatibility environment because that now matches the User's intended load order.
 - No collision source change is justified.
+
+### EV-376 — New Balance / AttackCollision raw55 Power StatePosition=2 compatibility contradiction
+
+Observed:
+- Runtime with the User's intended New Balance compatibility stack exposes a deterministic incompatibility in the frozen `PhysicalFistCollision` raw55 Power state gate, not a broad collision-system failure.
+- With the original single-FIST Troll Power fixture, factual true Power (`Action=2 / Family=POWER`) repeatedly suppresses the premature exact RIGHT `TrollFist / UseType55` opening as intended, but the sole authored FIST arrives around `StateTime ~= 1.58` after the callback has advanced to `StatePosition=2`. The exact same actor/C1/right-source/raw55 execution is still present, yet the frozen production gate accepts Power only at StatePosition1, so the FIST fails closed as `REJECTED_UNSUPPORTED_HIT`; RIGHT remains group5 and no authored activation occurs.
+- A second independent Troll run repeats the same true-Power SP2 rejection many times while raw55 Normal and Quick continue to behave normally and cleanly.
+- The no-target equipped weapon sweep found no marker anomaly/warning/error. Representative Power for 2H, Staff, 1H, Torch+1H, Shield+1H, Rapier and Axe remains accepted with clean lifecycle behavior. Dual-1H Power is an important control: generic equipped BOTH/RIGHT/LEFT/OFF markers are accepted safely at factual `StatePosition=2` and clean to group5/zero outstanding, proving that StatePosition2 itself is not globally invalid collision state.
+- Three BlackTroll double-FIST runs expose the same raw55 incompatibility at the repeated-marker boundary. For true Power, marker1 arrives around `StateTime ~= 0.97 / StatePosition=1`, opens the exact RIGHT TrollFist `5 -> 7`, is accepted, and produces native damage. Marker2 in the same exact C1 arrives around `StateTime ~= 1.33–1.35 / StatePosition=2` with RIGHT already group7 and is rejected instead of performing the established clear-only repeated-contact rearm. The User visually observed that Troll/BlackTroll Power attacks could damage with the double-marker fixture; the logs show this is the accepted first SP1 marker, not successful second-marker semantics.
+- The same BlackTroll runs capture the previously missing New Balance Sprint-origin continuation. Marker1 is factual `Action=9 / Family=SPRINT / StatePosition=1`, is accepted, opens the exact RIGHT raw55 source and can produce native damage. The same C1 later continues as factual `Action=2 / Family=POWER / StatePosition=2`; marker2 is then rejected while immutable origin remains Sprint. This exactly preserves the previously proven Sprint-origin identity model while exposing the new SP2 incompatibility at the continuation marker.
+- Targeted anomaly review of the three BlackTroll logs found 18 marker anomalies, all of the same class: exact raw55 Power-state FIST traffic at StatePosition2 after the execution was already established. No second rejected-marker class was found.
+- Cross-mechanism controls remain healthy: Goblin equipped combat, Sabertooth raw8, and human raw8/fist runs show no marker anomalies; representative Goblin equipped Power and human raw8 Power are accepted on their existing routes.
+- Source inspection of Jackydima `Script_AttackCollision` corroborates the runtime transition. Its `OnAI_PowerAttack` advances StatePosition `0 -> 1` after `ActivePowerAttackStartTime`, then later advances `1 -> 2` after `ActivePowerAttack1H1HStartTime`; the `StatePosition = 2` assignment is outside the dual-1H conditional. Current source defaults are `0.1f` and `1.0f`, matching the observed first-marker-before-second-threshold / later-marker-after-second-threshold pattern. This source inspection is causal corroboration, not exact binary provenance for the User's installed DLL.
+
+Scope / limits:
+- Frozen Gothic3_Animation_Behaviors source is unchanged at `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`.
+- The contradiction is bounded to the permanent raw55 PhysicalFist Power/Sprint-origin state acceptance under the tested New Balance/AttackCollision environment. It does **not** justify generic `StatePosition >= 1`, generic SP2 acceptance, species/name rules, filename inference, new hooks, polling/timers, or changes to raw8/equipped marker semantics.
+- Evidence supports preserving true-Power SP1 behavior while additionally recognizing SP2 for the exact already-correlated raw55 Power execution where appropriate. It also supports recognizing SP2 for the established Sprint-origin marker2 continuation when current factual family has become Power. Every observed Sprint-origin first FIST remains factual Sprint/Action9 at StatePosition1, so there is no evidence to broaden Sprint first-marker acceptance.
+- Normal and Quick raw55 behavior are not contradicted and remain outside the compatibility correction.
+- The current raw logs remain active comparison evidence until the remediation is implemented and accepted; POP-06 archival/cleanup is intentionally deferred for these open inputs.
+
+Provenance:
+- frozen collision source: `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`;
+- New Balance runtime inputs retained in `research/raw/` for active comparison: `2026.09.24_newbalance_troll.log`, `2026.09.24_newbalance_troll2.log`, `2026.09.24_newbalance_different_weapons_no_target.log`, `2026.09.24_newbalance_blacktroll.log`, `2026.09.24_newbalance_blacktroll_2.log`, `2026.09.24_newbalance_blacktroll_3.log`, `2026.09.24_newbalance_goblin.log`, `2026.09.24_newbalance_sabertooth.log`, `2026.09.24_newbalance_fist_no_target.log`;
+- latest evidence-upload branch HEAD before this maintenance transaction: `d0d59fc0628dc671bd052893d5d7bca54379a559`;
+- corroborating external source: `Jackydima/gothic3sdk`, `scripts/Script_AttackCollision/Script_AttackCollision.cpp` blob `1c0e668e2cea38259ae9f400e0c5dead45fdd8c0`, `config.cpp` blob `b5e1766466d2c2837c8f247280854428b27f719f`, inspected 2026-09-24.
+
+Disposition:
+- **FAIL — SOURCE-CORRELATED NEW BALANCE COMPATIBILITY CONTRADICTION; BOUNDED RAW55 REMEDIATION REQUIRED.**
+- No code change has been made yet.
+- Next implementation scope should remain exact and evidence-bounded: true-Power first/second FIST acceptance may use StatePosition `{1,2}` inside the already-matched raw55 execution; Sprint-origin first-FIST semantics remain unchanged at factual Sprint/SP1; Sprint-origin later FIST may accept current factual Power at StatePosition `{1,2}`. Normal/Quick/raw8/generic equipped behavior remains unchanged.
+- After the bounded correction, first acceptance should retest single-FIST true Power, double-FIST true Power, and Sprint-origin `Action9 -> Action2` continuation before resuming the broader New Balance gate.
