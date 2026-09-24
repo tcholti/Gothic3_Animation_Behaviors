@@ -53,7 +53,11 @@ Final behavior SHA256:
 - **EV-374:** broader 4.65 MB / 20,907-line stress run PASS; exactly one anomaly-class event, a successful exact Pickaxe/raw52 C1-R1 repair. No marker anomaly/discovery, warning, error, mismatch/divergence, or C1 invariant warning was found. Representative raw8/equipped churn remained clean through final zero-outstanding state and clean unload.
 - Stage D is now **CLOSED/PASS** compositionally: EV-373/374 provide long unscripted churn; exact frozen-source raw55/equipped and raw8/raw55 coexistence were already established by EV-366 and EV-359–EV-364.
 
-Third-party separation constraint remains: Zombie Separation and Axe Separation conflict even without Gothic3_Animation_Behaviors; their combined use is not our compatibility target.
+Separation note:
+- earlier combined Zombie Separation + Axe Separation testing showed a problem specifically on zombie 2H/Axe animation coverage even with Gothic3_Animation_Behaviors absent;
+- the User now reports the two mods otherwise worked together and considers missing Axe-named special-zombie animation assets the likely explanation;
+- this asset-gap explanation is plausible but not yet project-verified, so do not call the two mods fundamentally incompatible;
+- all separation mods are deliberately removed from the current New Balance compatibility load order.
 
 ## Next sequence
 
@@ -61,7 +65,8 @@ Third-party separation constraint remains: Zombie Separation and Axe Separation 
 CURRENT -> New Balance 0.7 exact distributed bundle
         -> all normally used/distributed New Balance DLLs
         -> relevant Script_AttackCollision environment
-        -> representative equipped + raw8 + raw55 + separation + mixed-stress compatibility
+        -> NO separation mods in this compatibility round
+        -> representative equipped + raw8 + raw55 + mixed-stress compatibility
         -> production collision migration only after compatibility PASS
 ```
 
