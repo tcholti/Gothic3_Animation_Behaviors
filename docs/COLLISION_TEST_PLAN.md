@@ -58,8 +58,8 @@ Closed phase map:
 
 ```text
 Phase 1  human marker matrix                  PASS EV-299–EV-306
-Phase 2  Orc matrix                          PASS EV-309–EV-310
-Phase 3  other equipped NPC/creatures        PASS EV-311–EV-314
+Phase 2  Orc matrix                           PASS EV-309–EV-310
+Phase 3  other equipped NPC/creatures         PASS EV-311–EV-314
          equipped Sprint promotion/acceptance PASS through EV-329
 Phase 4  body-contact / raw8 / raw55          PASS EV-337–EV-367
 Phase 5  Axe separation                       PASS EV-371
@@ -70,28 +70,16 @@ Phase 7  stress regression                    PASS EV-373–EV-374
 Final frozen-source comprehensive stages:
 
 ```text
-A. body-contact creatures                    CLOSED/PASS EV-365–EV-366
-   supplemental destructive C1-R1 stress     PASS EV-367
+A. body-contact creatures                     CLOSED/PASS EV-365–EV-366
+   supplemental destructive C1-R1 stress      PASS EV-367
 B. equipped actors + cumulative player matrix CLOSED/PASS EV-368
-C. separation compatibility                  CLOSED/PASS EV-369–EV-372
-D. mixed stress                              CLOSED/PASS EV-373–EV-374
+C. separation compatibility                   CLOSED/PASS EV-369–EV-372
+D. mixed stress                               CLOSED/PASS EV-373–EV-374
 ```
 
-### Stage-D closure basis
+EV-375 additionally verifies the proposed Zombie+Axe asset-gap remedy: copied zombie `2H` assets renamed to `Axe` are resolved as `Zombie_..._Axe_...`, preserve factual Pickaxe/raw52 ownership, accept authored markers, and clean correctly. This corrects the earlier broad interpretation that Zombie Separation and Axe Separation were fundamentally incompatible.
 
-EV-373 and EV-374 supply two long unscripted mixed-gameplay runs with heavy C1 churn, actor/target changes, weapon changes, raw8/equipped interleaving, repeated marker occurrences, and natural cleanup/repair opportunities.
-
-EV-374 itself does **not** contain a raw55/Troll route. Stage-D closure is intentionally compositional, not based on pretending every mechanism appeared in one log. Exact frozen-source campaign evidence already supplies:
-
-```text
-raw55 + equipped coexistence      EV-366
-raw8/raw55/equipped coexistence   EV-359–EV-364
-long unscripted mixed churn       EV-373–EV-374
-```
-
-The standing campaign rule is therefore preserved: coverage is compositional when the exact frozen source and relevant semantics are actually exercised. Do not schedule redundant repeats solely because evidence was gathered under a different phase label.
-
-No collision-source change is justified by EV-373 or EV-374.
+No collision-source change is justified by EV-373–EV-375.
 
 ---
 
@@ -113,8 +101,8 @@ C1-R1 exact-source terminal repair
 native cleanup + outstanding-zero finalization
 one-live-collision-twin deployment invariant
 compact CORE anomaly discovery
-Axe-separation compatibility
-Rapier-separation compatibility
+Zombie/Axe/Rapier separation compatibility
+EV-375 Zombie+Axe asset-gap remedy
 ```
 
 ---
@@ -123,11 +111,22 @@ Rapier-separation compatibility
 
 The next gate is runtime compatibility with the **exact New Balance 0.7 distributed bundle as the User actually runs it**, including its DLL set and the relevant Jackydima collision components such as `Script_AttackCollision` where applicable.
 
-For this gate, the User has deliberately removed the Zombie/Axe/Rapier separation mods from the load order. **Separation mods are out of scope for the current New Balance compatibility campaign.** Do not add them back merely for coverage; they can be tested later only if the User deliberately opens that combined environment as a separate goal.
+The User has now restored the intended separation-mod load order before this gate. Therefore the environment to certify is the real combined stack, not a simplified one:
+
+```text
+New Balance 0.7 as distributed
++ all normally used/distributed New Balance DLLs
++ relevant Jackydima collision DLLs including Script_AttackCollision where applicable
++ Zombie Separation
++ Axe Separation
++ Rapier Separation
++ EV-375 copied/renamed zombie Axe assets
++ exactly one Gothic3_Animation_Behaviors collision twin
+```
 
 Source-level preflight evidence is not sufficient final certification.
 
-Do not assume arbitrary same-function hook chaining or DLL load-order safety. Do not omit one of the normally installed New Balance DLLs merely to make the first test easier; reduction is appropriate only after a concrete failure needs isolation.
+Do not assume arbitrary same-function hook chaining or DLL load-order safety. Do not omit one of the normally installed DLLs or separation mods merely to make the first test easier; reduction is appropriate only after a concrete failure needs isolation.
 
 ### 4.1 Environment preflight
 
@@ -137,7 +136,8 @@ Before interpreting gameplay:
 exact New Balance bundle installed
 all normally distributed/used New Balance DLLs present
 relevant AttackCollision component present where part of that environment
-Zombie/Axe/Rapier separation mods absent for this gate
+Zombie/Axe/Rapier separation mods present
+EV-375 zombie Axe asset fix present
 exactly one Gothic3_Animation_Behaviors collision twin live
 startup succeeds
 expected diagnostic banner present when using diagnostic twin
@@ -160,8 +160,12 @@ raw8 body-contact
 raw55 PhysicalFist
   -> representative Troll/PhysicalFist marked route
 
+separation coexistence
+  -> exercise representative separated motions while the full New Balance stack is live
+  -> include at least one Zombie+Axe route using the EV-375 asset fix
+
 mixed stress
-  -> actor/target/weapon/C1 churn with the New Balance DLL set live
+  -> actor/target/weapon/C1 churn with the complete intended DLL/mod stack live
 ```
 
 The raw8 knocked-down/get-up control is policy-neutral. The collision system must not force damage or vulnerability; it only needs to preserve correct authored opportunity/open/rearm/close behavior while the installed gameplay stack remains free to permit, block, or alter the gameplay result.
@@ -177,6 +181,7 @@ expected marker acceptance/fail-closed behavior
 expected physical group activation/cleanup
 raw8 opportunities consume/close correctly
 raw55 routes remain bounded to their factual contract
+separated animation families preserve the expected factual source semantics
 C1 final obligations return to zero, or bounded exact C1-R1 repair converges safely
 no repair divergence
 no invariant/generation contradiction
@@ -185,7 +190,7 @@ clean unload
 no user-observed collision regression
 ```
 
-A compatibility failure does not authorize an immediate broad source patch. First reduce the exact failing DLL composition and factual collision route.
+A compatibility failure does not authorize an immediate broad source patch. First reduce the exact failing DLL/mod composition and factual collision route.
 
 ---
 
@@ -246,8 +251,9 @@ This work remains paused unless deliberately reopened.
 ## 8. Current sequence
 
 ```text
-standalone final-source regression       CLOSED/PASS EV-299–EV-374
--> New Balance exact bundle compatibility CURRENT
+standalone final-source regression        CLOSED/PASS EV-299–EV-374
+Zombie+Axe asset-gap remedy               PASS EV-375
+-> New Balance full intended-stack compatibility CURRENT
 -> production collision migration
 -> diagnostics-free integration validation
 -> later Raise + Speed + Config
