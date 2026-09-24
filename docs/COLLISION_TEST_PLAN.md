@@ -107,11 +107,11 @@ EV-375 Zombie+Axe asset-gap remedy
 
 ---
 
-## 4. New Balance exact distributed-bundle compatibility — CURRENT
+## 4. New Balance exact distributed-bundle compatibility — OPEN / BLOCKED BY EV-376
 
-The next gate is runtime compatibility with the **exact New Balance 0.7 distributed bundle as the User actually runs it**, including its DLL set and the relevant Jackydima collision components such as `Script_AttackCollision` where applicable.
+The current gate is runtime compatibility with the **exact New Balance 0.7 distributed bundle as the User actually runs it**, including its DLL set and the relevant Jackydima collision components such as `Script_AttackCollision` where applicable.
 
-The User has now restored the intended separation-mod load order before this gate. Therefore the environment to certify is the real combined stack, not a simplified one:
+The User has restored the intended separation-mod load order before this gate. Therefore the environment to certify is the real combined stack, not a simplified one:
 
 ```text
 New Balance 0.7 as distributed
@@ -192,6 +192,55 @@ no user-observed collision regression
 
 A compatibility failure does not authorize an immediate broad source patch. First reduce the exact failing DLL/mod composition and factual collision route.
 
+### 4.4 Current reduced contradiction — EV-376
+
+The first New Balance runtime batch has now been reduced sufficiently to authorize a **bounded raw55 compatibility correction**, but not a broad collision rewrite.
+
+Established failure:
+
+```text
+single-FIST true Power raw55
+  exact execution survives
+  premature opening suppressed
+  only FIST arrives at SP2
+  frozen raw55 Power gate rejects it
+
+double-FIST true Power raw55
+  marker1 SP1 accepted + physical opening + native damage possible
+  marker2 same C1 at SP2 rejected instead of clear-only rearm
+
+Sprint-origin raw55
+  marker1 Action9 / SPRINT / SP1 accepted
+  same C1 continues Action9 -> Action2
+  marker2 current POWER / SP2 rejected
+```
+
+Scope-narrowing controls:
+
+```text
+ordinary equipped Power routes remain healthy
+dual-1H generic equipped Power markers can operate safely at SP2
+Goblin equipped control healthy
+Sabertooth raw8 control healthy
+human raw8/fist control healthy
+Normal/Quick raw55 not contradicted
+```
+
+Therefore the next implementation must be limited to the existing `PhysicalFistCollision` Power/Sprint-origin marker-state acceptance for an already-matched exact raw55 execution. Do not add a generic SP2 rule, species/name gate, filename inference, new hook, timer/polling dependency, or change raw8/equipped semantics.
+
+Focused post-correction acceptance order:
+
+```text
+1. single-FIST true Power raw55 at the late marker
+2. double-FIST true Power: marker1 activation + marker2 rearm
+3. Sprint-origin: marker1 Action9/SP1 + same-C1 marker2 current Power/SP2
+4. Normal/Quick raw55 controls
+5. representative equipped/raw8 controls
+6. only then resume broader New Balance full-stack coverage
+```
+
+The current raw New Balance logs remain active comparison evidence until this focused remediation closes.
+
 ---
 
 ## 5. Evidence / artifact boundary
@@ -205,13 +254,13 @@ freeze setup + filename
 -> Normal Chat interprets
 -> concise canonical EV
 -> promote changed reusable fact to current reference/architecture when needed
--> archive processed runtime artifact
+-> archive processed runtime artifact when no active comparison remains
 -> restore research/raw/ to intake-only state
 -> run POP-12 validation
 -> only then next batch
 ```
 
-`research/raw/` is active intake, not history storage.
+`research/raw/` is active intake, not history storage. EV-376 is an explicit temporary exception because its source logs remain open comparison inputs for the pending correction.
 
 ---
 
@@ -253,7 +302,10 @@ This work remains paused unless deliberately reopened.
 ```text
 standalone final-source regression        CLOSED/PASS EV-299–EV-374
 Zombie+Axe asset-gap remedy               PASS EV-375
--> New Balance full intended-stack compatibility CURRENT
+New Balance full intended-stack gate      OPEN/BLOCKED EV-376
+-> bounded raw55 Power/Sprint-origin SP2 compatibility correction
+-> focused raw55 acceptance
+-> resume New Balance representative/full-stack compatibility
 -> production collision migration
 -> diagnostics-free integration validation
 -> later Raise + Speed + Config
