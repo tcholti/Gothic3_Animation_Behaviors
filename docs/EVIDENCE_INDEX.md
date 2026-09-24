@@ -57,7 +57,8 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | Rapier separation compatibility | EV-372 |
 | broad mixed-gameplay stress / Stage-D closure | EV-373–EV-374 |
 | Zombie+Axe separation asset-gap remedy | EV-375 |
-| New Balance / AttackCollision final compatibility gate | EV-284 preflight + post-EV-375 runtime evidence when added |
+| New Balance / AttackCollision final compatibility gate | EV-284 preflight + EV-376 current runtime contradiction |
+| New Balance raw55 Power/Sprint-origin SP2 compatibility | EV-376 |
 
 ## 3. Current collision closure landmarks
 
@@ -86,16 +87,25 @@ EV-372         Rapier Separation PASS
 EV-373         broad Stage-D mixed-gameplay stress run 1 PASS
 EV-374         broad Stage-D run 2 PASS; Stage D + standalone final-source regression CLOSED
 EV-375         Zombie+Axe copied/renamed Axe-asset remedy PASS on factual zombie Pickaxe/raw52 route
+EV-376         New Balance / AttackCollision raw55 Power/Sprint-origin StatePosition2 compatibility contradiction
 ```
 
 ## 4. Current next gate
 
 ```text
-New Balance 0.7 exact distributed bundle
-+ all normally used/distributed New Balance DLLs
-+ relevant Jackydima collision components including Script_AttackCollision where applicable
-+ intended separation-mod load order (Zombie + Axe + Rapier, including EV-375 zombie Axe asset fix)
--> representative equipped/raw8/raw55/separation/mixed-stress runtime compatibility
+New Balance 0.7 exact distributed bundle compatibility remains OPEN.
+EV-376 blocks closure on the raw55 PhysicalFist route:
+  true Power late FIST at SP2 is rejected by the frozen raw55 gate
+  Sprint-origin marker2 after same-C1 Action9 -> Action2 at SP2 is rejected
+  generic equipped and raw8 controls remain healthy
+
+Next:
+  freeze the smallest raw55 SP2 compatibility correction
+  -> implement without widening generic marker behavior
+  -> retest single-FIST true Power
+  -> retest double-FIST true Power
+  -> retest Sprint-origin Action9 -> Action2 continuation
+  -> resume representative full-stack compatibility coverage only after focused acceptance
 ```
 
 Source-level preflight alone is not final compatibility certification.
