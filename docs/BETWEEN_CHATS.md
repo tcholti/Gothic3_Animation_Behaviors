@@ -8,55 +8,83 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Current gate: New Balance full-stack compatibility remains open. The first bounded raw55 SP2 correction in `6eb3e3ca96da55e89127c24d5f656e05610d315f` passed independent static review and runtime-confirmed every predicate it changed, but EV-378 exposed one additional exact Sprint-first SP2 case that was outside the task's frozen evidence basis.
+Current gate: New Balance full intended-stack compatibility remains open. EV-378 runtime-confirmed every predicate changed by the first raw55 SP2 correction, then exposed one additional exact Sprint-origin first-FIST SP2 case.
 
-First correction task: **CLOSED** and archived at:
+Active bounded Work task:
 
-`docs/archive/investigations/COLLISION_NEW_BALANCE_RAW55_SP2_COMPATIBILITY_CORRECTION.md`
+`docs/work/active/COLLISION_NEW_BALANCE_RAW55_SPRINT_FIRST_SP2_COMPATIBILITY_CORRECTION.md`
 
-Runtime candidate/deployment:
-
-```text
-source correction = 6eb3e3ca96da55e89127c24d5f656e05610d315f
-built SHA256 = E11D680590D2F9D87A50EAF64B642F70C8CECA019ABB651DC48B00AF01F37C74
-live  SHA256 = E11D680590D2F9D87A50EAF64B642F70C8CECA019ABB651DC48B00AF01F37C74
-```
-
-EV-378 result:
+Frozen responsibility:
 
 ```text
-PASS within first correction scope:
-  true Power single-FIST first/only marker at SP2 -> ACCEPTED, 5->7, native cleanup
-  true Power double-FIST marker2 at SP2 -> ACCEPTED, clear-only rearm
-  Sprint-origin double-FIST marker1 Action9/SP1 -> ACCEPTED/open
-  same-C1 marker2 current Action2/Power/SP2 -> ACCEPTED, clear-only rearm
-  Normal/Quick raw55 controls -> healthy
+MODIFY only:
+  prototypes/Script_FrameCollisionTest/PhysicalFistCollision.cpp
 
-NEW reduced contradiction:
-  Sprint-origin single-FIST
-  current factual family = SPRINT / Action9
-  first/only FIST can arrive at SP2
-  earlyOpeningSuppressed = true
-  group is still 5
-  unchanged Sprint-first SP1-only predicate rejects it
+within:
+  IsFirstFistAllowed(...)
+  case AttackFamily_Sprint only
+
+current:
+  currentFamily == AttackFamily_Sprint
+  && statePosition == 1
+  && execution.earlyOpeningSuppressed
+
+required:
+  currentFamily == AttackFamily_Sprint
+  && (statePosition == 1 || statePosition == 2)
+  && execution.earlyOpeningSuppressed
 ```
 
-The double-marker log contains no CORE marker anomaly. The single-marker anomaly records reviewed are the same Sprint-first/SP2 class. This supersedes the EV-376/EV-377 assumption that observed Sprint-origin first markers were always SP1.
+Reason: EV-378 repeatedly observes an exact already-owned Sprint-origin single-FIST execution at factual `Action9 / SPRINT / SP2`, with `earlyOpeningSuppressed=1` and RIGHT still group5. The unchanged SP1-only first-FIST predicate rejects it.
 
-Likely smallest follow-up question:
+Protected unchanged:
 
 ```text
-Sprint-origin FIRST FIST only:
-  keep current family = SPRINT / Action9
-  keep earlyOpeningSuppressed mandatory
-  preserve SP1
-  additionally accept explicit SP2
-
-Everything else remains unchanged.
+true-Power first-FIST SP1/SP2 predicate
+true-Power second-FIST SP1/SP2 predicate
+Sprint-origin later current-Power SP1/SP2 predicate
+Normal
+Quick
+raw8 persistent-opportunity system
+generic equipped markers
+EquippedSprintCollision
+PhysicalFistExecution identity
+origin continuity
+C1/lifecycle
+premature native opening suppression
+first-open / second-clear-only semantics
+native callback progression
+native final cleanup
+EngineBridge/hooks
+AttackMotionRouting
+unmarked fallback
 ```
 
-Do not generalize to `StatePosition >= 1`, add authored-count branching, species/name rules, filename inference, New Balance/DLL detection, hooks, state, timers/polling, custom damage, cleanup changes, or neighboring-system edits unless new evidence requires them.
+Explicitly prohibited:
 
-Runtime batch hygiene: both EV-378 logs are archived byte-identically under `research/archive/`; `research/raw/` should again contain only `Keep.txt`.
+```text
+StatePosition >= 1
+authored-count branching
+new helper/state/module/hook
+New Balance/DLL detection
+species/name rule
+filename inference
+timer/polling
+custom damage/contact
+cleanup change
+unrelated refactor
+```
 
-Next responsibility: promote EV-378/current-state docs, validate knowledge state, then freeze a new tiny follow-up Work task only after Normal Chat design disposition.
+Work build execution is PROHIBITED. Work must commit/publish the bounded source change, update this bridge with implementation result/final SHA as required by protocol, and stop for independent Normal Chat review.
+
+After Normal Chat review, the User builds/deploys locally and runs `COLLISION_TEST_PLAN.md` §4.4 focused acceptance:
+
+```text
+1. single-FIST Sprint-origin Action9/SP2 -> accepted/open/cleanup
+2. double-FIST Sprint-origin SP1 marker1 + Power/SP2 marker2 -> remains accepted/rearm
+3. true-Power single/double controls
+4. Normal/Quick raw55 controls
+5. representative equipped/raw8 controls
+```
+
+Runtime-evidence hygiene is closed through EV-378: processed logs are archived; `research/raw/` contains only `Keep.txt`.
