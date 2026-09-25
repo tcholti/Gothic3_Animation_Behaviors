@@ -20,8 +20,8 @@ standalone final-source collision regression = CLOSED/PASS EV-299–EV-374
 Zombie+Axe asset-gap remedy = PASS EV-375
 New Balance full intended-stack compatibility = OPEN/BLOCKED EV-376
 New Balance equipped/raw8 Sprint controls = PASS EV-377
-current responsibility = bounded raw55 Power/Sprint-origin SP2 compatibility correction
-active Work task = NONE
+current responsibility = implement bounded raw55 Power/Sprint-origin SP2 compatibility correction
+active Work task = docs/work/active/COLLISION_NEW_BALANCE_RAW55_SP2_COMPATIBILITY_CORRECTION.md
 research/raw = clean intake; Keep.txt only
 ```
 
@@ -50,19 +50,24 @@ Final behavior SHA256:
 - **EV-373–EV-374:** two broad mixed-gameplay stress runs PASS; Stage D and standalone final-source regression CLOSED.
 - **EV-375:** Zombie+Axe copied/renamed asset-gap remedy PASS on the tested factual zombie Pickaxe/raw52 route.
 - **EV-376:** the intended New Balance/AttackCollision stack exposes one deterministic compatibility contradiction in the frozen raw55 Power/Sprint-origin state gate. Single-FIST true Power may reach its only FIST at `StatePosition=2` and be rejected. With two FIST markers, marker1 at SP1 is accepted and can damage, while marker2 at SP2 is rejected instead of performing the established rearm. Sprint-origin repeats the same boundary after same-C1 `Action9/SP1 -> Action2/SP2`.
-- **EV-377:** focused controls PASS. BlackGoblin equipped Sprint is correctly owned/authorized at `Action9/SP1`, activates and cleans normally, with no authorization leak into a later true-Power C1. Sabertooth raw8 Sprint repeatedly accepts at `Action9/SP1` and can consume the same raw8 opportunity on exact native contact after the same C1 has factually become `Action2/POWER`. No new compatibility contradiction was found.
+- **EV-377:** focused controls PASS. BlackGoblin equipped Sprint is correctly owned/authorized at `Action9/SP1`, activates and cleans normally, with no authorization leak into a later true-Power C1. Sabertooth raw8 Sprint repeatedly accepts at `Action9/SP1`; its persistent opportunity survives native misses and can remain valid across the legitimate same-C1 `Action9 -> Action2` transition. No new compatibility contradiction was found.
 
 ## Exact next route
 
-Before implementation:
+The bounded production task is now frozen:
+
+`docs/work/active/COLLISION_NEW_BALANCE_RAW55_SP2_COMPATIBILITY_CORRECTION.md`
+
+Implementation route:
 
 ```text
 1. read BETWEEN_CHATS.md
-2. read COLLISION_REFERENCE.md §5–§6
-3. read COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md
-4. read COLLISION_TEST_PLAN.md §4.4
-5. use EV-376 for the blocker and EV-377 for Sprint controls
-6. freeze one bounded Work task before source editing
+2. read the active task document
+3. read WORK_IMPLEMENTATION_PROTOCOL.md
+4. read FEATURE_DEVELOPMENT_METHOD.md
+5. read COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md
+6. read COLLISION_TEST_PLAN.md §4.4
+7. inspect only PhysicalFistCollision.cpp unless a contradiction requires STOP
 ```
 
 Required implementation boundary:
@@ -70,17 +75,19 @@ Required implementation boundary:
 ```text
 true Power raw55 first/second FIST:
   preserve SP1
-  additionally accept SP2 only inside the exact already-matched raw55 execution
+  additionally accept explicit SP2 only inside the exact already-matched raw55 execution
 
 Sprint-origin raw55:
   first FIST remains factual Sprint/Action9/SP1
-  later same-C1 marker may be current Power at SP1 or SP2
+  later same-C1 marker may be current Power at explicit SP1 or SP2
 
 Normal/Quick/raw8/generic equipped/C1/native cleanup:
   unchanged
 ```
 
-Do not generalize to `StatePosition >= 1`, species/name gates, filename inference, new hooks, timers/polling, or AttackCollision detection.
+Modularity means the existing `PhysicalFistCollision` owner receives its own tiny compatibility rule. Do not create a new module or broaden neighboring responsibilities.
+
+Do not generalize to `StatePosition >= 1`, species/name gates, filename inference, new hooks, timers/polling, AttackCollision/New Balance detection, or unrelated cleanup/refactor.
 
 Processed New Balance pre-remediation runtime evidence through EV-377 is archived byte-identically under `research/archive/`; the Sabertooth large-log retrieval package remains in `research/derived/`. `research/raw/` is intake-only and currently contains only `Keep.txt`.
 
@@ -99,6 +106,7 @@ New Balance 0.7 as distributed
 
 ## Read next by question
 
+- active bounded task → `work/active/COLLISION_NEW_BALANCE_RAW55_SP2_COMPATIBILITY_CORRECTION.md`
 - exact continuation → `BETWEEN_CHATS.md`
 - current facts → `COLLISION_REFERENCE.md`
 - validation gate → `COLLISION_TEST_PLAN.md`
