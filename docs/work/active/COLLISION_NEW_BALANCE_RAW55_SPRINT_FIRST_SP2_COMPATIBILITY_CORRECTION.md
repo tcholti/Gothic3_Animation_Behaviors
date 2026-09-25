@@ -184,7 +184,7 @@ Primary acceptance:
 5. representative equipped/raw8 controls remain healthy
 ```
 
-After New Balance compatibility closes, `COLLISION_TEST_PLAN.md` §4.5 requires a small standalone/no-New-Balance raw55 sentinel before final source certification. This proves New Balance support is additive rather than required. Do not reopen the broad standalone campaign unless that sentinel contradicts established behavior.
+After New Balance compatibility closes, `docs/COLLISION_TEST_PLAN.md` §4.5 requires a small standalone/no-New-Balance raw55 sentinel before final source certification. This proves New Balance support is additive rather than required. Do not reopen the broad standalone campaign unless that sentinel contradicts established behavior.
 
 Do not require physical damage from every accepted marker; marker acceptance/rearm/cleanup is primary and Gothic remains authoritative for contact/damage.
 
