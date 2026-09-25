@@ -44,7 +44,7 @@ Repeated RIGHT/LEFT/BOTH later in the same Hit can author another contact by rea
 
 Supported/proven equipped attack scope currently includes Normal, Quick, full Whirl, Power, Pierce, SimpleWhirl, tested 2H/Staff Hack routes, and factual equipped Sprint under the permanent `EquippedSprintCollision` policy. Family-specific native target/reaction behavior remains native and is not normalized merely by marker support.
 
-Evidence: EV-106–EV-116, EV-143–EV-147, EV-217–EV-220, EV-241–EV-244, EV-299–EV-306, EV-309–EV-314, EV-318, EV-370–EV-372, EV-375.
+Evidence: EV-106–EV-116, EV-143–EV-147, EV-217–EV-220, EV-241–EV-244, EV-299–EV-306, EV-309–EV-314, EV-318, EV-370–EV-372, EV-375, EV-377.
 
 ## 3. Equipped lifecycle / terminal repair
 
@@ -107,7 +107,9 @@ Gothic remains authoritative for target selection, block/parry, immunity, reacti
 
 There is no production `FIST_OFF`, no raw8 equipped-source window, no raw8 `ClearTriggeredList()` mechanism, and no direct/custom raw8 damage.
 
-Evidence: EV-221–EV-251, EV-257, EV-263, EV-297, EV-304–EV-305, EV-307, EV-309, EV-316, EV-337–EV-364.
+New Balance EV-377 reconfirms the persistent-opportunity model: a marked Sabertooth Sprint opportunity survives repeated native misses, can outlive the temporary timing permission, and closes only on exact native contact or C1 finalization as designed.
+
+Evidence: EV-221–EV-251, EV-257, EV-263, EV-297, EV-304–EV-305, EV-307, EV-309, EV-316, EV-337–EV-364, EV-377.
 
 ## 5. PhysicalFist / raw55
 
@@ -141,35 +143,17 @@ The production scope is exact current RIGHT PhysicalFist/raw55, marker-owned, ev
 
 Normal has a proven special native between-contact ALL-clear interaction; the permanent module suppresses/replaces only the exact evidence-backed native clear needed to preserve authored repeated-contact semantics.
 
-### Open New Balance / AttackCollision compatibility acceptance
+### New Balance / AttackCollision compatibility — current reduced state
 
-EV-376 establishes one compatibility contradiction in the pre-correction frozen raw55 implementation when the User's New Balance/AttackCollision environment is live:
+EV-376 identified a New Balance/AttackCollision StatePosition2 incompatibility in the pre-correction raw55 Power/Sprint-origin state gate. EV-377 established healthy equipped-Sprint and raw8 controls.
 
-```text
-single-FIST true Power
--> exact raw55 execution remains valid
--> authored FIST may arrive at StatePosition=2
--> frozen SP1-only Power gate rejects it
-
-double-FIST true Power
--> marker1 at SP1 accepted / damage possible
--> marker2 at SP2 rejected instead of clear-only rearm
-
-Sprint-origin
--> marker1 Action9 / SPRINT / SP1 accepted
--> same C1 continues Action9 -> Action2
--> marker2 current POWER / SP2 rejected
-```
-
-EV-377 then establishes healthy New Balance controls for equipped Sprint and raw8 Sprint, including raw8 persistent-opportunity behavior and the legitimacy of same-C1 `Action9 -> Action2` continuation. The contradiction therefore remains bounded to the raw55 Power/Sprint-origin state gate.
-
-The bounded source correction is implemented in candidate:
+The first bounded correction was implemented in:
 
 `6eb3e3ca96da55e89127c24d5f656e05610d315f`
 
 Independent Normal Chat static review: **PASS**.
 
-Candidate rule:
+That source change is exactly:
 
 ```text
 true-Power first FIST:
@@ -178,32 +162,86 @@ true-Power first FIST:
 true-Power second FIST:
   current POWER + explicit {SP1, SP2}
 
-Sprint-origin first FIST:
-  unchanged current SPRINT + SP1 + earlyOpeningSuppressed
-
 Sprint-origin later FIST:
   current POWER + explicit {SP1, SP2}
+
+Sprint-origin first FIST:
+  unchanged current SPRINT + SP1 + earlyOpeningSuppressed
 ```
 
-This is **not** a generic SP2 policy and is not yet runtime-certified. Normal, Quick, raw8, generic equipped markers, C1 identity/lifecycle, native callback progression and native cleanup remain unchanged in the source diff. Focused runtime acceptance is the current gate.
+EV-378 runtime directly validates all three changed predicates under the intended New Balance stack:
 
-Evidence: EV-262–EV-298, EV-317, EV-341, EV-366, EV-376–EV-377.  
+```text
+single-FIST true Power:
+  first/only FIST at POWER/SP2 -> ACCEPTED
+  exact RIGHT 5 -> 7
+  native damage observed when contact connects
+  native 7 -> 5 cleanup / outstanding zero
+
+double-FIST true Power:
+  marker1 POWER/SP1 -> ACCEPTED/open
+  marker2 POWER/SP2 -> ACCEPTED/clear-only rearm
+  no second physical opening
+  representative two-contact damage observed
+  clean cleanup
+
+Sprint-origin double-FIST:
+  marker1 Action9/SPRINT/SP1 -> ACCEPTED/open
+  same C1 becomes Action2/POWER
+  marker2 POWER/SP2 -> ACCEPTED/clear-only rearm
+  clean cleanup
+
+Normal / Quick controls:
+  healthy
+```
+
+The double-marker EV-378 log contains no CORE marker anomaly.
+
+EV-378 also discovers one additional factual New Balance case that the first task intentionally did not change because earlier evidence had not shown it:
+
+```text
+Sprint-origin single-FIST:
+  current factual family remains SPRINT / Action9
+  exact raw55 execution identity remains valid
+  premature native 5 -> 7 is suppressed
+  earlyOpeningSuppressed = true
+  first/only FIST may arrive at SP2 around StateTime ~= 1.58
+  group remains 5
+  current Sprint-first SP1-only predicate rejects it
+```
+
+Therefore the earlier EV-376/EV-377 assumption that observed Sprint-origin first FIST markers were always SP1 is **superseded**. The remaining contradiction is narrower than the first correction: Sprint-origin **first-FIST** state acceptance only.
+
+Evidence currently supports the following follow-up boundary and nothing broader:
+
+```text
+Sprint-origin first FIST:
+  current factual family = SPRINT / Action9
+  exact existing actor/right-source/C1/origin/motion ownership remains mandatory
+  earlyOpeningSuppressed remains mandatory
+  SP1 remains valid
+  explicit SP2 may additionally be valid
+```
+
+This is not evidence for `StatePosition >= 1`, authored-count special cases, a generic SP2 rule, species/name gates, filename inference, DLL/version detection, new hooks/state/timers, custom damage, or neighboring-system changes.
+
+Evidence: EV-262–EV-298, EV-317, EV-341, EV-366, EV-376–EV-378.  
 Architecture: `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`.  
 Validation: `COLLISION_TEST_PLAN.md` §4.4.
 
 ### Audit disposition
 
-Independent audit found no confirmed release-behavior defect in the standalone environment. One hypothetical nested marker/callback attribution risk remains evidence-bounded with no source change; one diagnostics-only callback-identity surfacing omission was corrected without behavior change. EV-376 is a later external-stack compatibility contradiction, not a reversal of the standalone audit result.
+Independent audit found no confirmed release-behavior defect in the standalone environment. EV-376/EV-378 are later external-stack compatibility discoveries and do not reverse the standalone audit result.
 
-Evidence/current closure: EV-295–EV-298, EV-376. Historical audit/probe documents are archived and are not ordinary retrieval material.
+Historical audit/probe documents are archived and are not ordinary retrieval material.
 
 ## 6. Sprint transport
 
 SprintAttack is factual `gEAction_SprintAttack = 9`.
 
-For the supported raw8 Fist path, Sprint arrives through the existing physical `OnAI_PowerAttack` transport while factual actor action is already Sprint at callback entry. The Power-named transport/motion does not redefine Sprint as Power.
+For raw8 Fist, Sprint arrives through the existing physical `OnAI_PowerAttack` transport while factual actor action is already Sprint at callback entry. The Power-named transport/motion does not redefine Sprint as Power. EV-377 confirms the same exact raw8 opportunity can remain valid through legitimate same-C1 factual `Action9 -> Action2` continuation under New Balance.
 
-The permanent raw55 path also supports Sprint-origin PhysicalFist/raw55 FIST behavior. Its immutable origin remains Sprint across the proven same-C1 factual `Action9 -> Action2` transition; later current Action2/POWER state does not transfer ownership to a true-Power execution. EV-376 reconfirms that identity model under New Balance: the origin remains Sprint when the later marker is observed at current Power/SP2; only the frozen SP1 state gate was contradicted. Candidate `6eb3e3ca...` widens only that exact later current-Power state acceptance to explicit SP1/SP2; runtime acceptance is pending.
+The permanent raw55 path also supports Sprint-origin PhysicalFist/raw55 FIST behavior. Its immutable origin remains Sprint across the proven same-C1 factual `Action9 -> Action2` transition; later current Action2/POWER state does not transfer ownership to a true-Power execution. EV-378 validates the corrected later-current-Power SP2 marker path and separately shows that the first/only marker can still be factual Sprint/Action9 when it arrives at SP2. Factual current family therefore remains authoritative at each marker; the unresolved issue is only the Sprint-first state-position gate.
 
 Equipped Sprint RIGHT/LEFT/BOTH/OFF is permanent supported behavior through `EquippedSprintCollision`.
 
@@ -225,7 +263,7 @@ The bound continuation is exact-identity-only: same actor, C1 generation, motion
 
 Architecture decision: ADR-0003. Permanent owner: `EquippedSprintCollision`.
 
-Evidence: raw8 Sprint EV-250–EV-251 and protected sentinel EV-316/EV-354; raw55 Sprint-origin EV-280–EV-285, EV-294, EV-298, EV-317 and EV-376; equipped Sprint causal/promotion evidence EV-311, EV-315, EV-320–EV-329; New Balance controls EV-377.
+Evidence: raw8 Sprint EV-250–EV-251 and protected sentinel EV-316/EV-354; raw55 Sprint-origin EV-280–EV-285, EV-294, EV-298, EV-317, EV-376 and EV-378; equipped Sprint causal/promotion evidence EV-311, EV-315, EV-320–EV-329; New Balance controls EV-377.
 
 ## 7. Shield / raw9 boundary
 
@@ -266,7 +304,7 @@ No tested case showed a present authored marker on a separated animation being i
 
 ### Zombie + Axe combined asset coverage
 
-The earlier combined Zombie Separation + Axe Separation problem was specific to zombie 2H/Axe animation availability, not a collision incompatibility. EV-375 verifies the User's proposed remedy on `BenSala_Zombie_02`:
+EV-375 verifies the User's asset-gap remedy on `BenSala_Zombie_02`:
 
 ```text
 copy corresponding zombie 2H animation asset
@@ -276,9 +314,7 @@ copy corresponding zombie 2H animation asset
 -> authored markers operate normally
 ```
 
-The tested copied/renamed assets cover marked Normal, Power and Whirl; Whirl `RIGHT -> OFF -> RIGHT` works with exact Pickaxe/raw52 activation/cleanup. An unmarked copied/renamed FinishingAttack/Hack asset remains native and cleans correctly. No anomaly/divergence/warning/error was observed and the diagnostic DLL unloaded cleanly.
-
-Therefore Zombie Separation and Axe Separation are **not** treated as fundamentally incompatible. The known issue was an animation asset-coverage/naming gap for the tested special-zombie Axe route. This does not claim every possible special-zombie Axe asset is already supplied; missing assets still require corresponding animation coverage.
+Therefore Zombie Separation and Axe Separation are not treated as fundamentally incompatible; the tested problem was an animation asset-coverage/naming gap.
 
 Evidence: EV-369–EV-372, EV-375.
 
@@ -309,14 +345,17 @@ final-source Stage B equipped/cumulative    CLOSED/PASS EV-368
 separation compatibility                    CLOSED/PASS EV-369–EV-372
 mixed stress / standalone final-source      CLOSED/PASS EV-373–EV-374
 Zombie+Axe asset-gap remedy                 PASS EV-375
-New Balance controls                        PASS EV-377
-raw55 SP2 source correction                 IMPLEMENTED / STATIC REVIEW PASS
-raw55 SP2 focused runtime acceptance        CURRENT
+New Balance equipped/raw8 controls          PASS EV-377
+first raw55 SP2 correction                  STATIC PASS / RUNTIME PARTIAL PASS EV-378
+remaining raw55 contradiction               Sprint-origin first/only FIST at Action9/SP2
 New Balance full intended-stack gate        OPEN
 ```
 
-Current compatibility candidate:
+First compatibility correction:
 `6eb3e3ca96da55e89127c24d5f656e05610d315f`
+
+Latest reviewed/deployed diagnostic SHA256:
+`E11D680590D2F9D87A50EAF64B642F70C8CECA019ABB651DC48B00AF01F37C74`
 
 Current validation authority: `COLLISION_TEST_PLAN.md`.
 
