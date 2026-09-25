@@ -1,16 +1,16 @@
 # Permanent raw55 PhysicalFist Architecture
 
 **Status:** Current production-behavior architecture  
-**Updated:** 2026-09-19
+**Updated:** 2026-09-25
 
 ## Purpose
 
-Define the permanent diagnostics-free collision behavior for factual `gEUseType_PhysicalFist` / raw55 after the completed causal research campaign.
+Define the permanent diagnostics-free collision behavior for factual `gEUseType_PhysicalFist` / raw55 after the completed causal research campaign and subsequent bounded New Balance compatibility corrections.
 
 This file describes the **current architecture**. The original production implementation contract and all family-specific probe documents are preserved under `docs/archive/investigations/`.
 
 Ordinary factual lookup: `COLLISION_REFERENCE.md`.  
-Exact proof: `EVIDENCE_INDEX.md` → EV-262–EV-298.
+Exact proof: `EVIDENCE_INDEX.md`.
 
 ---
 
@@ -172,7 +172,22 @@ True Power is factual Action 2 / POWER, distinct from Sprint even though Sprint 
 
 The native callback is preserved; only the premature exact raw55 opening is selectively suppressed. Authored FIST owns first/repeated contact timing.
 
-Evidence: EV-274–EV-276, EV-293.
+Current New Balance-compatible state acceptance is explicit and evidence-bounded:
+
+```text
+first FIST:
+  current POWER
+  + StatePosition {1,2}
+  + earlyOpeningSuppressed
+
+second FIST:
+  current POWER
+  + StatePosition {1,2}
+```
+
+No `>=1` generalization is used.
+
+Evidence: EV-274–EV-276, EV-293, EV-376, EV-378.
 
 ### Sprint-origin
 
@@ -182,7 +197,28 @@ That transition does not create a new attack execution.
 
 Permanent raw55 ownership therefore preserves Sprint-origin identity across the same C1 so a later authored FIST remains part of the same authored execution.
 
-Evidence: EV-280–EV-285, EV-294.
+Current first-FIST acceptance after EV-379:
+
+```text
+origin family = SPRINT
+current family = SPRINT
+StatePosition {1,2}
+earlyOpeningSuppressed mandatory
+```
+
+This explicit SP1/SP2 first-FIST rule is runtime validated by EV-379.
+
+Current second-FIST source predicate remains narrower:
+
+```text
+origin family = SPRINT
+current family = POWER
+StatePosition {1,2}
+```
+
+EV-379 proves that this second-FIST predicate is not yet complete for the intended New Balance environment: a legitimate same-C1 second FIST can arrive while current state is still `SPRINT / Action9 / SP2`. That marker currently fails closed. A deliberate earlier-marker probe is still required to determine whether `SPRINT / SP1` is also a legitimate second-FIST state before any follow-up predicate is frozen.
+
+Evidence: EV-280–EV-285, EV-294, EV-376–EV-379.
 
 ---
 
@@ -198,7 +234,7 @@ Diagnostics may surface identity contradictions, but diagnostics do not decide r
 
 The post-audit callback-identity surfacing correction is diagnostics-only; behavior on contradiction remains “no new raw55 intervention.”
 
-Focused validation: EV-295–EV-298.
+Focused validation: EV-295–EV-298 plus compatibility evidence EV-376–EV-379.
 
 ---
 
@@ -238,6 +274,8 @@ polling/timer ownership
 global ClearTriggeredList policy
 whole native callback suppression
 diagnostic/probe state as release dependency
+StatePosition >= 1 generalization
+New Balance/DLL/version detection
 ```
 
 Unknown future behavior returns to an isolated probe under `FEATURE_DEVELOPMENT_METHOD.md`.
@@ -258,45 +296,23 @@ Script_FrameCollisionTest
 
 Release behavior must not require `CollisionDiagnostics`, historical `PhysicalFistProbe` state, or diagnostic-only hooks.
 
-The historical probe modules/contracts are archived and are not current design input unless a contradiction requires reconstruction.
-
 ---
 
-## 9. Validation closure
+## 9. Current compatibility boundary
 
-Permanent raw55 focused acceptance is CLOSED/PASS at EV-298.
+New Balance compatibility remains open only because the complete factual state set for a Sprint-origin **second** FIST is not yet mapped.
 
-Validated boundaries include:
-
-```text
-four supported families
-first and repeated FIST behavior
-native final cleanup
-unmarked raw55 fallback
-raw8 coexistence
-equipped authored-marker coexistence
-post-audit diagnostics controls
-```
-
-Do not reopen family-specific causal probing merely for routine variation. New factual contradiction or a deliberate scope extension is required.
-
----
-
-## 10. Retrieval
+Known matrix:
 
 ```text
-current fact
--> COLLISION_REFERENCE.md
-
-raw55 architecture question
--> this file
-
-source/hook/RVA question
--> SOURCE_HOOK_GUIDE.md
-
-validation question
--> COLLISION_TEST_PLAN.md
-
-proof/provenance question
--> EVIDENCE_INDEX.md -> exact EV / archived source
+origin SPRINT, second FIST:
+  current POWER  / SP2 -> proven legitimate / accepted
+  current SPRINT / SP2 -> proven legitimate arrival / currently rejected
+  current SPRINT / SP1 -> unknown / next diagnostic probe
 ```
+
+The active authority for that investigation is:
+
+`docs/work/active/COLLISION_NEW_BALANCE_RAW55_SPRINT_SECOND_FIST_STATE_INVESTIGATION.md`
+
+No production change is authorized until that state envelope is established.
