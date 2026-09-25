@@ -142,7 +142,7 @@ Scope / limits:
 
 Provenance:
 - frozen collision source: `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`;
-- original New Balance runtime input basenames: `2026.09.24_newbalance_troll.log`, `2026.09.24_newbalance_troll2.log`, `2026.09.24_newbalance_different_weapons_no_target.log`, `2026.09.24_newbalance_blacktroll.log`, `2026.09.24_newbalance_blacktroll_2.log`, `2026.09.24_newbalance_blacktroll_3.log`, `2026.09.24_newbalance_goblin.log`, `2026.09.24_newbalance_sabertooth.log`, `2026.09.24_newbalance_fist_no_target.log`; resolve current canonical locations through `EVIDENCE_PATH_MIGRATIONS.md`;
+- original New Balance runtime input basenames: `2026.09.24_newbalance_troll.log`, `2026.09.24_newbalance_troll2.log`, `2026.09.24_newbalance_different_weapons_no_target.log`, `2026.09.24_newbalance_fist_no_target.log`, `2026.09.24_newbalance_goblin.log`, `2026.09.24_newbalance_sabertooth.log`, `2026.09.24_newbalance_blacktroll.log`, `2026.09.24_newbalance_blacktroll_2.log`, `2026.09.24_newbalance_blacktroll_3.log`; resolve current canonical locations through `EVIDENCE_PATH_MIGRATIONS.md`;
 - latest evidence-upload branch HEAD before this maintenance transaction: `d0d59fc0628dc671bd052893d5d7bca54379a559`;
 - corroborating external source: `Jackydima/gothic3sdk`, `scripts/Script_AttackCollision/Script_AttackCollision.cpp` blob `1c0e668e2cea38259ae9f400e0c5dead45fdd8c0`, `config.cpp` blob `b5e1766466d2c2837c8f247280854428b27f719f`, inspected 2026-09-24.
 
@@ -208,3 +208,33 @@ Disposition:
 - **NEW REDUCED CONTRADICTION — SPRINT-ORIGIN FIRST/ONLY FIST MAY ARRIVE AT FACTUAL SPRINT/ACTION9/SP2.**
 - The first bounded correction task is complete and should be archived rather than silently expanded.
 - Next source consideration, if accepted, should remain a one-predicate follow-up inside `PhysicalFistCollision`: Sprint-origin first FIST keeps current Sprint identity and mandatory `earlyOpeningSuppressed`, preserves SP1, and additionally accepts explicit SP2.
+
+### EV-379 — Sprint-first SP2 correction runtime PASS; Sprint-origin second-FIST current-Sprint/SP2 case discovered
+
+Observed:
+- The User built and deployed the diagnostic twin after the bounded Sprint-first SP2 correction. Built and live SHA256 are identical: `490AC7F6F6931784EA9D5697BA5758DAB11FC0B9437A247FFA9FBC7E13BA1E4C`; deployment reported PASS.
+- The single-FIST BlackTroll run repeatedly validates the corrected Sprint-first predicate. Factual Sprint-origin executions remain `Action=9 / Family=SPRINT`, the premature exact RIGHT raw55 opening is suppressed, and the first/only FIST arrives at `StatePosition=2` around `StateTime ~= 1.58`. The marker is now accepted, exact RIGHT `TrollFist / UseType55` opens `5 -> 7`, native damage is observed on connecting attacks, and native cleanup returns `7 -> 5` with zero outstanding. No marker anomaly was found in the reviewed single-marker log.
+- The double-FIST BlackTroll run mostly preserves the previously proven Sprint-origin continuation: marker1 at `Action9 / SPRINT / SP1` opens RIGHT `5 -> 7`; when marker2 arrives after factual transition to `Action2 / POWER / SP2`, it is accepted with `GroupRequested=0 / ClearTriggeredList=1`, preserving clear-only rearm and no second physical opening.
+- One double-FIST execution exposes a new timing-dependent state. In C1=124, marker1 is accepted at `Action9 / SPRINT / SP1`, but marker2 arrives while factual state is still `Action9 / SPRINT / SP2`. RIGHT is already group7, `AcceptedFistCount=1`, and the current Sprint-origin second-FIST predicate rejects because it only accepts current `POWER`. The marker fails closed as `REJECTED_UNSUPPORTED_HIT`; native cleanup later returns RIGHT `7 -> 5` normally.
+- Targeted review found this as the single marker-anomaly class in the double-marker log. No `WARNING` or `ERROR` record was found. The User independently reported that the second Sprint contact had sometimes felt abnormal across several runs, consistent with this timing-dependent state split.
+- True-Power, Normal and Quick raw55 controls shown in the same runs remain healthy; no evidence from this batch contradicts their established predicates.
+
+Scope / limits:
+- EV-379 directly validates the exact source change in `ce59e5a2bad564652eaba970e959bdef0b479d82`: Sprint-origin first FIST accepts explicit SP1 or SP2 while current family remains Sprint and `earlyOpeningSuppressed` remains mandatory.
+- The newly exposed contradiction is separate from that first-FIST correction. It is bounded to Sprint-origin **second-FIST** continuation when current factual family has not yet changed from Sprint at SP2.
+- Existing evidence already proves another legitimate second-FIST state for the same origin: current `POWER / SP2`. EV-379 therefore shows that the current-family value at marker2 is timing-dependent under New Balance.
+- This evidence does **not yet** prove the complete second-FIST state set. In particular, no deliberate early-marker probe has yet established whether a legitimate second FIST can arrive while still `SPRINT / SP1`. Do not patch from the single observed `SPRINT / SP2` case alone.
+- No evidence supports generic `StatePosition >= 1`, generic Sprint-family widening outside the already-owned same-C1 raw55 execution, marker-count-specific behavior, species/name gates, filename inference, New Balance/DLL detection, new hooks/state/timers, custom damage, or neighboring-system changes.
+
+Provenance:
+- Sprint-first SP2 correction source commit: `ce59e5a2bad564652eaba970e959bdef0b479d82`;
+- runtime upload branch commit: `e9457ee5d31079eb0cb8d755fabba43d1df1113b`;
+- diagnostic built/live SHA256: `490AC7F6F6931784EA9D5697BA5758DAB11FC0B9437A247FFA9FBC7E13BA1E4C`;
+- single-marker active comparison runtime: `research/raw/2026.09.25_newbalance_blacktroll_all_single_marker2.log`, Git blob `05abf1f7a7e025ff9b1dbfbf33b5074e2c5f4b0d`;
+- double-marker active comparison runtime: `research/raw/2026.09.25_newbalance_blacktroll_all_double_marker2.log`, Git blob `f33b578479b8b38d5f18760b8254aa2e48d89b84`.
+
+Disposition:
+- **PASS — SPRINT-FIRST SP2 CORRECTION VALIDATED FOR ITS EXACT CHANGED PREDICATE.**
+- **NEW BOUNDED CONTRADICTION — SPRINT-ORIGIN SECOND FIST MAY ARRIVE AT FACTUAL SPRINT/ACTION9/SP2 BEFORE THE ACTION9->ACTION2 TRANSITION.**
+- Keep the two EV-379 logs in `research/raw/` temporarily as explicit active-comparison evidence for the next marker-timing probe.
+- Next step is evidence gathering, not implementation: intentionally move marker2 earlier and determine whether legitimate second-FIST `SPRINT/SP1` also occurs; then define the complete smallest second-FIST state rule from the observed envelope.
