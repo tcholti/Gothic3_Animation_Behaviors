@@ -8,60 +8,68 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Current gate: New Balance full intended-stack compatibility remains open. The bounded Sprint-origin first-FIST SP2 correction is implemented and independent Normal Chat diff review is **PASS**.
+Current gate: New Balance full intended-stack compatibility remains open. EV-379 validates the Sprint-first SP2 correction, but exposes one separate timing-dependent Sprint-origin second-FIST state.
+
+Latest deployed diagnostic:
+
+```text
+Built SHA256 = 490AC7F6F6931784EA9D5697BA5758DAB11FC0B9437A247FFA9FBC7E13BA1E4C
+Live  SHA256 = 490AC7F6F6931784EA9D5697BA5758DAB11FC0B9437A247FFA9FBC7E13BA1E4C
+DIAGNOSTIC DEPLOYMENT PASS
+```
+
+Sprint-first correction `ce59e5a2bad564652eaba970e959bdef0b479d82`:
+
+```text
+single FIST, origin Sprint
+current SPRINT / Action9 / SP2
+-> ACCEPTED
+-> RIGHT raw55 5 -> 7
+-> native damage when contact connects
+-> native cleanup 7 -> 5
+```
+
+Exact predicate is runtime PASS.
+
+EV-379 second-FIST split:
+
+```text
+proven route A:
+  marker1 current SPRINT/SP1 -> accepted/open
+  marker2 current POWER/SP2  -> accepted/clear-only rearm
+
+new route B:
+  marker1 current SPRINT/SP1 -> accepted/open
+  marker2 current SPRINT/SP2 -> currently rejected
+```
+
+The User had independently noticed intermittent odd second-contact behavior; diagnostics explain it.
 
 Active bounded task:
 
-`docs/work/active/COLLISION_NEW_BALANCE_RAW55_SPRINT_FIRST_SP2_COMPATIBILITY_CORRECTION.md`
+`docs/work/active/COLLISION_NEW_BALANCE_RAW55_SPRINT_SECOND_FIST_STATE_INVESTIGATION.md`
 
-Implementation:
-
-```text
-implementation SHA:
-  ce59e5a2bad564652eaba970e959bdef0b479d82
-
-handoff HEAD:
-  858d5ca173c03c7149594b3da946594c97a13be5
-
-PhysicalFistCollision.cpp only:
-  IsFirstFistAllowed(...)
-  AttackFamily_Sprint branch only
-
-currentFamily == AttackFamily_Sprint
-&& (statePosition == 1 || statePosition == 2)
-&& execution.earlyOpeningSuppressed
-```
-
-Independent review confirmed:
+Next session:
 
 ```text
-one production file
-one predicate substitution
-SP1 preserved
-SP2 additionally accepted
-current Sprint identity preserved
-earlyOpeningSuppressed preserved
-no authored-count branch
-no >=1 generalization
-no helper/state/module/hook
-no New Balance/DLL detection
-no neighboring behavior change
+NO production patch first.
+Move marker2 earlier on the same BlackTroll double-FIST Sprint-capable fixture.
+Keep marker1 unchanged.
+Run several Sprint attacks.
+Determine whether legitimate marker2 can also arrive at current SPRINT / Action9 / SP1.
+Then freeze one complete smallest second-FIST rule from the factual state envelope.
 ```
 
-Next:
+Known second-FIST states before probe:
 
 ```text
-1. User local build/deploy from current branch.
-2. New Balance focused acceptance from COLLISION_TEST_PLAN.md §4.4:
-   - single-FIST Sprint-origin Action9/SP2 -> accepted/open/cleanup
-   - double-FIST Sprint-origin SP1 marker1 + Power/SP2 marker2 -> unchanged PASS
-   - true-Power single/double controls
-   - Normal/Quick raw55 controls
-   - representative equipped/raw8 controls
-3. If focused New Balance PASS, resume representative/full-stack New Balance coverage.
-4. Before final collision-source certification, disable New Balance/AttackCollision and run the bounded standalone raw55 sentinel in §4.5. This proves the compatibility changes remain additive and the mod still works correctly without New Balance.
+POWER/SP2  = legitimate + accepted
+SPRINT/SP2 = legitimate arrival + rejected
+SPRINT/SP1 = unknown
 ```
 
-Do not repeat the old broad standalone campaign unless the sentinel finds contradictory evidence.
+Do not generalize to `>=1`, do not use authored-count policy, and do not touch neighboring systems.
 
-Runtime-evidence hygiene is closed through EV-378: processed logs are archived; `research/raw/` contains only `Keep.txt`.
+Evidence hygiene: the two EV-379 logs remain temporarily in `research/raw/` as explicit active-comparison evidence. Archive them when the timing comparison closes.
+
+Paused speed note: New Balance owns the animation-speed hook. Working hypothesis only: values such as 1H `0.6`, 2H/Axe/Staff/Halberd `0.7`, Quick/Pierce/Hack `1.0` may be baseline rates inside New Balance's modifier pipeline. When speed work resumes, our design must coexist with/preserve New Balance's other multipliers rather than replacing its hook. Raise/speed remains paused.
