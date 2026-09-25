@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Index
 
 **Status:** Compact evidence-routing index  
-**Updated:** 2026-09-24
+**Updated:** 2026-09-25
 
 ## Purpose
 
@@ -45,7 +45,7 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | lifecycle / C1-R1 exact-source repair | EV-180–EV-215, EV-367, EV-373–EV-374 |
 | Power / Pierce / SimpleWhirl / Hack | EV-217–EV-220, EV-241–EV-244, EV-318 |
 | raw55 discovery and permanent four-family route | EV-262–EV-298, EV-341, EV-366 |
-| equipped Sprint permanent behavior | EV-311, EV-315, EV-320–EV-329, EV-368 |
+| equipped Sprint permanent behavior | EV-311, EV-315, EV-320–EV-329, EV-368, EV-377 |
 | standalone collision regression | EV-299–EV-374 |
 | raw8 permanent persistent-opportunity model | EV-346–EV-364 |
 | final-source body-contact campaign | EV-365–EV-366 |
@@ -57,8 +57,9 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | Rapier separation compatibility | EV-372 |
 | broad mixed-gameplay stress / Stage-D closure | EV-373–EV-374 |
 | Zombie+Axe separation asset-gap remedy | EV-375 |
-| New Balance / AttackCollision final compatibility gate | EV-284 preflight + EV-376 current runtime contradiction |
+| New Balance / AttackCollision final compatibility gate | EV-284 preflight + EV-376–EV-377 current runtime evidence |
 | New Balance raw55 Power/Sprint-origin SP2 compatibility | EV-376 |
+| New Balance equipped Sprint + raw8 Sprint controls | EV-377 |
 
 ## 3. Current collision closure landmarks
 
@@ -88,16 +89,21 @@ EV-373         broad Stage-D mixed-gameplay stress run 1 PASS
 EV-374         broad Stage-D run 2 PASS; Stage D + standalone final-source regression CLOSED
 EV-375         Zombie+Axe copied/renamed Axe-asset remedy PASS on factual zombie Pickaxe/raw52 route
 EV-376         New Balance / AttackCollision raw55 Power/Sprint-origin StatePosition2 compatibility contradiction
+EV-377         New Balance equipped-Sprint + Sabertooth raw8 Sprint controls PASS; Action9->Action2 transport corroborated
 ```
 
 ## 4. Current next gate
 
 ```text
 New Balance 0.7 exact distributed bundle compatibility remains OPEN.
-EV-376 blocks closure on the raw55 PhysicalFist route:
+EV-376 remains the sole demonstrated blocker on the raw55 PhysicalFist route:
   true Power late FIST at SP2 is rejected by the frozen raw55 gate
   Sprint-origin marker2 after same-C1 Action9 -> Action2 at SP2 is rejected
-  generic equipped and raw8 controls remain healthy
+
+EV-377 closes the requested Sprint controls:
+  equipped BlackGoblin Sprint Action9/SP1 = PASS
+  Sabertooth raw8 Sprint Action9/SP1 -> same-C1 Action2 contact = PASS
+  no new correction scope discovered
 
 Next:
   freeze the smallest raw55 SP2 compatibility correction
@@ -129,6 +135,8 @@ research/raw/      active unprocessed intake only
 research/derived/  deterministic retrieval aids
 research/archive/  processed canonical runtime provenance
 ```
+
+The processed New Balance pre-remediation batch through EV-377 is archived; `research/raw/` is clean except `Keep.txt` at this closure boundary.
 
 Historical ledger rows may retain paths that were correct when written. Use `EVIDENCE_PATH_MIGRATIONS.md` when a later archive move makes an old path ambiguous.
 
