@@ -136,7 +136,7 @@ Observed:
 Scope / limits:
 - Frozen Gothic3_Animation_Behaviors source is unchanged at `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`.
 - The contradiction is bounded to the permanent raw55 PhysicalFist Power/Sprint-origin state acceptance under the tested New Balance/AttackCollision environment. It does **not** justify generic `StatePosition >= 1`, generic SP2 acceptance, species/name rules, filename inference, new hooks, polling/timers, or changes to raw8/equipped marker semantics.
-- Evidence supports preserving true-Power SP1 behavior while additionally recognizing SP2 for the exact already-correlated raw55 Power execution where appropriate. It also supports recognizing SP2 for the established Sprint-origin marker2 continuation when current factual family has become Power. Every observed Sprint-origin first FIST remains factual Sprint/Action9 at StatePosition1, so there is no evidence to broaden Sprint first-marker acceptance.
+- Evidence supports preserving true-Power SP1 behavior while additionally recognizing SP2 for the exact already-correlated raw55 Power execution where appropriate. It also supports recognizing SP2 for the established Sprint-origin marker2 continuation when current factual family has become Power. Every observed Sprint-origin first FIST remains factual Sprint/Action9 at StatePosition1, so there is no evidence to broaden Sprint first-marker acceptance. **This last observation is historical to EV-376 and is superseded by EV-378, which directly observes Sprint-origin first/only FIST at Action9/SP2.**
 - Normal and Quick raw55 behavior are not contradicted and remain outside the compatibility correction.
 - At EV-376 publication the processed New Balance logs were temporarily retained as active comparison inputs. EV-377 closes the additional Sprint controls and removes that broad retention exception; canonical runtime artifacts are subsequently migrated byte-identically to `research/archive/` under POP-06.
 
@@ -148,9 +148,7 @@ Provenance:
 
 Disposition:
 - **FAIL — SOURCE-CORRELATED NEW BALANCE COMPATIBILITY CONTRADICTION; BOUNDED RAW55 REMEDIATION REQUIRED.**
-- No code change has been made yet.
-- Next implementation scope should remain exact and evidence-bounded: true-Power first/second FIST acceptance may use StatePosition `{1,2}` inside the already-matched raw55 execution; Sprint-origin first-FIST semantics remain unchanged at factual Sprint/SP1; Sprint-origin later FIST may accept current factual Power at StatePosition `{1,2}`. Normal/Quick/raw8/generic equipped behavior remains unchanged.
-- After the bounded correction, first acceptance should retest single-FIST true Power, double-FIST true Power, and Sprint-origin `Action9 -> Action2` continuation before resuming the broader New Balance gate.
+- The first bounded remediation was later implemented in `6eb3e3ca96da55e89127c24d5f656e05610d315f` and its exact changed predicates are runtime-confirmed by EV-378. EV-378 also discovers the separate Sprint-first SP2 case that was not known when EV-376 was written.
 
 ### EV-377 — New Balance equipped Sprint and Sabertooth raw8 Sprint controls PASS
 
@@ -165,8 +163,7 @@ Observed:
 Scope / limits:
 - The equipped-Sprint result proves the tested BlackGoblin RIGHT/1H Sprint route under the current New Balance stack. It does not claim that this particular run captured an equipped same-C1 `Action9 -> Action2` marker continuation.
 - The Sabertooth result is raw8-specific. It proves that raw8 Sprint can accept at factual Sprint/SP1 and survive same-C1 factual transition into Power through contact consumption; it does not alter raw55 marker-state acceptance.
-- These controls strengthen, rather than widen, the EV-376 correction boundary: raw55 Sprint first-FIST remains factual Sprint/SP1; same-execution Sprint-origin -> current Power is legitimate; the unresolved New Balance contradiction remains raw55 Power-state marker acceptance at SP2.
-- No new source change is justified outside the bounded raw55 correction already frozen by EV-376.
+- The statement that the raw55 correction boundary did not include Sprint-first SP2 was correct for the evidence available at EV-377. EV-378 later supersedes that limitation with direct Sprint-first/only Action9-SP2 evidence.
 
 Provenance:
 - frozen collision source: `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`;
@@ -177,5 +174,37 @@ Provenance:
 
 Disposition:
 - **PASS — NEW BALANCE EQUIPPED-SPRINT AND RAW8-SPRINT CONTROLS.**
-- EV-376 remains the sole demonstrated compatibility blocker and its bounded raw55 correction scope is unchanged.
-- The processed New Balance pre-remediation batch no longer needs a broad `research/raw/` active-comparison exception; archive it byte-identically and leave raw intake clean before implementation.
+- Processed pre-remediation evidence is archived under POP-06.
+
+### EV-378 — First raw55 SP2 correction runtime partial PASS; Sprint-first SP2 compatibility fact discovered
+
+Observed:
+- The User built and deployed the diagnostic twin after the reviewed first raw55 SP2 correction. Built and live SHA256 are identical: `E11D680590D2F9D87A50EAF64B642F70C8CECA019ABB651DC48B00AF01F37C74`. Deployment was reported PASS.
+- The single-marker BlackTroll run directly validates the corrected true-Power first-FIST predicate. Repeated factual `Action=2 / Family=POWER` executions suppress the premature exact RIGHT raw55 opening, then accept the sole authored FIST at `StatePosition=2` around `StateTime ~= 1.58`. The exact RIGHT `TrollFist / UseType55` transitions `5 -> 7`, native `OnDamage` is observed when contact connects, native cleanup returns `7 -> 5`, and C1 finalization reaches zero outstanding.
+- The double-marker BlackTroll run directly validates corrected true-Power second-FIST semantics. Marker1 at current `POWER / SP1` opens the exact RIGHT raw55 source and is accepted. Marker2 in the same C1 at current `POWER / SP2` is accepted with `GroupBefore=7 / GroupAfter=7`, `GroupRequested=0`, and `ClearTriggeredList=1`: the established clear-only rearm semantics are preserved with no second physical opening. Representative executions produce native damage after both opportunities and clean to group5/zero outstanding.
+- The same double-marker run directly validates corrected Sprint-origin later-marker semantics. A representative C1 begins with immutable origin Sprint; marker1 is factual `Action9 / SPRINT / SP1`, accepted, and opens RIGHT `5 -> 7`. The same C1 later becomes factual `Action2 / POWER / SP2`; marker2 is accepted with `GroupRequested=0 / ClearTriggeredList=1`, preserving clear-only rearm and Sprint-origin identity. Native cleanup returns to group5/zero outstanding.
+- Raw55 Normal and Quick remain healthy in both marker fixtures. In the double-marker run their first markers physically open and their second markers rearm without a second opening; representative two-contact damage is observed.
+- The double-marker log contains no `CORE MARKER ANOMALY / DISCOVERY` record.
+- The single-marker run exposes one new deterministic class not present in EV-376/EV-377. In repeated Sprint-origin executions, factual current state remains `Action=9 / Family=SPRINT`, premature native opening is suppressed, `earlyOpeningSuppressed=1`, RIGHT remains group5, but the first/only authored FIST arrives at `StatePosition=2` around `StateTime ~= 1.58`. Because the first correction intentionally left the Sprint-first gate at exact SP1, the marker fails closed as `REJECTED_UNSUPPORTED_HIT`. The reviewed single-marker anomaly records are this same Sprint-first/SP2 class.
+- The User's gameplay observation matches the diagnostics: in the single-marker fixture Normal/Quick/Power could connect while Sprint did not; in the double-marker fixture Sprint could connect once and the other attacks could produce the expected repeated contacts.
+
+Scope / limits:
+- EV-378 proves the three predicates changed by `6eb3e3ca96da55e89127c24d5f656e05610d315f` behave exactly as designed at runtime under the tested New Balance stack. It does not invalidate that correction.
+- EV-378 **supersedes** the earlier EV-376/EV-377 evidence limitation that every observed Sprint-origin first FIST was at SP1. A first/only Sprint-origin FIST can factually remain Sprint/Action9 and arrive at SP2.
+- The newly discovered remaining contradiction is bounded to `IsFirstFistAllowed` for an already-matched Sprint-origin raw55 execution. Existing actor/right-source/C1/origin/motion identity and mandatory `earlyOpeningSuppressed` are intact in the failing records.
+- Evidence supports preserving Sprint-first SP1 while additionally considering explicit SP2. It does not support `StatePosition >= 1`, authored-count-specific policy, species/name gating, filename inference, New Balance/DLL detection, new hooks/state/timers, custom damage, generic SP2 policy, or neighboring-system changes.
+- Broader New Balance full-stack certification remains open until this last reduced raw55 contradiction is resolved and focused regression passes.
+
+Provenance:
+- first raw55 SP2 correction source commit: `6eb3e3ca96da55e89127c24d5f656e05610d315f`;
+- reviewed candidate documentation lineage before runtime upload: `74eb002d41aa74bde2dc3585365481de9c35bc3f`;
+- runtime upload commit: `96ec7e85e6fbb64f8295618a81b75712a0eb73ce`;
+- diagnostic built/live SHA256: `E11D680590D2F9D87A50EAF64B642F70C8CECA019ABB651DC48B00AF01F37C74`;
+- single-marker canonical runtime: `research/archive/2026.09.25_newbalance_blacktroll_all_single_marker.log`, Git blob `147c96c703ee7d25aab7536b3077be5544ad9781`;
+- double-marker canonical runtime: `research/archive/2026.09.25_newbalance_blacktroll_all_double_marker.log`, Git blob `de56082714c3d2e59210333744268158d389dd18`.
+
+Disposition:
+- **PARTIAL PASS — FIRST RAW55 SP2 CORRECTION VALIDATED FOR ITS EXACT CHANGED PREDICATES.**
+- **NEW REDUCED CONTRADICTION — SPRINT-ORIGIN FIRST/ONLY FIST MAY ARRIVE AT FACTUAL SPRINT/ACTION9/SP2.**
+- The first bounded correction task is complete and should be archived rather than silently expanded.
+- Next source consideration, if accepted, should remain a one-predicate follow-up inside `PhysicalFistCollision`: Sprint-origin first FIST keeps current Sprint identity and mandatory `earlyOpeningSuppressed`, preserves SP1, and additionally accepts explicit SP2.
