@@ -443,7 +443,7 @@ static bool IsFirstFistAllowed(
                 && execution.earlyOpeningSuppressed;
         case AttackFamily_Sprint:
             return currentFamily == AttackFamily_Sprint
-                && statePosition == 1
+                && (statePosition == 1 || statePosition == 2)
                 && execution.earlyOpeningSuppressed;
         default:
             return false;
