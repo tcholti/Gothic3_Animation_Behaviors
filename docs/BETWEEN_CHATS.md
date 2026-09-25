@@ -8,77 +8,55 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Current gate: New Balance full-stack compatibility remains open after EV-376. EV-377 closes the equipped-Sprint and Sabertooth raw8 Sprint controls with PASS and introduces no second contradiction.
+Current gate: New Balance full-stack compatibility remains open. The first bounded raw55 SP2 correction in `6eb3e3ca96da55e89127c24d5f656e05610d315f` passed independent static review and runtime-confirmed every predicate it changed, but EV-378 exposed one additional exact Sprint-first SP2 case that was outside the task's frozen evidence basis.
 
-Active bounded task:
+First correction task: **CLOSED** and archived at:
 
-`docs/work/active/COLLISION_NEW_BALANCE_RAW55_SP2_COMPATIBILITY_CORRECTION.md`
+`docs/archive/investigations/COLLISION_NEW_BALANCE_RAW55_SP2_COMPATIBILITY_CORRECTION.md`
 
-Implementation published:
-
-`6eb3e3ca96da55e89127c24d5f656e05610d315f`
-
-Independent Normal Chat diff-against-contract review: **PASS**.
-
-Exact implementation result:
+Runtime candidate/deployment:
 
 ```text
-PhysicalFistCollision.cpp only
-3 predicate substitutions
-
-true Power raw55 first FIST:
-  current Power
-  SP1 OR explicit SP2
-  earlyOpeningSuppressed still mandatory
-
-true Power raw55 second FIST:
-  current Power
-  SP1 OR explicit SP2
-
-Sprint-origin first FIST:
-  UNCHANGED at current Sprint / Action9 / SP1
-  earlyOpeningSuppressed still mandatory
-
-Sprint-origin later FIST:
-  current Power
-  SP1 OR explicit SP2
+source correction = 6eb3e3ca96da55e89127c24d5f656e05610d315f
+built SHA256 = E11D680590D2F9D87A50EAF64B642F70C8CECA019ABB651DC48B00AF01F37C74
+live  SHA256 = E11D680590D2F9D87A50EAF64B642F70C8CECA019ABB651DC48B00AF01F37C74
 ```
 
-Protected unchanged:
+EV-378 result:
 
 ```text
-Normal
-Quick
-raw8 persistent-opportunity system
-generic equipped markers
-EquippedSprintCollision
-C1/lifecycle
-native callback progression
-premature raw55 opening suppression
-native final cleanup
-EngineBridge/hooks
-AttackMotionRouting
-unmarked fallback
+PASS within first correction scope:
+  true Power single-FIST first/only marker at SP2 -> ACCEPTED, 5->7, native cleanup
+  true Power double-FIST marker2 at SP2 -> ACCEPTED, clear-only rearm
+  Sprint-origin double-FIST marker1 Action9/SP1 -> ACCEPTED/open
+  same-C1 marker2 current Action2/Power/SP2 -> ACCEPTED, clear-only rearm
+  Normal/Quick raw55 controls -> healthy
+
+NEW reduced contradiction:
+  Sprint-origin single-FIST
+  current factual family = SPRINT / Action9
+  first/only FIST can arrive at SP2
+  earlyOpeningSuppressed = true
+  group is still 5
+  unchanged Sprint-first SP1-only predicate rejects it
 ```
 
-No `StatePosition >= 1`, new module, hook, persistent state, DLL/New-Balance detection, species/name rule, filename inference, timer/polling, custom damage, cleanup path, or unrelated refactor was introduced.
+The double-marker log contains no CORE marker anomaly. The single-marker anomaly records reviewed are the same Sprint-first/SP2 class. This supersedes the EV-376/EV-377 assumption that observed Sprint-origin first markers were always SP1.
 
-The implementation responsibility is statically complete. The active task remains open only through local build/deployment and focused runtime acceptance.
-
-Next responsibility:
+Likely smallest follow-up question:
 
 ```text
-User local build + deploy diagnostic twin
--> focused runtime acceptance from COLLISION_TEST_PLAN.md §4.4
+Sprint-origin FIRST FIST only:
+  keep current family = SPRINT / Action9
+  keep earlyOpeningSuppressed mandatory
+  preserve SP1
+  additionally accept explicit SP2
 
-1. single-FIST true Power raw55 late/SP2 marker
-2. double-FIST true Power marker1 activation + marker2 SP2 rearm
-3. Sprint-origin marker1 Action9/SP1 + same-C1 marker2 current Power/SP2
-4. Normal/Quick raw55 controls
-5. representative equipped/raw8 controls
-6. then resume broader New Balance full-stack coverage
+Everything else remains unchanged.
 ```
 
-Do not archive the active task or close EV-376 before runtime acceptance.
+Do not generalize to `StatePosition >= 1`, add authored-count branching, species/name rules, filename inference, New Balance/DLL detection, hooks, state, timers/polling, custom damage, cleanup changes, or neighboring-system edits unless new evidence requires them.
 
-Runtime-evidence hygiene is closed through EV-377: processed pre-remediation New Balance evidence is archived; `research/raw/` contains only `Keep.txt` and is ready for the focused post-correction batch.
+Runtime batch hygiene: both EV-378 logs are archived byte-identically under `research/archive/`; `research/raw/` should again contain only `Keep.txt`.
+
+Next responsibility: promote EV-378/current-state docs, validate knowledge state, then freeze a new tiny follow-up Work task only after Normal Chat design disposition.
