@@ -57,10 +57,11 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | Rapier separation compatibility | EV-372 |
 | broad mixed-gameplay stress / Stage-D closure | EV-373–EV-374 |
 | Zombie+Axe separation asset-gap remedy | EV-375 |
-| New Balance / AttackCollision final compatibility gate | EV-284 preflight + EV-376–EV-378 current runtime evidence |
-| New Balance raw55 Power/Sprint-origin SP2 compatibility | EV-376, EV-378 |
+| New Balance / AttackCollision final compatibility gate | EV-284 preflight + EV-376–EV-379 current runtime evidence |
+| New Balance raw55 Power/Sprint-origin SP2 compatibility | EV-376, EV-378–EV-379 |
 | New Balance equipped Sprint + raw8 Sprint controls | EV-377 |
-| New Balance raw55 Sprint-first SP2 discovery | EV-378 |
+| New Balance raw55 Sprint-first SP2 discovery/correction | EV-378–EV-379 |
+| New Balance raw55 Sprint-origin second-FIST timing states | EV-379 |
 
 ## 3. Current collision closure landmarks
 
@@ -91,7 +92,8 @@ EV-374         broad Stage-D run 2 PASS; Stage D + standalone final-source regre
 EV-375         Zombie+Axe copied/renamed Axe-asset remedy PASS on factual zombie Pickaxe/raw52 route
 EV-376         New Balance / AttackCollision raw55 Power/Sprint-origin StatePosition2 compatibility contradiction
 EV-377         New Balance equipped-Sprint + Sabertooth raw8 Sprint controls PASS; Action9->Action2 transport corroborated
-EV-378         first raw55 SP2 correction runtime partial PASS; newly observed Sprint-first/only Action9-SP2 case remains
+EV-378         first raw55 SP2 correction runtime partial PASS; Sprint-first/only Action9-SP2 case discovered
+EV-379         Sprint-first SP2 correction runtime PASS; Sprint-origin second FIST can remain Action9/SPRINT at SP2
 ```
 
 ## 4. Current next gate
@@ -99,26 +101,29 @@ EV-378         first raw55 SP2 correction runtime partial PASS; newly observed S
 ```text
 New Balance 0.7 exact distributed bundle compatibility remains OPEN.
 
-EV-378 confirms the first correction in 6eb3e3ca... works for every predicate it changed:
-  true-Power first FIST at SP2 = PASS
-  true-Power second FIST at SP2 = PASS / clear-only rearm
-  Sprint-origin later current-Power FIST at SP2 = PASS / clear-only rearm
-  Normal/Quick controls = healthy
+EV-379 validates the ce59e5a2... Sprint-first correction:
+  Sprint-origin first/only FIST at Action9/SPRINT/SP2 = PASS
+  exact RIGHT raw55 opens 5 -> 7
+  cleanup returns 7 -> 5 / zero outstanding
 
-EV-378 additionally supersedes the earlier assumption that Sprint-origin first FIST is always SP1:
-  single-marker Sprint can keep factual Action9 / SPRINT
-  early native opening is suppressed
-  first/only FIST can arrive at SP2
-  unchanged Sprint-first SP1-only predicate rejects it
+EV-379 also shows marker2 timing is not fully characterized:
+  established route A:
+    origin Sprint
+    marker1 current SPRINT/SP1 -> accepted/open
+    marker2 current POWER/SP2  -> accepted/clear-only rearm
 
-Next:
-  freeze the smallest Sprint-FIRST SP2 compatibility correction
-  -> preserve exact Sprint/Action9 identity and earlyOpeningSuppressed
-  -> preserve SP1 and additionally accept explicit SP2 only
-  -> no neighboring-system changes
-  -> focused single-marker Sprint acceptance
-  -> representative regression
-  -> resume broader New Balance full-stack coverage only after focused PASS
+  newly observed route B:
+    origin Sprint
+    marker1 current SPRINT/SP1 -> accepted/open
+    marker2 current SPRINT/SP2 -> currently rejected
+
+The next step is diagnostic evidence gathering, not implementation:
+  deliberately move marker2 earlier
+  determine whether legitimate marker2 can also occur at SPRINT/SP1
+  map the factual second-FIST state envelope
+  only then freeze the smallest complete second-FIST compatibility rule
+
+Do NOT infer a generic >=1 rule or broaden neighboring families/systems.
 ```
 
 Source-level preflight alone is not final compatibility certification.
@@ -138,12 +143,12 @@ Do not scan all ledgers or `research/archive/` for an ordinary settled question.
 ## 6. Evidence storage notes
 
 ```text
-research/raw/      active unprocessed intake only
+research/raw/      active unprocessed intake / explicit live-comparison evidence only
 research/derived/  deterministic retrieval aids
 research/archive/  processed canonical runtime provenance
 ```
 
-Processed New Balance evidence through EV-378 is archived; `research/raw/` should contain only `Keep.txt` at this closure boundary.
+Processed New Balance evidence through EV-378 is archived. The two EV-379 BlackTroll logs remain temporarily in `research/raw/` because they are the explicit comparison basis for the next second-marker timing probe; archive them when that comparison need closes.
 
 Historical ledger rows may retain paths that were correct when written. Use `EVIDENCE_PATH_MIGRATIONS.md` when a later archive move makes an old path ambiguous.
 
