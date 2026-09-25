@@ -13,17 +13,17 @@
 
 ```text
 standalone frozen collision baseline = f1f5d2aad3edc3564a9a8b40541840b94f8fa903
-raw55 SP2 compatibility candidate = 6eb3e3ca96da55e89127c24d5f656e05610d315f
-latest runtime evidence = EV-377
+first raw55 SP2 correction = 6eb3e3ca96da55e89127c24d5f656e05610d315f
+latest runtime evidence = EV-378
 current ledger = EVIDENCE_LEDGER_373_ONWARD.md
 
 standalone final-source collision regression = CLOSED/PASS EV-299–EV-374
 Zombie+Axe asset-gap remedy = PASS EV-375
-New Balance full intended-stack compatibility = OPEN/BLOCKED EV-376
 New Balance equipped/raw8 Sprint controls = PASS EV-377
-raw55 SP2 implementation static review = PASS
-current responsibility = local build/deploy + focused raw55 post-correction runtime acceptance
-active task = docs/work/active/COLLISION_NEW_BALANCE_RAW55_SP2_COMPATIBILITY_CORRECTION.md
+first raw55 SP2 correction = STATIC PASS / RUNTIME PARTIAL PASS EV-378
+New Balance full intended-stack compatibility = OPEN
+current responsibility = narrow Sprint-origin first-FIST SP2 follow-up disposition
+active Work task = NONE
 research/raw = clean intake; Keep.txt only
 ```
 
@@ -47,40 +47,46 @@ Final standalone diagnostic SHA256:
 Final standalone behavior SHA256:
 `A806EC6523116286335A659735067B1AA6C581837B3E0D604E6271AC98079340`
 
-These hashes identify the pre-New-Balance frozen standalone twins. The SP2 compatibility candidate must be rebuilt locally before new runtime hashes exist.
+Latest reviewed/deployed diagnostic candidate SHA256:
+`E11D680590D2F9D87A50EAF64B642F70C8CECA019ABB651DC48B00AF01F37C74`
+
+The User verified built and live hashes match.
 
 ## Latest evidence / implementation
 
-- **EV-373–EV-374:** two broad mixed-gameplay stress runs PASS; Stage D and standalone final-source regression CLOSED.
-- **EV-375:** Zombie+Axe copied/renamed asset-gap remedy PASS on the tested factual zombie Pickaxe/raw52 route.
-- **EV-376:** the intended New Balance/AttackCollision stack exposes one deterministic compatibility contradiction in the frozen raw55 Power/Sprint-origin state gate. Single-FIST true Power may reach its only FIST at `StatePosition=2` and be rejected. With two FIST markers, marker1 at SP1 is accepted and can damage, while marker2 at SP2 is rejected instead of performing the established rearm. Sprint-origin repeats the same boundary after same-C1 `Action9/SP1 -> Action2/SP2`.
-- **EV-377:** focused controls PASS. BlackGoblin equipped Sprint is correctly owned/authorized at `Action9/SP1`, activates and cleans normally, with no authorization leak into a later true-Power C1. Sabertooth raw8 Sprint repeatedly accepts at `Action9/SP1`; its persistent opportunity survives native misses and can remain valid across the legitimate same-C1 `Action9 -> Action2` transition. No new compatibility contradiction was found.
-- **Implementation `6eb3e3ca...`:** one-file/three-predicate raw55 correction. True-Power first/second and Sprint-origin later-current-Power accept explicit SP1 or SP2. Sprint-origin first FIST, Normal, Quick, all identities, lifecycle, raw8, equipped behavior and hooks are unchanged. Independent Normal Chat static review PASS.
+- **EV-376:** pre-correction New Balance contradiction: true-Power first/second and Sprint-origin later-current-Power FIST could be rejected at SP2.
+- **EV-377:** equipped Sprint and raw8 Sprint controls PASS; raw8 persistent opportunity and same-C1 `Action9 -> Action2` remain healthy.
+- **Implementation `6eb3e3ca...`:** one-file/three-predicate correction. Independent Normal Chat static review PASS.
+- **EV-378:** runtime confirms all three changed predicates. Single-FIST true Power at SP2 now opens and can damage; double-FIST true Power marker2 at SP2 performs clear-only rearm; Sprint-origin double-FIST marker2 at current Power/SP2 performs clear-only rearm. Normal/Quick controls remain healthy. The same batch newly shows Sprint-origin **first/only** FIST can itself arrive at factual `Action9 / SPRINT / SP2` when only one FIST is authored; the intentionally unchanged Sprint-first SP1-only gate rejects that exact execution.
+
+The previous assumption that observed Sprint-origin first FIST markers were always SP1 is superseded by EV-378.
 
 ## Exact next route
 
-The bounded task remains active through runtime disposition:
+The first correction task is closed and archived:
 
-`docs/work/active/COLLISION_NEW_BALANCE_RAW55_SP2_COMPATIBILITY_CORRECTION.md`
+`docs/archive/investigations/COLLISION_NEW_BALANCE_RAW55_SP2_COMPATIBILITY_CORRECTION.md`
 
-Next sequence:
+Current reduced question:
 
 ```text
-1. build the diagnostic twin locally from current branch
-2. deploy with the intended New Balance full stack
-3. run focused acceptance from COLLISION_TEST_PLAN.md §4.4:
-   a. single-FIST true Power late/SP2 marker
-   b. double-FIST true Power marker1 + marker2 SP2 rearm
-   c. Sprint-origin Action9/SP1 marker1 + same-C1 current Power/SP2 marker2
-   d. Normal/Quick raw55 controls
-   e. representative equipped/raw8 controls
-4. interpret/upload evidence under POP-06/POP-07 as applicable
-5. only after focused PASS resume broader New Balance full-stack coverage
+Sprint-origin raw55 FIRST FIST only:
+  preserve factual current SPRINT / Action9
+  preserve exact actor/right-source/C1/origin/motion identity
+  preserve earlyOpeningSuppressed as mandatory
+  preserve SP1
+  additionally consider explicit SP2 because EV-378 observes the first/only marker there
+
+all previously corrected true-Power and Sprint-later predicates:
+  already runtime PASS
+
+Normal / Quick / raw8 / equipped / lifecycle / native cleanup / hooks:
+  unchanged
 ```
 
-Do not archive the active task, close EV-376, or promote the compatibility candidate as final behavior before focused runtime acceptance.
+Do not generalize to `StatePosition >= 1`, authored-count special cases, species/name gates, filename inference, New Balance/DLL detection, new hooks/state, timers/polling, custom damage, or unrelated refactor unless evidence requires it.
 
-Processed New Balance pre-remediation runtime evidence through EV-377 is archived byte-identically under `research/archive/`; the Sabertooth large-log retrieval package remains in `research/derived/`. `research/raw/` is intake-only and currently contains only `Keep.txt`.
+Processed EV-378 runtime logs are archived byte-identically under `research/archive/`; `research/raw/` is intake-only and should contain only `Keep.txt`.
 
 ## Current intended New Balance environment
 
@@ -97,12 +103,12 @@ New Balance 0.7 as distributed
 
 ## Read next by question
 
-- active bounded task → `work/active/COLLISION_NEW_BALANCE_RAW55_SP2_COMPATIBILITY_CORRECTION.md`
 - exact continuation → `BETWEEN_CHATS.md`
 - current facts → `COLLISION_REFERENCE.md`
 - validation gate → `COLLISION_TEST_PLAN.md`
 - raw55 architecture → `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`
-- evidence proof → `EVIDENCE_INDEX.md` → EV-376–EV-377
+- evidence proof → `EVIDENCE_INDEX.md` → EV-376–EV-378
+- closed first correction → `archive/investigations/COLLISION_NEW_BALANCE_RAW55_SP2_COMPATIBILITY_CORRECTION.md`
 - lifecycle/repair → `COLLISION_LIFECYCLE.md`
 - diagnostics → `COLLISION_DIAGNOSTICS.md`
 
