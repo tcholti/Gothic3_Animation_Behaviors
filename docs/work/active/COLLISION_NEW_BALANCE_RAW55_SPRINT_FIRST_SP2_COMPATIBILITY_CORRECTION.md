@@ -1,6 +1,6 @@
 # Gothic 3 — New Balance raw55 Sprint-First SP2 Compatibility Correction
 
-**Status:** ACTIVE — IMPLEMENTED / INDEPENDENT STATIC REVIEW PASS / RUNTIME ACCEPTANCE PENDING  
+**Status:** ACTIVE — IMPLEMENTED / STATIC REVIEW PASS / EXACT RUNTIME PREDICATE PASS / FOCUSED ACCEPTANCE PARTIAL  
 **Opened:** 2026-09-25  
 **Task type:** BOUNDED PRODUCTION IMPLEMENTATION  
 **Work build execution:** PROHIBITED  
@@ -161,33 +161,74 @@ IsFirstFistAllowed(...) / AttackFamily_Sprint only
 
 `currentFamily == AttackFamily_Sprint` remains mandatory. `execution.earlyOpeningSuppressed` remains mandatory. No other production predicate or neighboring mechanism changed.
 
-## Build / runtime
+## Runtime checkpoint — EV-379
 
-Work build execution was not attempted and was not authorized.
-
-The User now owns local build/deployment. Focused New Balance acceptance is defined by `docs/COLLISION_TEST_PLAN.md` §4.4.
-
-Primary acceptance:
+Local build/deployment:
 
 ```text
-1. single-FIST Sprint-origin Action9/SP2 first/only marker
-   -> ACCEPTED
-   -> exact RIGHT raw55 5 -> 7
-   -> cleanup group5 / zero outstanding
-
-2. double-FIST Sprint-origin
-   -> marker1 Action9/SP1 remains accepted/open
-   -> same-C1 marker2 current Power/SP2 remains accepted/clear-only rearm
-
-3. true-Power single/double control remains healthy
-4. Normal/Quick raw55 controls remain healthy
-5. representative equipped/raw8 controls remain healthy
+Built SHA256: 490AC7F6F6931784EA9D5697BA5758DAB11FC0B9437A247FFA9FBC7E13BA1E4C
+Live  SHA256: 490AC7F6F6931784EA9D5697BA5758DAB11FC0B9437A247FFA9FBC7E13BA1E4C
+DIAGNOSTIC DEPLOYMENT PASS
 ```
 
-After New Balance compatibility closes, `docs/COLLISION_TEST_PLAN.md` §4.5 requires a small standalone/no-New-Balance raw55 sentinel before final source certification. This proves New Balance support is additive rather than required. Do not reopen the broad standalone campaign unless that sentinel contradicts established behavior.
+Exact changed predicate: **RUNTIME PASS**.
+
+Repeated single-FIST Sprint-origin executions now show:
+
+```text
+current SPRINT / Action9 / SP2
+EarlyOpeningSuppressed=1
+RIGHT raw55 5 -> 7
+FIST ACCEPTED
+native damage when contact connects
+native cleanup 7 -> 5
+```
+
+The reviewed single-marker log contains no marker anomaly.
+
+The broader focused run found one separate second-FIST continuation case:
+
+```text
+origin Sprint
+marker1 current SPRINT/SP1 -> ACCEPTED/open
+marker2 current SPRINT/SP2 -> REJECTED_UNSUPPORTED_HIT
+```
+
+Other executions still show the previously established route:
+
+```text
+origin Sprint
+marker1 current SPRINT/SP1 -> ACCEPTED/open
+marker2 current POWER/SP2  -> ACCEPTED/clear-only rearm
+```
+
+This is a new second-FIST timing question, not a failure of the Sprint-first predicate changed by this task.
+
+## Boundary after EV-379
+
+**Do not expand this implementation task to patch the new second-FIST case.**
+
+Before any follow-up source change, map the legitimate second-FIST state envelope. The immediate diagnostic probe is to move marker2 earlier and determine whether a valid second FIST can also arrive at `current SPRINT / SP1`.
+
+Known legitimate/observed states so far:
+
+```text
+second FIST, origin Sprint:
+  current POWER / SP2  -> proven legitimate, accepted
+  current SPRINT / SP2 -> proven legitimate arrival, currently rejected
+  current SPRINT / SP1 -> not yet deliberately tested
+```
+
+Do not infer `>=1`, do not add authored-count policy, and do not alter neighboring systems.
+
+## Build / runtime acceptance disposition
+
+The exact correction owned by this task is validated. The full New Balance compatibility gate remains open because focused regression exposed the separate second-FIST timing state documented by EV-379.
+
+After that next issue is resolved, `docs/COLLISION_TEST_PLAN.md` §4.5 still requires a small standalone/no-New-Balance raw55 sentinel before final source certification. This proves New Balance support is additive rather than required. Do not reopen the broad standalone campaign unless that sentinel contradicts established behavior.
 
 Do not require physical damage from every accepted marker; marker acceptance/rearm/cleanup is primary and Gothic remains authoritative for contact/damage.
 
 ## Closure rule
 
-Keep this task ACTIVE through runtime disposition. Archive it only after the focused New Balance acceptance is interpreted and canonical evidence/current-state conclusions are promoted.
+This task must not receive further production scope. It may be archived once the EV-379 conclusions and the next bounded investigation responsibility are durably represented in the current-state handoff. The follow-up second-FIST issue requires its own frozen responsibility before any implementation.
