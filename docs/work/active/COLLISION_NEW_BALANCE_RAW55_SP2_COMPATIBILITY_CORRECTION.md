@@ -186,7 +186,7 @@ Work must not invoke, configure, probe or troubleshoot any build tool or depende
 
 After independent Normal Chat diff review, the User will build/deploy locally and perform focused runtime acceptance.
 
-Focused runtime acceptance is owned by `COLLISION_TEST_PLAN.md` §4.4:
+Focused runtime acceptance is owned by `docs/COLLISION_TEST_PLAN.md` §4.4:
 
 ```text
 1. single-FIST true Power raw55 late/SP2 marker
