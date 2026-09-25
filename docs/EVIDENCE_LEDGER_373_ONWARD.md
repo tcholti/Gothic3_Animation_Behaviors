@@ -138,11 +138,11 @@ Scope / limits:
 - The contradiction is bounded to the permanent raw55 PhysicalFist Power/Sprint-origin state acceptance under the tested New Balance/AttackCollision environment. It does **not** justify generic `StatePosition >= 1`, generic SP2 acceptance, species/name rules, filename inference, new hooks, polling/timers, or changes to raw8/equipped marker semantics.
 - Evidence supports preserving true-Power SP1 behavior while additionally recognizing SP2 for the exact already-correlated raw55 Power execution where appropriate. It also supports recognizing SP2 for the established Sprint-origin marker2 continuation when current factual family has become Power. Every observed Sprint-origin first FIST remains factual Sprint/Action9 at StatePosition1, so there is no evidence to broaden Sprint first-marker acceptance.
 - Normal and Quick raw55 behavior are not contradicted and remain outside the compatibility correction.
-- The current raw logs remain active comparison evidence until the remediation is implemented and accepted; POP-06 archival/cleanup is intentionally deferred for these open inputs.
+- At EV-376 publication the processed New Balance logs were temporarily retained as active comparison inputs. EV-377 closes the additional Sprint controls and removes that broad retention exception; canonical runtime artifacts are subsequently migrated byte-identically to `research/archive/` under POP-06.
 
 Provenance:
 - frozen collision source: `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`;
-- New Balance runtime inputs retained in `research/raw/` for active comparison: `2026.09.24_newbalance_troll.log`, `2026.09.24_newbalance_troll2.log`, `2026.09.24_newbalance_different_weapons_no_target.log`, `2026.09.24_newbalance_blacktroll.log`, `2026.09.24_newbalance_blacktroll_2.log`, `2026.09.24_newbalance_blacktroll_3.log`, `2026.09.24_newbalance_goblin.log`, `2026.09.24_newbalance_sabertooth.log`, `2026.09.24_newbalance_fist_no_target.log`;
+- original New Balance runtime input basenames: `2026.09.24_newbalance_troll.log`, `2026.09.24_newbalance_troll2.log`, `2026.09.24_newbalance_different_weapons_no_target.log`, `2026.09.24_newbalance_blacktroll.log`, `2026.09.24_newbalance_blacktroll_2.log`, `2026.09.24_newbalance_blacktroll_3.log`, `2026.09.24_newbalance_goblin.log`, `2026.09.24_newbalance_sabertooth.log`, `2026.09.24_newbalance_fist_no_target.log`; resolve current canonical locations through `EVIDENCE_PATH_MIGRATIONS.md`;
 - latest evidence-upload branch HEAD before this maintenance transaction: `d0d59fc0628dc671bd052893d5d7bca54379a559`;
 - corroborating external source: `Jackydima/gothic3sdk`, `scripts/Script_AttackCollision/Script_AttackCollision.cpp` blob `1c0e668e2cea38259ae9f400e0c5dead45fdd8c0`, `config.cpp` blob `b5e1766466d2c2837c8f247280854428b27f719f`, inspected 2026-09-24.
 
@@ -151,3 +151,31 @@ Disposition:
 - No code change has been made yet.
 - Next implementation scope should remain exact and evidence-bounded: true-Power first/second FIST acceptance may use StatePosition `{1,2}` inside the already-matched raw55 execution; Sprint-origin first-FIST semantics remain unchanged at factual Sprint/SP1; Sprint-origin later FIST may accept current factual Power at StatePosition `{1,2}`. Normal/Quick/raw8/generic equipped behavior remains unchanged.
 - After the bounded correction, first acceptance should retest single-FIST true Power, double-FIST true Power, and Sprint-origin `Action9 -> Action2` continuation before resuming the broader New Balance gate.
+
+### EV-377 — New Balance equipped Sprint and Sabertooth raw8 Sprint controls PASS
+
+Observed:
+- The focused BlackGoblin equipped-Sprint run repeatedly exercises factual `Action=9 / Family=SPRINT` through the permanent `EquippedSprintCollision` owner. Eligible native opening is suppressed, the bound RIGHT marker is authorized into the generic equipped path, the exact RIGHT 1H source opens `5 -> 7`, the marker is accepted at `StatePosition=1`, damage is observed, and native cleanup returns the source to group5 with `Outstanding=0` / `NO_OP_NO_OUTSTANDING` finalization.
+- The same equipped run later shows an independent factual true-Power C1 where stale Sprint authorization is denied by C1-generation mismatch while the ordinary generic Power marker is accepted normally. This is a useful negative control that the Sprint owner does not leak authorization into a later Power execution.
+- The prepared Sabertooth large-log package repeatedly captures factual raw8 Sprint ownership on `Sabertooth_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_300.xmot`. The authored FIST is accepted at factual `Action=9 / Family=SPRINT / StatePosition=1`, opens one raw8 opportunity, and arms/applies the existing early-permission route.
+- Multiple Sabertooth Sprint executions then reach exact native contact in the **same C1** after factual state has changed to `Action=2 / Family=POWER`. The already-open raw8 opportunity is consumed by exact native contact, permission is retired, and `OnDamage` is emitted against `PC_Hero`. This independently confirms that New Balance's same-execution `Action9 -> Action2` transition is legitimate transport and is handled safely by the existing raw8 opportunity identity.
+- Missed Sabertooth opportunities continue to use the established miss/rearm or C1-finalization close behavior. The deterministic prepared package contains 3,379 complete source lines in 18 full-source parts; its configured signal event table contains no recorded anomaly-class event rows.
+- Neither focused control introduces a second compatibility contradiction beyond EV-376.
+
+Scope / limits:
+- The equipped-Sprint result proves the tested BlackGoblin RIGHT/1H Sprint route under the current New Balance stack. It does not claim that this particular run captured an equipped same-C1 `Action9 -> Action2` marker continuation.
+- The Sabertooth result is raw8-specific. It proves that raw8 Sprint can accept at factual Sprint/SP1 and survive same-C1 factual transition into Power through contact consumption; it does not alter raw55 marker-state acceptance.
+- These controls strengthen, rather than widen, the EV-376 correction boundary: raw55 Sprint first-FIST remains factual Sprint/SP1; same-execution Sprint-origin -> current Power is legitimate; the unresolved New Balance contradiction remains raw55 Power-state marker acceptance at SP2.
+- No new source change is justified outside the bounded raw55 correction already frozen by EV-376.
+
+Provenance:
+- frozen collision source: `f1f5d2aad3edc3564a9a8b40541840b94f8fa903`;
+- equipped-Sprint raw source basename: `2026.09.25_newbalance_blackgoblin.log`, Git blob `c844fe24336af090a5bb356338f3292ea81e04d7`;
+- Sabertooth raw source basename: `2026.09.25_newbalance_sabertooth_2.log`, Git blob `40b0fc19a2075d67057273f5240aa155ab047686`;
+- Sabertooth raw/derived upload commit: `4db1958d0c63ae182c4ab4cc190315b9ab12538a`;
+- deterministic Sabertooth retrieval package: `research/derived/2026.09.25_newbalance_sabertooth_2_large_log/` (18 complete-source parts); canonical raw locations after POP-06 closure resolve through `EVIDENCE_PATH_MIGRATIONS.md`.
+
+Disposition:
+- **PASS — NEW BALANCE EQUIPPED-SPRINT AND RAW8-SPRINT CONTROLS.**
+- EV-376 remains the sole demonstrated compatibility blocker and its bounded raw55 correction scope is unchanged.
+- The processed New Balance pre-remediation batch no longer needs a broad `research/raw/` active-comparison exception; archive it byte-identically and leave raw intake clean before implementation.
