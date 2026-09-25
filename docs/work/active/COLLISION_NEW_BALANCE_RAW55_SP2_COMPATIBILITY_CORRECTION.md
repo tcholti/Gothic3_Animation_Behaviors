@@ -1,6 +1,6 @@
 # Gothic 3 — New Balance raw55 SP2 Compatibility Correction
 
-**Status:** ACTIVE  
+**Status:** ACTIVE — IMPLEMENTED / INDEPENDENT NORMAL CHAT STATIC REVIEW PASS / RUNTIME ACCEPTANCE PENDING  
 **Opened:** 2026-09-25  
 **Task type:** BOUNDED PRODUCTION IMPLEMENTATION  
 **Work build execution:** PROHIBITED  
@@ -228,3 +228,46 @@ Report:
 - `Build: NOT ATTEMPTED — Work build execution was not authorized for this task.`
 
 Then STOP.
+
+## Implementation checkpoint — 2026-09-25
+
+Implemented in:
+
+`6eb3e3ca96da55e89127c24d5f656e05610d315f`
+
+Parent:
+
+`8f1e3e3d3b74f7d780cfacd5a96d2b3d6346290a`
+
+Exact production diff:
+
+```text
+PhysicalFistCollision.cpp only
+3 predicate substitutions
++3 / -3 lines
+```
+
+Independent Normal Chat diff-against-contract review: **PASS**.
+
+Verified from the published commit:
+
+```text
+true-Power first FIST:
+  POWER && (SP1 || SP2) && earlyOpeningSuppressed
+
+true-Power second FIST:
+  POWER && (SP1 || SP2)
+
+Sprint-origin later FIST:
+  current POWER && (SP1 || SP2)
+
+Sprint-origin first FIST:
+  unchanged exact SPRINT / SP1 / earlyOpeningSuppressed
+
+Normal / Quick:
+  unchanged
+```
+
+No new helper, state, module, hook, interface, lifecycle behavior, diagnostic dependency, CMake change or neighboring feature change is present in the commit diff.
+
+The implementation responsibility is statically complete. This task remains ACTIVE only because local build/deployment and the focused runtime acceptance above are still pending. Do not archive until runtime disposition is recorded and reusable conclusions are promoted.
