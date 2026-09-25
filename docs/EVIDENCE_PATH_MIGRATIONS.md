@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Path Migrations
 
 **Status:** Canonical provenance-path lookup  
-**Updated:** 2026-09-18
+**Updated:** 2026-09-25
 
 ## Purpose
 
@@ -215,6 +215,84 @@ Migration properties:
 - basenames and evidence meaning stayed unchanged;
 - EV-295–EV-298 own the final focused validation/closure conclusions;
 - existing `research/derived/` packages remain unchanged retrieval aids.
+
+---
+
+## 2026-09-25 — New Balance pre-remediation compatibility evidence closure
+
+After EV-376 reduced the open New Balance incompatibility to the raw55 Power/Sprint-origin `StatePosition=2` gate, EV-377 closed the requested equipped-Sprint and Sabertooth raw8 Sprint controls without finding a second contradiction. The broad temporary retention exception created during the open investigation was therefore no longer needed.
+
+The **11 processed New Balance runtime artifacts** were moved byte-identically from intake to archive in one Git tree transaction:
+
+```text
+research/raw/2026.09.24_newbalance_blacktroll.log
+    -> research/archive/2026.09.24_newbalance_blacktroll.log
+    blob 528335dca84844db86385f2425f0a611ddfb1c67
+
+research/raw/2026.09.24_newbalance_blacktroll_2.log
+    -> research/archive/2026.09.24_newbalance_blacktroll_2.log
+    blob e1215279fcefe4c0ee093abe6229a98ed17e0e92
+
+research/raw/2026.09.24_newbalance_blacktroll_3.log
+    -> research/archive/2026.09.24_newbalance_blacktroll_3.log
+    blob 715a57e84d189fa59a73342f5858fa27c2781fe7
+
+research/raw/2026.09.24_newbalance_different_weapons_no_target.log
+    -> research/archive/2026.09.24_newbalance_different_weapons_no_target.log
+    blob 4a20b99fcb2f80b50eb0dd47d7f4a290227574de
+
+research/raw/2026.09.24_newbalance_fist_no_target.log
+    -> research/archive/2026.09.24_newbalance_fist_no_target.log
+    blob 4237c63bd4105b859ec1bbb54b3641222a88e229
+
+research/raw/2026.09.24_newbalance_goblin.log
+    -> research/archive/2026.09.24_newbalance_goblin.log
+    blob 33900e6828a3633779472372aa4fabb2e1a09d67
+
+research/raw/2026.09.24_newbalance_sabertooth.log
+    -> research/archive/2026.09.24_newbalance_sabertooth.log
+    blob 7d0e50328df213a37a32f21c6894128a1d9ec9e9
+
+research/raw/2026.09.24_newbalance_troll.log
+    -> research/archive/2026.09.24_newbalance_troll.log
+    blob d6e262b8a5941ea55a2aab47fdc844ce940941b0
+
+research/raw/2026.09.24_newbalance_troll2.log
+    -> research/archive/2026.09.24_newbalance_troll2.log
+    blob 8327578ae061c2b325d20017247a997b9cd4c8bc
+
+research/raw/2026.09.25_newbalance_blackgoblin.log
+    -> research/archive/2026.09.25_newbalance_blackgoblin.log
+    blob c844fe24336af090a5bb356338f3292ea81e04d7
+
+research/raw/2026.09.25_newbalance_sabertooth_2.log
+    -> research/archive/2026.09.25_newbalance_sabertooth_2.log
+    blob 40b0fc19a2075d67057273f5240aa155ab047686
+```
+
+Archive transaction:
+
+```text
+2e9079cfdeec75d5e7bbdfa5a8d20e840ea25160
+```
+
+Migration properties:
+
+- every move reused the existing Git blob SHA;
+- no log was downloaded, reconstructed, re-encoded, normalized, trimmed or regenerated;
+- basenames and evidence meaning stayed unchanged;
+- EV-376 owns the raw55 New Balance contradiction and bounded correction scope;
+- EV-377 owns the focused equipped-Sprint/raw8-Sprint control conclusions;
+- the large Sabertooth retrieval package remains at `research/derived/2026.09.25_newbalance_sabertooth_2_large_log/`;
+- archived logs remain available for exact before/after comparison during remediation acceptance; they no longer need to occupy intake.
+
+Verified post-migration intake state:
+
+```text
+research/raw/Keep.txt
+```
+
+This closes the stale broad active-comparison exception. The unresolved engineering responsibility is still the bounded raw55 SP2 correction; storage cleanup does not close EV-376 itself.
 
 ---
 
