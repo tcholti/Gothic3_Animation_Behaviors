@@ -8,13 +8,13 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Current gate: New Balance full intended-stack compatibility remains open. EV-378 runtime-confirmed every predicate changed by the first raw55 SP2 correction, then exposed one additional exact Sprint-origin first-FIST SP2 case.
+Current gate: New Balance full intended-stack compatibility remains open. The bounded Sprint-origin first-FIST SP2 compatibility correction is implemented at `ce59e5a2bad564652eaba970e959bdef0b479d82` and awaits independent Normal Chat diff review.
 
-Active bounded Work task:
+Active bounded task pending independent review:
 
 `docs/work/active/COLLISION_NEW_BALANCE_RAW55_SPRINT_FIRST_SP2_COMPATIBILITY_CORRECTION.md`
 
-Frozen responsibility:
+Implementation result:
 
 ```text
 MODIFY only:
@@ -24,18 +24,16 @@ within:
   IsFirstFistAllowed(...)
   case AttackFamily_Sprint only
 
-current:
-  currentFamily == AttackFamily_Sprint
-  && statePosition == 1
-  && execution.earlyOpeningSuppressed
-
-required:
+implemented:
   currentFamily == AttackFamily_Sprint
   && (statePosition == 1 || statePosition == 2)
   && execution.earlyOpeningSuppressed
+
+published implementation SHA:
+  ce59e5a2bad564652eaba970e959bdef0b479d82
 ```
 
-Reason: EV-378 repeatedly observes an exact already-owned Sprint-origin single-FIST execution at factual `Action9 / SPRINT / SP2`, with `earlyOpeningSuppressed=1` and RIGHT still group5. The unchanged SP1-only first-FIST predicate rejects it.
+Reason: EV-378 repeatedly observes an exact already-owned Sprint-origin single-FIST execution at factual `Action9 / SPRINT / SP2`, with `earlyOpeningSuppressed=1` and RIGHT still group5. The previous SP1-only first-FIST predicate rejected it.
 
 Protected unchanged:
 
@@ -75,7 +73,7 @@ cleanup change
 unrelated refactor
 ```
 
-Work build execution is PROHIBITED. Work must commit/publish the bounded source change, update this bridge with implementation result/final SHA as required by protocol, and stop for independent Normal Chat review.
+Work build execution was not attempted. The bounded source responsibility is complete; Normal Chat must now review the implementation diff against the frozen contract before local build/deployment.
 
 After Normal Chat review, the User builds/deploys locally and runs `COLLISION_TEST_PLAN.md` §4.4 focused acceptance:
 
