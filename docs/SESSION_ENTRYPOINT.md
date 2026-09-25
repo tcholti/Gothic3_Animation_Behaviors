@@ -47,7 +47,7 @@ Final standalone diagnostic SHA256:
 Final standalone behavior SHA256:
 `A806EC6523116286335A659735067B1AA6C581837B3E0D604E6271AC98079340`
 
-Latest reviewed/deployed diagnostic candidate SHA256:
+Latest reviewed/deployed diagnostic SHA256:
 `E11D680590D2F9D87A50EAF64B642F70C8CECA019ABB651DC48B00AF01F37C74`
 
 The User verified built and live hashes match.
@@ -86,7 +86,7 @@ Normal / Quick / raw8 / equipped / lifecycle / native cleanup / hooks:
 
 Do not generalize to `StatePosition >= 1`, authored-count special cases, species/name gates, filename inference, New Balance/DLL detection, new hooks/state, timers/polling, custom damage, or unrelated refactor unless evidence requires it.
 
-Processed EV-378 runtime logs are archived byte-identically under `research/archive/`; `research/raw/` is intake-only and should contain only `Keep.txt`.
+Processed EV-378 runtime logs are archived byte-identically under `research/archive/`; `research/raw/` is intake-only and contains only `Keep.txt`.
 
 ## Current intended New Balance environment
 
