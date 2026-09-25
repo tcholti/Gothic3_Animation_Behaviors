@@ -8,30 +8,60 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Current gate: New Balance full-stack compatibility remains open after EV-376. EV-377 closes the requested equipped-Sprint and Sabertooth raw8 Sprint controls with PASS and introduces no second contradiction. No production/source change has yet been made for the raw55 `StatePosition=2` blocker.
+Current gate: New Balance full-stack compatibility remains open after EV-376. EV-377 closes the equipped-Sprint and Sabertooth raw8 Sprint controls with PASS and introduces no second contradiction.
 
-Current responsibility: freeze one bounded Work implementation task for the exact raw55 Power/Sprint-origin SP2 correction already reduced by EV-376 and corroborated by EV-377.
+Active bounded Work task:
+
+`docs/work/active/COLLISION_NEW_BALANCE_RAW55_SP2_COMPATIBILITY_CORRECTION.md`
+
+No production/source change for the raw55 blocker has yet been made.
+
+Frozen implementation responsibility:
 
 ```text
-true Power raw55 first/second FIST:
-  preserve SP1
-  additionally permit SP2 only inside the exact already-matched raw55 execution
+PhysicalFistCollision.cpp only
 
-Sprint-origin raw55:
-  first FIST remains factual Sprint/Action9/SP1
-  later same-C1 marker may be current Power at SP1 or SP2
+true Power raw55 first FIST:
+  current Power
+  SP1 OR explicit SP2
+  earlyOpeningSuppressed still mandatory
 
-unchanged:
-  Normal
-  Quick
-  raw8
-  generic equipped markers
-  C1/lifecycle
-  native cleanup
+true Power raw55 second FIST:
+  current Power
+  SP1 OR explicit SP2
+
+Sprint-origin first FIST:
+  UNCHANGED at current Sprint / Action9 / SP1
+  earlyOpeningSuppressed still mandatory
+
+Sprint-origin later FIST:
+  current Power
+  SP1 OR explicit SP2
 ```
 
-Do not generalize to `StatePosition >= 1`, species/name rules, filename inference, DLL detection, new hooks, timers/polling, or custom damage.
+Protected unchanged:
 
-Runtime-evidence hygiene is closed through EV-377: the processed New Balance pre-remediation logs are byte-identically archived and `research/raw/` contains only `Keep.txt`. Use `EVIDENCE_PATH_MIGRATIONS.md` for canonical archive locations and the existing Sabertooth `research/derived/` package for large-log retrieval.
+```text
+Normal
+Quick
+raw8 persistent-opportunity system
+generic equipped markers
+EquippedSprintCollision
+C1/lifecycle
+native callback progression
+premature raw55 opening suppression
+native final cleanup
+EngineBridge/hooks
+AttackMotionRouting
+unmarked fallback
+```
 
-Next reading route: `COLLISION_REFERENCE.md` -> `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md` -> `COLLISION_TEST_PLAN.md` §4.4 -> EV-376/EV-377 -> `WORK_IMPLEMENTATION_PROTOCOL.md` before Work edits.
+Do not generalize to `StatePosition >= 1`. Do not add a module, hook, persistent state, DLL/New-Balance detection, species/name rule, filename inference, timer/polling, custom damage, cleanup path, or unrelated refactor.
+
+Modularity for this task means the existing permanent raw55 owner receives the smallest direct compatibility rule. If more than this exact local predicate correction appears necessary, Work must STOP and return the contradiction.
+
+Work build execution is PROHIBITED. Publication is authorized only to this repository/branch. The Work launcher supplies and freezes the exact current remote HEAD before editing.
+
+After Work publishes: independent Normal Chat diff-against-contract review first; then User local build/deployment; then focused runtime acceptance in `COLLISION_TEST_PLAN.md` §4.4.
+
+Runtime-evidence hygiene is closed through EV-377: processed pre-remediation New Balance evidence is archived; `research/raw/` contains only `Keep.txt`.
