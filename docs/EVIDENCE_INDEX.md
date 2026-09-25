@@ -57,9 +57,10 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | Rapier separation compatibility | EV-372 |
 | broad mixed-gameplay stress / Stage-D closure | EV-373–EV-374 |
 | Zombie+Axe separation asset-gap remedy | EV-375 |
-| New Balance / AttackCollision final compatibility gate | EV-284 preflight + EV-376–EV-377 current runtime evidence |
-| New Balance raw55 Power/Sprint-origin SP2 compatibility | EV-376 |
+| New Balance / AttackCollision final compatibility gate | EV-284 preflight + EV-376–EV-378 current runtime evidence |
+| New Balance raw55 Power/Sprint-origin SP2 compatibility | EV-376, EV-378 |
 | New Balance equipped Sprint + raw8 Sprint controls | EV-377 |
+| New Balance raw55 Sprint-first SP2 discovery | EV-378 |
 
 ## 3. Current collision closure landmarks
 
@@ -90,28 +91,34 @@ EV-374         broad Stage-D run 2 PASS; Stage D + standalone final-source regre
 EV-375         Zombie+Axe copied/renamed Axe-asset remedy PASS on factual zombie Pickaxe/raw52 route
 EV-376         New Balance / AttackCollision raw55 Power/Sprint-origin StatePosition2 compatibility contradiction
 EV-377         New Balance equipped-Sprint + Sabertooth raw8 Sprint controls PASS; Action9->Action2 transport corroborated
+EV-378         first raw55 SP2 correction runtime partial PASS; newly observed Sprint-first/only Action9-SP2 case remains
 ```
 
 ## 4. Current next gate
 
 ```text
 New Balance 0.7 exact distributed bundle compatibility remains OPEN.
-EV-376 remains the sole demonstrated blocker on the raw55 PhysicalFist route:
-  true Power late FIST at SP2 is rejected by the frozen raw55 gate
-  Sprint-origin marker2 after same-C1 Action9 -> Action2 at SP2 is rejected
 
-EV-377 closes the requested Sprint controls:
-  equipped BlackGoblin Sprint Action9/SP1 = PASS
-  Sabertooth raw8 Sprint Action9/SP1 -> same-C1 Action2 contact = PASS
-  no new correction scope discovered
+EV-378 confirms the first correction in 6eb3e3ca... works for every predicate it changed:
+  true-Power first FIST at SP2 = PASS
+  true-Power second FIST at SP2 = PASS / clear-only rearm
+  Sprint-origin later current-Power FIST at SP2 = PASS / clear-only rearm
+  Normal/Quick controls = healthy
+
+EV-378 additionally supersedes the earlier assumption that Sprint-origin first FIST is always SP1:
+  single-marker Sprint can keep factual Action9 / SPRINT
+  early native opening is suppressed
+  first/only FIST can arrive at SP2
+  unchanged Sprint-first SP1-only predicate rejects it
 
 Next:
-  freeze the smallest raw55 SP2 compatibility correction
-  -> implement without widening generic marker behavior
-  -> retest single-FIST true Power
-  -> retest double-FIST true Power
-  -> retest Sprint-origin Action9 -> Action2 continuation
-  -> resume representative full-stack compatibility coverage only after focused acceptance
+  freeze the smallest Sprint-FIRST SP2 compatibility correction
+  -> preserve exact Sprint/Action9 identity and earlyOpeningSuppressed
+  -> preserve SP1 and additionally accept explicit SP2 only
+  -> no neighboring-system changes
+  -> focused single-marker Sprint acceptance
+  -> representative regression
+  -> resume broader New Balance full-stack coverage only after focused PASS
 ```
 
 Source-level preflight alone is not final compatibility certification.
@@ -136,7 +143,7 @@ research/derived/  deterministic retrieval aids
 research/archive/  processed canonical runtime provenance
 ```
 
-The processed New Balance pre-remediation batch through EV-377 is archived; `research/raw/` is clean except `Keep.txt` at this closure boundary.
+Processed New Balance evidence through EV-378 is archived; `research/raw/` should contain only `Keep.txt` at this closure boundary.
 
 Historical ledger rows may retain paths that were correct when written. Use `EVIDENCE_PATH_MIGRATIONS.md` when a later archive move makes an old path ambiguous.
 
