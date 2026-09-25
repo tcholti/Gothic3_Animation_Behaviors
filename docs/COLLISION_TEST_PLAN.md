@@ -33,7 +33,7 @@ The detailed pre-New-Balance standalone campaign plan is preserved at:
 - Diagnostic and behavior-only collision twins are mutually exclusive at runtime.
 - Freeze one falsifiable question and minimum controls before a new causal investigation.
 - Large regression runs use compact CORE diagnostics; unknown/anomalous events retain richer classification.
-- Every uploaded runtime batch closes fully under POP-06 before the next batch.
+- Every uploaded runtime batch closes fully under POP-06 before the next batch unless an explicit active-comparison need is recorded.
 - If a broad test exposes a failure, reduce it to the smallest factual route before source changes are considered.
 
 Current research products:
@@ -107,7 +107,7 @@ EV-375 Zombie+Axe asset-gap remedy
 
 ---
 
-## 4. New Balance exact distributed-bundle compatibility — OPEN / SPRINT-FIRST SP2 FOLLOW-UP CURRENT
+## 4. New Balance exact distributed-bundle compatibility — OPEN / SPRINT SECOND-FIST STATE INVESTIGATION CURRENT
 
 The current gate is runtime compatibility with the **exact New Balance 0.7 distributed bundle as the User actually runs it**, including its DLL set and relevant Jackydima collision components such as `Script_AttackCollision` where applicable.
 
@@ -188,7 +188,7 @@ no user-observed collision regression
 
 A compatibility failure does not authorize an immediate broad source patch. First reduce the exact factual collision route.
 
-### 4.4 Raw55 SP2 compatibility corrections — EV-376–EV-378
+### 4.4 Raw55 SP2 compatibility corrections and Sprint second-FIST state mapping — EV-376–EV-379
 
 EV-376 established the first New Balance raw55 StatePosition2 contradiction. EV-377 established healthy equipped-Sprint/raw8 controls. The first bounded source correction was implemented in:
 
@@ -235,7 +235,7 @@ Sprint-origin single-FIST raw55
   previous Sprint-first SP1-only predicate rejects it
 ```
 
-The tiny follow-up correction was implemented at:
+The tiny Sprint-first follow-up correction was implemented at:
 
 `ce59e5a2bad564652eaba970e959bdef0b479d82`
 
@@ -261,16 +261,67 @@ after:
 
 No generic `>=1` policy, authored-count branching, helper/state/module/hook, New Balance detection, or neighboring behavior change is present.
 
-Focused post-follow-up New Balance acceptance:
+EV-379 local deployment verifies the new candidate exactly:
 
 ```text
-1. single-FIST Sprint-origin Action9/SP2 first/only marker -> accepted + 5->7 + cleanup
-2. double-FIST Sprint-origin SP1 marker1 + current Power/SP2 marker2 -> remains accepted/rearm
-3. representative true-Power single/double control -> remains accepted
-4. Normal/Quick raw55 controls
-5. representative equipped/raw8 controls
-6. then resume broader New Balance full-stack coverage
+Built SHA256 = 490AC7F6F6931784EA9D5697BA5758DAB11FC0B9437A247FFA9FBC7E13BA1E4C
+Live  SHA256 = 490AC7F6F6931784EA9D5697BA5758DAB11FC0B9437A247FFA9FBC7E13BA1E4C
+DIAGNOSTIC DEPLOYMENT PASS
 ```
+
+EV-379 Sprint-first result:
+
+```text
+single-FIST Sprint-origin
+  current Action9 / SPRINT / SP2
+  earlyOpeningSuppressed = true
+  -> ACCEPTED
+  -> exact RIGHT raw55 5 -> 7
+  -> native damage when contact connects
+  -> native cleanup 7 -> 5 / zero outstanding
+```
+
+Therefore the exact Sprint-first SP2 correction is runtime **PASS**.
+
+EV-379 also exposes a separate timing-dependent second-FIST state:
+
+```text
+proven route A:
+  origin Sprint
+  marker1 current SPRINT/SP1 -> ACCEPTED/open
+  marker2 current POWER/SP2  -> ACCEPTED/clear-only rearm
+
+new route B:
+  origin Sprint
+  marker1 current SPRINT/SP1 -> ACCEPTED/open
+  marker2 current SPRINT/SP2 -> legitimate arrival, currently REJECTED
+```
+
+The second route shows that marker2 can occur before the same-C1 factual `Action9 -> Action2` transition. This is separate from the now-validated Sprint-first predicate.
+
+The complete legitimate second-FIST state set is not yet known. In particular, `current SPRINT / SP1` has not been deliberately probed for marker2.
+
+Current next probe — animation fixture only, no production source change:
+
+```text
+1. keep marker1 unchanged
+2. move marker2 earlier on the same BlackTroll double-FIST Sprint-capable animation
+3. run several Sprint executions under the same intended New Balance stack
+4. capture marker2 CurrentFamily / Action / StatePosition / StateTime / C1 / Result
+5. determine whether legitimate marker2 can arrive at SPRINT/SP1
+6. only after the factual envelope is known, freeze the smallest complete second-FIST implementation rule
+```
+
+Known matrix before that probe:
+
+```text
+Sprint-origin second FIST:
+  current POWER  / SP2 -> proven legitimate / ACCEPTED
+  current SPRINT / SP2 -> proven legitimate arrival / currently REJECTED
+  current SPRINT / SP1 -> UNKNOWN
+```
+
+Do not patch only the observed `SPRINT/SP2` state before this probe. Do not infer `StatePosition >= 1`, authored-count policy, species/name rules, filename inference, New Balance/DLL detection, new hooks/state/timers, custom damage, or neighboring-system changes.
 
 Do not require every accepted marker to produce damage; marker acceptance/rearm correctness is primary and Gothic remains authoritative for contact/damage.
 
@@ -284,7 +335,7 @@ Environment:
 
 ```text
 New Balance / Script_AttackCollision absent or disabled
-normal standalone Gothic3_Animation_Behaviors test environment
+normal standalone Gothic3_AnimationBehaviors test environment
 exactly one current diagnostic collision twin live
 same current final compatibility source
 ```
@@ -347,7 +398,7 @@ freeze setup + filename
 -> only then next batch
 ```
 
-`research/raw/` is active intake, not history storage. Processed New Balance evidence through EV-378 is archived byte-identically; raw intake should again contain only `Keep.txt`.
+`research/raw/` is active intake / explicit live-comparison evidence, not history storage. Processed New Balance evidence through EV-378 is archived byte-identically. The two EV-379 BlackTroll logs remain temporarily in `research/raw/` because they are the explicit comparison basis for the next marker2 timing probe; archive them when that comparison closes.
 
 ---
 
@@ -388,10 +439,13 @@ This work remains paused unless deliberately reopened.
 standalone broad final-source regression    CLOSED/PASS EV-299–EV-374
 Zombie+Axe asset-gap remedy                 PASS EV-375
 New Balance controls                        PASS EV-377
-first raw55 SP2 correction                  STATIC PASS / RUNTIME PARTIAL PASS EV-378
-Sprint-first SP2 correction                 IMPLEMENTED / STATIC REVIEW PASS / RUNTIME PENDING
+first raw55 SP2 correction                  exact changed predicates RUNTIME PASS EV-378
+Sprint-first SP2 correction                 exact changed predicate RUNTIME PASS EV-379
+Sprint-origin second-FIST state envelope    OPEN / diagnostic timing probe next
 New Balance full intended-stack gate        OPEN
--> focused Sprint-first acceptance
+-> map marker2 SPRINT/SP1 vs SPRINT/SP2 vs POWER/SP2 factual states
+-> freeze smallest complete second-FIST correction only if evidence requires
+-> focused regression
 -> representative/full-stack New Balance compatibility
 -> standalone/no-New-Balance post-compat raw55 sentinel
 -> production collision migration
