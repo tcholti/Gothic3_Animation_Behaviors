@@ -439,7 +439,7 @@ static bool IsFirstFistAllowed(
                         && execution.earlyOpeningSuppressed));
         case AttackFamily_Power:
             return currentFamily == AttackFamily_Power
-                && statePosition == 1
+                && (statePosition == 1 || statePosition == 2)
                 && execution.earlyOpeningSuppressed;
         case AttackFamily_Sprint:
             return currentFamily == AttackFamily_Sprint
@@ -463,10 +463,10 @@ static bool IsSecondFistAllowed(
                 && statePosition == 1;
         case AttackFamily_Power:
             return currentFamily == AttackFamily_Power
-                && statePosition == 1;
+                && (statePosition == 1 || statePosition == 2);
         case AttackFamily_Sprint:
             return currentFamily == AttackFamily_Power
-                && statePosition == 1;
+                && (statePosition == 1 || statePosition == 2);
         default:
             return false;
     }
