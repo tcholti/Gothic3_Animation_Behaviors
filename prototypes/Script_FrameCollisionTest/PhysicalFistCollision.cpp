@@ -460,7 +460,7 @@ static bool IsSecondFistAllowed(
             return currentFamily == AttackFamily_Quick;
         case AttackFamily_Normal:
             return currentFamily == AttackFamily_Normal
-                && statePosition == 1;
+                && (statePosition == 0 || statePosition == 1);
         case AttackFamily_Power:
             return currentFamily == AttackFamily_Power
                 && (statePosition == 1 || statePosition == 2);
