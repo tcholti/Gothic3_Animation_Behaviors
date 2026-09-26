@@ -138,10 +138,7 @@ New Balance 0.7 as distributed
 
 ## Paused speed-control authority
 
-Future speed control is now governed by:
-
-- `SPEED_CONTROL_ARCHITECTURE.md`
-- `decisions/ADR-0004-speed-control-base-speed-preserves-dynamic-modifiers.md`
+Future speed control is governed by `DESIGN.md` §3 and `decisions/ADR-0004-speed-control-base-speed-preserves-dynamic-modifiers.md`.
 
 Configured speed is **base-speed authority**, not final effective-speed authority. Gothic/New Balance stamina and other legitimate dynamic modifiers must remain composable. Exact v2 hook/order remains research-pending. Raise/speed stays paused until collision compatibility closes.
 
@@ -153,7 +150,7 @@ Configured speed is **base-speed authority**, not final effective-speed authorit
 - validation gate → `COLLISION_TEST_PLAN.md`
 - raw55 architecture → `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`
 - evidence proof → `EVIDENCE_INDEX.md` → EV-376–EV-380
-- speed architecture → `SPEED_CONTROL_ARCHITECTURE.md` / ADR-0004
+- speed architecture → `DESIGN.md` §3 / ADR-0004
 
 ## Still paused
 
