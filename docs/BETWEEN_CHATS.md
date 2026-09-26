@@ -8,7 +8,7 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Current gate: New Balance full intended-stack compatibility remains OPEN. EV-380 mapped the remaining raw55 Sprint-origin second-FIST timing envelope.
+Current gate: New Balance full intended-stack compatibility remains OPEN. The bounded raw55 Sprint-origin second-FIST SP2 compatibility correction is implemented at `4c85193f4efd31e789bc07d7e3c71d31a9b5326e` and awaits independent Normal Chat diff review.
 
 Latest deployed diagnostic:
 
@@ -33,19 +33,22 @@ frame1+15:
 
 Earliest tested Hit marker is already SP2; Sprint/SP1 second-FIST support remains unproven.
 
-Frozen implementation rule:
+Implementation result:
 
 ```text
 origin SPRINT
 current POWER  -> preserve SP1 or SP2
 current SPRINT -> add SP2 only
+
+published implementation SHA:
+  4c85193f4efd31e789bc07d7e3c71d31a9b5326e
 ```
 
-Active Work task:
+Active task pending independent review:
 
 `docs/work/active/COLLISION_NEW_BALANCE_RAW55_SPRINT_SECOND_FIST_SP2_COMPATIBILITY_CORRECTION.md`
 
-Exact source responsibility:
+Completed source responsibility:
 
 `prototypes/Script_FrameCollisionTest/PhysicalFistCollision.cpp`
 
@@ -62,7 +65,9 @@ Protected: first-FIST predicates, Power/Normal/Quick, identity/origin continuity
 
 Hard exclusions: no `>=1`; no Sprint/SP1; no Normal/SP0 change; no new hook/state/timer/species/name/file/DLL policy; no custom damage.
 
-**Work build execution is PROHIBITED.** Work should make the bounded source edit, static-audit it, update this file with result + commit SHA, commit/push, then STOP.
+The bounded source responsibility is complete. Normal Chat must independently review the implementation diff before the User's local build/deployment and runtime acceptance.
+
+Build: NOT ATTEMPTED — Work build execution was not authorized for this task.
 
 After source review + User local build:
 
