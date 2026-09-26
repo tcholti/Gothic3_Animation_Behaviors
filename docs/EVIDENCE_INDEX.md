@@ -58,12 +58,14 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | Rapier separation compatibility | EV-372 |
 | broad mixed-gameplay stress / Stage-D closure | EV-373–EV-374 |
 | Zombie+Axe separation asset-gap remedy | EV-375 |
-| New Balance / AttackCollision final compatibility gate | EV-284 preflight + EV-376–EV-380 |
-| New Balance raw55 Power/Sprint-origin SP2 compatibility | EV-376, EV-378–EV-380 |
+| New Balance / AttackCollision final compatibility gate | EV-284 preflight + EV-376–EV-381 |
+| New Balance raw55 Power/Sprint-origin SP2 compatibility | EV-376, EV-378–EV-381 |
 | New Balance equipped Sprint + raw8 Sprint controls | EV-377 |
 | New Balance raw55 Sprint-first SP2 discovery/correction | EV-378–EV-379 |
-| New Balance raw55 Sprint-origin second-FIST timing states | EV-379–EV-380 |
-| sheath-before-Troll-contact observation | EV-380; controlled native-vs-marked comparison still open |
+| New Balance raw55 Sprint-origin second-FIST timing/correction | EV-379–EV-381 |
+| native contact misses vs authored marker correctness | EV-381 |
+| sheath/draw contact observation | EV-380–EV-381; not a marker blocker, exact native Sprint-after-sheath subtype not isolated |
+| early Normal raw55 second-FIST SP0 question | EV-380–EV-381; separate/deferred |
 
 ## 3. Current collision closure landmarks
 
@@ -97,6 +99,7 @@ EV-377         New Balance equipped-Sprint + raw8 Sprint controls PASS
 EV-378         first raw55 SP2 correction runtime partial PASS; Sprint-first SP2 discovered
 EV-379         Sprint-first SP2 correction runtime PASS; Sprint-origin marker2 may remain SPRINT/SP2
 EV-380         frame1/3/8/15 timing sweep maps Sprint marker2 state envelope; frame8 straddles Action9->Action2
+EV-381         Sprint second-FIST SP2 correction runtime PASS; focused raw55 Sprint contradiction CLOSED
 ```
 
 ## 4. Current next gate
@@ -104,27 +107,26 @@ EV-380         frame1/3/8/15 timing sweep maps Sprint marker2 state envelope; fr
 ```text
 New Balance 0.7 exact distributed bundle compatibility remains OPEN.
 
-EV-380 closes the deliberate Sprint second-marker timing question for the tested route:
-  frame1 is already SPRINT/SP2
-  frame3 marker2 remains SPRINT/SP2 -> current code rejects
-  frame8 can be SPRINT/SP2 OR POWER/SP2 depending on execution
-  frame15 is POWER/SP2 -> current code accepts/rearms
+Focused raw55 Sprint compatibility is CLOSED/PASS through EV-381:
+  true Power first/second accepts evidence-backed SP1/SP2
+  Sprint-origin first accepts SPRINT SP1/SP2 with early-opening suppression
+  Sprint-origin second preserves POWER SP1/SP2 and additionally accepts SPRINT SP2 only
+  first FIST opens exact raw55 RIGHT 5->7
+  second FIST remains ClearTriggeredList/rearm only
+  native cleanup remains 7->5
 
-Smallest evidence-backed second-FIST rule:
-  immutable origin = SPRINT
-  current POWER  -> preserve explicit SP1 or SP2
-  current SPRINT -> additionally accept explicit SP2 only
-  NO Sprint/SP1 widening without evidence
-  NO >=1 generalization
+EV-381 also separates authored opportunity correctness from gameplay contact:
+  accepted/open/rearmed attacks may legitimately produce no ONDAMAGE
+  unmarked/native raw55 windows can likewise open and clean without damage
+  sheath/draw-associated misses are therefore not a marker blocker on current evidence
 
-Separate open contact question:
-  user observed that sheathing immediately before Troll Sprint may reduce landed contacts
-  current logs do not prove marker failure
-  next controlled comparison should test marked vs unmarked/native Sprint with and without sheathing
+Next:
+  broader representative/full intended New Balance stack compatibility
+  then standalone/no-New-Balance post-compat raw55 sentinel
 
-Incidental future raw55 question:
+Separate/deferred raw55 question:
   very early Normal marker2 can arrive NORMAL/SP0 and is currently rejected
-  investigate separately before any Normal widening
+  investigate independently before any Normal widening
 ```
 
 Source-level preflight alone is not final compatibility certification.
@@ -149,7 +151,7 @@ research/derived/  deterministic retrieval aids
 research/archive/  processed canonical runtime provenance
 ```
 
-The EV-379 logs and EV-380 timing-sweep logs remain temporarily in `research/raw/` because the immediate sheath/native-contact comparison is still open. Archive them under POP-06 after that controlled comparison closes.
+The EV-379–EV-381 BlackTroll comparison logs are processed and archived byte-identically under `research/archive/`. `research/raw/` should contain only genuine new/open intake.
 
 Historical ledger rows may retain paths that were correct when written. Use `EVIDENCE_PATH_MIGRATIONS.md` when a later archive move makes an old path ambiguous.
 
