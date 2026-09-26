@@ -1,7 +1,7 @@
 # Collision Validation Plan
 
 **Status:** Current collision validation authority  
-**Updated:** 2026-09-25
+**Updated:** 2026-09-26
 
 ## Purpose
 
@@ -67,19 +67,9 @@ Phase 6  Rapier separation                    PASS EV-372
 Phase 7  stress regression                    PASS EV-373–EV-374
 ```
 
-Final frozen-source comprehensive stages:
+Final frozen-source comprehensive stages A–D are CLOSED/PASS through EV-374. EV-375 additionally verifies the Zombie+Axe copied/renamed asset-gap remedy.
 
-```text
-A. body-contact creatures                     CLOSED/PASS EV-365–EV-366
-   supplemental destructive C1-R1 stress      PASS EV-367
-B. equipped actors + cumulative player matrix CLOSED/PASS EV-368
-C. separation compatibility                   CLOSED/PASS EV-369–EV-372
-D. mixed stress                               CLOSED/PASS EV-373–EV-374
-```
-
-EV-375 additionally verifies the proposed Zombie+Axe asset-gap remedy: copied zombie `2H` assets renamed to `Axe` are resolved as `Zombie_..._Axe_...`, preserve factual Pickaxe/raw52 ownership, accept authored markers, and clean correctly.
-
-The broad standalone campaign is not reopened merely because later compatibility work changes a bounded raw55 predicate. Instead, §4.5 owns a small post-compatibility standalone sentinel that proves the final compatibility source remains valid when New Balance / AttackCollision is absent.
+Later New Balance compatibility changes do not reopen the entire standalone campaign. §4.5 owns the bounded post-compatibility standalone sentinel.
 
 ---
 
@@ -107,9 +97,7 @@ EV-375 Zombie+Axe asset-gap remedy
 
 ---
 
-## 4. New Balance exact distributed-bundle compatibility — OPEN / SPRINT SECOND-FIST STATE INVESTIGATION CURRENT
-
-The current gate is runtime compatibility with the **exact New Balance 0.7 distributed bundle as the User actually runs it**, including its DLL set and relevant Jackydima collision components such as `Script_AttackCollision` where applicable.
+## 4. New Balance exact distributed-bundle compatibility — OPEN / RAW55 SPRINT SECOND-FIST FOLLOW-UP CURRENT
 
 Environment to certify:
 
@@ -124,51 +112,48 @@ New Balance 0.7 as distributed
 + exactly one Gothic3_Animation_Behaviors collision twin
 ```
 
-Source-level preflight evidence is not sufficient final certification.
+Source-level preflight alone is not final certification.
 
 ### 4.1 Environment preflight
 
-Before interpreting gameplay:
+Require:
 
 ```text
-exact New Balance bundle installed
-all normally distributed/used New Balance DLLs present
-relevant AttackCollision component present where part of that environment
-Zombie/Axe/Rapier separation mods present
-EV-375 zombie Axe asset fix present
-exactly one Gothic3_Animation_Behaviors collision twin live
+exact intended New Balance bundle/DLL composition
+separation mods + EV-375 zombie Axe asset fix
+exactly one G3AB collision twin live
 startup succeeds
-expected diagnostic banner present when using diagnostic twin
+expected diagnostic banner present for diagnostic twin
 ```
 
-Record any load-order or DLL-composition difference because compatibility is environment-specific.
+Record any environment difference because compatibility is environment-specific.
 
-### 4.2 Representative runtime coverage
+### 4.2 Representative full-gate coverage
 
-Across the full gate include:
+Across the eventual complete gate include:
 
 ```text
 equipped marker combat
-  -> representative 1H/dual-1H/2H/Staff behavior and cleanup
+  representative 1H / dual-1H / 2H / Staff
 
 raw8 body-contact
-  -> marked opportunity open/rearm/contact/finalization
-  -> include knocked-down/get-up control because New Balance changes some behavior there
+  opportunity open/rearm/contact/finalization
+  knocked-down/get-up control
 
 raw55 PhysicalFist
-  -> representative Troll/PhysicalFist marked route
+  representative Troll/PhysicalFist marked routes
 
 separation coexistence
-  -> representative separated motions with the full New Balance stack live
-  -> at least one Zombie+Axe route using the EV-375 asset fix
+  representative separated motions
+  at least one Zombie+Axe EV-375 route
 
 mixed stress
-  -> actor/target/weapon/C1 churn with the complete intended DLL/mod stack live
+  actor/target/weapon/C1 churn with full intended stack
 ```
 
 ### 4.3 Acceptance
 
-For the tested environment require:
+Require for the tested environment:
 
 ```text
 no startup/load crash or hook conflict
@@ -177,8 +162,8 @@ expected marker acceptance/fail-closed behavior
 expected physical group activation/cleanup
 raw8 opportunities consume/close correctly
 raw55 routes remain bounded to their factual contract
-separated animation families preserve the expected factual source semantics
-C1 final obligations return to zero, or bounded exact C1-R1 repair converges safely
+separated animation families preserve factual source semantics
+C1 final obligations zero, or bounded exact C1-R1 repair converges safely
 no repair divergence
 no invariant/generation contradiction
 no unexpected stale ownership/dedupe leakage
@@ -186,158 +171,113 @@ clean unload
 no user-observed collision regression
 ```
 
-A compatibility failure does not authorize an immediate broad source patch. First reduce the exact factual collision route.
+A compatibility failure does not authorize a broad patch. Reduce the exact factual route first.
 
-### 4.4 Raw55 SP2 compatibility corrections and Sprint second-FIST state mapping — EV-376–EV-379
+### 4.4 Raw55 New Balance SP2 compatibility — EV-376–EV-380
 
-EV-376 established the first New Balance raw55 StatePosition2 contradiction. EV-377 established healthy equipped-Sprint/raw8 controls. The first bounded source correction was implemented in:
-
-`6eb3e3ca96da55e89127c24d5f656e05610d315f`
-
-Independent Normal Chat static review: **PASS**.
-
-The User then built/deployed the diagnostic twin and verified exact built/live SHA256 equality:
-
-`E11D680590D2F9D87A50EAF64B642F70C8CECA019ABB651DC48B00AF01F37C74`
-
-EV-378 runtime result for the first correction:
+Implemented and runtime-confirmed corrections:
 
 ```text
-single-FIST true Power raw55
-  late first/only FIST current POWER / SP2 -> ACCEPTED
-  exact RIGHT raw55 5 -> 7
-  native cleanup returns 7 -> 5 / outstanding zero
+6eb3e3ca96da55e89127c24d5f656e05610d315f
+  true-Power first FIST: current POWER + explicit {SP1,SP2} + earlyOpeningSuppressed
+  true-Power second FIST: current POWER + explicit {SP1,SP2}
+  Sprint-origin later/current-Power FIST: current POWER + explicit {SP1,SP2}
+  runtime PASS EV-378
 
-double-FIST true Power raw55
-  marker1 current POWER / SP1 -> ACCEPTED + physical opening
-  marker2 same C1 current POWER / SP2 -> ACCEPTED
-  marker2 ClearTriggeredList/rearm only
-  no second physical opening
-
-Sprint-origin double-FIST raw55
-  marker1 Action9 / SPRINT / SP1 -> ACCEPTED + physical opening
-  same C1 continues to Action2 / POWER
-  marker2 SP2 -> ACCEPTED / clear-only rearm
-
-Normal / Quick raw55 controls
-  healthy
+ce59e5a2bad564652eaba970e959bdef0b479d82
+  Sprint-origin first FIST: current SPRINT + explicit {SP1,SP2} + earlyOpeningSuppressed
+  runtime PASS EV-379
 ```
 
-EV-378 additionally established:
+Current deployed diagnostic hash:
+
+`490AC7F6F6931784EA9D5697BA5758DAB11FC0B9437A247FFA9FBC7E13BA1E4C`
+
+EV-380 deliberate second-marker timing sweep:
 
 ```text
-Sprint-origin single-FIST raw55
-  exact owned execution remains factual Action9 / SPRINT
-  premature native opening is suppressed
-  first/only FIST may arrive at SP2
-  earlyOpeningSuppressed = true
-  RIGHT remains group5
-  previous Sprint-first SP1-only predicate rejects it
+frame 1+3:
+  marker1 SPRINT/SP2 -> accepted/open
+  marker2 SPRINT/SP2 -> currently rejected
+
+frame 1+8:
+  marker1 SPRINT/SP2 -> accepted/open
+  marker2 may be SPRINT/SP2 -> rejected
+  OR POWER/SP2 -> accepted/clear-only rearm
+
+frame 1+15:
+  marker1 SPRINT/SP2 -> accepted/open
+  marker2 POWER/SP2 -> accepted/clear-only rearm
+  zero CORE marker anomalies in the full 1+15 log
 ```
 
-The tiny Sprint-first follow-up correction was implemented at:
+The tested Hit motion is already SP2 by frame1, so the deliberate earliest marker probe did not expose Sprint/SP1.
 
-`ce59e5a2bad564652eaba970e959bdef0b479d82`
-
-Independent Normal Chat diff-against-contract review: **PASS**.
-
-Exact follow-up source change:
+The smallest evidence-backed follow-up rule is therefore:
 
 ```text
-PhysicalFistCollision.cpp only
-IsFirstFistAllowed(...)
-AttackFamily_Sprint branch only
+immutable origin = SPRINT
 
-before:
-  current SPRINT
-  && SP1
-  && earlyOpeningSuppressed
+current POWER:
+  preserve existing explicit SP1 or SP2
 
-after:
-  current SPRINT
-  && explicit {SP1, SP2}
-  && earlyOpeningSuppressed
+current SPRINT:
+  additionally accept explicit SP2 only
 ```
 
-No generic `>=1` policy, authored-count branching, helper/state/module/hook, New Balance detection, or neighboring behavior change is present.
+Do **not** widen to current-Sprint SP1, generic `(SPRINT || POWER) && {SP1,SP2}`, or `StatePosition >= 1` without evidence.
 
-EV-379 local deployment verifies the new candidate exactly:
+Before source implementation, the active bounded investigation remains the controlling contract:
+
+`work/active/COLLISION_NEW_BALANCE_RAW55_SPRINT_SECOND_FIST_STATE_INVESTIGATION.md`
+
+#### Sheath/native-contact control
+
+The User reports that sheathing immediately before Troll Sprint can sometimes appear to reduce landed contacts. Current logs do not establish a marker failure, because accepted markers author native opportunities rather than guarantee damage.
+
+After the Sprint second-FIST source correction is implemented/reviewed, use a controlled A/B:
 
 ```text
-Built SHA256 = 490AC7F6F6931784EA9D5697BA5758DAB11FC0B9437A247FFA9FBC7E13BA1E4C
-Live  SHA256 = 490AC7F6F6931784EA9D5697BA5758DAB11FC0B9437A247FFA9FBC7E13BA1E4C
-DIAGNOSTIC DEPLOYMENT PASS
+A. marked Troll Sprint, no sheath
+B. marked Troll Sprint, deliberate sheath immediately before attack
+C. unmarked/native Troll Sprint, no sheath
+D. unmarked/native Troll Sprint, same sheath timing
 ```
 
-EV-379 Sprint-first result:
+Interpretation:
 
 ```text
-single-FIST Sprint-origin
-  current Action9 / SPRINT / SP2
-  earlyOpeningSuppressed = true
-  -> ACCEPTED
-  -> exact RIGHT raw55 5 -> 7
-  -> native damage when contact connects
-  -> native cleanup 7 -> 5 / zero outstanding
+markers accepted/rearmed but no contact
+-> downstream native target/contact/player-state question
+
+marker rejected/ownership lost
+-> G3AB marker-route question
+
+same effect in unmarked/native Sprint
+-> native/New Balance behavior rather than authored-marker ownership
 ```
 
-Therefore the exact Sprint-first SP2 correction is runtime **PASS**.
+Only add diagnostics if this controlled comparison remains ambiguous. Do not add production damage/contact policy.
 
-EV-379 also exposes a separate timing-dependent second-FIST state:
+#### Deferred Normal early-marker question
 
-```text
-proven route A:
-  origin Sprint
-  marker1 current SPRINT/SP1 -> ACCEPTED/open
-  marker2 current POWER/SP2  -> ACCEPTED/clear-only rearm
+EV-380 incidentally shows very early Normal marker2 can arrive at `NORMAL/SP0` and is rejected by the current second-FIST SP1 gate, while reviewed Quick repeated FIST can succeed at SP0.
 
-new route B:
-  origin Sprint
-  marker1 current SPRINT/SP1 -> ACCEPTED/open
-  marker2 current SPRINT/SP2 -> legitimate arrival, currently REJECTED
-```
-
-The second route shows that marker2 can occur before the same-C1 factual `Action9 -> Action2` transition. This is separate from the now-validated Sprint-first predicate.
-
-The complete legitimate second-FIST state set is not yet known. In particular, `current SPRINT / SP1` has not been deliberately probed for marker2.
-
-Current next probe — animation fixture only, no production source change:
-
-```text
-1. keep marker1 unchanged
-2. move marker2 earlier on the same BlackTroll double-FIST Sprint-capable animation
-3. run several Sprint executions under the same intended New Balance stack
-4. capture marker2 CurrentFamily / Action / StatePosition / StateTime / C1 / Result
-5. determine whether legitimate marker2 can arrive at SPRINT/SP1
-6. only after the factual envelope is known, freeze the smallest complete second-FIST implementation rule
-```
-
-Known matrix before that probe:
-
-```text
-Sprint-origin second FIST:
-  current POWER  / SP2 -> proven legitimate / ACCEPTED
-  current SPRINT / SP2 -> proven legitimate arrival / currently REJECTED
-  current SPRINT / SP1 -> UNKNOWN
-```
-
-Do not patch only the observed `SPRINT/SP2` state before this probe. Do not infer `StatePosition >= 1`, authored-count policy, species/name rules, filename inference, New Balance/DLL detection, new hooks/state/timers, custom damage, or neighboring-system changes.
-
-Do not require every accepted marker to produce damage; marker acceptance/rearm correctness is primary and Gothic remains authoritative for contact/damage.
+This is a separate future research responsibility relevant to animator-authored timing. Do not change Normal until a causal probe establishes whether SP1 is a genuine native prerequisite or a conservative historical guard.
 
 ### 4.5 Standalone / no-New-Balance post-compatibility sentinel
 
-The mod must remain correct when New Balance / Script_AttackCollision is **not installed or active**. The compatibility patches contain no New Balance detection or dependency and preserve the prior SP1 paths, but they changed raw55 production predicates after the broad standalone campaign closed. Therefore final certification requires a small direct standalone sentinel rather than assuming compatibility from static reasoning alone.
+The mod must remain correct when New Balance / Script_AttackCollision is absent or disabled. New Balance support is additive, not a dependency.
 
-Run this **after** the focused New Balance correction passes and before final collision-source certification / production migration.
+Run after the focused New Balance correction closes and before final collision-source certification / production migration.
 
 Environment:
 
 ```text
 New Balance / Script_AttackCollision absent or disabled
-normal standalone Gothic3_AnimationBehaviors test environment
+normal standalone G3AB test environment
 exactly one current diagnostic collision twin live
-same current final compatibility source
+same final compatibility source
 ```
 
 Minimum raw55 sentinel:
@@ -345,45 +285,40 @@ Minimum raw55 sentinel:
 ```text
 1. Sprint-origin single-FIST
    -> ordinary standalone factual state accepted
-   -> exact RIGHT raw55 opens only at authored FIST
-   -> native cleanup returns to group5 / zero outstanding
+   -> authored opening only
+   -> native cleanup group5 / zero outstanding
 
 2. Sprint-origin double-FIST
    -> first marker accepted/open
-   -> later marker follows established repeated-contact semantics
-   -> clean native cleanup
+   -> later marker repeated-contact semantics
+   -> clean cleanup
 
 3. true-Power single + double control
-   -> existing Power behavior remains healthy
-
-4. Normal + Quick raw55 control
-   -> unchanged behavior remains healthy
-
+4. Normal + Quick control
 5. unmarked raw55 native-fallback sentinel
-   -> remains completely native
 ```
 
 Acceptance:
 
 ```text
 no crash/startup conflict
-no new marker anomaly on supported traffic
+no new supported-traffic marker anomaly
 SP1 behavior remains accepted where standalone produces SP1
-SP2 widening does not create stale or cross-family ownership
-first FIST opens once; second FIST remains clear-only rearm
+SP2 widening creates no stale/cross-family ownership
+first FIST opens once; second remains clear-only rearm
 native cleanup returns exact raw55 source to group5
-final C1 obligations zero
+final obligations zero
 unmarked fallback remains native
 no user-observed regression
 ```
 
-Do **not** rerun the entire EV-299–EV-374 standalone campaign unless this sentinel finds contradictory evidence. The purpose is narrow post-change proof that New Balance compatibility is additive rather than required for correct behavior.
+Do **not** rerun the full EV-299–EV-374 campaign unless this sentinel finds contradictory evidence.
 
 ---
 
 ## 5. Evidence / artifact boundary
 
-For each runtime run:
+For each runtime batch:
 
 ```text
 freeze setup + filename
@@ -391,20 +326,20 @@ freeze setup + filename
 -> publish unchanged raw artifact
 -> Normal Chat interprets
 -> concise canonical EV
--> promote changed reusable fact to current reference/architecture when needed
+-> promote changed reusable fact
 -> archive processed runtime artifact when no active comparison remains
--> restore research/raw/ to intake-only state
+-> restore research/raw/ to genuine open inputs only
 -> run POP-12 validation
 -> only then next batch
 ```
 
-`research/raw/` is active intake / explicit live-comparison evidence, not history storage. Processed New Balance evidence through EV-378 is archived byte-identically. The two EV-379 BlackTroll logs remain temporarily in `research/raw/` because they are the explicit comparison basis for the next marker2 timing probe; archive them when that comparison closes.
+The EV-379 and EV-380 BlackTroll logs remain temporarily in `research/raw/` because the immediate Sprint timing/sheath comparison is still open. Archive under POP-06 when that controlled comparison closes.
 
 ---
 
 ## 6. Production collision migration — after compatibility gates
 
-After New Balance compatibility **and** the standalone post-compatibility sentinel pass:
+After New Balance compatibility **and** the standalone sentinel pass:
 
 ```text
 mature collision behavior
@@ -419,17 +354,15 @@ Do not migrate before both gates close.
 
 ## 7. AttackContinuationProtection — separate later responsibility
 
-`AttackContinuationProtection` remains separate from collision cleanup.
+`AttackContinuationProtection` remains separate from collision cleanup and stays paused unless deliberately reopened.
 
 ```text
 AttackContinuationProtection
-= prevent/defer the proven destructive bad-skip consequence at its factual native decision point
+= prevent/defer proven destructive bad-skip consequence at factual native decision point
 
 CollisionLifecycleGuard / C1-R1
-= exact-source fail-safe if collision cleanup is nevertheless lost
+= exact-source fail-safe if cleanup is nevertheless lost
 ```
-
-This work remains paused unless deliberately reopened.
 
 ---
 
@@ -439,18 +372,18 @@ This work remains paused unless deliberately reopened.
 standalone broad final-source regression    CLOSED/PASS EV-299–EV-374
 Zombie+Axe asset-gap remedy                 PASS EV-375
 New Balance controls                        PASS EV-377
-first raw55 SP2 correction                  exact changed predicates RUNTIME PASS EV-378
-Sprint-first SP2 correction                 exact changed predicate RUNTIME PASS EV-379
-Sprint-origin second-FIST state envelope    OPEN / diagnostic timing probe next
-New Balance full intended-stack gate        OPEN
--> map marker2 SPRINT/SP1 vs SPRINT/SP2 vs POWER/SP2 factual states
--> freeze smallest complete second-FIST correction only if evidence requires
--> focused regression
+first raw55 SP2 correction                  RUNTIME PASS EV-378
+Sprint-first SP2 correction                 RUNTIME PASS EV-379
+Sprint second-FIST state envelope           MAPPED EV-380
+-> freeze smallest SPRINT/SP2 second-FIST source correction
+-> focused runtime acceptance including frame8 transition-race fixture
+-> controlled sheath/no-sheath + unmarked/native control
 -> representative/full-stack New Balance compatibility
--> standalone/no-New-Balance post-compat raw55 sentinel
+-> standalone/no-New-Balance raw55 sentinel
 -> production collision migration
 -> diagnostics-free integration validation
--> later Raise + Speed + Config
+-> later Raise + Speed + Config under SPEED_CONTROL_ARCHITECTURE.md / ADR-0004
 
-AttackContinuationProtection remains separate unless deliberately reopened
+Normal early second-FIST SP0 question is separate/deferred.
+AttackContinuationProtection remains separate unless deliberately reopened.
 ```
