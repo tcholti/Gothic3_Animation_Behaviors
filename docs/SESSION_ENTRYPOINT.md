@@ -15,8 +15,8 @@
 standalone frozen collision baseline = f1f5d2aad3edc3564a9a8b40541840b94f8fa903
 first raw55 SP2 correction = 6eb3e3ca96da55e89127c24d5f656e05610d315f
 Sprint-first SP2 correction = ce59e5a2bad564652eaba970e959bdef0b479d82
-Sprint-second SP2 candidate = 4c85193f4efd31e789bc07d7e3c71d31a9b5326e
-latest runtime evidence = EV-380
+Sprint-second SP2 correction = 4c85193f4efd31e789bc07d7e3c71d31a9b5326e
+latest runtime evidence = EV-381
 current ledger = EVIDENCE_LEDGER_380_ONWARD.md
 
 standalone final-source collision regression = CLOSED/PASS EV-299–EV-374
@@ -25,10 +25,11 @@ New Balance equipped/raw8 Sprint controls = PASS EV-377
 first raw55 SP2 correction = runtime PASS EV-378
 Sprint-first SP2 correction = runtime PASS EV-379
 Sprint second-FIST timing envelope = MAPPED EV-380
-Sprint-second SP2 candidate = IMPLEMENTED + INDEPENDENT SOURCE REVIEW PASS
+Sprint second-FIST SP2 correction = runtime PASS EV-381
+focused New Balance raw55 Sprint contradiction = CLOSED/PASS
 New Balance full intended-stack compatibility = OPEN
-current responsibility = local build/deploy + focused runtime acceptance of Sprint-second SP2 candidate
-active task = docs/work/active/COLLISION_NEW_BALANCE_RAW55_SPRINT_SECOND_FIST_SP2_COMPATIBILITY_CORRECTION.md
+current responsibility = broader representative New Balance full-stack compatibility, then standalone/no-New-Balance post-compat sentinel
+active Work task = NONE
 ```
 
 ## Frozen behavior
@@ -53,101 +54,82 @@ native target/contact/damage remains Gothic-owned
 native cleanup 7 -> 5 remains Gothic-owned first
 ```
 
+New Balance raw55 compatibility now includes:
+
+```text
+true Power first/second: current POWER explicit SP1 or SP2
+Sprint-origin first: current SPRINT explicit SP1 or SP2 + earlyOpeningSuppressed
+Sprint-origin second:
+  current POWER explicit SP1 or SP2
+  current SPRINT explicit SP2 only
+```
+
+No generic `>=1` widening and no Sprint/SP1 second-FIST acceptance.
+
 Final standalone diagnostic SHA256:
 `5AD5B33A8826DB5E78F4AECADC3FF48546E1C54ADA3BE9ED2BE9A54E6190E313`
 
 Final standalone behavior SHA256:
 `A806EC6523116286335A659735067B1AA6C581837B3E0D604E6271AC98079340`
 
-Latest previously deployed diagnostic SHA256:
-`490AC7F6F6931784EA9D5697BA5758DAB11FC0B9437A247FFA9FBC7E13BA1E4C`
+Latest deployed diagnostic SHA256:
+`B4161D74DD849F4B7B67D9ACCFC42A8D8784F7EF19FB968F2E44D67ED57BD689`
 
-## EV-380 result
+## EV-381 result
 
-Deliberate BlackTroll double-FIST fixtures mapped marker2 timing:
+Corrected BlackTroll runtime batch:
 
 ```text
 frames 1+3:
-  marker1 SPRINT/SP2 -> accepted/open
-  marker2 SPRINT/SP2 -> rejected by pre-correction source
+  marker1 SPRINT/SP2 -> accepted/open 5->7
+  marker2 SPRINT/SP2 -> accepted
+  marker2 clear-only/rearm; no second physical opening
 
 frames 1+8:
-  marker2 may be SPRINT/SP2 OR POWER/SP2
+  POWER/SP2 continuation remains accepted/rearmed
+  EV-380 + corrected 1+3 together cover both sides of the transition race
 
 frames 1+15:
-  marker2 POWER/SP2 -> accepted/clear-only rearm
+  marker1 SPRINT/SP2 -> marker2 POWER/SP2
+  accepted/open + accepted/rearm
+  zero CORE marker anomalies in the full corrected log
+
+true-Power controls:
+  first/second predicates remain healthy
 ```
 
-The tested Hit is already SP2 at frame1. Sprint/SP1 second-FIST acceptance is therefore unproven and not authorized.
+Some correctly accepted Power attacks produce no `ONDAMAGE`. The unmarked/native control likewise contains native raw55 collision windows that open and clean without damage. Therefore a missing gameplay hit is not itself evidence of marker failure.
 
-Evidence-bounded rule:
-
-```text
-origin = immutable SPRINT
-current POWER  -> preserve explicit SP1 or SP2
-current SPRINT -> additionally accept explicit SP2 only
-NO >=1 generalization
-NO Sprint/SP1 widening
-```
-
-The completed state-mapping investigation is archived at:
-
-`archive/investigations/COLLISION_NEW_BALANCE_RAW55_SPRINT_SECOND_FIST_STATE_INVESTIGATION.md`
-
-## Implemented candidate / review
-
-Implementation commit:
-
-`4c85193f4efd31e789bc07d7e3c71d31a9b5326e`
-
-Required parent:
-
-`4f52f5e7cc586a5847c2f4200fc6911765a4cc7c`
-
-Independent Normal Chat source review:
-
-```text
-PASS
-one commit ahead of frozen parent
-one production file changed
-PhysicalFistCollision.cpp only
-exact Sprint-origin second-FIST branch only
-```
-
-Implemented predicate:
-
-```cpp
-return (currentFamily == AttackFamily_Power
-        && (statePosition == 1 || statePosition == 2))
-    || (currentFamily == AttackFamily_Sprint
-        && statePosition == 2);
-```
-
-The active task remains open until runtime acceptance; the implementation is not yet declared runtime PASS.
+The User's sheath/draw-associated missing-contact observation is not a collision-marker blocker on current evidence. Exact native Sprint-after-sheath miss causality was not isolated in this batch and remains non-blocking unless future evidence makes it relevant.
 
 ## Exact next route
 
-User local build/deploy from current branch, then focused runtime acceptance:
+No active source task.
+
+Next validation sequence:
 
 ```text
-1. frame1+3 BlackTroll Sprint
-   marker1 SPRINT/SP2 accepted/open
-   marker2 SPRINT/SP2 MUST accept/rearm
-   marker2 must not request another physical opening
+1. broader representative/full intended New Balance stack
+   - equipped marker combat
+   - raw8 representative persistent-opportunity control
+   - raw55 representative controls
+   - separation coexistence incl. Zombie+Axe asset remedy
+   - mixed gameplay / actor / weapon / settlement churn
 
-2. frame1+8 transition-race fixture
-   SPRINT/SP2 marker2 MUST accept/rearm
-   POWER/SP2 marker2 MUST remain accepted/rearm
+2. if broad New Balance gate remains clean:
+   standalone / no-New-Balance post-compat raw55 sentinel
 
-3. frame1+15
-   POWER/SP2 remains accepted/rearm
-
-4. single-FIST Sprint control unchanged
-5. true-Power double-FIST control unchanged
-6. representative Normal + Quick controls unchanged
+3. then production collision migration + diagnostics-free integration validation
 ```
 
-After that, run the separate marked/unmarked sheath/no-sheath Troll Sprint control if the missing-contact observation persists.
+Do not reopen the raw55 Sprint predicate unless contradictory runtime evidence appears.
+
+Separate/deferred:
+
+```text
+Normal raw55 very-early second FIST can arrive NORMAL/SP0 and current gate rejects it.
+This is a distinct animator-authoring-boundary research question, not an EV-381 regression.
+```
 
 ## Current intended New Balance environment
 
@@ -170,12 +152,12 @@ Configured speed is **base-speed authority**, not final effective-speed authorit
 
 ## Read next by question
 
-- active runtime-gated task → `work/active/COLLISION_NEW_BALANCE_RAW55_SPRINT_SECOND_FIST_SP2_COMPATIBILITY_CORRECTION.md`
 - exact continuation → `BETWEEN_CHATS.md`
 - current facts → `COLLISION_REFERENCE.md`
 - validation gate → `COLLISION_TEST_PLAN.md`
 - raw55 architecture → `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`
-- evidence proof → `EVIDENCE_INDEX.md` → EV-376–EV-380
+- evidence proof → `EVIDENCE_INDEX.md` → EV-376–EV-381
+- archived Sprint correction task → `archive/investigations/COLLISION_NEW_BALANCE_RAW55_SPRINT_SECOND_FIST_SP2_COMPATIBILITY_CORRECTION.md`
 - speed architecture → `DESIGN.md` §3 / ADR-0004
 
 ## Still paused
