@@ -35,6 +35,7 @@ The detailed pre-New-Balance standalone campaign plan is preserved at:
 - Large regression runs use compact CORE diagnostics; unknown/anomalous events retain richer classification.
 - Every uploaded runtime batch closes fully under POP-06 before the next batch unless an explicit active-comparison need is recorded.
 - If a broad test exposes a failure, reduce it to the smallest factual route before source changes are considered.
+- An accepted marker/open/rearm does **not** guarantee `ONDAMAGE`; native target/contact/geometry/gameplay state remain authoritative.
 
 Current research products:
 
@@ -97,7 +98,7 @@ EV-375 Zombie+Axe asset-gap remedy
 
 ---
 
-## 4. New Balance exact distributed-bundle compatibility — OPEN / RAW55 SPRINT SECOND-FIST FOLLOW-UP CURRENT
+## 4. New Balance exact distributed-bundle compatibility — OPEN / BROADER REPRESENTATIVE GATE CURRENT
 
 Environment to certify:
 
@@ -128,28 +129,37 @@ expected diagnostic banner present for diagnostic twin
 
 Record any environment difference because compatibility is environment-specific.
 
-### 4.2 Representative full-gate coverage
+### 4.2 Representative full-gate coverage — CURRENT NEXT RUNTIME BATCH
 
-Across the eventual complete gate include:
+Across the complete gate include:
 
 ```text
 equipped marker combat
   representative 1H / dual-1H / 2H / Staff
+  include equipped Sprint representative control
 
 raw8 body-contact
-  opportunity open/rearm/contact/finalization
-  knocked-down/get-up control
+  representative persistent opportunity open/rearm/contact/finalization
+  include Sprint or another previously sensitive route
+  knocked-down/get-up control when practical
 
 raw55 PhysicalFist
-  representative Troll/PhysicalFist marked routes
+  representative Troll/PhysicalFist Normal / Quick / true Power / Sprint-origin
+  no need to repeat the full EV-376–EV-381 focused matrix unless contradiction appears
 
 separation coexistence
   representative separated motions
   at least one Zombie+Axe EV-375 route
+  Rapier/Axe/Zombie representative traffic where practical
 
 mixed stress
-  actor/target/weapon/C1 churn with full intended stack
+  actor/target/weapon/C1 churn
+  weapon changes
+  combat against multiple actor/source types
+  ordinary world/settlement transitions if convenient
 ```
+
+This may be one broad gameplay run plus focused controls rather than many narrow fixtures. If the log becomes large, process it with the established log-preparation workflow and use event/count sampling rather than loading the full raw artifact into ordinary context.
 
 ### 4.3 Acceptance
 
@@ -171,11 +181,13 @@ clean unload
 no user-observed collision regression
 ```
 
+Missing `ONDAMAGE` is not automatically a failure when ownership/open/rearm/cleanup are correct. EV-381 proves both marked and native raw55 collision windows can legitimately miss downstream.
+
 A compatibility failure does not authorize a broad patch. Reduce the exact factual route first.
 
-### 4.4 Raw55 New Balance SP2 compatibility — EV-376–EV-380
+### 4.4 Raw55 New Balance SP2 compatibility — CLOSED/PASS EV-376–EV-381
 
-Implemented and runtime-confirmed corrections:
+Runtime-confirmed corrections:
 
 ```text
 6eb3e3ca96da55e89127c24d5f656e05610d315f
@@ -187,81 +199,40 @@ Implemented and runtime-confirmed corrections:
 ce59e5a2bad564652eaba970e959bdef0b479d82
   Sprint-origin first FIST: current SPRINT + explicit {SP1,SP2} + earlyOpeningSuppressed
   runtime PASS EV-379
+
+4c85193f4efd31e789bc07d7e3c71d31a9b5326e
+  Sprint-origin second FIST:
+    current POWER -> explicit SP1 or SP2
+    current SPRINT -> explicit SP2 only
+  runtime PASS EV-381
 ```
 
-Current deployed diagnostic hash:
+Latest accepted diagnostic hash:
 
-`490AC7F6F6931784EA9D5697BA5758DAB11FC0B9437A247FFA9FBC7E13BA1E4C`
+`B4161D74DD849F4B67D9ACCFC42A8D8784F7EF19FB968F2E44D67ED57BD689`
 
-EV-380 deliberate second-marker timing sweep:
+EV-380 established that frame8 marker2 may fall on either factual side of the same-C1 transition. EV-381 directly proves the corrected `SPRINT/SP2` second-marker arm with the 1+3 fixture and preserves `POWER/SP2` continuation in 1+8/1+15 controls.
+
+Hard boundaries remain:
 
 ```text
-frame 1+3:
-  marker1 SPRINT/SP2 -> accepted/open
-  marker2 SPRINT/SP2 -> currently rejected
-
-frame 1+8:
-  marker1 SPRINT/SP2 -> accepted/open
-  marker2 may be SPRINT/SP2 -> rejected
-  OR POWER/SP2 -> accepted/clear-only rearm
-
-frame 1+15:
-  marker1 SPRINT/SP2 -> accepted/open
-  marker2 POWER/SP2 -> accepted/clear-only rearm
-  zero CORE marker anomalies in the full 1+15 log
+NO Sprint/SP1 second-FIST widening without evidence
+NO StatePosition >= 1 generalization
+NO species/name/filename/DLL policy
+NO custom damage/contact ownership
 ```
 
-The tested Hit motion is already SP2 by frame1, so the deliberate earliest marker probe did not expose Sprint/SP1.
+#### Contact/sheath observation — NOT A MARKER BLOCKER
 
-The smallest evidence-backed follow-up rule is therefore:
+EV-381 confirms correctly accepted/open/rearmed marked true-Power attacks can produce no `ONDAMAGE`, while unmarked/native raw55 windows can likewise open and clean with no damage.
 
-```text
-immutable origin = SPRINT
+Therefore the User's observation that attacks around sheath/draw sometimes miss is not evidence of a marker defect. Native attacks can also damage during `HoldRight_Begin`/`HoldRight_End`, so sheath/draw is not universal immunity. Exact native Sprint-after-sheath miss causality was not isolated and is non-blocking unless a later responsibility specifically needs it.
 
-current POWER:
-  preserve existing explicit SP1 or SP2
-
-current SPRINT:
-  additionally accept explicit SP2 only
-```
-
-Do **not** widen to current-Sprint SP1, generic `(SPRINT || POWER) && {SP1,SP2}`, or `StatePosition >= 1` without evidence.
-
-Before source implementation, the active bounded investigation remains the controlling contract:
-
-`work/active/COLLISION_NEW_BALANCE_RAW55_SPRINT_SECOND_FIST_STATE_INVESTIGATION.md`
-
-#### Sheath/native-contact control
-
-The User reports that sheathing immediately before Troll Sprint can sometimes appear to reduce landed contacts. Current logs do not establish a marker failure, because accepted markers author native opportunities rather than guarantee damage.
-
-After the Sprint second-FIST source correction is implemented/reviewed, use a controlled A/B:
-
-```text
-A. marked Troll Sprint, no sheath
-B. marked Troll Sprint, deliberate sheath immediately before attack
-C. unmarked/native Troll Sprint, no sheath
-D. unmarked/native Troll Sprint, same sheath timing
-```
-
-Interpretation:
-
-```text
-markers accepted/rearmed but no contact
--> downstream native target/contact/player-state question
-
-marker rejected/ownership lost
--> G3AB marker-route question
-
-same effect in unmarked/native Sprint
--> native/New Balance behavior rather than authored-marker ownership
-```
-
-Only add diagnostics if this controlled comparison remains ambiguous. Do not add production damage/contact policy.
+Do not add marker widening, direct damage, or custom contact policy for this observation.
 
 #### Deferred Normal early-marker question
 
-EV-380 incidentally shows very early Normal marker2 can arrive at `NORMAL/SP0` and is rejected by the current second-FIST SP1 gate, while reviewed Quick repeated FIST can succeed at SP0.
+EV-380–EV-381 show very early Normal marker2 can arrive at `NORMAL/SP0` and is rejected by the current second-FIST SP1 gate, while reviewed Quick repeated FIST can succeed at SP0.
 
 This is a separate future research responsibility relevant to animator-authored timing. Do not change Normal until a causal probe establishes whether SP1 is a genuine native prerequisite or a conservative historical guard.
 
@@ -269,7 +240,7 @@ This is a separate future research responsibility relevant to animator-authored 
 
 The mod must remain correct when New Balance / Script_AttackCollision is absent or disabled. New Balance support is additive, not a dependency.
 
-Run after the focused New Balance correction closes and before final collision-source certification / production migration.
+Run **after the broader New Balance full-stack gate passes** and before final collision-source certification / production migration.
 
 Environment:
 
@@ -333,13 +304,13 @@ freeze setup + filename
 -> only then next batch
 ```
 
-The EV-379 and EV-380 BlackTroll logs remain temporarily in `research/raw/` because the immediate Sprint timing/sheath comparison is still open. Archive under POP-06 when that controlled comparison closes.
+The EV-379–EV-381 Troll comparison logs are processed and archived byte-identically. `research/raw/` should contain only genuine new/open intake.
 
 ---
 
 ## 6. Production collision migration — after compatibility gates
 
-After New Balance compatibility **and** the standalone sentinel pass:
+After broader New Balance compatibility **and** the standalone sentinel pass:
 
 ```text
 mature collision behavior
@@ -375,14 +346,13 @@ New Balance controls                        PASS EV-377
 first raw55 SP2 correction                  RUNTIME PASS EV-378
 Sprint-first SP2 correction                 RUNTIME PASS EV-379
 Sprint second-FIST state envelope           MAPPED EV-380
--> freeze smallest SPRINT/SP2 second-FIST source correction
--> focused runtime acceptance including frame8 transition-race fixture
--> controlled sheath/no-sheath + unmarked/native control
+Sprint second-FIST correction               RUNTIME PASS EV-381
+focused New Balance raw55 Sprint route      CLOSED/PASS
 -> representative/full-stack New Balance compatibility
 -> standalone/no-New-Balance raw55 sentinel
 -> production collision migration
 -> diagnostics-free integration validation
--> later Raise + Speed + Config under SPEED_CONTROL_ARCHITECTURE.md / ADR-0004
+-> later Raise + Speed + Config under DESIGN.md §3 / ADR-0004
 
 Normal early second-FIST SP0 question is separate/deferred.
 AttackContinuationProtection remains separate unless deliberately reopened.
