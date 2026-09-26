@@ -1,14 +1,15 @@
 # Gothic 3 — New Balance raw55 Sprint Second-FIST SP2 Compatibility Correction
 
-**Status:** ACTIVE — FROZEN BOUNDED IMPLEMENTATION TASK  
+**Status:** ACTIVE — IMPLEMENTED / INDEPENDENT REVIEW PASS / RUNTIME ACCEPTANCE PENDING  
 **Frozen:** 2026-09-26  
+**Updated:** 2026-09-26  
 **Task type:** BOUNDED PRODUCTION-BEHAVIOR CORRECTION  
 **Work build execution:** **PROHIBITED**  
 **Permanent owner:** `PhysicalFistCollision`
 
 ## Purpose
 
-Implement the smallest evidence-backed correction for the remaining New Balance raw55 Sprint-origin second-FIST incompatibility established by EV-380.
+Implement and runtime-validate the smallest evidence-backed correction for the remaining New Balance raw55 Sprint-origin second-FIST incompatibility established by EV-380.
 
 This is **not** a new collision design task and **not** a general raw55 StatePosition widening.
 
@@ -22,7 +23,11 @@ Frozen source blob at task creation:
 
 `3f7eb717253f26cff3d37b23cf143f4416c034d3`
 
-The relevant current predicate is:
+Frozen parent HEAD:
+
+`4f52f5e7cc586a5847c2f4200fc6911765a4cc7c`
+
+The pre-correction predicate was:
 
 ```cpp
 case AttackFamily_Sprint:
@@ -43,7 +48,7 @@ current POWER  / Action2 / SP2
 
 current SPRINT / Action9 / SP2
 -> legitimate
--> currently rejected
+-> pre-correction source rejected
 
 current SPRINT / Action9 / SP1
 -> not observed
@@ -70,7 +75,7 @@ current SPRINT:
   explicit SP2 ONLY     [new evidence-backed arm]
 ```
 
-Conceptually the resulting Sprint-origin branch is:
+Required semantic result:
 
 ```cpp
 case AttackFamily_Sprint:
@@ -80,7 +85,35 @@ case AttackFamily_Sprint:
             && statePosition == 2);
 ```
 
-Equivalent locally clear syntax is allowed only if semantics are exactly identical.
+## Published implementation
+
+Implementation commit:
+
+`4c85193f4efd31e789bc07d7e3c71d31a9b5326e`
+
+Work handoff HEAD:
+
+`9f30af5ac9c51758023d95cc8a7e16d7f07a220d`
+
+Independent Normal Chat review result:
+
+```text
+PASS
+```
+
+Verified against frozen parent:
+
+```text
+one commit ahead
+one production file changed
+PhysicalFistCollision.cpp only
+4 additions / 2 deletions
+exact Sprint-origin second-FIST branch only
+```
+
+The published diff exactly implements the required asymmetric predicate. No helper, refactor, hook, state, diagnostic, lifecycle, raw8, equipped, Normal, Quick, true-Power, or first-FIST change is present.
+
+This review is **source/static acceptance only**. Runtime acceptance is still required before this task closes.
 
 ## Protected behavior — MUST NOT CHANGE
 
@@ -145,64 +178,23 @@ SPRINT -> SP2 only
 
 Do not simplify this asymmetry away.
 
-## Allowed files
+## Work execution result
 
-Implementation source:
-
-```text
-prototypes/Script_FrameCollisionTest/PhysicalFistCollision.cpp
-```
-
-Handoff/current-state update after implementation:
+Work completed the bounded source responsibility and reported:
 
 ```text
-docs/BETWEEN_CHATS.md
+implementation commit = 4c85193f4efd31e789bc07d7e3c71d31a9b5326e
+required parent       = 4f52f5e7cc586a5847c2f4200fc6911765a4cc7c
+final handoff HEAD     = 9f30af5ac9c51758023d95cc8a7e16d7f07a220d
+git diff --check      = PASS
+Build                  = NOT ATTEMPTED — Work build execution was not authorized for this task.
 ```
 
-No other file should change unless a concrete source contradiction makes the task impossible; in that case STOP and report the contradiction instead of broadening.
+No contradiction was encountered.
 
-## Work execution sequence
+## Post-implementation runtime acceptance — CURRENT NEXT STEP
 
-1. Read:
-   - `docs/SESSION_ENTRYPOINT.md`
-   - `docs/BETWEEN_CHATS.md`
-   - this frozen task
-   - `docs/WORK_IMPLEMENTATION_PROTOCOL.md`
-   - `docs/FEATURE_DEVELOPMENT_METHOD.md`
-2. Inspect only the exact `PhysicalFistCollision.cpp` predicate needed for this responsibility.
-3. Implement the one bounded Sprint-origin second-FIST extension.
-4. Perform source/static review only:
-   - exact diff/scope inspection;
-   - confirm only intended predicate behavior changed;
-   - `git diff --check` if available without build/tool probing;
-   - verify no protected predicate or hook changed.
-5. **Do not build or run.**
-6. Update `docs/BETWEEN_CHATS.md` concisely with:
-   - implementation result;
-   - commit SHA;
-   - `Build: NOT ATTEMPTED — Work build execution was not authorized for this task.`
-   - next step = Normal Chat review + User local build/runtime.
-7. Commit and push to `docs/collision-source-evidence`.
-8. STOP.
-
-## Required Work handoff
-
-Report:
-
-```text
-implementation commit SHA
-files changed
-exact predicate before/after
-protected-behavior audit result
-static checks performed
-Build: NOT ATTEMPTED — Work build execution was not authorized for this task.
-```
-
-Do not interpret runtime behavior from source alone.
-
-## Post-implementation runtime acceptance — Normal Chat + User
-
-After independent source review and local deployment, use the corrected build to test:
+After local build/deployment of the current diagnostic twin, test:
 
 ```text
 1. frame1 + frame3 BlackTroll Sprint
@@ -230,8 +222,8 @@ After independent source review and local deployment, use the corrected build to
 
 Then investigate the separate sheath-before-Sprint observation using marked vs unmarked/native Sprint with and without sheathing as defined in `COLLISION_TEST_PLAN.md`.
 
-## Stop condition
+## Closure condition
 
-This Work task ends after the bounded source edit, static audit, commit/push and concise handoff.
+Archive this task only after the exact corrected predicate passes runtime acceptance and reusable conclusions are promoted to the current raw55/reference/test authorities.
 
-Runtime acceptance, evidence interpretation, Normal/SP0 research, sheath/contact diagnosis, broader New Balance certification, standalone sentinel, production migration and speed-control work are all outside this Work task.
+Runtime evidence interpretation, Normal/SP0 research, sheath/contact diagnosis, broader New Balance certification, standalone sentinel, production migration and speed-control work remain outside the bounded source implementation responsibility.
