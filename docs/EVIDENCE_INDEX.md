@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Index
 
 **Status:** Compact evidence-routing index  
-**Updated:** 2026-09-25
+**Updated:** 2026-09-26
 
 ## Purpose
 
@@ -28,7 +28,8 @@ Canonical evidence uses one global monotonic EV namespace. Closed ledger volumes
 | EV-309–EV-341 | `archive/evidence/EVIDENCE_LEDGER_309_ONWARD.md` |
 | EV-342–EV-364 | `archive/evidence/EVIDENCE_LEDGER_342_ONWARD.md` |
 | EV-365–EV-372 | `archive/evidence/EVIDENCE_LEDGER_365_372.md` |
-| EV-373 onward | `EVIDENCE_LEDGER_373_ONWARD.md` |
+| EV-373–EV-379 | `archive/evidence/EVIDENCE_LEDGER_373_379.md` |
+| EV-380 onward | `EVIDENCE_LEDGER_380_ONWARD.md` |
 
 The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2026-09-19_PRE_COMPRESSION.md`.
 
@@ -57,11 +58,12 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | Rapier separation compatibility | EV-372 |
 | broad mixed-gameplay stress / Stage-D closure | EV-373–EV-374 |
 | Zombie+Axe separation asset-gap remedy | EV-375 |
-| New Balance / AttackCollision final compatibility gate | EV-284 preflight + EV-376–EV-379 current runtime evidence |
-| New Balance raw55 Power/Sprint-origin SP2 compatibility | EV-376, EV-378–EV-379 |
+| New Balance / AttackCollision final compatibility gate | EV-284 preflight + EV-376–EV-380 |
+| New Balance raw55 Power/Sprint-origin SP2 compatibility | EV-376, EV-378–EV-380 |
 | New Balance equipped Sprint + raw8 Sprint controls | EV-377 |
 | New Balance raw55 Sprint-first SP2 discovery/correction | EV-378–EV-379 |
-| New Balance raw55 Sprint-origin second-FIST timing states | EV-379 |
+| New Balance raw55 Sprint-origin second-FIST timing states | EV-379–EV-380 |
+| sheath-before-Troll-contact observation | EV-380; controlled native-vs-marked comparison still open |
 
 ## 3. Current collision closure landmarks
 
@@ -89,11 +91,12 @@ EV-371         Axe Separation PASS
 EV-372         Rapier Separation PASS
 EV-373         broad Stage-D mixed-gameplay stress run 1 PASS
 EV-374         broad Stage-D run 2 PASS; Stage D + standalone final-source regression CLOSED
-EV-375         Zombie+Axe copied/renamed Axe-asset remedy PASS on factual zombie Pickaxe/raw52 route
-EV-376         New Balance / AttackCollision raw55 Power/Sprint-origin StatePosition2 compatibility contradiction
-EV-377         New Balance equipped-Sprint + Sabertooth raw8 Sprint controls PASS; Action9->Action2 transport corroborated
-EV-378         first raw55 SP2 correction runtime partial PASS; Sprint-first/only Action9-SP2 case discovered
-EV-379         Sprint-first SP2 correction runtime PASS; Sprint-origin second FIST can remain Action9/SPRINT at SP2
+EV-375         Zombie+Axe copied/renamed Axe-asset remedy PASS
+EV-376         New Balance raw55 Power/Sprint-origin SP2 contradiction
+EV-377         New Balance equipped-Sprint + raw8 Sprint controls PASS
+EV-378         first raw55 SP2 correction runtime partial PASS; Sprint-first SP2 discovered
+EV-379         Sprint-first SP2 correction runtime PASS; Sprint-origin marker2 may remain SPRINT/SP2
+EV-380         frame1/3/8/15 timing sweep maps Sprint marker2 state envelope; frame8 straddles Action9->Action2
 ```
 
 ## 4. Current next gate
@@ -101,29 +104,27 @@ EV-379         Sprint-first SP2 correction runtime PASS; Sprint-origin second FI
 ```text
 New Balance 0.7 exact distributed bundle compatibility remains OPEN.
 
-EV-379 validates the ce59e5a2... Sprint-first correction:
-  Sprint-origin first/only FIST at Action9/SPRINT/SP2 = PASS
-  exact RIGHT raw55 opens 5 -> 7
-  cleanup returns 7 -> 5 / zero outstanding
+EV-380 closes the deliberate Sprint second-marker timing question for the tested route:
+  frame1 is already SPRINT/SP2
+  frame3 marker2 remains SPRINT/SP2 -> current code rejects
+  frame8 can be SPRINT/SP2 OR POWER/SP2 depending on execution
+  frame15 is POWER/SP2 -> current code accepts/rearms
 
-EV-379 also shows marker2 timing is not fully characterized:
-  established route A:
-    origin Sprint
-    marker1 current SPRINT/SP1 -> accepted/open
-    marker2 current POWER/SP2  -> accepted/clear-only rearm
+Smallest evidence-backed second-FIST rule:
+  immutable origin = SPRINT
+  current POWER  -> preserve explicit SP1 or SP2
+  current SPRINT -> additionally accept explicit SP2 only
+  NO Sprint/SP1 widening without evidence
+  NO >=1 generalization
 
-  newly observed route B:
-    origin Sprint
-    marker1 current SPRINT/SP1 -> accepted/open
-    marker2 current SPRINT/SP2 -> currently rejected
+Separate open contact question:
+  user observed that sheathing immediately before Troll Sprint may reduce landed contacts
+  current logs do not prove marker failure
+  next controlled comparison should test marked vs unmarked/native Sprint with and without sheathing
 
-The next step is diagnostic evidence gathering, not implementation:
-  deliberately move marker2 earlier
-  determine whether legitimate marker2 can also occur at SPRINT/SP1
-  map the factual second-FIST state envelope
-  only then freeze the smallest complete second-FIST compatibility rule
-
-Do NOT infer a generic >=1 rule or broaden neighboring families/systems.
+Incidental future raw55 question:
+  very early Normal marker2 can arrive NORMAL/SP0 and is currently rejected
+  investigate separately before any Normal widening
 ```
 
 Source-level preflight alone is not final compatibility certification.
@@ -148,8 +149,8 @@ research/derived/  deterministic retrieval aids
 research/archive/  processed canonical runtime provenance
 ```
 
-Processed New Balance evidence through EV-378 is archived. The two EV-379 BlackTroll logs remain temporarily in `research/raw/` because they are the explicit comparison basis for the next second-marker timing probe; archive them when that comparison need closes.
+The EV-379 logs and EV-380 timing-sweep logs remain temporarily in `research/raw/` because the immediate sheath/native-contact comparison is still open. Archive them under POP-06 after that controlled comparison closes.
 
 Historical ledger rows may retain paths that were correct when written. Use `EVIDENCE_PATH_MIGRATIONS.md` when a later archive move makes an old path ambiguous.
 
-Closed ledger volumes are immutable historical proof records. New evidence goes only to `EVIDENCE_LEDGER_373_ONWARD.md` until the ledger-rotation rule in `KNOWLEDGE_MAINTENANCE.md` closes it.
+Closed ledger volumes are immutable historical proof records. New evidence goes only to `EVIDENCE_LEDGER_380_ONWARD.md` until the ledger-rotation rule in `KNOWLEDGE_MAINTENANCE.md` closes it.
