@@ -77,4 +77,4 @@ Normal/Quick controls unchanged
 
 Separate after correction: marked/unmarked Troll Sprint, with/without sheathing, to determine whether missing contacts are native target/contact-state behavior or marker-route behavior.
 
-Paused speed authority is now `SPEED_CONTROL_ARCHITECTURE.md` + ADR-0004: configured speed is base-speed authority; native/New Balance dynamic modifiers must remain composable.
+Paused speed authority: `DESIGN.md` §3 + ADR-0004. Configured speed is base-speed authority; native/New Balance dynamic modifiers must remain composable.
