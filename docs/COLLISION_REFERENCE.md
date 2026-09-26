@@ -1,7 +1,7 @@
 # Collision Reference
 
 **Status:** Current factual reference  
-**Updated:** 2026-09-25  
+**Updated:** 2026-09-26  
 **Purpose:** Compact projection of established Gothic 3 collision facts. Read this before opening evidence ledgers for an already-researched collision question.
 
 > This file states **what is currently established**. It is not the proof record. Each claim routes to EV evidence; open the ledger/raw source only when exact provenance, qualification, contradiction, or re-interpretation matters.
@@ -145,13 +145,9 @@ Normal has a proven special native between-contact ALL-clear interaction; the pe
 
 ### New Balance / AttackCollision compatibility — current reduced state
 
-EV-376 identified a New Balance/AttackCollision StatePosition2 incompatibility in the pre-correction raw55 Power/Sprint-origin state gate. EV-377 established healthy equipped-Sprint and raw8 controls.
+EV-376 identified the original StatePosition2 incompatibility. EV-377 established healthy equipped-Sprint and raw8 controls.
 
-The first bounded correction was implemented in:
-
-`6eb3e3ca96da55e89127c24d5f656e05610d315f`
-
-EV-378 runtime validates all three predicates changed by that correction:
+The first bounded correction, `6eb3e3ca96da55e89127c24d5f656e05610d315f`, is runtime-confirmed by EV-378:
 
 ```text
 true-Power first FIST:
@@ -160,76 +156,84 @@ true-Power first FIST:
 true-Power second FIST:
   current POWER + explicit {SP1, SP2}
 
-Sprint-origin later FIST:
+Sprint-origin later/current-Power FIST:
   current POWER + explicit {SP1, SP2}
 ```
 
-Representative EV-378 behavior:
+The Sprint-first follow-up, `ce59e5a2bad564652eaba970e959bdef0b479d82`, is runtime-confirmed by EV-379:
 
 ```text
-single-FIST true Power:
-  first/only FIST at POWER/SP2 -> ACCEPTED
-  exact RIGHT 5 -> 7
-  native damage observed when contact connects
-  native 7 -> 5 cleanup / outstanding zero
-
-double-FIST true Power:
-  marker1 POWER/SP1 -> ACCEPTED/open
-  marker2 POWER/SP2 -> ACCEPTED/clear-only rearm
-  no second physical opening
-
-Sprint-origin double-FIST:
-  marker1 Action9/SPRINT/SP1 -> ACCEPTED/open
-  same C1 becomes Action2/POWER
-  marker2 POWER/SP2 -> ACCEPTED/clear-only rearm
-
-Normal / Quick controls:
-  healthy
+Sprint-origin first FIST:
+  current SPRINT / Action9
+  + explicit {SP1, SP2}
+  + earlyOpeningSuppressed mandatory
 ```
 
-EV-378 then established that Sprint-origin **first/only** FIST can remain factual `Action9 / SPRINT` and arrive at SP2. The bounded follow-up correction was implemented in:
-
-`ce59e5a2bad564652eaba970e959bdef0b479d82`
-
-Current Sprint-first predicate:
+EV-380 maps the remaining Sprint-origin **second-FIST** timing envelope with deliberate frame `1+3`, `1+8`, and `1+15` fixtures:
 
 ```text
-current SPRINT / Action9
-+ explicit {SP1, SP2}
-+ earlyOpeningSuppressed mandatory
+frame1 marker1:
+  already current SPRINT / Action9 / SP2 in the tested New Balance Troll route
+  -> accepted/open
+
+very early marker2 (frame3):
+  current SPRINT / Action9 / SP2
+  -> legitimate authored arrival
+  -> current code rejects
+
+transition-boundary marker2 (frame8):
+  may be current SPRINT / Action9 / SP2
+  OR current POWER / Action2 / SP2
+  depending on execution
+
+later marker2 (frame15):
+  current POWER / Action2 / SP2
+  -> accepted/clear-only rearm
 ```
 
-EV-379 validates that exact changed predicate at runtime. Repeated single-FIST Sprint-origin attacks remain factual `SPRINT / Action9 / SP2`, suppress the premature native opening, accept the authored FIST, open exact RIGHT raw55 `5 -> 7`, produce native damage when contact connects, and clean back `7 -> 5` with zero outstanding.
+The key factual result is that identical frame8 authoring can fall on either side of the native Action9→Action2 transition. Marker acceptance therefore cannot safely depend on the transition having happened before marker2.
 
-EV-379 additionally exposes a separate second-FIST timing split inside the same immutable Sprint-origin execution:
+The smallest evidence-backed second-FIST extension is asymmetric:
 
 ```text
-proven route A:
-  marker1 current SPRINT / SP1 -> ACCEPTED/open
-  same C1 transitions to Action2 / POWER
-  marker2 current POWER / SP2  -> ACCEPTED/clear-only rearm
+immutable origin must remain SPRINT
 
-newly observed route B:
-  marker1 current SPRINT / SP1 -> ACCEPTED/open
-  marker2 arrives before Action9 -> Action2 transition
-  marker2 current SPRINT / SP2 -> currently REJECTED
-  RIGHT is already group7
-  native cleanup still returns 7 -> 5
+current POWER:
+  preserve existing explicit SP1 or SP2 acceptance
+
+current SPRINT:
+  additionally accept explicit SP2 only
 ```
 
-Therefore the current unresolved compatibility question is no longer Sprint-first state acceptance. It is the complete factual state envelope for a legitimate **second** FIST under immutable Sprint origin. Current evidence proves `POWER/SP2` and proves that a legitimate marker2 can also arrive as `SPRINT/SP2`; it has not yet deliberately established whether marker2 can arrive as `SPRINT/SP1`.
+No Sprint/SP1 second-FIST was observed. The deliberate earliest frame1/3 probe could not reach it because the tested Hit motion was already SP2 at frame1. Therefore current evidence does **not** justify `(SPRINT || POWER) && {SP1,SP2}` or any generic `StatePosition >= 1` expression.
 
-The next step is diagnostic evidence gathering: move marker2 earlier, keep marker1 unchanged, and determine whether `SPRINT/SP1` belongs to the legitimate second-FIST set before freezing any follow-up implementation.
+### Separate contact-state observation
 
-This evidence does not justify `StatePosition >= 1`, authored-count special cases, a generic Sprint-family rule, species/name gates, filename inference, DLL/version detection, new hooks/state/timers, custom damage, or neighboring-system changes.
+The User reports that sheathing the player's weapon immediately before Troll Sprint can sometimes appear to reduce the number of contacts that land.
 
-Evidence: EV-262–EV-298, EV-317, EV-341, EV-366, EV-376–EV-379.  
+Current evidence does not establish a marker-ownership failure:
+
+```text
+accepted marker != guaranteed native contact/damage
+some accepted two-marker Sprint executions show fewer damage events than opportunities
+Normal/Quick examples can damage PC_Hero while player motion is HoldRight_End
+```
+
+Therefore sheathing is not a universal immunity or universal marker failure. A controlled marked-vs-unmarked Sprint comparison with and without sheathing is required before attributing the effect to G3AB.
+
+### Incidental Normal repeated-marker boundary
+
+EV-380 also shows that deliberately early Normal marker2 can arrive at `NORMAL/SP0` and is rejected by the current Normal second-FIST SP1 gate. Quick can accept reviewed early repeated markers at SP0.
+
+This is a separate future causal question. It matters to the animator-authored-timing principle, but evidence does not yet establish whether Normal/SP1 is a true native prerequisite or merely a conservative historical guard. No Normal widening is authorized.
+
+Evidence: EV-262–EV-298, EV-317, EV-341, EV-366, EV-376–EV-380.  
 Architecture: `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`.  
-Validation/investigation: `COLLISION_TEST_PLAN.md` §4.4 and `work/active/COLLISION_NEW_BALANCE_RAW55_SPRINT_SECOND_FIST_STATE_INVESTIGATION.md`.
+Current investigation: `work/active/COLLISION_NEW_BALANCE_RAW55_SPRINT_SECOND_FIST_STATE_INVESTIGATION.md`.
 
 ### Audit disposition
 
-Independent audit found no confirmed release-behavior defect in the standalone environment. EV-376–EV-379 are later external-stack compatibility discoveries and do not reverse the standalone audit result.
+Independent audit found no confirmed release-behavior defect in the standalone environment. EV-376–EV-380 are later external-stack compatibility discoveries and do not reverse the standalone audit result.
 
 Historical audit/probe documents are archived and are not ordinary retrieval material.
 
@@ -239,7 +243,7 @@ SprintAttack is factual `gEAction_SprintAttack = 9`.
 
 For raw8 Fist, Sprint arrives through the existing physical `OnAI_PowerAttack` transport while factual actor action is already Sprint at callback entry. The Power-named transport/motion does not redefine Sprint as Power. EV-377 confirms the same exact raw8 opportunity can remain valid through legitimate same-C1 factual `Action9 -> Action2` continuation under New Balance.
 
-The permanent raw55 path also supports Sprint-origin PhysicalFist/raw55 FIST behavior. Its immutable origin remains Sprint across the proven same-C1 factual `Action9 -> Action2` transition; later current Action2/POWER state does not transfer ownership to a true-Power execution. EV-378 validates the corrected later-current-Power SP2 marker path. EV-379 validates Sprint-first `Action9/SPRINT/SP2` and proves that marker2 itself may occur either before or after the factual `Action9 -> Action2` transition. Factual current family therefore remains authoritative at each marker; the open question is the complete legitimate second-FIST state set for the same exact Sprint-origin execution.
+The permanent raw55 path also supports Sprint-origin PhysicalFist/raw55 FIST behavior. Its immutable origin remains Sprint across the same-C1 factual Action9→Action2 transition; later current Action2/POWER does not transfer ownership to a true-Power execution. EV-380 proves marker2 may legitimately occur **before or after** that transition at SP2, including nondeterministically around the same frame8 authoring point. The transition is therefore transport/state progression inside one owned execution, not an authoring boundary that marker placement must wait for.
 
 Equipped Sprint RIGHT/LEFT/BOTH/OFF is permanent supported behavior through `EquippedSprintCollision`.
 
@@ -261,7 +265,7 @@ The bound continuation is exact-identity-only: same actor, C1 generation, motion
 
 Architecture decision: ADR-0003. Permanent owner: `EquippedSprintCollision`.
 
-Evidence: raw8 Sprint EV-250–EV-251 and protected sentinel EV-316/EV-354; raw55 Sprint-origin EV-280–EV-285, EV-294, EV-298, EV-317, EV-376, EV-378–EV-379; equipped Sprint causal/promotion evidence EV-311, EV-315, EV-320–EV-329; New Balance controls EV-377.
+Evidence: raw8 Sprint EV-250–EV-251 and protected sentinel EV-316/EV-354; raw55 Sprint-origin EV-280–EV-285, EV-294, EV-298, EV-317, EV-376, EV-378–EV-380; equipped Sprint causal/promotion evidence EV-311, EV-315, EV-320–EV-329; New Balance controls EV-377.
 
 ## 7. Shield / raw9 boundary
 
@@ -346,8 +350,10 @@ Zombie+Axe asset-gap remedy                 PASS EV-375
 New Balance equipped/raw8 controls          PASS EV-377
 first raw55 SP2 correction                  exact predicates RUNTIME PASS EV-378
 Sprint-first SP2 correction                 exact predicate RUNTIME PASS EV-379
-remaining raw55 contradiction               Sprint-origin second FIST may arrive current SPRINT/SP2
-second-FIST complete state envelope         OPEN / diagnostic probe required
+Sprint second-FIST timing envelope          MAPPED EV-380
+remaining Sprint source correction          current SPRINT/SP2 second-FIST acceptance
+sheath/native-contact control               OPEN
+Normal early second-FIST SP0 question       DEFERRED / separate research
 New Balance full intended-stack gate        OPEN
 ```
 
