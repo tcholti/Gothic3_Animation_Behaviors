@@ -1,7 +1,7 @@
 # Permanent raw55 PhysicalFist Architecture
 
 **Status:** Current production-behavior architecture  
-**Updated:** 2026-09-25
+**Updated:** 2026-09-26
 
 ## Purpose
 
@@ -164,7 +164,9 @@ For the supported marked Normal route, that native between-contact clear is supp
 
 The native callback's state progression and final cleanup remain Gothic-owned.
 
-Evidence: EV-277–EV-279, EV-286–EV-292.
+EV-380 additionally shows that deliberately early Normal marker2 can arrive at `NORMAL/SP0` and is rejected by the current second-FIST SP1 gate. That is a separate unresolved authoring-boundary question and does not alter current Normal production behavior.
+
+Evidence: EV-277–EV-279, EV-286–EV-292, EV-380.
 
 ### true Power
 
@@ -208,17 +210,40 @@ earlyOpeningSuppressed mandatory
 
 This explicit SP1/SP2 first-FIST rule is runtime validated by EV-379.
 
-Current second-FIST source predicate remains narrower:
+EV-380 maps the factual second-FIST timing envelope for the tested New Balance BlackTroll route:
+
+```text
+current POWER / Action2 / SP2
+-> legitimate and already accepted
+
+current SPRINT / Action9 / SP2
+-> legitimate authored arrival and currently rejected
+
+current SPRINT / Action9 / SP1
+-> not observed; earliest frame1/3 probe was already SP2
+```
+
+The frame8 fixture can place the same authored marker2 on either side of the native Action9 -> Action2 transition. Marker2 therefore cannot require that transition to current POWER to have happened first.
+
+The frozen evidence-backed correction is intentionally asymmetric:
 
 ```text
 origin family = SPRINT
-current family = POWER
-StatePosition {1,2}
+
+current POWER:
+  StatePosition {1,2}
+
+current SPRINT:
+  StatePosition {2} only
 ```
 
-EV-379 proves that this second-FIST predicate is not yet complete for the intended New Balance environment: a legitimate same-C1 second FIST can arrive while current state is still `SPRINT / Action9 / SP2`. That marker currently fails closed. A deliberate earlier-marker probe is still required to determine whether `SPRINT / SP1` is also a legitimate second-FIST state before any follow-up predicate is frozen.
+Sprint/SP1 is not authorized by current evidence. No `>=1` generalization is used.
 
-Evidence: EV-280–EV-285, EV-294, EV-376–EV-379.
+The bounded implementation task is:
+
+`docs/work/active/COLLISION_NEW_BALANCE_RAW55_SPRINT_SECOND_FIST_SP2_COMPATIBILITY_CORRECTION.md`
+
+Evidence: EV-280–EV-285, EV-294, EV-376–EV-380.
 
 ---
 
@@ -234,7 +259,7 @@ Diagnostics may surface identity contradictions, but diagnostics do not decide r
 
 The post-audit callback-identity surfacing correction is diagnostics-only; behavior on contradiction remains “no new raw55 intervention.”
 
-Focused validation: EV-295–EV-298 plus compatibility evidence EV-376–EV-379.
+Focused validation: EV-295–EV-298 plus compatibility evidence EV-376–EV-380.
 
 ---
 
@@ -254,6 +279,8 @@ generic C1 terminal policy
 ```
 
 Physical activation alone is not evidence that every source type/action has a native damage route; shield/raw9 EV-308 is the explicit counterexample for that broader assumption.
+
+The User's sheath-before-Troll-Sprint observation remains a separate downstream native-contact/target-state question. It does not change marker ownership until controlled marked-vs-unmarked evidence demonstrates otherwise.
 
 ---
 
@@ -275,6 +302,7 @@ global ClearTriggeredList policy
 whole native callback suppression
 diagnostic/probe state as release dependency
 StatePosition >= 1 generalization
+Sprint/SP1 second-FIST acceptance without evidence
 New Balance/DLL/version detection
 ```
 
@@ -300,19 +328,19 @@ Release behavior must not require `CollisionDiagnostics`, historical `PhysicalFi
 
 ## 9. Current compatibility boundary
 
-New Balance compatibility remains open only because the complete factual state set for a Sprint-origin **second** FIST is not yet mapped.
+New Balance compatibility remains open for one bounded source correction plus runtime validation.
 
-Known matrix:
+Frozen Sprint-origin second-FIST rule:
 
 ```text
-origin SPRINT, second FIST:
-  current POWER  / SP2 -> proven legitimate / accepted
-  current SPRINT / SP2 -> proven legitimate arrival / currently rejected
-  current SPRINT / SP1 -> unknown / next diagnostic probe
+current POWER  / SP1 -> preserve accepted
+current POWER  / SP2 -> preserve accepted
+current SPRINT / SP2 -> newly accept
+current SPRINT / SP1 -> remain rejected/unproven
 ```
 
-The active authority for that investigation is:
+Active bounded Work task:
 
-`docs/work/active/COLLISION_NEW_BALANCE_RAW55_SPRINT_SECOND_FIST_STATE_INVESTIGATION.md`
+`docs/work/active/COLLISION_NEW_BALANCE_RAW55_SPRINT_SECOND_FIST_SP2_COMPATIBILITY_CORRECTION.md`
 
-No production change is authorized until that state envelope is established.
+After implementation, runtime acceptance must include frame1+3, frame1+8 transition-race, frame1+15, single-FIST Sprint, true-Power double-FIST, and Normal/Quick controls before broader New Balance certification resumes.
