@@ -16,6 +16,7 @@ standalone frozen collision baseline = f1f5d2aad3edc3564a9a8b40541840b94f8fa903
 first raw55 SP2 correction = 6eb3e3ca96da55e89127c24d5f656e05610d315f
 Sprint-first SP2 correction = ce59e5a2bad564652eaba970e959bdef0b479d82
 Sprint-second SP2 correction = 4c85193f4efd31e789bc07d7e3c71d31a9b5326e
+Normal second-FIST SP0 correction = a31c66b97e45c27d0739b7df51252d33f490e7e1
 latest runtime evidence = EV-381
 current ledger = EVIDENCE_LEDGER_380_ONWARD.md
 
@@ -27,7 +28,7 @@ Sprint-first SP2 correction = runtime PASS EV-379
 Sprint second-FIST timing envelope = MAPPED EV-380
 Sprint second-FIST SP2 correction = runtime PASS EV-381
 focused New Balance raw55 Sprint contradiction = CLOSED/PASS
-Normal raw55 second-FIST SP0 authoring boundary = FROZEN IMPLEMENTATION TASK
+Normal raw55 second-FIST SP0 correction = IMPLEMENTED + INDEPENDENT REVIEW PASS / RUNTIME ACCEPTANCE PENDING
 New Balance full intended-stack compatibility = OPEN / waits for raw55 Normal closure
 active Work task = docs/work/active/COLLISION_RAW55_NORMAL_SECOND_FIST_SP0_COMPATIBILITY_CORRECTION.md
 ```
@@ -53,15 +54,15 @@ Sprint-origin second:
   current SPRINT explicit SP2 only
 ```
 
-Normal current source still has:
+Reviewed Normal candidate now has:
 
 ```text
-second FIST = current NORMAL + SP1 only
+second FIST = current NORMAL + explicit SP0 or SP1
 ```
 
-The new frozen task changes only that Normal second-FIST state gate to explicit `{SP0, SP1}`.
+This candidate is not promoted to accepted runtime behavior until the focused fixtures pass.
 
-## Why Normal SP0 is now evidence-backed
+## Why Normal SP0 is evidence-backed
 
 Earlier causal work EV-286–EV-292 proved:
 
@@ -80,7 +81,7 @@ The archived New Balance `1+8` timing fixture adds the missing boundary evidence
 ```text
 marker1 NORMAL/SP0 -> accepted/open+clear
 hit1 -> ONDAMAGE
-marker2 still NORMAL/SP0 -> rejected only by current second-FIST SP1 gate
+marker2 still NORMAL/SP0 -> rejected only by the old second-FIST SP1 gate
 RIGHT already group7
 ```
 
@@ -96,9 +97,19 @@ Representative C1=3 repeats the same class with marker2 StateTime=0.246752 SP0 a
 
 Therefore SP1 is not a proven prerequisite for authored second-contact rearm.
 
-## Frozen implementation
+## Reviewed implementation
 
-Only this predicate changes:
+Implementation commit:
+
+`a31c66b97e45c27d0739b7df51252d33f490e7e1`
+
+Implementation parent:
+
+`396c7b8b0886174860cc452176a2ed57bf530784`
+
+Independent Normal Chat static review: **PASS**.
+
+Only this predicate changed:
 
 ```cpp
 case AttackFamily_Normal:
@@ -106,7 +117,7 @@ case AttackFamily_Normal:
         && statePosition == 1;
 ```
 
-becomes:
+became:
 
 ```cpp
 case AttackFamily_Normal:
@@ -114,11 +125,11 @@ case AttackFamily_Normal:
         && (statePosition == 0 || statePosition == 1);
 ```
 
-Do not modify the existing marker2 clear-only operation or any other family.
+Quick, Power, Sprint, all first-FIST predicates, marker2 clear-only behavior, Normal native-clear suppression, lifecycle, hooks and diagnostics remain unchanged.
 
-## Runtime acceptance after implementation
+## Runtime acceptance — current next action
 
-Reuse the same three mixed Troll fixtures:
+User locally builds/deploys the reviewed candidate and reuses the same three mixed Troll fixtures:
 
 ```text
 1+3
@@ -129,7 +140,7 @@ Reuse the same three mixed Troll fixtures:
   decisive route:
   marker1 SP0 -> hit1 -> marker2 still SP0
   marker2 must ACCEPT + ClearTriggeredList=1 + GroupRequested=0
-  later second native contact should be possible when geometry/target state permits
+  later second native contact may occur when geometry/target state permits
 
 1+15
   established Normal/SP1 marker2 must remain accepted/rearmed
@@ -145,15 +156,15 @@ Final standalone diagnostic SHA256:
 Final standalone behavior SHA256:
 `A806EC6523116286335A659735067B1AA6C581837B3E0D604E6271AC98079340`
 
-Latest deployed diagnostic SHA256:
+Latest deployed diagnostic before this Normal correction:
 `B4161D74DD849F4B7B67D9ACCFC42A8D8784F7EF19FB968F2E44D67ED57BD689`
 
 ## Exact next route
 
 ```text
-1. Work implements only Normal second-FIST explicit SP0||SP1 gate
-2. Normal Chat independently reviews source diff
-3. User builds/runs 1+3, 1+8, 1+15 mixed Troll fixtures
+1. user builds/deploys reviewed Normal SP0 candidate
+2. user runs 1+3, 1+8, 1+15 mixed Troll fixtures
+3. Normal Chat reviews runtime evidence
 4. if raw55 Normal closes cleanly:
    focused Normal/Quick/Power/Sprint raw55 closure
 5. broader representative/full New Balance compatibility
@@ -185,7 +196,7 @@ Configured speed is **base-speed authority**, not final effective-speed authorit
 ## Read next by question
 
 - exact continuation → `BETWEEN_CHATS.md`
-- active implementation contract → `work/active/COLLISION_RAW55_NORMAL_SECOND_FIST_SP0_COMPATIBILITY_CORRECTION.md`
+- active runtime-acceptance contract → `work/active/COLLISION_RAW55_NORMAL_SECOND_FIST_SP0_COMPATIBILITY_CORRECTION.md`
 - current facts → `COLLISION_REFERENCE.md`
 - validation gate → `COLLISION_TEST_PLAN.md`
 - raw55 architecture → `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`
@@ -198,5 +209,5 @@ Configured speed is **base-speed authority**, not final effective-speed authorit
 NO production migration until New Balance compatibility + standalone post-compat sentinel close
 NO Raise/speed implementation yet
 NO AttackContinuationProtection work
-NO broad Normal redesign beyond the frozen SP0||SP1 second-FIST gate
+NO broad Normal redesign beyond reviewed SP0||SP1 second-FIST candidate
 ```
