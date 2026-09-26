@@ -52,15 +52,13 @@ Provenance:
 - current Sprint-first compatibility source: `ce59e5a2bad564652eaba970e959bdef0b479d82` plus later documentation-only lineage;
 - diagnostic built/live SHA256 from EV-379/current deployment: `490AC7F6F6931784EA9D5697BA5758DAB11FC0B9437A247FFA9FBC7E13BA1E4C`;
 - timing-sweep upload commit: `58e32ae8599dc3a4c6a902a794e678f38172ef72`;
-- `1+3`: `research/raw/2026.09.26_newbalance_blacktroll_all_double_markers_1_3.log`, Git blob `cf0bd2e8883658697f66f4d2c0e5e2833b454289`;
-- `1+8`: `research/raw/2026.09.26_newbalance_blacktroll_all_double_markers_1_8.log`, Git blob `0b66fa4f17ec0909fa1f173a7fac9fdb4c30b070`;
-- `1+15`: `research/raw/2026.09.26_newbalance_blacktroll_all_double_markers_1_15.log`, Git blob `c9a199d6acea5dd303d8d0eaff3f44411123668f`.
+- `1+3`: `research/archive/2026.09.26_newbalance_blacktroll_all_double_markers_1_3.log`, Git blob `cf0bd2e8883658697f66f4d2c0e5e2833b454289`;
+- `1+8`: `research/archive/2026.09.26_newbalance_blacktroll_all_double_markers_1_8.log`, Git blob `0b66fa4f17ec0909fa1f173a7fac9fdb4c30b070`;
+- `1+15`: `research/archive/2026.09.26_newbalance_blacktroll_all_double_markers_1_15.log`, Git blob `c9a199d6acea5dd303d8d0eaff3f44411123668f`.
 
 Disposition:
 - **PASS — SPRINT SECOND-FIST FACTUAL STATE ENVELOPE MAPPED FOR THE TESTED TIMING RANGE.**
 - **IMPLEMENTATION BASIS READY:** current Sprint/SP2 is a legitimate second-FIST state; current Power/SP1+SP2 remains preserved; Sprint/SP1 remains unproven and must not be added generically.
-- Keep the immediate comparison logs in `research/raw/` only while the sheath/native-contact control remains open; archive them under POP-06 when that controlled comparison closes.
-- Before final Sprint acceptance, run a controlled sheath/no-sheath comparison and an unmarked/native Sprint control if the observed missing-contact behavior persists.
 
 ### EV-381 — New Balance raw55 Sprint second-FIST SP2 correction runtime PASS; native-contact misses separated from marker ownership
 
@@ -79,21 +77,53 @@ Observed:
 Scope / limits:
 - Runtime acceptance applies to the tested BlackTroll/raw55/New Balance environment and diagnostic build hash above.
 - The corrected Sprint second-FIST rule remains evidence-bounded: immutable origin Sprint; current Power accepts explicit SP1/SP2; current Sprint accepts SP2 only. No Sprint/SP1 or `>=1` generalization is established.
-- The early Normal/SP0 second-FIST rejection remains a separate deferred authoring-boundary question. It is not a regression from the Sprint correction.
+- The early Normal/SP0 second-FIST rejection remained a separate authoring-boundary question at EV-381 and is resolved later by EV-382.
 - `ONDAMAGE` is supporting contact evidence, not a requirement for every accepted authored opportunity. Correct marker acceptance/open/rearm plus native cleanup can coexist with a legitimate native miss.
 
 Provenance:
 - production behavior change: `4c85193f4efd31e789bc07d7e3c71d31a9b5326e`;
 - independent reviewed branch lineage before build: `011808c211dea81d47d572aeb76cadb82c400976` plus later runtime-log upload commits;
 - diagnostic built/live SHA256: `B4161D74DD849F4B7B67D9ACCFC42A8D8784F7EF19FB968F2E44D67ED57BD689`;
-- corrected `1+3`: `research/raw/2026.09.26_newbalance_blacktroll_all_double_markers_1_3_test2.log`, blob `c2d6937feb521b213b8141d702e44b2f23342378`;
-- corrected `1+8`: `research/raw/2026.09.26_newbalance_blacktroll_all_double_markers_1_8_test2.log`, blob `99fe4f3fb5373088da155740d440b486fb6ac9c6`;
-- corrected `1+15`: `research/raw/2026.09.26_newbalance_blacktroll_all_double_markers_1_15_test2.log`, blob `1c9e57619387f2a34ca7ea3bc73131f1056c95e1`;
-- unmarked/native control: `research/raw/2026.09.26_newbalance_blacktroll_all_native_test.log`, blob `67a834077c04b4c980e78a13649ab9a20b18077e`.
+- corrected `1+3`: `research/archive/2026.09.26_newbalance_blacktroll_all_double_markers_1_3_test2.log`, blob `c2d6937feb521b213b8141d702e44b2f23342378`;
+- corrected `1+8`: `research/archive/2026.09.26_newbalance_blacktroll_all_double_markers_1_8_test2.log`, blob `99fe4f3fb5373088da155740d440b486fb6ac9c6`;
+- corrected `1+15`: `research/archive/2026.09.26_newbalance_blacktroll_all_double_markers_1_15_test2.log`, blob `1c9e57619387f2a34ca7ea3bc73131f1056c95e1`;
+- unmarked/native control: `research/archive/2026.09.26_newbalance_blacktroll_all_native_test.log`, blob `67a834077c04b4c980e78a13649ab9a20b18077e`.
 
 Disposition:
 - **PASS — RAW55 SPRINT SECOND-FIST SP2 COMPATIBILITY CORRECTION RUNTIME ACCEPTED.**
 - The focused New Balance raw55 Sprint compatibility contradiction from EV-376–EV-380 is CLOSED for the tested route.
 - Sheath/draw-associated misses are **not a collision-marker blocker** on current evidence. Native unmarked collision windows can also miss entirely; do not add custom damage/contact policy to G3AB for this behavior.
-- Preserve the exact native-Sprint-after-sheath subtype as a non-blocking observation unless future evidence makes that distinction relevant.
-- The separate Normal/SP0 second-FIST authoring-boundary question remains DEFERRED and requires its own causal task before any widening.
+
+### EV-382 — Normal raw55 second-FIST explicit SP0/SP1 correction runtime PASS; focused raw55 compatibility CLOSED
+
+Observed:
+- The User built and deployed the independently reviewed Normal second-FIST correction `a31c66b97e45c27d0739b7df51252d33f490e7e1`. Built and live diagnostic SHA256 matched exactly: `81CF4C99BDA65EA6FBBC02839680E83B719B6E535407EB604E6AD015B038F2D3`.
+- Three mixed BlackTroll double-FIST fixtures were rerun with authored marker placements `1+3`, `1+8`, and `1+15`. All three contain zero `CORE MARKER ANOMALY / DISCOVERY` records.
+- The `1+3` fixture validates very-early Normal marker2 acceptance. Representative Normal C1=1 has marker1 at `SP0 / StateTime=0.027142`, opening RIGHT `5 -> 7` with the initial clear; marker2 arrives at `SP0 / StateTime=0.087762`, is accepted with `AcceptedFistCount=2`, `GroupRequested=0`, `ClearTriggeredList=1`, and RIGHT remains group7. Native damage and later native `7 -> 5` cleanup follow; final outstanding is zero. The same class repeats throughout the fixture.
+- Very-early marker2 can precede hit1. That does not invalidate acceptance: marker2 authors the rearm at its chosen time and may clear an empty visited set. Two damage events are not a correctness requirement for this timing. Some representative runs nevertheless still produce two native damage callbacks.
+- The `1+8` fixture provides the decisive causal acceptance. Repeated Normal executions produce hit1 before marker2 while marker2 remains factual `NORMAL/SP0`. Representative C1=1: marker1 `SP0 / StateTime=0.039834` opens/clears; native `ONDAMAGE` occurs; marker2 remains `SP0 / StateTime=0.253015` and is accepted with `GroupBefore=7`, `GroupAfter=7`, `AcceptedFistCount=2`, `GroupRequested=0`, `ClearTriggeredList=1`; native cleanup later returns RIGHT `7 -> 5` with `Outstanding=0`.
+- Representative C1=5 in `1+8` repeats the same hit1-before-marker2 SP0 route and then produces a later second `ONDAMAGE`, directly demonstrating that the authored SP0 marker2 clear-only operation can restore another native contact opportunity. C1=12, C1=15, C1=19 and additional reviewed Normal executions repeat the same class with healthy cleanup.
+- The `1+15` fixture remains clean and supplies additional later-placement Normal coverage. Under the current New Balance timing, reviewed Normal marker2 events commonly remain SP0 even at frame15 rather than reaching SP1. Those marker2 events are accepted as clear-only rearm and clean normally. Therefore this fixture does not provide a fresh SP1 sample; it does not contradict SP1 support.
+- The production change is additive: Normal SP1 remains explicitly accepted. The original Normal causal campaign EV-286–EV-292 already runtime-proved the SP1 marker2 route, so EV-382 adds the missing SP0 runtime acceptance without reopening that established path.
+- Quick, true-Power, and Sprint-origin raw55 controls remain healthy in the same mixed logs. Representative controls retain first physical `5 -> 7`, second clear-only rearm with no second physical opening, and final native `7 -> 5` cleanup / zero outstanding.
+
+Scope / limits:
+- Runtime acceptance applies to the tested BlackTroll/raw55/current intended New Balance environment and diagnostic build hash above.
+- The permanent Normal second-FIST rule is explicit `{SP0,SP1}` only. This does not authorize generic StatePosition widening, family-independent SP0 acceptance, more than two FIST markers, target-visited flags, hit1 flags, marker delays/queues, custom damage, or new hooks.
+- Native contact/damage remains Gothic-owned. Accepted marker2 rearm does not guarantee a second damage event when geometry/target state does not produce contact.
+- The `1+15` fixture's SP0 timing is a factual current-environment result, not evidence that SP1 is obsolete. SP1 remains part of the accepted rule and is supported by prior runtime evidence.
+
+Provenance:
+- production behavior change: `a31c66b97e45c27d0739b7df51252d33f490e7e1`;
+- frozen implementation parent: `396c7b8b0886174860cc452176a2ed57bf530784`;
+- diagnostic built/live SHA256: `81CF4C99BDA65EA6FBBC02839680E83B719B6E535407EB604E6AD015B038F2D3`;
+- runtime upload commit: `5d45a5b6f3154478f439c6cd93397670deb6a3b3`;
+- `1+3`: `research/archive/2026.09.26_newbalance_blacktroll_all_double_markers_1_3_test3.log`, blob `0494ab3cf6f827ea01154e96548a51641029b75c`;
+- `1+8`: `research/archive/2026.09.26_newbalance_blacktroll_all_double_markers_1_8_test3.log`, blob `b1e16d7ae67704beb18872911c1d2c1888835232`;
+- `1+15`: `research/archive/2026.09.26_newbalance_blacktroll_all_double_markers_1_15_test3.log`, blob `8d21c800b0715e98d1622310b65e24562e489842`.
+
+Disposition:
+- **PASS — NORMAL RAW55 SECOND-FIST EXPLICIT `{SP0,SP1}` ACCEPTANCE RUNTIME VALIDATED.**
+- **FOCUSED RAW55 NORMAL / QUICK / TRUE-POWER / SPRINT-ORIGIN NEW BALANCE COMPATIBILITY = CLOSED/PASS FOR THE TESTED ROUTE.**
+- No further focused raw55 source change is indicated by current evidence.
+- Next gate: broader representative/full-stack New Balance compatibility; after that passes, run the standalone/no-New-Balance post-compatibility raw55 sentinel before production collision migration.
