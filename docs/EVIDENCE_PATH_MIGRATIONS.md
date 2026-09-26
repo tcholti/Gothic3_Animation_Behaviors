@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Path Migrations
 
 **Status:** Canonical provenance-path lookup  
-**Updated:** 2026-09-25
+**Updated:** 2026-09-26
 
 ## Purpose
 
@@ -293,6 +293,72 @@ research/raw/Keep.txt
 ```
 
 This closes the stale broad active-comparison exception. The unresolved engineering responsibility is still the bounded raw55 SP2 correction; storage cleanup does not close EV-376 itself.
+
+---
+
+## 2026-09-26 — New Balance raw55 Sprint remediation closure
+
+EV-378–EV-381 completed the focused New Balance raw55 Power/Sprint StatePosition remediation and runtime acceptance. The previously retained before/after comparison set no longer owns an open collision question.
+
+The following **9 artifacts** were moved byte-identically by reusing their exact existing Git blob identities:
+
+```text
+research/raw/2026.09.25_newbalance_blacktroll_all_double_marker2.log
+ -> research/archive/2026.09.25_newbalance_blacktroll_all_double_marker2.log
+ blob f33b578479b8b38d5f18760b8254aa2e48d89b84
+
+research/raw/2026.09.25_newbalance_blacktroll_all_single_marker2.log
+ -> research/archive/2026.09.25_newbalance_blacktroll_all_single_marker2.log
+ blob 05abf1f7a7e025ff9b1dbfbf33b5074e2c5f4b0d
+
+research/raw/2026.09.26_newbalance_blacktroll_all_double_markers_1_3.log
+ -> research/archive/2026.09.26_newbalance_blacktroll_all_double_markers_1_3.log
+ blob cf0bd2e8883658697f66f4d2c0e5e2833b454289
+
+research/raw/2026.09.26_newbalance_blacktroll_all_double_markers_1_8.log
+ -> research/archive/2026.09.26_newbalance_blacktroll_all_double_markers_1_8.log
+ blob 0b66fa4f17ec0909fa1f173a7fac9fdb4c30b070
+
+research/raw/2026.09.26_newbalance_blacktroll_all_double_markers_1_15.log
+ -> research/archive/2026.09.26_newbalance_blacktroll_all_double_markers_1_15.log
+ blob c9a199d6acea5dd303d8d0eaff3f44411123668f
+
+research/raw/2026.09.26_newbalance_blacktroll_all_double_markers_1_3_test2.log
+ -> research/archive/2026.09.26_newbalance_blacktroll_all_double_markers_1_3_test2.log
+ blob c2d6937feb521b213b8141d702e44b2f23342378
+
+research/raw/2026.09.26_newbalance_blacktroll_all_double_markers_1_8_test2.log
+ -> research/archive/2026.09.26_newbalance_blacktroll_all_double_markers_1_8_test2.log
+ blob 99fe4f3fb5373088da155740d440b486fb6ac9c6
+
+research/raw/2026.09.26_newbalance_blacktroll_all_double_markers_1_15_test2.log
+ -> research/archive/2026.09.26_newbalance_blacktroll_all_double_markers_1_15_test2.log
+ blob 1c9e57619387f2a34ca7ea3bc73131f1056c95e1
+
+research/raw/2026.09.26_newbalance_blacktroll_all_native_test.log
+ -> research/archive/2026.09.26_newbalance_blacktroll_all_native_test.log
+ blob 67a834077c04b4c980e78a13649ab9a20b18077e
+```
+
+Archive transaction:
+
+```text
+3fc7cec54f33cf3a96d9d3615559e9c3c8c67fba
+```
+
+Migration properties:
+
+- all moves reused the original Git blob SHA, so content is byte-identical;
+- no runtime artifact was rewritten, normalized, trimmed or re-encoded;
+- EV-378–EV-381 own the promoted compatibility conclusions;
+- the closed bounded Sprint second-FIST task moved to `docs/archive/investigations/` in the same archive transaction;
+- the separate Normal/SP0 early-second-FIST question can use these archived artifacts later without retaining duplicate raw copies.
+
+Verified intended post-migration intake state:
+
+```text
+research/raw/Keep.txt
+```
 
 ---
 
