@@ -8,17 +8,20 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Current gate: focused raw55 Sprint compatibility is CLOSED/PASS through EV-381. The bounded Normal raw55 second-FIST SP0 compatibility correction is implemented at `a31c66b97e45c27d0739b7df51252d33f490e7e1` and awaits independent Normal Chat diff review.
+Current gate: focused raw55 Sprint compatibility is CLOSED/PASS through EV-381. The bounded Normal raw55 second-FIST SP0 correction is implemented and independently reviewed; runtime acceptance is now the only remaining responsibility.
 
-Active task pending independent review:
-
+Active task:
 `docs/work/active/COLLISION_RAW55_NORMAL_SECOND_FIST_SP0_COMPATIBILITY_CORRECTION.md`
 
-Frozen production source blob before implementation:
+Implementation:
+`a31c66b97e45c27d0739b7df51252d33f490e7e1`
 
-`de175bb504c3abe13ad1c0bb9cda54997c9e3a26`
+Implementation parent:
+`396c7b8b0886174860cc452176a2ed57bf530784`
 
-Implemented Normal second-FIST gate:
+Independent Normal Chat static review: **PASS**.
+
+Reviewed production diff is exactly one Normal `IsSecondFistAllowed(...)` predicate widening:
 
 ```cpp
 case AttackFamily_Normal:
@@ -26,11 +29,7 @@ case AttackFamily_Normal:
         && (statePosition == 0 || statePosition == 1);
 ```
 
-Published implementation SHA:
-
-`a31c66b97e45c27d0739b7df51252d33f490e7e1`
-
-Nothing else in production behavior is authorized to change.
+Only Normal second-FIST acceptance changed. Quick, Power, Sprint, every first-FIST predicate, Normal native-clear suppression, marker2 clear-only behavior, C1/lifecycle ownership, hooks and diagnostics are unchanged.
 
 Evidence basis:
 
@@ -39,56 +38,46 @@ EV-286–EV-292:
   Normal marker1 can own SP0 opening+rearm
   exact native between-contact ClearTriggeredList is causally required for implicit hit2
   permanent marked-Normal path suppresses that native clear
-  authored marker2 ClearTriggeredList can replace it and restore hit2
+  authored marker2 ClearTriggeredList can replace it and restore the later opportunity
 
-2026-09-26 archived 1+8 fixture:
+archived New Balance 1+8 fixture:
   marker1 NORMAL/SP0 -> accepted/open+clear
   hit1 ONDAMAGE occurs
-  marker2 still NORMAL/SP0 -> current gate rejects
+  marker2 still NORMAL/SP0 -> old SP1-only gate rejects
   RIGHT already group7
 ```
 
-Representative C1=1:
-
-```text
-marker1 StateTime=0.025186 SP0
-hit1
-marker2 StateTime=0.241280 SP0 -> rejected
-```
-
-Representative C1=3 repeats the same class with marker2 StateTime=0.246752 SP0 after hit1.
-
-Runtime acceptance after implementation:
+Current runtime acceptance:
 
 ```text
 1+3:
-  marker2 SP0 accepted/clear-only
-  two hits NOT required because marker2 may precede hit1
+  marker2 NORMAL/SP0 -> ACCEPTED
+  ClearTriggeredList=1
+  GroupRequested=0
+  two hits not required because marker2 may precede hit1
 
-1+8:
-  decisive route: marker1 -> hit1 -> marker2 still SP0
-  marker2 must accept + ClearTriggeredList=1 + GroupRequested=0
+1+8 decisive route:
+  marker1 SP0 -> hit1 -> marker2 still SP0
+  marker2 -> ACCEPTED + ClearTriggeredList=1 + GroupRequested=0
+  healthy 7->5 cleanup / outstanding0
 
-1+15:
-  existing SP1 marker2 acceptance/rearm remains healthy
+1+15 positive control:
+  marker2 NORMAL/SP1 remains accepted/clear-only
+  healthy cleanup
+
+Quick / Power / Sprint remain controls in the same mixed logs.
 ```
 
-Quick / Power / Sprint remain controls from the same mixed logs.
+Native target/contact/damage stays Gothic-owned; collision correctness is marker acceptance/rearm plus healthy cleanup, not a guaranteed hit count.
 
 Latest deployed diagnostic before this correction:
-`B4161D74DD849F4B67D9ACCFC42A8D8784F7EF19FB968F2E44D67ED57BD689`
+`B4161D74DD849F4B7B67D9ACCFC42A8D8784F7EF19FB968F2E44D67ED57BD689`
 
-Build: NOT ATTEMPTED — Work build execution was not authorized for this task.
+Build of this candidate: NOT YET REPORTED. Work build execution was not authorized.
 
-Next step: independent Normal Chat diff review, then User local build/deployment and focused runtime acceptance.
+Next step: user locally builds/deploys, runs `1+3`, `1+8`, `1+15`, and uploads the logs. Normal Chat then reviews evidence, records the next EV, and either closes/archives this task or reports the exact remaining contradiction.
 
 After runtime Normal closure:
+`focused raw55 closure -> broader New Balance full-stack compatibility -> standalone/no-New-Balance sentinel -> production collision migration`.
 
-```text
-focused raw55 Normal/Quick/Power/Sprint closure
--> broader representative New Balance full-stack compatibility
--> standalone/no-New-Balance sentinel
--> production collision migration
-```
-
-Paused speed authority: `DESIGN.md` §3 + ADR-0004. Configured speed is base-speed authority; native/New Balance dynamic modifiers must remain composable.
+Paused speed authority: `DESIGN.md` §3 + ADR-0004.
