@@ -3,7 +3,7 @@
 **Purpose:** Minimal durable current-state pointer. Repository startup begins at root `README.md` **Start Here**.  
 **Active development branch:** `docs/collision-source-evidence`  
 **Stable branch:** `main`  
-**Updated:** 2026-09-25
+**Updated:** 2026-09-26
 
 > **INTERRUPTED-CHAT ENTRY RULE:** after an abrupt/max-context/unusable Chat, return to root `README.md` and enter Recovery Lock. This file is then a clue, not unquestioned truth, until POP-11 reconciliation.
 
@@ -15,23 +15,24 @@
 standalone frozen collision baseline = f1f5d2aad3edc3564a9a8b40541840b94f8fa903
 first raw55 SP2 correction = 6eb3e3ca96da55e89127c24d5f656e05610d315f
 Sprint-first SP2 correction = ce59e5a2bad564652eaba970e959bdef0b479d82
-latest runtime evidence = EV-379
-current ledger = EVIDENCE_LEDGER_373_ONWARD.md
+latest runtime evidence = EV-380
+current ledger = EVIDENCE_LEDGER_380_ONWARD.md
 
 standalone final-source collision regression = CLOSED/PASS EV-299–EV-374
 Zombie+Axe asset-gap remedy = PASS EV-375
 New Balance equipped/raw8 Sprint controls = PASS EV-377
-first raw55 SP2 correction = exact changed predicates runtime PASS EV-378
-Sprint-first SP2 correction = exact changed predicate RUNTIME PASS EV-379
+first raw55 SP2 correction = runtime PASS EV-378
+Sprint-first SP2 correction = runtime PASS EV-379
+Sprint second-FIST timing envelope = MAPPED EV-380
 New Balance full intended-stack compatibility = OPEN
-current responsibility = map Sprint-origin raw55 second-FIST factual state envelope before any next patch
-active Work task = docs/work/active/COLLISION_NEW_BALANCE_RAW55_SPRINT_SECOND_FIST_STATE_INVESTIGATION.md
-research/raw = Keep.txt + two EV-379 active-comparison BlackTroll logs
+current responsibility = implement smallest SPRINT/SP2 second-FIST compatibility correction
+active Work task = docs/work/active/COLLISION_NEW_BALANCE_RAW55_SPRINT_SECOND_FIST_SP2_COMPATIBILITY_CORRECTION.md
 ```
 
 ## Frozen behavior
 
 Permanent raw8:
+
 ```text
 accepted FIST -> one target-directed opportunity OPEN
 native miss -> stays OPEN + latch rearm
@@ -41,7 +42,14 @@ C1 finalization/replacement -> unused opportunity CLOSED
 unmarked raw8 -> native
 ```
 
-No raw8 `FIST_OFF`. Damage/target/block/reaction policy remains Gothic-owned.
+Permanent raw55 first/repeated semantics:
+
+```text
+first accepted FIST -> exact RIGHT raw55 5 -> 7
+later accepted FIST -> ClearTriggeredList/rearm only; no second physical opening
+native target/contact/damage remains Gothic-owned
+native cleanup 7 -> 5 remains Gothic-owned first
+```
 
 Final standalone diagnostic SHA256:
 `5AD5B33A8826DB5E78F4AECADC3FF48546E1C54ADA3BE9ED2BE9A54E6190E313`
@@ -52,41 +60,68 @@ Final standalone behavior SHA256:
 Latest reviewed/deployed diagnostic SHA256:
 `490AC7F6F6931784EA9D5697BA5758DAB11FC0B9437A247FFA9FBC7E13BA1E4C`
 
-## Latest evidence / implementation
+## EV-380 result
 
-- **EV-376:** pre-correction New Balance contradiction: true-Power first/second and Sprint-origin later-current-Power FIST could be rejected at SP2.
-- **EV-377:** equipped Sprint and raw8 Sprint controls PASS; raw8 persistent opportunity and same-C1 `Action9 -> Action2` remain healthy.
-- **Implementation `6eb3e3ca...`:** one-file/three-predicate correction. Runtime confirms every exact changed predicate in EV-378.
-- **EV-378:** additionally proves Sprint-origin first/only FIST can itself arrive at factual `Action9 / SPRINT / SP2`.
-- **Implementation `ce59e5a2...`:** one-file/one-predicate Sprint-first correction; explicit `{SP1,SP2}` while retaining current Sprint identity and mandatory `earlyOpeningSuppressed`.
-- **EV-379:** repeated single-marker Sprint/Action9/SP2 first FIST now accepts, opens exact RIGHT raw55 `5 -> 7`, damages on contact and cleans normally. The exact correction is runtime PASS.
-- **EV-379 new separate finding:** one double-marker Sprint C1 reaches marker2 while still factual `Action9 / SPRINT / SP2`; current second-FIST predicate rejects because it only accepts current Power. Other runs still reach marker2 as `Action2 / POWER / SP2` and accept/rearm normally.
+Deliberate BlackTroll double-FIST fixtures mapped marker2 timing:
+
+```text
+frames 1+3:
+  marker1 SPRINT/SP2 -> accepted/open
+  marker2 SPRINT/SP2 -> currently rejected
+
+frames 1+8:
+  marker2 may be SPRINT/SP2 OR POWER/SP2
+
+frames 1+15:
+  marker2 POWER/SP2 -> accepted/clear-only rearm
+```
+
+The tested Hit is already SP2 at frame1. Sprint/SP1 second-FIST acceptance is therefore unproven and not authorized.
+
+Frozen smallest rule:
+
+```text
+origin = immutable SPRINT
+current POWER  -> preserve explicit SP1 or SP2
+current SPRINT -> additionally accept explicit SP2 only
+NO >=1 generalization
+NO Sprint/SP1 widening
+```
+
+The completed state-mapping investigation is archived at:
+
+`archive/investigations/COLLISION_NEW_BALANCE_RAW55_SPRINT_SECOND_FIST_STATE_INVESTIGATION.md`
 
 ## Exact next route
 
-Active bounded diagnostic investigation:
+Frozen Work task:
 
-`docs/work/active/COLLISION_NEW_BALANCE_RAW55_SPRINT_SECOND_FIST_STATE_INVESTIGATION.md`
+`docs/work/active/COLLISION_NEW_BALANCE_RAW55_SPRINT_SECOND_FIST_SP2_COMPATIBILITY_CORRECTION.md`
 
-Next sequence:
+Work responsibility is one predicate in `PhysicalFistCollision.cpp` only:
 
 ```text
-1. No production source change yet.
-2. Keep marker1 unchanged on the BlackTroll double-FIST Sprint-capable fixture.
-3. Move marker2 earlier.
-4. Run several Sprint executions with the same intended New Balance stack.
-5. Determine whether a legitimate second FIST can arrive as current SPRINT / Action9 / SP1.
-6. Compare with already proven second-FIST states:
-     current POWER  / SP2 -> legitimate + accepted
-     current SPRINT / SP2 -> legitimate arrival + currently rejected
-     current SPRINT / SP1 -> unknown; next probe
-7. Only after the state envelope is known, freeze the smallest complete second-FIST implementation task.
-8. After New Balance compatibility finally closes, run the bounded standalone/no-New-Balance raw55 sentinel from COLLISION_TEST_PLAN.md §4.5.
+Sprint-origin IsSecondFistAllowed:
+  keep current POWER {SP1,SP2}
+  add current SPRINT SP2
 ```
 
-Do not patch only the observed Sprint/SP2 case before testing the earlier marker timing. Do not generalize to `StatePosition >= 1`.
+Protected: first-FIST, true Power, Normal, Quick, identity/origin, lifecycle, cleanup, diagnostics, raw8, equipped collision, hooks.
 
-The two EV-379 logs remain in `research/raw/` temporarily because they are explicit active-comparison evidence for the next marker-timing probe. Archive them under POP-06 when that comparison closes.
+Work build execution is PROHIBITED. Work commits/pushes source + concise `BETWEEN_CHATS.md` handoff, then stops.
+
+After Normal Chat review + User local build, runtime acceptance:
+
+```text
+frame1+3   SPRINT/SP2 marker2 must accept/rearm
+frame1+8   both SPRINT/SP2 and POWER/SP2 outcomes must accept/rearm
+frame1+15  POWER/SP2 remains accepted
+single-FIST Sprint unchanged
+true-Power double unchanged
+Normal/Quick controls unchanged
+```
+
+Then run the separate marked/unmarked sheath/no-sheath Troll Sprint control if the missing-contact observation persists.
 
 ## Current intended New Balance environment
 
@@ -101,24 +136,24 @@ New Balance 0.7 as distributed
 + exactly one Gothic3_Animation_Behaviors collision twin
 ```
 
-## Paused speed-control note
+## Paused speed-control authority
 
-New Balance owns an animation-speed hook. Older public source shows action/weapon-specific returns and additional multipliers; the User reasonably suspects values such as 1H `0.6`, 2H/Axe/Staff/Halberd `0.7`, and Quick/Pierce/Hack `1.0` represent baseline rates inside New Balance's modifier pipeline rather than simple global slowdowns. This remains a working hypothesis for the current distributed binary, not a proven fact.
+Future speed control is now governed by:
 
-When Raise/speed work resumes, do not simply replace New Balance's speed hook. The future design must coexist with or integrate through its modifier chain so applicable New Balance multipliers remain effective. Raise/speed remains paused until collision compatibility closes.
+- `SPEED_CONTROL_ARCHITECTURE.md`
+- `decisions/ADR-0004-speed-control-base-speed-preserves-dynamic-modifiers.md`
+
+Configured speed is **base-speed authority**, not final effective-speed authority. Gothic/New Balance stamina and other legitimate dynamic modifiers must remain composable. Exact v2 hook/order remains research-pending. Raise/speed stays paused until collision compatibility closes.
 
 ## Read next by question
 
-- active task → `work/active/COLLISION_NEW_BALANCE_RAW55_SPRINT_SECOND_FIST_STATE_INVESTIGATION.md`
+- active Work task → `work/active/COLLISION_NEW_BALANCE_RAW55_SPRINT_SECOND_FIST_SP2_COMPATIBILITY_CORRECTION.md`
 - exact continuation → `BETWEEN_CHATS.md`
 - current facts → `COLLISION_REFERENCE.md`
 - validation gate → `COLLISION_TEST_PLAN.md`
 - raw55 architecture → `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`
-- evidence proof → `EVIDENCE_INDEX.md` → EV-376–EV-379
-- closed first SP2 correction → `archive/investigations/COLLISION_NEW_BALANCE_RAW55_SP2_COMPATIBILITY_CORRECTION.md`
-- closed Sprint-first SP2 correction → `archive/investigations/COLLISION_NEW_BALANCE_RAW55_SPRINT_FIRST_SP2_COMPATIBILITY_CORRECTION.md`
-- lifecycle/repair → `COLLISION_LIFECYCLE.md`
-- diagnostics → `COLLISION_DIAGNOSTICS.md`
+- evidence proof → `EVIDENCE_INDEX.md` → EV-376–EV-380
+- speed architecture → `SPEED_CONTROL_ARCHITECTURE.md` / ADR-0004
 
 ## Still paused
 
@@ -126,4 +161,5 @@ When Raise/speed work resumes, do not simply replace New Balance's speed hook. T
 NO production migration until New Balance compatibility + standalone post-compat sentinel close
 NO Raise/speed implementation yet
 NO AttackContinuationProtection work
+NO Normal/SP0 second-FIST widening without separate research
 ```
