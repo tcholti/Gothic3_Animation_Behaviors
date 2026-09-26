@@ -8,53 +8,40 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Current gate: New Balance full intended-stack compatibility remains OPEN. The bounded raw55 Sprint-origin second-FIST SP2 correction is implemented at `4c85193f4efd31e789bc07d7e3c71d31a9b5326e`, independently source-reviewed PASS, and now awaits User local build/deployment + runtime acceptance.
+Current gate: New Balance full intended-stack compatibility remains OPEN, but the focused raw55 Sprint SP2 contradiction is CLOSED/PASS through EV-381.
 
-Latest previously deployed diagnostic:
-
-```text
-Built SHA256 = 490AC7F6F6931784EA9D5697BA5758DAB11FC0B9437A247FFA9FBC7E13BA1E4C
-Live  SHA256 = 490AC7F6F6931784EA9D5697BA5758DAB11FC0B9437A247FFA9FBC7E13BA1E4C
-```
-
-EV-380 pre-correction state envelope:
+Latest deployed diagnostic:
 
 ```text
-frame1+3:
-  marker1 SPRINT/SP2 -> accepted/open
-  marker2 SPRINT/SP2 -> rejected
-
-frame1+8:
-  marker2 can be SPRINT/SP2 OR POWER/SP2
-
-frame1+15:
-  marker2 POWER/SP2 -> accepted/clear-only rearm
+Built SHA256 = B4161D74DD849F4B7B67D9ACCFC42A8D8784F7EF19FB968F2E44D67ED57BD689
+Live  SHA256 = B4161D74DD849F4B7B67D9ACCFC42A8D8784F7EF19FB968F2E44D67ED57BD689
 ```
 
-Earliest tested Hit marker is already SP2; Sprint/SP1 second-FIST support remains unproven.
-
-Implemented rule:
+EV-381 runtime result:
 
 ```text
-origin SPRINT
-current POWER  -> preserve SP1 or SP2
-current SPRINT -> add SP2 only
+1+3:
+  SPRINT/SP2 marker1 -> accepted/open
+  SPRINT/SP2 marker2 -> accepted/clear-only rearm
+
+1+8:
+  POWER/SP2 continuation -> accepted/clear-only rearm
+  EV-380 already proved this authored timing may also remain SPRINT/SP2
+
+1+15:
+  SPRINT/SP2 -> POWER/SP2
+  both accepted correctly
+  zero CORE marker anomalies
+
+true Power:
+  first/second SP2 marker semantics remain correct
 ```
 
-Implementation SHA:
+Published source correction:
 
 `4c85193f4efd31e789bc07d7e3c71d31a9b5326e`
 
-Independent source review:
-
-```text
-PASS
-one commit ahead of frozen parent
-one production file changed
-exact IsSecondFistAllowed / AttackFamily_Sprint branch only
-```
-
-Current source:
+Exact Sprint-origin second-FIST rule:
 
 ```cpp
 return (currentFamily == AttackFamily_Power
@@ -63,32 +50,37 @@ return (currentFamily == AttackFamily_Power
         && statePosition == 2);
 ```
 
-Protected behavior remains untouched by the implementation diff: first-FIST predicates, Power/Normal/Quick, immutable origin/identity, raw8, generic equipped, lifecycle, native cleanup, diagnostics and hooks.
+No Sprint/SP1 and no generic `>=1` widening.
 
-Hard exclusions remain: no `>=1`; no Sprint/SP1; no Normal/SP0 change; no new hook/state/timer/species/name/file/DLL policy; no custom damage.
-
-Active runtime-gated task:
-
-`docs/work/active/COLLISION_NEW_BALANCE_RAW55_SPRINT_SECOND_FIST_SP2_COMPATIBILITY_CORRECTION.md`
-
-Next local runtime batch:
+Important contact result:
 
 ```text
-1+3  SPRINT/SP2 marker2 must accept/rearm, no second physical opening
-1+8  SPRINT/SP2 and POWER/SP2 marker2 outcomes must both accept/rearm
-1+15 POWER/SP2 remains accepted/rearm
-single-FIST Sprint unchanged
-true-Power double unchanged
-Normal/Quick controls unchanged
+accepted/open/rearmed marker opportunity != guaranteed ONDAMAGE
 ```
 
-After that, separate controlled sheath question:
+Correctly accepted true-Power attacks can miss completely downstream. The unmarked/native control also contains native raw55 windows that open and clean with no damage. The User's sheath/draw-associated missing-contact observation is therefore not a G3AB marker blocker on current evidence.
+
+Exact native Sprint-after-sheath miss causality was not isolated in the log and should not be overstated; it remains non-blocking unless later needed.
+
+Separate/deferred finding:
 
 ```text
-marked Sprint: no sheath vs deliberate sheath
-unmarked/native Sprint: no sheath vs same sheath timing
+very early Normal marker2 can arrive NORMAL/SP0
+current Normal second-FIST gate rejects it
 ```
 
-Use that to distinguish marker ownership from native/New Balance target/contact-state behavior.
+This is a distinct animator-authoring-boundary question, not part of the Sprint correction.
+
+Active Work task: NONE.
+
+Next route:
+
+```text
+1. broader representative/full intended New Balance stack compatibility
+2. standalone/no-New-Balance post-compat raw55 sentinel
+3. production collision migration + diagnostics-free integration validation
+```
+
+Do not reopen the Sprint predicate without contradictory runtime evidence.
 
 Paused speed authority: `DESIGN.md` §3 + ADR-0004. Configured speed is base-speed authority; native/New Balance dynamic modifiers must remain composable.
