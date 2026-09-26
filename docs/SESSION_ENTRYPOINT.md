@@ -26,7 +26,7 @@ New Balance equipped/raw8 Sprint controls = PASS EV-377
 raw55 Power/Sprint compatibility corrections = PASS EV-378–EV-381
 raw55 Normal second-FIST {SP0,SP1} correction = PASS EV-382
 focused raw55 Normal/Quick/Power/Sprint-origin New Balance compatibility = CLOSED/PASS
-New Balance full intended-stack compatibility = OPEN
+New Balance full intended-stack compatibility = OPEN / CURRENT GATE
 active Work task = NONE
 ```
 
@@ -60,7 +60,7 @@ native cleanup 7 -> 5 remains Gothic-owned first
 
 EV-382 directly proves the Normal SP0 repeated-contact route after hit1: marker2 can still be `NORMAL/SP0`, is accepted with `ClearTriggeredList=1`, requests no second physical opening, and can produce a later native hit2. Very-early marker2 before hit1 is also accepted without creating any artificial damage guarantee.
 
-The three EV-382 fixtures (`1+3`, `1+8`, `1+15`) contain zero marker anomalies and preserve Quick/Power/Sprint controls. In the current New Balance timing, even frame15 Normal marker2 commonly remains SP0; the older SP1 route remains accepted and was already runtime-proven in the original Normal causal campaign.
+The three EV-382 fixtures (`1+3`, `1+8`, `1+15`) contain zero marker anomalies and preserve Quick/Power/Sprint controls. In current New Balance timing, even frame15 Normal marker2 commonly remains SP0; the older SP1 route remains accepted and was already runtime-proven in the original Normal causal campaign.
 
 ## Deployment references
 
@@ -76,10 +76,9 @@ Latest deployed diagnostic SHA256:
 ## Exact next route
 
 ```text
-1. canonicalize EV-382 + archive completed Normal task/logs
-2. broader representative/full-stack New Balance compatibility run
-3. if full-stack gate passes: standalone/no-New-Balance post-compat raw55 sentinel
-4. production collision migration + diagnostics-free integration validation
+1. broader representative/full-stack New Balance compatibility run
+2. if full-stack gate passes: standalone/no-New-Balance post-compat raw55 sentinel
+3. production collision migration + diagnostics-free integration validation
 ```
 
 Do not reopen focused raw55 behavior without concrete contradictory evidence.
