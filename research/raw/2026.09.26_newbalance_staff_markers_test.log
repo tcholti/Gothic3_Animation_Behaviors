@@ -1,0 +1,666 @@
+Script_FrameCollisionTest diagnostic build loaded.
+DiagnosticProfile: CORE
+DeepDiagnostics: DISABLED
+BehaviorCore: EngineBridge + FrameCollisionMarkers + CollisionSources + CollisionSourceOperations + CollisionLifecycleGuard + EquippedSprintCollision + Raw8FistCollision + PhysicalFistCollision + AttackMotionRouting + RuntimeClock
+C1Repair: exact outstanding live equipped Item_Attack source -> Item_Equipped after native AISetState opportunity; no ClearTriggeredList.
+MarkerFamilies: Normal Power Quick SimpleWhirl Whirl Pierce Hack Sprint
+MarkerOpcodes: RIGHT LEFT BOTH OFF FIST
+HACK_CALLBACK_IDENTITY TargetRVA=0x433D0 ExactlyOne=1 MatchCount=1 Name=OnAI_HackAttack Source=.\Script\AI\AI_Commands\AI_HackAttack.cpp
+Installing behavior hooks...
+Hooks installed.
+
+CORE C1_START ElapsedMs=24232.343 Actor=PC_Hero Generation=1 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=24232.385 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=1 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=24238.161 Event=PERSISTED Actor=PC_Hero Generation=1 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=24238.199 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=24485.919 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=24485.941 Actor=PC_Hero Generation=1 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=24485.953 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=1 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=12
+CORE COLLISION_GROUP ElapsedMs=24762.868 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=24762.904 Actor=PC_Hero Generation=1 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=24762.961 Actor=PC_Hero Generation=1 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=26176.327 Actor=PC_Hero Generation=2 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=26176.339 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=2 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=26182.517 Event=PERSISTED Actor=PC_Hero Generation=2 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=26182.546 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=26416.981 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=26417.008 Actor=PC_Hero Generation=2 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=26417.021 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=2 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=12
+CORE COLLISION_GROUP ElapsedMs=26688.343 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=26688.363 Actor=PC_Hero Generation=2 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=26688.408 Actor=PC_Hero Generation=2 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=28089.832 Actor=PC_Hero Generation=3 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=28089.844 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=3 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=28095.757 Event=PERSISTED Actor=PC_Hero Generation=3 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=28095.789 Actor=PC_Hero Family=QUICK Action=4 Phase=1 Motion=Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=28293.870 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=28293.894 Actor=PC_Hero Generation=3 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=28293.908 Actor=PC_Hero Action=4 Family=QUICK Phase=1 Motion=Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=3 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=12
+CORE COLLISION_GROUP ElapsedMs=28487.088 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=28487.147 Actor=PC_Hero Generation=3 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=28569.837 Actor=PC_Hero Generation=3 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=29573.029 Actor=PC_Hero Generation=4 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=29573.041 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=4 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=29579.055 Event=PERSISTED Actor=PC_Hero Generation=4 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=29643.055 Actor=PC_Hero Generation=4 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=29646.515 Actor=PC_Hero Generation=5 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=29646.526 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=5 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=29652.090 Event=PERSISTED Actor=PC_Hero Generation=5 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=29652.119 Actor=PC_Hero Family=QUICK Action=5 Phase=1 Motion=Hero_Stand_None_Staff_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=29858.358 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=29858.390 Actor=PC_Hero Generation=5 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=29858.406 Actor=PC_Hero Action=5 Family=QUICK Phase=1 Motion=Hero_Stand_None_Staff_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=5 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=12
+CORE COLLISION_GROUP ElapsedMs=30041.907 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=30041.927 Actor=PC_Hero Generation=5 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=30130.032 Actor=PC_Hero Generation=5 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=31983.996 Actor=PC_Hero Generation=6 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=31984.008 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=6 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=31989.409 Event=PERSISTED Actor=PC_Hero Generation=6 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=32456.028 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=6 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=32462.704 Actor=PC_Hero Family=POWER Action=2 Phase=1 Motion=Hero_Stand_None_Staff_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=32596.743 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=32596.771 Actor=PC_Hero Generation=6 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=32596.784 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_None_Staff_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=6 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=12
+CORE COLLISION_GROUP ElapsedMs=32892.668 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=32892.688 Actor=PC_Hero Generation=6 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=32892.726 Actor=PC_Hero Generation=6 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=34433.977 Actor=PC_Hero Generation=7 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=34433.990 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=7 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=34439.528 Event=PERSISTED Actor=PC_Hero Generation=7 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=34904.468 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=7 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=34910.817 Actor=PC_Hero Family=POWER Action=2 Phase=1 Motion=Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=35043.768 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=35043.800 Actor=PC_Hero Generation=7 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=35043.812 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=7 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=12
+CORE COLLISION_GROUP ElapsedMs=35334.513 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=35334.533 Actor=PC_Hero Generation=7 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=35334.572 Actor=PC_Hero Generation=7 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=41443.026 Actor=PC_Hero Generation=8 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=41443.040 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=8 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE C1_STATUS ElapsedMs=41449.525 Event=PERSISTED Actor=PC_Hero Generation=8 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=42148.400 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=8 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=42153.960 Actor=PC_Hero Family=HACK Action=14 Phase=1 Motion=Hero_Parade_None_Staff_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_100.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=42287.361 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=42287.389 Actor=PC_Hero Generation=8 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=42287.401 Actor=PC_Hero Action=14 Family=HACK Phase=1 Motion=Hero_Parade_None_Staff_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_100.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=8 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=12
+CORE COLLISION_GROUP ElapsedMs=42587.077 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=42587.113 Actor=PC_Hero Generation=8 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_BIND ElapsedMs=42587.152 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=8 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE C1_FINAL ElapsedMs=43110.545 Actor=PC_Hero Generation=8 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=45151.719 Actor=PC_Hero Generation=9 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=45151.732 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=9 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_WhirlAttack
+CORE C1_STATUS ElapsedMs=45157.063 Event=PERSISTED Actor=PC_Hero Generation=9 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=45157.141 Actor=PC_Hero Family=WHIRL Action=10 Phase=1 Motion=Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=45306.156 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=45306.184 Actor=PC_Hero Generation=9 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=45306.197 Actor=PC_Hero Action=10 Family=WHIRL Phase=1 Motion=Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=9 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=12
+CORE COLLISION_GROUP ElapsedMs=45544.111 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=45544.139 Actor=PC_Hero Generation=9 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE MARKER ElapsedMs=45544.149 Actor=PC_Hero Action=10 Family=WHIRL Phase=1 Motion=Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=OFF Result=OFF_ACCEPTED C1Valid=1 C1=9 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=1 MarkerOwnedMask=0 Activated=0 Deactivated=1 Retired=0 RearmRequests=0 Clears=0 RightUseType=12
+CORE COLLISION_GROUP ElapsedMs=45738.852 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=45738.879 Actor=PC_Hero Generation=9 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=45738.891 Actor=PC_Hero Action=10 Family=WHIRL Phase=1 Motion=Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=9 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=12
+CORE MARKER ElapsedMs=45738.908 Actor=PC_Hero Action=10 Family=WHIRL Phase=1 Motion=Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=OFF Result=AUTHORED_OCCURRENCE_BUDGET_IGNORED C1Valid=1 C1=9 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Authored=1 AcceptedBefore=1 AcceptedAfter=1
+CORE MARKER ElapsedMs=45738.923 Actor=PC_Hero Action=10 Family=WHIRL Phase=1 Motion=Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=DUPLICATE_SAME_UPDATE_IGNORED C1Valid=1 C1=9 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 DuplicateStateDelta=0.000000000 DuplicateMsDelta=0.088000
+CORE COLLISION_GROUP ElapsedMs=45952.996 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=45953.017 Actor=PC_Hero Generation=9 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=45953.056 Actor=PC_Hero Generation=9 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=50020.847 Actor=PC_Hero Generation=10 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=50020.861 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=10 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE C1_STATUS ElapsedMs=50020.955 Event=PERSISTED Actor=PC_Hero Generation=10 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=50038.368 Actor=PC_Hero Generation=10 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=50041.881 Actor=PC_Hero Generation=11 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=50041.891 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=11 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_WhirlAttack
+CORE C1_STATUS ElapsedMs=50041.987 Event=PERSISTED Actor=PC_Hero Generation=11 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=50192.163 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=50192.192 Actor=PC_Hero Generation=11 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=50192.205 Actor=PC_Hero Action=10 Family=WHIRL Phase=1 Motion=Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=11 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=12
+CORE COLLISION_GROUP ElapsedMs=50424.229 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=50424.256 Actor=PC_Hero Generation=11 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE MARKER ElapsedMs=50424.266 Actor=PC_Hero Action=10 Family=WHIRL Phase=1 Motion=Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=OFF Result=OFF_ACCEPTED C1Valid=1 C1=11 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=1 MarkerOwnedMask=0 Activated=0 Deactivated=1 Retired=0 RearmRequests=0 Clears=0 RightUseType=12
+CORE C1_FINAL ElapsedMs=50436.561 Actor=PC_Hero Generation=11 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+===== CORE MARKER ANOMALY / DISCOVERY =====
+ElapsedMs: 50617.578
+Actor: PC_Hero
+Action: 0
+Family: UNKNOWN
+AniPhase: 1
+StatePosition: 0
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerName: G3AB_COL_RIGHT
+MarkerOpcode: RIGHT
+Result: REJECTED_UNSUPPORTED_HIT
+C1GenerationValid: 0
+C1Generation: 0
+RequiredSourceMask: 0
+MissingSourceMask: 0
+RightSourceSlot: RIGHT
+RightSourceName: Wrestling Staff_BBM
+RightSourceUseType: 12
+RightSourceCollisionGroup: 5
+LeftSourceSlot: LEFT
+LeftSourceName: <none>
+LeftSourceUseType: -1
+LeftSourceCollisionGroup: -1
+Raw8FistSourceName: <none>
+Raw8FistSourceUseType: -1
+Raw8FistSourceCollisionGroup: -1
+===========================================
+
+===== CORE MARKER ANOMALY / DISCOVERY =====
+ElapsedMs: 50617.623
+Actor: PC_Hero
+Action: 0
+Family: UNKNOWN
+AniPhase: 1
+StatePosition: 0
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerName: G3AB_COL_OFF
+MarkerOpcode: OFF
+Result: REJECTED_UNSUPPORTED_HIT
+C1GenerationValid: 0
+C1Generation: 0
+RequiredSourceMask: 0
+MissingSourceMask: 0
+RightSourceSlot: RIGHT
+RightSourceName: Wrestling Staff_BBM
+RightSourceUseType: 12
+RightSourceCollisionGroup: 5
+LeftSourceSlot: LEFT
+LeftSourceName: <none>
+LeftSourceUseType: -1
+LeftSourceCollisionGroup: -1
+Raw8FistSourceName: <none>
+Raw8FistSourceUseType: -1
+Raw8FistSourceCollisionGroup: -1
+===========================================
+
+===== CORE MARKER ANOMALY / DISCOVERY =====
+ElapsedMs: 50617.647
+Actor: PC_Hero
+Action: 0
+Family: UNKNOWN
+AniPhase: 1
+StatePosition: 0
+CurrentMovementAni: Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot
+MarkerName: G3AB_COL_RIGHT
+MarkerOpcode: RIGHT
+Result: REJECTED_UNSUPPORTED_HIT
+C1GenerationValid: 0
+C1Generation: 0
+RequiredSourceMask: 0
+MissingSourceMask: 0
+RightSourceSlot: RIGHT
+RightSourceName: Wrestling Staff_BBM
+RightSourceUseType: 12
+RightSourceCollisionGroup: 5
+LeftSourceSlot: LEFT
+LeftSourceName: <none>
+LeftSourceUseType: -1
+LeftSourceCollisionGroup: -1
+Raw8FistSourceName: <none>
+Raw8FistSourceUseType: -1
+Raw8FistSourceCollisionGroup: -1
+===========================================
+
+CORE C1_START ElapsedMs=65008.988 Actor=PC_Hero Generation=12 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=65009.001 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=12 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=65009.100 Event=PERSISTED Actor=PC_Hero Generation=12 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=65009.118 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=65273.850 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=65273.879 Actor=PC_Hero Generation=12 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=65273.892 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=12 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=12
+CORE ONDAMAGE ElapsedMs=65333.412 Ordinal=1 Target=Golem Arg1=Golem Arg2=Golem Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=65337.451 Actor=Golem Generation=13 Status=CANDIDATE Outstanding=0 TrackedSources=0 ReplacedGeneration=0 ReplacedOutstanding=0
+CORE C1_BIND ElapsedMs=65337.461 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=13 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=65337.766 Event=PERSISTED Actor=Golem Generation=13 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=65551.538 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=65551.566 Actor=PC_Hero Generation=12 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=65551.607 Actor=PC_Hero Generation=12 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=65694.252 Actor=Golem Generation=13 Status=PERSISTED SourceCount=0 PhysicalChanged=0
+CORE C1_START ElapsedMs=66045.131 Actor=PC_Hero Generation=14 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=66045.145 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=14 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=66045.251 Event=PERSISTED Actor=PC_Hero Generation=14 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=66045.269 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=66309.877 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=66309.909 Actor=PC_Hero Generation=14 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=66309.922 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=14 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=12
+CORE ONDAMAGE ElapsedMs=66372.911 Ordinal=2 Target=Golem Arg1=Golem Arg2=Golem Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE COLLISION_GROUP ElapsedMs=66590.446 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=66590.474 Actor=PC_Hero Generation=14 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=66590.515 Actor=PC_Hero Generation=14 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=66803.797 Actor=Golem Generation=15 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=66803.810 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=15 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=66804.196 Event=PERSISTED Actor=Golem Generation=15 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=66918.807 Actor=PC_Hero Generation=16 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=66918.819 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=16 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=66918.928 Event=PERSISTED Actor=PC_Hero Generation=16 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=66918.948 Actor=PC_Hero Family=QUICK Action=4 Phase=1 Motion=Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE C1_BIND ElapsedMs=67138.625 Event=COMBAT_MOVE_REUSED Actor=Golem Generation=15 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=67139.107 Actor=Golem Family=SPRINT Action=9 Phase=1 Motion=Golem_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_250_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=67139.126 Source=Fist_Golem UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE COLLISION_GROUP ElapsedMs=67153.390 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=67153.414 Actor=PC_Hero Generation=16 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=67153.427 Actor=PC_Hero Action=4 Family=QUICK Phase=1 Motion=Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=16 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=12
+CORE ONDAMAGE ElapsedMs=67161.251 Ordinal=3 Target=Golem Arg1=Golem Arg2=Golem Caller=Game.dll+0x00069484 PlayerAction=4 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE COLLISION_GROUP ElapsedMs=67347.456 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=67347.515 Actor=PC_Hero Generation=16 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE ONDAMAGE ElapsedMs=67370.860 Ordinal=4 Target=PC_Hero Arg1=Fist_Golem Arg2=Golem Caller=Game.dll+0x0016E348 PlayerAction=4 PlayerPhase=3 PlayerMotion=Hero_Stand_None_Staff_P1_QuickAttackR_Recover_N_Fwd_00_%_00_P1_0_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=67378.201 Actor=PC_Hero Generation=17 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=16 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_STATUS ElapsedMs=67389.011 Event=PERSISTED Actor=PC_Hero Generation=17 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=67525.879 Actor=Golem Generation=15 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Golem Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=67534.374 Actor=Golem Generation=18 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=67534.400 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=18 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=67534.827 Event=PERSISTED Actor=Golem Generation=18 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=67534.848 Actor=Golem Family=NORMAL Action=1 Phase=1 Motion=Golem_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE ONDAMAGE ElapsedMs=67766.528 Ordinal=5 Target=PC_Hero Arg1=Fist_Golem Arg2=Golem Caller=Game.dll+0x0016E348 PlayerAction=29 PlayerPhase=4 PlayerMotion=Hero_Stand_None_Staff_P1_LieKnockDown_Begin_N_Back_00_%_00_P0_150.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE COLLISION_GROUP ElapsedMs=67773.876 Source=Fist_Golem UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=67918.800 Actor=Golem Generation=18 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Golem Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=67930.332 Actor=Golem Generation=19 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=67930.344 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=19 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=67930.728 Event=PERSISTED Actor=Golem Generation=19 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=67930.747 Actor=Golem Family=NORMAL Action=1 Phase=1 Motion=Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_200_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE ONDAMAGE ElapsedMs=68173.465 Ordinal=6 Target=PC_Hero Arg1=Fist_Golem Arg2=Golem Caller=Game.dll+0x0016E348 PlayerAction=29 PlayerPhase=4 PlayerMotion=Hero_Stand_None_Staff_P1_LieKnockDown_Begin_N_Back_00_%_00_P0_150.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE COLLISION_GROUP ElapsedMs=68180.454 Source=Fist_Golem UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=68308.955 Actor=Golem Generation=19 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Golem Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=69266.774 Actor=PC_Hero Generation=17 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=69276.391 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=69276.420 Actor=PC_Hero Generation=20 Status=OUTER_BOUND Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=7
+CORE C1_BIND ElapsedMs=69276.425 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=20 Status=OUTER_BOUND Outstanding=0 Source=Wrestling Staff_BBM Script=_AI_GetUpAttack
+CORE C1 OFFENSE REQUEST ElapsedMs=69276.429 Actor=PC_Hero Generation=20 Status=OUTER_BOUND Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_BIND ElapsedMs=69276.465 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=20 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+CORE COLLISION_GROUP ElapsedMs=69374.284 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=69374.320 Actor=PC_Hero Generation=20 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE ONDAMAGE ElapsedMs=69528.058 Ordinal=7 Target=Golem Arg1=Golem Arg2=Golem Caller=Game.dll+0x00069484 PlayerAction=30 PlayerPhase=1 PlayerMotion=Hero_SitKnockDown_None_Staff_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=69532.661 Actor=Golem Generation=21 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=69532.673 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=21 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=69533.210 Event=PERSISTED Actor=Golem Generation=21 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=69665.667 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=69665.687 Actor=PC_Hero Generation=20 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=69665.721 Actor=PC_Hero Generation=20 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=69806.171 Actor=PC_Hero Generation=22 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=69806.185 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=22 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=69806.273 Event=PERSISTED Actor=PC_Hero Generation=22 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=69838.285 Actor=PC_Hero Generation=22 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=69839.251 Actor=PC_Hero Generation=23 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=69839.261 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=23 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=69839.373 Event=PERSISTED Actor=PC_Hero Generation=23 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=69839.391 Actor=PC_Hero Family=QUICK Action=5 Phase=1 Motion=Hero_Stand_None_Staff_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE C1_FINAL ElapsedMs=69888.240 Actor=Golem Generation=21 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Golem Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=70065.765 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=70065.793 Actor=PC_Hero Generation=23 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=70065.806 Actor=PC_Hero Action=5 Family=QUICK Phase=1 Motion=Hero_Stand_None_Staff_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=23 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=12
+CORE ONDAMAGE ElapsedMs=70114.346 Ordinal=8 Target=Golem Arg1=Golem Arg2=Golem Caller=Game.dll+0x00069484 PlayerAction=5 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Staff_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=70121.775 Actor=Golem Generation=24 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=70121.787 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=24 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=70122.169 Event=PERSISTED Actor=Golem Generation=24 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=70264.705 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=70264.733 Actor=PC_Hero Generation=23 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=70362.974 Actor=PC_Hero Generation=23 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=70371.720 Actor=PC_Hero Generation=25 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=70371.732 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=25 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=70371.845 Event=PERSISTED Actor=PC_Hero Generation=25 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=70371.863 Actor=PC_Hero Family=QUICK Action=4 Phase=1 Motion=Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE C1_FINAL ElapsedMs=70484.991 Actor=Golem Generation=24 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Golem Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=70600.690 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=70600.718 Actor=PC_Hero Generation=25 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=70600.731 Actor=PC_Hero Action=4 Family=QUICK Phase=1 Motion=Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=25 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=12
+CORE ONDAMAGE ElapsedMs=70653.170 Ordinal=9 Target=Golem Arg1=Golem Arg2=Golem Caller=Game.dll+0x00069484 PlayerAction=4 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=70664.613 Actor=Golem Generation=26 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=70664.641 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=26 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=70664.738 Event=PERSISTED Actor=Golem Generation=26 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=70795.474 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=70795.503 Actor=PC_Hero Generation=25 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=70896.552 Actor=PC_Hero Generation=25 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=71020.251 Actor=Golem Generation=26 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Golem Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=71349.711 Actor=PC_Hero Generation=27 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=71349.724 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=27 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=71349.804 Event=PERSISTED Actor=PC_Hero Generation=27 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=71601.344 Actor=Golem Generation=28 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=71601.356 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=28 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=71601.427 Event=PERSISTED Actor=Golem Generation=28 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=71601.443 Actor=Golem Family=NORMAL Action=1 Phase=1 Motion=Golem_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE ONDAMAGE ElapsedMs=71835.745 Ordinal=10 Target=PC_Hero Arg1=Fist_Golem Arg2=Golem Caller=Game.dll+0x0016E348 PlayerAction=2 PlayerPhase=0 PlayerMotion=Hero_Stand_None_Staff_P1_PowerAttack_Raise_N_Fwd_00_%_00_P1_0_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=71837.470 Actor=PC_Hero Generation=29 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=27 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=71837.478 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=29 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=71843.126 Event=PERSISTED Actor=PC_Hero Generation=29 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=71851.325 Source=Fist_Golem UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=71991.005 Actor=Golem Generation=28 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Golem Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=72146.772 Actor=PC_Hero Generation=29 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=72465.076 Actor=PC_Hero Generation=30 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=72465.089 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=30 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=72465.170 Event=PERSISTED Actor=PC_Hero Generation=30 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=72964.855 Actor=Golem Generation=31 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=72964.868 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=31 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=72965.247 Event=PERSISTED Actor=Golem Generation=31 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=72982.996 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=30 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=72983.117 Actor=PC_Hero Family=POWER Action=2 Phase=1 Motion=Hero_Stand_None_Staff_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=73134.552 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=73134.578 Actor=PC_Hero Generation=30 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=73134.590 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_None_Staff_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=30 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=12
+CORE C1_FINAL ElapsedMs=73435.240 Actor=Golem Generation=31 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Golem Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=73444.945 Actor=Golem Generation=32 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=73444.957 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=32 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=73445.037 Event=PERSISTED Actor=Golem Generation=32 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=73445.052 Actor=Golem Family=NORMAL Action=1 Phase=1 Motion=Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_200_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=73453.902 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=73453.931 Actor=PC_Hero Generation=30 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=73453.970 Actor=PC_Hero Generation=30 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE ONDAMAGE ElapsedMs=73684.465 Ordinal=11 Target=PC_Hero Arg1=Fist_Golem Arg2=Golem Caller=Game.dll+0x0016E348 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_Staff_P1_Ambient_Loop_N_Fwd_00_%_00_P1_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=73686.011 Actor=PC_Hero Generation=33 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_STATUS ElapsedMs=73686.081 Event=PERSISTED Actor=PC_Hero Generation=33 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=73693.745 Source=Fist_Golem UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=73836.129 Actor=Golem Generation=32 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Golem Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=75650.629 Actor=PC_Hero Generation=33 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=75658.554 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=75658.587 Actor=PC_Hero Generation=34 Status=OUTER_BOUND Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=7
+CORE C1_BIND ElapsedMs=75658.594 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=34 Status=OUTER_BOUND Outstanding=0 Source=Wrestling Staff_BBM Script=_AI_GetUpAttack
+CORE C1 OFFENSE REQUEST ElapsedMs=75658.598 Actor=PC_Hero Generation=34 Status=OUTER_BOUND Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_BIND ElapsedMs=75658.636 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=34 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+CORE COLLISION_GROUP ElapsedMs=75759.752 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=75759.781 Actor=PC_Hero Generation=34 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_START ElapsedMs=76020.309 Actor=Golem Generation=35 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=76020.321 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=35 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=76020.401 Event=PERSISTED Actor=Golem Generation=35 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=76020.417 Actor=Golem Family=NORMAL Action=1 Phase=1 Motion=Golem_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=76053.648 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=76053.675 Actor=PC_Hero Generation=34 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=76053.707 Actor=PC_Hero Generation=34 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE ONDAMAGE ElapsedMs=76260.847 Ordinal=12 Target=PC_Hero Arg1=Fist_Golem Arg2=Golem Caller=Game.dll+0x0016E348 PlayerAction=0 PlayerPhase=3 PlayerMotion=Hero_SitKnockDown_None_Staff_P1_GetUpAttack_Recover_N_Fwd_00_%_00_P1_0_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=76262.583 Actor=PC_Hero Generation=36 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_STATUS ElapsedMs=76262.652 Event=PERSISTED Actor=PC_Hero Generation=36 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=76270.723 Source=Fist_Golem UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=76418.009 Actor=Golem Generation=35 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Golem Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=77619.035 Actor=Golem Generation=37 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=77619.048 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=37 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=77619.130 Event=PERSISTED Actor=Golem Generation=37 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=77619.146 Actor=Golem Family=NORMAL Action=1 Phase=1 Motion=Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_200_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE C1_START ElapsedMs=77857.817 Actor=Golem Generation=38 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=37 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_STATUS ElapsedMs=77857.897 Event=PERSISTED Actor=Golem Generation=38 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=77870.644 Source=Fist_Golem UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=78236.869 Actor=PC_Hero Generation=36 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=78245.045 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=78245.073 Actor=PC_Hero Generation=39 Status=OUTER_BOUND Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=7
+CORE C1_BIND ElapsedMs=78245.080 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=39 Status=OUTER_BOUND Outstanding=0 Source=Wrestling Staff_BBM Script=_AI_GetUpAttack
+CORE C1 OFFENSE REQUEST ElapsedMs=78245.084 Actor=PC_Hero Generation=39 Status=OUTER_BOUND Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_BIND ElapsedMs=78245.121 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=39 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+CORE ONDAMAGE ElapsedMs=78282.988 Ordinal=13 Target=Golem Arg1=Golem Arg2=Golem Caller=Game.dll+0x00069484 PlayerAction=30 PlayerPhase=1 PlayerMotion=Hero_SitKnockDown_None_Staff_P0_GetUpAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=78287.729 Actor=Golem Generation=40 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=38 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=78287.740 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=40 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=78287.817 Event=PERSISTED Actor=Golem Generation=40 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=78344.313 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=78344.341 Actor=PC_Hero Generation=39 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE COLLISION_GROUP ElapsedMs=78644.821 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=78644.851 Actor=PC_Hero Generation=39 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=78644.880 Actor=PC_Hero Generation=39 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=78653.119 Actor=Golem Generation=40 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Golem Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=78707.376 Actor=PC_Hero Generation=41 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=78707.388 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=41 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=78707.463 Event=PERSISTED Actor=PC_Hero Generation=41 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=79112.326 Actor=Golem Generation=42 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=79112.339 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=42 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=79112.419 Event=PERSISTED Actor=Golem Generation=42 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=79112.438 Actor=Golem Family=NORMAL Action=1 Phase=1 Motion=Golem_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE C1_BIND ElapsedMs=79241.752 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=41 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=79241.953 Actor=PC_Hero Family=POWER Action=2 Phase=1 Motion=Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE ONDAMAGE ElapsedMs=79353.884 Ordinal=14 Target=PC_Hero Arg1=Fist_Golem Arg2=Golem Caller=Game.dll+0x0016E348 PlayerAction=2 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=79355.531 Actor=PC_Hero Generation=43 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=41 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=79355.540 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=43 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=79355.622 Event=PERSISTED Actor=PC_Hero Generation=43 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=79363.484 Source=Fist_Golem UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=79510.999 Actor=Golem Generation=42 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Golem Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=79657.251 Actor=PC_Hero Generation=43 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=80063.091 Actor=PC_Hero Generation=44 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=80063.104 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=44 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=80063.184 Event=PERSISTED Actor=PC_Hero Generation=44 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=80087.923 Actor=Golem Generation=45 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=80087.935 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=45 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=80088.008 Event=PERSISTED Actor=Golem Generation=45 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=80563.699 Actor=Golem Generation=45 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Golem Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_BIND ElapsedMs=80589.392 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=44 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=80589.520 Actor=PC_Hero Family=POWER Action=2 Phase=1 Motion=Hero_Stand_None_Staff_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=80739.101 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=80739.129 Actor=PC_Hero Generation=44 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=80739.197 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_None_Staff_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=44 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=12
+CORE ONDAMAGE ElapsedMs=80813.831 Ordinal=15 Target=Golem Arg1=Golem Arg2=Golem Caller=Game.dll+0x00069484 PlayerAction=2 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Staff_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_100_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=80821.563 Actor=Golem Generation=46 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=80821.574 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=46 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=80821.884 Event=PERSISTED Actor=Golem Generation=46 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=81062.293 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=81062.322 Actor=PC_Hero Generation=44 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=81062.362 Actor=PC_Hero Generation=44 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=81183.510 Actor=Golem Generation=46 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Golem Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=81609.020 Actor=Golem Generation=47 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=81609.033 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=47 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=81609.105 Event=PERSISTED Actor=Golem Generation=47 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=81609.120 Actor=Golem Family=NORMAL Action=1 Phase=1 Motion=Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_200_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE C1_START ElapsedMs=81718.787 Actor=PC_Hero Generation=48 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=81718.800 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=48 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=81718.880 Event=PERSISTED Actor=PC_Hero Generation=48 Status=PERSISTED Outstanding=0
+CORE ONDAMAGE ElapsedMs=81846.587 Ordinal=16 Target=PC_Hero Arg1=Fist_Golem Arg2=Golem Caller=Game.dll+0x0016E348 PlayerAction=16 PlayerPhase=4 PlayerMotion=Hero_Stand_None_Staff_P1_Parade_Begin_N_Fwd_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=81848.501 Actor=PC_Hero Generation=49 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=48 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_STATUS ElapsedMs=81848.570 Event=PERSISTED Actor=PC_Hero Generation=49 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=81856.866 Source=Fist_Golem UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=82001.146 Actor=Golem Generation=47 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Golem Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=82011.099 Actor=Golem Generation=50 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=82011.111 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=50 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=82011.200 Event=PERSISTED Actor=Golem Generation=50 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=82011.219 Actor=Golem Family=NORMAL Action=1 Phase=1 Motion=Golem_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE ONDAMAGE ElapsedMs=82254.912 Ordinal=17 Target=PC_Hero Arg1=Fist_Golem Arg2=Golem Caller=Game.dll+0x0016E348 PlayerAction=29 PlayerPhase=4 PlayerMotion=Hero_Stand_None_Staff_P1_LieKnockDown_Begin_N_Back_00_%_00_P0_150.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE COLLISION_GROUP ElapsedMs=82262.672 Source=Fist_Golem UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=82404.308 Actor=Golem Generation=50 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Golem Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=83820.888 Actor=PC_Hero Generation=49 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=83829.065 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=83829.092 Actor=PC_Hero Generation=51 Status=OUTER_BOUND Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=7
+CORE C1_BIND ElapsedMs=83829.098 Event=PRECOMBAT_ACQUIRED Actor=PC_Hero Generation=51 Status=OUTER_BOUND Outstanding=0 Source=Wrestling Staff_BBM Script=_AI_GetUpAttack
+CORE C1 OFFENSE REQUEST ElapsedMs=83829.101 Actor=PC_Hero Generation=51 Status=OUTER_BOUND Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_BIND ElapsedMs=83829.127 Event=PRECOMBAT_BRIDGE_CONSUMED Actor=PC_Hero Generation=51 Status=PERSISTED Outstanding=1 Source=<null> Script=_AI_GetUpAttack
+CORE COLLISION_GROUP ElapsedMs=83934.374 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=83934.404 Actor=PC_Hero Generation=51 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE C1_START ElapsedMs=83952.803 Actor=Golem Generation=52 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=83952.816 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=52 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=83952.916 Event=PERSISTED Actor=Golem Generation=52 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=83952.932 Actor=Golem Family=NORMAL Action=1 Phase=1 Motion=Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_200_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=84202.976 Source=Fist_Golem UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE COLLISION_GROUP ElapsedMs=84229.849 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=84229.877 Actor=PC_Hero Generation=51 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=84229.910 Actor=PC_Hero Generation=51 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=84303.414 Actor=PC_Hero Generation=53 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=84303.426 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=53 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=84303.514 Event=PERSISTED Actor=PC_Hero Generation=53 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=84362.962 Actor=Golem Generation=52 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Golem Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=84622.093 Actor=PC_Hero Generation=53 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=84637.526 Actor=PC_Hero Generation=54 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=84637.538 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=54 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_WhirlAttack
+CORE C1_STATUS ElapsedMs=84637.640 Event=PERSISTED Actor=PC_Hero Generation=54 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=84637.656 Actor=PC_Hero Family=WHIRL Action=10 Phase=1 Motion=Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=84801.877 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=84801.902 Actor=PC_Hero Generation=54 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=84801.915 Actor=PC_Hero Action=10 Family=WHIRL Phase=1 Motion=Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=54 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=12
+CORE ONDAMAGE ElapsedMs=84835.299 Ordinal=18 Target=Golem Arg1=Golem Arg2=Golem Caller=Game.dll+0x00069484 PlayerAction=10 PlayerPhase=1 PlayerMotion=Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE COLLISION_GROUP ElapsedMs=85067.526 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=85067.554 Actor=PC_Hero Generation=54 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE MARKER ElapsedMs=85067.564 Actor=PC_Hero Action=10 Family=WHIRL Phase=1 Motion=Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=OFF Result=OFF_ACCEPTED C1Valid=1 C1=54 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=1 MarkerOwnedMask=0 Activated=0 Deactivated=1 Retired=0 RearmRequests=0 Clears=0 RightUseType=12
+CORE COLLISION_GROUP ElapsedMs=85290.262 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=85290.308 Actor=PC_Hero Generation=54 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=85290.321 Actor=PC_Hero Action=10 Family=WHIRL Phase=1 Motion=Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=54 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=12
+CORE MARKER ElapsedMs=85290.350 Actor=PC_Hero Action=10 Family=WHIRL Phase=1 Motion=Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=OFF Result=AUTHORED_OCCURRENCE_BUDGET_IGNORED C1Valid=1 C1=54 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Authored=1 AcceptedBefore=1 AcceptedAfter=1
+CORE MARKER ElapsedMs=85290.371 Actor=PC_Hero Action=10 Family=WHIRL Phase=1 Motion=Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=DUPLICATE_SAME_UPDATE_IGNORED C1Valid=1 C1=54 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 DuplicateStateDelta=0.000000000 DuplicateMsDelta=0.130500
+CORE COLLISION_GROUP ElapsedMs=85513.396 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=85513.425 Actor=PC_Hero Generation=54 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=85513.464 Actor=PC_Hero Generation=54 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=91613.012 Actor=Golem Generation=55 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=91613.026 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=55 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=91613.113 Event=PERSISTED Actor=Golem Generation=55 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=91613.131 Actor=Golem Family=NORMAL Action=1 Phase=1 Motion=Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_200_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE ONDAMAGE ElapsedMs=91841.968 Ordinal=19 Target=PC_Hero Arg1=Fist_Golem Arg2=Golem Caller=Game.dll+0x0016E348 PlayerAction=0 PlayerPhase=5 PlayerMotion=Hero_Stand_None_Staff_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=91849.329 Actor=PC_Hero Generation=56 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=91849.341 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=56 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=91854.852 Event=PERSISTED Actor=PC_Hero Generation=56 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=91872.853 Source=Fist_Golem UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=91993.588 Actor=Golem Generation=55 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Golem Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=92143.774 Actor=PC_Hero Generation=56 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=93194.645 Actor=Golem Generation=57 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=93194.658 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=57 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=93194.732 Event=PERSISTED Actor=Golem Generation=57 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=93194.748 Actor=Golem Family=NORMAL Action=1 Phase=1 Motion=Golem_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=93429.091 Source=Fist_Golem UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=93562.992 Actor=Golem Generation=57 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Golem Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=93734.257 Actor=PC_Hero Generation=58 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=93734.270 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=58 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=93734.370 Event=PERSISTED Actor=PC_Hero Generation=58 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=93734.388 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=93995.069 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=93995.097 Actor=PC_Hero Generation=58 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=93995.110 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=58 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=12
+CORE ONDAMAGE ElapsedMs=94004.721 Ordinal=20 Target=Golem Arg1=Golem Arg2=Golem Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Staff_P1_Attack_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=94008.758 Actor=Golem Generation=59 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=94008.769 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=59 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=94009.076 Event=PERSISTED Actor=Golem Generation=59 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=94264.878 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=94264.905 Actor=PC_Hero Generation=58 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=94264.943 Actor=PC_Hero Generation=58 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=94351.083 Actor=Golem Generation=59 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Golem Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=94379.335 Actor=PC_Hero Generation=60 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=94379.354 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=60 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=94379.464 Event=PERSISTED Actor=PC_Hero Generation=60 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=94379.482 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE C1_START ElapsedMs=94384.040 Actor=Golem Generation=61 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=94384.052 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=61 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=94384.125 Event=PERSISTED Actor=Golem Generation=61 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=94638.982 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=94639.012 Actor=PC_Hero Generation=60 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=94639.025 Actor=PC_Hero Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=60 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=12
+CORE ONDAMAGE ElapsedMs=94687.176 Ordinal=21 Target=Golem Arg1=Golem Arg2=Golem Caller=Game.dll+0x00069484 PlayerAction=1 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Staff_P0_Attack_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_BIND ElapsedMs=94715.160 Event=COMBAT_MOVE_REUSED Actor=Golem Generation=61 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=94715.258 Actor=Golem Family=SPRINT Action=9 Phase=1 Motion=Golem_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_250_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=94715.276 Source=Fist_Golem UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE COLLISION_GROUP ElapsedMs=94915.502 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=94915.530 Actor=PC_Hero Generation=60 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=94915.568 Actor=PC_Hero Generation=60 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=95091.113 Actor=Golem Generation=61 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Golem Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=95099.047 Actor=Golem Generation=62 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=95099.059 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=62 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=95099.468 Event=PERSISTED Actor=Golem Generation=62 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=95516.122 Actor=PC_Hero Generation=63 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=95516.135 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=63 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+CORE C1_STATUS ElapsedMs=95516.215 Event=PERSISTED Actor=PC_Hero Generation=63 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=95543.430 Actor=PC_Hero Generation=63 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=95547.358 Actor=PC_Hero Generation=64 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=95547.383 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=64 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=95547.585 Event=PERSISTED Actor=PC_Hero Generation=64 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=95547.607 Actor=PC_Hero Family=QUICK Action=5 Phase=1 Motion=Hero_Stand_None_Staff_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE C1_BIND ElapsedMs=95720.312 Event=COMBAT_MOVE_REUSED Actor=Golem Generation=62 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=95720.747 Actor=Golem Family=SPRINT Action=9 Phase=1 Motion=Golem_Stand_None_Fist_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_250_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=95720.768 Source=Fist_Golem UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE COLLISION_GROUP ElapsedMs=95764.700 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=95764.728 Actor=PC_Hero Generation=64 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=95764.741 Actor=PC_Hero Action=5 Family=QUICK Phase=1 Motion=Hero_Stand_None_Staff_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=64 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=12
+CORE ONDAMAGE ElapsedMs=95765.269 Ordinal=22 Target=Golem Arg1=Golem Arg2=Golem Caller=Game.dll+0x00069484 PlayerAction=5 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Staff_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P0_90_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE COLLISION_GROUP ElapsedMs=95960.900 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=95960.929 Actor=PC_Hero Generation=64 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=96058.608 Actor=PC_Hero Generation=64 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=96094.729 Actor=Golem Generation=62 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Golem Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=96101.862 Actor=Golem Generation=65 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=96101.874 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=65 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=96101.951 Event=PERSISTED Actor=Golem Generation=65 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=96223.222 Actor=PC_Hero Generation=66 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=96223.234 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=66 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+CORE C1_STATUS ElapsedMs=96223.332 Event=PERSISTED Actor=PC_Hero Generation=66 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=96223.349 Actor=PC_Hero Family=QUICK Action=4 Phase=1 Motion=Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE C1_BIND ElapsedMs=96428.662 Event=COMBAT_MOVE_REUSED Actor=Golem Generation=65 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=96428.757 Actor=Golem Family=SPRINT Action=9 Phase=1 Motion=Golem_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_250_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=96428.778 Source=Fist_Golem UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE COLLISION_GROUP ElapsedMs=96442.621 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=96442.648 Actor=PC_Hero Generation=66 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=96442.660 Actor=PC_Hero Action=4 Family=QUICK Phase=1 Motion=Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=66 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=12
+CORE ONDAMAGE ElapsedMs=96443.360 Ordinal=23 Target=Golem Arg1=Golem Arg2=Golem Caller=Game.dll+0x00069484 PlayerAction=4 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Staff_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P1_90_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE COLLISION_GROUP ElapsedMs=96633.100 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=96633.128 Actor=PC_Hero Generation=66 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=96726.830 Actor=PC_Hero Generation=66 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_FINAL ElapsedMs=96802.878 Actor=Golem Generation=65 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Golem Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=96810.821 Actor=Golem Generation=67 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=96810.834 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=67 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=96810.914 Event=PERSISTED Actor=Golem Generation=67 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=97428.109 Event=COMBAT_MOVE_REUSED Actor=Golem Generation=67 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=97428.245 Actor=Golem Family=SPRINT Action=9 Phase=1 Motion=Golem_Stand_None_Fist_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_250_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=97428.263 Source=Fist_Golem UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_START ElapsedMs=97481.081 Actor=PC_Hero Generation=68 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=97481.094 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=68 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=97481.177 Event=PERSISTED Actor=PC_Hero Generation=68 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=97801.583 Actor=Golem Generation=67 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Golem Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=97809.867 Actor=Golem Generation=69 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=97809.879 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=69 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE C1_STATUS ElapsedMs=97809.960 Event=PERSISTED Actor=Golem Generation=69 Status=PERSISTED Outstanding=0
+CORE C1_BIND ElapsedMs=97979.543 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=68 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=97979.697 Actor=PC_Hero Family=POWER Action=2 Phase=1 Motion=Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=98122.460 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=98122.488 Actor=PC_Hero Generation=68 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=98122.500 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=68 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=12
+CORE ONDAMAGE ElapsedMs=98122.928 Ordinal=24 Target=Golem Arg1=Golem Arg2=Golem Caller=Game.dll+0x00069484 PlayerAction=2 PlayerPhase=1 PlayerMotion=Hero_Stand_None_Staff_P1_PowerAttack_Hit_N_Fwd_00_%_00_P0_120_L.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_FINAL ElapsedMs=98127.155 Actor=Golem Generation=69 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=<not-live> Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=98429.232 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=98429.261 Actor=PC_Hero Generation=68 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=98429.301 Actor=PC_Hero Generation=68 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=109666.445 Actor=Golem Generation=70 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=109666.457 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=70 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=109666.535 Event=PERSISTED Actor=Golem Generation=70 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=109666.549 Actor=Golem Family=NORMAL Action=1 Phase=1 Motion=Golem_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_200_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=109909.989 Source=Fist_Golem UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=110043.892 Actor=Golem Generation=70 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Golem Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=110339.015 Actor=PC_Hero Generation=71 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=110339.028 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=71 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE C1_STATUS ElapsedMs=110339.115 Event=PERSISTED Actor=PC_Hero Generation=71 Status=PERSISTED Outstanding=0
+CORE C1_START ElapsedMs=110352.249 Actor=Golem Generation=72 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=110352.262 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=72 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=110352.685 Event=PERSISTED Actor=Golem Generation=72 Status=PERSISTED Outstanding=0
+CORE C1_FINAL ElapsedMs=110806.247 Actor=Golem Generation=72 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Golem Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_BIND ElapsedMs=111096.459 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=71 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE ATTACK_OWNERSHIP ElapsedMs=111096.573 Actor=PC_Hero Family=HACK Action=14 Phase=1 Motion=Hero_Parade_None_Staff_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_100.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=111244.750 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=111244.778 Actor=PC_Hero Generation=71 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=111244.790 Actor=PC_Hero Action=14 Family=HACK Phase=1 Motion=Hero_Parade_None_Staff_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_100.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=71 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=12
+CORE ONDAMAGE ElapsedMs=111304.597 Ordinal=25 Target=Golem Arg1=Golem Arg2=Golem Caller=Game.dll+0x00069484 PlayerAction=14 PlayerPhase=1 PlayerMotion=Hero_Parade_None_Staff_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_100.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=111308.899 Actor=Golem Generation=73 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=111308.911 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=73 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=111308.982 Event=PERSISTED Actor=Golem Generation=73 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=111553.878 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=111553.906 Actor=PC_Hero Generation=71 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_BIND ElapsedMs=111553.943 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=71 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_HackAttack
+CORE C1_FINAL ElapsedMs=111664.111 Actor=Golem Generation=73 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Golem Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=112024.377 Actor=Golem Generation=74 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=112024.389 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=74 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+CORE C1_STATUS ElapsedMs=112024.463 Event=PERSISTED Actor=Golem Generation=74 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=112024.480 Actor=Golem Family=NORMAL Action=1 Phase=1 Motion=Golem_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_200_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+CORE C1_FINAL ElapsedMs=112133.818 Actor=PC_Hero Generation=71 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=112269.838 Source=Fist_Golem UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+CORE C1_FINAL ElapsedMs=112410.646 Actor=Golem Generation=74 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Golem Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=113505.889 Actor=PC_Hero Generation=75 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Group=5
+CORE C1_BIND ElapsedMs=113505.902 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=75 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_WhirlAttack
+CORE C1_STATUS ElapsedMs=113506.014 Event=PERSISTED Actor=PC_Hero Generation=75 Status=PERSISTED Outstanding=0
+CORE ATTACK_OWNERSHIP ElapsedMs=113506.033 Actor=PC_Hero Family=WHIRL Action=10 Phase=1 Motion=Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+CORE COLLISION_GROUP ElapsedMs=113671.024 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=113671.052 Actor=PC_Hero Generation=75 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=113671.064 Actor=PC_Hero Action=10 Family=WHIRL Phase=1 Motion=Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=75 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=12
+CORE ONDAMAGE ElapsedMs=113690.921 Ordinal=26 Target=Golem Arg1=Golem Arg2=Golem Caller=Game.dll+0x00069484 PlayerAction=10 PlayerPhase=1 PlayerMotion=Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_START ElapsedMs=113695.859 Actor=Golem Generation=76 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=113695.871 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=76 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+CORE C1_STATUS ElapsedMs=113696.019 Event=PERSISTED Actor=Golem Generation=76 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=113930.213 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+CORE C1 CLEANUP FULFILLED ElapsedMs=113930.238 Actor=PC_Hero Generation=75 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+CORE MARKER ElapsedMs=113930.249 Actor=PC_Hero Action=10 Family=WHIRL Phase=1 Motion=Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=OFF Result=OFF_ACCEPTED C1Valid=1 C1=75 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=1 MarkerOwnedMask=0 Activated=0 Deactivated=1 Retired=0 RearmRequests=0 Clears=0 RightUseType=12
+CORE C1_FINAL ElapsedMs=114047.831 Actor=Golem Generation=76 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Golem Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE C1_START ElapsedMs=114064.029 Actor=Golem Generation=77 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Golem Side=RIGHT Group=0
+CORE C1_BIND ElapsedMs=114064.042 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Golem Generation=77 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+CORE C1_STATUS ElapsedMs=114064.117 Event=PERSISTED Actor=Golem Generation=77 Status=PERSISTED Outstanding=0
+CORE COLLISION_GROUP ElapsedMs=114142.024 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+CORE C1 OFFENSE REQUEST ElapsedMs=114142.052 Actor=PC_Hero Generation=75 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+CORE MARKER ElapsedMs=114142.064 Actor=PC_Hero Action=10 Family=WHIRL Phase=1 Motion=Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=75 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=12
+CORE MARKER ElapsedMs=114142.085 Actor=PC_Hero Action=10 Family=WHIRL Phase=1 Motion=Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=OFF Result=AUTHORED_OCCURRENCE_BUDGET_IGNORED C1Valid=1 C1=75 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Authored=1 AcceptedBefore=1 AcceptedAfter=1
+CORE MARKER ElapsedMs=114142.104 Actor=PC_Hero Action=10 Family=WHIRL Phase=1 Motion=Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=DUPLICATE_SAME_UPDATE_IGNORED C1Valid=1 C1=75 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 DuplicateStateDelta=0.000000000 DuplicateMsDelta=0.097400
+CORE ONDAMAGE ElapsedMs=114199.582 Ordinal=27 Target=Golem Arg1=Golem Arg2=Golem Caller=Game.dll+0x00069484 PlayerAction=10 PlayerPhase=1 PlayerMotion=Hero_Parade_None_Staff_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Raw8Fist=<none> Raw8UseType=-1 Raw8Group=-1
+CORE C1_FINAL ElapsedMs=114204.801 Actor=Golem Generation=77 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=<not-live> Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+CORE COLLISION_GROUP ElapsedMs=114362.845 Source=Wrestling Staff_BBM UseType=12 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+CORE C1 CLEANUP FULFILLED ElapsedMs=114362.904 Actor=PC_Hero Generation=75 Status=PERSISTED Source=Wrestling Staff_BBM Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+CORE C1_FINAL ElapsedMs=114362.959 Actor=PC_Hero Generation=75 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Wrestling Staff_BBM Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+Script_FrameCollisionTest unloading cleanly.
