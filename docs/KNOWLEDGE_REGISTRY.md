@@ -1,7 +1,7 @@
 # Gothic 3 Knowledge Authority Registry
 
 **Status:** Active authority/update-trigger registry  
-**Updated:** 2026-09-20
+**Updated:** 2026-09-26
 
 <!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
 
@@ -51,6 +51,7 @@ The repository root `/README.md` owns the discoverable startup front door. It is
 | significant non-obvious decision rationale | `docs/decisions/` ADRs | accepted/superseded architectural/project decision |
 | workstation-specific paths | `LOCAL_WORKSTATION_PATHS.md` | actual local path changes |
 | overall behavior architecture / subsystem responsibilities | `DESIGN.md` | current intended architecture changes |
+| attack playback-speed design constraints / research baseline | `SPEED_CONTROL_ARCHITECTURE.md` | accepted speed semantics, compatibility facts, or research boundary changes |
 | release vs diagnostic product separation | `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md` | product/build separation changes |
 | concise established collision facts | `COLLISION_REFERENCE.md` | reusable collision fact is established/qualified/contradicted |
 | collision lifecycle / cleanup / terminal repair architecture | `COLLISION_LIFECYCLE.md` | lifecycle invariant/ownership changes |
