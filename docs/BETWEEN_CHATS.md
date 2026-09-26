@@ -8,35 +8,27 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Current gate: focused raw55 Sprint compatibility is CLOSED/PASS through EV-381. Before the broader New Balance gate, close the remaining Normal raw55 second-FIST SP0 authoring boundary.
+Current gate: focused raw55 Sprint compatibility is CLOSED/PASS through EV-381. The bounded Normal raw55 second-FIST SP0 compatibility correction is implemented at `a31c66b97e45c27d0739b7df51252d33f490e7e1` and awaits independent Normal Chat diff review.
 
-Active Work task:
+Active task pending independent review:
 
 `docs/work/active/COLLISION_RAW55_NORMAL_SECOND_FIST_SP0_COMPATIBILITY_CORRECTION.md`
 
-Frozen task base HEAD:
-
-`5f50cbef0ebd37f1fbee0ef74c293fd15950325b`
-
-Frozen production source blob:
+Frozen production source blob before implementation:
 
 `de175bb504c3abe13ad1c0bb9cda54997c9e3a26`
 
-Current source Normal second-FIST gate:
-
-```cpp
-case AttackFamily_Normal:
-    return currentFamily == AttackFamily_Normal
-        && statePosition == 1;
-```
-
-Required change:
+Implemented Normal second-FIST gate:
 
 ```cpp
 case AttackFamily_Normal:
     return currentFamily == AttackFamily_Normal
         && (statePosition == 0 || statePosition == 1);
 ```
+
+Published implementation SHA:
+
+`a31c66b97e45c27d0739b7df51252d33f490e7e1`
 
 Nothing else in production behavior is authorized to change.
 
@@ -85,6 +77,10 @@ Quick / Power / Sprint remain controls from the same mixed logs.
 
 Latest deployed diagnostic before this correction:
 `B4161D74DD849F4B67D9ACCFC42A8D8784F7EF19FB968F2E44D67ED57BD689`
+
+Build: NOT ATTEMPTED — Work build execution was not authorized for this task.
+
+Next step: independent Normal Chat diff review, then User local build/deployment and focused runtime acceptance.
 
 After runtime Normal closure:
 
