@@ -145,7 +145,7 @@ raw8 body-contact
 
 raw55 PhysicalFist
   representative Troll/PhysicalFist Normal / Quick / true Power / Sprint-origin
-  no need to repeat the full EV-376–EV-381 focused matrix unless contradiction appears
+  no need to repeat the full EV-376–EV-382 focused matrix unless contradiction appears
 
 separation coexistence
   representative separated motions
@@ -185,7 +185,7 @@ Missing `ONDAMAGE` is not automatically a failure when ownership/open/rearm/clea
 
 A compatibility failure does not authorize a broad patch. Reduce the exact factual route first.
 
-### 4.4 Raw55 New Balance SP2 compatibility — CLOSED/PASS EV-376–EV-381
+### 4.4 Focused raw55 New Balance compatibility — CLOSED/PASS EV-376–EV-382
 
 Runtime-confirmed corrections:
 
@@ -205,36 +205,52 @@ ce59e5a2bad564652eaba970e959bdef0b479d82
     current POWER -> explicit SP1 or SP2
     current SPRINT -> explicit SP2 only
   runtime PASS EV-381
+
+a31c66b97e45c27d0739b7df51252d33f490e7e1
+  Normal second FIST:
+    current NORMAL -> explicit SP0 or SP1
+  runtime PASS EV-382
 ```
 
 Latest accepted diagnostic hash:
 
-`B4161D74DD849F4B67D9ACCFC42A8D8784F7EF19FB968F2E44D67ED57BD689`
+`81CF4C99BDA65EA6FBBC02839680E83B719B6E535407EB604E6AD015B038F2D3`
 
-EV-380 established that frame8 marker2 may fall on either factual side of the same-C1 transition. EV-381 directly proves the corrected `SPRINT/SP2` second-marker arm with the 1+3 fixture and preserves `POWER/SP2` continuation in 1+8/1+15 controls.
+EV-380 established that Sprint frame8 marker2 may fall on either factual side of the same-C1 transition. EV-381 proves the corrected `SPRINT/SP2` second-marker arm and preserves `POWER/SP2` continuation.
+
+EV-382 closes the separate Normal authoring boundary. Repeated `1+8` executions show:
+
+```text
+marker1 NORMAL/SP0 -> accepted/open
+hit1 ONDAMAGE
+marker2 still NORMAL/SP0 -> accepted
+ClearTriggeredList=1
+GroupRequested=0
+later hit2 possible and repeatedly observed
+native cleanup 7 -> 5 / Outstanding=0
+```
+
+Very-early `1+3` marker2 before hit1 is also accepted without adding artificial damage behavior. The `1+15` current New Balance fixture still commonly lands marker2 at SP0; SP1 remains explicitly accepted and was already runtime-proven in the original Normal causal campaign.
+
+All three EV-382 fixtures have zero `CORE MARKER ANOMALY / DISCOVERY` records and preserve Quick/Power/Sprint controls.
 
 Hard boundaries remain:
 
 ```text
+NO generic StatePosition range widening
 NO Sprint/SP1 second-FIST widening without evidence
-NO StatePosition >= 1 generalization
+NO family-independent Normal SP0 policy
+NO visited-target or hit1 flags
+NO marker delays/queues/timers
 NO species/name/filename/DLL policy
 NO custom damage/contact ownership
 ```
 
 #### Contact/sheath observation — NOT A MARKER BLOCKER
 
-EV-381 confirms correctly accepted/open/rearmed marked true-Power attacks can produce no `ONDAMAGE`, while unmarked/native raw55 windows can likewise open and clean with no damage.
+EV-381 confirms correctly accepted/open/rearmed marked attacks can produce no `ONDAMAGE`, while unmarked/native raw55 windows can likewise open and clean with no damage.
 
-Therefore the User's observation that attacks around sheath/draw sometimes miss is not evidence of a marker defect. Native attacks can also damage during `HoldRight_Begin`/`HoldRight_End`, so sheath/draw is not universal immunity. Exact native Sprint-after-sheath miss causality was not isolated and is non-blocking unless a later responsibility specifically needs it.
-
-Do not add marker widening, direct damage, or custom contact policy for this observation.
-
-#### Deferred Normal early-marker question
-
-EV-380–EV-381 show very early Normal marker2 can arrive at `NORMAL/SP0` and is rejected by the current second-FIST SP1 gate, while reviewed Quick repeated FIST can succeed at SP0.
-
-This is a separate future research responsibility relevant to animator-authored timing. Do not change Normal until a causal probe establishes whether SP1 is a genuine native prerequisite or a conservative historical guard.
+The User's sheath/draw miss observation therefore does not identify a marker defect. Do not add marker widening, direct damage, or custom contact policy for it absent a new causal responsibility.
 
 ### 4.5 Standalone / no-New-Balance post-compatibility sentinel
 
@@ -274,8 +290,9 @@ Acceptance:
 ```text
 no crash/startup conflict
 no new supported-traffic marker anomaly
+SP0/SP1 Normal behavior remains bounded to exact Normal ownership
 SP1 behavior remains accepted where standalone produces SP1
-SP2 widening creates no stale/cross-family ownership
+SP2 Power/Sprint widening creates no stale/cross-family ownership
 first FIST opens once; second remains clear-only rearm
 native cleanup returns exact raw55 source to group5
 final obligations zero
@@ -304,7 +321,7 @@ freeze setup + filename
 -> only then next batch
 ```
 
-The EV-379–EV-381 Troll comparison logs are processed and archived byte-identically. `research/raw/` should contain only genuine new/open intake.
+The EV-382 Normal acceptance logs are processed and archived byte-identically during closure maintenance. `research/raw/` should return to `Keep.txt` only.
 
 ---
 
@@ -340,20 +357,17 @@ CollisionLifecycleGuard / C1-R1
 ## 8. Current sequence
 
 ```text
-standalone broad final-source regression    CLOSED/PASS EV-299–EV-374
-Zombie+Axe asset-gap remedy                 PASS EV-375
-New Balance controls                        PASS EV-377
-first raw55 SP2 correction                  RUNTIME PASS EV-378
-Sprint-first SP2 correction                 RUNTIME PASS EV-379
-Sprint second-FIST state envelope           MAPPED EV-380
-Sprint second-FIST correction               RUNTIME PASS EV-381
-focused New Balance raw55 Sprint route      CLOSED/PASS
+standalone broad final-source regression      CLOSED/PASS EV-299–EV-374
+Zombie+Axe asset-gap remedy                   PASS EV-375
+New Balance controls                          PASS EV-377
+raw55 Power/Sprint focused compatibility      PASS EV-378–EV-381
+raw55 Normal SP0 compatibility                PASS EV-382
+focused raw55 New Balance compatibility       CLOSED/PASS
 -> representative/full-stack New Balance compatibility
 -> standalone/no-New-Balance raw55 sentinel
 -> production collision migration
 -> diagnostics-free integration validation
 -> later Raise + Speed + Config under DESIGN.md §3 / ADR-0004
 
-Normal early second-FIST SP0 question is separate/deferred.
 AttackContinuationProtection remains separate unless deliberately reopened.
 ```
