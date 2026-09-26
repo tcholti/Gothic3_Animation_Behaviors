@@ -58,14 +58,15 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | Rapier separation compatibility | EV-372 |
 | broad mixed-gameplay stress / Stage-D closure | EV-373–EV-374 |
 | Zombie+Axe separation asset-gap remedy | EV-375 |
-| New Balance / AttackCollision final compatibility gate | EV-284 preflight + EV-376–EV-381 |
+| New Balance / AttackCollision final compatibility gate | EV-284 preflight + EV-376–EV-382 |
 | New Balance raw55 Power/Sprint-origin SP2 compatibility | EV-376, EV-378–EV-381 |
 | New Balance equipped Sprint + raw8 Sprint controls | EV-377 |
 | New Balance raw55 Sprint-first SP2 discovery/correction | EV-378–EV-379 |
 | New Balance raw55 Sprint-origin second-FIST timing/correction | EV-379–EV-381 |
+| Normal raw55 second-FIST SP0 discovery/correction | EV-380–EV-382 |
+| focused raw55 New Balance compatibility closure | EV-376–EV-382 |
 | native contact misses vs authored marker correctness | EV-381 |
-| sheath/draw contact observation | EV-380–EV-381; not a marker blocker, exact native Sprint-after-sheath subtype not isolated |
-| early Normal raw55 second-FIST SP0 question | EV-380–EV-381; separate/deferred |
+| sheath/draw contact observation | EV-380–EV-381; not a marker blocker |
 
 ## 3. Current collision closure landmarks
 
@@ -92,41 +93,43 @@ EV-370         Zombie Separation PASS
 EV-371         Axe Separation PASS
 EV-372         Rapier Separation PASS
 EV-373         broad Stage-D mixed-gameplay stress run 1 PASS
-EV-374         broad Stage-D run 2 PASS; Stage D + standalone final-source regression CLOSED
+EV-374         broad Stage-D run 2 PASS; standalone final-source regression CLOSED
 EV-375         Zombie+Axe copied/renamed Axe-asset remedy PASS
 EV-376         New Balance raw55 Power/Sprint-origin SP2 contradiction
 EV-377         New Balance equipped-Sprint + raw8 Sprint controls PASS
 EV-378         first raw55 SP2 correction runtime partial PASS; Sprint-first SP2 discovered
-EV-379         Sprint-first SP2 correction runtime PASS; Sprint-origin marker2 may remain SPRINT/SP2
-EV-380         frame1/3/8/15 timing sweep maps Sprint marker2 state envelope; frame8 straddles Action9->Action2
-EV-381         Sprint second-FIST SP2 correction runtime PASS; focused raw55 Sprint contradiction CLOSED
+EV-379         Sprint-first SP2 correction runtime PASS; Sprint marker2 may remain SPRINT/SP2
+EV-380         Sprint marker2 state envelope mapped; Normal/SP0 second-marker boundary discovered
+EV-381         Sprint second-FIST SP2 correction runtime PASS; focused Sprint contradiction CLOSED
+EV-382         Normal second-FIST {SP0,SP1} correction runtime PASS; focused raw55 New Balance compatibility CLOSED
 ```
 
 ## 4. Current next gate
 
 ```text
-New Balance 0.7 exact distributed bundle compatibility remains OPEN.
+New Balance 0.7 exact distributed-bundle compatibility remains OPEN.
 
-Focused raw55 Sprint compatibility is CLOSED/PASS through EV-381:
-  true Power first/second accepts evidence-backed SP1/SP2
-  Sprint-origin first accepts SPRINT SP1/SP2 with early-opening suppression
-  Sprint-origin second preserves POWER SP1/SP2 and additionally accepts SPRINT SP2 only
-  first FIST opens exact raw55 RIGHT 5->7
-  second FIST remains ClearTriggeredList/rearm only
-  native cleanup remains 7->5
+Focused raw55 Normal/Quick/true-Power/Sprint-origin compatibility is CLOSED/PASS through EV-382.
 
-EV-381 also separates authored opportunity correctness from gameplay contact:
-  accepted/open/rearmed attacks may legitimately produce no ONDAMAGE
-  unmarked/native raw55 windows can likewise open and clean without damage
-  sheath/draw-associated misses are therefore not a marker blocker on current evidence
+Final raw55 repeated-marker state rules relevant to New Balance:
+  Normal second FIST -> current NORMAL + explicit SP0 or SP1
+  true Power first/second -> current POWER + explicit SP1/SP2
+  Sprint-origin first -> current SPRINT + explicit SP1/SP2 + early-opening suppression
+  Sprint-origin second -> current POWER SP1/SP2 OR current SPRINT SP2 only
+
+EV-382 decisive Normal route:
+  marker1 NORMAL/SP0 -> open
+  hit1 occurs
+  marker2 still NORMAL/SP0 -> accepted clear-only rearm
+  later hit2 may occur
+  native cleanup -> group5 / zero outstanding
+
+All three EV-382 fixtures have zero marker anomalies and preserve Quick/Power/Sprint controls.
 
 Next:
   broader representative/full intended New Balance stack compatibility
   then standalone/no-New-Balance post-compat raw55 sentinel
-
-Separate/deferred raw55 question:
-  very early Normal marker2 can arrive NORMAL/SP0 and is currently rejected
-  investigate independently before any Normal widening
+  then production collision migration
 ```
 
 Source-level preflight alone is not final compatibility certification.
@@ -151,7 +154,7 @@ research/derived/  deterministic retrieval aids
 research/archive/  processed canonical runtime provenance
 ```
 
-The EV-379–EV-381 BlackTroll comparison logs are processed and archived byte-identically under `research/archive/`. `research/raw/` should contain only genuine new/open intake.
+The EV-382 `1+3`, `1+8`, and `1+15` test3 logs are processed and archived byte-identically under `research/archive/`. `research/raw/` should return to `Keep.txt` only.
 
 Historical ledger rows may retain paths that were correct when written. Use `EVIDENCE_PATH_MIGRATIONS.md` when a later archive move makes an old path ambiguous.
 
