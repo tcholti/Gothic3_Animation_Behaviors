@@ -127,3 +127,30 @@ Disposition:
 - **FOCUSED RAW55 NORMAL / QUICK / TRUE-POWER / SPRINT-ORIGIN NEW BALANCE COMPATIBILITY = CLOSED/PASS FOR THE TESTED ROUTE.**
 - No further focused raw55 source change is indicated by current evidence.
 - Next gate: broader representative/full-stack New Balance compatibility; after that passes, run the standalone/no-New-Balance post-compatibility raw55 sentinel before production collision migration.
+
+### EV-383 — New Balance dual-1H four-marker / three-window equipped authoring PASS
+
+Observed:
+- The User replaced representative dual-1H Normal, Quick, SimpleWhirl and Pierce motions with deliberately multi-hit animations containing four authored collision markers. The tested pattern was `BOTH -> selected single side -> OFF -> BOTH`, yielding three separately controllable offensive windows inside one attack execution.
+- Unopposed executions across all four families accept the complete authored sequence. The first `BOTH` opens RIGHT and LEFT from group5 to group7, the single-side marker retires the opposite source while rearming/retaining the selected source, `OFF` closes the remaining authored source to group5, and the final `BOTH` reopens both sources. Native/terminal cleanup then returns both sources to group5 with zero outstanding ownership.
+- Normal C1=17 provides direct live three-window contact proof. The first `BOTH` produces two Golem `ONDAMAGE` callbacks, the later LEFT-only window produces another Golem `ONDAMAGE`, `OFF` closes collision, and the final `BOTH` produces another Golem `ONDAMAGE`; both sources then clean to group5. Thus one attack produced four native damage callbacks distributed across all three authored offensive windows.
+- Pierce C1=90 provides an especially clean one-contact-per-window sequence: first `BOTH` -> Golem `ONDAMAGE` ordinal 41; RIGHT-only -> ordinal 42; `OFF`; final `BOTH` -> ordinal 43; both sources then clean to group5. This directly proves three distinct damaging windows under one Pierce C1.
+- Quick C1=118 accepts the full pattern. The first `BOTH` produces Golem damage ordinals 62 and 63, the LEFT-only window produces ordinal 64, `OFF` closes collision, and final `BOTH` physically reopens both sources. The diagnostic then reaches its `ONDAMAGE_CAP` (`LoggedEntryCap=64`), so absence of a later printed damage callback cannot be interpreted as a missed final Quick window; the collision open/cleanup evidence remains complete.
+- SimpleWhirl unopposed executions complete all four markers. In live Golem combat, representative C1=48 proves the first `BOTH` and subsequent RIGHT window both damage the Golem before the Golem interrupts/replaces the player's attack C1; the interruption leaves both swords safe. The interrupted live example therefore does not contradict the complete unopposed marker sequence.
+- Replay/dedupe handling remains correct at the later authored occurrence. The legitimate final `BOTH` is accepted first and physically reopens both sources; replayed earlier single-side/OFF callbacks are then rejected as `AUTHORED_OCCURRENCE_BUDGET_IGNORED`, while same-update duplicate final-BOTH traffic is rejected as `DUPLICATE_SAME_UPDATE_IGNORED`. Legitimate later authoring is therefore distinguished from replay noise rather than being blocked by a crude callback limit.
+- The full log contains no `CORE MARKER ANOMALY / DISCOVERY` record and no `REPAIRED_TO_ITEM_EQUIPPED` event. Normal lifecycle cleanup was sufficient throughout this fixture, and the DLL unloads cleanly.
+
+Scope / limits:
+- Runtime acceptance applies to the tested dual-1H player route in the current New Balance compatibility environment, with Normal, Quick, SimpleWhirl and Pierce motions using the described four-marker pattern.
+- This evidence proves at least four authored marker occurrences and three offensive windows within one equipped attack execution. It does not claim an unbounded/arbitrary marker count beyond the tested pattern.
+- `ONDAMAGE` remains native contact evidence, not a requirement for every accepted marker window. The Quick final-window damage stream is specifically truncated by the diagnostic's 64-entry cap, and some SimpleWhirl live executions are interrupted by the Golem before all authored windows can occur.
+- No production source change is indicated by this test.
+
+Provenance:
+- raw test path before evidence closure: `research/raw/Script_FrameCollisionTest.log`;
+- Git blob: `05d501aaa6756704362b124fb0be347622429c96`;
+- fixture identity: dual-1H four-marker/multi-hit New Balance test, 2026-09-26.
+
+Disposition:
+- **PASS — DUAL-1H FOUR-MARKER / THREE-OFFENSIVE-WINDOW EQUIPPED AUTHORING RUNTIME VALIDATED.**
+- Multi-window equipped authoring is demonstrated beyond the earlier two-window fixtures for Normal, Quick, SimpleWhirl and Pierce; no source change is indicated.
