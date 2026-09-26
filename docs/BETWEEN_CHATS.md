@@ -56,7 +56,7 @@ all 3 logs:
 
 SP1 remains explicitly supported and was already runtime-proven in the earlier Normal causal campaign; EV-382 adds the missing SP0 proof.
 
-No active focused raw55 Work task remains. The completed Normal task and the three test3 logs are archived during EV-382 closure maintenance; `research/raw/` should contain only `Keep.txt`.
+The completed Normal task and three test3 logs are archived. `research/raw/` should contain only `Keep.txt`, and `docs/work/active/` should contain only its README.
 
 Next gate:
 
