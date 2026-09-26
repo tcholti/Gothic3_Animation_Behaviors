@@ -15,6 +15,7 @@
 standalone frozen collision baseline = f1f5d2aad3edc3564a9a8b40541840b94f8fa903
 first raw55 SP2 correction = 6eb3e3ca96da55e89127c24d5f656e05610d315f
 Sprint-first SP2 correction = ce59e5a2bad564652eaba970e959bdef0b479d82
+Sprint-second SP2 candidate = 4c85193f4efd31e789bc07d7e3c71d31a9b5326e
 latest runtime evidence = EV-380
 current ledger = EVIDENCE_LEDGER_380_ONWARD.md
 
@@ -24,9 +25,10 @@ New Balance equipped/raw8 Sprint controls = PASS EV-377
 first raw55 SP2 correction = runtime PASS EV-378
 Sprint-first SP2 correction = runtime PASS EV-379
 Sprint second-FIST timing envelope = MAPPED EV-380
+Sprint-second SP2 candidate = IMPLEMENTED + INDEPENDENT SOURCE REVIEW PASS
 New Balance full intended-stack compatibility = OPEN
-current responsibility = implement smallest SPRINT/SP2 second-FIST compatibility correction
-active Work task = docs/work/active/COLLISION_NEW_BALANCE_RAW55_SPRINT_SECOND_FIST_SP2_COMPATIBILITY_CORRECTION.md
+current responsibility = local build/deploy + focused runtime acceptance of Sprint-second SP2 candidate
+active task = docs/work/active/COLLISION_NEW_BALANCE_RAW55_SPRINT_SECOND_FIST_SP2_COMPATIBILITY_CORRECTION.md
 ```
 
 ## Frozen behavior
@@ -57,7 +59,7 @@ Final standalone diagnostic SHA256:
 Final standalone behavior SHA256:
 `A806EC6523116286335A659735067B1AA6C581837B3E0D604E6271AC98079340`
 
-Latest reviewed/deployed diagnostic SHA256:
+Latest previously deployed diagnostic SHA256:
 `490AC7F6F6931784EA9D5697BA5758DAB11FC0B9437A247FFA9FBC7E13BA1E4C`
 
 ## EV-380 result
@@ -67,7 +69,7 @@ Deliberate BlackTroll double-FIST fixtures mapped marker2 timing:
 ```text
 frames 1+3:
   marker1 SPRINT/SP2 -> accepted/open
-  marker2 SPRINT/SP2 -> currently rejected
+  marker2 SPRINT/SP2 -> rejected by pre-correction source
 
 frames 1+8:
   marker2 may be SPRINT/SP2 OR POWER/SP2
@@ -78,7 +80,7 @@ frames 1+15:
 
 The tested Hit is already SP2 at frame1. Sprint/SP1 second-FIST acceptance is therefore unproven and not authorized.
 
-Frozen smallest rule:
+Evidence-bounded rule:
 
 ```text
 origin = immutable SPRINT
@@ -92,36 +94,60 @@ The completed state-mapping investigation is archived at:
 
 `archive/investigations/COLLISION_NEW_BALANCE_RAW55_SPRINT_SECOND_FIST_STATE_INVESTIGATION.md`
 
+## Implemented candidate / review
+
+Implementation commit:
+
+`4c85193f4efd31e789bc07d7e3c71d31a9b5326e`
+
+Required parent:
+
+`4f52f5e7cc586a5847c2f4200fc6911765a4cc7c`
+
+Independent Normal Chat source review:
+
+```text
+PASS
+one commit ahead of frozen parent
+one production file changed
+PhysicalFistCollision.cpp only
+exact Sprint-origin second-FIST branch only
+```
+
+Implemented predicate:
+
+```cpp
+return (currentFamily == AttackFamily_Power
+        && (statePosition == 1 || statePosition == 2))
+    || (currentFamily == AttackFamily_Sprint
+        && statePosition == 2);
+```
+
+The active task remains open until runtime acceptance; the implementation is not yet declared runtime PASS.
+
 ## Exact next route
 
-Frozen Work task:
-
-`docs/work/active/COLLISION_NEW_BALANCE_RAW55_SPRINT_SECOND_FIST_SP2_COMPATIBILITY_CORRECTION.md`
-
-Work responsibility is one predicate in `PhysicalFistCollision.cpp` only:
+User local build/deploy from current branch, then focused runtime acceptance:
 
 ```text
-Sprint-origin IsSecondFistAllowed:
-  keep current POWER {SP1,SP2}
-  add current SPRINT SP2
+1. frame1+3 BlackTroll Sprint
+   marker1 SPRINT/SP2 accepted/open
+   marker2 SPRINT/SP2 MUST accept/rearm
+   marker2 must not request another physical opening
+
+2. frame1+8 transition-race fixture
+   SPRINT/SP2 marker2 MUST accept/rearm
+   POWER/SP2 marker2 MUST remain accepted/rearm
+
+3. frame1+15
+   POWER/SP2 remains accepted/rearm
+
+4. single-FIST Sprint control unchanged
+5. true-Power double-FIST control unchanged
+6. representative Normal + Quick controls unchanged
 ```
 
-Protected: first-FIST, true Power, Normal, Quick, identity/origin, lifecycle, cleanup, diagnostics, raw8, equipped collision, hooks.
-
-Work build execution is PROHIBITED. Work commits/pushes source + concise `BETWEEN_CHATS.md` handoff, then stops.
-
-After Normal Chat review + User local build, runtime acceptance:
-
-```text
-frame1+3   SPRINT/SP2 marker2 must accept/rearm
-frame1+8   both SPRINT/SP2 and POWER/SP2 outcomes must accept/rearm
-frame1+15  POWER/SP2 remains accepted
-single-FIST Sprint unchanged
-true-Power double unchanged
-Normal/Quick controls unchanged
-```
-
-Then run the separate marked/unmarked sheath/no-sheath Troll Sprint control if the missing-contact observation persists.
+After that, run the separate marked/unmarked sheath/no-sheath Troll Sprint control if the missing-contact observation persists.
 
 ## Current intended New Balance environment
 
@@ -144,7 +170,7 @@ Configured speed is **base-speed authority**, not final effective-speed authorit
 
 ## Read next by question
 
-- active Work task → `work/active/COLLISION_NEW_BALANCE_RAW55_SPRINT_SECOND_FIST_SP2_COMPATIBILITY_CORRECTION.md`
+- active runtime-gated task → `work/active/COLLISION_NEW_BALANCE_RAW55_SPRINT_SECOND_FIST_SP2_COMPATIBILITY_CORRECTION.md`
 - exact continuation → `BETWEEN_CHATS.md`
 - current facts → `COLLISION_REFERENCE.md`
 - validation gate → `COLLISION_TEST_PLAN.md`
