@@ -152,3 +152,36 @@ Provenance:
 Disposition:
 - **PASS — FINAL-CANDIDATE STANDALONE/NO-NEW-BALANCE DIAGNOSTIC RAW55 SENTINEL CLOSED THROUGH EV-386–EV-387.**
 - **NEXT:** review the User's already-recorded final-candidate New Balance/raw55 logs through POP-06 bounded retrieval; do not rerun them. The focused regression must preserve the compatibility-sensitive Sprint SP2 / Action9 -> Action2 semantics before behavior-only release-purity validation.
+
+### EV-388 — Final-candidate New Balance/raw55 focused diagnostic regression PASS
+
+Observed:
+- The User published five New Balance final-candidate BlackTroll/raw55 logs: double-FIST authoring at `1+3`, `1+8`, and `1+15`, a single-FIST authored control set, and a fully unmarked control.
+- The `1+3` run repeatedly preserves the New Balance-specific Sprint-origin current-SPRINT/SP2 second-FIST route. Representative executions accept marker1 at `SPRINT/Action9/SP1`, then accept marker2 in the same C1 while still current `SPRINT/Action9` at SP2. Marker2 is clear-only (`AcceptedFistCount=2`, `GroupRequested=0`, `ClearTriggeredList=1`) with no second physical opening.
+- The `1+8` and `1+15` runs repeatedly preserve the established same-C1 Sprint-origin `Action9/SPRINT -> Action2/POWER` continuation. Marker1 opens at `SPRINT/SP1`; marker2 arrives as current `POWER/SP2`, is accepted clear-only (`GroupRequested=0`, `ClearTriggeredList=1`), and Gothic returns raw55 RIGHT group7 -> group5 with `Outstanding=0`.
+- The single-marker run repeatedly preserves the New Balance-specific Sprint-origin first-FIST SP2 route: current `SPRINT/Action9/SP2` is accepted, the exact RIGHT raw55 source opens 5 -> 7, and reviewed samples clean natively back to group5 with `Outstanding=0`.
+- The `1+15` run also contains repeated factual true-Power double-FIST controls. First `POWER/SP1` opens once; second `POWER/SP2` is accepted clear-only; cleanup converges normally.
+- Whole-artifact bounded searches across all five logs find zero `REJECTED_*`, zero `ANOMALY`, and zero `C1 INVARIANT WARNING` matches. Every artifact ends with clean lifecycle convergence and `Script_FrameCollisionTest unloading cleanly`.
+- The fully unmarked New Balance control contains 19 `MarkerPresent=0` ownership observations in the bounded search surface, including raw55 Power, Normal and Quick examples with `FistMarkers=0` and `SuppressNative=0`. It contains zero `RAW55_PHYSICAL_FIST_MARKER` and zero `RAW55_PHYSICAL_FIST_NATIVE_OPEN_SUPPRESSED` records; Gothic native opening/contact/cleanup remains in control. That artifact did not happen to contain Sprint/Action9, so no unmarked-New-Balance Sprint claim is made from it.
+
+Scope / limits:
+- This is the deliberately bounded post-correction New Balance/raw55 diagnostic regression required after EV-384 because shared behavior source changed.
+- It directly covers the compatibility-sensitive Sprint-origin SP2 and same-C1 Action9 -> Action2 semantics; it is not a rerun of the broad EV-376–EV-384 campaign.
+- The no-marker artifact adds useful New Balance native-fallback evidence for observed Power/Normal/Quick traffic, but the diagnostic gate does not depend on an unmarked Sprint occurrence in that artifact.
+
+Provenance:
+- reviewed behavior source: `1c45e5ec3de1194e43b2f2200a28fe7846bd5ce0`;
+- final-candidate diagnostic/live SHA256: `AEF0E18205BAA9258D50B2E934173C48B845E0F1B9A9F425D622F4E4598EE773`;
+- final-candidate behavior SHA256: `D5BECB2C32A9766B1B444CB5864C0C30C9AC251A1679F605127F4D7318900B78`;
+- runtime upload commit: `d59e77f3e2bef48f450d1f130e3ede75b6358aa7`;
+- archive commit: `a4060850b835175bef6f629c9f51f7287345fe8b`;
+- `1+3`: `research/archive/2026.09.27_newbalance_blacktroll_all_double_markers_1_3.log`, Git blob `b4c01ad5ab3034f3bd39cd723e1c79ac1d40bd36`;
+- `1+8`: `research/archive/2026.09.27_newbalance_blacktroll_all_double_markers_1_8.log`, Git blob `ab4f0ebb8afa153c8b3e610f4ea2a29f92d8f187`;
+- `1+15`: `research/archive/2026.09.27_newbalance_blacktroll_all_double_markers_1_15.log`, Git blob `a0fafb934662d5cf8d4a0bfbcdb532b9b184bb7e`;
+- single-FIST: `research/archive/2026.09.27_newbalance_blacktroll_all_single_marker.log`, Git blob `dd641964d9ed3d082ea6c84bf9a073a3810200a0`;
+- no-marker: `research/archive/2026.09.27_newbalance_blacktroll_all_no_markers.log`, Git blob `780880649db7b436a39dba3de064f81c1285bc80`.
+
+Disposition:
+- **PASS — FINAL-CANDIDATE NEW BALANCE/RAW55 FOCUSED DIAGNOSTIC REGRESSION CLOSED.**
+- **DIAGNOSTIC PHASE CLOSED/PASS through EV-386–EV-388.**
+- **NEXT:** deploy `Script_FrameCollisionBehaviorTest.dll` as the sole live collision twin, verify live SHA256 `D5BECB2C32A9766B1B444CB5864C0C30C9AC251A1679F605127F4D7318900B78`, then perform the diagnostics-free observational release-purity session from `COLLISION_TEST_PLAN.md` §4.6.
