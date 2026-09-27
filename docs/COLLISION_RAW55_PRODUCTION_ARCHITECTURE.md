@@ -5,7 +5,7 @@
 
 ## Purpose
 
-Define the permanent diagnostics-free collision behavior for factual `gEUseType_PhysicalFist` / raw55 after the completed causal research campaign, New Balance compatibility work, the EV-385 standalone contradiction, EV-386 corrected marked acceptance, and EV-387 native-fallback closure.
+Define the permanent diagnostics-free collision behavior for factual `gEUseType_PhysicalFist` / raw55 after the completed causal research campaign, New Balance compatibility work, the EV-385 standalone contradiction, EV-386 corrected marked acceptance, EV-387 native-fallback closure, and EV-388 final-candidate New Balance reconfirmation.
 
 Historical probes/implementation contracts are preserved under `docs/archive/investigations/`. Ordinary factual lookup: `COLLISION_REFERENCE.md`. Exact proof: `EVIDENCE_INDEX.md`.
 
@@ -89,6 +89,8 @@ unmarked raw55
 
 Permanent raw55 intervention is marker-owned. EV-387 final-candidate standalone evidence directly confirms native fallback across BlackTroll Quick, Normal, factual true Power and Sprint: `MarkerPresent=0`, `FistMarkers=0`, `SuppressNative=0`; no raw55 marker-owner or native-opening-suppression record is produced; Gothic performs native 5 -> 7 and 7 -> 5 with healthy finalization.
 
+EV-388 additionally observes the same native-fallback rule under New Balance for unmarked Power, Normal and Quick. Its no-marker artifact did not contain Sprint/Action9, so it adds no independent unmarked-New-Balance Sprint claim.
+
 ### Marked supported raw55
 
 For an eligible marked execution, when a supported native callback attempts an evidence-backed premature exact RIGHT raw55 `5 -> 7` opening:
@@ -136,7 +138,7 @@ The native Quick callback owns its state progression and may attempt a premature
 
 The first authored FIST opens/rearms the source. A later authored FIST may occur at the factual Quick state available at that marker and owns another contact-bookkeeping rearm.
 
-Evidence: EV-264–EV-273 plus protected controls through EV-387.
+Evidence: EV-264–EV-273 plus protected controls through EV-388.
 
 ### Normal
 
@@ -179,9 +181,9 @@ second FIST:
   + StatePosition {SP1,SP2}
 ```
 
-No `>=1` generalization is used. EV-386 final-candidate standalone evidence includes factual true-Power single and double marked controls and confirms first open + second clear-only behavior. EV-387 separately confirms unmarked factual true Power remains native fallback.
+No `>=1` generalization is used. EV-386 final-candidate standalone evidence includes factual true-Power single and double marked controls and confirms first open + second clear-only behavior. EV-388 New Balance final-candidate evidence additionally preserves true-Power SP1 first -> SP2 second, with the second FIST clear-only and normal cleanup.
 
-Evidence: EV-274–EV-276, EV-293, EV-376, EV-378, EV-386–EV-387.
+Evidence: EV-274–EV-276, EV-293, EV-376, EV-378, EV-386–EV-388.
 
 ### Sprint-origin
 
@@ -214,13 +216,26 @@ EV-385 proved a legitimate standalone second FIST can remain factual `SPRINT/Act
 
 Source `1c45e5ec3de1194e43b2f2200a28fe7846bd5ce0` adds only explicit current-SPRINT/SP1 to `IsSecondFistAllowed()` while preserving current-POWER `{SP1,SP2}`. Independent source review confirms no new mechanism and no second physical opening.
 
-EV-386 runtime-validates the corrected contract repeatedly: first FIST `SPRINT/SP1` opens exact RIGHT 5 -> 7; second FIST in the same C1 while still `SPRINT/SP1` is accepted clear-only with `GroupRequested=0` and `ClearTriggeredList=1`; Gothic later returns group7 -> group5 with `Outstanding=0`. The same batch preserves the Action9/SPRINT -> Action2/POWER SP1 continuation route.
+EV-386 runtime-validates the corrected standalone contract repeatedly: first FIST `SPRINT/SP1` opens exact RIGHT 5 -> 7; second FIST in the same C1 while still `SPRINT/SP1` is accepted clear-only with `GroupRequested=0` and `ClearTriggeredList=1`; Gothic later returns group7 -> group5 with `Outstanding=0`. The same batch preserves the Action9/SPRINT -> Action2/POWER SP1 continuation route.
 
-EV-387 additionally confirms unmarked factual Sprint/Action9 remains completely native under the final candidate.
+EV-388 runtime-validates the compatibility-sensitive final-candidate New Balance routes after that correction:
 
-This is an explicit evidence-backed state union. It is **not** permission for generic `>=1`, arbitrary state widening, or family-independent policy.
+```text
+1+3:
+  first FIST SPRINT/Action9/SP1 -> open
+  second same C1 still SPRINT/Action9/SP2 -> clear-only
 
-Evidence: EV-280–EV-285, EV-294, EV-376–EV-381, EV-385–EV-387.
+1+8 / 1+15:
+  first FIST SPRINT/Action9/SP1 -> open
+  second after same-C1 Action9->Action2 -> POWER/SP2 -> clear-only
+
+single marker:
+  SPRINT/Action9/SP2 first FIST -> accepted/open
+```
+
+Thus the final explicit state union is proven both standalone and under the intended New Balance compatibility environment. It is **not** permission for generic `>=1`, arbitrary state widening, or family-independent policy.
+
+Evidence: EV-280–EV-285, EV-294, EV-376–EV-381, EV-385–EV-388.
 
 ---
 
@@ -230,7 +245,7 @@ Permanent state is bounded to the factual C1 execution and exact source/origin i
 
 A valid execution requires current source/family/marker facts to match the owned execution. Identity replacement or contradiction must not authorize a new raw55 intervention.
 
-EV-385/EV-386 do not weaken these checks: the newly accepted marker2 is the same legitimate Sprint-origin C1/source and differs only by adding the evidence-backed current-SPRINT/SP1 state to the whitelist. EV-387 confirms absence of markers leaves raw55 unclaimed.
+EV-385/EV-386 do not weaken these checks: the newly accepted marker2 is the same legitimate Sprint-origin C1/source and differs only by adding the evidence-backed current-SPRINT/SP1 state to the whitelist. EV-387 confirms absence of markers leaves raw55 unclaimed. EV-388 reconfirms the pre-existing New Balance SP2 and same-C1 transition routes without relaxing identity or family checks.
 
 Diagnostics may surface identity contradictions, but diagnostics do not decide release behavior.
 
@@ -253,7 +268,7 @@ generic C1 terminal policy
 
 EV-381 reinforces that an accepted/open/rearmed raw55 window may still produce zero `ONDAMAGE`; native unmarked raw55 windows can also miss completely. Therefore a visual miss is not itself evidence of marker failure.
 
-EV-386 confirms marked corrected traffic still converges through Gothic/native cleanup to group5 with zero outstanding obligation. EV-387 confirms the final candidate leaves unmarked raw55 native opening/contact/cleanup untouched.
+EV-386 confirms marked corrected standalone traffic converges through Gothic/native cleanup to group5 with zero outstanding obligation. EV-387 confirms the final candidate leaves unmarked raw55 native opening/contact/cleanup untouched. EV-388 shows the same cleanup ownership remains healthy across the focused final-candidate New Balance batch.
 
 ---
 
@@ -308,30 +323,32 @@ Diagnostic SHA256:
 AEF0E18205BAA9258D50B2E934173C48B845E0F1B9A9F425D622F4E4598EE773
 ```
 
-The diagnostic twin has passed sole-live deployment/startup and the complete standalone/no-New-Balance final-candidate raw55 sentinel through EV-386–EV-387. The behavior twin remains undeployed until the final-candidate New Balance diagnostic regression closes.
+The diagnostic twin has passed sole-live deployment/startup, the complete standalone/no-New-Balance final-candidate sentinel through EV-386–EV-387, and the focused New Balance final-candidate regression EV-388. Therefore the diagnostic phase is CLOSED/PASS. The behavior twin is now the current release-purity gate and must be deployed alone before production migration.
 
 ---
 
 ## 9. Compatibility disposition
 
-Focused raw55 New Balance compatibility is CLOSED/PASS through EV-382. Broad intended-stack New Balance compatibility is CLOSED/PASS EV-384 on the source lineage preceding the final standalone SP1 correction.
+Focused raw55 New Balance compatibility is CLOSED/PASS through EV-382. Broad intended-stack New Balance compatibility is CLOSED/PASS EV-384.
 
-EV-385's standalone current-SPRINT/SP1 contradiction is **CLOSED by EV-386** on the corrected final candidate. EV-386 closes the marked final-candidate matrix including factual true-Power single/double controls; EV-387 closes unmarked raw55 native fallback. Therefore:
+EV-385's standalone current-SPRINT/SP1 contradiction is **CLOSED by EV-386** on the corrected final candidate. EV-386 closes the marked final-candidate standalone matrix including factual true-Power single/double controls; EV-387 closes unmarked raw55 native fallback; EV-388 closes the required post-correction final-candidate New Balance regression, preserving current-SPRINT/SP2, same-C1 Action9->Action2/POWER-SP2, Sprint first-SP2, and true-Power SP1->SP2 behavior with healthy cleanup.
+
+Therefore:
 
 ```text
-standalone/no-New-Balance final-candidate diagnostic raw55 sentinel
-= CLOSED/PASS EV-386–EV-387
+standalone/no-New-Balance final-candidate raw55 sentinel = CLOSED/PASS EV-386–EV-387
+final-candidate New Balance/raw55 focused regression = PASS EV-388
+diagnostic phase = CLOSED/PASS EV-386–EV-388
 ```
 
 Current route:
 
 ```text
-publish/review already-run New Balance final-candidate batch
--> POP-06 bounded retrieval only; no rerun
--> verify compatibility-sensitive Sprint SP2 / same-C1 Action9->Action2 semantics
--> if PASS: diagnostic phase CLOSED
--> behavior-twin-only release-purity observational validation
+deploy Script_FrameCollisionBehaviorTest ONLY
+-> verify diagnostic twin absent
+-> verify live behavior SHA256 D5BECB2C32A9766B1B444CB5864C0C30C9AC251A1679F605127F4D7318900B78
+-> diagnostics-free observational release-purity validation
 -> production collision migration only after behavior-only PASS
 ```
 
-Do not reopen closed raw55 mechanisms or broad compatibility scope unless final-candidate evidence produces a new contradiction.
+Do not reopen closed raw55 mechanisms or broad compatibility scope unless behavior-only or later integration evidence produces a new contradiction.
