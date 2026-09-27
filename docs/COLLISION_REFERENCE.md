@@ -139,7 +139,7 @@ end
 
 Scope remains exact current RIGHT PhysicalFist/raw55, marker-owned, 1 or 2 FIST markers, no LEFT raw55 generalization, no mixed equipped+FIST authoring, no species/name/file inference and no custom damage.
 
-### Current implemented family state gates before EV-385 correction
+### Current final-candidate family state gates
 
 ```text
 QUICK
@@ -158,10 +158,10 @@ SPRINT ORIGIN
   first: current SPRINT + explicit SP1 OR SP2 + earlyOpeningSuppressed
   second:
     current POWER  + explicit SP1 OR SP2
-    OR current SPRINT + SP2 only
+    OR current SPRINT + explicit SP1 OR SP2
 ```
 
-These lines describe the **currently implemented pre-correction source**, not the final accepted post-EV-385 contract.
+No generic StatePosition range such as `>=1` is authorized.
 
 ### Normal repeated-contact semantics — EV-382
 
@@ -188,7 +188,7 @@ Very-early marker2 before hit1 is also accepted. It may clear an empty visited l
 
 Evidence: EV-277–EV-279, EV-286–EV-292, EV-380, EV-382.
 
-### Sprint-origin compatibility state — EV-381 and EV-385
+### Sprint-origin compatibility state — EV-381, EV-385, EV-386
 
 New Balance compatibility evidence established:
 
@@ -198,26 +198,26 @@ Sprint-origin second current SPRINT/SP2 is legitimate
 Sprint-origin second after same-C1 transition current POWER/SP1/SP2 is legitimate
 ```
 
-EV-385 then runs the required standalone/no-New-Balance sentinel and adds the previously missing factual state:
+EV-385 added the previously missing standalone factual state:
 
 ```text
 Sprint-origin marker1 current SPRINT/SP1 -> accepted/open
 Sprint-origin marker2 may still be current SPRINT/SP1 in the same C1/source/origin
 ```
 
-In the standalone `1+3` fixture, four distinct Sprint executions repeat that exact state and the current source rejects marker2 as `REJECTED_UNSUPPORTED_HIT`. The same batch proves `1+8`/`1+15` remain healthy when marker2 has transitioned to current POWER/SP1, and single-FIST current SPRINT/SP1 remains healthy. Cleanup is safe in all cases.
-
-Therefore the current-SPRINT/SP1 second-FIST state is now **evidence-backed but not yet implemented/accepted on the tested source**. The frozen correction is explicit:
+The pre-correction source rejected that marker2 as `REJECTED_UNSUPPORTED_HIT`, while cleanup stayed safe. This froze the explicit correction:
 
 ```text
 Sprint-origin second FIST:
-  current POWER  -> SP1 OR SP2 (preserve)
-  current SPRINT -> SP1 OR SP2 (add SP1)
+  current POWER  -> SP1 OR SP2
+  current SPRINT -> SP1 OR SP2
 ```
 
-No generic `>=1` widening is authorized. The correction remains pending runtime acceptance on the changed final candidate.
+Source `1c45e5ec3de1194e43b2f2200a28fe7846bd5ce0` implements exactly that one-predicate change. Independent source review confirms the second-FIST branch remains clear-only and cannot request a second physical opening.
 
-Evidence: EV-280–EV-285, EV-294, EV-376–EV-381, EV-385.
+EV-386 runtime-validates the correction on the final candidate. Repeated standalone `1+3` Sprint-origin executions accept marker1 at `SPRINT/SP1`, then accept marker2 in the same C1 while still `SPRINT/SP1` with `GroupRequested=0` and `ClearTriggeredList=1`; ordinary cleanup returns raw55 RIGHT group7 -> group5 with `Outstanding=0`. The same batch preserves `SPRINT/SP1 -> POWER/SP1` continuation behavior and runtime-validates factual true-Power single and double marked controls.
+
+Evidence: EV-280–EV-285, EV-294, EV-376–EV-381, EV-385–EV-386.
 
 ### Native misses are not marker failure
 
@@ -229,10 +229,10 @@ The User's sheath/draw-associated miss observation is not a collision-marker blo
 
 Focused New Balance raw55 compatibility remains CLOSED/PASS through EV-382, and broad intended-stack New Balance compatibility is CLOSED/PASS through EV-384.
 
-The post-compatibility standalone sentinel is **PARTIAL FAIL EV-385** because the pre-correction source rejects legitimate current-SPRINT/SP1 second-FIST traffic. Production migration is blocked until the bounded correction and corrected-final-candidate sentinel pass.
+The EV-385 standalone current-SPRINT/SP1 eligibility defect is **CLOSED by EV-386**. The corrected marked standalone final-candidate matrix, including factual true-Power single/double controls, is PASS. The only unfinished standalone diagnostic sentinel item is one representative **unmarked raw55 native-fallback** control. The already-run New Balance final-candidate batch remains unpublished/unreviewed and follows after that standalone control.
 
 Architecture: `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`.  
-Evidence: EV-262–EV-298, EV-317, EV-341, EV-366, EV-376–EV-385.
+Evidence: EV-262–EV-298, EV-317, EV-341, EV-366, EV-376–EV-386.
 
 ## 6. Sprint transport
 
@@ -240,11 +240,11 @@ SprintAttack is factual `gEAction_SprintAttack = 9`.
 
 For raw8, Sprint may use a Power-named physical transport while factual actor action is already Sprint. Filename/transport does not redefine factual family.
 
-For raw55, immutable Sprint-origin identity survives the legitimate same-C1 Action9 -> Action2 continuation. EV-380–EV-381 prove authored marker2 may occur before or after that transition under New Balance at SP2; EV-385 proves that in standalone timing marker2 can legitimately remain Action9/SPRINT at SP1.
+For raw55, immutable Sprint-origin identity survives the legitimate same-C1 Action9 -> Action2 continuation. EV-380–EV-381 prove authored marker2 may occur before or after that transition under New Balance at SP2; EV-385–EV-386 prove standalone marker2 may legitimately remain Action9/SPRINT at SP1 and is now accepted by the corrected final candidate.
 
 Equipped Sprint RIGHT/LEFT/BOTH/OFF is permanent supported behavior through `EquippedSprintCollision`. Its bound continuation is exact-identity-only; a new ordinary true Power execution cannot inherit Sprint authorization.
 
-Evidence: raw8 EV-250–EV-251, EV-316, EV-354, EV-377; raw55 EV-280–EV-285, EV-294, EV-298, EV-317, EV-376–EV-381, EV-385; equipped Sprint EV-311, EV-315, EV-320–EV-329, EV-368, EV-377.
+Evidence: raw8 EV-250–EV-251, EV-316, EV-354, EV-377; raw55 EV-280–EV-285, EV-294, EV-298, EV-317, EV-376–EV-386; equipped Sprint EV-311, EV-315, EV-320–EV-329, EV-368, EV-377.
 
 ## 7. Shield / raw9 boundary
 
@@ -306,13 +306,20 @@ raw55 Normal SP0 compatibility               PASS EV-382
 focused raw55 New Balance compatibility      CLOSED/PASS EV-382
 dual-1H multi-window authoring               PASS EV-383
 broader New Balance full-stack gate          CLOSED/PASS EV-384
-standalone post-compat raw55 sentinel        PARTIAL FAIL EV-385
-Sprint current-SPRINT/SP1 second-FIST fix    FROZEN / IMPLEMENTATION PENDING
+standalone Sprint/SP1 defect                 FOUND EV-385 / CLOSED EV-386
+corrected marked standalone raw55 matrix     PASS EV-386
+unmarked raw55 final-candidate fallback      PENDING
+final-candidate New Balance regression       RUN LOCALLY / LOGS PENDING REVIEW
+behavior-only release-purity validation      PENDING
 production collision migration               BLOCKED
 ```
 
-Latest deployed diagnostic SHA256 before EV-385 correction:
-`81CF4C99BDA65EA6FBBC02839680E83B719B6E535407EB604E6AD015B038F2D3`
+Final-candidate hashes:
+
+```text
+Behavior   D5BECB2C32A9766B1B444CB5864C0C30C9AC251A1679F605127F4D7318900B78
+Diagnostic AEF0E18205BAA9258D50B2E934173C48B845E0F1B9A9F425D622F4E4598EE773
+```
 
 Current validation authority: `COLLISION_TEST_PLAN.md`.
 
