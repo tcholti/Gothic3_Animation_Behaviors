@@ -14,13 +14,25 @@ target_tree_sources(
     Script_G3AnimationBehaviors
     PRIVATE
         Script_G3AnimationBehaviors.cpp
-
-        SharedConfig.cpp
-        SharedConfig.h
-
-        AttackRaise.cpp
-        AttackRaise.h
-
-        AttackSpeed.cpp
-        AttackSpeed.h
+        AttackMotionRouting.cpp
+        AttackMotionRouting.h
+        CollisionLifecycleGuard.cpp
+        CollisionLifecycleGuard.h
+        CollisionSourceOperations.cpp
+        CollisionSourceOperations.h
+        CollisionSources.cpp
+        CollisionSources.h
+        EngineBridge.cpp
+        EngineBridge.h
+        EquippedSprintCollision.cpp
+        EquippedSprintCollision.h
+        FrameCollisionMarkers.cpp
+        FrameCollisionMarkers.h
+        FrameCollisionShared.h
+        PhysicalFistCollision.cpp
+        PhysicalFistCollision.h
+        Raw8FistCollision.cpp
+        Raw8FistCollision.h
+        RuntimeClock.cpp
+        RuntimeClock.h
 )
