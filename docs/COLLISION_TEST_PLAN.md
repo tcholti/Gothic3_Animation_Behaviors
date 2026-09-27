@@ -51,6 +51,13 @@ Script_FrameCollisionBehaviorTest
 
 Both twins compile the same `FRAME_COLLISION_BEHAVIOR_SOURCES`; the diagnostic twin adds diagnostic-only compilation/files. A behavior-facing shared-source change therefore changes the behavior twin's **source candidate** immediately, but the behavior DLL binary is not current until that target is rebuilt and hash-verified under POP-02/03.
 
+Final-candidate hashes from reviewed source `1c45e5ec3de1194e43b2f2200a28fe7846bd5ce0`:
+
+```text
+Behavior   D5BECB2C32A9766B1B444CB5864C0C30C9AC251A1679F605127F4D7318900B78
+Diagnostic AEF0E18205BAA9258D50B2E934173C48B845E0F1B9A9F425D622F4E4598EE773
+```
+
 ---
 
 ## 2. Standalone collision regression — CLOSED/PASS
@@ -74,7 +81,7 @@ Phase 7  stress regression                    PASS EV-373–EV-374
 
 Final frozen-source comprehensive stages A–D are CLOSED/PASS through EV-374. EV-375 additionally verifies the Zombie+Axe copied/renamed asset-gap remedy.
 
-Later compatibility changes do not reopen the entire standalone campaign. §4.5 owns the bounded post-compatibility standalone sentinel for the changed final candidate.
+Later compatibility changes did not reopen the entire campaign. §4.5 owns the bounded post-compatibility standalone sentinel for the changed final candidate; that sentinel is now CLOSED/PASS EV-386–EV-387.
 
 ---
 
@@ -102,7 +109,7 @@ EV-375 Zombie+Axe asset-gap remedy
 
 ---
 
-## 4. New Balance exact distributed-bundle compatibility — CLOSED/PASS EV-384
+## 4. New Balance exact distributed-bundle compatibility — CLOSED/PASS EV-384, FINAL-CANDIDATE FOCUSED REGRESSION PENDING REVIEW
 
 Environment certified by the representative gate:
 
@@ -137,7 +144,7 @@ The complete gate covered representative equipped marker combat, raw8 body-conta
 
 EV-383 adds dual-1H four-marker / three-offensive-window authoring proof. EV-384 supplies broad mixed-gameplay stress closure. The User reported correct gameplay behavior. Its processed whole-run package contains 27 C1 finalization/repair events and 5 marker anomalies; the reviewed marker anomalies are Whirl `REJECTED_C1_GENERATION_INCONSISTENCY` fail-closed stale callbacks, while reviewed single/dual-source C1-R1 repairs converge exact outstanding group7 sources to group5 with no sampled repair divergence. The run ends with normal cleanup and clean unload.
 
-No production source file changed between the EV-382 correction and EV-383/EV-384 runtime evidence.
+No production source file changed between the EV-382 correction and EV-383/EV-384 runtime evidence. The later standalone SP1 correction therefore requires only the bounded final-candidate New Balance regression defined below; it does not reopen the full EV-376–EV-384 campaign.
 
 ### 4.3 Acceptance — SATISFIED FOR TESTED ENVIRONMENT
 
@@ -164,7 +171,7 @@ a31c66b97e45c27d0739b7df51252d33f490e7e1
   Normal second-FIST explicit {SP0,SP1} acceptance
 ```
 
-The New Balance evidence establishes the compatible SP2 and Action9→Action2 transition routes. It did not establish current-SPRINT/SP1 second-FIST behavior; the post-compatibility standalone sentinel deliberately exists to ensure those compatibility additions remain additive rather than becoming a New Balance dependency.
+The New Balance evidence establishes the compatible SP2 and Action9→Action2 transition routes. It did not establish current-SPRINT/SP1 second-FIST behavior; the post-compatibility standalone sentinel deliberately existed to ensure those compatibility additions remained additive rather than becoming a New Balance dependency. EV-386–EV-387 now close that standalone requirement on the corrected final candidate.
 
 Hard boundaries remain:
 
@@ -177,7 +184,7 @@ NO species/name/filename/DLL policy
 NO custom damage/contact ownership
 ```
 
-### 4.5 Standalone / no-New-Balance post-compatibility sentinel — PARTIAL FAIL EV-385 / CURRENT
+### 4.5 Standalone / no-New-Balance post-compatibility sentinel — CLOSED/PASS EV-386–EV-387
 
 The mod must remain correct when New Balance / Script_AttackCollision is absent or disabled. New Balance support is additive, not a dependency.
 
@@ -187,7 +194,7 @@ Environment:
 New Balance / Script_AttackCollision absent or disabled
 normal standalone G3AB test environment
 exactly one current diagnostic collision twin live
-same final compatibility source lineage
+reviewed final candidate 1c45e5e...
 ```
 
 Minimum raw55 sentinel:
@@ -200,102 +207,108 @@ Minimum raw55 sentinel:
 5. unmarked raw55 native-fallback sentinel
 ```
 
-#### EV-385 first batch result
+#### EV-385 contradiction and correction
 
-The User ran four BlackTroll/raw55 marked fixtures:
+EV-385 found one narrow failure: in the standalone `1+3` fixture marker1 was factual `SPRINT/Action9/SP1`, while marker2 remained in the same C1/source/origin at `SPRINT/Action9/SP1` and was rejected as `REJECTED_UNSUPPORTED_HIT`. Cleanup stayed healthy.
+
+The reviewed final source changed only the Sprint-origin second-FIST current-SPRINT gate:
+
+```text
+current POWER  -> explicit SP1 or SP2
+current SPRINT -> explicit SP1 or SP2
+```
+
+No generic widening or new mechanism was introduced.
+
+#### EV-386 marked final-candidate acceptance
+
+The User repeated four standalone BlackTroll/raw55 fixtures on the corrected final candidate:
 
 ```text
 double FIST 1+3
 double FIST 1+8
 double FIST 1+15
-single-FIST control set
+single-FIST authored controls
 ```
 
-Result:
+Acceptance obtained:
 
 ```text
-1+3 Sprint-origin:
-  first FIST current SPRINT/SP1 -> accepted/open
-  second FIST same C1/source/origin, still current SPRINT/SP1
-  -> REJECTED_UNSUPPORTED_HIT
-  -> no second-FIST ClearTriggeredList
-  repeats in four distinct Sprint C1s
-
-1+8 / 1+15 Sprint-origin:
-  first FIST current SPRINT/SP1 -> accepted/open
-  second FIST same Sprint-origin after current Action9 -> Action2 transition
-  -> current POWER/SP1
-  -> accepted clear-only rearm
-  -> clean native cleanup
-
-single-FIST Sprint-origin:
-  current SPRINT/SP1 accepted/open/clean cleanup
-```
-
-All four logs remain lifecycle-safe: no C1 invariant warning and no terminal C1 repair anomaly. The `1+3` failure is therefore a narrow supported-traffic eligibility hole, not cleanup corruption.
-
-EV-385 directly establishes the previously missing factual state:
-
-```text
-origin family = SPRINT
-current family = SPRINT
-second authored FIST
-StatePosition = SP1
-same C1 + same exact RIGHT raw55 source
-```
-
-Current production code accepts current-SPRINT/SP2 only for this arm, so the sentinel **does not pass on the pre-correction source**.
-
-#### Frozen correction gate
-
-Active task:
-
-`docs/work/active/COLLISION_RAW55_STANDALONE_SPRINT_SECOND_FIST_SP1_COMPATIBILITY_CORRECTION.md`
-
-Required behavior after correction:
-
-```text
-Sprint-origin second FIST:
-  current POWER  -> explicit SP1 or SP2
-  current SPRINT -> explicit SP1 or SP2
-```
-
-This is an explicit evidence-backed union, not generic `>=1` widening.
-
-#### Post-correction final-candidate diagnostic acceptance
-
-The correction changes shared behavior source, so **both twins must be rebuilt from the same reviewed final source before runtime validation**. Record the resulting behavior and diagnostic SHA256 values; do not carry forward the pre-compatibility behavior hash as if it were current.
-
-First, finish the standalone diagnostic sentinel on `Script_FrameCollisionTest`:
-
-```text
-standalone 1+3 direct retest:
+1+3:
   marker1 SPRINT/SP1 accepted/open
-  marker2 SPRINT/SP1 accepted clear-only
-  marker2 GroupRequested=0
-  marker2 ClearTriggeredList=1
-  native cleanup -> group5
-  final Outstanding=0
-  no supported-traffic marker anomaly
+  marker2 same-C1 SPRINT/SP1 accepted clear-only
+  GroupRequested=0 / ClearTriggeredList=1
 
-preserve representative:
-  one current POWER/SP1 continuation case (1+8 or 1+15 is sufficient)
-  single-FIST current SPRINT/SP1
+1+8 / 1+15:
+  marker1 SPRINT/SP1 accepted/open
+  marker2 after same-C1 Action9->Action2 = POWER/SP1
+  accepted clear-only
 
-finish missing standalone controls:
-  factual true-Power single + double
-  unmarked raw55 native fallback
+single SPRINT/SP1 = PASS
+factual true-Power single + double = PASS
+reviewed cleanup -> group5 / Outstanding=0
+zero REJECTED_* / ANOMALY in the four-artifact batch
+clean unload
 ```
 
-Normal and Quick marked traffic was healthy in EV-385 and does not require another broad matrix absent contradiction.
+Normal and Quick marked traffic remained healthy and did not require a broader matrix.
 
-Then run **one small diagnostic New Balance/raw55 regression** on the same final source because behavior changed after EV-384. Its exact frozen fixture may be chosen at test time, but it must directly cover the compatibility-sensitive Sprint-origin route and preserve the established SP2 / Action9→Action2 semantics. It need not repeat the full EV-376–EV-384 campaign.
+#### EV-387 unmarked final-candidate acceptance
 
-The diagnostic phase closes only when both standalone and this bounded New Balance regression pass.
+One standalone BlackTroll/raw55 run removed authored FIST markers. Repeated Quick, Normal, factual true Power Action2 and Sprint Action9 are observed with:
+
+```text
+MarkerPresent=0
+FistMarkers=0
+SuppressNative=0
+```
+
+Bounded searches find:
+
+```text
+RAW55_PHYSICAL_FIST_MARKER = 0
+RAW55_PHYSICAL_FIST_NATIVE_OPEN_SUPPRESSED = 0
+REJECTED_* = 0
+ANOMALY = 0
+C1 INVARIANT = 0
+```
+
+Gothic performs the native exact RIGHT raw55 group5 -> group7 opening; contact/damage may occur; native cleanup returns group7 -> group5 with `Outstanding=0`; the diagnostic twin unloads cleanly.
+
+Therefore:
+
+```text
+FINAL-CANDIDATE STANDALONE/NO-NEW-BALANCE DIAGNOSTIC RAW55 SENTINEL
+= CLOSED/PASS EV-386–EV-387
+```
+
+### 4.5.1 Remaining diagnostic gate — bounded final-candidate New Balance regression
+
+Because the behavior-facing source changed after EV-384, one focused New Balance regression remains required on the same reviewed final candidate.
+
+The User has **already recorded** a New Balance matrix corresponding to the standalone fixtures. Do not ask for a rerun. Once published, review it under POP-06 bounded retrieval.
+
+Minimum required proof from that already-run batch:
+
+```text
+New Balance final-candidate startup/load remains healthy
+compatibility-sensitive Sprint-origin marked route remains accepted
+established SP2 behavior remains supported when present
+same-C1 Action9/SPRINT -> Action2/POWER continuation remains supported
+second FIST remains clear-only / no second physical opening
+native cleanup returns exact RIGHT raw55 to group5
+Outstanding=0 at normal finalization
+no new supported-traffic rejection / ownership contradiction
+clean unload
+```
+
+The User's extra 1+3 / 1+8 / 1+15 / single-marker coverage may be used as additional confidence, but the full EV-376–EV-384 campaign must not be repeated absent contradictory evidence.
+
+The diagnostic phase closes only when this bounded final-candidate New Balance regression passes.
 
 ### 4.6 Final behavior-only / diagnostics-free collision confirmation — REQUIRED AFTER DIAGNOSTIC PASS
 
-After the corrected final source has passed the diagnostic standalone sentinel and the small New Balance/raw55 regression:
+After the final-candidate New Balance regression passes:
 
 ```text
 deploy Script_FrameCollisionBehaviorTest ONLY
@@ -355,23 +368,22 @@ freeze setup + filename
 
 Behavior-only diagnostics-free validation follows §4.6 instead: exact binary identity + frozen observational matrix + User result; do not manufacture a raw log requirement for a product that intentionally emits no diagnostic evidence.
 
-The EV-382 Normal logs, EV-384 New Balance stress log, and EV-385 four-log standalone batch are processed and archived byte-identically. `research/raw/` should contain only `Keep.txt` after EV-385 closure.
+The EV-382 Normal logs, EV-384 New Balance stress log, EV-385 discovery batch, EV-386 corrected marked standalone batch, and EV-387 unmarked fallback run are processed and archived byte-identically. `research/raw/` should contain only `Keep.txt` after EV-387 closure.
 
 ---
 
 ## 6. Production collision migration — BLOCKED UNTIL FINAL BEHAVIOR-ONLY PASS
 
-The broader New Balance compatibility gate is closed through EV-384, but EV-385 found a standalone compatibility hole on the post-compatibility source.
+The broader New Balance compatibility gate is closed through EV-384, and the changed final candidate has now passed its complete standalone/no-New-Balance diagnostic sentinel through EV-386–EV-387.
 
 Therefore:
 
 ```text
-EV-385 correction
--> rebuild BOTH twins from same reviewed final source
--> corrected standalone diagnostic sentinel completion
--> one small diagnostic New Balance/raw55 regression
+review already-run final-candidate New Balance/raw55 batch
+-> bounded compatibility-sensitive regression PASS
+-> diagnostic phase CLOSED
 -> diagnostics-free behavior-twin observational confirmation
--> only after all PASS:
+-> only after behavior-only PASS:
    mature collision behavior
    -> migrate into src/Script_G3AnimationBehaviors
    -> diagnostics remain separate
@@ -404,11 +416,11 @@ Zombie+Axe asset-gap remedy                   PASS EV-375
 focused New Balance raw55 compatibility       CLOSED/PASS EV-376–EV-382
 dual-1H four-marker / three-window authoring  PASS EV-383
 representative/full-stack New Balance         CLOSED/PASS EV-384
-standalone/no-New-Balance raw55 sentinel      PARTIAL FAIL EV-385
--> bounded Sprint-origin current-SPRINT/SP1 second-FIST correction CURRENT
--> rebuild both twins from exact reviewed final source
--> finish corrected standalone diagnostic sentinel
--> one small diagnostic New Balance/raw55 regression
+standalone SP1 contradiction                  FOUND EV-385
+corrected marked standalone matrix            PASS EV-386
+unmarked native-fallback standalone           PASS EV-387
+standalone final-candidate diagnostic gate    CLOSED/PASS EV-386–EV-387
+-> review already-run New Balance final-candidate logs CURRENT
 -> final diagnostics-free behavior-only observational confirmation
 -> production collision migration only after behavior-only PASS
 -> production integration validation
