@@ -13,147 +13,132 @@
 
 ```text
 latest closed collision evidence = EV-390
-current evidence ledger = EVIDENCE_LEDGER_389_ONWARD.md
+collision production integration = CLOSED/PASS
+ADR-0007 shared Speed/Raise INI schema = ACCEPTED
 
-collision diagnostic phase = CLOSED/PASS EV-386–EV-388
-behavior-only release-purity collision gate = CLOSED/PASS EV-389
-production collision source migration = PASS
-production Script_G3AnimationBehaviors.dll integration = CLOSED/PASS EV-390
-
-CURRENT = shared generic INI/profile foundation for Speed + later Raise
+CURRENT = shared startup parsing/normalization/profile lookup foundation only
 NEXT = Speed v2 research/design/implementation/testing ONLY
 RAISE = PAUSED until Speed is completely closed
 ```
 
 ## Branch model
 
-ADR-0006 owns the current deliberate branch/sequencing decision:
+ADR-0006 owns:
 
 ```text
 main
 = last deliberately promoted stable integration checkpoint
-= DO NOT advance during ordinary current feature development
+= leave unchanged during current feature development
 
 development
 = sole active general development/research/integration branch
-= collision integration -> shared config -> Speed -> Raise -> assembled regression
+= shared config -> Speed -> Raise -> assembled safety regression
 
 docs/collision-source-evidence
-= historical collision branch; no ordinary new work
+= historical collision branch
 ```
 
-Current cycle promotion rule:
+Current cycle:
 
 ```text
 development
--> production collision integration CLOSED/PASS EV-390
--> freeze one shared generic INI/profile schema for Speed + future Raise
+-> collision production integration CLOSED/PASS EV-390
+-> shared INI/profile schema ACCEPTED ADR-0007
+-> shared config foundation
 -> finish Speed v2 completely
 -> finish Raise completely
--> assembled collision + Speed + Raise regression
+-> assembled collision + Speed + Raise safety regression
 -> deliberate promotion to main
 ```
 
-Later targeting/climbing/other adopted behavior may continue on the general `development` branch unless a future deliberate branch decision supersedes ADR-0006.
+The assembled regression is a final safety check that later features did not break already accepted behavior; it is not another Raise research phase.
 
-## Product architecture decisions frozen
+## Shared profile architecture
+
+Profile identity:
 
 ```text
-final release DLL = Script_G3AnimationBehaviors.dll
-validated collision core = production architectural foundation
-EngineBridge = sole physical hook owner inside the DLL
-release build = behavior only; diagnostics remain separate
-
-Raise/speed profile identity:
-  AnimationFamily
-  + LeftAnimationUseType
-  + RightAnimationUseType
-  + ActionProfile
-
-user-facing Raise/speed ActionProfile scope = Normal + Quick
-INI parsed once at startup into normalized in-memory rules
-runtime = bounded in-memory profile lookup
-unconfigured profile = native behavior
-no weapon-specific C++ policy branches merely for configuration selection
+AnimationFamily
++ LeftAnimationUseType
++ RightAnimationUseType
++ ActionProfile
 ```
 
-### Speed — active feature after shared-config freeze
+`ActionProfile` = `Normal` or `Quick` only. UseType fields use normalized animation tokens from `ANIMATION_RULES.md`; no P0/P1/P2/P3 user-facing split and no weapon-named C++ policy branches merely to select configuration.
+
+ADR-0007 freezes free-form sections:
+
+```ini
+[Profile.Hero_None_1H_Normal]
+AnimationFamily=Hero
+LeftAnimationUseType=None
+RightAnimationUseType=1H
+ActionProfile=Normal
+BaseSpeed=0.80
+Raise=Native
+```
+
+The `Profile.*` suffix is a unique author label only; explicit fields own runtime matching.
+
+Semantics:
+
+```text
+BaseSpeed absent -> native/compatible-mod Speed behavior
+BaseSpeed=1.00 -> explicit configured base 1.00
+Raise absent/Native -> native Raise behavior
+Raise=On -> future configured Raise activation
+invalid mandatory identity -> ignore profile
+duplicate normalized identity -> ambiguous -> no G3AB override for that identity
+INI parsed once at startup -> normalized in-memory table
+runtime -> bounded in-memory lookup only
+```
+
+The exact pinned SDK revision `90bfd344de4510dda7ac9da7461cc7f1eac911f7` exposes `eCConfigFile` section/key enumeration (`GetSections`, `GetSectionBlock`, `GetSectionArray`) plus `Contains`, `GetString` and scalar getters, so no numbered profile registry is required.
+
+## Speed — next exclusive behavior feature
 
 ```text
 unconfigured effective speed = B(profile, action, phase) * M(context)
 configured effective speed   = C(profile, action, phase) * M(context)
 ```
 
-`C` is the configured base-speed authority; applicable Gothic/New Balance contextual modifiers `M` must remain effective. The exact Speed v2 intervention point/mechanism remains a focused research question under ADR-0004. Final-speed replacement, copying New Balance's multiplier table, or same-hook load-order dependency are not accepted architecture.
+`C` is G3AB configured base speed; applicable Gothic/New Balance contextual modifiers `M` remain effective. Exact intervention point/mechanism remains focused research under ADR-0004. Final-result replacement, copying New Balance's multiplier table, arbitrary same-hook load-order dependency and weapon-specific C++ base-speed switches are rejected.
 
-### Raise — deliberately later
+## Raise — paused
 
-Raise remains governed by ADR-0005 but is not active work yet:
-
-```text
-matching configured Normal/Quick profile
--> request Raise through Gothic CombatMove semantics
--> Gothic resolves the actual animation from its normal naming/request facts
--> continue the untouched attack path
-```
-
-The shared INI/profile schema is designed to support both Speed and future Raise from the start, but Raise behavior/research does not begin until Speed is closed.
-
-## EV-390 production integration closure
-
-Production build/deployment identity:
-
-```text
-Script_G3AnimationBehaviors.dll
-built SHA256 = 12FA5819FEEB5033B2D747A9B57CA1591E588EAAC0BAC9CC386307B77C367A55
-live  SHA256 = 12FA5819FEEB5033B2D747A9B57CA1591E588EAAC0BAC9CC386307B77C367A55
-sole live G3AB/collision product = PASS
-```
-
-Focused runtime controls all worked:
-
-```text
-2H double attacks / three markers
-1H1H triple attacks / four markers
-human Fist double attack / two markers
-Sabretooth raw8 double attack / two markers
-Troll raw55 double attack / two markers
-```
-
-These deliberately exceed native Gothic collision-window structure and therefore confirm active migrated production marker behavior. Collision production migration is closed; do not rerun historical collision campaigns absent contradictory evidence.
+The shared config foundation may parse/store the future Raise field, but no Raise hook, intervention or behavior begins while Speed is open. Later `Raise=On` follows ADR-0005: request Raise through Gothic CombatMove semantics and let Gothic resolve the actual animation normally.
 
 ## Immediate route
 
 ```text
-1. inspect the current Gothic/eCConfigFile configuration API and existing old G3AB config prototype only as reference
-2. freeze one generic G3AnimationBehaviors.ini profile syntax compatible with both Speed and future Raise
-3. implement only the shared parsing/normalization/profile lookup foundation needed for Speed and later Raise
-4. then research/design/implement/test Speed v2 ONLY until completely closed
-5. do not begin Raise behavior/research while Speed remains open
+1. freeze bounded source-only shared-config implementation task
+2. implement Profile.* enumeration + identity normalization/validation + optional BaseSpeed/Raise storage
+3. load once during ScriptInit and expose bounded in-memory lookup
+4. NO Speed hook/composition behavior yet
+5. NO Raise behavior
+6. independent source review
+7. then begin Speed v2 mechanism research only
 ```
 
 ## Read next by question
 
 - exact continuation -> `BETWEEN_CHATS.md`
-- branch + sequential Speed→Raise decision -> `decisions/ADR-0006-development-branch-and-sequential-speed-raise.md`
-- Raise/speed profile architecture -> `DESIGN.md` §§2–3 + `decisions/ADR-0004-speed-control-base-speed-preserves-dynamic-modifiers.md` + `decisions/ADR-0005-raise-speed-config-profiles.md`
-- third-party source -> `../references/README.md`
+- Speed composition rationale -> `decisions/ADR-0004-speed-control-base-speed-preserves-dynamic-modifiers.md`
+- generic profile architecture -> `decisions/ADR-0005-raise-speed-config-profiles.md`
+- branch/sequencing -> `decisions/ADR-0006-development-branch-and-sequential-speed-raise.md`
+- exact INI schema -> `decisions/ADR-0007-shared-ini-profile-schema.md`
+- overall architecture -> `DESIGN.md` §§2–3
+- normalized animation tokens -> `ANIMATION_RULES.md`
+- third-party compatibility source -> `../references/README.md`
 - collision proof -> `EVIDENCE_INDEX.md` -> EV-389–EV-390
-- collision facts -> `COLLISION_REFERENCE.md`
-- release/diagnostic separation -> `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`
-- archived production migration contract -> `archive/investigations/PRODUCTION_COLLISION_CORE_MIGRATION.md`
-
-## Runtime-log retrieval rule
-
-`PROJECT_OPERATING_PROCEDURES.md` POP-06 requires bounded retrieval for **all** runtime logs regardless of size: identity/metadata -> exact searches/counts -> bounded event windows -> representative route/whole-run-class checks -> conclusions + provenance. POP-07 is the large-log specialization.
 
 ## Still paused
 
 ```text
+NO Speed behavior implementation before shared config foundation passes source review
 NO Raise implementation/research while Speed is open
 NO AttackContinuationProtection work
 NO targeting/climbing work
 NO promotion of development to main before the agreed integrated checkpoint
 NO collision redesign absent contradictory evidence
-NO load-order compensation experiment absent contradictory evidence
 ```
