@@ -34,6 +34,7 @@ The detailed pre-New-Balance standalone campaign plan is preserved at:
 - Freeze one falsifiable question and minimum controls before a new causal investigation.
 - Large regression runs use compact CORE diagnostics; unknown/anomalous events retain richer classification.
 - Every uploaded runtime batch closes fully under POP-06 before the next batch unless an explicit active-comparison need is recorded.
+- **All runtime logs, regardless of size, are analyzed through POP-06 bounded retrieval; whole log bodies are not loaded/reproduced in Chat merely because they fit.**
 - If a broad test exposes a failure, reduce it to the smallest factual route before source changes are considered.
 - An accepted marker/open/rearm does **not** guarantee `ONDAMAGE`; native target/contact/geometry/gameplay state remain authoritative.
 - A processed large log is analyzed through its derived package under POP-07; the large raw artifact remains provenance and is not the routine retrieval surface.
@@ -47,6 +48,8 @@ Script_FrameCollisionTest
 Script_FrameCollisionBehaviorTest
   diagnostics-free behavior twin
 ```
+
+Both twins compile the same `FRAME_COLLISION_BEHAVIOR_SOURCES`; the diagnostic twin adds diagnostic-only compilation/files. A behavior-facing shared-source change therefore changes the behavior twin's **source candidate** immediately, but the behavior DLL binary is not current until that target is rebuilt and hash-verified under POP-02/03.
 
 ---
 
@@ -259,9 +262,11 @@ Sprint-origin second FIST:
 
 This is an explicit evidence-backed union, not generic `>=1` widening.
 
-#### Post-correction final-candidate acceptance
+#### Post-correction final-candidate diagnostic acceptance
 
-Before the standalone sentinel can close:
+The correction changes shared behavior source, so **both twins must be rebuilt from the same reviewed final source before runtime validation**. Record the resulting behavior and diagnostic SHA256 values; do not carry forward the pre-compatibility behavior hash as if it were current.
+
+First, finish the standalone diagnostic sentinel on `Script_FrameCollisionTest`:
 
 ```text
 standalone 1+3 direct retest:
@@ -274,18 +279,58 @@ standalone 1+3 direct retest:
   no supported-traffic marker anomaly
 
 preserve representative:
-  1+8 / 1+15 current POWER/SP1 continuation
+  one current POWER/SP1 continuation case (1+8 or 1+15 is sufficient)
   single-FIST current SPRINT/SP1
-
-because behavior source changed after EV-384:
-  bounded New Balance Sprint SP2 / transition regression
 
 finish missing standalone controls:
   factual true-Power single + double
   unmarked raw55 native fallback
 ```
 
-Normal and Quick marked traffic was healthy in EV-385, but factual true-Power origin was not observed in the four uploaded logs and unmarked raw55 was not part of the batch.
+Normal and Quick marked traffic was healthy in EV-385 and does not require another broad matrix absent contradiction.
+
+Then run **one small diagnostic New Balance/raw55 regression** on the same final source because behavior changed after EV-384. Its exact frozen fixture may be chosen at test time, but it must directly cover the compatibility-sensitive Sprint-origin route and preserve the established SP2 / Action9→Action2 semantics. It need not repeat the full EV-376–EV-384 campaign.
+
+The diagnostic phase closes only when both standalone and this bounded New Balance regression pass.
+
+### 4.6 Final behavior-only / diagnostics-free collision confirmation — REQUIRED AFTER DIAGNOSTIC PASS
+
+After the corrected final source has passed the diagnostic standalone sentinel and the small New Balance/raw55 regression:
+
+```text
+deploy Script_FrameCollisionBehaviorTest ONLY
+-> verify diagnostic twin physically absent
+-> verify built/live behavior SHA256 match
+-> startup smoke: no load/startup crash
+-> run one observational functional session
+```
+
+This is a **release-purity behavior confirmation**, not a diagnostic evidence run. No `Script_FrameCollisionTest.log` is expected or required.
+
+The behavior-only session should intentionally include:
+
+```text
+representative raw55 marked combat
+representative ordinary equipped marker combat
+representative native/unmarked behavior
+several authored animations where the desired RIGHT collision window exists only because G3AB marker behavior owns/creates it
+ordinary combat/weapon/source churn sufficient to reveal obvious cleanup or persistence failure
+```
+
+The last category is the strongest positive-control surface for the diagnostics-free twin: if those marker-dependent RIGHT windows work in-game, the behavior-only binary is demonstrably executing G3AB collision behavior rather than merely surviving startup while native Gothic behavior masks its absence.
+
+Acceptance is observational plus binary identity:
+
+```text
+BEHAVIOR DEPLOYMENT PASS
+no startup/load crash
+marker-dependent RIGHT collision behavior visibly works where native behavior alone would not provide that authored window
+representative raw55/equipped/native behavior looks correct
+no stuck collision / obvious persistent-hit / cleanup regression
+no user-observed collision regression
+```
+
+Because this product deliberately omits diagnostics, absence of a diagnostic log is expected and must not be treated as missing evidence. Record the exact final behavior SHA256 and the User's observational result as the release-purity validation evidence.
 
 Do **not** rerun the full EV-299–EV-374 or full EV-384 campaigns unless focused final-candidate validation finds contradictory evidence.
 
@@ -293,13 +338,13 @@ Do **not** rerun the full EV-299–EV-374 or full EV-384 campaigns unless focuse
 
 ## 5. Evidence / artifact boundary
 
-For each runtime batch:
+For each diagnostic runtime batch:
 
 ```text
 freeze setup + filename
 -> User runs locally
 -> publish unchanged raw artifact
--> Normal Chat interprets
+-> Normal Chat interprets through POP-06 bounded retrieval
 -> concise canonical EV
 -> promote changed reusable fact
 -> archive processed runtime artifact when no active comparison remains
@@ -308,11 +353,13 @@ freeze setup + filename
 -> only then next batch
 ```
 
+Behavior-only diagnostics-free validation follows §4.6 instead: exact binary identity + frozen observational matrix + User result; do not manufacture a raw log requirement for a product that intentionally emits no diagnostic evidence.
+
 The EV-382 Normal logs, EV-384 New Balance stress log, and EV-385 four-log standalone batch are processed and archived byte-identically. `research/raw/` should contain only `Keep.txt` after EV-385 closure.
 
 ---
 
-## 6. Production collision migration — BLOCKED UNTIL CORRECTED SENTINEL PASS
+## 6. Production collision migration — BLOCKED UNTIL FINAL BEHAVIOR-ONLY PASS
 
 The broader New Balance compatibility gate is closed through EV-384, but EV-385 found a standalone compatibility hole on the post-compatibility source.
 
@@ -320,14 +367,18 @@ Therefore:
 
 ```text
 EV-385 correction
--> final-candidate focused standalone/New-Balance validation
--> finish missing standalone sentinel controls
--> only after full sentinel PASS:
+-> rebuild BOTH twins from same reviewed final source
+-> corrected standalone diagnostic sentinel completion
+-> one small diagnostic New Balance/raw55 regression
+-> diagnostics-free behavior-twin observational confirmation
+-> only after all PASS:
    mature collision behavior
    -> migrate into src/Script_G3AnimationBehaviors
    -> diagnostics remain separate
-   -> release-purity/integration validation
+   -> production integration validation
 ```
+
+The behavior twin is the pre-migration release-purity proof for the collision subsystem; production migration still remains a separate integration step into the shipping product.
 
 ---
 
@@ -355,10 +406,12 @@ dual-1H four-marker / three-window authoring  PASS EV-383
 representative/full-stack New Balance         CLOSED/PASS EV-384
 standalone/no-New-Balance raw55 sentinel      PARTIAL FAIL EV-385
 -> bounded Sprint-origin current-SPRINT/SP1 second-FIST correction CURRENT
--> focused corrected-final-candidate validation
--> finish true-Power + unmarked standalone sentinel controls
--> production collision migration only after sentinel PASS
--> diagnostics-free integration validation
+-> rebuild both twins from exact reviewed final source
+-> finish corrected standalone diagnostic sentinel
+-> one small diagnostic New Balance/raw55 regression
+-> final diagnostics-free behavior-only observational confirmation
+-> production collision migration only after behavior-only PASS
+-> production integration validation
 -> later Raise + Speed + Config under DESIGN.md §3 / ADR-0004
 
 AttackContinuationProtection remains separate unless deliberately reopened.
