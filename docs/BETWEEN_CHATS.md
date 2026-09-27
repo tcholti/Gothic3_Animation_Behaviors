@@ -20,17 +20,12 @@ CURRENT = Speed v2 mechanism research/design ONLY
 RAISE = PAUSED until Speed closes
 ```
 
-The completed config task is archived at:
-
-```text
-docs/archive/investigations/SHARED_PROFILE_CONFIG_FOUNDATION.md
-```
-
+Completed config task: `docs/archive/investigations/SHARED_PROFILE_CONFIG_FOUNDATION.md`.  
 `docs/work/active/` has no current bounded implementation task.
 
 ## Primary Speed compatibility stack
 
-Keep these live while developing/testing Speed:
+Keep live while developing/testing Speed:
 
 ```text
 Script_G3AnimationBehaviors.dll
@@ -46,45 +41,55 @@ Relevant ownership:
 
 ```text
 Script_NewBalance/FunctionHook.cpp
-  hooks Script_Game +0x42A0 GetAnimationSpeedModifier
-  Normal base examples: 0.6 / 0.7 / 1.0
-  contextual multiPlier includes stamina, disease, arena and other conditions
+  owns Script_Game +0x42A0 GetAnimationSpeedModifier
+  combines base choices with stamina/disease/arena/etc. contextual modifiers
 
 Script_AttackCollision/Script_AttackCollision.cpp
-  hooks melee AI callbacks and collision timing/state positions
-  does NOT own GetAnimationSpeedModifier
+  owns melee callback/collision-timing behavior, not GetAnimationSpeedModifier
   remains active for full-stack attack-flow compatibility
 ```
 
-## Frozen Speed requirement
+## Frozen Speed requirement and authoring goal
 
 ```text
 unconfigured = B * M
 configured   = C * M
 ```
 
-G3AB owns configured base `C`; legitimate Gothic/New Balance contextual modifiers `M` must remain effective.
+G3AB owns configured base `C`; legitimate Gothic/New Balance contextual modifiers `M` remain effective.
 
-The old prototype is not final architecture because for a configured route it discards the previous hook's final result and returns the configured speed directly.
+For explicitly configured Normal/Quick profiles, the intended nominal authored baseline is `BaseSpeed=1.0`. Animation authors should be able to use a common convenient frame/timing standard in Blender instead of baking historical Gothic `0.6/0.7` differences into source animations. INI profiles may then deliberately use values such as `1.05`, `1.10`, `1.15`, etc. according to desired gameplay feel.
+
+ADR-0007 semantics remain:
+
+```text
+BaseSpeed absent = no G3AB override
+BaseSpeed=1.00   = explicit authored base 1.00
+```
+
+Native/New Balance base values such as `0.6`, `0.7`, `1.0` are technical evidence/calibration facts only, not desired authoring defaults. Do not request exhaustive native timer logging unless the selected composition mechanism actually requires missing factual `B` values.
+
+The old prototype is not final architecture because it discards the previous hook's final result and returns the configured speed directly.
 
 Current causal question:
 
 ```text
-Can G3AB intervene at a stable point where only the base term B is chosen/replaced,
-while New Balance/Gothic still owns M and final composition?
+Where can G3AB substitute/transform B -> C while preserving M,
+without competing for ownership of the whole +0x42A0 function or copying New Balance policy?
 ```
 
-Do not freeze a same-function competing hook, copied New Balance multiplier table, or final-result replacement merely because it is easy.
+A downstream ratio transform `(B*M) * (C/B) = C*M` is a research candidate only; it is not accepted architecture until a stable consumer surface and trustworthy exact B source are proven.
 
 ## Exact next route
 
 ```text
-1. inspect native/tested binary route around GetAnimationSpeedModifier and its consumers
-2. locate possible narrower base-choice/input surfaces
-3. compare those surfaces with New Balance hook ownership/chaining
-4. if static/source evidence cannot resolve causality, freeze the smallest diagnostics-only runtime probe
-5. only after mechanism proof, freeze bounded Speed implementation
-6. Speed must close completely before Raise begins
+1. continue static investigation of GetAnimationSpeedModifier consumers/downstream playback path
+2. determine whether a stable composition surface exists outside the competing +0x42A0 entry hook
+3. determine whether that mechanism needs factual native/mod B values
+4. only then request missing logger evidence if necessary
+5. if static/source evidence cannot resolve causality, freeze the smallest diagnostics-only runtime probe
+6. only after mechanism proof, freeze bounded Speed implementation
+7. Speed must close completely before Raise begins
 ```
 
 Authorities: ADR-0004, ADR-0007, `DESIGN.md` §§2–3, `SOURCE_HOOK_GUIDE.md`, `references/README.md`.
