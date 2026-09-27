@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Project Charter and Knowledge Map
 
 **Purpose:** Highest project-specific authority beneath CAM for the Gothic 3 project's **purpose, long-term direction, scope, authority topology, and retrieval model**. Route Chat, Work, contributors, and Gothic 3 modders to the **smallest useful authoritative material** while preserving deep technical knowledge for targeted recovery.  
-**Updated:** 2026-09-19
+**Updated:** 2026-09-27
 
 <!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
 
@@ -128,15 +128,21 @@ An interrupted-Chat recovery is not automatically a formal audit. POP-11 first r
 
 ### Active development / research
 
-`docs/collision-source-evidence`
+`development`
 
-Contains newest active research, implementation and continuation state.
+`development` is the general active development, research, and integration branch. It is intentionally subsystem-neutral so collision integration, Speed, Raise, targeting, climbing, and later adopted systems can progress without branch renames driven by the current feature.
 
 ### Stable integration / reusable knowledge
 
 `main`
 
-`main` is the stable integration and reusable Gothic 3 knowledge baseline. Promotion remains deliberate rather than automatic.
+`main` is the last deliberately promoted stable integration and reusable Gothic 3 knowledge baseline. It is not advanced by ordinary current development commits. Promotion from `development` remains deliberate rather than automatic.
+
+### Historical collision branch
+
+`docs/collision-source-evidence` is retained as historical collision-development provenance. Ordinary new work no longer continues there.
+
+Current branch/sequencing rationale is ADR-0006; exact operating convention is `PROJECT_PIPELINE.md` §2.
 
 ### Relationship to CAM
 
@@ -280,7 +286,7 @@ Other deep references:
 ### COLD — searchable data / provenance
 
 - `data/animation_names/all_animation_names.txt` — complete extracted native names.
-- `data/animation_names/author_grouped_attacks_and_stumbles.txt` — author-grouped exact names/notes.
+- `data/animation_names/author_grouped_attacks_and_stumbles.txt` — author-grouped human attacks/stumbles and notes.
 - `research/raw/` — active/unprocessed or intentionally comparative canonical artifacts.
 - `research/archive/` — processed durable provenance.
 - `research/derived/` — deterministic retrieval/analysis aids whose source remains canonical.
