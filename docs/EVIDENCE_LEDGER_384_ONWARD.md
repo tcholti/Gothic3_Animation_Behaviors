@@ -39,7 +39,7 @@ Observed:
 - All five indexed marker anomalies are Whirl-family callbacks rejected fail-closed as `REJECTED_C1_GENERATION_INCONSISTENCY`. Reviewed events include stale RIGHT and OFF callbacks; the rejection does not authorize a new physical opening and matches the established generation-safety behavior rather than exposing a new collision-policy contradiction.
 - Bounded C1-R1 samples cover single-source and dual-source obligations. When an exact owned source remains outstanding at finalization, the repair outcome is `REPAIRED_TO_ITEM_EQUIPPED`, the requested group is 5, and the observed group after repair is 5. The dual-source sample restores both RIGHT and LEFT sources independently. A late-run sample around source line 20231 shows the same convergent repair behavior, with no sampled `REPAIR_DIVERGED_FROM_ITEM_EQUIPPED` outcome.
 - The final run tail remains healthy: the last observed player collision opportunity opens group5 -> group7, native cleanup returns group7 -> group5 with `Outstanding=0`, C1 finalization is `NO_OP_NO_OUTSTANDING`, and `Script_FrameCollisionTest` unloads cleanly.
-- No production source file changed between the EV-382 Normal raw55 correction and this runtime-evidence tail; EV-383 and EV-384 therefore exercise the same accepted collision behavior lineage rather than a silently altered implementation.
+- No production source file changed between the EV-382 correction and this runtime-evidence tail; EV-383 and EV-384 therefore exercise the same accepted collision behavior lineage rather than a silently altered implementation.
 
 Scope / limits:
 - This is broad representative compatibility evidence for the User's current intended New Balance 0.7 distributed stack plus the project separation/compatibility environment described by `COLLISION_TEST_PLAN.md`; it is not a claim about every possible third-party DLL/mod combination.
@@ -67,13 +67,13 @@ Disposition:
 
 Observed:
 - The User published four BlackTroll/raw55 runs in the standalone/no-New-Balance sentinel environment: double-FIST authoring at frames `1+3`, `1+8`, and `1+15`, plus a single-FIST control set with each marker placed appropriately for its animation.
-- The `1+3` run repeatedly exposes one exact failure class. Four distinct Sprint-origin executions (C1=19, 30, 48, 68) accept marker1 while factual `Action9 / SPRINT / SP1`, suppress the premature native opening, and perform the one authored exact RIGHT `TrollFist` raw55 `5 -> 7` opening. Marker2 then arrives in the same C1 while still factual `Action9 / SPRINT / SP1`, with RIGHT already group7, and is rejected as `REJECTED_UNSUPPORTED_HIT`; `AcceptedFistCount` remains 1, `GroupRequested=0`, and `ClearTriggeredList=0`.
+- The `1+3` run repeatedly exposes one exact failure class. Four distinct Sprint-origin executions accept marker1 while factual `Action9 / SPRINT / SP1`, suppress the premature native opening, and perform the one authored exact RIGHT `TrollFist` raw55 `5 -> 7` opening. Marker2 then arrives in the same C1 while still factual `Action9 / SPRINT / SP1`, with RIGHT already group7, and is rejected as `REJECTED_UNSUPPORTED_HIT`; `AcceptedFistCount` remains 1, `GroupRequested=0`, and `ClearTriggeredList=0`.
 - Representative C1=19 places marker1 at `StateTime=2.848456` and marker2 at `StateTime=2.933686`. The rejected marker2 does not corrupt lifecycle state: native damage can still occur from the first opportunity, Gothic later cleans exact RIGHT `7 -> 5`, the outstanding obligation reaches zero, and C1 finalizes `NO_OP_NO_OUTSTANDING`.
-- The `1+8` and `1+15` runs contain zero `CORE MARKER ANOMALY / DISCOVERY` and zero `REJECTED_UNSUPPORTED_HIT` records. In reviewed Sprint-origin executions, marker1 is factual `SPRINT/SP1` and opens once; before marker2 the same C1 has transitioned to factual `POWER/SP1`, where marker2 is accepted as clear-only rearm (`AcceptedFistCount=2`, `GroupRequested=0`, `ClearTriggeredList=1`) and ordinary native cleanup returns group7 -> group5.
+- The `1+8` and `1+15` runs contain zero marker anomalies and zero `REJECTED_UNSUPPORTED_HIT` records. In reviewed Sprint-origin executions, marker1 is factual `SPRINT/SP1` and opens once; before marker2 the same C1 has transitioned to factual `POWER/SP1`, where marker2 is accepted as clear-only rearm (`AcceptedFistCount=2`, `GroupRequested=0`, `ClearTriggeredList=1`) and ordinary native cleanup returns group7 -> group5.
 - The single-marker run also contains zero marker anomalies. Repeated standalone Sprint-origin single-FIST executions accept factual `SPRINT/SP1`, perform the authored opening, may produce native damage, and clean normally to group5.
 - Across all four logs there are no `C1 INVARIANT WARNING` records and no `CORE C1 FINALIZATION ANOMALY / REPAIR` records. The observed failure is therefore a narrow repeated-marker eligibility rejection, not a lifecycle/cleanup/generation failure.
 - Normal and Quick marked traffic in the same batch remains healthy. No factual `OriginFamily=POWER` execution was found in these four logs, and no unmarked raw55 fixture was included, so the true-Power and native-fallback portions of the standalone sentinel remain unclosed.
-- Source review identifies the exact current gate responsible for the rejection: `PhysicalFistCollision::IsSecondFistAllowed()` permits Sprint-origin marker2 under current POWER at explicit SP1/SP2, but under current SPRINT permits SP2 only. EV-385 now directly proves current-SPRINT/SP1 can be legitimate standalone same-C1 second-FIST traffic.
+- Source review identifies the exact current gate responsible for the rejection: `PhysicalFistCollision::IsSecondFistAllowed()` permits Sprint-origin marker2 under current POWER at explicit SP1/SP2, but under current SPRINT permits SP2 only. EV-385 directly proves current-SPRINT/SP1 can be legitimate standalone same-C1 second-FIST traffic.
 
 Scope / limits:
 - This finding applies to the tested BlackTroll/raw55 standalone/no-New-Balance route on the same post-compatibility source lineage used for EV-384.
@@ -93,3 +93,36 @@ Disposition:
 - **PARTIAL FAIL / CORRECTION REQUIRED — standalone Sprint-origin marker2 at factual current `SPRINT/SP1` is legitimate supported traffic but the current compatibility rule rejects it.**
 - **IMPLEMENTATION BASIS READY:** preserve current-Power explicit `{SP1,SP2}` and extend the same Sprint-origin second-FIST branch to current-Sprint explicit `{SP1,SP2}`. Do not use a generic `>=1` rule.
 - Production collision migration remains blocked. After the bounded correction is implemented and independently reviewed, runtime validation must directly retest standalone `1+3`, preserve the `1+8`/`1+15` continuation behavior, recheck New Balance representative Sprint SP2/transition behavior because source changed after EV-384, and finish the still-missing true-Power/unmarked standalone sentinel controls.
+
+### EV-386 — Corrected standalone marked raw55 final-candidate matrix PASS
+
+Observed:
+- The User published four BlackTroll/raw55 runs in the standalone/no-New-Balance environment on the corrected final candidate: double-FIST authoring at `1+3`, `1+8`, and `1+15`, plus a single-FIST control set.
+- The `1+3` run repeatedly proves the exact EV-385 correction. Sprint-origin marker1 is factual `SPRINT/Action9/SP1`, suppresses the premature native opening, and performs the one RIGHT raw55 `5 -> 7` opening. Marker2 remains factual `SPRINT/Action9/SP1` in the same C1 and is now accepted clear-only: `AcceptedFistCount=2`, `GroupRequested=0`, `ClearTriggeredList=1`, source remains group7, then native cleanup returns group7 -> group5 with `Outstanding=0` and `NO_OP_NO_OUTSTANDING` finalization.
+- The `1+8` and `1+15` runs preserve the established continuation route. Marker1 is `SPRINT/SP1`; marker2 arrives after the same-C1 Action9 -> Action2 transition as current `POWER/SP1`, is accepted clear-only (`GroupRequested=0`, `ClearTriggeredList=1`), and cleanup converges normally.
+- The `1+15` run contains factual true-Power-origin double-FIST traffic. Representative C1=15 accepts first `POWER/SP1` FIST with `earlyOpeningSuppressed=1` and the one group5 -> group7 opening, then accepts second `POWER/SP1` FIST clear-only with no second physical opening.
+- The single-marker run contains repeated factual Sprint-origin `SPRINT/SP1` controls and factual true-Power `POWER/SP1` controls. Each accepted single FIST opens the exact RIGHT raw55 source and cleans normally.
+- Across all four artifacts, bounded searches find zero `REJECTED_*` records and zero `ANOMALY` records. Reviewed tails return TrollFist group7 -> group5, clear exact outstanding obligations to zero, finalize `NO_OP_NO_OUTSTANDING`, and unload `Script_FrameCollisionTest` cleanly.
+- No `MarkerPresent=0` BlackTroll/raw55 route exists in any of these four marked artifacts. Therefore this batch does not prove the separate unmarked raw55 native-fallback sentinel.
+
+Scope / limits:
+- This is a PASS for the corrected **marked** standalone raw55 final-candidate matrix.
+- It closes the EV-385 current-SPRINT/SP1 second-FIST defect and closes the previously missing factual true-Power single/double marked controls.
+- The standalone diagnostic sentinel remains open only for one representative unmarked raw55 native-fallback control.
+- This evidence makes no New Balance claim. The User reports having already run the same matrix under New Balance; those logs remain unpublished/unreviewed at EV-386.
+
+Provenance:
+- reviewed behavior source: `1c45e5ec3de1194e43b2f2200a28fe7846bd5ce0`;
+- final-candidate behavior SHA256: `D5BECB2C32A9766B1B444CB5864C0C30C9AC251A1679F605127F4D7318900B78`;
+- final-candidate diagnostic/live SHA256: `AEF0E18205BAA9258D50B2E934173C48B845E0F1B9A9F425D622F4E4598EE773`;
+- runtime upload commit: `769b7f6ae74e156f8eec22aee51c60b6b636c6db`;
+- archive transaction commit: `526d0e685dfa6ea033fd175d91668888eb6341a8`;
+- `1+3`: `research/archive/2026.09.27_blacktroll_all_double_markers_1_3_test2.log`, Git blob `69b9c8c65f3afa59911f5075a9a28369f9663d27`;
+- `1+8`: `research/archive/2026.09.27_blacktroll_all_double_markers_1_8_test2.log`, Git blob `da6c405dbc6f37788cacebaa0fea753c4a6867f0`;
+- `1+15`: `research/archive/2026.09.27_blacktroll_all_double_markers_1_15_test2.log`, Git blob `64d361fa6f72c4f5b48b4fe52d6515514df14d69`;
+- single-FIST: `research/archive/2026.09.27_blacktroll_all_single_marker_test2.log`, Git blob `30cd1bdd44b65e122ce6a98c2624129af2ffd018`.
+
+Disposition:
+- **PASS — CORRECTED MARKED STANDALONE RAW55 FINAL-CANDIDATE MATRIX.**
+- **EV-385 ELIGIBILITY DEFECT CLOSED.**
+- **NEXT STANDALONE ITEM:** one representative unmarked raw55 native-fallback control. After that passes, process the already-run New Balance final-candidate regression before behavior-only release-purity validation.
