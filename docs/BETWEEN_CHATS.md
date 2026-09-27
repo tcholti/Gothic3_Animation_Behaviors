@@ -12,77 +12,81 @@ Stable branch: `main`
 ## Current state
 
 ```text
-EV-390 production Script_G3AnimationBehaviors.dll collision integration = CLOSED/PASS
-ADR-0007 shared Speed/Raise INI profile schema = ACCEPTED
-CURRENT = implement shared startup profile/config foundation only
-ACTIVE TASK = docs/work/active/SHARED_PROFILE_CONFIG_FOUNDATION.md
-NEXT = Speed v2 research/design/implementation/testing ONLY
+EV-390 production collision integration = CLOSED/PASS
+ADR-0007 shared Speed/Raise profile schema = ACCEPTED
+BehaviorProfiles implementation = PASS
+implementation SHA = 81d4964201579c9f7a989404426c3d9dc9ab4834
+CURRENT = Speed v2 mechanism research/design ONLY
 RAISE = PAUSED until Speed closes
 ```
 
-`main` stays frozen. `development` is the only active general branch for this cycle.
-
-## Frozen profile schema
-
-All behavior profiles are free-form sections beginning with `Profile.`. The section suffix is a unique author label only; runtime identity comes from explicit fields.
-
-```ini
-[Profile.Hero_None_1H_Normal]
-AnimationFamily=Hero
-LeftAnimationUseType=None
-RightAnimationUseType=1H
-ActionProfile=Normal
-BaseSpeed=0.80
-Raise=Native
-```
-
-Exact identity:
+The completed config task is archived at:
 
 ```text
-AnimationFamily
-+ LeftAnimationUseType
-+ RightAnimationUseType
-+ ActionProfile
+docs/archive/investigations/SHARED_PROFILE_CONFIG_FOUNDATION.md
 ```
 
-Rules:
+`docs/work/active/` has no current bounded implementation task.
+
+## Primary Speed compatibility stack
+
+Keep these live while developing/testing Speed:
 
 ```text
-ActionProfile = Normal | Quick only
-UseType fields = normalized animation tokens from ANIMATION_RULES.md
-no P0/P1/P2/P3 profile split
-BaseSpeed absent = native Speed fallback
-BaseSpeed=1.00 = explicit configured base value
-Raise absent/Native = native Raise fallback
-Raise=On = reserved future Raise activation
-no Raise=Off behavior promised yet
-duplicate normalized identity = ambiguous -> no G3AB override for that identity
-invalid mandatory identity = ignore profile
-INI parsed once at startup -> normalized in-memory table
-runtime = bounded in-memory lookup only
+Script_G3AnimationBehaviors.dll
+Script_NewBalance.dll
+Script_AttackCollision.dll
 ```
 
-The pinned SDK (`90bfd344de4510dda7ac9da7461cc7f1eac911f7`) exposes `eCConfigFile::GetSections`, `GetSectionBlock`, `GetSectionArray`, `Contains`, `GetString`, scalar getters and section/key enumeration, so numbered profile registries are unnecessary.
+New Balance compatibility is the primary runtime target. Native-only testing is a later fallback/sanity control after the modded stack works.
 
-## Speed — next exclusive behavior feature
+Pinned Jackydima source `316d32406a133f8884e7e302752c35f66b4f54fc` was checked 2026-09-27 and still equals upstream `master`.
+
+Relevant ownership:
+
+```text
+Script_NewBalance/FunctionHook.cpp
+  hooks Script_Game +0x42A0 GetAnimationSpeedModifier
+  Normal base examples: 0.6 / 0.7 / 1.0
+  contextual multiPlier includes stamina, disease, arena and other conditions
+
+Script_AttackCollision/Script_AttackCollision.cpp
+  hooks melee AI callbacks and collision timing/state positions
+  does NOT own GetAnimationSpeedModifier
+  remains active for full-stack attack-flow compatibility
+```
+
+## Frozen Speed requirement
 
 ```text
 unconfigured = B * M
 configured   = C * M
 ```
 
-`C` is the configured base term; applicable Gothic/New Balance contextual modifiers `M` must remain effective. Exact intervention mechanism remains research under ADR-0004. Do not use final-result replacement, copied New Balance multiplier tables, arbitrary same-hook load-order dependency, or weapon-named C++ policy branches.
+G3AB owns configured base `C`; legitimate Gothic/New Balance contextual modifiers `M` must remain effective.
 
-## Raise — paused
+The old prototype is not final architecture because for a configured route it discards the previous hook's final result and returns the configured speed directly.
 
-The shared config may parse/store `Raise`, but no Raise hook/intervention/behavior may be activated while Speed is open. Later `Raise=On` uses Gothic CombatMove semantics and Gothic's normal animation resolution under ADR-0005.
+Current causal question:
+
+```text
+Can G3AB intervene at a stable point where only the base term B is chosen/replaced,
+while New Balance/Gothic still owns M and final composition?
+```
+
+Do not freeze a same-function competing hook, copied New Balance multiplier table, or final-result replacement merely because it is easy.
 
 ## Exact next route
 
 ```text
-1. execute docs/work/active/SHARED_PROFILE_CONFIG_FOUNDATION.md as bounded source-only Work
-2. independent source review
-3. then begin focused Speed v2 mechanism research only
+1. inspect native/tested binary route around GetAnimationSpeedModifier and its consumers
+2. locate possible narrower base-choice/input surfaces
+3. compare those surfaces with New Balance hook ownership/chaining
+4. if static/source evidence cannot resolve causality, freeze the smallest diagnostics-only runtime probe
+5. only after mechanism proof, freeze bounded Speed implementation
+6. Speed must close completely before Raise begins
 ```
 
-Collision is closed through EV-390; do not reopen historical collision campaigns absent contradictory evidence.
+Authorities: ADR-0004, ADR-0007, `DESIGN.md` §§2–3, `SOURCE_HOOK_GUIDE.md`, `references/README.md`.
+
+Collision is closed through EV-390; do not reopen historical collision research absent contradictory evidence.
