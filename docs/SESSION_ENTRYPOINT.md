@@ -21,51 +21,26 @@ standalone Sprint-second SP1 candidate = 1c45e5ec3de1194e43b2f2200a28fe7846bd5ce
 latest runtime evidence = EV-385
 current ledger = EVIDENCE_LEDGER_384_ONWARD.md
 
-standalone final-source collision regression = CLOSED/PASS EV-299–EV-374
+standalone final-source regression = CLOSED/PASS EV-299–EV-374
 Zombie+Axe asset-gap remedy = PASS EV-375
 focused raw55 New Balance compatibility = CLOSED/PASS EV-376–EV-382
 dual-1H four-marker / three-window authoring = PASS EV-383
 New Balance full intended-stack compatibility = CLOSED/PASS EV-384
-standalone/no-New-Balance post-compat raw55 sentinel = PARTIAL FAIL EV-385 / CORRECTED CANDIDATE PENDING RUNTIME
-Work implementation = COMPLETE
+standalone/no-New-Balance post-compat raw55 sentinel = PARTIAL FAIL EV-385
+EV-385 correction implementation = COMPLETE
 independent Normal Chat source review = PASS
-active runtime contract = docs/work/active/COLLISION_RAW55_STANDALONE_SPRINT_SECOND_FIST_SP1_COMPATIBILITY_CORRECTION.md
+both final-candidate twins rebuilt = PASS
+diagnostic sole-live deployment = PASS
+diagnostic startup/load/unload smoke = PASS
+CURRENT = corrected standalone runtime sentinel
 ```
 
-## EV-385 exact finding
+## EV-385 correction
 
-Standalone/no-New-Balance BlackTroll/raw55 tests used double FIST markers at `1+3`, `1+8`, `1+15`, plus a single-FIST control set.
+EV-385 proved a legitimate Sprint-origin second authored FIST can arrive in the same C1/current source while still factual `SPRINT/Action9/SP1`. Pre-correction source accepted current-SPRINT SP2 only.
 
-```text
-1+3 Sprint-origin:
-  marker1 current SPRINT/SP1 -> ACCEPTED / exact RIGHT 5 -> 7
-  marker2 same C1/source/origin, still current SPRINT/SP1
-  -> REJECTED_UNSUPPORTED_HIT
-  -> no marker2 clear/rearm
-  -> native cleanup still returns 7 -> 5 / Outstanding=0
-
-1+8 and 1+15 Sprint-origin:
-  marker1 current SPRINT/SP1 -> ACCEPTED/open
-  marker2 after same-C1 transition current POWER/SP1
-  -> ACCEPTED clear-only
-  -> GroupRequested=0 / ClearTriggeredList=1
-  -> clean native cleanup
-
-single FIST:
-  current SPRINT/SP1 -> ACCEPTED/open/clean cleanup
-```
-
-Four distinct `1+3` Sprint C1s repeat the same rejection. All other three logs have zero marker anomalies. Across all four logs there are no C1 invariant warnings or terminal repair anomalies.
-
-This is a bounded repeated-marker eligibility compatibility hole, not a cleanup/lifecycle/generation failure.
-
-## Corrected candidate / independent review
-
-Published correction:
-
+Reviewed correction source:
 `1c45e5ec3de1194e43b2f2200a28fe7846bd5ce0`
-
-Exact implemented rule:
 
 ```text
 Sprint-origin second FIST:
@@ -73,102 +48,80 @@ Sprint-origin second FIST:
   current SPRINT -> explicit SP1 or SP2
 ```
 
-Independent Normal Chat source review: **PASS**.
+Independent source review: **PASS**. The change is one predicate only. The accepted second-FIST path still requires exactly two authored FIST markers, exactly one prior accepted FIST, RIGHT already group7, then calls only `RearmTriggeredContacts()`; it cannot request a second physical opening.
 
-The diff is one predicate only. The second-FIST branch still requires exactly two authored FIST markers, exactly one prior accepted FIST, the source already in group7, and then calls only `RearmTriggeredContacts()`. It does not call `ActivateAttackSource()`, so the added SPRINT/SP1 acceptance cannot request a second physical opening.
+## Final-candidate collision twins
 
-No generic `>=1`, new hook, timer/queue/hit flag/custom damage, first-FIST change, or neighboring family change was introduced.
-
-## Collision twin / binary state
-
-Both collision twins compile the same behavior-facing source set, including `PhysicalFistCollision.cpp`:
+Both twins were rebuilt from the same reviewed shared behavior source.
 
 ```text
-Script_FrameCollisionBehaviorTest
-  shared behavior source only
+Script_FrameCollisionBehaviorTest SHA256:
+D5BECB2C32A9766B1B444CB5864C0C30C9AC251A1679F605127F4D7318900B78
 
-Script_FrameCollisionTest
-  same shared behavior source
-  + FRAME_COLLISION_DIAGNOSTICS
-  + diagnostic-only files
+Script_FrameCollisionTest SHA256:
+AEF0E18205BAA9258D50B2E934173C48B845E0F1B9A9F425D622F4E4598EE773
 ```
 
-Therefore the behavior source candidate is current, but the behavior DLL binary is current only after that target is rebuilt from the exact reviewed source.
-
-Recorded binary state before this correction:
+Diagnostic deployment verified:
 
 ```text
-Final standalone diagnostic SHA256 before compatibility work:
-5AD5B33A8826DB5E78F4AECADC3FF48546E1C54ADA3BE9ED2BE9A54E6190E313
-
-Final standalone behavior SHA256 before compatibility work:
-A806EC6523116286335A659735067B1AA6C581837B3E0D604E6271AC98079340
-
-Latest deployed diagnostic SHA256 after raw55 compatibility corrections:
-81CF4C99BDA65EA6FBBC02839680E83B719B6E535407EB604E6AD015B038F2D3
+sole live collision twin = Script_FrameCollisionTest.dll
+built/live SHA match = AEF0E182...
+CORE banner present
+behavior hooks installed
+clean unload
+DIAGNOSTIC DEPLOYMENT / STARTUP PASS
 ```
 
-No post-compatibility behavior built/live hash is recorded. Treat the old behavior DLL as stale/unverified binary state.
-
-## Runtime-log retrieval rule
-
-`PROJECT_OPERATING_PROCEDURES.md` v1.19 makes bounded retrieval mandatory for **all** runtime logs, not only oversized logs:
-
-```text
-artifact identity / metadata
--> exact searches + counts
--> bounded event windows
--> representative route samples / whole-run-class checks as required
--> conclusions + provenance in Chat
-```
-
-Do not load/reproduce a complete raw log into Chat context merely because it fits. POP-07 remains the large-log specialization using derived manifest/count/index/full-source windows.
+The behavior twin is now a current final-candidate binary but remains undeployed until diagnostic validation closes.
 
 ## Exact next route
 
 ```text
-1. User syncs local branch to current remote state containing reviewed candidate 1c45e5e...
-2. build BOTH collision twins from the same reviewed final source
-   -> record behavior SHA256
-   -> record diagnostic SHA256
-3. deploy diagnostic twin / verify sole-live-twin + SHA
-4. finish corrected standalone diagnostic sentinel:
-   - 1+3 direct SPRINT/SP1 second-FIST retest
-   - one representative POWER/SP1 continuation control
-   - single-FIST SPRINT/SP1 control
-   - factual true-Power single/double
-   - unmarked raw55 native fallback
-5. one small diagnostic New Balance/raw55 regression on the same final source
-   -> compatibility-sensitive Sprint-origin SP2 / Action9->Action2 route
-6. deploy behavior twin ONLY / verify sole-live-twin + behavior SHA
-7. final diagnostics-free observational collision confirmation:
+1. standalone/no-New-Balance BlackTroll raw55 double-FIST 1+3
+   direct EV-385 failure retest
+   expected:
+     marker1 current SPRINT/SP1 -> ACCEPTED / RIGHT 5->7
+     marker2 same C1 current SPRINT/SP1 -> ACCEPTED clear-only
+     marker2 GroupRequested=0 / ClearTriggeredList=1
+     native cleanup -> group5 / Outstanding=0
+2. one representative current POWER/SP1 continuation control (1+8 OR 1+15)
+3. single-FIST current SPRINT/SP1
+4. factual true-Power single + double
+5. unmarked raw55 native fallback
+6. one small diagnostic New Balance/raw55 regression preserving Sprint SP2 / Action9->Action2 semantics
+7. deploy behavior twin ONLY; verify sole-live + behavior SHA
+8. final diagnostics-free observational session:
    - representative raw55/equipped/native behavior
-   - include several authored animations whose desired RIGHT collision window exists only through G3AB marker behavior
-   - no diagnostic log expected
-8. only after behavior-only PASS:
+   - several authored animations whose desired RIGHT collision window exists only through G3AB marker behavior
+9. only after behavior-only PASS:
    production collision migration + production integration validation
 ```
 
-Do not run another runtime test from the pre-correction source.
+Do not rerun full historical campaigns absent contradictory evidence.
+
+## Runtime-log retrieval rule
+
+`PROJECT_OPERATING_PROCEDURES.md` POP-06 requires bounded retrieval for **all** runtime logs regardless of size: identity/metadata -> exact searches/counts -> bounded event windows -> representative route/whole-run-class checks -> conclusions + provenance. POP-07 is the large-log specialization.
 
 ## Current environment boundary
 
-EV-385 is from the intended standalone sentinel environment:
+Corrected standalone sentinel remains:
 
 ```text
 New Balance / Script_AttackCollision absent or disabled
 normal standalone G3AB test environment
 exactly one current diagnostic collision twin live
-same compatibility source lineage through a31c66b...
+final diagnostic SHA = AEF0E182...
 ```
 
 ## Read next by question
 
 - exact continuation → `BETWEEN_CHATS.md`
-- current runtime contract → `docs/work/active/COLLISION_RAW55_STANDALONE_SPRINT_SECOND_FIST_SP1_COMPATIBILITY_CORRECTION.md`
+- active runtime contract → `docs/work/active/COLLISION_RAW55_STANDALONE_SPRINT_SECOND_FIST_SP1_COMPATIBILITY_CORRECTION.md`
 - current facts → `COLLISION_REFERENCE.md`
 - validation gate → `COLLISION_TEST_PLAN.md` §4.5–§4.6
-- operating procedure / bounded log retrieval → `PROJECT_OPERATING_PROCEDURES.md` POP-06/POP-07
+- bounded log retrieval → `PROJECT_OPERATING_PROCEDURES.md` POP-06/POP-07
 - raw55 architecture → `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`
 - proof → `EVIDENCE_INDEX.md` → EV-385
 
