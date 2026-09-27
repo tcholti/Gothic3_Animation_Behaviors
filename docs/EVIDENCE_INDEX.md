@@ -70,6 +70,7 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | broad intended-stack New Balance mixed-gameplay compatibility closure | EV-384 |
 | New Balance stress-run Whirl generation-mismatch fail-closed handling | EV-384 |
 | New Balance stress-run C1-R1 single/dual-source repair convergence | EV-384 |
+| standalone/no-New-Balance Sprint-origin second-FIST SP1 compatibility | EV-385 |
 | native contact misses vs authored marker correctness | EV-381 |
 | sheath/draw contact observation | EV-380–EV-381; not a marker blocker |
 
@@ -109,6 +110,7 @@ EV-381         Sprint second-FIST SP2 correction runtime PASS; focused Sprint co
 EV-382         Normal second-FIST {SP0,SP1} correction runtime PASS; focused raw55 New Balance compatibility CLOSED
 EV-383         dual-1H four-marker / three-offensive-window equipped authoring PASS
 EV-384         broad intended-stack New Balance mixed-gameplay compatibility PASS/CLOSED
+EV-385         standalone Sprint-origin second FIST at current SPRINT/SP1 rejected; bounded correction required
 ```
 
 ## 4. Current next gate
@@ -116,23 +118,33 @@ EV-384         broad intended-stack New Balance mixed-gameplay compatibility PAS
 ```text
 New Balance 0.7 intended-stack compatibility is CLOSED/PASS through EV-384.
 
-Focused raw55 Normal/Quick/true-Power/Sprint-origin compatibility is CLOSED/PASS through EV-382.
-EV-383 extends equipped authoring proof to four markers / three offensive windows.
-EV-384 closes the broader representative/full intended New Balance stack gate.
+Standalone/no-New-Balance post-compat raw55 sentinel is PARTIAL FAIL at EV-385.
 
-Final raw55 repeated-marker state rules relevant to compatibility remain:
-  Normal second FIST -> current NORMAL + explicit SP0 or SP1
-  true Power first/second -> current POWER + explicit SP1/SP2
-  Sprint-origin first -> current SPRINT + explicit SP1/SP2 + early-opening suppression
-  Sprint-origin second -> current POWER SP1/SP2 OR current SPRINT SP2 only
+EV-385 proves:
+  standalone Sprint-origin first FIST at current SPRINT/SP1 = valid/accepted
+  standalone Sprint-origin second FIST may remain current SPRINT/SP1
+  current source rejects that marker2 as REJECTED_UNSUPPORTED_HIT
+  1+8 / 1+15 current-POWER/SP1 continuation remains healthy
+  single-FIST SPRINT/SP1 remains healthy
+  cleanup/generation/lifecycle remain healthy
+
+Frozen correction basis:
+  Sprint-origin second FIST
+    current POWER  -> explicit SP1/SP2 (preserve)
+    current SPRINT -> explicit SP1/SP2 (add SP1)
+
+Active task:
+  docs/work/active/COLLISION_RAW55_STANDALONE_SPRINT_SECOND_FIST_SP1_COMPATIBILITY_CORRECTION.md
 
 Next:
-  standalone/no-New-Balance post-compat raw55 sentinel
-  begin with planned Troll/raw55 control without New Balance
-  then production collision migration if sentinel passes
+  bounded source correction
+  independent review
+  focused standalone + New Balance regression on corrected final candidate
+  finish factual true-Power single/double + unmarked raw55 fallback sentinel controls
+  then production collision migration only if the final sentinel passes
 ```
 
-Do not rerun the full standalone campaign unless the sentinel finds contradictory evidence.
+Do not rerun the full standalone or New Balance campaigns unless focused final-candidate validation finds contradictory evidence.
 
 ## 5. Escalation order
 
@@ -154,7 +166,7 @@ research/derived/  deterministic retrieval aids
 research/archive/  processed canonical runtime provenance
 ```
 
-The EV-382 test3 logs and the EV-384 New Balance stress log are processed and archived byte-identically under `research/archive/`. The EV-384 derived package remains under `research/derived/2026.09.27_newbalance_stresstest_large_log/` for bounded retrieval. `research/raw/` should return to `Keep.txt` only.
+The EV-382 test3 logs, EV-384 New Balance stress log, and EV-385 four-log standalone sentinel batch are processed and archived byte-identically under `research/archive/`. The EV-384 derived package remains under `research/derived/2026.09.27_newbalance_stresstest_large_log/` for bounded retrieval. `research/raw/` should contain only `Keep.txt` after EV-385 closure.
 
 Historical ledger rows may retain paths that were correct when written. Use `EVIDENCE_PATH_MIGRATIONS.md` when a later archive move makes an old path ambiguous.
 
