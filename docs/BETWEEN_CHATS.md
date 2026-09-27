@@ -15,6 +15,7 @@ Stable branch: `main`
 EV-390 production Script_G3AnimationBehaviors.dll collision integration = CLOSED/PASS
 ADR-0007 shared Speed/Raise INI profile schema = ACCEPTED
 CURRENT = implement shared startup profile/config foundation only
+ACTIVE TASK = docs/work/active/SHARED_PROFILE_CONFIG_FOUNDATION.md
 NEXT = Speed v2 research/design/implementation/testing ONLY
 RAISE = PAUSED until Speed closes
 ```
@@ -61,9 +62,7 @@ INI parsed once at startup -> normalized in-memory table
 runtime = bounded in-memory lookup only
 ```
 
-The exact pinned Gothic SDK (`90bfd344de4510dda7ac9da7461cc7f1eac911f7`) exposes `eCConfigFile::GetSections`, `GetSectionBlock`, `GetSectionArray`, `Contains`, `GetString`, scalar getters, and section/key enumeration, so numbered profile registries are unnecessary.
-
-Architecture/rationale: ADR-0004 + ADR-0005 + ADR-0007.
+The pinned SDK (`90bfd344de4510dda7ac9da7461cc7f1eac911f7`) exposes `eCConfigFile::GetSections`, `GetSectionBlock`, `GetSectionArray`, `Contains`, `GetString`, scalar getters and section/key enumeration, so numbered profile registries are unnecessary.
 
 ## Speed — next exclusive behavior feature
 
@@ -81,13 +80,7 @@ The shared config may parse/store `Raise`, but no Raise hook/intervention/behavi
 ## Exact next route
 
 ```text
-1. bounded source-only implementation of shared profile/config foundation:
-   - enumerate Profile.* through eCConfigFile
-   - normalize/validate identity
-   - store optional BaseSpeed + future Raise mode
-   - startup load once
-   - immutable/bounded runtime lookup API
-   - NO Speed hook or Raise behavior yet
+1. execute docs/work/active/SHARED_PROFILE_CONFIG_FOUNDATION.md as bounded source-only Work
 2. independent source review
 3. then begin focused Speed v2 mechanism research only
 ```
