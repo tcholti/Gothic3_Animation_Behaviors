@@ -84,6 +84,9 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | production migration / final DLL collision integration | EV-390 |
 | production 2H/1H1H multi-window marker controls | EV-390 |
 | production human/raw8/raw55 double-contact controls | EV-390 |
+| Speed v2 caller-side composition / GetAnimationSpeedModifier consumers | EV-391 |
+| Speed v2 Normal/Quick Hit consumer call-site evidence | EV-391 |
+| Speed v2 New Balance-preserving B*M -> C*M mechanism candidate | EV-391 |
 | native contact misses vs authored marker correctness | EV-381 |
 | sheath/draw contact observation | EV-380–EV-381; not a marker blocker |
 
@@ -154,9 +157,12 @@ Collision project phase:
   CLOSED / stable production foundation
 
 Current project gate:
-  freeze shared generic Speed+Raise INI/profile schema
-  -> implement shared parsing/normalization lookup foundation
-  -> Speed v2 only until closed
+  shared generic Speed+Raise INI/profile schema = ACCEPTED
+  BehaviorProfiles foundation = IMPLEMENTED/PASS
+  Speed v2 caller-side composition class = STATICALLY SUPPORTED EV-391
+  -> close generic Quick/Action3 consumer provenance
+  -> freeze smallest exact Speed implementation
+  -> validate Speed completely
   -> Raise only afterward
 ```
 
@@ -184,7 +190,7 @@ research/archive/  processed canonical runtime provenance
 
 The EV-382 test3 logs, EV-384 New Balance stress log, EV-385 four-log standalone batch, EV-386 corrected four-log marked standalone batch, EV-387 unmarked fallback artifact, and EV-388 five-log final-candidate New Balance batch are processed and archived byte-identically under `research/archive/`. The EV-384 derived package remains under `research/derived/2026.09.27_newbalance_stresstest_large_log/` for bounded retrieval. `research/raw/` should contain only `Keep.txt` after EV-388 closure.
 
-EV-389 and EV-390 are diagnostics-free observational evidence and therefore have no diagnostic runtime artifact by design.
+EV-389 and EV-390 are diagnostics-free observational evidence and therefore have no diagnostic runtime artifact by design. EV-391 is static source/binary-reference evidence and has no runtime artifact.
 
 Historical ledger rows may retain paths that were correct when written. Use `EVIDENCE_PATH_MIGRATIONS.md` when a later archive move makes an old path ambiguous.
 

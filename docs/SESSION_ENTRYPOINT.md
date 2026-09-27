@@ -17,22 +17,14 @@ collision production integration = CLOSED/PASS
 ADR-0007 shared Speed/Raise INI schema = ACCEPTED
 BehaviorProfiles foundation = IMPLEMENTED + independent source-review PASS
 implementation SHA = 81d4964201579c9f7a989404426c3d9dc9ab4834
+Speed v2 static mechanism evidence = EV-391
 
 CURRENT = Speed v2 mechanism research/design ONLY
-NEXT = prove a composition/intervention mechanism, then freeze the smallest Speed implementation
+NEXT = close generic Quick/Action3 consumer provenance, then freeze smallest Speed implementation
 RAISE = PAUSED until Speed is completely closed
 ```
 
 `docs/work/active/` is clean; there is no active bounded Work implementation task.
-
-## Branch model
-
-```text
-main        = frozen stable integration checkpoint
-development = sole active branch for shared config -> Speed -> Raise -> assembled regression
-```
-
-Do not advance `main` during this feature cycle.
 
 ## Shared profile foundation — accepted
 
@@ -105,25 +97,51 @@ Script_AttackCollision/Script_AttackCollision.cpp
 -> does not own GetAnimationSpeedModifier
 ```
 
-### Current causal question
+### Static mechanism state — EV-391
 
 The old G3AB prototype is rejected because it replaces the previous hook's final result for configured attacks.
 
-Research asks:
+Static consumer tracing now proves a narrower composition class outside competing `+0x42A0` ownership:
 
-> Where can G3AB substitute/transform only `B -> C` while preserving `M`, without competing for ownership of the whole `+0x42A0` function and without copying New Balance policy?
+```text
+target Script_Game attack/Hit caller
+-> call LIVE Script_Game+0x42A0
+-> receive compatible result B*M
+-> caller-side G3AB transform only for exact configured profile
+-> (B*M) * (C/B) = C*M
+-> existing downstream animation/state path
+```
 
-A downstream ratio transform `(B*M) * (C/B) = C*M` is a candidate only, not accepted architecture. First prove a stable consumer/intervention surface and determine whether factual `B` values are actually needed.
+Direct Hit-consumer proof currently includes:
+
+```text
+Normal / gEAction_Attack (1)                 Script_Game+0x383F0
+QuickAttackR/L / gEAction 4/5 route          Script_Game+0x48677
+```
+
+Additional nearby dynamic Hit consumers preserve exact action context and strengthen the same intervention class, but the exhaustive production call-site set is not yet frozen.
+
+This mechanism can avoid owning/hooking the whole `+0x42A0` function: a targeted caller-side thunk/call redirection can invoke the live entry, allowing New Balance to compute `B*M` first, then apply only `C/B` for a configured supported profile.
+
+Existing evidence is sufficient for the first intended base groups; do **not** request another native-speed logger run now. Unsupported/future routes remain native/fail-closed until their exact `B` is proven.
+
+Remaining static gap before implementation freeze:
+
+```text
+ADR-0007 Quick = QuickAttack / QuickAttackR / QuickAttackL
+Action4/5 consumer provenance = proven
+Action3 generic QuickAttack consumer provenance = still open
+```
 
 ## Immediate route
 
 ```text
-1. continue static investigation of GetAnimationSpeedModifier consumers/downstream playback path
-2. locate a stable composition surface outside competing +0x42A0 entry ownership if possible
-3. determine whether the mechanism requires exact B values
-4. only then request missing native logger evidence if needed
-5. if static evidence is insufficient, freeze the smallest diagnostics-only causal probe
-6. after mechanism proof, freeze bounded Speed implementation
+1. trace gEAction_QuickAttack / Action3 into the dynamic Script_Game combat consumer family
+2. close the exact Normal+Quick Hit consumer-callsite set
+3. verify each selected site retains entity + exact action/profile identity needed by BehaviorProfiles
+4. only if that static closure fails, freeze the smallest diagnostics-only causal probe
+5. after mechanism/callsite proof, freeze bounded Speed v2 implementation
+6. validate New Balance composition first; native-only sanity later
 7. close Speed completely before Raise begins
 ```
 
@@ -132,6 +150,7 @@ A downstream ratio transform `(B*M) * (C/B) = C*M` is a candidate only, not acce
 - exact handoff -> `BETWEEN_CHATS.md`
 - Speed authority -> `decisions/ADR-0004-speed-control-base-speed-preserves-dynamic-modifiers.md`
 - profile schema -> `decisions/ADR-0007-shared-ini-profile-schema.md`
+- static mechanism evidence -> EV-391 in `EVIDENCE_LEDGER_389_ONWARD.md`
 - architecture -> `DESIGN.md` §§2–3
 - hook/source route -> `SOURCE_HOOK_GUIDE.md`
 - third-party source -> `../references/README.md`

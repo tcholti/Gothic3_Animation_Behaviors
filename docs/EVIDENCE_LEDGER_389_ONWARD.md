@@ -71,3 +71,30 @@ Disposition:
 - **PASS — PRODUCTION COLLISION INTEGRATION CLOSED.**
 - **COLLISION MIGRATION INTO `Script_G3AnimationBehaviors.dll` IS COMPLETE.**
 - Next phase: freeze the shared generic INI/profile foundation for Speed + later Raise, then work exclusively on Speed until Speed closes.
+
+### EV-391 — Speed v2 caller-side composition surface static proof
+
+Observed:
+- Static tracing of `Script_Game+0x42A0 GetAnimationSpeedModifier` consumers found a direct Normal/Hit consumer at `Script_Game+0x383F0`: the caller supplies `gEPhase_Hit` (`1`) and `gEAction_Attack` (`1`), receives the x87 float result, materializes it, and carries it into the existing downstream animation/state descriptor path.
+- A separate combat route explicitly assigns `gEAction_QuickAttackR` (`4`) or `gEAction_QuickAttackL` (`5`) and later reaches `Script_Game+0x48677`, where `PSRoutine::PropertyAction()` supplies the action to `+0x42A0` with `gEPhase_Hit`; the returned speed is likewise materialized into the downstream descriptor.
+- Additional dynamic Hit consumers in the same Script_Game combat area (`+0x38A8B`, `+0x38E9D`, `+0x38F22`, `+0x3937D`, `+0x39402`) preserve the action in the caller before invoking `+0x42A0`, showing that exact action context remains available at the consumer boundary.
+- The native consumer paths therefore provide a stable-looking post-policy/pre-playback intervention class where the live `+0x42A0` implementation can first compute the compatible result `B*M`, after which G3AB can algebraically transform only configured supported profiles by `(B*M) * (C/B) = C*M`.
+- This design does not require G3AB to own or trampoline the `+0x42A0` entry point; a targeted caller-side thunk/call redirection can invoke whatever implementation is live there, preserving New Balance ownership and modifier policy.
+- Existing evidence/ADR-0004 already records factual bases needed for the first intended profile families: Normal 1H `0.600`, Normal 2H `0.700`, QuickAttackL `1.000`; pinned New Balance source corroborates Normal 1H-family `0.6*M`, Normal 2H/Axe/Staff/Halberd `0.7*M`, and Quick R/L `1.0*M`.
+
+Scope / limits:
+- This is static mechanism evidence, not a frozen implementation specification and not runtime acceptance.
+- Direct consumer proof currently closes Normal/Attack and QuickAttackR/L Hit routes. ADR-0007 also groups generic `gEAction_QuickAttack` (`3`) into the Quick profile; its exact consumer provenance is not yet closed.
+- The additional dynamic part-13 consumers are evidence of the intervention class, not yet an accepted exhaustive production call-site set.
+- No new native-speed logging is justified for the currently intended first Normal/Quick profile set because the candidate mechanism's required `B` values are already evidenced/corroborated. Unsupported/future routes must remain native/fail-closed until their base facts are proven.
+
+Provenance:
+- Gothic3_Binary_Reference `builds/current_tested/modules/Script_Game/disassembly/part_0013.txt` and `part_0017.txt`, inspected 2026-09-27;
+- Gothic3_Binary_Reference `builds/current_tested/modules/Script_Game/imports.txt`, inspected 2026-09-27;
+- pinned New Balance source `Jackydima/gothic3sdk@316d32406a133f8884e7e302752c35f66b4f54fc`, `scripts/Script_NewBalance/FunctionHook.cpp`;
+- ADR-0004 recorded runtime base observations and composition invariant.
+
+Disposition:
+- **STATIC MECHANISM CANDIDATE PROVEN IN PRINCIPLE: targeted caller-side post-`+0x42A0` composition.**
+- **NO ADDITIONAL NATIVE-SPEED LOGGER RUN REQUESTED.**
+- Next static gate: trace generic `gEAction_QuickAttack` / Action3 into the dynamic combat consumer family, then freeze the smallest exact Normal+Quick call-site set before any Speed v2 implementation.
