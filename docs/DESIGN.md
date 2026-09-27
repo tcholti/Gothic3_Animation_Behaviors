@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Design
 
 **Status:** Canonical project architecture  
-**Updated:** 2026-09-20
+**Updated:** 2026-09-27
 **Project:** `Gothic3_Animation_Behaviors`
 
 ## Purpose
@@ -34,7 +34,7 @@ This file owns overall intended architecture and implementation order. Establish
 
 ## 2. Configuration Identity
 
-Profile identity remains:
+Raise/speed profile identity is:
 
 ```text
 AnimationFamily
@@ -45,6 +45,21 @@ AnimationFamily
 
 Normalize raw `gEUseType` to animation categories according to `ANIMATION_RULES.md`.
 
+`G3AnimationBehaviors.ini` is loaded once during DLL startup into a normalized in-memory rule table. Runtime attack handling performs only an in-memory profile lookup; it does not reread or reparse the INI on each attack. Missing/unconfigured profiles preserve native behavior.
+
+The intended user-facing Raise/speed `ActionProfile` scope is deliberately:
+
+```text
+Normal
+Quick
+```
+
+Quick runtime variants may remain distinct factual Gothic actions internally, but configuration treats them as the Quick profile unless later evidence requires a narrower distinction. No P0/P1/P2/P3 pose split belongs in the user-facing Raise/speed profile identity.
+
+Raise/speed feature policy must not grow weapon-specific C++ branches such as `if 1H`, `if 2H`, `if Axe`, or `if Staff` merely to select configured behavior. Weapon/use-type selection belongs to profile data plus normalized runtime facts. A modded item participates through the runtime UseType / animation category and animation family it exposes; adding another configured profile should not require a new C++ weapon branch.
+
+Architecture rationale: ADR-0005.
+
 ---
 
 ## 3. Raise and Speed
@@ -53,11 +68,40 @@ Normalize raw `gEUseType` to animation categories according to `ANIMATION_RULES.
 
 A configured custom Raise is prepended before the untouched original melee state. Preserve native Raise where already correct. Keep Raise independent from collision lifecycle and continuation protection.
 
+Custom Raise does **not** hard-code an animation filename. The intended mechanism is:
+
+```text
+matching configured Normal/Quick profile
+-> request the corresponding Raise CombatMove phase
+-> let Gothic resolve the actual animation from its normal request facts
+   (animation family/state/use types/pose/action/phase/direction/etc.)
+-> after Raise completes, continue the untouched original attack path
+```
+
+The existing 2H Normal prototype proves this mechanism by asking Gothic for `Raise`; its player + None/2H gate is fixture scope, not the final architecture. Other Normal/Quick profiles, especially custom Quick Raise, require focused runtime validation before production acceptance.
+
 ### Speed
 
-Apply speed authority only to matching configured action/profile/phase. Avoid global speed replacement and unsafe same-hook load-order assumptions. `Script_Game +0x42A0 GetAnimationSpeedModifier` remains proof-of-concept, not frozen final architecture. Re-evaluate the final intervention point against New Balance/Jackydima before production speed work.
+A configured speed authors the **base speed term** for the matching Normal/Quick profile/phase; it does not own the final effective playback speed.
+
+For a compatible route, reason about composition as:
+
+```text
+unconfigured effective speed = B(profile, action, phase) * M(context)
+configured effective speed   = C(profile, action, phase) * M(context)
+```
+
+where `B` is the native/compatible-mod base choice, `C` is the G3AB configured base choice, and `M` is the set of contextual modifiers that should still affect the equivalent unconfigured attack.
+
+Current New Balance source confirms why the old final-return replacement prototype is insufficient: its `GetAnimationSpeedModifier` combines action/use-type base terms with contextual logic in the same function. For Normal it includes base terms such as `0.6` and `0.7` multiplied by `multiPlier`; Quick/default routes use a `1.0` base with the applicable multiplier, while stamina, arena, disease and other conditions contribute contextual behavior.
+
+Therefore the production speed system must effectively substitute the configured base term while preserving every applicable modifier factor. It must not copy New Balance's complete multiplier table or rely on arbitrary same-hook DLL load order. `Script_Game +0x42A0 GetAnimationSpeedModifier` remains a proven/prototype surface, not frozen final architecture; the exact intervention/composition mechanism remains a focused research responsibility under ADR-0004.
+
+If profile-specific reference/base data is eventually required, it belongs in generic profile/configuration data or another generic factual source, not in weapon-specific behavior branches.
 
 Recover follows the effective Hit speed; no separate user-facing `RecoverSpeed` key is planned.
+
+Architecture rationale: ADR-0004 + ADR-0005.
 
 ---
 
