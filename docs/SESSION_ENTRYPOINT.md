@@ -77,16 +77,50 @@ Sprint-origin second FIST:
 
 No generic `>=1`, no new mechanism, no new hook, no timer/queue/hit flag/custom damage, and no first-FIST change.
 
-## Deployment references
+## Collision twin / binary state
 
+Both collision twins compile the same behavior-facing source set, including `PhysicalFistCollision.cpp`:
+
+```text
+Script_FrameCollisionBehaviorTest
+  shared behavior source only
+
+Script_FrameCollisionTest
+  same shared behavior source
+  + FRAME_COLLISION_DIAGNOSTICS
+  + diagnostic-only files
+```
+
+Therefore the **behavior source candidate is current whenever shared collision source changes**, but the behavior DLL binary is current only after that target is rebuilt from the exact source state being validated.
+
+Recorded binary state before the EV-385 correction:
+
+```text
 Final standalone diagnostic SHA256 before compatibility work:
-`5AD5B33A8826DB5E78F4AECADC3FF48546E1C54ADA3BE9ED2BE9A54E6190E313`
+5AD5B33A8826DB5E78F4AECADC3FF48546E1C54ADA3BE9ED2BE9A54E6190E313
 
 Final standalone behavior SHA256 before compatibility work:
-`A806EC6523116286335A659735067B1AA6C581837B3E0D604E6271AC98079340`
+A806EC6523116286335A659735067B1AA6C581837B3E0D604E6271AC98079340
 
-Latest deployed diagnostic SHA256 before EV-385 correction:
-`81CF4C99BDA65EA6FBBC02839680E83B719B6E535407EB604E6AD015B038F2D3`
+Latest deployed diagnostic SHA256 after raw55 compatibility corrections:
+81CF4C99BDA65EA6FBBC02839680E83B719B6E535407EB604E6AD015B038F2D3
+```
+
+No post-compatibility behavior built/live hash is currently recorded. Treat the old behavior DLL as **stale/unverified binary state**, not as the final candidate. After the EV-385 correction and independent source review, build **both** twins and record both hashes.
+
+## Runtime-log retrieval rule
+
+`PROJECT_OPERATING_PROCEDURES.md` v1.19 now makes bounded retrieval mandatory for **all** runtime logs, not only oversized logs:
+
+```text
+artifact identity / metadata
+-> exact searches + counts
+-> bounded event windows
+-> representative route samples / whole-run-class checks as required
+-> conclusions + provenance in Chat
+```
+
+Do not load/reproduce a complete raw log into Chat context merely because it fits. POP-07 remains the large-log specialization using derived manifest/count/index/full-source windows.
 
 ## Exact next route
 
@@ -94,20 +128,28 @@ Latest deployed diagnostic SHA256 before EV-385 correction:
 1. bounded Work implementation:
    COLLISION_RAW55_STANDALONE_SPRINT_SECOND_FIST_SP1_COMPATIBILITY_CORRECTION.md
 2. independent Normal Chat source review
-3. build both collision twins because behavior-facing shared source changed
+3. build BOTH collision twins from the exact reviewed final source
+   -> record behavior SHA256
+   -> record diagnostic SHA256
 4. deploy diagnostic twin / verify sole-live-twin + SHA
-5. focused runtime acceptance:
-   - standalone 1+3 direct failure retest
-   - preserve representative 1+8/1+15 POWER/SP1 continuation
-   - preserve single-FIST SPRINT/SP1
-   - bounded New Balance Sprint SP2/transition regression
-6. finish missing standalone sentinel controls:
+5. finish corrected standalone diagnostic sentinel:
+   - 1+3 direct SPRINT/SP1 second-FIST retest
+   - one representative POWER/SP1 continuation control
+   - single-FIST SPRINT/SP1 control
    - factual true-Power single/double
    - unmarked raw55 native fallback
-7. only if final sentinel passes: production collision migration + diagnostics-free integration validation
+6. one small diagnostic New Balance/raw55 regression on the same final source
+   -> compatibility-sensitive Sprint-origin SP2 / Action9->Action2 route
+7. deploy behavior twin ONLY / verify sole-live-twin + behavior SHA
+8. final diagnostics-free observational collision confirmation:
+   - representative raw55/equipped/native behavior
+   - include several authored animations whose desired RIGHT collision window exists only through G3AB marker behavior
+   - no diagnostic log expected
+9. only after behavior-only PASS:
+   production collision migration + production integration validation
 ```
 
-Do not launch another runtime test from the pre-correction source.
+Do not run more tests on the pre-correction source.
 
 ## Current environment boundary
 
@@ -125,14 +167,15 @@ same compatibility source lineage through a31c66b...
 - exact continuation → `BETWEEN_CHATS.md`
 - active correction → `docs/work/active/COLLISION_RAW55_STANDALONE_SPRINT_SECOND_FIST_SP1_COMPATIBILITY_CORRECTION.md`
 - current facts → `COLLISION_REFERENCE.md`
-- validation gate → `COLLISION_TEST_PLAN.md` §4.5
+- validation gate → `COLLISION_TEST_PLAN.md` §4.5–§4.6
+- operating procedure / bounded log retrieval → `PROJECT_OPERATING_PROCEDURES.md` POP-06/POP-07
 - raw55 architecture → `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`
 - proof → `EVIDENCE_INDEX.md` → EV-385
 
 ## Still paused
 
 ```text
-NO production migration until corrected final-candidate standalone sentinel closes
+NO production migration until corrected diagnostic gates + behavior-only confirmation pass
 NO Raise/speed implementation yet
 NO AttackContinuationProtection work
 ```
