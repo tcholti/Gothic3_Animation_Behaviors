@@ -1,13 +1,13 @@
 # Permanent raw55 PhysicalFist Architecture
 
 **Status:** Current production-behavior architecture  
-**Updated:** 2026-09-26
+**Updated:** 2026-09-27
 
 ## Purpose
 
-Define the permanent diagnostics-free collision behavior for factual `gEUseType_PhysicalFist` / raw55 after the completed causal research campaign and the bounded New Balance compatibility corrections through EV-382.
+Define the permanent diagnostics-free collision behavior for factual `gEUseType_PhysicalFist` / raw55 after the completed causal research campaign, New Balance compatibility work, and the EV-385 standalone post-compatibility finding.
 
-This file describes the **current architecture**. Historical probes/implementation contracts are preserved under `docs/archive/investigations/`.
+This file describes the **current architecture and any explicitly pending evidence-backed correction**. Historical probes/implementation contracts are preserved under `docs/archive/investigations/`.
 
 Ordinary factual lookup: `COLLISION_REFERENCE.md`.  
 Exact proof: `EVIDENCE_INDEX.md`.
@@ -143,7 +143,7 @@ The native Quick callback owns its state progression and may attempt a premature
 
 The first authored FIST opens/rearms the source. A later authored FIST may occur at the factual Quick state available at that marker and owns another contact-bookkeeping rearm.
 
-Evidence: EV-264–EV-273 plus protected controls through EV-382.
+Evidence: EV-264–EV-273 plus protected controls through EV-385.
 
 ### Normal
 
@@ -157,7 +157,7 @@ Script_Game.dll +0x386C6
 
 For supported marked Normal, that native between-contact clear is suppressed so it cannot silently substitute for authored marker2 ownership. The later authored FIST performs the replacement contact rearm.
 
-Final Normal second-FIST acceptance after EV-382 is explicit and evidence-bounded:
+Accepted second-FIST state contract:
 
 ```text
 origin family = NORMAL
@@ -165,22 +165,7 @@ current family = NORMAL
 StatePosition = SP0 OR SP1
 ```
 
-Why SP0 is valid:
-
-```text
-marker1 NORMAL/SP0 -> open + initial clear
-native hit1 may occur while still SP0
-marker2 can still arrive NORMAL/SP0
-marker2 -> ClearTriggeredList/rearm only
-no second physical opening
-later native hit2 may occur
-```
-
-Very-early marker2 may also occur before hit1. That clear may simply clear an empty visited set; it does not create an artificial damage guarantee and requires no new hit1 flag, queue, delay, or timer.
-
-SP1 remains explicitly supported and was runtime-proven in the earlier Normal causal campaign. EV-382 adds direct runtime proof that SP0 can be a legitimate second-contact authoring point after hit1.
-
-The native callback's state progression and final cleanup remain Gothic-owned.
+EV-382 proves SP0 can be legitimate both before and after hit1. SP1 remains supported from the original Normal causal campaign. No hit1 flag, target-visited gate, timer, queue, or delayed marker behavior is required.
 
 Evidence: EV-277–EV-279, EV-286–EV-292, EV-380, EV-382.
 
@@ -188,9 +173,7 @@ Evidence: EV-277–EV-279, EV-286–EV-292, EV-380, EV-382.
 
 True Power is factual Action2/POWER, distinct from Sprint even though Sprint shares physical callback transport.
 
-The native callback is preserved; only the premature exact raw55 opening is selectively suppressed. Authored FIST owns first/repeated contact timing.
-
-Current New Balance-compatible state acceptance:
+Current accepted state contract:
 
 ```text
 first FIST:
@@ -205,15 +188,15 @@ second FIST:
 
 No `>=1` generalization is used.
 
-Evidence: EV-274–EV-276, EV-293, EV-376, EV-378, protected controls EV-381–EV-382.
+Evidence: EV-274–EV-276, EV-293, EV-376, EV-378, protected controls through EV-382. Final-candidate standalone true-Power sentinel control remains required after the EV-385 correction because the EV-385 four-log batch did not produce factual true-Power-origin traffic.
 
 ### Sprint-origin
 
 Sprint is factual Action9 at origin and may later continue within the same C1 after Action9 -> Action2 transition. That transition does not create a new attack execution.
 
-Permanent raw55 ownership therefore preserves immutable Sprint-origin identity across the same C1.
+Permanent raw55 ownership preserves immutable Sprint-origin identity across the same C1.
 
-Current first-FIST rule:
+First-FIST contract remains:
 
 ```text
 origin family = SPRINT
@@ -222,7 +205,9 @@ StatePosition {SP1,SP2}
 earlyOpeningSuppressed mandatory
 ```
 
-Current second-FIST rule:
+#### Implemented pre-EV-385 second-FIST gate
+
+The source tested by EV-385 currently implements:
 
 ```text
 origin family = SPRINT
@@ -234,9 +219,45 @@ current SPRINT:
   StatePosition {SP2} only
 ```
 
-EV-380 proved the same authored marker2 can fall on either side of the native Action9 -> Action2 transition under New Balance. EV-381 runtime-validates the final asymmetric rule, including the formerly rejected `SPRINT/SP2` second-FIST route. Sprint/SP1 second-FIST remains unproven and is not authorized. No `>=1` generalization is used.
+The current-Power SP1 route is established by the original standalone Sprint repeated-contact evidence (EV-294). New Balance later required and proved current-SPRINT/SP2 plus current-POWER/SP2 compatibility (EV-380–EV-381).
 
-Evidence: EV-280–EV-285, EV-294, EV-376–EV-381 plus protected controls EV-382.
+#### EV-385 standalone compatibility finding
+
+EV-385 proves a legitimate second authored FIST can remain factual:
+
+```text
+origin family = SPRINT
+current family = SPRINT
+Action = 9
+StatePosition = SP1
+same C1
+same exact current RIGHT raw55 source
+source already group7
+```
+
+The `1+3` standalone fixture repeats this in four distinct Sprint C1s. Marker1 at `SPRINT/SP1` opens correctly; marker2 is still `SPRINT/SP1` and is rejected only by the state gate. Cleanup remains native and healthy. The same batch proves `1+8` and `1+15` remain healthy when marker2 has crossed to current `POWER/SP1`, and single-FIST `SPRINT/SP1` remains healthy.
+
+This supplies the evidence that was previously missing. Therefore the frozen pending production correction is:
+
+```text
+origin family = SPRINT
+
+current POWER:
+  StatePosition {SP1,SP2}   // preserve
+
+current SPRINT:
+  StatePosition {SP1,SP2}   // add SP1
+```
+
+This is an explicit evidence-backed state union. It is **not** permission for generic `>=1`, arbitrary state widening, or family-independent policy.
+
+The correction is frozen in:
+
+`docs/work/active/COLLISION_RAW55_STANDALONE_SPRINT_SECOND_FIST_SP1_COMPATIBILITY_CORRECTION.md`
+
+Until that source change is implemented and runtime-accepted, the implemented source remains partial-fail for the standalone sentinel.
+
+Evidence: EV-280–EV-285, EV-294, EV-376–EV-381, EV-385.
 
 ---
 
@@ -246,9 +267,9 @@ Permanent state is bounded to the factual C1 execution and exact source/origin i
 
 A valid execution requires current source/family/marker facts to match the owned execution. Identity replacement or contradiction must not authorize a new raw55 intervention.
 
-Diagnostics may surface identity contradictions, but diagnostics do not decide release behavior.
+EV-385 does not weaken these checks: its failing marker2 is already the same legitimate Sprint-origin C1/source and is rejected solely because current Sprint SP1 was absent from the second-FIST state whitelist.
 
-Focused validation: EV-295–EV-298 plus compatibility evidence EV-376–EV-382.
+Diagnostics may surface identity contradictions, but diagnostics do not decide release behavior.
 
 ---
 
@@ -269,7 +290,7 @@ generic C1 terminal policy
 
 EV-381 reinforces that an accepted/open/rearmed raw55 window may still produce zero `ONDAMAGE`; native unmarked raw55 windows can also miss completely. Therefore a visual miss is not itself evidence of marker failure.
 
-The User's sheath/draw observation is non-blocking collision evidence: native behavior can also miss and can also damage during sheathing/drawing-related states. Do not add custom damage/contact policy for that observation without a separate causal need.
+EV-385 likewise separates marker2 eligibility from lifecycle safety: rejected standalone Sprint/SP1 marker2 executions still allow Gothic native cleanup to return the source to group5 with zero outstanding obligation.
 
 ---
 
@@ -291,11 +312,12 @@ global ClearTriggeredList policy
 whole native callback suppression
 diagnostic/probe state as release dependency
 generic StatePosition range widening
-Sprint/SP1 second-FIST acceptance without evidence
 visited-target/hit1 flags for Normal marker2
 marker delays/queues
 New Balance/DLL/version detection
 ```
+
+Previous wording that excluded Sprint/SP1 second-FIST acceptance “without evidence” is superseded by EV-385: evidence now exists for the exact Sprint-origin/current-SPRINT/SP1 branch only.
 
 Unknown future behavior returns to an isolated probe under `FEATURE_DEVELOPMENT_METHOD.md`.
 
@@ -315,27 +337,26 @@ Script_FrameCollisionTest
 
 Release behavior must not require `CollisionDiagnostics`, historical probe state, or diagnostic-only hooks.
 
+Because EV-385 changes behavior-facing shared source, both twins must be rebuilt after implementation before final validation proceeds.
+
 ---
 
 ## 9. Compatibility disposition
 
-Focused raw55 Normal/Quick/true-Power/Sprint-origin compatibility is **CLOSED/PASS** for the tested intended New Balance route through EV-382.
+Focused raw55 New Balance compatibility is CLOSED/PASS through EV-382. Broad intended-stack New Balance compatibility is CLOSED/PASS EV-384.
 
-Runtime-confirmed compatibility corrections:
+The post-compatibility standalone/no-New-Balance sentinel is **PARTIAL FAIL EV-385** because the pre-correction source rejects legitimate Sprint-origin second FIST at current `SPRINT/SP1`.
+
+Current route:
 
 ```text
-6eb3e3ca96da55e89127c24d5f656e05610d315f
-  true-Power first/second SP2 compatibility
-  Sprint-origin later current-Power SP2 compatibility
-
-ce59e5a2bad564652eaba970e959bdef0b479d82
-  Sprint-origin first-FIST SP2 compatibility
-
-4c85193f4efd31e789bc07d7e3c71d31a9b5326e
-  Sprint-origin second-FIST current-SPRINT/SP2 compatibility
-
-a31c66b97e45c27d0739b7df51252d33f490e7e1
-  Normal second-FIST explicit {SP0,SP1} acceptance
+bounded EV-385 correction
+-> independent source review
+-> focused standalone retest of exact 1+3 failure
+-> preserve 1+8/1+15 POWER/SP1 continuation + single SPRINT/SP1
+-> bounded New Balance Sprint SP2/transition regression because source changed after EV-384
+-> finish true-Power single/double + unmarked raw55 fallback standalone controls
+-> sentinel PASS required before production collision migration
 ```
 
-The next collision gate is **not another focused raw55 patch**. It is broader representative/full-stack New Balance compatibility. After that passes, run the small standalone/no-New-Balance post-compatibility raw55 sentinel before production collision migration.
+Do not reopen closed raw55 mechanisms or broad compatibility scope unless corrected-final-candidate evidence produces a new contradiction.
