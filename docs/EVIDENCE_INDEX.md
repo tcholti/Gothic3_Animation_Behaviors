@@ -30,7 +30,8 @@ Canonical evidence uses one global monotonic EV namespace. Closed ledger volumes
 | EV-365–EV-372 | `archive/evidence/EVIDENCE_LEDGER_365_372.md` |
 | EV-373–EV-379 | `archive/evidence/EVIDENCE_LEDGER_373_379.md` |
 | EV-380–EV-383 | `archive/evidence/EVIDENCE_LEDGER_380_383.md` |
-| EV-384 onward | `EVIDENCE_LEDGER_384_ONWARD.md` |
+| EV-384–EV-388 | `archive/evidence/EVIDENCE_LEDGER_384_388.md` |
+| EV-389 onward | `EVIDENCE_LEDGER_389_ONWARD.md` |
 
 The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2026-09-19_PRE_COMPRESSION.md`.
 
@@ -42,10 +43,10 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | native weapon reset / marker timing | EV-019–EV-023 |
 | raw8 Fist/body-contact foundations | EV-029–EV-032, EV-080–EV-085, EV-221–EV-251 |
 | equipped side / UseType semantics | EV-036–EV-065, EV-090–EV-094 |
-| repeated contact / OFF / ClearTriggeredList | EV-106–EV-116, EV-330–EV-331 |
+| repeated contact / OFF / ClearTriggeredList | EV-106–EV-116, EV-330–EV-331, EV-389 |
 | occurrence/dedupe / C1 generation | EV-131–EV-167, EV-213–EV-215 |
 | lifecycle / C1-R1 exact-source repair | EV-180–EV-215, EV-367, EV-373–EV-374, EV-384 |
-| Power / Pierce / SimpleWhirl / Hack | EV-217–EV-220, EV-241–EV-244, EV-318 |
+| Power / Pierce / SimpleWhirl / Hack | EV-217–EV-220, EV-241–EV-244, EV-318, EV-389 |
 | raw55 discovery and permanent four-family route | EV-262–EV-298, EV-341, EV-366 |
 | equipped Sprint permanent behavior | EV-311, EV-315, EV-320–EV-329, EV-368, EV-377 |
 | standalone collision regression | EV-299–EV-374 |
@@ -76,6 +77,10 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | final-candidate unmarked raw55 native fallback | EV-387 |
 | final-candidate standalone/no-New-Balance diagnostic raw55 closure | EV-386–EV-387 |
 | final-candidate New Balance focused raw55 regression / diagnostic closure | EV-388 |
+| diagnostics-free behavior-only release-purity validation | EV-389 |
+| OFF negative control / multi-window positive controls | EV-389 |
+| behavior-only Hack collision positive control | EV-389 |
+| behavior-only human/Sabretooth/Troll double-contact proof | EV-389 |
 | native contact misses vs authored marker correctness | EV-381 |
 | sheath/draw contact observation | EV-380–EV-381; not a marker blocker |
 
@@ -119,37 +124,36 @@ EV-385         standalone Sprint-origin second FIST at current SPRINT/SP1 contra
 EV-386         corrected current-SPRINT/SP1 marker2 PASS; marked standalone matrix + true-Power controls PASS
 EV-387         unmarked raw55 native fallback PASS; final-candidate standalone diagnostic sentinel CLOSED
 EV-388         final-candidate New Balance SP2/Action9->Action2 regression PASS; diagnostic phase CLOSED
+EV-389         diagnostics-free behavior-only release-purity PASS; collision ready for production migration
 ```
 
 ## 4. Current next gate
 
 ```text
-New Balance 0.7 intended-stack compatibility = CLOSED/PASS through EV-384.
-
 Final candidate 1c45e5e...:
-  EV-385 standalone defect = CLOSED by EV-386
-  marked standalone matrix = PASS EV-386
-  unmarked raw55 native fallback = PASS EV-387
   standalone/no-New-Balance diagnostic sentinel = CLOSED/PASS EV-386–EV-387
   bounded New Balance final-candidate regression = PASS EV-388
   diagnostic phase = CLOSED/PASS EV-386–EV-388
+  behavior-only deployment identity/startup = PASS EV-389
+  behavior-only marker-dependent functional validation = PASS EV-389
 
-EV-388 directly reconfirms:
-  current-SPRINT/SP2 second FIST under New Balance
-  same-C1 Action9/SPRINT -> Action2/POWER/SP2 second FIST
-  Sprint-origin first current-SPRINT/SP2
-  true-Power SP1 -> SP2 double-FIST
-  clear-only second marker / native cleanup / Outstanding=0
-  zero REJECTED_* / ANOMALY / C1 INVARIANT WARNING across the five artifacts
+EV-389 directly proves diagnostics-free behavior through:
+  working Hack authored collision
+  distinct 2H ON/OFF/ON windows
+  OFF overlap without damage
+  dual/1H1H multi-window extra contacts
+  double-contact human Fist, Sabretooth raw8 and Troll raw55
+  one-on-one/group-combat observation with no stuck/persistent collision regression
 
-Next:
-  deploy Script_FrameCollisionBehaviorTest ONLY
-  -> verify diagnostic twin absent and live behavior SHA D5BECB2C...
-  -> diagnostics-free release-purity observational validation
-  -> production collision migration only after behavior-only PASS
+Current:
+  freeze bounded production collision migration into src/Script_G3AnimationBehaviors
+  -> diagnostics remain separate
+  -> preserve accepted behavior; no redesign
+  -> source review
+  -> local production build + focused integration validation
 ```
 
-Do not rerun the full standalone or New Balance diagnostic campaigns unless behavior-only or later integration validation produces contradictory evidence.
+Do not rerun the full standalone, New Balance, or behavior-only campaigns unless migration/integration validation produces contradictory evidence.
 
 ## 5. Escalation order
 
@@ -173,6 +177,8 @@ research/archive/  processed canonical runtime provenance
 
 The EV-382 test3 logs, EV-384 New Balance stress log, EV-385 four-log standalone batch, EV-386 corrected four-log marked standalone batch, EV-387 unmarked fallback artifact, and EV-388 five-log final-candidate New Balance batch are processed and archived byte-identically under `research/archive/`. The EV-384 derived package remains under `research/derived/2026.09.27_newbalance_stresstest_large_log/` for bounded retrieval. `research/raw/` should contain only `Keep.txt` after EV-388 closure.
 
+EV-389 is diagnostics-free observational evidence and therefore has no diagnostic runtime artifact by design.
+
 Historical ledger rows may retain paths that were correct when written. Use `EVIDENCE_PATH_MIGRATIONS.md` when a later archive move makes an old path ambiguous.
 
-Closed ledger volumes are immutable historical proof records. New evidence goes only to `EVIDENCE_LEDGER_384_ONWARD.md` until the ledger-rotation rule in `KNOWLEDGE_MAINTENANCE.md` closes it.
+Closed ledger volumes are immutable historical proof records. EV-384–EV-388 is closed at `archive/evidence/EVIDENCE_LEDGER_384_388.md`; new evidence goes only to `EVIDENCE_LEDGER_389_ONWARD.md` until the next rotation.
