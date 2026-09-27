@@ -1,6 +1,6 @@
 # Gothic 3 — Standalone raw55 Sprint second-FIST SP1 compatibility correction
 
-**Status:** IMPLEMENTED / INDEPENDENT REVIEW PASS / RUNTIME VALIDATION PENDING  
+**Status:** ACTIVE — IMPLEMENTED / INDEPENDENT REVIEW PASS / RUNTIME VALIDATION PENDING  
 **Type:** Bounded production-behavior implementation + acceptance task  
 **Owner:** Normal Chat design/evidence -> Work implementation -> User/Normal Chat runtime validation  
 **Frozen from evidence:** EV-385
