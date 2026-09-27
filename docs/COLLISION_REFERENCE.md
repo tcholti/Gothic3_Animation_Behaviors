@@ -42,9 +42,11 @@ G3AB_COL_OFF   -> exact desired active set {}
 
 Repeated RIGHT/LEFT/BOTH later in the same Hit can author another contact by rearming the selected source through `ClearTriggeredList()`. OFF creates an intra-Hit inactive gap; it is not terminal cleanup.
 
-Supported/proven equipped scope includes Normal, Quick, full Whirl, Power, Pierce, SimpleWhirl, tested 2H/Staff Hack, and factual equipped Sprint under permanent `EquippedSprintCollision` policy. EV-383 additionally proves a four-marker `BOTH -> single side -> OFF -> BOTH` pattern forming three independently controlled offensive windows in representative dual-1H Normal/Quick/SimpleWhirl/Pierce executions.
+Supported/proven equipped scope includes Normal, Quick, full Whirl, Power, Pierce, SimpleWhirl, tested 2H/Staff Hack, and factual equipped Sprint under permanent `EquippedSprintCollision` policy. EV-383 proves a four-marker `BOTH -> single side -> OFF -> BOTH` pattern forming three independently controlled offensive windows in representative dual-1H Normal/Quick/SimpleWhirl/Pierce executions.
 
-Evidence: EV-106–EV-116, EV-143–EV-147, EV-217–EV-220, EV-241–EV-244, EV-299–EV-306, EV-309–EV-314, EV-318, EV-370–EV-375, EV-377, EV-383.
+EV-389 diagnostics-free release-purity testing reconfirms this behavior without diagnostic support: authored Hack collision works; 2H `ON -> OFF -> ON` produces distinct offensive openings; opponents entering the weapon during authored OFF do not get hit; and 1H1H/dual multi-window authoring produces intended extra contacts across attack types. These positive and negative controls cannot be explained by native Gothic attack timers alone.
+
+Evidence: EV-106–EV-116, EV-143–EV-147, EV-217–EV-220, EV-241–EV-244, EV-299–EV-306, EV-309–EV-314, EV-318, EV-370–EV-375, EV-377, EV-383, EV-389.
 
 ## 3. Equipped lifecycle / terminal repair
 
@@ -61,9 +63,9 @@ exact outstanding equipped source
 -> verify group5
 ```
 
-If native cleanup already fulfilled the obligation, repair does nothing. LEFT/RIGHT obligations remain independent. EV-384 broad New Balance stress evidence includes single- and dual-source bounded repairs converging exact outstanding group7 sources to group5 without sampled repair divergence.
+If native cleanup already fulfilled the obligation, repair does nothing. LEFT/RIGHT obligations remain independent. EV-384 broad New Balance stress evidence includes single- and dual-source bounded repairs converging exact outstanding group7 sources to group5 without sampled repair divergence. EV-389 adds behavior-only one-on-one/group-combat observation with no stuck collision, persistent touch-damage, or obvious cleanup regression.
 
-Evidence: EV-180–EV-215, EV-299–EV-306, EV-367, EV-373–EV-374, EV-384.  
+Evidence: EV-180–EV-215, EV-299–EV-306, EV-367, EV-373–EV-374, EV-384, EV-389.  
 Architecture: `COLLISION_LIFECYCLE.md`.
 
 ## 4. Raw8 Fist
@@ -105,9 +107,9 @@ C1 finalization/replacement
 
 Gothic remains authoritative for target selection, block/parry, immunity, reactions and HP damage. No production `FIST_OFF`, no raw8 equipped-source window, no raw8 `ClearTriggeredList()` route and no custom raw8 damage.
 
-EV-377 reconfirms this model under New Balance, including legitimate same-C1 Sprint Action9 -> Action2 continuation.
+EV-377 reconfirms this model under New Balance, including legitimate same-C1 Sprint Action9 -> Action2 continuation. EV-389 behavior-only testing confirms double-marker body-contact animations can produce two authored contacts in live gameplay, including Sabretooth and human Fist cases, without diagnostic dependency.
 
-Evidence: EV-221–EV-251, EV-257, EV-263, EV-297, EV-304–EV-305, EV-307, EV-309, EV-316, EV-337–EV-364, EV-377.
+Evidence: EV-221–EV-251, EV-257, EV-263, EV-297, EV-304–EV-305, EV-307, EV-309, EV-316, EV-337–EV-364, EV-377, EV-389.
 
 ## 5. PhysicalFist / raw55
 
@@ -238,10 +240,12 @@ Focused New Balance raw55 compatibility remains CLOSED/PASS through EV-382, and 
 
 The EV-385 standalone current-SPRINT/SP1 eligibility defect is **CLOSED by EV-386**. The corrected marked standalone final-candidate matrix, including factual true-Power single/double controls, is PASS. EV-387 confirms unmarked raw55 native fallback across Quick, Normal, true Power and Sprint, closing the standalone/no-New-Balance final-candidate sentinel. EV-388 reconfirms the New Balance-specific Sprint SP2 and Action9->Action2/POWER-SP2 routes plus true-Power SP1->SP2 on the same final candidate. Across all five EV-388 artifacts there are no `REJECTED_*`, `ANOMALY`, or `C1 INVARIANT WARNING` matches, and cleanup/finalization remains healthy.
 
-Therefore the **final-candidate diagnostic phase is CLOSED/PASS through EV-386–EV-388**. The current gate is the diagnostics-free `Script_FrameCollisionBehaviorTest` release-purity confirmation.
+EV-389 then confirms the same mature behavior in the diagnostics-free twin: Troll/raw55 double-marker animations can hit twice from two authored opportunities, while the broader behavior-only run shows marker-controlled active/inactive windows and no observed persistent collision regression.
+
+Therefore the **final-candidate diagnostic phase is CLOSED/PASS through EV-386–EV-388 and behavior-only release-purity is CLOSED/PASS EV-389**. Collision is ready for production migration.
 
 Architecture: `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`.  
-Evidence: EV-262–EV-298, EV-317, EV-341, EV-366, EV-376–EV-388.
+Evidence: EV-262–EV-298, EV-317, EV-341, EV-366, EV-376–EV-389.
 
 ## 6. Sprint transport
 
@@ -253,7 +257,7 @@ For raw55, immutable Sprint-origin identity survives the legitimate same-C1 Acti
 
 Equipped Sprint RIGHT/LEFT/BOTH/OFF is permanent supported behavior through `EquippedSprintCollision`. Its bound continuation is exact-identity-only; a new ordinary true Power execution cannot inherit Sprint authorization.
 
-Evidence: raw8 EV-250–EV-251, EV-316, EV-354, EV-377; raw55 EV-280–EV-285, EV-294, EV-298, EV-317, EV-376–EV-388; equipped Sprint EV-311, EV-315, EV-320–EV-329, EV-368, EV-377.
+Evidence: raw8 EV-250–EV-251, EV-316, EV-354, EV-377; raw55 EV-280–EV-285, EV-294, EV-298, EV-317, EV-376–EV-389; equipped Sprint EV-311, EV-315, EV-320–EV-329, EV-368, EV-377, EV-389.
 
 ## 7. Shield / raw9 boundary
 
@@ -321,8 +325,9 @@ unmarked raw55 final-candidate fallback      PASS EV-387
 final-candidate standalone diagnostic gate   CLOSED/PASS EV-386–EV-387
 final-candidate New Balance regression       PASS EV-388
 diagnostic phase                             CLOSED/PASS EV-386–EV-388
-behavior-only release-purity validation      CURRENT
-production collision migration               BLOCKED UNTIL BEHAVIOR-ONLY PASS
+behavior-only release-purity validation      CLOSED/PASS EV-389
+production collision migration               CURRENT
+production integration validation            PENDING AFTER MIGRATION
 ```
 
 Final-candidate hashes:
@@ -332,7 +337,7 @@ Behavior   D5BECB2C32A9766B1B444CB5864C0C30C9AC251A1679F605127F4D7318900B78
 Diagnostic AEF0E18205BAA9258D50B2E934173C48B845E0F1B9A9F425D622F4E4598EE773
 ```
 
-Current validation authority: `COLLISION_TEST_PLAN.md` §4.6.
+Current validation authority: `COLLISION_TEST_PLAN.md`.
 
 ## 11. Evidence escalation rule
 
