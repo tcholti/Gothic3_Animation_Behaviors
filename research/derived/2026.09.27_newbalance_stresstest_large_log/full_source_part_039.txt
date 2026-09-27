@@ -1,0 +1,318 @@
+00010186: CORE C1_FINAL ElapsedMs=1318157.038 Actor=PC_Hero Generation=1171 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00010187: CORE COLLISION_GROUP ElapsedMs=1318385.998 Source=It_2H_OrcSword_OM_01 UseType=52 Owner=Orc_Raider_Elite_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00010188: CORE C1 CLEANUP FULFILLED ElapsedMs=1318386.027 Actor=Orc_Raider_Elite_02 Generation=1173 Status=PERSISTED Source=It_2H_OrcSword_OM_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00010189: ===== CORE C1 FINALIZATION ANOMALY / REPAIR =====
+00010190: ElapsedMs: 1318386.037
+00010191: Reason: AISETSTATE_AFTER_ORIGINAL
+00010192: Actor: Orc_Raider_Elite_02
+00010193: Generation: 1173
+00010194: Status: PERSISTED
+00010195: TrackedSourceCount: 1
+00010196: Source[0].Outcome: REPAIRED_TO_ITEM_EQUIPPED
+00010197: Source[0].Address: CC412810
+00010198: Source[0].LivenessEstablished: 1
+00010199: Source[0].Name: It_2H_OrcSword_OM_01
+00010200: Source[0].OriginalSide: RIGHT
+00010201: Source[0].CurrentSideMask: 1
+00010202: Source[0].OffensiveRequestCount: 1
+00010203: Source[0].OutstandingBeforeFinalization: 1
+00010204: Source[0].CleanupObservedBeforeFinalization: 0
+00010205: Source[0].ActualGroupBeforeRepair: 7
+00010206: Source[0].RepairAttempted: 1
+00010207: Source[0].RepairRequestedGroup: 5
+00010208: Source[0].ActualGroupAfterRepair: 5
+00010209: Source[0].PhysicalCollisionChanged: 1
+00010210: PhysicalCollisionChanged: 1
+00010211: ===============================================
+00010212: 
+00010213: CORE C1_START ElapsedMs=1318414.047 Actor=Orc_Raider_Elite_02 Generation=1175 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_OrcSword_OM_01 Side=RIGHT Group=5
+00010214: CORE C1_BIND ElapsedMs=1318414.060 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Orc_Raider_Elite_02 Generation=1175 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00010215: CORE C1_STATUS ElapsedMs=1318414.144 Event=PERSISTED Actor=Orc_Raider_Elite_02 Generation=1175 Status=PERSISTED Outstanding=0
+00010216: CORE ATTACK_OWNERSHIP ElapsedMs=1318414.161 Actor=Orc_Raider_Elite_02 Family=NORMAL Action=1 Phase=1 Motion=Orc_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_140_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00010217: CORE C1_START ElapsedMs=1318566.974 Actor=PC_Hero Generation=1176 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00010218: CORE C1_BIND ElapsedMs=1318566.987 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=1176 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+00010219: CORE C1_STATUS ElapsedMs=1318573.396 Event=PERSISTED Actor=PC_Hero Generation=1176 Status=PERSISTED Outstanding=0
+00010220: CORE COLLISION_GROUP ElapsedMs=1318596.869 Source=Bolt_Sharp UseType=7 Owner=<unresolved> Slot=NONE Requested=7 Before=1 After=7 MarkerBitsRetired=0
+00010221: CORE COLLISION_GROUP ElapsedMs=1318637.057 Source=It_2H_OrcSword_OM_01 UseType=52 Owner=Orc_Raider_Elite_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00010222: CORE C1 OFFENSE REQUEST ElapsedMs=1318637.085 Actor=Orc_Raider_Elite_02 Generation=1175 Status=PERSISTED Source=It_2H_OrcSword_OM_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00010223: CORE MARKER ElapsedMs=1318637.097 Actor=Orc_Raider_Elite_02 Action=1 Family=NORMAL Phase=1 Motion=Orc_Stand_None_Axe_P1_Attack_Hit_N_Fwd_00_%_00_P0_140_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=1175 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+00010224: CORE COLLISION_GROUP ElapsedMs=1318732.878 Source=Bolt_Sharp UseType=7 Owner=<unresolved> Slot=NONE Requested=7 Before=1 After=7 MarkerBitsRetired=0
+00010225: CORE C1_START ElapsedMs=1318868.729 Actor=Orc_Raider_Warrior_02 Generation=1177 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_OrcSword_01 Side=RIGHT Group=5
+00010226: CORE C1_BIND ElapsedMs=1318868.742 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Orc_Raider_Warrior_02 Generation=1177 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_HackAttack
+00010227: CORE C1_STATUS ElapsedMs=1318868.822 Event=PERSISTED Actor=Orc_Raider_Warrior_02 Generation=1177 Status=PERSISTED Outstanding=0
+00010228: CORE C1_FINAL ElapsedMs=1318901.475 Actor=PC_Hero Generation=1176 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00010229: CORE C1_START ElapsedMs=1318919.495 Actor=PC_Hero Generation=1178 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00010230: CORE C1_BIND ElapsedMs=1318919.513 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=1178 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_HackAttack
+00010231: CORE C1_STATUS ElapsedMs=1318919.641 Event=PERSISTED Actor=PC_Hero Generation=1178 Status=PERSISTED Outstanding=0
+00010232: CORE COLLISION_GROUP ElapsedMs=1318956.753 Source=It_2H_OrcSword_OM_01 UseType=52 Owner=Orc_Raider_Elite_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00010233: CORE C1 CLEANUP FULFILLED ElapsedMs=1318956.798 Actor=Orc_Raider_Elite_02 Generation=1175 Status=PERSISTED Source=It_2H_OrcSword_OM_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00010234: CORE C1_FINAL ElapsedMs=1318956.834 Actor=Orc_Raider_Elite_02 Generation=1175 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_OrcSword_OM_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00010235: CORE C1_START ElapsedMs=1318987.741 Actor=Orc_Raider_Elite_02 Generation=1179 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_OrcSword_OM_01 Side=RIGHT Group=5
+00010236: CORE C1_BIND ElapsedMs=1318987.757 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Orc_Raider_Elite_02 Generation=1179 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+00010237: CORE C1_STATUS ElapsedMs=1318987.891 Event=PERSISTED Actor=Orc_Raider_Elite_02 Generation=1179 Status=PERSISTED Outstanding=0
+00010238: CORE ATTACK_OWNERSHIP ElapsedMs=1318987.918 Actor=Orc_Raider_Elite_02 Family=QUICK Action=4 Phase=1 Motion=Orc_Stand_None_Axe_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00010239: CORE COLLISION_GROUP ElapsedMs=1319058.619 Source=It_2H_OrcSword_OM_01 UseType=52 Owner=Orc_Raider_Elite_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00010240: CORE C1 OFFENSE REQUEST ElapsedMs=1319058.651 Actor=Orc_Raider_Elite_02 Generation=1179 Status=PERSISTED Source=It_2H_OrcSword_OM_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00010241: CORE MARKER ElapsedMs=1319058.670 Actor=Orc_Raider_Elite_02 Action=4 Family=QUICK Phase=1 Motion=Orc_Stand_None_Axe_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=1179 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+00010242: CORE C1_START ElapsedMs=1319075.877 Actor=Orc_Raider_Elite_03 Generation=1180 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Halberd_Orc_01 Side=RIGHT Group=5
+00010243: CORE C1_BIND ElapsedMs=1319075.890 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Orc_Raider_Elite_03 Generation=1180 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_EvadeBackward
+00010244: CORE C1_STATUS ElapsedMs=1319075.967 Event=PERSISTED Actor=Orc_Raider_Elite_03 Generation=1180 Status=PERSISTED Outstanding=0
+00010245: CORE C1_BIND ElapsedMs=1319128.178 Event=COMBAT_MOVE_REUSED Actor=Orc_Raider_Elite_03 Generation=1180 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_EvadeBackward
+00010246: CORE COLLISION_GROUP ElapsedMs=1319173.828 Source=Bolt_Sharp UseType=7 Owner=<unresolved> Slot=NONE Requested=6 Before=7 After=6 MarkerBitsRetired=0
+00010247: CORE COLLISION_GROUP ElapsedMs=1319266.942 Source=Bolt_Sharp UseType=7 Owner=<unresolved> Slot=NONE Requested=6 Before=7 After=6 MarkerBitsRetired=0
+00010248: CORE COLLISION_GROUP ElapsedMs=1319369.293 Source=It_2H_OrcSword_OM_01 UseType=52 Owner=Orc_Raider_Elite_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00010249: CORE C1 CLEANUP FULFILLED ElapsedMs=1319369.323 Actor=Orc_Raider_Elite_02 Generation=1179 Status=PERSISTED Source=It_2H_OrcSword_OM_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00010250: CORE C1_BIND ElapsedMs=1319435.562 Event=COMBAT_MOVE_REUSED Actor=Orc_Raider_Warrior_02 Generation=1177 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_HackAttack
+00010251: CORE ATTACK_OWNERSHIP ElapsedMs=1319435.656 Actor=Orc_Raider_Warrior_02 Family=HACK Action=14 Phase=1 Motion=Orc_Parade_None_Axe_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_50.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00010252: CORE C1_BIND ElapsedMs=1319449.308 Event=COMBAT_MOVE_REUSED Actor=Orc_Raider_Elite_03 Generation=1180 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_EvadeBackward
+00010253: CORE C1_FINAL ElapsedMs=1319475.569 Actor=Orc_Raider_Elite_02 Generation=1179 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_OrcSword_OM_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00010254: CORE C1_FINAL ElapsedMs=1319560.235 Actor=Orc_Raider_Elite_03 Generation=1180 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Halberd_Orc_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00010255: CORE C1_BIND ElapsedMs=1319726.200 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=1178 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_HackAttack
+00010256: CORE ATTACK_OWNERSHIP ElapsedMs=1319726.318 Actor=PC_Hero Family=HACK Action=14 Phase=1 Motion=Hero_Parade_None_2H_P0_HackAttack_Hit_N_Fwd_00_%_00_P1_100.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00010257: CORE COLLISION_GROUP ElapsedMs=1319793.035 Source=It_Axe_OrcSword_01 UseType=52 Owner=Orc_Raider_Warrior_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00010258: CORE C1 OFFENSE REQUEST ElapsedMs=1319793.063 Actor=Orc_Raider_Warrior_02 Generation=1177 Status=PERSISTED Source=It_Axe_OrcSword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00010259: CORE MARKER ElapsedMs=1319793.076 Actor=Orc_Raider_Warrior_02 Action=14 Family=HACK Phase=1 Motion=Orc_Parade_None_Axe_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_50.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=1177 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+00010260: CORE COLLISION_GROUP ElapsedMs=1320004.461 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00010261: CORE C1 OFFENSE REQUEST ElapsedMs=1320004.489 Actor=PC_Hero Generation=1178 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00010262: CORE MARKER ElapsedMs=1320004.502 Actor=PC_Hero Action=14 Family=HACK Phase=1 Motion=Hero_Parade_None_2H_P0_HackAttack_Hit_N_Fwd_00_%_00_P1_100.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=1178 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+00010263: CORE COLLISION_GROUP ElapsedMs=1320042.087 Source=It_Axe_OrcSword_01 UseType=52 Owner=Orc_Raider_Warrior_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00010264: CORE C1 CLEANUP FULFILLED ElapsedMs=1320042.115 Actor=Orc_Raider_Warrior_02 Generation=1177 Status=PERSISTED Source=It_Axe_OrcSword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00010265: CORE C1_BIND ElapsedMs=1320042.137 Event=COMBAT_MOVE_REUSED Actor=Orc_Raider_Warrior_02 Generation=1177 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_HackAttack
+00010266: CORE COLLISION_GROUP ElapsedMs=1320217.935 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00010267: CORE C1 CLEANUP FULFILLED ElapsedMs=1320217.964 Actor=PC_Hero Generation=1178 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00010268: CORE C1_BIND ElapsedMs=1320217.993 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=1178 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_HackAttack
+00010269: CORE C1_FINAL ElapsedMs=1320406.695 Actor=Orc_Raider_Warrior_02 Generation=1177 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_OrcSword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00010270: CORE COLLISION_GROUP ElapsedMs=1320637.935 Source=Bolt_Sharp UseType=7 Owner=<unresolved> Slot=NONE Requested=7 Before=1 After=7 MarkerBitsRetired=0
+00010271: CORE C1_START ElapsedMs=1320695.201 Actor=Bloodfly Generation=1181 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Bloodfly Side=RIGHT Group=0
+00010272: CORE C1_BIND ElapsedMs=1320695.213 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Bloodfly Generation=1181 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00010273: CORE C1_STATUS ElapsedMs=1320695.285 Event=PERSISTED Actor=Bloodfly Generation=1181 Status=PERSISTED Outstanding=0
+00010274: CORE RAW8_FIST_OWNERSHIP ElapsedMs=1320695.301 Actor=Bloodfly Action=1 Family=NORMAL Motion=Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot C1=1181 Raw8Fist=Fist_Bloodfly Raw8UseType=8 InitialClose=0->1 Result=CONFIRMED
+00010275: CORE ATTACK_OWNERSHIP ElapsedMs=1320695.314 Actor=Bloodfly Family=NORMAL Action=1 Phase=1 Motion=Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=Fist_Bloodfly Raw8UseType=8 SuppressNative=0 Classification=ROUTINE
+00010276: CORE C1_START ElapsedMs=1320739.978 Actor=Orc_Raider_Elite_02 Generation=1182 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_OrcSword_OM_01 Side=RIGHT Group=5
+00010277: CORE C1_BIND ElapsedMs=1320739.989 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Orc_Raider_Elite_02 Generation=1182 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+00010278: CORE C1_STATUS ElapsedMs=1320740.071 Event=PERSISTED Actor=Orc_Raider_Elite_02 Generation=1182 Status=PERSISTED Outstanding=0
+00010279: CORE C1_START ElapsedMs=1320811.026 Actor=Orc_Raider_Warrior_02 Generation=1183 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_OrcSword_01 Side=RIGHT Group=5
+00010280: CORE C1_BIND ElapsedMs=1320811.051 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Orc_Raider_Warrior_02 Generation=1183 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_HackAttack
+00010281: CORE C1_STATUS ElapsedMs=1320811.169 Event=PERSISTED Actor=Orc_Raider_Warrior_02 Generation=1183 Status=PERSISTED Outstanding=0
+00010282: CORE COLLISION_GROUP ElapsedMs=1320829.824 Source=Bolt_Sharp UseType=7 Owner=<unresolved> Slot=NONE Requested=6 Before=7 After=6 MarkerBitsRetired=0
+00010283: CORE RAW8_FIST_TIMING ElapsedMs=1320930.229 Actor=Bloodfly Action=1 Family=NORMAL Motion=Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot C1=1181 Raw8Fist=Fist_Bloodfly Raw8UseType=8 AcceptedRearm=1->0 OwnershipMatched=1 Classification=EARLY_PERMISSION_ARMED
+00010284: CORE RAW8_OPPORTUNITY_OPEN ElapsedMs=1320930.257 Actor=Bloodfly Action=1 Family=NORMAL Motion=Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot C1=1181 Raw8Fist=Fist_Bloodfly OpportunityOrdinal=114 Reason=ACCEPTED_FIST LatchBefore=1 LatchAfter=0 LatchWriteAttempted=1 LatchWriteConfirmed=1 TimingActive=1
+00010285: CORE MARKER ElapsedMs=1320930.269 Actor=Bloodfly Action=1 Family=NORMAL Phase=1 Motion=Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=1181 StatePosition=0 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Raw8Fist=Fist_Bloodfly Raw8UseType=8 Latch=1->0 LatchConfirmed=1
+00010286: CORE RAW8_FIST_TIMING ElapsedMs=1320943.465 Actor=Bloodfly C1=1181 PermissionRetired=1 Reason=REAL_TIME_REACHED_FORCED_VALUE
+00010287: CORE RAW8_OPPORTUNITY_CONTACT_CONSUMED ElapsedMs=1320943.681 Actor=Bloodfly Action=1 Family=NORMAL Motion=Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot C1=1181 Raw8Fist=Fist_Bloodfly OpportunityOrdinal=114 Reason=EXACT_NATIVE_CONTACT_DISPATCH LatchValue=1
+00010288: CORE COLLISION_GROUP ElapsedMs=1320943.710 Source=Fist_Bloodfly UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+00010289: CORE C1_START ElapsedMs=1320946.739 Actor=Orc_Raider_Elite_01 Generation=1184 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_OrcSword_OM_01 Side=RIGHT Group=5
+00010290: CORE C1_BIND ElapsedMs=1320946.748 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Orc_Raider_Elite_01 Generation=1184 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+00010291: CORE C1_STATUS ElapsedMs=1320946.830 Event=PERSISTED Actor=Orc_Raider_Elite_01 Generation=1184 Status=PERSISTED Outstanding=0
+00010292: CORE C1_START ElapsedMs=1321046.235 Actor=Bloodfly Generation=1185 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Bloodfly Side=RIGHT Group=0
+00010293: CORE C1_BIND ElapsedMs=1321046.247 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Bloodfly Generation=1185 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+00010294: CORE C1_STATUS ElapsedMs=1321046.318 Event=PERSISTED Actor=Bloodfly Generation=1185 Status=PERSISTED Outstanding=0
+00010295: CORE C1_BIND ElapsedMs=1321087.732 Event=COMBAT_MOVE_REUSED Actor=Orc_Raider_Elite_02 Generation=1182 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+00010296: CORE ATTACK_OWNERSHIP ElapsedMs=1321087.825 Actor=Orc_Raider_Elite_02 Family=POWER Action=2 Phase=1 Motion=Orc_Stand_None_Axe_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_140_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00010297: CORE C1_FINAL ElapsedMs=1321100.686 Actor=Bloodfly Generation=1181 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Bloodfly Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00010298: CORE C1_START ElapsedMs=1321114.352 Actor=Bloodfly Generation=1186 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Bloodfly Side=RIGHT Group=0
+00010299: CORE C1_BIND ElapsedMs=1321114.364 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Bloodfly Generation=1186 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00010300: CORE C1_STATUS ElapsedMs=1321114.479 Event=PERSISTED Actor=Bloodfly Generation=1186 Status=PERSISTED Outstanding=0
+00010301: CORE RAW8_FIST_OWNERSHIP ElapsedMs=1321114.508 Actor=Bloodfly Action=1 Family=NORMAL Motion=Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot C1=1186 Raw8Fist=Fist_Bloodfly Raw8UseType=8 InitialClose=0->1 Result=CONFIRMED
+00010302: CORE COLLISION_GROUP ElapsedMs=1321128.945 Source=Bolt UseType=7 Owner=<unresolved> Slot=NONE Requested=7 Before=1 After=7 MarkerBitsRetired=0
+00010303: CORE C1_FINAL ElapsedMs=1321158.985 Actor=Orc_Raider_Elite_01 Generation=1184 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_OrcSword_OM_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00010304: CORE C1_START ElapsedMs=1321186.678 Actor=Orc_Raider_Elite_01 Generation=1187 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_OrcSword_OM_01 Side=RIGHT Group=5
+00010305: CORE C1_BIND ElapsedMs=1321186.690 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Orc_Raider_Elite_01 Generation=1187 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+00010306: CORE C1_STATUS ElapsedMs=1321186.805 Event=PERSISTED Actor=Orc_Raider_Elite_01 Generation=1187 Status=PERSISTED Outstanding=0
+00010307: CORE ATTACK_OWNERSHIP ElapsedMs=1321186.820 Actor=Orc_Raider_Elite_01 Family=QUICK Action=4 Phase=1 Motion=Orc_Stand_None_Axe_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00010308: CORE COLLISION_GROUP ElapsedMs=1321253.952 Source=It_2H_OrcSword_OM_01 UseType=52 Owner=Orc_Raider_Elite_01 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00010309: CORE C1 OFFENSE REQUEST ElapsedMs=1321253.980 Actor=Orc_Raider_Elite_01 Generation=1187 Status=PERSISTED Source=It_2H_OrcSword_OM_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00010310: CORE MARKER ElapsedMs=1321253.993 Actor=Orc_Raider_Elite_01 Action=4 Family=QUICK Phase=1 Motion=Orc_Stand_None_Axe_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=1187 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+00010311: CORE C1_FINAL ElapsedMs=1321272.054 Actor=PC_Hero Generation=1178 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00010312: CORE C1_START ElapsedMs=1321285.400 Actor=PC_Hero Generation=1188 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00010313: CORE C1_BIND ElapsedMs=1321285.412 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=1188 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_HackAttack
+00010314: CORE C1_STATUS ElapsedMs=1321285.488 Event=PERSISTED Actor=PC_Hero Generation=1188 Status=PERSISTED Outstanding=0
+00010315: CORE COLLISION_GROUP ElapsedMs=1321322.009 Source=It_2H_OrcSword_OM_01 UseType=52 Owner=Orc_Raider_Elite_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00010316: CORE C1 OFFENSE REQUEST ElapsedMs=1321322.042 Actor=Orc_Raider_Elite_02 Generation=1182 Status=PERSISTED Source=It_2H_OrcSword_OM_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00010317: CORE MARKER ElapsedMs=1321322.059 Actor=Orc_Raider_Elite_02 Action=2 Family=POWER Phase=1 Motion=Orc_Stand_None_Axe_P0_PowerAttack_Hit_N_Fwd_00_%_00_P1_140_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=1182 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+00010318: CORE RAW8_FIST_TIMING ElapsedMs=1321349.426 Actor=Bloodfly Action=1 Family=NORMAL Motion=Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot C1=1186 Raw8Fist=Fist_Bloodfly Raw8UseType=8 AcceptedRearm=1->0 OwnershipMatched=1 Classification=EARLY_PERMISSION_ARMED
+00010319: CORE RAW8_OPPORTUNITY_OPEN ElapsedMs=1321349.455 Actor=Bloodfly Action=1 Family=NORMAL Motion=Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot C1=1186 Raw8Fist=Fist_Bloodfly OpportunityOrdinal=115 Reason=ACCEPTED_FIST LatchBefore=1 LatchAfter=0 LatchWriteAttempted=1 LatchWriteConfirmed=1 TimingActive=1
+00010320: CORE MARKER ElapsedMs=1321349.468 Actor=Bloodfly Action=1 Family=NORMAL Phase=1 Motion=Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=1186 StatePosition=0 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Raw8Fist=Fist_Bloodfly Raw8UseType=8 Latch=1->0 LatchConfirmed=1
+00010321: CORE COLLISION_GROUP ElapsedMs=1321356.008 Source=Bolt UseType=7 Owner=<unresolved> Slot=NONE Requested=6 Before=7 After=6 MarkerBitsRetired=0
+00010322: CORE RAW8_FIST_TIMING ElapsedMs=1321363.501 Actor=Bloodfly C1=1186 PermissionRetired=1 Reason=REAL_TIME_REACHED_FORCED_VALUE
+00010323: CORE RAW8_OPPORTUNITY_CONTACT_CONSUMED ElapsedMs=1321363.956 Actor=Bloodfly Action=1 Family=NORMAL Motion=Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot C1=1186 Raw8Fist=Fist_Bloodfly OpportunityOrdinal=115 Reason=EXACT_NATIVE_CONTACT_DISPATCH LatchValue=1
+00010324: CORE COLLISION_GROUP ElapsedMs=1321365.433 Source=It_2H_OrcSword_OM_01 UseType=52 Owner=Orc_Raider_Elite_01 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00010325: CORE C1 CLEANUP FULFILLED ElapsedMs=1321365.447 Actor=Orc_Raider_Elite_01 Generation=1187 Status=PERSISTED Source=It_2H_OrcSword_OM_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00010326: CORE C1_START ElapsedMs=1321375.184 Actor=Orc_Raider_Elite_01 Generation=1189 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=1187 ReplacedOutstanding=0 Source[0]=It_2H_OrcSword_OM_01 Side=RIGHT Group=5
+00010327: CORE C1_BIND ElapsedMs=1321375.193 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Orc_Raider_Elite_01 Generation=1189 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+00010328: CORE C1_STATUS ElapsedMs=1321375.270 Event=PERSISTED Actor=Orc_Raider_Elite_01 Generation=1189 Status=PERSISTED Outstanding=0
+00010329: CORE COLLISION_GROUP ElapsedMs=1321387.636 Source=Fist_Bloodfly UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+00010330: CORE C1_BIND ElapsedMs=1321388.600 Event=COMBAT_MOVE_REUSED Actor=Orc_Raider_Warrior_02 Generation=1183 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_HackAttack
+00010331: CORE COLLISION_GROUP ElapsedMs=1321446.204 Source=Bolt_Sharp UseType=7 Owner=<unresolved> Slot=NONE Requested=7 Before=1 After=7 MarkerBitsRetired=0
+00010332: CORE C1_FINAL ElapsedMs=1321526.556 Actor=Bloodfly Generation=1186 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Bloodfly Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00010333: CORE COLLISION_GROUP ElapsedMs=1321547.319 Source=Bolt_Sharp UseType=7 Owner=<unresolved> Slot=NONE Requested=6 Before=7 After=6 MarkerBitsRetired=0
+00010334: CORE C1_BIND ElapsedMs=1321554.705 Event=COMBAT_MOVE_REUSED Actor=Bloodfly Generation=1185 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+00010335: CORE RAW8_FIST_OWNERSHIP ElapsedMs=1321554.797 Actor=Bloodfly Action=2 Family=POWER Motion=Bloodfly_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_150.xmot C1=1185 Raw8Fist=Fist_Bloodfly Raw8UseType=8 InitialClose=0->1 Result=CONFIRMED
+00010336: CORE ATTACK_OWNERSHIP ElapsedMs=1321554.815 Actor=Bloodfly Family=POWER Action=2 Phase=1 Motion=Bloodfly_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_150.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=Fist_Bloodfly Raw8UseType=8 SuppressNative=0 Classification=ROUTINE
+00010337: CORE COLLISION_GROUP ElapsedMs=1321554.832 Source=Fist_Bloodfly UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+00010338: CORE C1_FINAL ElapsedMs=1321573.095 Actor=Orc_Raider_Elite_01 Generation=1189 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_OrcSword_OM_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00010339: CORE COLLISION_GROUP ElapsedMs=1321585.360 Source=Bolt_Sharp UseType=7 Owner=<unresolved> Slot=NONE Requested=7 Before=1 After=7 MarkerBitsRetired=0
+00010340: CORE C1_START ElapsedMs=1321602.351 Actor=Orc_Raider_Elite_01 Generation=1190 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_OrcSword_OM_01 Side=RIGHT Group=5
+00010341: CORE C1_BIND ElapsedMs=1321602.363 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Orc_Raider_Elite_01 Generation=1190 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+00010342: CORE C1_STATUS ElapsedMs=1321602.434 Event=PERSISTED Actor=Orc_Raider_Elite_01 Generation=1190 Status=PERSISTED Outstanding=0
+00010343: CORE COLLISION_GROUP ElapsedMs=1321688.104 Source=Bolt_Sharp UseType=7 Owner=<unresolved> Slot=NONE Requested=6 Before=7 After=6 MarkerBitsRetired=0
+00010344: CORE COLLISION_GROUP ElapsedMs=1321736.120 Source=It_2H_OrcSword_OM_01 UseType=52 Owner=Orc_Raider_Elite_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00010345: CORE C1 CLEANUP FULFILLED ElapsedMs=1321736.177 Actor=Orc_Raider_Elite_02 Generation=1182 Status=PERSISTED Source=It_2H_OrcSword_OM_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00010346: CORE C1_FINAL ElapsedMs=1321736.198 Actor=Orc_Raider_Elite_02 Generation=1182 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_OrcSword_OM_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00010347: CORE COLLISION_GROUP ElapsedMs=1321736.975 Source=It_Axe_OrcSword_01 UseType=52 Owner=Orc_Raider_Warrior_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00010348: CORE C1 OFFENSE REQUEST ElapsedMs=1321736.989 Actor=Orc_Raider_Warrior_02 Generation=1183 Status=PERSISTED Source=It_Axe_OrcSword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00010349: CORE MARKER ElapsedMs=1321737.001 Actor=Orc_Raider_Warrior_02 Action=14 Family=HACK Phase=1 Motion=Orc_Parade_None_Axe_P0_HackAttack_Hit_N_Fwd_00_%_00_P0_50.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=1183 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+00010350: CORE RAW8_FIST_TIMING ElapsedMs=1321789.814 Actor=Bloodfly Action=2 Family=POWER Motion=Bloodfly_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_150.xmot C1=1185 Raw8Fist=Fist_Bloodfly Raw8UseType=8 AcceptedRearm=1->0 OwnershipMatched=1 Classification=EARLY_PERMISSION_ARMED
+00010351: CORE RAW8_OPPORTUNITY_OPEN ElapsedMs=1321789.843 Actor=Bloodfly Action=2 Family=POWER Motion=Bloodfly_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_150.xmot C1=1185 Raw8Fist=Fist_Bloodfly OpportunityOrdinal=116 Reason=ACCEPTED_FIST LatchBefore=1 LatchAfter=0 LatchWriteAttempted=1 LatchWriteConfirmed=1 TimingActive=1
+00010352: CORE MARKER ElapsedMs=1321789.856 Actor=Bloodfly Action=2 Family=POWER Phase=1 Motion=Bloodfly_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_150.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=1185 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Raw8Fist=Fist_Bloodfly Raw8UseType=8 Latch=1->0 LatchConfirmed=1
+00010353: CORE RAW8_FIST_TIMING ElapsedMs=1321803.412 Actor=Bloodfly C1=1185 PermissionRetired=1 Reason=REAL_TIME_REACHED_FORCED_VALUE
+00010354: CORE RAW8_OPPORTUNITY_CONTACT_CONSUMED ElapsedMs=1321803.754 Actor=Bloodfly Action=2 Family=POWER Motion=Bloodfly_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_150.xmot C1=1185 Raw8Fist=Fist_Bloodfly OpportunityOrdinal=116 Reason=EXACT_NATIVE_CONTACT_DISPATCH LatchValue=1
+00010355: CORE C1_START ElapsedMs=1321813.360 Actor=Orc_Raider_Elite_01 Generation=1191 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=1190 ReplacedOutstanding=0 Source[0]=It_2H_OrcSword_OM_01 Side=RIGHT Group=5
+00010356: CORE C1_BIND ElapsedMs=1321813.369 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Orc_Raider_Elite_01 Generation=1191 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+00010357: CORE C1_STATUS ElapsedMs=1321822.074 Event=PERSISTED Actor=Orc_Raider_Elite_01 Generation=1191 Status=PERSISTED Outstanding=0
+00010358: CORE C1_FINAL ElapsedMs=1321959.010 Actor=Bloodfly Generation=1185 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Bloodfly Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00010359: CORE C1_START ElapsedMs=1321972.716 Actor=Bloodfly Generation=1192 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Bloodfly Side=RIGHT Group=0
+00010360: CORE C1_BIND ElapsedMs=1321972.728 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Bloodfly Generation=1192 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+00010361: CORE C1_STATUS ElapsedMs=1321972.804 Event=PERSISTED Actor=Bloodfly Generation=1192 Status=PERSISTED Outstanding=0
+00010362: CORE COLLISION_GROUP ElapsedMs=1321987.697 Source=It_Axe_OrcSword_01 UseType=52 Owner=Orc_Raider_Warrior_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00010363: CORE C1 CLEANUP FULFILLED ElapsedMs=1321987.723 Actor=Orc_Raider_Warrior_02 Generation=1183 Status=PERSISTED Source=It_Axe_OrcSword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00010364: CORE C1_BIND ElapsedMs=1321987.746 Event=COMBAT_MOVE_REUSED Actor=Orc_Raider_Warrior_02 Generation=1183 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_HackAttack
+00010365: CORE C1_BIND ElapsedMs=1322089.022 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=1188 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_HackAttack
+00010366: CORE C1_FINAL ElapsedMs=1322242.311 Actor=Orc_Raider_Elite_01 Generation=1191 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_OrcSword_OM_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00010367: CORE C1_START ElapsedMs=1322272.512 Actor=Orc_Raider_Elite_02 Generation=1193 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_OrcSword_OM_01 Side=RIGHT Group=5
+00010368: CORE C1_BIND ElapsedMs=1322272.523 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Orc_Raider_Elite_02 Generation=1193 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_EvadeRight
+00010369: CORE C1_STATUS ElapsedMs=1322272.593 Event=PERSISTED Actor=Orc_Raider_Elite_02 Generation=1193 Status=PERSISTED Outstanding=0
+00010370: CORE C1_START ElapsedMs=1322273.554 Actor=Orc_Raider_Elite_01 Generation=1194 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_OrcSword_OM_01 Side=RIGHT Group=5
+00010371: CORE C1_BIND ElapsedMs=1322273.561 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Orc_Raider_Elite_01 Generation=1194 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+00010372: CORE C1_STATUS ElapsedMs=1322273.621 Event=PERSISTED Actor=Orc_Raider_Elite_01 Generation=1194 Status=PERSISTED Outstanding=0
+00010373: CORE ATTACK_OWNERSHIP ElapsedMs=1322273.636 Actor=Orc_Raider_Elite_01 Family=QUICK Action=5 Phase=1 Motion=Orc_Stand_None_Axe_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00010374: CORE C1_BIND ElapsedMs=1322325.061 Event=COMBAT_MOVE_REUSED Actor=Orc_Raider_Elite_02 Generation=1193 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_EvadeRight
+00010375: CORE C1_FINAL ElapsedMs=1322356.767 Actor=Orc_Raider_Warrior_02 Generation=1183 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_OrcSword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00010376: CORE COLLISION_GROUP ElapsedMs=1322361.565 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00010377: CORE C1 OFFENSE REQUEST ElapsedMs=1322361.590 Actor=PC_Hero Generation=1188 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00010378: CORE MARKER ElapsedMs=1322361.605 Actor=PC_Hero Action=14 Family=HACK Phase=1 Motion=Hero_Parade_None_2H_P0_HackAttack_Hit_N_Fwd_00_%_00_P1_100.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=1188 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=3
+00010379: CORE C1_START ElapsedMs=1322371.182 Actor=Orc_Raider_Warrior_02 Generation=1195 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_OrcSword_01 Side=RIGHT Group=5
+00010380: CORE C1_BIND ElapsedMs=1322371.194 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Orc_Raider_Warrior_02 Generation=1195 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00010381: CORE C1_STATUS ElapsedMs=1322371.274 Event=PERSISTED Actor=Orc_Raider_Warrior_02 Generation=1195 Status=PERSISTED Outstanding=0
+00010382: CORE ATTACK_OWNERSHIP ElapsedMs=1322371.290 Actor=Orc_Raider_Warrior_02 Family=NORMAL Action=1 Phase=1 Motion=Orc_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_140_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00010383: CORE C1_FINAL ElapsedMs=1322383.399 Actor=Bloodfly Generation=1192 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Bloodfly Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00010384: CORE COLLISION_GROUP ElapsedMs=1322385.148 Source=It_2H_OrcSword_OM_01 UseType=52 Owner=Orc_Raider_Elite_01 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00010385: CORE C1 OFFENSE REQUEST ElapsedMs=1322385.163 Actor=Orc_Raider_Elite_01 Generation=1194 Status=PERSISTED Source=It_2H_OrcSword_OM_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00010386: CORE MARKER ElapsedMs=1322385.204 Actor=Orc_Raider_Elite_01 Action=5 Family=QUICK Phase=1 Motion=Orc_Stand_None_Axe_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=1194 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+00010387: CORE COLLISION_GROUP ElapsedMs=1322571.249 Source=It_2H_Sword_Flamberge UseType=3 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00010388: CORE C1 CLEANUP FULFILLED ElapsedMs=1322571.277 Actor=PC_Hero Generation=1188 Status=PERSISTED Source=It_2H_Sword_Flamberge Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00010389: CORE C1_BIND ElapsedMs=1322571.307 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=1188 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_HackAttack
+00010390: CORE COLLISION_GROUP ElapsedMs=1322594.637 Source=It_Axe_OrcSword_01 UseType=52 Owner=Orc_Raider_Warrior_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00010391: CORE C1 OFFENSE REQUEST ElapsedMs=1322594.666 Actor=Orc_Raider_Warrior_02 Generation=1195 Status=PERSISTED Source=It_Axe_OrcSword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00010392: CORE MARKER ElapsedMs=1322594.678 Actor=Orc_Raider_Warrior_02 Action=1 Family=NORMAL Phase=1 Motion=Orc_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_140_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=1195 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+00010393: CORE C1_FINAL ElapsedMs=1322648.656 Actor=Orc_Raider_Elite_02 Generation=1193 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_OrcSword_OM_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00010394: CORE COLLISION_GROUP ElapsedMs=1322678.595 Source=It_2H_OrcSword_OM_01 UseType=52 Owner=Orc_Raider_Elite_01 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00010395: CORE C1 CLEANUP FULFILLED ElapsedMs=1322678.627 Actor=Orc_Raider_Elite_01 Generation=1194 Status=PERSISTED Source=It_2H_OrcSword_OM_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00010396: CORE C1_FINAL ElapsedMs=1322785.886 Actor=Orc_Raider_Elite_01 Generation=1194 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_OrcSword_OM_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00010397: CORE C1_START ElapsedMs=1322800.736 Actor=Orc_Raider_Elite_01 Generation=1196 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_OrcSword_OM_01 Side=RIGHT Group=5
+00010398: CORE C1_BIND ElapsedMs=1322800.749 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Orc_Raider_Elite_01 Generation=1196 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00010399: CORE C1_STATUS ElapsedMs=1322800.830 Event=PERSISTED Actor=Orc_Raider_Elite_01 Generation=1196 Status=PERSISTED Outstanding=0
+00010400: CORE ATTACK_OWNERSHIP ElapsedMs=1322800.846 Actor=Orc_Raider_Elite_01 Family=NORMAL Action=1 Phase=1 Motion=Orc_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_140_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00010401: CORE C1_START ElapsedMs=1322812.289 Actor=Bloodfly Generation=1197 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Bloodfly Side=RIGHT Group=0
+00010402: CORE C1_BIND ElapsedMs=1322812.300 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Bloodfly Generation=1197 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00010403: CORE C1_STATUS ElapsedMs=1322812.373 Event=PERSISTED Actor=Bloodfly Generation=1197 Status=PERSISTED Outstanding=0
+00010404: CORE RAW8_FIST_OWNERSHIP ElapsedMs=1322812.387 Actor=Bloodfly Action=1 Family=NORMAL Motion=Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot C1=1197 Raw8Fist=Fist_Bloodfly Raw8UseType=8 InitialClose=0->1 Result=CONFIRMED
+00010405: CORE COLLISION_GROUP ElapsedMs=1323026.478 Source=It_2H_OrcSword_OM_01 UseType=52 Owner=Orc_Raider_Elite_01 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00010406: CORE C1 OFFENSE REQUEST ElapsedMs=1323026.506 Actor=Orc_Raider_Elite_01 Generation=1196 Status=PERSISTED Source=It_2H_OrcSword_OM_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00010407: CORE MARKER ElapsedMs=1323026.519 Actor=Orc_Raider_Elite_01 Action=1 Family=NORMAL Phase=1 Motion=Orc_Stand_None_Axe_P0_Attack_Hit_N_Fwd_00_%_00_P1_140_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=1196 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+00010408: CORE RAW8_FIST_TIMING ElapsedMs=1323041.091 Actor=Bloodfly Action=1 Family=NORMAL Motion=Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot C1=1197 Raw8Fist=Fist_Bloodfly Raw8UseType=8 AcceptedRearm=1->0 OwnershipMatched=1 Classification=EARLY_PERMISSION_ARMED
+00010409: CORE RAW8_OPPORTUNITY_OPEN ElapsedMs=1323041.120 Actor=Bloodfly Action=1 Family=NORMAL Motion=Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot C1=1197 Raw8Fist=Fist_Bloodfly OpportunityOrdinal=117 Reason=ACCEPTED_FIST LatchBefore=1 LatchAfter=0 LatchWriteAttempted=1 LatchWriteConfirmed=1 TimingActive=1
+00010410: CORE MARKER ElapsedMs=1323041.132 Actor=Bloodfly Action=1 Family=NORMAL Phase=1 Motion=Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=1197 StatePosition=0 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Raw8Fist=Fist_Bloodfly Raw8UseType=8 Latch=1->0 LatchConfirmed=1
+00010411: CORE RAW8_FIST_TIMING ElapsedMs=1323054.855 Actor=Bloodfly C1=1197 PermissionRetired=1 Reason=REAL_TIME_REACHED_FORCED_VALUE
+00010412: CORE RAW8_OPPORTUNITY_CONTACT_CONSUMED ElapsedMs=1323055.034 Actor=Bloodfly Action=1 Family=NORMAL Motion=Bloodfly_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot C1=1197 Raw8Fist=Fist_Bloodfly OpportunityOrdinal=117 Reason=EXACT_NATIVE_CONTACT_DISPATCH LatchValue=1
+00010413: CORE COLLISION_GROUP ElapsedMs=1323056.643 Source=It_2H_OrcSword_OM_01 UseType=52 Owner=Orc_Raider_Elite_01 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00010414: CORE C1 CLEANUP FULFILLED ElapsedMs=1323056.660 Actor=Orc_Raider_Elite_01 Generation=1196 Status=PERSISTED Source=It_2H_OrcSword_OM_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00010415: CORE C1_START ElapsedMs=1323058.035 Actor=Orc_Raider_Elite_01 Generation=1198 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=1196 ReplacedOutstanding=0 Source[0]=It_2H_OrcSword_OM_01 Side=RIGHT Group=5
+00010416: CORE C1_BIND ElapsedMs=1323058.043 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Orc_Raider_Elite_01 Generation=1198 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+00010417: CORE C1_STATUS ElapsedMs=1323058.113 Event=PERSISTED Actor=Orc_Raider_Elite_01 Generation=1198 Status=PERSISTED Outstanding=0
+00010418: CORE C1_START ElapsedMs=1323071.247 Actor=Bloodfly Generation=1199 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Bloodfly Side=RIGHT Group=0
+00010419: CORE C1_BIND ElapsedMs=1323071.259 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Bloodfly Generation=1199 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+00010420: CORE C1_STATUS ElapsedMs=1323071.333 Event=PERSISTED Actor=Bloodfly Generation=1199 Status=PERSISTED Outstanding=0
+00010421: CORE COLLISION_GROUP ElapsedMs=1323071.394 Source=Fist_Bloodfly UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+00010422: CORE COLLISION_GROUP ElapsedMs=1323072.772 Source=It_Axe_OrcSword_01 UseType=52 Owner=Orc_Raider_Warrior_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00010423: CORE C1 CLEANUP FULFILLED ElapsedMs=1323072.786 Actor=Orc_Raider_Warrior_02 Generation=1195 Status=PERSISTED Source=It_Axe_OrcSword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00010424: ===== CORE C1 FINALIZATION ANOMALY / REPAIR =====
+00010425: ElapsedMs: 1323072.795
+00010426: Reason: AISETSTATE_AFTER_ORIGINAL
+00010427: Actor: Orc_Raider_Warrior_02
+00010428: Generation: 1195
+00010429: Status: PERSISTED
+00010430: TrackedSourceCount: 1
+00010431: Source[0].Outcome: REPAIRED_TO_ITEM_EQUIPPED
+00010432: Source[0].Address: CC341810
+00010433: Source[0].LivenessEstablished: 1
+00010434: Source[0].Name: It_Axe_OrcSword_01
+00010435: Source[0].OriginalSide: RIGHT
+00010436: Source[0].CurrentSideMask: 1
+00010437: Source[0].OffensiveRequestCount: 1
+00010438: Source[0].OutstandingBeforeFinalization: 1
+00010439: Source[0].CleanupObservedBeforeFinalization: 0
+00010440: Source[0].ActualGroupBeforeRepair: 7
+00010441: Source[0].RepairAttempted: 1
+00010442: Source[0].RepairRequestedGroup: 5
+00010443: Source[0].ActualGroupAfterRepair: 5
+00010444: Source[0].PhysicalCollisionChanged: 1
+00010445: PhysicalCollisionChanged: 1
+00010446: ===============================================
+00010447: 
+00010448: CORE C1_START ElapsedMs=1323108.038 Actor=Orc_Raider_Warrior_02 Generation=1200 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_Axe_OrcSword_01 Side=RIGHT Group=5
+00010449: CORE C1_BIND ElapsedMs=1323108.050 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Orc_Raider_Warrior_02 Generation=1200 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Parade
+00010450: CORE C1_STATUS ElapsedMs=1323108.117 Event=PERSISTED Actor=Orc_Raider_Warrior_02 Generation=1200 Status=PERSISTED Outstanding=0
+00010451: CORE C1_FINAL ElapsedMs=1323214.259 Actor=Bloodfly Generation=1197 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Bloodfly Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00010452: CORE C1_FINAL ElapsedMs=1323267.079 Actor=Orc_Raider_Elite_01 Generation=1198 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_OrcSword_OM_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00010453: CORE C1_START ElapsedMs=1323293.823 Actor=Orc_Raider_Elite_01 Generation=1201 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_OrcSword_OM_01 Side=RIGHT Group=5
+00010454: CORE C1_BIND ElapsedMs=1323293.836 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Orc_Raider_Elite_01 Generation=1201 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_WhirlAttack
+00010455: CORE C1_STATUS ElapsedMs=1323293.920 Event=PERSISTED Actor=Orc_Raider_Elite_01 Generation=1201 Status=PERSISTED Outstanding=0
+00010456: CORE ATTACK_OWNERSHIP ElapsedMs=1323293.941 Actor=Orc_Raider_Elite_01 Family=WHIRL Action=10 Phase=1 Motion=Orc_Parade_None_Axe_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00010457: CORE C1_START ElapsedMs=1323430.700 Actor=Orc_Raider_Warrior_02 Generation=1202 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=1200 ReplacedOutstanding=0 Source[0]=It_Axe_OrcSword_01 Side=RIGHT Group=5
+00010458: CORE C1_BIND ElapsedMs=1323430.712 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Orc_Raider_Warrior_02 Generation=1202 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_WhirlAttack
+00010459: CORE C1_STATUS ElapsedMs=1323430.792 Event=PERSISTED Actor=Orc_Raider_Warrior_02 Generation=1202 Status=PERSISTED Outstanding=0
+00010460: CORE ATTACK_OWNERSHIP ElapsedMs=1323430.809 Actor=Orc_Raider_Warrior_02 Family=WHIRL Action=10 Phase=1 Motion=Orc_Parade_None_Axe_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00010461: CORE C1_START ElapsedMs=1323456.657 Actor=Orc_Raider_Elite_02 Generation=1203 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_OrcSword_OM_01 Side=RIGHT Group=5
+00010462: CORE C1_BIND ElapsedMs=1323456.669 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Orc_Raider_Elite_02 Generation=1203 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_WhirlAttack
+00010463: CORE C1_STATUS ElapsedMs=1323456.747 Event=PERSISTED Actor=Orc_Raider_Elite_02 Generation=1203 Status=PERSISTED Outstanding=0
+00010464: CORE ATTACK_OWNERSHIP ElapsedMs=1323456.762 Actor=Orc_Raider_Elite_02 Family=WHIRL Action=10 Phase=1 Motion=Orc_Parade_None_Axe_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00010465: CORE C1_FINAL ElapsedMs=1323471.607 Actor=Bloodfly Generation=1199 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Bloodfly Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00010466: CORE COLLISION_GROUP ElapsedMs=1323514.061 Source=It_Axe_OrcSword_01 UseType=52 Owner=Orc_Raider_Warrior_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00010467: CORE C1 OFFENSE REQUEST ElapsedMs=1323514.088 Actor=Orc_Raider_Warrior_02 Generation=1202 Status=PERSISTED Source=It_Axe_OrcSword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00010468: CORE MARKER ElapsedMs=1323514.100 Actor=Orc_Raider_Warrior_02 Action=10 Family=WHIRL Phase=1 Motion=Orc_Parade_None_Axe_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=1202 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+00010469: CORE COLLISION_GROUP ElapsedMs=1323541.864 Source=It_2H_OrcSword_OM_01 UseType=52 Owner=Orc_Raider_Elite_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00010470: CORE C1 OFFENSE REQUEST ElapsedMs=1323541.891 Actor=Orc_Raider_Elite_02 Generation=1203 Status=PERSISTED Source=It_2H_OrcSword_OM_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00010471: CORE MARKER ElapsedMs=1323541.904 Actor=Orc_Raider_Elite_02 Action=10 Family=WHIRL Phase=1 Motion=Orc_Parade_None_Axe_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=1203 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+00010472: CORE C1_FINAL ElapsedMs=1323621.555 Actor=PC_Hero Generation=1188 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00010473: CORE COLLISION_GROUP ElapsedMs=1323834.214 Source=It_Axe_OrcSword_01 UseType=52 Owner=Orc_Raider_Warrior_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+00010474: CORE C1 CLEANUP FULFILLED ElapsedMs=1323834.246 Actor=Orc_Raider_Warrior_02 Generation=1202 Status=PERSISTED Source=It_Axe_OrcSword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00010475: CORE MARKER ElapsedMs=1323834.259 Actor=Orc_Raider_Warrior_02 Action=10 Family=WHIRL Phase=1 Motion=Orc_Parade_None_Axe_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=OFF Result=OFF_ACCEPTED C1Valid=1 C1=1202 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=1 MarkerOwnedMask=0 Activated=0 Deactivated=1 Retired=0 RearmRequests=0 Clears=0 RightUseType=52
+00010476: CORE COLLISION_GROUP ElapsedMs=1323849.670 Source=It_2H_OrcSword_OM_01 UseType=52 Owner=Orc_Raider_Elite_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+00010477: CORE C1 CLEANUP FULFILLED ElapsedMs=1323849.697 Actor=Orc_Raider_Elite_02 Generation=1203 Status=PERSISTED Source=It_2H_OrcSword_OM_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00010478: CORE MARKER ElapsedMs=1323849.707 Actor=Orc_Raider_Elite_02 Action=10 Family=WHIRL Phase=1 Motion=Orc_Parade_None_Axe_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=OFF Result=OFF_ACCEPTED C1Valid=1 C1=1203 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=1 MarkerOwnedMask=0 Activated=0 Deactivated=1 Retired=0 RearmRequests=0 Clears=0 RightUseType=52
+00010479: CORE COLLISION_GROUP ElapsedMs=1323913.437 Source=It_Axe_OrcSword_01 UseType=52 Owner=Orc_Raider_Warrior_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00010480: CORE C1 OFFENSE REQUEST ElapsedMs=1323913.465 Actor=Orc_Raider_Warrior_02 Generation=1202 Status=PERSISTED Source=It_Axe_OrcSword_01 Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+00010481: CORE MARKER ElapsedMs=1323913.478 Actor=Orc_Raider_Warrior_02 Action=10 Family=WHIRL Phase=1 Motion=Orc_Parade_None_Axe_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=1202 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+00010482: CORE C1_START ElapsedMs=1323945.768 Actor=Bloodfly Generation=1204 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Bloodfly Side=RIGHT Group=0
+00010483: CORE C1_BIND ElapsedMs=1323945.780 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Bloodfly Generation=1204 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_JumpBack
+00010484: CORE C1_STATUS ElapsedMs=1323945.852 Event=PERSISTED Actor=Bloodfly Generation=1204 Status=PERSISTED Outstanding=0
+00010485: CORE COLLISION_GROUP ElapsedMs=1323946.581 Source=It_2H_OrcSword_OM_01 UseType=52 Owner=Orc_Raider_Elite_02 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00010486: CORE C1 OFFENSE REQUEST ElapsedMs=1323946.596 Actor=Orc_Raider_Elite_02 Generation=1203 Status=PERSISTED Source=It_2H_OrcSword_OM_01 Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+00010487: CORE MARKER ElapsedMs=1323946.624 Actor=Orc_Raider_Elite_02 Action=10 Family=WHIRL Phase=1 Motion=Orc_Parade_None_Axe_P0_WhirlAttack_Hit_N_Fwd_00_%_00_P0_150_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=1203 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=52
+00010488: CORE COLLISION_GROUP ElapsedMs=1324115.272 Source=It_Axe_OrcSword_01 UseType=52 Owner=Orc_Raider_Warrior_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00010489: CORE C1 CLEANUP FULFILLED ElapsedMs=1324115.300 Actor=Orc_Raider_Warrior_02 Generation=1202 Status=PERSISTED Source=It_Axe_OrcSword_01 Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+00010490: CORE C1_FINAL ElapsedMs=1324115.321 Actor=Orc_Raider_Warrior_02 Generation=1202 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_Axe_OrcSword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00010491: CORE COLLISION_GROUP ElapsedMs=1324131.535 Source=It_2H_OrcSword_OM_01 UseType=52 Owner=Orc_Raider_Elite_02 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00010492: CORE C1 CLEANUP FULFILLED ElapsedMs=1324131.568 Actor=Orc_Raider_Elite_02 Generation=1203 Status=PERSISTED Source=It_2H_OrcSword_OM_01 Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+00010493: CORE C1_FINAL ElapsedMs=1324131.591 Actor=Orc_Raider_Elite_02 Generation=1203 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=It_2H_OrcSword_OM_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00010494: CORE C1_FINAL ElapsedMs=1324357.225 Actor=Bloodfly Generation=1204 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Bloodfly Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00010495: CORE C1_START ElapsedMs=1324454.319 Actor=PC_Hero Generation=1205 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_Sword_Flamberge Side=RIGHT Group=5
+00010496: CORE C1_BIND ElapsedMs=1324454.359 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=1205 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_HackAttack
+00010497: CORE C1_STATUS ElapsedMs=1324454.455 Event=PERSISTED Actor=PC_Hero Generation=1205 Status=PERSISTED Outstanding=0
+00010498: CORE COLLISION_GROUP ElapsedMs=1324898.451 Source=Bolt_Sharp UseType=7 Owner=<unresolved> Slot=NONE Requested=7 Before=1 After=7 MarkerBitsRetired=0
+00010499: CORE COLLISION_GROUP ElapsedMs=1325107.898 Source=Bolt_Sharp UseType=7 Owner=<unresolved> Slot=NONE Requested=6 Before=7 After=6 MarkerBitsRetired=0
+00010500: CORE C1_BIND ElapsedMs=1325260.469 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=1205 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_HackAttack
+00010501: CORE COLLISION_GROUP ElapsedMs=1325455.489 Source=Bolt_Sharp UseType=7 Owner=<unresolved> Slot=NONE Requested=7 Before=1 After=7 MarkerBitsRetired=0
+00010502: CORE C1_START ElapsedMs=1325471.736 Actor=Orc_Raider_Elite_02 Generation=1206 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_2H_OrcSword_OM_01 Side=RIGHT Group=5
+00010503: CORE C1_BIND ElapsedMs=1325471.749 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Orc_Raider_Elite_02 Generation=1206 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_HackAttack

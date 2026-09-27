@@ -1,0 +1,310 @@
+00005391: CORE C1_FINAL ElapsedMs=720203.363 Actor=PC_Hero Generation=629 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Longsword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_1H_Longsword_01 Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00005392: CORE C1_START ElapsedMs=720230.135 Actor=PC_Hero Generation=630 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Longsword_01 Side=RIGHT Group=5 Source[1]=It_1H_Longsword_01 Side=LEFT Group=5
+00005393: CORE C1_BIND ElapsedMs=720230.149 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=630 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+00005394: CORE C1_STATUS ElapsedMs=720249.551 Event=PERSISTED Actor=PC_Hero Generation=630 Status=PERSISTED Outstanding=0
+00005395: CORE COLLISION_GROUP ElapsedMs=720378.710 Source=It_1H_AssSword_01 UseType=2 Owner=MoraSul_Bandit_01 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00005396: CORE C1 CLEANUP FULFILLED ElapsedMs=720378.736 Actor=MoraSul_Bandit_01 Generation=628 Status=PERSISTED Source=It_1H_AssSword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00005397: CORE C1_FINAL ElapsedMs=720378.761 Actor=MoraSul_Bandit_01 Generation=628 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_AssSword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_Shield_Leather_01 Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00005398: CORE C1_FINAL ElapsedMs=720521.030 Actor=PC_Hero Generation=630 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Longsword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_1H_Longsword_01 Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00005399: CORE C1_START ElapsedMs=720879.917 Actor=PC_Hero Generation=631 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Longsword_01 Side=RIGHT Group=5 Source[1]=It_1H_Longsword_01 Side=LEFT Group=5
+00005400: CORE C1_BIND ElapsedMs=720879.931 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=631 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+00005401: CORE C1_STATUS ElapsedMs=720888.056 Event=PERSISTED Actor=PC_Hero Generation=631 Status=PERSISTED Outstanding=0
+00005402: CORE C1_START ElapsedMs=721161.614 Actor=MoraSul_Bandit_01 Generation=632 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_AssSword_01 Side=RIGHT Group=5 Source[1]=It_Shield_Leather_01 Side=LEFT Group=5
+00005403: CORE C1_BIND ElapsedMs=721161.630 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=MoraSul_Bandit_01 Generation=632 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_EvadeLeft
+00005404: CORE C1_STATUS ElapsedMs=721161.712 Event=PERSISTED Actor=MoraSul_Bandit_01 Generation=632 Status=PERSISTED Outstanding=0
+00005405: CORE C1_BIND ElapsedMs=721214.685 Event=COMBAT_MOVE_REUSED Actor=MoraSul_Bandit_01 Generation=632 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_EvadeLeft
+00005406: CORE C1_BIND ElapsedMs=721320.309 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=631 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+00005407: CORE ATTACK_OWNERSHIP ElapsedMs=721327.432 Actor=PC_Hero Family=POWER Action=2 Phase=1 Motion=Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot MarkerPresent=1 RequiredMask=3 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00005408: CORE COLLISION_GROUP ElapsedMs=721360.135 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00005409: CORE C1 OFFENSE REQUEST ElapsedMs=721360.163 Actor=PC_Hero Generation=631 Status=PERSISTED Source=It_1H_Longsword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00005410: CORE COLLISION_GROUP ElapsedMs=721360.178 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=LEFT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00005411: CORE C1 OFFENSE REQUEST ElapsedMs=721360.186 Actor=PC_Hero Generation=631 Status=PERSISTED Source=It_1H_Longsword_01 Side=LEFT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00005412: CORE MARKER ElapsedMs=721360.199 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot Marker=BOTH Result=ACCEPTED C1Valid=1 C1=631 StatePosition=2 PreviousMask=0 DesiredMask=3 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=3 Activated=2 Deactivated=0 Retired=0 RearmRequests=2 Clears=2 RightUseType=2 LeftUseType=2
+00005413: CORE C1_START ElapsedMs=721419.413 Actor=MoraSul_Bandit_02 Generation=633 Status=CANDIDATE Outstanding=0 TrackedSources=0 ReplacedGeneration=0 ReplacedOutstanding=0
+00005414: CORE C1_STATUS ElapsedMs=721419.963 Event=PERSISTED Actor=MoraSul_Bandit_02 Generation=633 Status=PERSISTED Outstanding=0
+00005415: CORE C1_BIND ElapsedMs=721515.148 Event=COMBAT_MOVE_REUSED Actor=MoraSul_Bandit_01 Generation=632 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_EvadeLeft
+00005416: CORE COLLISION_GROUP ElapsedMs=721572.424 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=LEFT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+00005417: CORE C1 CLEANUP FULFILLED ElapsedMs=721572.451 Actor=PC_Hero Generation=631 Status=PERSISTED Source=It_1H_Longsword_01 Side=LEFT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00005418: CORE COLLISION_GROUP ElapsedMs=721572.460 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+00005419: CORE C1 OFFENSE REQUEST ElapsedMs=721572.466 Actor=PC_Hero Generation=631 Status=PERSISTED Source=It_1H_Longsword_01 Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+00005420: CORE MARKER ElapsedMs=721572.477 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=631 StatePosition=2 PreviousMask=3 DesiredMask=1 RetiredMask=2 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=1 RearmRequests=1 Clears=1 RightUseType=2 LeftUseType=2
+00005421: CORE C1_FINAL ElapsedMs=721622.356 Actor=MoraSul_Bandit_01 Generation=632 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_AssSword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_Shield_Leather_01 Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00005422: CORE C1_START ElapsedMs=721638.327 Actor=MoraSul_Bandit_01 Generation=634 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_AssSword_01 Side=RIGHT Group=5 Source[1]=It_Shield_Leather_01 Side=LEFT Group=5
+00005423: CORE C1_BIND ElapsedMs=721638.341 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=MoraSul_Bandit_01 Generation=634 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00005424: CORE C1_STATUS ElapsedMs=721638.425 Event=PERSISTED Actor=MoraSul_Bandit_01 Generation=634 Status=PERSISTED Outstanding=0
+00005425: CORE ATTACK_OWNERSHIP ElapsedMs=721638.442 Actor=MoraSul_Bandit_01 Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_Shield_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00005426: CORE COLLISION_GROUP ElapsedMs=721735.051 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+00005427: CORE C1 CLEANUP FULFILLED ElapsedMs=721735.092 Actor=PC_Hero Generation=631 Status=PERSISTED Source=It_1H_Longsword_01 Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+00005428: CORE MARKER ElapsedMs=721735.118 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot Marker=OFF Result=OFF_ACCEPTED C1Valid=1 C1=631 StatePosition=2 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=1 MarkerOwnedMask=0 Activated=0 Deactivated=1 Retired=0 RearmRequests=0 Clears=0 RightUseType=2
+00005429: CORE COLLISION_GROUP ElapsedMs=721880.882 Source=It_1H_AssSword_01 UseType=2 Owner=MoraSul_Bandit_01 Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00005430: CORE C1 OFFENSE REQUEST ElapsedMs=721880.910 Actor=MoraSul_Bandit_01 Generation=634 Status=PERSISTED Source=It_1H_AssSword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00005431: CORE MARKER ElapsedMs=721880.923 Actor=MoraSul_Bandit_01 Action=1 Family=NORMAL Phase=1 Motion=Hero_Stand_Shield_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=634 StatePosition=0 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+00005432: CORE COLLISION_GROUP ElapsedMs=721986.830 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00005433: CORE C1 OFFENSE REQUEST ElapsedMs=721986.860 Actor=PC_Hero Generation=631 Status=PERSISTED Source=It_1H_Longsword_01 Side=RIGHT Requests=3 Outstanding=1 CleanupObserved=0 Group=7
+00005434: CORE COLLISION_GROUP ElapsedMs=721986.874 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=LEFT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00005435: CORE C1 OFFENSE REQUEST ElapsedMs=721986.881 Actor=PC_Hero Generation=631 Status=PERSISTED Source=It_1H_Longsword_01 Side=LEFT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+00005436: CORE MARKER ElapsedMs=721986.891 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot Marker=BOTH Result=ACCEPTED C1Valid=1 C1=631 StatePosition=2 PreviousMask=0 DesiredMask=3 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=3 Activated=2 Deactivated=0 Retired=0 RearmRequests=2 Clears=2 RightUseType=2 LeftUseType=2
+00005437: CORE MARKER ElapsedMs=721986.908 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot Marker=RIGHT Result=AUTHORED_OCCURRENCE_BUDGET_IGNORED C1Valid=1 C1=631 StatePosition=2 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Authored=1 AcceptedBefore=1 AcceptedAfter=1
+00005438: CORE MARKER ElapsedMs=721986.924 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot Marker=OFF Result=AUTHORED_OCCURRENCE_BUDGET_IGNORED C1Valid=1 C1=631 StatePosition=2 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Authored=1 AcceptedBefore=1 AcceptedAfter=1
+00005439: CORE MARKER ElapsedMs=721986.940 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_1H_1H_P1_PowerAttack_Hit_N_Fwd_00_%_00_P1_190_L.xmot Marker=BOTH Result=DUPLICATE_SAME_UPDATE_IGNORED C1Valid=1 C1=631 StatePosition=2 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 DuplicateStateDelta=0.000000000 DuplicateMsDelta=0.128600
+00005440: CORE COLLISION_GROUP ElapsedMs=722010.044 Source=It_1H_AssSword_01 UseType=2 Owner=MoraSul_Bandit_01 Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00005441: CORE C1 CLEANUP FULFILLED ElapsedMs=722010.072 Actor=MoraSul_Bandit_01 Generation=634 Status=PERSISTED Source=It_1H_AssSword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00005442: CORE C1_START ElapsedMs=722012.025 Actor=MoraSul_Bandit_01 Generation=635 Status=CANDIDATE Outstanding=0 TrackedSources=0 ReplacedGeneration=634 ReplacedOutstanding=0
+00005443: CORE C1_STATUS ElapsedMs=722012.097 Event=PERSISTED Actor=MoraSul_Bandit_01 Generation=635 Status=PERSISTED Outstanding=0
+00005444: CORE COLLISION_GROUP ElapsedMs=722096.280 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00005445: CORE C1 CLEANUP FULFILLED ElapsedMs=722096.299 Actor=PC_Hero Generation=631 Status=PERSISTED Source=It_1H_Longsword_01 Side=RIGHT Requests=3 Outstanding=0 CleanupObserved=1 Group=5
+00005446: CORE COLLISION_GROUP ElapsedMs=722096.318 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=LEFT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00005447: CORE C1 CLEANUP FULFILLED ElapsedMs=722096.325 Actor=PC_Hero Generation=631 Status=PERSISTED Source=It_1H_Longsword_01 Side=LEFT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+00005448: CORE C1_FINAL ElapsedMs=722096.363 Actor=PC_Hero Generation=631 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Longsword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_1H_Longsword_01 Side=LEFT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00005449: CORE C1_FINAL ElapsedMs=722741.566 Actor=MoraSul_Bandit_02 Generation=633 Status=PERSISTED SourceCount=0 PhysicalChanged=0
+00005450: CORE C1_START ElapsedMs=722843.110 Actor=PC_Hero Generation=636 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Longsword_01 Side=RIGHT Group=5 Source[1]=It_1H_Longsword_01 Side=LEFT Group=5
+00005451: CORE C1_BIND ElapsedMs=722843.125 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=636 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_FinishingAttack
+00005452: CORE C1_STATUS ElapsedMs=722843.219 Event=CANCELLED_IMMEDIATE_RESULT Actor=PC_Hero Generation=636 Status=CANDIDATE Outstanding=0
+00005453: CORE C1_START ElapsedMs=722843.245 Actor=PC_Hero Generation=637 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Longsword_01 Side=RIGHT Group=5 Source[1]=It_1H_Longsword_01 Side=LEFT Group=5
+00005454: CORE C1_BIND ElapsedMs=722843.252 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=637 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_FinishingAttack
+00005455: CORE C1_STATUS ElapsedMs=722850.367 Event=PERSISTED Actor=PC_Hero Generation=637 Status=PERSISTED Outstanding=0
+00005456: CORE COLLISION_GROUP ElapsedMs=722850.417 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00005457: CORE C1 OFFENSE REQUEST ElapsedMs=722850.426 Actor=PC_Hero Generation=637 Status=PERSISTED Source=It_1H_Longsword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00005458: CORE COLLISION_GROUP ElapsedMs=722850.439 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=LEFT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00005459: CORE C1 OFFENSE REQUEST ElapsedMs=722850.446 Actor=PC_Hero Generation=637 Status=PERSISTED Source=It_1H_Longsword_01 Side=LEFT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00005460: CORE COLLISION_GROUP ElapsedMs=723151.201 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+00005461: CORE C1 CLEANUP FULFILLED ElapsedMs=723151.227 Actor=PC_Hero Generation=637 Status=PERSISTED Source=It_1H_Longsword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00005462: CORE COLLISION_GROUP ElapsedMs=723151.241 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=LEFT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+00005463: CORE C1 CLEANUP FULFILLED ElapsedMs=723151.248 Actor=PC_Hero Generation=637 Status=PERSISTED Source=It_1H_Longsword_01 Side=LEFT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00005464: ===== CORE C1 FINALIZATION ANOMALY / REPAIR =====
+00005465: ElapsedMs: 723151.257
+00005466: Reason: AISETSTATE_AFTER_ORIGINAL
+00005467: Actor: PC_Hero
+00005468: Generation: 637
+00005469: Status: PERSISTED
+00005470: TrackedSourceCount: 2
+00005471: Source[0].Outcome: REPAIRED_TO_ITEM_EQUIPPED
+00005472: Source[0].Address: CC150E10
+00005473: Source[0].LivenessEstablished: 1
+00005474: Source[0].Name: It_1H_Longsword_01
+00005475: Source[0].OriginalSide: RIGHT
+00005476: Source[0].CurrentSideMask: 1
+00005477: Source[0].OffensiveRequestCount: 1
+00005478: Source[0].OutstandingBeforeFinalization: 1
+00005479: Source[0].CleanupObservedBeforeFinalization: 0
+00005480: Source[0].ActualGroupBeforeRepair: 7
+00005481: Source[0].RepairAttempted: 1
+00005482: Source[0].RepairRequestedGroup: 5
+00005483: Source[0].ActualGroupAfterRepair: 5
+00005484: Source[0].PhysicalCollisionChanged: 1
+00005485: Source[1].Outcome: REPAIRED_TO_ITEM_EQUIPPED
+00005486: Source[1].Address: CC179410
+00005487: Source[1].LivenessEstablished: 1
+00005488: Source[1].Name: It_1H_Longsword_01
+00005489: Source[1].OriginalSide: LEFT
+00005490: Source[1].CurrentSideMask: 2
+00005491: Source[1].OffensiveRequestCount: 1
+00005492: Source[1].OutstandingBeforeFinalization: 1
+00005493: Source[1].CleanupObservedBeforeFinalization: 0
+00005494: Source[1].ActualGroupBeforeRepair: 7
+00005495: Source[1].RepairAttempted: 1
+00005496: Source[1].RepairRequestedGroup: 5
+00005497: Source[1].ActualGroupAfterRepair: 5
+00005498: Source[1].PhysicalCollisionChanged: 1
+00005499: PhysicalCollisionChanged: 1
+00005500: ===============================================
+00005501: 
+00005502: CORE C1_START ElapsedMs=723155.204 Actor=PC_Hero Generation=638 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Longsword_01 Side=RIGHT Group=5 Source[1]=It_1H_Longsword_01 Side=LEFT Group=5
+00005503: CORE C1_BIND ElapsedMs=723155.216 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=638 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+00005504: CORE C1_STATUS ElapsedMs=723164.616 Event=PERSISTED Actor=PC_Hero Generation=638 Status=PERSISTED Outstanding=0
+00005505: CORE ATTACK_OWNERSHIP ElapsedMs=723164.647 Actor=PC_Hero Family=QUICK Action=4 Phase=1 Motion=Hero_Stand_1H_1H_P1_QuickAttackR_Hit_N_Fwd_00_%_00_P1_100_R.xmot MarkerPresent=1 RequiredMask=2 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00005506: CORE COLLISION_GROUP ElapsedMs=723336.394 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=LEFT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00005507: CORE C1 OFFENSE REQUEST ElapsedMs=723336.421 Actor=PC_Hero Generation=638 Status=PERSISTED Source=It_1H_Longsword_01 Side=LEFT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00005508: CORE MARKER ElapsedMs=723336.435 Actor=PC_Hero Action=4 Family=QUICK Phase=1 Motion=Hero_Stand_1H_1H_P1_QuickAttackR_Hit_N_Fwd_00_%_00_P1_100_R.xmot Marker=LEFT Result=ACCEPTED C1Valid=1 C1=638 StatePosition=1 PreviousMask=0 DesiredMask=2 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=2 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 LeftUseType=2
+00005509: CORE C1_FINAL ElapsedMs=723342.427 Actor=MoraSul_Bandit_01 Generation=635 Status=PERSISTED SourceCount=0 PhysicalChanged=0
+00005510: CORE COLLISION_GROUP ElapsedMs=723542.258 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=LEFT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00005511: CORE C1 CLEANUP FULFILLED ElapsedMs=723542.278 Actor=PC_Hero Generation=638 Status=PERSISTED Source=It_1H_Longsword_01 Side=LEFT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00005512: CORE C1_FINAL ElapsedMs=723632.776 Actor=PC_Hero Generation=638 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Longsword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_1H_Longsword_01 Side=LEFT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00005513: CORE C1_START ElapsedMs=844686.621 Actor=PC_Hero Generation=639 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Longsword_01 Side=RIGHT Group=5 Source[1]=It_1H_Longsword_01 Side=LEFT Group=5
+00005514: CORE C1_BIND ElapsedMs=844686.638 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=639 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00005515: CORE C1_STATUS ElapsedMs=844686.741 Event=PERSISTED Actor=PC_Hero Generation=639 Status=PERSISTED Outstanding=0
+00005516: CORE ATTACK_OWNERSHIP ElapsedMs=844686.774 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+00005517: CORE COLLISION_GROUP ElapsedMs=844943.969 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=LEFT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00005518: CORE C1 OFFENSE REQUEST ElapsedMs=844943.996 Actor=PC_Hero Generation=639 Status=PERSISTED Source=It_1H_Longsword_01 Side=LEFT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00005519: CORE COLLISION_GROUP ElapsedMs=845222.246 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=LEFT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+00005520: CORE C1 CLEANUP FULFILLED ElapsedMs=845222.273 Actor=PC_Hero Generation=639 Status=PERSISTED Source=It_1H_Longsword_01 Side=LEFT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00005521: CORE C1_FINAL ElapsedMs=845222.309 Actor=PC_Hero Generation=639 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Longsword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_1H_Longsword_01 Side=LEFT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00005522: CORE C1_START ElapsedMs=845236.100 Actor=PC_Hero Generation=640 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Longsword_01 Side=RIGHT Group=5 Source[1]=It_1H_Longsword_01 Side=LEFT Group=5
+00005523: CORE C1_BIND ElapsedMs=845236.113 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=640 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00005524: CORE C1_STATUS ElapsedMs=845236.215 Event=PERSISTED Actor=PC_Hero Generation=640 Status=PERSISTED Outstanding=0
+00005525: CORE ATTACK_OWNERSHIP ElapsedMs=845236.237 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+00005526: CORE COLLISION_GROUP ElapsedMs=845501.213 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00005527: CORE C1 OFFENSE REQUEST ElapsedMs=845501.241 Actor=PC_Hero Generation=640 Status=PERSISTED Source=It_1H_Longsword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00005528: CORE COLLISION_GROUP ElapsedMs=845777.816 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+00005529: CORE C1 CLEANUP FULFILLED ElapsedMs=845777.841 Actor=PC_Hero Generation=640 Status=PERSISTED Source=It_1H_Longsword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00005530: CORE C1_FINAL ElapsedMs=845777.878 Actor=PC_Hero Generation=640 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Longsword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_1H_Longsword_01 Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00005531: CORE C1_START ElapsedMs=846427.563 Actor=PC_Hero Generation=641 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Longsword_01 Side=RIGHT Group=5 Source[1]=It_1H_Longsword_01 Side=LEFT Group=5
+00005532: CORE C1_BIND ElapsedMs=846427.577 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=641 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+00005533: CORE C1_STATUS ElapsedMs=846427.697 Event=PERSISTED Actor=PC_Hero Generation=641 Status=PERSISTED Outstanding=0
+00005534: CORE ATTACK_OWNERSHIP ElapsedMs=846427.716 Actor=PC_Hero Family=QUICK Action=4 Phase=1 Motion=Hero_Stand_1H_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00005535: CORE C1_START ElapsedMs=846592.141 Actor=Scavenger Generation=642 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Scavenger Side=RIGHT Group=0
+00005536: CORE C1_BIND ElapsedMs=846592.152 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Scavenger Generation=642 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+00005537: CORE C1_STATUS ElapsedMs=846593.747 Event=PERSISTED Actor=Scavenger Generation=642 Status=PERSISTED Outstanding=0
+00005538: CORE C1_BIND ElapsedMs=846603.103 Event=COMBAT_MOVE_REUSED Actor=Scavenger Generation=642 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+00005539: CORE ATTACK_OWNERSHIP ElapsedMs=846603.668 Actor=Scavenger Family=SPRINT Action=9 Phase=1 Motion=Scavenger_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_150.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+00005540: CORE COLLISION_GROUP ElapsedMs=846612.861 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00005541: CORE C1 OFFENSE REQUEST ElapsedMs=846612.888 Actor=PC_Hero Generation=641 Status=PERSISTED Source=It_1H_Longsword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00005542: CORE MARKER ElapsedMs=846612.901 Actor=PC_Hero Action=4 Family=QUICK Phase=1 Motion=Hero_Stand_1H_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=641 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+00005543: CORE COLLISION_GROUP ElapsedMs=846693.546 Source=Fist_Scavenger UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+00005544: CORE COLLISION_GROUP ElapsedMs=846817.603 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00005545: CORE C1 CLEANUP FULFILLED ElapsedMs=846817.635 Actor=PC_Hero Generation=641 Status=PERSISTED Source=It_1H_Longsword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00005546: CORE C1_START ElapsedMs=846855.231 Actor=PC_Hero Generation=643 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=641 ReplacedOutstanding=0 Source[0]=It_1H_Longsword_01 Side=RIGHT Group=5 Source[1]=It_1H_Longsword_01 Side=LEFT Group=5
+00005547: CORE C1_BIND ElapsedMs=846855.245 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=643 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+00005548: CORE C1_STATUS ElapsedMs=846855.350 Event=PERSISTED Actor=PC_Hero Generation=643 Status=PERSISTED Outstanding=0
+00005549: CORE C1_FINAL ElapsedMs=847003.059 Actor=Scavenger Generation=642 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Scavenger Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00005550: CORE C1_FINAL ElapsedMs=847161.674 Actor=PC_Hero Generation=643 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Longsword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_1H_Longsword_01 Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00005551: CORE C1_START ElapsedMs=847327.686 Actor=PC_Hero Generation=644 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Longsword_01 Side=RIGHT Group=5 Source[1]=It_1H_Longsword_01 Side=LEFT Group=5
+00005552: CORE C1_BIND ElapsedMs=847327.700 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=644 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00005553: CORE C1_STATUS ElapsedMs=847327.803 Event=PERSISTED Actor=PC_Hero Generation=644 Status=PERSISTED Outstanding=0
+00005554: CORE ATTACK_OWNERSHIP ElapsedMs=847327.822 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+00005555: CORE COLLISION_GROUP ElapsedMs=847583.405 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=LEFT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00005556: CORE C1 OFFENSE REQUEST ElapsedMs=847583.433 Actor=PC_Hero Generation=644 Status=PERSISTED Source=It_1H_Longsword_01 Side=LEFT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00005557: CORE COLLISION_GROUP ElapsedMs=847867.837 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=LEFT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+00005558: CORE C1 CLEANUP FULFILLED ElapsedMs=847867.866 Actor=PC_Hero Generation=644 Status=PERSISTED Source=It_1H_Longsword_01 Side=LEFT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00005559: CORE C1_FINAL ElapsedMs=847867.907 Actor=PC_Hero Generation=644 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Longsword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_1H_Longsword_01 Side=LEFT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00005560: CORE C1_START ElapsedMs=847880.110 Actor=PC_Hero Generation=645 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Longsword_01 Side=RIGHT Group=5 Source[1]=It_1H_Longsword_01 Side=LEFT Group=5
+00005561: CORE C1_BIND ElapsedMs=847880.139 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=645 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00005562: CORE C1_STATUS ElapsedMs=847880.295 Event=PERSISTED Actor=PC_Hero Generation=645 Status=PERSISTED Outstanding=0
+00005563: CORE ATTACK_OWNERSHIP ElapsedMs=847880.313 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_1H_1H_P1_Attack_Hit_N_Fwd_00_%_00_P0_119_L.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+00005564: CORE COLLISION_GROUP ElapsedMs=848132.529 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00005565: CORE C1 OFFENSE REQUEST ElapsedMs=848132.556 Actor=PC_Hero Generation=645 Status=PERSISTED Source=It_1H_Longsword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00005566: CORE COLLISION_GROUP ElapsedMs=848416.000 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+00005567: CORE C1 CLEANUP FULFILLED ElapsedMs=848416.032 Actor=PC_Hero Generation=645 Status=PERSISTED Source=It_1H_Longsword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00005568: CORE C1_FINAL ElapsedMs=848416.072 Actor=PC_Hero Generation=645 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Longsword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_1H_Longsword_01 Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00005569: CORE C1_START ElapsedMs=877074.023 Actor=PC_Hero Generation=646 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Longsword_01 Side=RIGHT Group=5 Source[1]=It_1H_Longsword_01 Side=LEFT Group=5
+00005570: CORE C1_BIND ElapsedMs=877074.037 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=646 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+00005571: CORE C1_STATUS ElapsedMs=877074.133 Event=PERSISTED Actor=PC_Hero Generation=646 Status=PERSISTED Outstanding=0
+00005572: CORE ATTACK_OWNERSHIP ElapsedMs=877074.150 Actor=PC_Hero Family=QUICK Action=4 Phase=1 Motion=Hero_Stand_1H_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00005573: CORE C1_START ElapsedMs=877094.750 Actor=Boar Generation=647 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Boar Side=RIGHT Group=0
+00005574: CORE C1_BIND ElapsedMs=877094.762 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Boar Generation=647 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00005575: CORE C1_STATUS ElapsedMs=877103.770 Event=PERSISTED Actor=Boar Generation=647 Status=PERSISTED Outstanding=0
+00005576: CORE RAW8_FIST_OWNERSHIP ElapsedMs=877103.799 Actor=Boar Action=1 Family=NORMAL Motion=Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot C1=647 Raw8Fist=Fist_Boar Raw8UseType=8 InitialClose=0->1 Result=CONFIRMED
+00005577: CORE ATTACK_OWNERSHIP ElapsedMs=877103.810 Actor=Boar Family=NORMAL Action=1 Phase=1 Motion=Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=Fist_Boar Raw8UseType=8 SuppressNative=0 Classification=ROUTINE
+00005578: CORE COLLISION_GROUP ElapsedMs=877271.445 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00005579: CORE C1 OFFENSE REQUEST ElapsedMs=877271.474 Actor=PC_Hero Generation=646 Status=PERSISTED Source=It_1H_Longsword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00005580: CORE MARKER ElapsedMs=877271.486 Actor=PC_Hero Action=4 Family=QUICK Phase=1 Motion=Hero_Stand_1H_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_100_R.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=646 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+00005581: CORE C1_START ElapsedMs=877306.297 Actor=Boar Generation=648 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=647 ReplacedOutstanding=0 Source[0]=Fist_Boar Side=RIGHT Group=0
+00005582: CORE C1_BIND ElapsedMs=877306.324 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Boar Generation=648 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+00005583: CORE C1_STATUS ElapsedMs=877308.041 Event=PERSISTED Actor=Boar Generation=648 Status=PERSISTED Outstanding=0
+00005584: CORE COLLISION_GROUP ElapsedMs=877479.804 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00005585: CORE C1 CLEANUP FULFILLED ElapsedMs=877479.831 Actor=PC_Hero Generation=646 Status=PERSISTED Source=It_1H_Longsword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00005586: CORE C1_FINAL ElapsedMs=877588.745 Actor=PC_Hero Generation=646 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Longsword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_1H_Longsword_01 Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00005587: CORE C1_START ElapsedMs=877600.358 Actor=PC_Hero Generation=649 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Longsword_01 Side=RIGHT Group=5 Source[1]=It_1H_Longsword_01 Side=LEFT Group=5
+00005588: CORE C1_BIND ElapsedMs=877600.372 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=649 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00005589: CORE C1_STATUS ElapsedMs=877600.475 Event=PERSISTED Actor=PC_Hero Generation=649 Status=PERSISTED Outstanding=0
+00005590: CORE ATTACK_OWNERSHIP ElapsedMs=877600.493 Actor=PC_Hero Family=NORMAL Action=1 Phase=1 Motion=Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+00005591: CORE C1_FINAL ElapsedMs=877683.825 Actor=Boar Generation=648 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Boar Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00005592: CORE C1_START ElapsedMs=877710.173 Actor=Boar Generation=650 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Boar Side=RIGHT Group=0
+00005593: CORE C1_BIND ElapsedMs=877710.185 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Boar Generation=650 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+00005594: CORE C1_STATUS ElapsedMs=877710.587 Event=PERSISTED Actor=Boar Generation=650 Status=PERSISTED Outstanding=0
+00005595: CORE C1_BIND ElapsedMs=877722.135 Event=COMBAT_MOVE_REUSED Actor=Boar Generation=650 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+00005596: CORE RAW8_FIST_OWNERSHIP ElapsedMs=877728.277 Actor=Boar Action=9 Family=SPRINT Motion=Boar_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_150.xmot C1=650 Raw8Fist=Fist_Boar Raw8UseType=8 InitialClose=0->1 Result=CONFIRMED
+00005597: CORE ATTACK_OWNERSHIP ElapsedMs=877728.299 Actor=Boar Family=SPRINT Action=9 Phase=1 Motion=Boar_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_150.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=Fist_Boar Raw8UseType=8 SuppressNative=0 Classification=ROUTINE
+00005598: CORE COLLISION_GROUP ElapsedMs=877818.899 Source=Fist_Boar UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+00005599: CORE COLLISION_GROUP ElapsedMs=877858.745 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=LEFT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00005600: CORE C1 OFFENSE REQUEST ElapsedMs=877858.772 Actor=PC_Hero Generation=649 Status=PERSISTED Source=It_1H_Longsword_01 Side=LEFT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00005601: CORE C1_START ElapsedMs=877888.889 Actor=Boar Generation=651 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Boar Side=RIGHT Group=0
+00005602: CORE C1_BIND ElapsedMs=877888.900 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Boar Generation=651 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+00005603: CORE C1_STATUS ElapsedMs=877888.962 Event=PERSISTED Actor=Boar Generation=651 Status=PERSISTED Outstanding=0
+00005604: CORE C1_BIND ElapsedMs=877900.767 Event=COMBAT_MOVE_REUSED Actor=Boar Generation=651 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+00005605: CORE RAW8_FIST_OWNERSHIP ElapsedMs=877900.858 Actor=Boar Action=2 Family=POWER Motion=Boar_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_150.xmot C1=651 Raw8Fist=Fist_Boar Raw8UseType=8 InitialClose=0->1 Result=CONFIRMED
+00005606: CORE ATTACK_OWNERSHIP ElapsedMs=877900.872 Actor=Boar Family=POWER Action=2 Phase=1 Motion=Boar_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_150.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=Fist_Boar Raw8UseType=8 SuppressNative=0 Classification=ROUTINE
+00005607: CORE COLLISION_GROUP ElapsedMs=877993.868 Source=Fist_Boar UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+00005608: CORE C1_START ElapsedMs=878074.480 Actor=Boar Generation=652 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=651 ReplacedOutstanding=0 Source[0]=Fist_Boar Side=RIGHT Group=0
+00005609: CORE C1_BIND ElapsedMs=878074.491 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Boar Generation=652 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+00005610: CORE C1_STATUS ElapsedMs=878074.579 Event=PERSISTED Actor=Boar Generation=652 Status=PERSISTED Outstanding=0
+00005611: CORE COLLISION_GROUP ElapsedMs=878137.116 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=LEFT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+00005612: CORE C1 CLEANUP FULFILLED ElapsedMs=878137.145 Actor=PC_Hero Generation=649 Status=PERSISTED Source=It_1H_Longsword_01 Side=LEFT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00005613: CORE C1_FINAL ElapsedMs=878137.186 Actor=PC_Hero Generation=649 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Longsword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_1H_Longsword_01 Side=LEFT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00005614: CORE RAW8_FIST_TIMING ElapsedMs=878239.429 Actor=Boar Action=9 Family=SPRINT Motion=Boar_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_150.xmot C1=650 Raw8Fist=Fist_Boar Raw8UseType=8 AcceptedRearm=1->0 OwnershipMatched=1 Classification=EARLY_PERMISSION_ARMED
+00005615: CORE RAW8_OPPORTUNITY_OPEN ElapsedMs=878239.458 Actor=Boar Action=9 Family=SPRINT Motion=Boar_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_150.xmot C1=650 Raw8Fist=Fist_Boar OpportunityOrdinal=69 Reason=ACCEPTED_FIST LatchBefore=1 LatchAfter=0 LatchWriteAttempted=1 LatchWriteConfirmed=1 TimingActive=1
+00005616: CORE MARKER ElapsedMs=878239.471 Actor=Boar Action=9 Family=SPRINT Phase=1 Motion=Boar_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_150.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=650 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Raw8Fist=Fist_Boar Raw8UseType=8 Latch=1->0 LatchConfirmed=1
+00005617: CORE RAW8_FIST_TIMING ElapsedMs=878250.275 Actor=Boar Action=9 Family=SPRINT Motion=Boar_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_150.xmot C1=650 Raw8Fist=Fist_Boar Raw8UseType=8 PermissionApplied=1 SyntheticApplied=1 Classification=EARLY_PERMISSION_APPLIED
+00005618: CORE RAW8_OPPORTUNITY_CONTACT_CONSUMED ElapsedMs=878250.517 Actor=Boar Action=2 Family=POWER Motion=Boar_Stand_None_Fist_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_150.xmot C1=650 Raw8Fist=Fist_Boar OpportunityOrdinal=69 Reason=EXACT_NATIVE_CONTACT_DISPATCH LatchValue=1
+00005619: CORE RAW8_FIST_TIMING ElapsedMs=878250.531 Actor=Boar C1=650 PermissionRetired=1 Reason=CONTACT_CONSUMED
+00005620: CORE C1_START ElapsedMs=878256.418 Actor=PC_Hero Generation=653 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Longsword_01 Side=RIGHT Group=5 Source[1]=It_1H_Longsword_01 Side=LEFT Group=5
+00005621: CORE C1_BIND ElapsedMs=878256.430 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=653 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Stumble
+00005622: CORE C1_STATUS ElapsedMs=878265.831 Event=PERSISTED Actor=PC_Hero Generation=653 Status=PERSISTED Outstanding=0
+00005623: CORE C1_FINAL ElapsedMs=878443.792 Actor=Boar Generation=652 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Boar Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00005624: CORE C1_FINAL ElapsedMs=878575.298 Actor=PC_Hero Generation=653 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Longsword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_1H_Longsword_01 Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00005625: CORE C1_FINAL ElapsedMs=878602.222 Actor=Boar Generation=650 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Boar Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00005626: CORE C1_START ElapsedMs=879541.282 Actor=PC_Hero Generation=654 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Longsword_01 Side=RIGHT Group=5 Source[1]=It_1H_Longsword_01 Side=LEFT Group=5
+00005627: CORE C1_BIND ElapsedMs=879541.295 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=654 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+00005628: CORE C1_STATUS ElapsedMs=879550.392 Event=PERSISTED Actor=PC_Hero Generation=654 Status=PERSISTED Outstanding=0
+00005629: CORE C1_START ElapsedMs=879828.591 Actor=Boar Generation=655 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Boar Side=RIGHT Group=0
+00005630: CORE C1_BIND ElapsedMs=879828.603 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Boar Generation=655 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00005631: CORE C1_STATUS ElapsedMs=879828.749 Event=PERSISTED Actor=Boar Generation=655 Status=PERSISTED Outstanding=0
+00005632: CORE RAW8_FIST_OWNERSHIP ElapsedMs=879828.766 Actor=Boar Action=1 Family=NORMAL Motion=Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot C1=655 Raw8Fist=Fist_Boar Raw8UseType=8 InitialClose=0->1 Result=CONFIRMED
+00005633: CORE ATTACK_OWNERSHIP ElapsedMs=879828.777 Actor=Boar Family=NORMAL Action=1 Phase=1 Motion=Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=Fist_Boar Raw8UseType=8 SuppressNative=0 Classification=ROUTINE
+00005634: CORE C1_BIND ElapsedMs=880030.369 Event=COMBAT_MOVE_REUSED Actor=PC_Hero Generation=654 Status=PERSISTED Outstanding=0 Source=<null> Script=_AI_PowerAttack
+00005635: CORE ATTACK_OWNERSHIP ElapsedMs=880039.003 Actor=PC_Hero Family=POWER Action=2 Phase=1 Motion=Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot MarkerPresent=1 RequiredMask=3 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00005636: CORE COLLISION_GROUP ElapsedMs=880061.804 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00005637: CORE C1 OFFENSE REQUEST ElapsedMs=880061.831 Actor=PC_Hero Generation=654 Status=PERSISTED Source=It_1H_Longsword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00005638: CORE COLLISION_GROUP ElapsedMs=880061.845 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=LEFT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00005639: CORE C1 OFFENSE REQUEST ElapsedMs=880061.852 Actor=PC_Hero Generation=654 Status=PERSISTED Source=It_1H_Longsword_01 Side=LEFT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00005640: CORE MARKER ElapsedMs=880061.863 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot Marker=BOTH Result=ACCEPTED C1Valid=1 C1=654 StatePosition=2 PreviousMask=0 DesiredMask=3 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=3 Activated=2 Deactivated=0 Retired=0 RearmRequests=2 Clears=2 RightUseType=2 LeftUseType=2
+00005641: CORE COLLISION_GROUP ElapsedMs=880083.219 Source=Fist_Boar UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+00005642: CORE RAW8_FIST_TIMING ElapsedMs=880106.734 Actor=Boar Action=1 Family=NORMAL Motion=Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot C1=655 Raw8Fist=Fist_Boar Raw8UseType=8 AcceptedRearm=1->0 OwnershipMatched=1 Classification=EARLY_PERMISSION_ARMED
+00005643: CORE RAW8_OPPORTUNITY_OPEN ElapsedMs=880106.763 Actor=Boar Action=1 Family=NORMAL Motion=Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot C1=655 Raw8Fist=Fist_Boar OpportunityOrdinal=70 Reason=ACCEPTED_FIST LatchBefore=1 LatchAfter=0 LatchWriteAttempted=1 LatchWriteConfirmed=1 TimingActive=1
+00005644: CORE MARKER ElapsedMs=880106.777 Actor=Boar Action=1 Family=NORMAL Phase=1 Motion=Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot Marker=FIST Result=ACCEPTED C1Valid=1 C1=655 StatePosition=1 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Raw8Fist=Fist_Boar Raw8UseType=8 Latch=1->0 LatchConfirmed=1
+00005645: CORE RAW8_FIST_TIMING ElapsedMs=880120.915 Actor=Boar C1=655 PermissionRetired=1 Reason=REAL_TIME_REACHED_FORCED_VALUE
+00005646: CORE RAW8_OPPORTUNITY_CONTACT_CONSUMED ElapsedMs=880122.478 Actor=Boar Action=1 Family=NORMAL Motion=Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot C1=655 Raw8Fist=Fist_Boar OpportunityOrdinal=70 Reason=EXACT_NATIVE_CONTACT_DISPATCH LatchValue=1
+00005647: CORE C1_START ElapsedMs=880134.983 Actor=Boar Generation=656 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Boar Side=RIGHT Group=0
+00005648: CORE C1_BIND ElapsedMs=880134.995 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Boar Generation=656 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_Attack
+00005649: CORE C1_STATUS ElapsedMs=880135.074 Event=PERSISTED Actor=Boar Generation=656 Status=PERSISTED Outstanding=0
+00005650: CORE RAW8_FIST_OWNERSHIP ElapsedMs=880135.089 Actor=Boar Action=1 Family=NORMAL Motion=Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot C1=656 Raw8Fist=Fist_Boar Raw8UseType=8 InitialClose=0->1 Result=CONFIRMED
+00005651: CORE ATTACK_OWNERSHIP ElapsedMs=880135.099 Actor=Boar Family=NORMAL Action=1 Phase=1 Motion=Boar_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P0_150.xmot MarkerPresent=1 RequiredMask=0 FistMarkers=1 Raw8Fist=Fist_Boar Raw8UseType=8 SuppressNative=0 Classification=ROUTINE
+00005652: CORE C1_FINAL ElapsedMs=880160.330 Actor=Boar Generation=655 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=<not-live> Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00005653: CORE C1_FINAL ElapsedMs=880205.643 Actor=Boar Generation=656 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=<not-live> Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00005654: CORE COLLISION_GROUP ElapsedMs=880292.100 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+00005655: CORE C1 CLEANUP FULFILLED ElapsedMs=880292.128 Actor=PC_Hero Generation=654 Status=PERSISTED Source=It_1H_Longsword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00005656: CORE COLLISION_GROUP ElapsedMs=880292.139 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=LEFT Requested=7 Before=7 After=7 MarkerBitsRetired=0
+00005657: CORE C1 OFFENSE REQUEST ElapsedMs=880292.147 Actor=PC_Hero Generation=654 Status=PERSISTED Source=It_1H_Longsword_01 Side=LEFT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+00005658: CORE MARKER ElapsedMs=880292.158 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot Marker=LEFT Result=ACCEPTED C1Valid=1 C1=654 StatePosition=2 PreviousMask=3 DesiredMask=2 RetiredMask=1 OwnedMask=0 MarkerOwnedMask=2 Activated=1 Deactivated=0 Retired=1 RearmRequests=1 Clears=1 RightUseType=2 LeftUseType=2
+00005659: CORE COLLISION_GROUP ElapsedMs=880460.687 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=LEFT Requested=5 Before=7 After=5 MarkerBitsRetired=0
+00005660: CORE C1 CLEANUP FULFILLED ElapsedMs=880460.715 Actor=PC_Hero Generation=654 Status=PERSISTED Source=It_1H_Longsword_01 Side=LEFT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+00005661: CORE MARKER ElapsedMs=880460.727 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot Marker=OFF Result=OFF_ACCEPTED C1Valid=1 C1=654 StatePosition=2 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=2 MarkerOwnedMask=0 Activated=0 Deactivated=1 Retired=0 RearmRequests=0 Clears=0 LeftUseType=2
+00005662: CORE COLLISION_GROUP ElapsedMs=880731.755 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00005663: CORE C1 OFFENSE REQUEST ElapsedMs=880731.784 Actor=PC_Hero Generation=654 Status=PERSISTED Source=It_1H_Longsword_01 Side=RIGHT Requests=2 Outstanding=1 CleanupObserved=0 Group=7
+00005664: CORE COLLISION_GROUP ElapsedMs=880731.799 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=LEFT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00005665: CORE C1 OFFENSE REQUEST ElapsedMs=880731.807 Actor=PC_Hero Generation=654 Status=PERSISTED Source=It_1H_Longsword_01 Side=LEFT Requests=3 Outstanding=1 CleanupObserved=0 Group=7
+00005666: CORE MARKER ElapsedMs=880731.817 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot Marker=BOTH Result=ACCEPTED C1Valid=1 C1=654 StatePosition=2 PreviousMask=0 DesiredMask=3 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=3 Activated=2 Deactivated=0 Retired=0 RearmRequests=2 Clears=2 RightUseType=2 LeftUseType=2
+00005667: CORE MARKER ElapsedMs=880731.883 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot Marker=LEFT Result=AUTHORED_OCCURRENCE_BUDGET_IGNORED C1Valid=1 C1=654 StatePosition=2 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Authored=1 AcceptedBefore=1 AcceptedAfter=1
+00005668: CORE MARKER ElapsedMs=880731.904 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot Marker=OFF Result=AUTHORED_OCCURRENCE_BUDGET_IGNORED C1Valid=1 C1=654 StatePosition=2 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 Authored=1 AcceptedBefore=1 AcceptedAfter=1
+00005669: CORE MARKER ElapsedMs=880731.920 Actor=PC_Hero Action=2 Family=POWER Phase=1 Motion=Hero_Stand_1H_1H_P0_PowerAttack_Hit_N_Fwd_00_%_00_P0_180_R.xmot Marker=BOTH Result=DUPLICATE_SAME_UPDATE_IGNORED C1Valid=1 C1=654 StatePosition=2 PreviousMask=0 DesiredMask=0 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=0 Activated=0 Deactivated=0 Retired=0 RearmRequests=0 Clears=0 DuplicateStateDelta=0.000000000 DuplicateMsDelta=0.182200
+00005670: CORE COLLISION_GROUP ElapsedMs=880841.514 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00005671: CORE C1 CLEANUP FULFILLED ElapsedMs=880841.534 Actor=PC_Hero Generation=654 Status=PERSISTED Source=It_1H_Longsword_01 Side=RIGHT Requests=2 Outstanding=0 CleanupObserved=1 Group=5
+00005672: CORE COLLISION_GROUP ElapsedMs=880841.551 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=LEFT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00005673: CORE C1 CLEANUP FULFILLED ElapsedMs=880841.558 Actor=PC_Hero Generation=654 Status=PERSISTED Source=It_1H_Longsword_01 Side=LEFT Requests=3 Outstanding=0 CleanupObserved=1 Group=5
+00005674: CORE C1_FINAL ElapsedMs=880841.596 Actor=PC_Hero Generation=654 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Longsword_01 Side=RIGHT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_1H_Longsword_01 Side=LEFT Outstanding=0 Cleanup=1 Outcome=NO_OP_NO_OUTSTANDING
+00005675: CORE C1_START ElapsedMs=888737.510 Actor=Scavenger Generation=657 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Scavenger Side=RIGHT Group=0
+00005676: CORE C1_BIND ElapsedMs=888737.523 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Scavenger Generation=657 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+00005677: CORE C1_STATUS ElapsedMs=888740.817 Event=PERSISTED Actor=Scavenger Generation=657 Status=PERSISTED Outstanding=0
+00005678: CORE ATTACK_OWNERSHIP ElapsedMs=888740.839 Actor=Scavenger Family=QUICK Action=4 Phase=1 Motion=Scavenger_Stand_None_Fist_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_75.xmot MarkerPresent=0 RequiredMask=0 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=0 Classification=ROUTINE
+00005679: CORE C1_START ElapsedMs=888766.863 Actor=PC_Hero Generation=658 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Longsword_01 Side=RIGHT Group=5 Source[1]=It_1H_Longsword_01 Side=LEFT Group=5
+00005680: CORE C1_BIND ElapsedMs=888766.876 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=658 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+00005681: CORE C1_STATUS ElapsedMs=888774.028 Event=PERSISTED Actor=PC_Hero Generation=658 Status=PERSISTED Outstanding=0
+00005682: CORE ATTACK_OWNERSHIP ElapsedMs=888774.059 Actor=PC_Hero Family=QUICK Action=5 Phase=1 Motion=Hero_Stand_1H_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00005683: CORE COLLISION_GROUP ElapsedMs=888841.144 Source=Fist_Scavenger UseType=8 Owner=<unresolved> Slot=NONE Requested=7 Before=0 After=0 MarkerBitsRetired=0
+00005684: CORE COLLISION_GROUP ElapsedMs=888962.513 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=7 Before=5 After=7 MarkerBitsRetired=0
+00005685: CORE C1 OFFENSE REQUEST ElapsedMs=888962.610 Actor=PC_Hero Generation=658 Status=PERSISTED Source=It_1H_Longsword_01 Side=RIGHT Requests=1 Outstanding=1 CleanupObserved=0 Group=7
+00005686: CORE MARKER ElapsedMs=888962.655 Actor=PC_Hero Action=5 Family=QUICK Phase=1 Motion=Hero_Stand_1H_1H_P0_QuickAttackL_Hit_N_Fwd_00_%_00_P0_100_L.xmot Marker=RIGHT Result=ACCEPTED C1Valid=1 C1=658 StatePosition=1 PreviousMask=0 DesiredMask=1 RetiredMask=0 OwnedMask=0 MarkerOwnedMask=1 Activated=1 Deactivated=0 Retired=0 RearmRequests=1 Clears=1 RightUseType=2
+00005687: CORE COLLISION_GROUP ElapsedMs=888980.973 Source=It_1H_Longsword_01 UseType=2 Owner=PC_Hero Slot=RIGHT Requested=5 Before=7 After=5 MarkerBitsRetired=1
+00005688: CORE C1 CLEANUP FULFILLED ElapsedMs=888981.000 Actor=PC_Hero Generation=658 Status=PERSISTED Source=It_1H_Longsword_01 Side=RIGHT Requests=1 Outstanding=0 CleanupObserved=1 Group=5
+00005689: CORE C1_START ElapsedMs=888982.336 Actor=PC_Hero Generation=659 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=658 ReplacedOutstanding=0 Source[0]=It_1H_Longsword_01 Side=RIGHT Group=5 Source[1]=It_1H_Longsword_01 Side=LEFT Group=5
+00005690: CORE C1_BIND ElapsedMs=888982.345 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=659 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickStumble
+00005691: CORE C1_STATUS ElapsedMs=888982.436 Event=PERSISTED Actor=PC_Hero Generation=659 Status=PERSISTED Outstanding=0
+00005692: CORE C1_FINAL ElapsedMs=889245.122 Actor=Scavenger Generation=657 Status=PERSISTED SourceCount=1 PhysicalChanged=0 Source[0]=Fist_Scavenger Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00005693: CORE C1_FINAL ElapsedMs=889294.458 Actor=PC_Hero Generation=659 Status=PERSISTED SourceCount=2 PhysicalChanged=0 Source[0]=It_1H_Longsword_01 Side=RIGHT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING Source[1]=It_1H_Longsword_01 Side=LEFT Outstanding=0 Cleanup=0 Outcome=NO_OP_NO_OUTSTANDING
+00005694: CORE C1_START ElapsedMs=889513.065 Actor=PC_Hero Generation=660 Status=CANDIDATE Outstanding=0 TrackedSources=2 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=It_1H_Longsword_01 Side=RIGHT Group=5 Source[1]=It_1H_Longsword_01 Side=LEFT Group=5
+00005695: CORE C1_BIND ElapsedMs=889513.079 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=PC_Hero Generation=660 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_QuickAttack
+00005696: CORE C1_STATUS ElapsedMs=889513.178 Event=PERSISTED Actor=PC_Hero Generation=660 Status=PERSISTED Outstanding=0
+00005697: CORE ATTACK_OWNERSHIP ElapsedMs=889513.195 Actor=PC_Hero Family=QUICK Action=4 Phase=1 Motion=Hero_Stand_1H_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_100_R.xmot MarkerPresent=1 RequiredMask=1 FistMarkers=0 Raw8Fist=<none> Raw8UseType=-1 SuppressNative=1 Classification=ROUTINE
+00005698: CORE C1_START ElapsedMs=889519.113 Actor=Scavenger Generation=661 Status=CANDIDATE Outstanding=0 TrackedSources=1 ReplacedGeneration=0 ReplacedOutstanding=0 Source[0]=Fist_Scavenger Side=RIGHT Group=0
+00005699: CORE C1_BIND ElapsedMs=889519.125 Event=COMBAT_MOVE_CANDIDATE_BOUND Actor=Scavenger Generation=661 Status=CANDIDATE Outstanding=0 Source=<null> Script=_AI_PowerAttack
+00005700: CORE C1_STATUS ElapsedMs=889519.181 Event=PERSISTED Actor=Scavenger Generation=661 Status=PERSISTED Outstanding=0
