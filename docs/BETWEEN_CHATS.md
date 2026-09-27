@@ -8,13 +8,12 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Current gate: **EV-385 correction implemented and independently source-reviewed PASS; runtime validation is next.**
+Current gate: **EV-385 correction implemented + independently reviewed PASS; both twins rebuilt; diagnostic deployment/startup PASS; corrected standalone runtime sentinel is next.**
 
 Reviewed correction source:
-
 `1c45e5ec3de1194e43b2f2200a28fe7846bd5ce0`
 
-Exact implemented rule:
+Exact rule:
 
 ```text
 origin SPRINT second FIST:
@@ -22,55 +21,57 @@ origin SPRINT second FIST:
   current SPRINT -> SP1 or SP2
 ```
 
-Independent review confirms the added `SPRINT/SP1` arm still enters only the existing second-FIST clear-only branch:
+Independent review confirms the new `SPRINT/SP1` arm remains second-FIST clear-only:
 
 ```text
-2 authored FIST markers
+2 authored FIST
 + 1 prior accepted FIST
 + RIGHT already group7
 -> RearmTriggeredContacts()
 -> no second ActivateAttackSource()
 ```
 
-No neighboring family, first-FIST, hook, lifecycle, cleanup or diagnostic behavior changed.
-
-Collision-twin state:
+Final-candidate twin hashes from the same reviewed source:
 
 ```text
-both twins compile the same shared behavior source
-behavior source candidate = current at 1c45e5e...
-behavior binary = stale/unverified until rebuilt
+Behavior SHA256:
+D5BECB2C32A9766B1B444CB5864C0C30C9AC251A1679F605127F4D7318900B78
+
+Diagnostic SHA256:
+AEF0E18205BAA9258D50B2E934173C48B845E0F1B9A9F425D622F4E4598EE773
 ```
 
-Last recorded behavior SHA256 is pre-compatibility:
-`A806EC6523116286335A659735067B1AA6C581837B3E0D604E6271AC98079340`
+Diagnostic deployment state:
 
-Latest recorded diagnostic SHA256 before this correction:
-`81CF4C99BDA65EA6FBBC02839680E83B719B6E535407EB604E6AD015B038F2D3`
+```text
+sole live collision twin = Script_FrameCollisionTest.dll
+built SHA == live SHA = AEF0E182...
+startup CORE banner present
+hooks installed
+clean unload
+DIAGNOSTIC DEPLOYMENT / STARTUP PASS
+```
 
 Immediate route:
 
 ```text
-sync local branch
--> build BOTH twins from reviewed final source
--> record both hashes
--> deploy diagnostic twin
--> corrected standalone sentinel:
-   1+3 direct SPRINT/SP1 retest
-   one POWER/SP1 continuation control
-   single SPRINT/SP1
-   true-Power single/double
-   unmarked raw55 fallback
--> one small diagnostic New Balance/raw55 Sprint SP2/transition regression
--> deploy behavior twin ONLY
--> final diagnostics-free observational session:
-   representative raw55/equipped/native
-   several animations whose desired RIGHT collision exists only through G3AB markers
--> behavior-only PASS
--> production collision migration + integration validation
+1. standalone/no-New-Balance BlackTroll raw55 double-FIST 1+3
+   -> direct retest of EV-385 failure
+   -> expect marker1 SPRINT/SP1 accepted/open
+   -> expect marker2 same C1 SPRINT/SP1 accepted clear-only
+   -> GroupRequested=0 / ClearTriggeredList=1 on marker2
+   -> native cleanup group7->5 / Outstanding=0
+2. one POWER/SP1 continuation control (1+8 OR 1+15)
+3. single SPRINT/SP1 control
+4. factual true-Power single + double
+5. unmarked raw55 native fallback
+6. one small New Balance/raw55 Sprint SP2 / Action9->Action2 regression
+7. deploy behavior twin ONLY; verify behavior SHA above
+8. final diagnostics-free observational collision session
+9. behavior-only PASS -> production collision migration + integration validation
 ```
 
-Runtime-log rule: `PROJECT_OPERATING_PROCEDURES.md` v1.19 / POP-06 hard-requires bounded retrieval for every runtime log regardless of size; keep whole log bodies out of Chat context unless a concrete exceptional reason requires incremental full-source reading.
+Runtime-log rule: POP-06 hard-requires bounded retrieval for every runtime log regardless of size. Do not load whole logs into Chat merely because they fit.
 
 Exact acceptance details: `COLLISION_TEST_PLAN.md` §4.5–§4.6.  
 Active runtime contract: `docs/work/active/COLLISION_RAW55_STANDALONE_SPRINT_SECOND_FIST_SP1_COMPATIBILITY_CORRECTION.md`.  
