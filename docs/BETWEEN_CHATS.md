@@ -6,96 +6,123 @@
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
-Branch: `docs/collision-source-evidence`
+Active branch: `development`  
+Stable branch: `main`
 
-Current gate: **behavior-only release-purity collision validation CLOSED/PASS EV-389. Bounded production collision-core migration is now frozen and CURRENT.**
-
-Active task:
-
-```text
-docs/work/active/PRODUCTION_COLLISION_CORE_MIGRATION.md
-```
-
-Frozen migration direction:
+## Current state
 
 ```text
-accepted EV-389 collision behavior core
--> exact-copy behavior modules into src/Script_G3AnimationBehaviors
--> production entry point = RuntimeClock init + EngineBridge hook install
--> production CMake builds collision core as Script_G3AnimationBehaviors.dll
--> old AttackRaise / AttackSpeed / SharedConfig excluded from build but left physically untouched
--> prototype behavior/diagnostic twins unchanged
--> no collision redesign
--> no Raise/Speed implementation
--> Work build/run prohibited
+EV-389 behavior-only collision release-purity = CLOSED/PASS
+production collision migration implementation = 9da92dc559d8897a675d575f8d88b3631470ed7d
+independent source review = PASS
+migration Work contract = CLOSED / archived
+CURRENT = local production-integration validation of Script_G3AnimationBehaviors.dll
 ```
 
-Final-candidate behavior hash from EV-389 lineage:
+The production target now contains the accepted collision core under the final DLL name. The 21 migrated behavior files match the accepted prototype Git blobs; only production CMake/bootstrap differ as authorized. Old `AttackRaise`, `AttackSpeed`, `SharedConfig`, and old INI files remain physically present but are excluded from the production target.
+
+## Branch decision
+
+ADR-0006 supersedes the previous collision-specific branch progression:
 
 ```text
-Script_FrameCollisionBehaviorTest
-D5BECB2C32A9766B1B444CB5864C0C30C9AC251A1679F605127F4D7318900B78
+main
+= last stable integration checkpoint
+= leave unchanged during current feature development
+
+development
+= active general branch for current and future animation-behavior work
+
+docs/collision-source-evidence
+= historical collision branch
 ```
 
-Closed final validation:
+Do not create or switch to `feature/raise-attack-speed` for this cycle. Do not promote intermediate Speed work to `main`.
+
+## Frozen Raise / Speed architecture
+
+Shared profile identity:
 
 ```text
-EV-386 corrected marked standalone matrix PASS
-EV-387 standalone unmarked raw55 native fallback PASS
-EV-388 focused final-candidate New Balance/raw55 regression PASS
-DIAGNOSTIC PHASE CLOSED/PASS
-
-EV-389 behavior-only sole-live deployment:
-  built/live behavior SHA exact match
-  diagnostic twin absent
-  startup smoke PASS
-
-EV-389 observational release-purity session:
-  authored/released animations follow marker timing
-  Hack collision works
-  2H ON -> OFF -> ON gives separate openings
-  OFF negative control: weapon overlap during OFF produces no hit
-  1H1H/dual multi-window marker patterns produce intended extra contacts
-  human Fist double markers can hit twice
-  Sabretooth raw8 double markers can hit twice
-  Troll raw55 double markers can hit twice
-  one-on-one + group combat: no observed stuck/persistent collision regression
-
-BEHAVIOR-ONLY RELEASE-PURITY GATE = CLOSED/PASS
+AnimationFamily
++ LeftAnimationUseType
++ RightAnimationUseType
++ ActionProfile
 ```
 
-Recent accepted architecture additions:
+User-facing ActionProfile scope:
 
 ```text
-final DLL name = Script_G3AnimationBehaviors.dll
-Jackydima source reference pinned under references/jackydima-gothic3sdk
-Raise/speed profiles = AnimationFamily + LeftAnimationUseType + RightAnimationUseType + Normal/Quick
-INI loaded once at startup into normalized in-memory rules
-Raise lets Gothic resolve the actual animation
-Speed v2 must replace/configure the base term while preserving applicable contextual multipliers
-exact Speed v2 intervention remains future research
+Normal
+Quick
 ```
+
+Shared config rule:
+
+```text
+G3AnimationBehaviors.ini
+-> parse once at startup
+-> normalize into in-memory profile rules
+-> bounded runtime lookup only
+-> missing profile = native fallback
+```
+
+No P0/P1/P2/P3 user-facing split. No feature-policy C++ branches for 1H/2H/Axe/Staff/etc. merely to select config; UseType/profile identity comes from data/runtime facts so modded profiles can participate generically.
+
+### Speed — next and exclusive feature
+
+Speed v2 must author the configured **base** term while preserving applicable contextual modifiers:
+
+```text
+unconfigured = B * M
+configured   = C * M
+```
+
+Current New Balance source is pinned at `references/jackydima-gothic3sdk` and shows why final-result replacement is wrong: its speed function combines base terms with stamina/arena/disease/etc. logic. Exact intervention mechanism is still research under ADR-0004.
+
+### Raise — paused until Speed closes
+
+Raise keeps the ADR-0005 design:
+
+```text
+configured Normal/Quick profile
+-> request Raise through Gothic CombatMove
+-> Gothic resolves actual animation through normal naming/request rules
+```
+
+The shared INI schema should support a future Raise setting from the beginning, but no Raise behavior/research begins while Speed remains open.
+
+## Exact next route
+
+```text
+1. User builds/deploys development production target locally
+2. startup smoke
+3. focused collision integration sanity:
+   marker-dependent equipped attack
+   raw8 double FIST
+   raw55 double FIST
+   no stuck/persistent collision
+4. PASS -> record production integration closure
+5. inspect eCConfigFile/config API and freeze exact generic INI syntax
+6. implement shared profile/config foundation needed by Speed and later Raise
+7. research/design/implement/test Speed v2 ONLY until completely closed
+8. only then begin Raise
+9. after Raise closes, run assembled collision + Speed + Raise regression
+10. deliberate development -> main promotion
+```
+
+This focused collision check does not reopen the closed EV-386–EV-389 diagnostic campaigns. No diagnostic log is expected unless behavior contradicts the accepted system.
 
 Authorities:
 
 ```text
 DESIGN.md
-GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md
 ADR-0004
 ADR-0005
+ADR-0006
+GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md
 references/README.md
 ```
 
-Immediate route:
-
-```text
-1. Work executes only PRODUCTION_COLLISION_CORE_MIGRATION.md
-2. Work publishes source-only implementation to docs/collision-source-evidence
-3. Normal Chat independently reviews exact parity + build target
-4. User builds/tests locally at home
-5. production integration PASS -> close/archive migration task
-6. then proceed to generic Raise/config responsibility; Speed v2 remains separate research
-```
-
 Current evidence ledger: `EVIDENCE_LEDGER_389_ONWARD.md`.  
-POP-06 remains mandatory for any future diagnostic runtime logs.
+POP-06 remains mandatory for future diagnostic runtime logs.
