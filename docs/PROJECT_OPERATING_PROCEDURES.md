@@ -2,8 +2,8 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active project-specific procedure library  
-**Version:** 1.18  
-**Updated:** 2026-09-19
+**Version:** 1.19  
+**Updated:** 2026-09-27
 
 <!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
 
@@ -19,6 +19,7 @@ It exists so a new Chat does not have to rediscover how we normally:
 - verify that the selected product actually loaded;
 - freeze runtime tests/logs;
 - preserve, publish and close raw evidence transactions;
+- analyze runtime logs through bounded retrieval so Chat context carries conclusions and exact supporting excerpts rather than whole log bodies;
 - reduce oversized logs for efficient analysis without altering the evidence;
 - work with large static binary/reference material;
 - request bounded Chat-safe PowerShell output for the next decision;
@@ -42,7 +43,8 @@ Read or spot-read when entering:
 - source review -> build -> deploy -> runtime test;
 - runtime evidence capture/publish/closure;
 - Git handoff between connected GitHub writes and the User's local checkout;
-- large-log or large-reference retrieval;
+- runtime-log retrieval, including ordinary-sized logs and large-log packages;
+- large static binary/reference retrieval;
 - planned Chat transition where transient work must be made durable;
 - recovery after an abrupt/max-context/unusable previous Chat;
 - a formal review/audit of project rules, procedures, architecture, documentation/knowledge structure, repository/product shape, or another cross-authority surface.
@@ -72,7 +74,7 @@ design/evidence question frozen
 -> User runs one test or a small intentional batch
 -> raw log(s) copied unchanged into research/raw
 -> raw artifact batch commit/push
--> Normal Chat analyzes every committed artifact in that uploaded batch
+-> Normal Chat analyzes every committed artifact in that uploaded batch through bounded retrieval
 -> derived package/extract only if retrieval requires it
 -> close THAT uploaded batch completely:
    explicit per-artifact disposition
@@ -507,6 +509,29 @@ After copying, a short confirmation such as `file is in raw` is enough. Do not p
 
 A file in `research/raw/` is canonical raw evidence. Preserve it byte/content-faithfully. Do not clean whitespace, reformat, remove noise, or use source-style whitespace checks as evidence validators.
 
+### Hard bounded-retrieval / Chat-context rule
+
+> **Never load or reproduce an entire runtime log into Chat/model context merely because the file is small enough to do so. Runtime evidence is retrieved by question, count, index, exact event class and bounded surrounding windows; Chat carries the conclusions, provenance and only the minimum supporting excerpts needed for review.**
+
+This rule applies to **all runtime logs**, not only oversized logs.
+
+Normal Assistant analysis order for an ordinary-sized log is:
+
+```text
+confirm exact artifact identity / filename / fixture
+-> inspect size + basic metadata
+-> search/count the event classes required by the frozen question
+-> search invariant/anomaly/failure terms
+-> retrieve only bounded exact matches and the smallest surrounding windows needed to establish sequence
+-> sample representative successful routes when whole-run proof is not required
+-> compare across logs through compact counts/facts
+-> formulate conclusions + explicit limits
+```
+
+Do not retrieve sequential pages of a raw log simply to "read everything" when indexed/bounded retrieval can answer the question. Do not paste broad raw-log bodies into the conversation. A full-log sequential read is exceptional and requires a concrete analytical reason that bounded retrieval cannot satisfy; even then, process it incrementally and retain only the resulting facts/excerpts in active Chat context.
+
+Whole-run cleanliness claims still require whole-run-capable evidence. For ordinary logs this may be exact whole-file search/count queries over the relevant warning/anomaly classes; for oversized logs use POP-07's derived whole-run surfaces. **Bounded retrieval limits context volume; it does not weaken evidence standards.**
+
 ### Publish pattern
 
 Routine User-side publishing should normally use GitHub Desktop under POP-01:
@@ -537,7 +562,7 @@ After each uploaded batch, Normal Chat must automatically perform the complete c
 
 ```text
 uploaded batch arrives
--> inspect EVERY log in the batch
+-> inspect EVERY log in the batch through the hard bounded-retrieval rule above
 -> correlate each log with its frozen fixture + User observation
 -> give every log an explicit result/disposition
 -> record the reusable result concisely in the single active Evidence Ledger
@@ -568,7 +593,7 @@ A larger campaign may remain active across many batches, but completed batches m
 Once committed evidence is interpreted, Normal Chat automatically continues:
 
 ```text
-read committed evidence from GitHub
+read committed evidence from GitHub through bounded retrieval
 -> correlate logger facts + User observations + frozen test contract
 -> decide narrow factual result and epistemic status
 -> assign every produced artifact an explicit disposition
@@ -663,7 +688,7 @@ Keep unresolved artifacts in raw with explicit disposition rather than making a 
 
 ### Trigger / invariant
 
-Use when a canonical runtime log is too large for efficient retrieval.
+POP-07 is the **large-log specialization** of POP-06's hard bounded-retrieval rule. Use it when a canonical runtime log is too large for efficient direct indexed retrieval.
 
 The normal Windows workflow is deliberately split between User-local preparation and Assistant-side analysis:
 
@@ -675,7 +700,7 @@ User preserves complete raw log unchanged under research/raw/
    canonical raw log
    generated derived package
 -> User commits and Pushes both together
--> Assistant reads the committed derived package
+-> Assistant reads the committed derived package through manifest/count/index/bounded-source windows
 -> raw log remains canonical provenance but is not routinely re-opened
 -> after interpretation, return to POP-06 and fully close that uploaded batch
    before the next runtime test/batch
@@ -715,6 +740,7 @@ read derived manifest and source identity/hash
 -> use full_source_index
 -> read exact line-numbered full_source_part_* ranges
 -> correlate final symptom with the complete mirrored run
+-> carry forward conclusions + provenance + minimum supporting excerpts, not the full mirrored body
 ```
 
 Counts are navigation leads, not conclusions. Tail-only extracts cannot prove earlier cleanliness. The complete-source mirror can. User visual observations remain valid evidence inputs. Distinguish diagnostic/shadow outcomes from actual mutations.
@@ -1091,8 +1117,8 @@ When a procedure becomes too long, ask whether stable detail can move into a reu
 | deploy + binary identity | POP-03 |
 | startup/load verification | POP-04 |
 | freeze runtime test/raw filename | POP-05 |
-| publish/interpret/close/archive runtime evidence | POP-06 |
-| large runtime log | POP-07 |
+| publish/interpret/close/archive runtime evidence + bounded log retrieval | POP-06 |
+| large runtime log specialization | POP-07 |
 | large static binary/reference material | POP-08 |
 | routine failure / Chat-safe output | POP-09 |
 | formal project review/audit | POP-10 |
@@ -1102,4 +1128,4 @@ When a procedure becomes too long, ask whether stable detail can move into a reu
 
 ## Core Procedure Rule
 
-> **Preserve causal certainty and canonical evidence; close completed runtime evidence before planned handoff; when a Chat fails unavoidably, recover authority/ownership and close the durability gap before new work; select and verify the exact runtime product; hand the active branch deliberately; use GitHub Desktop for routine User-side Git with repeated beginner guidance while preserving exact command-line fallbacks; keep Chat-bound output bounded; launch Work from durable handoffs; understand hierarchy and intended use before formal reviews; and keep recurring operational knowledge in the smallest correct owner so future Chats can resume without rediscovery or accidental redesign.**
+> **Preserve causal certainty and canonical evidence; analyze runtime logs through bounded retrieval and keep whole log bodies out of Chat context unless a concrete exceptional reason requires incremental full-source reading; close completed runtime evidence before planned handoff; when a Chat fails unavoidably, recover authority/ownership and close the durability gap before new work; select and verify the exact runtime product; hand the active branch deliberately; use GitHub Desktop for routine User-side Git with repeated beginner guidance while preserving exact command-line fallbacks; keep Chat-bound output bounded; launch Work from durable handoffs; understand hierarchy and intended use before formal reviews; and keep recurring operational knowledge in the smallest correct owner so future Chats can resume without rediscovery or accidental redesign.**
