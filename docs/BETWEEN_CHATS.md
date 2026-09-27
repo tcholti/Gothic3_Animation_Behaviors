@@ -14,16 +14,36 @@ Stable branch: `main`
 ```text
 EV-389 behavior-only collision release-purity = CLOSED/PASS
 production collision migration implementation = 9da92dc559d8897a675d575f8d88b3631470ed7d
-independent source review = PASS
-migration Work contract = CLOSED / archived
-CURRENT = local production-integration validation of Script_G3AnimationBehaviors.dll
+independent migration source review = PASS
+EV-390 production Script_G3AnimationBehaviors.dll collision integration = CLOSED/PASS
+CURRENT = freeze shared generic INI/profile foundation
+NEXT = Speed v2 ONLY until completely closed
+RAISE = PAUSED until Speed closes
 ```
 
-The production target now contains the accepted collision core under the final DLL name. The 21 migrated behavior files match the accepted prototype Git blobs; only production CMake/bootstrap differ as authorized. Old `AttackRaise`, `AttackSpeed`, `SharedConfig`, and old INI files remain physically present but are excluded from the production target.
+EV-390 production identity:
+
+```text
+Script_G3AnimationBehaviors.dll
+built/live SHA256 = 12FA5819FEEB5033B2D747A9B57CA1591E588EAAC0BAC9CC386307B77C367A55
+sole live G3AB/collision product = PASS
+```
+
+Focused production gameplay reproduced the deliberately impossible-native marker controls from EV-389:
+
+```text
+2H double attack / three markers = works
+1H1H triple attack / four markers = works
+human Fist double / two markers = works
+Sabretooth raw8 double / two markers = works
+Troll raw55 double / two markers = works
+```
+
+Therefore collision migration into the final production DLL is closed. Do not reopen historical collision campaigns absent contradictory evidence.
 
 ## Branch decision
 
-ADR-0006 supersedes the previous collision-specific branch progression:
+ADR-0006 owns the active model:
 
 ```text
 main
@@ -78,7 +98,7 @@ unconfigured = B * M
 configured   = C * M
 ```
 
-Current New Balance source is pinned at `references/jackydima-gothic3sdk` and shows why final-result replacement is wrong: its speed function combines base terms with stamina/arena/disease/etc. logic. Exact intervention mechanism is still research under ADR-0004.
+Current New Balance source is pinned at `references/jackydima-gothic3sdk` and shows why final-result replacement is wrong: its speed function combines base terms with stamina/arena/disease/etc. logic. Exact intervention mechanism remains research under ADR-0004.
 
 ### Raise — paused until Speed closes
 
@@ -90,28 +110,21 @@ configured Normal/Quick profile
 -> Gothic resolves actual animation through normal naming/request rules
 ```
 
-The shared INI schema should support a future Raise setting from the beginning, but no Raise behavior/research begins while Speed remains open.
+The shared INI schema must support future Raise from the beginning, but no Raise behavior/research begins while Speed remains open.
 
 ## Exact next route
 
 ```text
-1. User builds/deploys development production target locally
-2. startup smoke
-3. focused collision integration sanity:
-   marker-dependent equipped attack
-   raw8 double FIST
-   raw55 double FIST
-   no stuck/persistent collision
-4. PASS -> record production integration closure
-5. inspect eCConfigFile/config API and freeze exact generic INI syntax
-6. implement shared profile/config foundation needed by Speed and later Raise
-7. research/design/implement/test Speed v2 ONLY until completely closed
-8. only then begin Raise
-9. after Raise closes, run assembled collision + Speed + Raise regression
-10. deliberate development -> main promotion
+1. inspect Gothic/eCConfigFile config API plus old G3AB config only as reference
+2. freeze exact generic INI syntax for shared Speed + future Raise profiles
+3. implement shared parsing/normalization/profile lookup foundation
+4. research/design/implement/test Speed v2 ONLY until completely closed
+5. only then begin Raise
+6. after Raise closes, run one assembled regression of collision + Speed + Raise
+7. deliberate development -> main promotion
 ```
 
-This focused collision check does not reopen the closed EV-386–EV-389 diagnostic campaigns. No diagnostic log is expected unless behavior contradicts the accepted system.
+"assembled regression" means a final safety test after Raise is integrated: verify the completed DLL still preserves already-accepted collision and Speed behavior while Raise works. It is not a separate Raise research mechanism.
 
 Authorities:
 
