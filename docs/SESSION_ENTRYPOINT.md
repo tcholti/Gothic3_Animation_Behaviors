@@ -17,6 +17,7 @@ first raw55 SP2 correction = 6eb3e3ca96da55e89127c24d5f656e05610d315f
 Sprint-first SP2 correction = ce59e5a2bad564652eaba970e959bdef0b479d82
 Sprint-second SP2 correction = 4c85193f4efd31e789bc07d7e3c71d31a9b5326e
 Normal-second SP0 correction = a31c66b97e45c27d0739b7df51252d33f490e7e1
+standalone Sprint-second SP1 candidate = 1c45e5ec3de1194e43b2f2200a28fe7846bd5ce0
 latest runtime evidence = EV-385
 current ledger = EVIDENCE_LEDGER_384_ONWARD.md
 
@@ -25,8 +26,10 @@ Zombie+Axe asset-gap remedy = PASS EV-375
 focused raw55 New Balance compatibility = CLOSED/PASS EV-376–EV-382
 dual-1H four-marker / three-window authoring = PASS EV-383
 New Balance full intended-stack compatibility = CLOSED/PASS EV-384
-standalone/no-New-Balance post-compat raw55 sentinel = PARTIAL FAIL EV-385 / CURRENT GATE
-active Work task = docs/work/active/COLLISION_RAW55_STANDALONE_SPRINT_SECOND_FIST_SP1_COMPATIBILITY_CORRECTION.md
+standalone/no-New-Balance post-compat raw55 sentinel = PARTIAL FAIL EV-385 / CORRECTED CANDIDATE PENDING RUNTIME
+Work implementation = COMPLETE
+independent Normal Chat source review = PASS
+active runtime contract = docs/work/active/COLLISION_RAW55_STANDALONE_SPRINT_SECOND_FIST_SP1_COMPATIBILITY_CORRECTION.md
 ```
 
 ## EV-385 exact finding
@@ -56,26 +59,25 @@ Four distinct `1+3` Sprint C1s repeat the same rejection. All other three logs h
 
 This is a bounded repeated-marker eligibility compatibility hole, not a cleanup/lifecycle/generation failure.
 
-## Frozen correction basis
+## Corrected candidate / independent review
 
-Current source accepts Sprint-origin second FIST as:
+Published correction:
 
-```text
-current POWER  -> explicit SP1 or SP2
-current SPRINT -> SP2 only
-```
+`1c45e5ec3de1194e43b2f2200a28fe7846bd5ce0`
 
-EV-385 now proves standalone current-SPRINT/SP1 is legitimate same-C1 second-FIST traffic.
-
-Frozen correction:
+Exact implemented rule:
 
 ```text
 Sprint-origin second FIST:
-  current POWER  -> explicit SP1 or SP2   (preserve)
-  current SPRINT -> explicit SP1 or SP2   (add SP1 only)
+  current POWER  -> explicit SP1 or SP2
+  current SPRINT -> explicit SP1 or SP2
 ```
 
-No generic `>=1`, no new mechanism, no new hook, no timer/queue/hit flag/custom damage, and no first-FIST change.
+Independent Normal Chat source review: **PASS**.
+
+The diff is one predicate only. The second-FIST branch still requires exactly two authored FIST markers, exactly one prior accepted FIST, the source already in group7, and then calls only `RearmTriggeredContacts()`. It does not call `ActivateAttackSource()`, so the added SPRINT/SP1 acceptance cannot request a second physical opening.
+
+No generic `>=1`, new hook, timer/queue/hit flag/custom damage, first-FIST change, or neighboring family change was introduced.
 
 ## Collision twin / binary state
 
@@ -91,9 +93,9 @@ Script_FrameCollisionTest
   + diagnostic-only files
 ```
 
-Therefore the **behavior source candidate is current whenever shared collision source changes**, but the behavior DLL binary is current only after that target is rebuilt from the exact source state being validated.
+Therefore the behavior source candidate is current, but the behavior DLL binary is current only after that target is rebuilt from the exact reviewed source.
 
-Recorded binary state before the EV-385 correction:
+Recorded binary state before this correction:
 
 ```text
 Final standalone diagnostic SHA256 before compatibility work:
@@ -106,11 +108,11 @@ Latest deployed diagnostic SHA256 after raw55 compatibility corrections:
 81CF4C99BDA65EA6FBBC02839680E83B719B6E535407EB604E6AD015B038F2D3
 ```
 
-No post-compatibility behavior built/live hash is currently recorded. Treat the old behavior DLL as **stale/unverified binary state**, not as the final candidate. After the EV-385 correction and independent source review, build **both** twins and record both hashes.
+No post-compatibility behavior built/live hash is recorded. Treat the old behavior DLL as stale/unverified binary state.
 
 ## Runtime-log retrieval rule
 
-`PROJECT_OPERATING_PROCEDURES.md` v1.19 now makes bounded retrieval mandatory for **all** runtime logs, not only oversized logs:
+`PROJECT_OPERATING_PROCEDURES.md` v1.19 makes bounded retrieval mandatory for **all** runtime logs, not only oversized logs:
 
 ```text
 artifact identity / metadata
@@ -125,31 +127,29 @@ Do not load/reproduce a complete raw log into Chat context merely because it fit
 ## Exact next route
 
 ```text
-1. bounded Work implementation:
-   COLLISION_RAW55_STANDALONE_SPRINT_SECOND_FIST_SP1_COMPATIBILITY_CORRECTION.md
-2. independent Normal Chat source review
-3. build BOTH collision twins from the exact reviewed final source
+1. User syncs local branch to current remote state containing reviewed candidate 1c45e5e...
+2. build BOTH collision twins from the same reviewed final source
    -> record behavior SHA256
    -> record diagnostic SHA256
-4. deploy diagnostic twin / verify sole-live-twin + SHA
-5. finish corrected standalone diagnostic sentinel:
+3. deploy diagnostic twin / verify sole-live-twin + SHA
+4. finish corrected standalone diagnostic sentinel:
    - 1+3 direct SPRINT/SP1 second-FIST retest
    - one representative POWER/SP1 continuation control
    - single-FIST SPRINT/SP1 control
    - factual true-Power single/double
    - unmarked raw55 native fallback
-6. one small diagnostic New Balance/raw55 regression on the same final source
+5. one small diagnostic New Balance/raw55 regression on the same final source
    -> compatibility-sensitive Sprint-origin SP2 / Action9->Action2 route
-7. deploy behavior twin ONLY / verify sole-live-twin + behavior SHA
-8. final diagnostics-free observational collision confirmation:
+6. deploy behavior twin ONLY / verify sole-live-twin + behavior SHA
+7. final diagnostics-free observational collision confirmation:
    - representative raw55/equipped/native behavior
    - include several authored animations whose desired RIGHT collision window exists only through G3AB marker behavior
    - no diagnostic log expected
-9. only after behavior-only PASS:
+8. only after behavior-only PASS:
    production collision migration + production integration validation
 ```
 
-Do not run more tests on the pre-correction source.
+Do not run another runtime test from the pre-correction source.
 
 ## Current environment boundary
 
@@ -165,7 +165,7 @@ same compatibility source lineage through a31c66b...
 ## Read next by question
 
 - exact continuation → `BETWEEN_CHATS.md`
-- active correction → `docs/work/active/COLLISION_RAW55_STANDALONE_SPRINT_SECOND_FIST_SP1_COMPATIBILITY_CORRECTION.md`
+- current runtime contract → `docs/work/active/COLLISION_RAW55_STANDALONE_SPRINT_SECOND_FIST_SP1_COMPATIBILITY_CORRECTION.md`
 - current facts → `COLLISION_REFERENCE.md`
 - validation gate → `COLLISION_TEST_PLAN.md` §4.5–§4.6
 - operating procedure / bounded log retrieval → `PROJECT_OPERATING_PROCEDURES.md` POP-06/POP-07
