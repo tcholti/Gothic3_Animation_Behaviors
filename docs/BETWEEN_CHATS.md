@@ -8,16 +8,33 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Current gate: **behavior-only release-purity collision validation CLOSED/PASS EV-389. Mature collision subsystem is ready for bounded production migration into `src/Script_G3AnimationBehaviors`.**
+Current gate: **behavior-only release-purity collision validation CLOSED/PASS EV-389. Bounded production collision-core migration is now frozen and CURRENT.**
 
-Reviewed behavior source:
-`1c45e5ec3de1194e43b2f2200a28fe7846bd5ce0`
-
-Final-candidate hashes:
+Active task:
 
 ```text
-Behavior   D5BECB2C32A9766B1B444CB5864C0C30C9AC251A1679F605127F4D7318900B78
-Diagnostic AEF0E18205BAA9258D50B2E934173C48B845E0F1B9A9F425D622F4E4598EE773
+docs/work/active/PRODUCTION_COLLISION_CORE_MIGRATION.md
+```
+
+Frozen migration direction:
+
+```text
+accepted EV-389 collision behavior core
+-> exact-copy behavior modules into src/Script_G3AnimationBehaviors
+-> production entry point = RuntimeClock init + EngineBridge hook install
+-> production CMake builds collision core as Script_G3AnimationBehaviors.dll
+-> old AttackRaise / AttackSpeed / SharedConfig excluded from build but left physically untouched
+-> prototype behavior/diagnostic twins unchanged
+-> no collision redesign
+-> no Raise/Speed implementation
+-> Work build/run prohibited
+```
+
+Final-candidate behavior hash from EV-389 lineage:
+
+```text
+Script_FrameCollisionBehaviorTest
+D5BECB2C32A9766B1B444CB5864C0C30C9AC251A1679F605127F4D7318900B78
 ```
 
 Closed final validation:
@@ -47,18 +64,38 @@ EV-389 observational release-purity session:
 BEHAVIOR-ONLY RELEASE-PURITY GATE = CLOSED/PASS
 ```
 
+Recent accepted architecture additions:
+
+```text
+final DLL name = Script_G3AnimationBehaviors.dll
+Jackydima source reference pinned under references/jackydima-gothic3sdk
+Raise/speed profiles = AnimationFamily + LeftAnimationUseType + RightAnimationUseType + Normal/Quick
+INI loaded once at startup into normalized in-memory rules
+Raise lets Gothic resolve the actual animation
+Speed v2 must replace/configure the base term while preserving applicable contextual multipliers
+exact Speed v2 intervention remains future research
+```
+
+Authorities:
+
+```text
+DESIGN.md
+GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md
+ADR-0004
+ADR-0005
+references/README.md
+```
+
 Immediate route:
 
 ```text
-1. freeze one bounded production collision-migration task
-2. migrate mature collision behavior into src/Script_G3AnimationBehaviors
-3. diagnostics remain separate from shipping production code
-4. preserve established collision semantics; migration is not a redesign opportunity
-5. Work/source-only session must not build or run Gothic 3
-6. User builds/tests locally at home after migration
-7. production integration validation PASS -> collision migration closes
+1. Work executes only PRODUCTION_COLLISION_CORE_MIGRATION.md
+2. Work publishes source-only implementation to docs/collision-source-evidence
+3. Normal Chat independently reviews exact parity + build target
+4. User builds/tests locally at home
+5. production integration PASS -> close/archive migration task
+6. then proceed to generic Raise/config responsibility; Speed v2 remains separate research
 ```
 
 Current evidence ledger: `EVIDENCE_LEDGER_389_ONWARD.md`.  
-Closed EV-384–EV-388 volume: `archive/evidence/EVIDENCE_LEDGER_384_388.md`.  
 POP-06 remains mandatory for any future diagnostic runtime logs.
