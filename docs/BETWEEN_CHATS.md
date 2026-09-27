@@ -8,7 +8,7 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Current gate: **final-candidate diagnostic phase CLOSED/PASS through EV-386–EV-388. Next = deploy the diagnostics-free behavior twin as the sole live collision DLL and perform the release-purity observational session.**
+Current gate: **behavior-only release-purity collision validation CLOSED/PASS EV-389. Mature collision subsystem is ready for bounded production migration into `src/Script_G3AnimationBehaviors`.**
 
 Reviewed behavior source:
 `1c45e5ec3de1194e43b2f2200a28fe7846bd5ce0`
@@ -20,48 +20,45 @@ Behavior   D5BECB2C32A9766B1B444CB5864C0C30C9AC251A1679F605127F4D7318900B78
 Diagnostic AEF0E18205BAA9258D50B2E934173C48B845E0F1B9A9F425D622F4E4598EE773
 ```
 
-Diagnostic sole-live deployment/startup = PASS.
-
-Diagnostic runtime closure:
+Closed final validation:
 
 ```text
-EV-386 marked standalone correction matrix PASS
+EV-386 corrected marked standalone matrix PASS
 EV-387 standalone unmarked raw55 native fallback PASS
 EV-388 focused final-candidate New Balance/raw55 regression PASS
+DIAGNOSTIC PHASE CLOSED/PASS
 
-EV-388 required compatibility routes:
-  1+3 SPRINT/SP1 -> same-C1 SPRINT/SP2 marker2 accepted clear-only
-  1+8 / 1+15 SPRINT/SP1 -> same-C1 POWER/SP2 marker2 accepted clear-only
-  single-FIST SPRINT/SP2 accepted/open/clean cleanup
-  true-Power SP1 -> SP2 double-FIST preserved
+EV-389 behavior-only sole-live deployment:
+  built/live behavior SHA exact match
+  diagnostic twin absent
+  startup smoke PASS
 
-all five EV-388 logs:
-  zero REJECTED_*
-  zero ANOMALY
-  zero C1 INVARIANT WARNING
-  clean lifecycle tails
-  clean diagnostic unload
+EV-389 observational release-purity session:
+  authored/released animations follow marker timing
+  Hack collision works
+  2H ON -> OFF -> ON gives separate openings
+  OFF negative control: weapon overlap during OFF produces no hit
+  1H1H/dual multi-window marker patterns produce intended extra contacts
+  human Fist double markers can hit twice
+  Sabretooth raw8 double markers can hit twice
+  Troll raw55 double markers can hit twice
+  one-on-one + group combat: no observed stuck/persistent collision regression
+
+BEHAVIOR-ONLY RELEASE-PURITY GATE = CLOSED/PASS
 ```
-
-The EV-388 no-marker New Balance artifact additionally preserves observed Power/Normal/Quick native raw55 fallback. It contains no Sprint/Action9 occurrence, so no unmarked-New-Balance Sprint claim is made from that artifact.
 
 Immediate route:
 
 ```text
-1. deploy Script_FrameCollisionBehaviorTest.dll ONLY
-2. physically remove Script_FrameCollisionTest.dll
-3. verify exactly one live collision twin
-4. verify live behavior SHA256 = D5BECB2C32A9766B1B444CB5864C0C30C9AC251A1679F605127F4D7318900B78
-5. launch Gothic 3: no startup/load crash; no diagnostic log expected
-6. diagnostics-free observational session:
-   representative marked raw55
-   representative ordinary equipped markers
-   representative native/unmarked behavior
-   several marker-dependent RIGHT-window animations
-   ordinary combat/weapon/source churn for cleanup persistence
-7. behavior-only PASS -> production collision migration + integration validation
+1. freeze one bounded production collision-migration task
+2. migrate mature collision behavior into src/Script_G3AnimationBehaviors
+3. diagnostics remain separate from shipping production code
+4. preserve established collision semantics; migration is not a redesign opportunity
+5. Work/source-only session must not build or run Gothic 3
+6. User builds/tests locally at home after migration
+7. production integration validation PASS -> collision migration closes
 ```
 
-POP-06: every diagnostic runtime log uses bounded retrieval regardless of size.  
-EV-386–EV-388 artifacts are archived byte-identically; `research/raw/` should contain only `Keep.txt`.  
-Exact behavior-only acceptance: `COLLISION_TEST_PLAN.md` §4.6.
+Current evidence ledger: `EVIDENCE_LEDGER_389_ONWARD.md`.  
+Closed EV-384–EV-388 volume: `archive/evidence/EVIDENCE_LEDGER_384_388.md`.  
+POP-06 remains mandatory for any future diagnostic runtime logs.
