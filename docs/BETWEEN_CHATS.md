@@ -8,61 +8,55 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Current gate: **standalone/no-New-Balance post-compat raw55 sentinel = PARTIAL FAIL EV-385; bounded correction frozen.**
+Current gate: **EV-385 correction implemented and independently source-reviewed PASS; runtime validation is next.**
 
-EV-385 exact contradiction:
+Reviewed correction source:
 
-```text
-Sprint-origin double FIST 1+3, standalone:
-  marker1 current SPRINT/SP1 -> ACCEPTED / RIGHT 5 -> 7
-  marker2 same C1/source/origin, still SPRINT/SP1
-  -> REJECTED_UNSUPPORTED_HIT
+`1c45e5ec3de1194e43b2f2200a28fe7846bd5ce0`
 
-1+8 / 1+15:
-  marker2 transitions to POWER/SP1 -> ACCEPTED clear-only
-
-single FIST SPRINT/SP1 -> ACCEPTED
-cleanup/lifecycle remain healthy
-```
-
-Frozen correction in active task:
-
-`docs/work/active/COLLISION_RAW55_STANDALONE_SPRINT_SECOND_FIST_SP1_COMPATIBILITY_CORRECTION.md`
+Exact implemented rule:
 
 ```text
 origin SPRINT second FIST:
-  current POWER  -> SP1 or SP2 (unchanged)
-  current SPRINT -> SP1 or SP2 (add SP1)
+  current POWER  -> SP1 or SP2
+  current SPRINT -> SP1 or SP2
 ```
 
-Do not broaden anything else.
+Independent review confirms the added `SPRINT/SP1` arm still enters only the existing second-FIST clear-only branch:
+
+```text
+2 authored FIST markers
++ 1 prior accepted FIST
++ RIGHT already group7
+-> RearmTriggeredContacts()
+-> no second ActivateAttackSource()
+```
+
+No neighboring family, first-FIST, hook, lifecycle, cleanup or diagnostic behavior changed.
 
 Collision-twin state:
 
 ```text
 both twins compile the same shared behavior source
-behavior source candidate = current
-behavior binary = NOT current/validated until rebuilt
+behavior source candidate = current at 1c45e5e...
+behavior binary = stale/unverified until rebuilt
 ```
 
 Last recorded behavior SHA256 is pre-compatibility:
 `A806EC6523116286335A659735067B1AA6C581837B3E0D604E6271AC98079340`
 
-Latest recorded diagnostic SHA256:
+Latest recorded diagnostic SHA256 before this correction:
 `81CF4C99BDA65EA6FBBC02839680E83B719B6E535407EB604E6AD015B038F2D3`
-
-No post-compatibility behavior built/live hash is recorded. After correction + source review, build **both** twins and record both new hashes.
-
-Runtime-log rule: `PROJECT_OPERATING_PROCEDURES.md` v1.19 / POP-06 now hard-requires bounded retrieval for every runtime log regardless of size; keep whole log bodies out of Chat context unless a concrete exceptional reason requires incremental full-source reading.
 
 Immediate route:
 
 ```text
-Work correction
--> Normal Chat source review
--> build BOTH twins
--> diagnostic standalone completion:
-   1+3 direct retest
+sync local branch
+-> build BOTH twins from reviewed final source
+-> record both hashes
+-> deploy diagnostic twin
+-> corrected standalone sentinel:
+   1+3 direct SPRINT/SP1 retest
    one POWER/SP1 continuation control
    single SPRINT/SP1
    true-Power single/double
@@ -76,6 +70,8 @@ Work correction
 -> production collision migration + integration validation
 ```
 
-Exact validation details: `COLLISION_TEST_PLAN.md` §4.5–§4.6.  
-Do not run more tests on the pre-correction source.  
+Runtime-log rule: `PROJECT_OPERATING_PROCEDURES.md` v1.19 / POP-06 hard-requires bounded retrieval for every runtime log regardless of size; keep whole log bodies out of Chat context unless a concrete exceptional reason requires incremental full-source reading.
+
+Exact acceptance details: `COLLISION_TEST_PLAN.md` §4.5–§4.6.  
+Active runtime contract: `docs/work/active/COLLISION_RAW55_STANDALONE_SPRINT_SECOND_FIST_SP1_COMPATIBILITY_CORRECTION.md`.  
 EV-385 artifacts are archived; `research/raw/` is `Keep.txt` only.
