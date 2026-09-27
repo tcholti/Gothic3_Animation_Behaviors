@@ -46,6 +46,12 @@ BaseSpeed = 1.0
 
 This means `1.0` is the convenient authoring reference: an animation authored around the chosen nominal frame/timing standard can play at that nominal rate before contextual gameplay modifiers are applied.
 
+### Neutral playback-scale interpretation
+
+For Speed design, treat `1.0` as the **neutral playback scale** and values such as `0.6` and `0.7` as attack-specific playback scalars below that neutral scale. This interpretation is strongly supported by the observed/native New Balance values and is the useful model for animation authoring: G3AB is effectively restoring configured Normal/Quick attacks to the neutral authored scale first, then allowing the INI to tune them above or below it.
+
+Do **not** overstate this as a proven engine-wide claim that "most Gothic animations use 1.0". The project has not exhaustively measured all animation classes. The durable fact needed by G3AB is narrower: `1.0` is the neutral authored reference for our controlled profiles, while `0.6`/`0.7` are known attack-specific reductions on tested/current routes.
+
 Per-profile INI values may then deliberately deviate from `1.0`, for example conceptually:
 
 ```text
