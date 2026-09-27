@@ -5,7 +5,7 @@
 
 ## Purpose
 
-Define the permanent diagnostics-free collision behavior for factual `gEUseType_PhysicalFist` / raw55 after the completed causal research campaign, New Balance compatibility work, the EV-385 standalone contradiction, EV-386 corrected marked acceptance, EV-387 native-fallback closure, and EV-388 final-candidate New Balance reconfirmation.
+Define the permanent diagnostics-free collision behavior for factual `gEUseType_PhysicalFist` / raw55 after the completed causal research campaign, New Balance compatibility work, the EV-385 standalone contradiction, EV-386 corrected marked acceptance, EV-387 native-fallback closure, EV-388 final-candidate New Balance reconfirmation, and EV-389 diagnostics-free release-purity PASS.
 
 Historical probes/implementation contracts are preserved under `docs/archive/investigations/`. Ordinary factual lookup: `COLLISION_REFERENCE.md`. Exact proof: `EVIDENCE_INDEX.md`.
 
@@ -128,6 +128,8 @@ Gothic native exact RIGHT 7 -> 5 cleanup first
 
 There is no custom raw55 terminal cleanup path.
 
+EV-389 confirms this permanent behavior without diagnostics: Troll double-FIST authoring can produce two separate contacts from two markers, while ordinary one-on-one and group combat show no observed stuck/persistent collision state.
+
 ---
 
 ## 4. Family/origin semantics
@@ -138,7 +140,7 @@ The native Quick callback owns its state progression and may attempt a premature
 
 The first authored FIST opens/rearms the source. A later authored FIST may occur at the factual Quick state available at that marker and owns another contact-bookkeeping rearm.
 
-Evidence: EV-264–EV-273 plus protected controls through EV-388.
+Evidence: EV-264–EV-273 plus protected controls through EV-389.
 
 ### Normal
 
@@ -268,7 +270,7 @@ generic C1 terminal policy
 
 EV-381 reinforces that an accepted/open/rearmed raw55 window may still produce zero `ONDAMAGE`; native unmarked raw55 windows can also miss completely. Therefore a visual miss is not itself evidence of marker failure.
 
-EV-386 confirms marked corrected standalone traffic converges through Gothic/native cleanup to group5 with zero outstanding obligation. EV-387 confirms the final candidate leaves unmarked raw55 native opening/contact/cleanup untouched. EV-388 shows the same cleanup ownership remains healthy across the focused final-candidate New Balance batch.
+EV-386 confirms marked corrected standalone traffic converges through Gothic/native cleanup to group5 with zero outstanding obligation. EV-387 confirms the final candidate leaves unmarked raw55 native opening/contact/cleanup untouched. EV-388 shows the same cleanup ownership remains healthy across the focused final-candidate New Balance batch. EV-389 adds diagnostics-free gameplay confirmation that double-marker Troll attacks produce two authored contact opportunities without observed persistent collision after combat churn.
 
 ---
 
@@ -301,7 +303,7 @@ Unknown future behavior returns to an isolated probe under `FEATURE_DEVELOPMENT_
 
 ## 8. Release / diagnostic separation
 
-Permanent behavior must compile in both collision twins:
+Permanent behavior must compile independently of diagnostics. The research twins were:
 
 ```text
 Script_FrameCollisionBehaviorTest
@@ -323,15 +325,21 @@ Diagnostic SHA256:
 AEF0E18205BAA9258D50B2E934173C48B845E0F1B9A9F425D622F4E4598EE773
 ```
 
-The diagnostic twin has passed sole-live deployment/startup, the complete standalone/no-New-Balance final-candidate sentinel through EV-386–EV-387, and the focused New Balance final-candidate regression EV-388. Therefore the diagnostic phase is CLOSED/PASS. The behavior twin is now the current release-purity gate and must be deployed alone before production migration.
+The diagnostic twin passed sole-live deployment/startup and the complete final-candidate diagnostic campaign through EV-388.
+
+EV-389 then deployed the behavior twin alone, with exact built/live SHA match and the diagnostic twin physically absent. Gothic 3 startup passed, and marker-dependent functional controls that native timing cannot explain also passed: Hack collision, OFF negative control, multi-window equipped contacts, and double-contact body/raw55 attacks.
+
+Therefore diagnostics-free release purity is proven before production migration.
 
 ---
 
-## 9. Compatibility disposition
+## 9. Compatibility / migration disposition
 
 Focused raw55 New Balance compatibility is CLOSED/PASS through EV-382. Broad intended-stack New Balance compatibility is CLOSED/PASS EV-384.
 
 EV-385's standalone current-SPRINT/SP1 contradiction is **CLOSED by EV-386** on the corrected final candidate. EV-386 closes the marked final-candidate standalone matrix including factual true-Power single/double controls; EV-387 closes unmarked raw55 native fallback; EV-388 closes the required post-correction final-candidate New Balance regression, preserving current-SPRINT/SP2, same-C1 Action9->Action2/POWER-SP2, Sprint first-SP2, and true-Power SP1->SP2 behavior with healthy cleanup.
+
+EV-389 closes the diagnostics-free release-purity gate.
 
 Therefore:
 
@@ -339,16 +347,18 @@ Therefore:
 standalone/no-New-Balance final-candidate raw55 sentinel = CLOSED/PASS EV-386–EV-387
 final-candidate New Balance/raw55 focused regression = PASS EV-388
 diagnostic phase = CLOSED/PASS EV-386–EV-388
+behavior-only release-purity validation = CLOSED/PASS EV-389
+production collision migration = CURRENT
 ```
 
 Current route:
 
 ```text
-deploy Script_FrameCollisionBehaviorTest ONLY
--> verify diagnostic twin absent
--> verify live behavior SHA256 D5BECB2C32A9766B1B444CB5864C0C30C9AC251A1679F605127F4D7318900B78
--> diagnostics-free observational release-purity validation
--> production collision migration only after behavior-only PASS
+freeze bounded migration into src/Script_G3AnimationBehaviors
+-> preserve this accepted architecture and state contract
+-> keep diagnostic-only machinery separate
+-> source review
+-> local production build/startup + focused integration validation
 ```
 
-Do not reopen closed raw55 mechanisms or broad compatibility scope unless behavior-only or later integration evidence produces a new contradiction.
+Do not reopen closed raw55 mechanisms or broad compatibility scope unless migration/integration evidence produces a new contradiction.
