@@ -8,7 +8,7 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Current gate: **standalone/no-New-Balance final-candidate diagnostic raw55 sentinel CLOSED/PASS through EV-386–EV-387. Next = bounded review of the User's already-recorded New Balance final-candidate logs.**
+Current gate: **final-candidate diagnostic phase CLOSED/PASS through EV-386–EV-388. Next = deploy the diagnostics-free behavior twin as the sole live collision DLL and perform the release-purity observational session.**
 
 Reviewed behavior source:
 `1c45e5ec3de1194e43b2f2200a28fe7846bd5ce0`
@@ -20,46 +20,48 @@ Behavior   D5BECB2C32A9766B1B444CB5864C0C30C9AC251A1679F605127F4D7318900B78
 Diagnostic AEF0E18205BAA9258D50B2E934173C48B845E0F1B9A9F425D622F4E4598EE773
 ```
 
-Diagnostic twin sole-live deployment/startup = PASS.
+Diagnostic sole-live deployment/startup = PASS.
 
-EV-386 marked standalone closure:
-
-```text
-1+3: SPRINT/SP1 first accepted/open;
-     second same-C1 SPRINT/SP1 accepted clear-only
-     GroupRequested=0 / ClearTriggeredList=1
-1+8 / 1+15: SPRINT/SP1 -> same-C1 POWER/SP1 marker2 PASS
-true-Power single + double PASS
-single Sprint/SP1 PASS
-zero REJECTED_* / ANOMALY; cleanup group5 / Outstanding=0; clean unload
-```
-
-EV-387 unmarked fallback closure:
+Diagnostic runtime closure:
 
 ```text
-BlackTroll raw55 Quick / Normal / true Power / Sprint
-MarkerPresent=0 / FistMarkers=0 / SuppressNative=0
-zero RAW55_PHYSICAL_FIST_MARKER
-zero RAW55_PHYSICAL_FIST_NATIVE_OPEN_SUPPRESSED
-Gothic native 5->7 and 7->5 remains authoritative
-Outstanding=0; zero rejection/anomaly/invariant warning; clean unload
+EV-386 marked standalone correction matrix PASS
+EV-387 standalone unmarked raw55 native fallback PASS
+EV-388 focused final-candidate New Balance/raw55 regression PASS
+
+EV-388 required compatibility routes:
+  1+3 SPRINT/SP1 -> same-C1 SPRINT/SP2 marker2 accepted clear-only
+  1+8 / 1+15 SPRINT/SP1 -> same-C1 POWER/SP2 marker2 accepted clear-only
+  single-FIST SPRINT/SP2 accepted/open/clean cleanup
+  true-Power SP1 -> SP2 double-FIST preserved
+
+all five EV-388 logs:
+  zero REJECTED_*
+  zero ANOMALY
+  zero C1 INVARIANT WARNING
+  clean lifecycle tails
+  clean diagnostic unload
 ```
+
+The EV-388 no-marker New Balance artifact additionally preserves observed Power/Normal/Quick native raw55 fallback. It contains no Sprint/Action9 occurrence, so no unmarked-New-Balance Sprint claim is made from that artifact.
 
 Immediate route:
 
 ```text
-1. User uploads the New Balance final-candidate logs already recorded; DO NOT rerun them.
-2. POP-06 bounded review.
-3. Required focus: compatibility-sensitive Sprint-origin route, including established SP2 / same-C1 Action9->Action2 semantics; cleanup/lifecycle must remain healthy.
-4. PASS -> diagnostic phase CLOSED.
-5. Deploy behavior twin ONLY; diagnostic twin absent; verify live SHA D5BECB2C...
-6. Final diagnostics-free observational session:
-   raw55 marked + equipped markers + native/unmarked
-   + several animations whose desired RIGHT window exists only through G3AB markers
-   + ordinary combat/source churn for cleanup persistence.
-7. Behavior-only PASS -> production collision migration + integration validation.
+1. deploy Script_FrameCollisionBehaviorTest.dll ONLY
+2. physically remove Script_FrameCollisionTest.dll
+3. verify exactly one live collision twin
+4. verify live behavior SHA256 = D5BECB2C32A9766B1B444CB5864C0C30C9AC251A1679F605127F4D7318900B78
+5. launch Gothic 3: no startup/load crash; no diagnostic log expected
+6. diagnostics-free observational session:
+   representative marked raw55
+   representative ordinary equipped markers
+   representative native/unmarked behavior
+   several marker-dependent RIGHT-window animations
+   ordinary combat/weapon/source churn for cleanup persistence
+7. behavior-only PASS -> production collision migration + integration validation
 ```
 
-POP-06: every runtime log uses bounded retrieval regardless of size.  
-EV-386 and EV-387 runtime artifacts are archived byte-identically; `research/raw/` should contain only `Keep.txt`.  
-Exact acceptance: `COLLISION_TEST_PLAN.md` §4.5–§4.6.
+POP-06: every diagnostic runtime log uses bounded retrieval regardless of size.  
+EV-386–EV-388 artifacts are archived byte-identically; `research/raw/` should contain only `Keep.txt`.  
+Exact behavior-only acceptance: `COLLISION_TEST_PLAN.md` §4.6.
