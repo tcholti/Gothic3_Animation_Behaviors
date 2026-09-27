@@ -8,71 +8,51 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Current gate: **EV-385 correction implemented + independently reviewed PASS; both twins rebuilt; diagnostic deployment/startup PASS; corrected standalone runtime sentinel is next.**
+Current gate: **corrected marked standalone raw55 final-candidate matrix PASS EV-386; one unmarked raw55 native-fallback standalone control remains before reviewing the already-run New Balance batch.**
 
-Reviewed correction source:
+Reviewed behavior source:
 `1c45e5ec3de1194e43b2f2200a28fe7846bd5ce0`
 
-Exact rule:
+Final-candidate hashes:
 
 ```text
-origin SPRINT second FIST:
-  current POWER  -> SP1 or SP2
-  current SPRINT -> SP1 or SP2
+Behavior  D5BECB2C32A9766B1B444CB5864C0C30C9AC251A1679F605127F4D7318900B78
+Diagnostic AEF0E18205BAA9258D50B2E934173C48B845E0F1B9A9F425D622F4E4598EE773
 ```
 
-Independent review confirms the new `SPRINT/SP1` arm remains second-FIST clear-only:
+Diagnostic twin sole-live deployment/startup = PASS.
+
+EV-386:
 
 ```text
-2 authored FIST
-+ 1 prior accepted FIST
-+ RIGHT already group7
--> RearmTriggeredContacts()
--> no second ActivateAttackSource()
+1+3: SPRINT/SP1 first FIST accepted/open;
+     second same-C1 SPRINT/SP1 accepted clear-only
+     GroupRequested=0 / ClearTriggeredList=1
+
+1+8 and 1+15: SPRINT/SP1 -> same-C1 POWER/SP1 marker2
+                    accepted clear-only
+
+true Power single + double: PASS
+single Sprint/SP1: PASS
+all four logs: zero REJECTED_*; zero ANOMALY;
+               cleanup to group5 / Outstanding=0;
+               clean unload
 ```
 
-Final-candidate twin hashes from the same reviewed source:
-
-```text
-Behavior SHA256:
-D5BECB2C32A9766B1B444CB5864C0C30C9AC251A1679F605127F4D7318900B78
-
-Diagnostic SHA256:
-AEF0E18205BAA9258D50B2E934173C48B845E0F1B9A9F425D622F4E4598EE773
-```
-
-Diagnostic deployment state:
-
-```text
-sole live collision twin = Script_FrameCollisionTest.dll
-built SHA == live SHA = AEF0E182...
-startup CORE banner present
-hooks installed
-clean unload
-DIAGNOSTIC DEPLOYMENT / STARTUP PASS
-```
+EV-385 defect is CLOSED. All four EV-386 artifacts were marked, and bounded searches found no `MarkerPresent=0` BlackTroll/raw55 route. The separate unmarked native-fallback sentinel is therefore still required.
 
 Immediate route:
 
 ```text
-1. standalone/no-New-Balance BlackTroll raw55 double-FIST 1+3
-   -> direct retest of EV-385 failure
-   -> expect marker1 SPRINT/SP1 accepted/open
-   -> expect marker2 same C1 SPRINT/SP1 accepted clear-only
-   -> GroupRequested=0 / ClearTriggeredList=1 on marker2
-   -> native cleanup group7->5 / Outstanding=0
-2. one POWER/SP1 continuation control (1+8 OR 1+15)
-3. single SPRINT/SP1 control
-4. factual true-Power single + double
-5. unmarked raw55 native fallback
-6. one small New Balance/raw55 Sprint SP2 / Action9->Action2 regression
-7. deploy behavior twin ONLY; verify behavior SHA above
-8. final diagnostics-free observational collision session
-9. behavior-only PASS -> production collision migration + integration validation
+1. one standalone/no-New-Balance unmarked BlackTroll/raw55 control
+2. if PASS, upload the already-run New Balance final-candidate logs
+   (no rerun required)
+3. bounded New Balance review, preserving Sprint SP2 / Action9->Action2 semantics
+4. deploy behavior twin ONLY; verify live behavior SHA above
+5. final diagnostics-free observational collision session
+6. behavior-only PASS -> production collision migration + integration validation
 ```
 
-Runtime-log rule: POP-06 hard-requires bounded retrieval for every runtime log regardless of size. Do not load whole logs into Chat merely because they fit.
-
-Exact acceptance details: `COLLISION_TEST_PLAN.md` §4.5–§4.6.  
-Active runtime contract: `docs/work/active/COLLISION_RAW55_STANDALONE_SPRINT_SECOND_FIST_SP1_COMPATIBILITY_CORRECTION.md`.  
-EV-385 artifacts are archived; `research/raw/` is `Keep.txt` only.
+POP-06: every runtime log uses bounded retrieval regardless of size.  
+EV-386 logs are archived byte-identically; `research/raw/` is `Keep.txt` only.  
+Exact acceptance: `COLLISION_TEST_PLAN.md` §4.5–§4.6.
