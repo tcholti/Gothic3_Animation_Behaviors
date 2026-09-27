@@ -12,17 +12,16 @@
 ## Current gate
 
 ```text
-latest closed collision evidence = EV-389
+latest closed collision evidence = EV-390
 current evidence ledger = EVIDENCE_LEDGER_389_ONWARD.md
 
 collision diagnostic phase = CLOSED/PASS EV-386–EV-388
 behavior-only release-purity collision gate = CLOSED/PASS EV-389
-production collision source migration implementation = 9da92dc559d8897a675d575f8d88b3631470ed7d
-independent production-migration source review = PASS
-production migration task = CLOSED / archived
+production collision source migration = PASS
+production Script_G3AnimationBehaviors.dll integration = CLOSED/PASS EV-390
 
-CURRENT = bounded local production-integration validation of Script_G3AnimationBehaviors.dll
-NEXT AFTER PASS = shared INI/profile foundation + Speed v2 only
+CURRENT = shared generic INI/profile foundation for Speed + later Raise
+NEXT = Speed v2 research/design/implementation/testing ONLY
 RAISE = PAUSED until Speed is completely closed
 ```
 
@@ -37,7 +36,7 @@ main
 
 development
 = sole active general development/research/integration branch
-= collision integration -> Speed -> Raise -> assembled regression
+= collision integration -> shared config -> Speed -> Raise -> assembled regression
 
 docs/collision-source-evidence
 = historical collision branch; no ordinary new work
@@ -47,8 +46,8 @@ Current cycle promotion rule:
 
 ```text
 development
--> close collision production integration
--> shared generic INI/profile schema
+-> production collision integration CLOSED/PASS EV-390
+-> freeze one shared generic INI/profile schema for Speed + future Raise
 -> finish Speed v2 completely
 -> finish Raise completely
 -> assembled collision + Speed + Raise regression
@@ -78,7 +77,7 @@ unconfigured profile = native behavior
 no weapon-specific C++ policy branches merely for configuration selection
 ```
 
-### Speed — first feature after collision integration
+### Speed — active feature after shared-config freeze
 
 ```text
 unconfigured effective speed = B(profile, action, phase) * M(context)
@@ -100,24 +99,38 @@ matching configured Normal/Quick profile
 
 The shared INI/profile schema is designed to support both Speed and future Raise from the start, but Raise behavior/research does not begin until Speed is closed.
 
+## EV-390 production integration closure
+
+Production build/deployment identity:
+
+```text
+Script_G3AnimationBehaviors.dll
+built SHA256 = 12FA5819FEEB5033B2D747A9B57CA1591E588EAAC0BAC9CC386307B77C367A55
+live  SHA256 = 12FA5819FEEB5033B2D747A9B57CA1591E588EAAC0BAC9CC386307B77C367A55
+sole live G3AB/collision product = PASS
+```
+
+Focused runtime controls all worked:
+
+```text
+2H double attacks / three markers
+1H1H triple attacks / four markers
+human Fist double attack / two markers
+Sabretooth raw8 double attack / two markers
+Troll raw55 double attack / two markers
+```
+
+These deliberately exceed native Gothic collision-window structure and therefore confirm active migrated production marker behavior. Collision production migration is closed; do not rerun historical collision campaigns absent contradictory evidence.
+
 ## Immediate route
 
 ```text
-1. User syncs/checks out development
-2. build Script_G3AnimationBehaviors.dll locally
-3. deploy it as the sole G3AB production collision DLL
-4. startup smoke
-5. focused collision production-integration sanity:
-   - one marker-dependent equipped positive control (Hack or ON/OFF/ON)
-   - raw8 double-FIST contact control
-   - raw55 double-FIST contact control
-   - observe no stuck/persistent collision
-6. PASS -> record production integration closure
-7. inspect Gothic config API and freeze one shared Speed+Raise INI/profile schema
-8. begin Speed v2 only
+1. inspect the current Gothic/eCConfigFile configuration API and existing old G3AB config prototype only as reference
+2. freeze one generic G3AnimationBehaviors.ini profile syntax compatible with both Speed and future Raise
+3. implement only the shared parsing/normalization/profile lookup foundation needed for Speed and later Raise
+4. then research/design/implement/test Speed v2 ONLY until completely closed
+5. do not begin Raise behavior/research while Speed remains open
 ```
-
-This is a focused migration check, not a rerun of the closed EV-386–EV-389 campaigns. No diagnostic log is expected unless contradictory behavior appears.
 
 ## Read next by question
 
@@ -125,6 +138,7 @@ This is a focused migration check, not a rerun of the closed EV-386–EV-389 cam
 - branch + sequential Speed→Raise decision -> `decisions/ADR-0006-development-branch-and-sequential-speed-raise.md`
 - Raise/speed profile architecture -> `DESIGN.md` §§2–3 + `decisions/ADR-0004-speed-control-base-speed-preserves-dynamic-modifiers.md` + `decisions/ADR-0005-raise-speed-config-profiles.md`
 - third-party source -> `../references/README.md`
+- collision proof -> `EVIDENCE_INDEX.md` -> EV-389–EV-390
 - collision facts -> `COLLISION_REFERENCE.md`
 - release/diagnostic separation -> `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`
 - archived production migration contract -> `archive/investigations/PRODUCTION_COLLISION_CORE_MIGRATION.md`
@@ -136,10 +150,10 @@ This is a focused migration check, not a rerun of the closed EV-386–EV-389 cam
 ## Still paused
 
 ```text
-NO Speed implementation before collision production integration closes
 NO Raise implementation/research while Speed is open
 NO AttackContinuationProtection work
 NO targeting/climbing work
 NO promotion of development to main before the agreed integrated checkpoint
+NO collision redesign absent contradictory evidence
 NO load-order compensation experiment absent contradictory evidence
 ```
