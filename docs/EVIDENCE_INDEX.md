@@ -59,8 +59,8 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | Rapier separation compatibility | EV-372 |
 | broad mixed-gameplay stress / Stage-D closure | EV-373–EV-374 |
 | Zombie+Axe separation asset-gap remedy | EV-375 |
-| New Balance / AttackCollision compatibility | EV-284 preflight + EV-376–EV-384 |
-| New Balance raw55 Power/Sprint-origin SP2 compatibility | EV-376, EV-378–EV-381 |
+| New Balance / AttackCollision compatibility | EV-284 preflight + EV-376–EV-384, EV-388 |
+| New Balance raw55 Power/Sprint-origin SP2 compatibility | EV-376, EV-378–EV-381, EV-388 |
 | New Balance equipped Sprint + raw8 Sprint controls | EV-377 |
 | New Balance raw55 Sprint-first SP2 discovery/correction | EV-378–EV-379 |
 | New Balance raw55 Sprint-origin second-FIST timing/correction | EV-379–EV-381 |
@@ -75,6 +75,7 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | final-candidate factual true-Power single/double marked controls | EV-386 |
 | final-candidate unmarked raw55 native fallback | EV-387 |
 | final-candidate standalone/no-New-Balance diagnostic raw55 closure | EV-386–EV-387 |
+| final-candidate New Balance focused raw55 regression / diagnostic closure | EV-388 |
 | native contact misses vs authored marker correctness | EV-381 |
 | sheath/draw contact observation | EV-380–EV-381; not a marker blocker |
 
@@ -117,34 +118,38 @@ EV-384         broad intended-stack New Balance mixed-gameplay compatibility PAS
 EV-385         standalone Sprint-origin second FIST at current SPRINT/SP1 contradiction discovered
 EV-386         corrected current-SPRINT/SP1 marker2 PASS; marked standalone matrix + true-Power controls PASS
 EV-387         unmarked raw55 native fallback PASS; final-candidate standalone diagnostic sentinel CLOSED
+EV-388         final-candidate New Balance SP2/Action9->Action2 regression PASS; diagnostic phase CLOSED
 ```
 
 ## 4. Current next gate
 
 ```text
-New Balance 0.7 intended-stack compatibility is CLOSED/PASS through EV-384 on the pre-final-SP1-correction lineage.
+New Balance 0.7 intended-stack compatibility = CLOSED/PASS through EV-384.
 
 Final candidate 1c45e5e...:
   EV-385 standalone defect = CLOSED by EV-386
   marked standalone matrix = PASS EV-386
   unmarked raw55 native fallback = PASS EV-387
-  standalone/no-New-Balance final-candidate diagnostic sentinel = CLOSED/PASS EV-386–EV-387
+  standalone/no-New-Balance diagnostic sentinel = CLOSED/PASS EV-386–EV-387
+  bounded New Balance final-candidate regression = PASS EV-388
+  diagnostic phase = CLOSED/PASS EV-386–EV-388
 
-EV-387 proves unmarked BlackTroll raw55 Quick/Normal/true-Power/Sprint remain native:
-  MarkerPresent=0 / FistMarkers=0 / SuppressNative=0
-  zero raw55 marker-owner/suppression records
-  Gothic native 5->7 and 7->5 remain authoritative
-  Outstanding=0 / no rejection-anomaly-invariant warning / clean unload
+EV-388 directly reconfirms:
+  current-SPRINT/SP2 second FIST under New Balance
+  same-C1 Action9/SPRINT -> Action2/POWER/SP2 second FIST
+  Sprint-origin first current-SPRINT/SP2
+  true-Power SP1 -> SP2 double-FIST
+  clear-only second marker / native cleanup / Outstanding=0
+  zero REJECTED_* / ANOMALY / C1 INVARIANT WARNING across the five artifacts
 
 Next:
-  publish/review User's already-run New Balance final-candidate logs; NO rerun
-  -> verify compatibility-sensitive Sprint SP2 / same-C1 Action9->Action2 semantics
-  -> if PASS, diagnostic phase CLOSED
-  -> behavior-only diagnostics-free release-purity validation
+  deploy Script_FrameCollisionBehaviorTest ONLY
+  -> verify diagnostic twin absent and live behavior SHA D5BECB2C...
+  -> diagnostics-free release-purity observational validation
   -> production collision migration only after behavior-only PASS
 ```
 
-Do not rerun the full standalone or New Balance campaigns unless focused final-candidate validation finds contradictory evidence.
+Do not rerun the full standalone or New Balance diagnostic campaigns unless behavior-only or later integration validation produces contradictory evidence.
 
 ## 5. Escalation order
 
@@ -166,7 +171,7 @@ research/derived/  deterministic retrieval aids
 research/archive/  processed canonical runtime provenance
 ```
 
-The EV-382 test3 logs, EV-384 New Balance stress log, EV-385 four-log standalone batch, EV-386 corrected four-log marked standalone batch, and EV-387 unmarked fallback artifact are processed and archived byte-identically under `research/archive/`. The EV-384 derived package remains under `research/derived/2026.09.27_newbalance_stresstest_large_log/` for bounded retrieval. `research/raw/` should contain only `Keep.txt` after EV-387 closure.
+The EV-382 test3 logs, EV-384 New Balance stress log, EV-385 four-log standalone batch, EV-386 corrected four-log marked standalone batch, EV-387 unmarked fallback artifact, and EV-388 five-log final-candidate New Balance batch are processed and archived byte-identically under `research/archive/`. The EV-384 derived package remains under `research/derived/2026.09.27_newbalance_stresstest_large_log/` for bounded retrieval. `research/raw/` should contain only `Keep.txt` after EV-388 closure.
 
 Historical ledger rows may retain paths that were correct when written. Use `EVIDENCE_PATH_MIGRATIONS.md` when a later archive move makes an old path ambiguous.
 
