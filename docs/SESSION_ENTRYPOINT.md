@@ -15,11 +15,15 @@
 latest closed collision evidence = EV-390
 collision production integration = CLOSED/PASS
 ADR-0007 shared Speed/Raise INI schema = ACCEPTED
+shared BehaviorProfiles foundation = IMPLEMENTED + independent source-review PASS
+implementation SHA = 81d4964201579c9f7a989404426c3d9dc9ab4834
 
-CURRENT = shared startup parsing/normalization/profile lookup foundation only
-NEXT = Speed v2 research/design/implementation/testing ONLY
+CURRENT = Speed v2 mechanism research/design ONLY
+NEXT = freeze the smallest evidence-backed Speed implementation after the composition mechanism is proven
 RAISE = PAUSED until Speed is completely closed
 ```
+
+`docs/work/active/` is clean; there is no active bounded Work implementation task while Normal Chat researches the Speed mechanism.
 
 ## Branch model
 
@@ -38,104 +42,115 @@ docs/collision-source-evidence
 = historical collision branch
 ```
 
-Current cycle:
+## Shared profile foundation — accepted
 
-```text
-development
--> collision production integration CLOSED/PASS EV-390
--> shared INI/profile schema ACCEPTED ADR-0007
--> shared config foundation
--> finish Speed v2 completely
--> finish Raise completely
--> assembled collision + Speed + Raise safety regression
--> deliberate promotion to main
-```
-
-The assembled regression is a final safety check that later features did not break already accepted behavior; it is not another Raise research phase.
-
-## Shared profile architecture
-
-Profile identity:
+Production now contains startup-only `BehaviorProfiles` loading and read-only lookup for:
 
 ```text
 AnimationFamily
 + LeftAnimationUseType
 + RightAnimationUseType
-+ ActionProfile
++ ActionProfile(Normal|Quick)
 ```
 
-`ActionProfile` = `Normal` or `Quick` only. UseType fields use normalized animation tokens from `ANIMATION_RULES.md`; no P0/P1/P2/P3 user-facing split and no weapon-named C++ policy branches merely to select configuration.
-
-ADR-0007 freezes free-form sections:
-
-```ini
-[Profile.Hero_None_1H_Normal]
-AnimationFamily=Hero
-LeftAnimationUseType=None
-RightAnimationUseType=1H
-ActionProfile=Normal
-BaseSpeed=0.80
-Raise=Native
-```
-
-The `Profile.*` suffix is a unique author label only; explicit fields own runtime matching.
-
-Semantics:
+Optional profile data:
 
 ```text
-BaseSpeed absent -> native/compatible-mod Speed behavior
-BaseSpeed=1.00 -> explicit configured base 1.00
-Raise absent/Native -> native Raise behavior
-Raise=On -> future configured Raise activation
-invalid mandatory identity -> ignore profile
-duplicate normalized identity -> ambiguous -> no G3AB override for that identity
-INI parsed once at startup -> normalized in-memory table
-runtime -> bounded in-memory lookup only
+BaseSpeed=<positive finite float>
+Raise=Native|On   # stored only; Raise behavior still inactive
 ```
 
-The exact pinned SDK revision `90bfd344de4510dda7ac9da7461cc7f1eac911f7` exposes `eCConfigFile` section/key enumeration (`GetSections`, `GetSectionBlock`, `GetSectionArray`) plus `Contains`, `GetString` and scalar getters, so no numbered profile registry is required.
+Important semantics remain:
 
-## Speed — next exclusive behavior feature
+```text
+BaseSpeed absent -> no Speed override
+BaseSpeed=1.00 -> explicit configured base 1.00
+duplicate normalized identity -> ambiguous -> no G3AB override
+invalid mandatory identity -> ignored
+INI parsed once during ScriptInit before hook installation
+```
+
+Archived implementation contract: `archive/investigations/SHARED_PROFILE_CONFIG_FOUNDATION.md`.
+
+## Speed v2 — current exclusive feature
+
+Required composition:
 
 ```text
 unconfigured effective speed = B(profile, action, phase) * M(context)
 configured effective speed   = C(profile, action, phase) * M(context)
 ```
 
-`C` is G3AB configured base speed; applicable Gothic/New Balance contextual modifiers `M` remain effective. Exact intervention point/mechanism remains focused research under ADR-0004. Final-result replacement, copying New Balance's multiplier table, arbitrary same-hook load-order dependency and weapon-specific C++ base-speed switches are rejected.
+`C` is G3AB configured base speed. Applicable Gothic/New Balance contextual modifiers `M` must remain effective. Final-result replacement, copied New Balance multiplier tables, arbitrary same-hook load-order dependency and weapon-specific C++ base-speed switches remain rejected by ADR-0004.
 
-## Raise — paused
+### Primary compatibility environment
 
-The shared config foundation may parse/store the future Raise field, but no Raise hook, intervention or behavior begins while Speed is open. Later `Raise=On` follows ADR-0005: request Raise through Gothic CombatMove semantics and let Gothic resolve the actual animation normally.
+During Speed development/testing keep the intended New Balance stack active:
+
+```text
+Script_G3AnimationBehaviors.dll
+Script_NewBalance.dll
+Script_AttackCollision.dll
+```
+
+Compatibility with this live stack is the primary runtime target. Native-only testing remains a later fallback/sanity control, not a substitute for New Balance compatibility.
+
+Pinned Jackydima reference:
+
+```text
+316d32406a133f8884e7e302752c35f66b4f54fc
+```
+
+Verified 2026-09-27: the pin still equals upstream `Jackydima/gothic3sdk` `master`.
+
+Source roles:
+
+```text
+Script_NewBalance/FunctionHook.cpp
+-> owns GetAnimationSpeedModifier hook at Script_Game +0x42A0
+-> combines action/use-type base choices with contextual multiplier logic
+
+Script_AttackCollision/Script_AttackCollision.cpp
+-> hooks melee AI callbacks/collision timings
+-> does not own GetAnimationSpeedModifier
+-> remains part of full-stack attack-flow compatibility testing
+```
+
+### Current causal question
+
+The old G3AB prototype is insufficient because it calls the prior speed function and then replaces the final configured result outright.
+
+Research now asks:
+
+> Where can G3AB substitute only the base term `B -> C` while leaving the live Gothic/New Balance modifier chain `M(context)` intact, without requiring arbitrary competing ownership of the whole `GetAnimationSpeedModifier` function and without copying New Balance policy?
+
+`Script_Game +0x42A0` remains a proven observation/prototype surface, not yet frozen as the final production intervention.
 
 ## Immediate route
 
 ```text
-1. freeze bounded source-only shared-config implementation task
-2. implement Profile.* enumeration + identity normalization/validation + optional BaseSpeed/Raise storage
-3. load once during ScriptInit and expose bounded in-memory lookup
-4. NO Speed hook/composition behavior yet
-5. NO Raise behavior
-6. independent source review
-7. then begin Speed v2 mechanism research only
+1. inspect the tested binary/native call route around GetAnimationSpeedModifier and its consumers
+2. identify whether a narrower stable base-choice/input surface exists before final modifier composition
+3. compare that with current New Balance hook ownership and chaining semantics
+4. only if source/static evidence is insufficient, freeze the smallest diagnostics-only runtime probe
+5. do not implement Speed behavior until the composition mechanism is evidence-backed
+6. after Speed closes, begin Raise
 ```
 
 ## Read next by question
 
 - exact continuation -> `BETWEEN_CHATS.md`
 - Speed composition rationale -> `decisions/ADR-0004-speed-control-base-speed-preserves-dynamic-modifiers.md`
-- generic profile architecture -> `decisions/ADR-0005-raise-speed-config-profiles.md`
-- branch/sequencing -> `decisions/ADR-0006-development-branch-and-sequential-speed-raise.md`
-- exact INI schema -> `decisions/ADR-0007-shared-ini-profile-schema.md`
+- exact profile schema -> `decisions/ADR-0007-shared-ini-profile-schema.md`
 - overall architecture -> `DESIGN.md` §§2–3
-- normalized animation tokens -> `ANIMATION_RULES.md`
-- third-party compatibility source -> `../references/README.md`
+- source/hook research order -> `SOURCE_HOOK_GUIDE.md`
+- current third-party compatibility source -> `../references/README.md`
+- completed config implementation contract -> `archive/investigations/SHARED_PROFILE_CONFIG_FOUNDATION.md`
 - collision proof -> `EVIDENCE_INDEX.md` -> EV-389–EV-390
 
 ## Still paused
 
 ```text
-NO Speed behavior implementation before shared config foundation passes source review
 NO Raise implementation/research while Speed is open
 NO AttackContinuationProtection work
 NO targeting/climbing work
