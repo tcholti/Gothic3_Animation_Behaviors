@@ -3,7 +3,7 @@
 **Purpose:** Minimal durable current-state pointer. Repository startup begins at root `README.md` **Start Here**.  
 **Active development branch:** `docs/collision-source-evidence`  
 **Stable branch:** `main`  
-**Updated:** 2026-09-26
+**Updated:** 2026-09-27
 
 > **INTERRUPTED-CHAT ENTRY RULE:** after an abrupt/max-context/unusable Chat, return to root `README.md` and enter Recovery Lock. This file is then a clue, not unquestioned truth, until POP-11 reconciliation.
 
@@ -17,7 +17,7 @@ first raw55 SP2 correction = 6eb3e3ca96da55e89127c24d5f656e05610d315f
 Sprint-first SP2 correction = ce59e5a2bad564652eaba970e959bdef0b479d82
 Sprint-second SP2 correction = 4c85193f4efd31e789bc07d7e3c71d31a9b5326e
 Normal-second SP0 correction = a31c66b97e45c27d0739b7df51252d33f490e7e1
-latest runtime evidence = EV-382
+latest runtime evidence = EV-384
 current ledger = EVIDENCE_LEDGER_380_ONWARD.md
 
 standalone final-source collision regression = CLOSED/PASS EV-299–EV-374
@@ -26,7 +26,9 @@ New Balance equipped/raw8 Sprint controls = PASS EV-377
 raw55 Power/Sprint compatibility corrections = PASS EV-378–EV-381
 raw55 Normal second-FIST {SP0,SP1} correction = PASS EV-382
 focused raw55 Normal/Quick/Power/Sprint-origin New Balance compatibility = CLOSED/PASS
-New Balance full intended-stack compatibility = OPEN / CURRENT GATE
+dual-1H four-marker / three-window authoring = PASS EV-383
+New Balance full intended-stack compatibility = CLOSED/PASS EV-384
+standalone/no-New-Balance post-compat raw55 sentinel = OPEN / CURRENT GATE
 active Work task = NONE
 ```
 
@@ -60,7 +62,9 @@ native cleanup 7 -> 5 remains Gothic-owned first
 
 EV-382 directly proves the Normal SP0 repeated-contact route after hit1: marker2 can still be `NORMAL/SP0`, is accepted with `ClearTriggeredList=1`, requests no second physical opening, and can produce a later native hit2. Very-early marker2 before hit1 is also accepted without creating any artificial damage guarantee.
 
-The three EV-382 fixtures (`1+3`, `1+8`, `1+15`) contain zero marker anomalies and preserve Quick/Power/Sprint controls. In current New Balance timing, even frame15 Normal marker2 commonly remains SP0; the older SP1 route remains accepted and was already runtime-proven in the original Normal causal campaign.
+EV-383 additionally proves four authored equipped markers and three separately controllable offensive windows in one dual-1H attack execution across representative Normal / Quick / SimpleWhirl / Pierce fixtures.
+
+EV-384 closes the broader intended-stack New Balance compatibility gate. The long mixed gameplay stress run retained correct collision behavior across actor/weapon/C1/world churn. Its five indexed marker anomalies were known fail-closed Whirl generation-mismatch rejections; sampled C1-R1 finalizations, including dual-source and late-run cases, restored exact outstanding group-7 sources to group5 with `REPAIRED_TO_ITEM_EQUIPPED` and no observed divergent repair. The User reported the gameplay run looked correct.
 
 ## Deployment references
 
@@ -73,28 +77,28 @@ Final standalone behavior SHA256:
 Latest deployed diagnostic SHA256:
 `81CF4C99BDA65EA6FBBC02839680E83B719B6E535407EB604E6AD015B038F2D3`
 
+No production source file changed between the EV-382 correction and the EV-383/EV-384 runtime evidence tail.
+
 ## Exact next route
 
 ```text
-1. broader representative/full-stack New Balance compatibility run
-2. if full-stack gate passes: standalone/no-New-Balance post-compat raw55 sentinel
-3. production collision migration + diagnostics-free integration validation
+1. standalone/no-New-Balance post-compat raw55 sentinel
+   -> begin with the planned Troll/raw55 control without New Balance
+2. if sentinel passes: production collision migration + diagnostics-free integration validation
 ```
 
-Do not reopen focused raw55 behavior without concrete contradictory evidence.
+Do not reopen focused raw55 behavior or the closed New Balance full-stack gate without concrete contradictory evidence.
 
-## Current intended New Balance environment
+## Current intended standalone sentinel environment
 
 ```text
-New Balance 0.7 as distributed
-+ all normally used/distributed New Balance DLLs
-+ relevant Script_AttackCollision environment
-+ Zombie Separation
-+ Axe Separation
-+ Rapier Separation
-+ EV-375 zombie Axe copied/renamed assets
-+ exactly one Gothic3_Animation_Behaviors collision twin
+New Balance / Script_AttackCollision absent or disabled
+normal standalone G3AB test environment
+exactly one current diagnostic collision twin live
+same final compatibility source
 ```
+
+Minimum sentinel contract remains owned by `COLLISION_TEST_PLAN.md` §4.5.
 
 ## Paused speed-control authority
 
@@ -108,13 +112,13 @@ Configured speed is **base-speed authority**, not final effective-speed authorit
 - current facts → `COLLISION_REFERENCE.md`
 - validation gate → `COLLISION_TEST_PLAN.md`
 - raw55 architecture → `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`
-- evidence proof → `EVIDENCE_INDEX.md` → EV-376–EV-382
+- evidence proof → `EVIDENCE_INDEX.md` → EV-376–EV-384
 - speed architecture → `DESIGN.md` §3 / ADR-0004
 
 ## Still paused
 
 ```text
-NO production migration until New Balance full-stack compatibility + standalone post-compat sentinel close
+NO production migration until standalone post-compat sentinel closes
 NO Raise/speed implementation yet
 NO AttackContinuationProtection work
 ```
