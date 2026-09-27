@@ -2,8 +2,8 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active operating-convention authority  
-**Version:** 1.4  
-**Updated:** 2026-09-16
+**Version:** 1.5  
+**Updated:** 2026-09-27
 
 <!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
 
@@ -46,44 +46,49 @@ Current branch model:
 
 ```text
 main
-= stable integration + reusable stable Gothic 3 knowledge baseline
+= last deliberately promoted stable integration checkpoint
+= reusable stable Gothic 3 knowledge / product baseline
+= not advanced by ordinary current feature-development commits
+
+development
+= sole active general development / research / integration branch
+= current production collision integration, then Speed, then Raise
+= intended to remain subsystem-neutral for later targeting/climbing/etc.
 
 docs/collision-source-evidence
-= active collision development/research branch
-= owns remaining collision expansion, source/lifecycle/protection work,
-  collision compatibility, and production collision migration
+= historical collision-development branch
+= no ordinary new work after creation of development
 ```
 
 Current branch lifecycle is deliberately:
 
 ```text
-main and docs/collision-source-evidence aligned at the accepted pre-expansion checkpoint
+main frozen at the last stable checkpoint
         ↓
-continue collision engineering only on docs/collision-source-evidence
+development contains the reviewed production collision-core migration
         ↓
-complete marker/source/lifecycle/protection/compatibility responsibilities
+close focused production collision integration
         ↓
-migrate mature collision behavior into Script_G3AnimationBehaviors
-while keeping research diagnostics separate
+design/freeze one generic startup-loaded INI/profile schema usable by Speed + later Raise
         ↓
-validate the diagnostics-free collision integration
+research / implement / validate Speed v2 ONLY until completely closed
         ↓
-promote completed collision checkpoint to main
+research / implement / validate Raise ONLY after Speed closes
         ↓
-create feature/raise-attack-speed from that updated main
+assembled collision + Speed + Raise regression / compatibility validation
         ↓
-develop Raise + general/action/profile attack-speed + configuration work there
+deliberate promotion development -> main
+        ↓
+later adopted systems continue from the general development model
 ```
 
-Do not reinterpret `main` as the newest working state merely because it is the default branch.
+Do not reinterpret `main` as the newest working state merely because it is the default branch. Do not promote intermediate Speed work to `main` simply to create a Raise branch.
 
-Unfinished collision implementation stays on `docs/collision-source-evidence` until the complete collision responsibility, including production-direction migration into `Script_G3AnimationBehaviors`, has passed its required validation and is deliberately promoted.
+The public/integration DLL keeps the name `Script_G3AnimationBehaviors.dll` throughout the development cycle.
 
-The public/integration DLL keeps the name `Script_G3AnimationBehaviors`; completing collision does not create a collision-named production DLL.
+Do not create `feature/raise-attack-speed` for the current cycle. The earlier collision-specific branch progression was superseded on 2026-09-27 by ADR-0006 after the collision core was migrated into the production target. Historical branch names remain valid provenance and are not retroactively renamed.
 
-`feature/raise-attack-speed` is the accepted next feature branch name, but it must **not** be created early. Create it from the newly updated `main` only after the collision branch is complete and promoted.
-
-Stable documentation/knowledge may still be promoted separately when it has been reviewed and is suitable for the stable baseline, but ordinary collision implementation remains on the collision branch.
+Stable promotion is deliberate. During this cycle the intended stable promotion point is after collision production integration + Speed + Raise + assembled regression have all closed, unless the User explicitly chooses an earlier stable checkpoint.
 
 ---
 
@@ -223,17 +228,23 @@ The unchanged source raw/archive artifact remains canonical provenance.
 
 ## 8. Prototype / Build Identity and Versioning
 
-The current collision research architecture has two mutually exclusive runtime twins built from the same behavior source set:
+The collision research architecture retains two mutually exclusive runtime twins built from the same behavior source set:
 
 ```text
 Script_FrameCollisionBehaviorTest
-= diagnostics-free collision behavior build
+= diagnostics-free collision behavior reference build
 
 Script_FrameCollisionTest
 = same collision behavior + diagnostic instrumentation
 ```
 
-These are **research identities**, not the final public product names. Do not rename them merely for cosmetic cleanup while the current research/validation architecture is still active.
+These are research/reference identities, not public product names. Their mature behavior core has now been migrated into the production integration target:
+
+```text
+Script_G3AnimationBehaviors.dll
+```
+
+Do not rename/remove the twins merely for cosmetic cleanup while they remain useful accepted reference/diagnostic products.
 
 For controlled research builds, the primary identity is:
 
@@ -248,7 +259,7 @@ For diagnostic runs, also tie the build to the active gate/probe and the expecte
 
 Historical decimal prototype labels such as `v0.xx` remain valid historical references where they already exist, but they must not be casually incremented or restarted as a substitute for the gate/commit/product identity.
 
-From the current C1-era research onward:
+From the C1-era research onward:
 
 - use the active gate/probe plus commit SHA and selected product identity as the authoritative diagnostic research-build identity;
 - change diagnostic startup/banner text when the tested diagnostic meaning changes enough that confusing builds would invalidate a test;
@@ -256,7 +267,7 @@ From the current C1-era research onward:
 - do not create a new decimal prototype version merely because another Chat edited the code;
 - do not let prototype/research numbering or temporary target names silently define the eventual public `Script_G3AnimationBehaviors` release version.
 
-The production integration target remains `Script_G3AnimationBehaviors`. Mature collision behavior is migrated into that target before the collision branch is promoted; Raise/speed/config then continue from that stable production-direction foundation on `feature/raise-attack-speed`.
+The production integration target is `Script_G3AnimationBehaviors`. Current feature work proceeds on `development`: collision production integration first, then Speed to closure, then Raise to closure, then assembled regression before deliberate promotion to `main` under ADR-0006.
 
 Public/stable release versioning should be decided deliberately at the stable-integration/release stage.
 
@@ -281,7 +292,6 @@ current-state / evidence / living technical plan
 A typo or citation correction does not automatically require a semantic version bump.
 
 Git history remains the exact revision history.
-
 
 ### 9.1 Documentation lifecycle convention
 
@@ -394,6 +404,8 @@ A material convention change should record, proportionately:
 - which procedures/indexes/entrypoint routes are affected.
 
 Prefer forward continuity over cosmetic rewriting of history.
+
+The 2026-09-27 branch change is forward-only: historical `docs/collision-source-evidence` commits/links retain their names; new ordinary work starts on `development`; `main` remains the stable checkpoint until deliberate promotion. Rationale: ADR-0006.
 
 ---
 
