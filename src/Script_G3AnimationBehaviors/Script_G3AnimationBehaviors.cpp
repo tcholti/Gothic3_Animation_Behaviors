@@ -1,3 +1,4 @@
+#include "BehaviorProfiles.h"
 #include "EngineBridge.h"
 #include "RuntimeClock.h"
 
@@ -16,6 +17,7 @@ gSScriptInit &GetScriptInit()
 extern "C" __declspec(dllexport) gSScriptInit const *GE_STDCALL ScriptInit(void)
 {
     RuntimeClock::InitializeClock();
+    G3AB::BehaviorProfiles::Load();
     EngineBridge::InstallHooks();
     return &GetScriptInit();
 }

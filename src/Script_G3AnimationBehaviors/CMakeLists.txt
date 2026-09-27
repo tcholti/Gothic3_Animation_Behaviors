@@ -16,6 +16,8 @@ target_tree_sources(
         Script_G3AnimationBehaviors.cpp
         AttackMotionRouting.cpp
         AttackMotionRouting.h
+        BehaviorProfiles.cpp
+        BehaviorProfiles.h
         CollisionLifecycleGuard.cpp
         CollisionLifecycleGuard.h
         CollisionSourceOperations.cpp
