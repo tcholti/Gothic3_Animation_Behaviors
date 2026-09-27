@@ -126,3 +126,29 @@ Disposition:
 - **PASS — CORRECTED MARKED STANDALONE RAW55 FINAL-CANDIDATE MATRIX.**
 - **EV-385 ELIGIBILITY DEFECT CLOSED.**
 - **NEXT STANDALONE ITEM:** one representative unmarked raw55 native-fallback control. After that passes, process the already-run New Balance final-candidate regression before behavior-only release-purity validation.
+
+### EV-387 — Final-candidate standalone unmarked raw55 native fallback PASS
+
+Observed:
+- The User published one standalone/no-New-Balance BlackTroll/raw55 final-candidate run with authored FIST markers removed.
+- Repeated BlackTroll Quick, Normal, factual true Power (`Action2`), and Sprint (`Action9`) attacks are observed with `MarkerPresent=0`, `FistMarkers=0`, and `SuppressNative=0`.
+- Bounded searches find zero `RAW55_PHYSICAL_FIST_MARKER` records and zero `RAW55_PHYSICAL_FIST_NATIVE_OPEN_SUPPRESSED` records. G3AB therefore does not claim, physically open, or rearm these unmarked raw55 executions.
+- Gothic native behavior performs the exact RIGHT raw55 group5 -> group7 opening; native contact/damage may occur; ordinary native cleanup returns group7 -> group5 with `Outstanding=0` and `NO_OP_NO_OUTSTANDING` finalization.
+- Whole-artifact bounded searches find zero `REJECTED_*`, zero `ANOMALY`, and zero `C1 INVARIANT` matches. The diagnostic twin unloads cleanly.
+
+Scope / limits:
+- This is the final-candidate standalone/no-New-Balance BlackTroll/raw55 native-fallback control.
+- Combined with EV-386, it closes the corrected final-candidate standalone diagnostic raw55 sentinel.
+- It does not close the still-required final-candidate New Balance regression or the later diagnostics-free behavior-twin release-purity gate.
+
+Provenance:
+- reviewed behavior source: `1c45e5ec3de1194e43b2f2200a28fe7846bd5ce0`;
+- final-candidate diagnostic/live SHA256: `AEF0E18205BAA9258D50B2E934173C48B845E0F1B9A9F425D622F4E4598EE773`;
+- runtime upload commit: `3b1b9498682284f6612c93e3d878745e1dc8791d`;
+- archive transaction commit: `8cb7ef92e3d0af1e33a6ac9223d748bf463d939f`;
+- canonical archived raw: `research/archive/2026.09.27_blacktroll_all_single_no_markers_test2.log`;
+- Git blob: `71337df2faec9766b065196f70828d6ce0c22d44`.
+
+Disposition:
+- **PASS — FINAL-CANDIDATE STANDALONE/NO-NEW-BALANCE DIAGNOSTIC RAW55 SENTINEL CLOSED THROUGH EV-386–EV-387.**
+- **NEXT:** review the User's already-recorded final-candidate New Balance/raw55 logs through POP-06 bounded retrieval; do not rerun them. The focused regression must preserve the compatibility-sensitive Sprint SP2 / Action9 -> Action2 semantics before behavior-only release-purity validation.
