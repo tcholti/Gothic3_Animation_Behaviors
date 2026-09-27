@@ -468,7 +468,7 @@ static bool IsSecondFistAllowed(
             return (currentFamily == AttackFamily_Power
                     && (statePosition == 1 || statePosition == 2))
                 || (currentFamily == AttackFamily_Sprint
-                    && statePosition == 2);
+                    && (statePosition == 1 || statePosition == 2));
         default:
             return false;
     }
