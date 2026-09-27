@@ -58,7 +58,9 @@ Quick runtime variants may remain distinct factual Gothic actions internally, bu
 
 Raise/speed feature policy must not grow weapon-specific C++ branches such as `if 1H`, `if 2H`, `if Axe`, or `if Staff` merely to select configured behavior. Weapon/use-type selection belongs to profile data plus normalized runtime facts. A modded item participates through the runtime UseType / animation category and animation family it exposes; adding another configured profile should not require a new C++ weapon branch.
 
-Architecture rationale: ADR-0005.
+The exact INI syntax is deliberately not inherited from the old 2H-only prototype. One generic schema will be frozen after inspecting the actual Gothic config API, and it must be capable of representing both Speed and later Raise from the start. During the current cycle, only the Speed consumer is implemented while Speed remains the active feature; Raise stays paused until Speed closes. Sequencing rationale: ADR-0006.
+
+Architecture rationale: ADR-0005 + ADR-0006.
 
 ---
 
@@ -79,6 +81,8 @@ matching configured Normal/Quick profile
 ```
 
 The existing 2H Normal prototype proves this mechanism by asking Gothic for `Raise`; its player + None/2H gate is fixture scope, not the final architecture. Other Normal/Quick profiles, especially custom Quick Raise, require focused runtime validation before production acceptance.
+
+Raise is deliberately **not** the current feature. Under ADR-0006 it remains paused until Speed v2 is fully researched, implemented, validated and closed. The shared configuration model may already contain the future Raise field/semantics; that does not authorize early Raise behavior work.
 
 ### Speed
 
@@ -101,7 +105,7 @@ If profile-specific reference/base data is eventually required, it belongs in ge
 
 Recover follows the effective Hit speed; no separate user-facing `RecoverSpeed` key is planned.
 
-Architecture rationale: ADR-0004 + ADR-0005.
+Speed is the first feature responsibility after the production collision integration check. Keep the project single-focus: research/design/implement/validate Speed to closure before beginning Raise. Architecture/sequencing rationale: ADR-0004 + ADR-0005 + ADR-0006.
 
 ---
 
@@ -275,8 +279,6 @@ Full authority: `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`.
 
 ---
 
-
-
 ## 6. Collision Lifetime and Cleanup
 
 For equipped weapons, a successful exact-source `Item_Attack` request creates/refreshes an obligation on the current C1 generation. Successful transition away fulfills it. Native cleanup always gets first opportunity. After native AISetState returns, C1-R1 may repair only an exact outstanding current-equipped live source still at group 7:
@@ -423,17 +425,20 @@ Do not rely on arbitrary DLL load order or assumed same-function hook chaining.
 Required checkpoints:
 
 ```text
-mature collision assembly after AttackContinuationProtection
--> New Balance + relevant Jackydima / Script_AttackCollision compatibility
+migrated diagnostics-free Script_G3AnimationBehaviors collision core
+-> focused production integration compatibility
 
-migrated diagnostics-free Script_G3AnimationBehaviors
--> integration compatibility
+Speed v2 production candidate
+-> standalone + New Balance / relevant Jackydima compatibility
 
-later Raise + speed + config assembly
--> final assembled compatibility/regression
+Raise production candidate after Speed closure
+-> focused Raise compatibility
+
+assembled collision + Speed + Raise candidate
+-> final integrated compatibility/regression before stable promotion
 ```
 
-EV-242 is Pierce-specific compatibility evidence only, not blanket certification.
+Historical EV-242 is Pierce-specific compatibility evidence only; EV-384/EV-388/EV-389 carry the mature collision/New Balance release-candidate evidence. New feature changes still require their own bounded compatibility proof.
 
 ---
 
@@ -485,35 +490,44 @@ Diagnostic research products may add dedicated removable probes for future unkno
 
 ## 12. Durable Implementation Order
 
+The current deliberate sequence is single-focus and is governed by ADR-0006:
+
 ```text
-closed collision architecture + evidence-backed feature scope
--> standalone collision regression campaign
--> New Balance 0.7 exact distributed-bundle regression incl. AttackCollision
--> mature collision migration into Script_G3AnimationBehaviors
--> diagnostics-free production integration validation
--> later Raise + action/profile Speed + Config
--> AttackContinuationProtection remains a separate responsibility
+closed collision architecture + EV-389 release-purity evidence
+-> production collision-core source migration [COMPLETE / source review PASS]
+-> focused diagnostics-free Script_G3AnimationBehaviors production integration validation
+-> inspect config API and freeze one generic INI/profile schema usable by Speed + later Raise
+-> Speed v2 research / implementation / validation ONLY
+-> Speed fully CLOSED
+-> Raise research / implementation / validation ONLY
+-> Raise fully CLOSED
+-> assembled collision + Speed + Raise compatibility/regression
+-> deliberate development -> main promotion
+-> later adopted systems (targeting / climbing / etc.) continue from the general development model
 ```
 
-Live campaign status and the exact next setup belong in `SESSION_ENTRYPOINT.md` and `COLLISION_TEST_PLAN.md`, not in this architecture authority.
+The shared config foundation may contain or reserve Raise profile data while Speed is active, but that does not authorize Raise behavior work before Speed closure.
 
-Do not create `feature/raise-attack-speed` early.
+`AttackContinuationProtection` remains a separate future responsibility and is not implicitly inserted into the Speed/Raise sequence.
+
+Live campaign status and the exact next setup belong in `SESSION_ENTRYPOINT.md`; stable branch semantics belong in `PROJECT_PIPELINE.md`.
 
 ---
 
-## 13. Non-Goals During Current Standalone Regression
+## 13. Current Non-Goals
 
-Do not combine the current regression campaign with:
+Until the current responsibility advances deliberately, do not combine it with:
 
-- reopening closed raw55 causal research without contradictory evidence;
-- raw8 or raw55 redesign from routine regression confirmation;
+- reopening closed collision causal research without contradictory evidence;
+- raw8 or raw55 redesign from routine integration confirmation;
 - moving feature policy/state into `EngineBridge`;
 - species-specific monster/body marker vocabulary or filename-based actor gating;
 - authored FIST_OFF resurrection;
 - unrelated marker-vocabulary changes;
 - AttackContinuationProtection implementation;
-- Raise/speed/configuration implementation;
-- target acquisition or climbing.
+- Raise implementation/research while Speed remains open;
+- target acquisition or climbing;
+- intermediate promotion to `main` merely because another feature phase begins.
 
 ---
 
@@ -525,8 +539,9 @@ Do not combine the current regression campaign with:
 | Feature research -> production method | `FEATURE_DEVELOPMENT_METHOD.md` |
 | Current established collision facts | `COLLISION_REFERENCE.md` |
 | Overall architecture/order | this file |
+| Branch + Speed-first sequencing rationale | `decisions/ADR-0006-development-branch-and-sequential-speed-raise.md` |
 | Collision lifecycle | `COLLISION_LIFECYCLE.md` |
-| Validation | `COLLISION_TEST_PLAN.md` |
+| Validation | `COLLISION_TEST_PLAN.md` / current feature test plan when created |
 | Diagnostics | `COLLISION_DIAGNOSTICS.md` |
 | Source/hooks/RVAs | `SOURCE_HOOK_GUIDE.md` |
 | Animation authoring semantics | `ANIMATION_INDEX.md` -> `ANIMATION_RULES.md` |
