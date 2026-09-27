@@ -5,7 +5,7 @@
 
 ## Purpose
 
-Define the permanent diagnostics-free collision behavior for factual `gEUseType_PhysicalFist` / raw55 after the completed causal research campaign, New Balance compatibility work, the EV-385 standalone contradiction, and EV-386 corrected-final-candidate runtime acceptance.
+Define the permanent diagnostics-free collision behavior for factual `gEUseType_PhysicalFist` / raw55 after the completed causal research campaign, New Balance compatibility work, the EV-385 standalone contradiction, EV-386 corrected marked acceptance, and EV-387 native-fallback closure.
 
 Historical probes/implementation contracts are preserved under `docs/archive/investigations/`. Ordinary factual lookup: `COLLISION_REFERENCE.md`. Exact proof: `EVIDENCE_INDEX.md`.
 
@@ -87,7 +87,7 @@ unmarked raw55
 -> native Gothic behavior
 ```
 
-Permanent raw55 intervention is marker-owned. Native fallback remains architecturally intact; the final-candidate unmarked runtime sentinel remains the one unfinished standalone validation item after EV-386.
+Permanent raw55 intervention is marker-owned. EV-387 final-candidate standalone evidence directly confirms native fallback across BlackTroll Quick, Normal, factual true Power and Sprint: `MarkerPresent=0`, `FistMarkers=0`, `SuppressNative=0`; no raw55 marker-owner or native-opening-suppression record is produced; Gothic performs native 5 -> 7 and 7 -> 5 with healthy finalization.
 
 ### Marked supported raw55
 
@@ -136,7 +136,7 @@ The native Quick callback owns its state progression and may attempt a premature
 
 The first authored FIST opens/rearms the source. A later authored FIST may occur at the factual Quick state available at that marker and owns another contact-bookkeeping rearm.
 
-Evidence: EV-264–EV-273 plus protected controls through EV-386.
+Evidence: EV-264–EV-273 plus protected controls through EV-387.
 
 ### Normal
 
@@ -179,9 +179,9 @@ second FIST:
   + StatePosition {SP1,SP2}
 ```
 
-No `>=1` generalization is used. EV-386 final-candidate standalone evidence includes factual true-Power single and double marked controls and confirms first open + second clear-only behavior.
+No `>=1` generalization is used. EV-386 final-candidate standalone evidence includes factual true-Power single and double marked controls and confirms first open + second clear-only behavior. EV-387 separately confirms unmarked factual true Power remains native fallback.
 
-Evidence: EV-274–EV-276, EV-293, EV-376, EV-378, EV-386.
+Evidence: EV-274–EV-276, EV-293, EV-376, EV-378, EV-386–EV-387.
 
 ### Sprint-origin
 
@@ -210,15 +210,17 @@ current SPRINT:
 
 The current-Power SP1 route is established by original standalone repeated-contact evidence (EV-294). New Balance later required and proved current-SPRINT/SP2 plus current-POWER/SP2 compatibility (EV-380–EV-381).
 
-EV-385 then proved a legitimate standalone second FIST can remain factual `SPRINT/Action9/SP1` in the same C1/source/origin. The pre-correction source rejected only that state while cleanup remained healthy.
+EV-385 proved a legitimate standalone second FIST can remain factual `SPRINT/Action9/SP1` in the same C1/source/origin. The pre-correction source rejected only that state while cleanup remained healthy.
 
 Source `1c45e5ec3de1194e43b2f2200a28fe7846bd5ce0` adds only explicit current-SPRINT/SP1 to `IsSecondFistAllowed()` while preserving current-POWER `{SP1,SP2}`. Independent source review confirms no new mechanism and no second physical opening.
 
 EV-386 runtime-validates the corrected contract repeatedly: first FIST `SPRINT/SP1` opens exact RIGHT 5 -> 7; second FIST in the same C1 while still `SPRINT/SP1` is accepted clear-only with `GroupRequested=0` and `ClearTriggeredList=1`; Gothic later returns group7 -> group5 with `Outstanding=0`. The same batch preserves the Action9/SPRINT -> Action2/POWER SP1 continuation route.
 
+EV-387 additionally confirms unmarked factual Sprint/Action9 remains completely native under the final candidate.
+
 This is an explicit evidence-backed state union. It is **not** permission for generic `>=1`, arbitrary state widening, or family-independent policy.
 
-Evidence: EV-280–EV-285, EV-294, EV-376–EV-381, EV-385–EV-386.
+Evidence: EV-280–EV-285, EV-294, EV-376–EV-381, EV-385–EV-387.
 
 ---
 
@@ -228,7 +230,7 @@ Permanent state is bounded to the factual C1 execution and exact source/origin i
 
 A valid execution requires current source/family/marker facts to match the owned execution. Identity replacement or contradiction must not authorize a new raw55 intervention.
 
-EV-385/EV-386 do not weaken these checks: the newly accepted marker2 is the same legitimate Sprint-origin C1/source and differs only by adding the evidence-backed current-SPRINT/SP1 state to the whitelist.
+EV-385/EV-386 do not weaken these checks: the newly accepted marker2 is the same legitimate Sprint-origin C1/source and differs only by adding the evidence-backed current-SPRINT/SP1 state to the whitelist. EV-387 confirms absence of markers leaves raw55 unclaimed.
 
 Diagnostics may surface identity contradictions, but diagnostics do not decide release behavior.
 
@@ -251,7 +253,7 @@ generic C1 terminal policy
 
 EV-381 reinforces that an accepted/open/rearmed raw55 window may still produce zero `ONDAMAGE`; native unmarked raw55 windows can also miss completely. Therefore a visual miss is not itself evidence of marker failure.
 
-EV-386 confirms marked corrected traffic still converges through Gothic/native cleanup to group5 with zero outstanding obligation.
+EV-386 confirms marked corrected traffic still converges through Gothic/native cleanup to group5 with zero outstanding obligation. EV-387 confirms the final candidate leaves unmarked raw55 native opening/contact/cleanup untouched.
 
 ---
 
@@ -306,30 +308,28 @@ Diagnostic SHA256:
 AEF0E18205BAA9258D50B2E934173C48B845E0F1B9A9F425D622F4E4598EE773
 ```
 
-The diagnostic twin has passed sole-live deployment/startup and EV-386 marked standalone runtime acceptance. The behavior twin remains undeployed until diagnostic validation closes.
+The diagnostic twin has passed sole-live deployment/startup and the complete standalone/no-New-Balance final-candidate raw55 sentinel through EV-386–EV-387. The behavior twin remains undeployed until the final-candidate New Balance diagnostic regression closes.
 
 ---
 
 ## 9. Compatibility disposition
 
-Focused raw55 New Balance compatibility is CLOSED/PASS through EV-382. Broad intended-stack New Balance compatibility is CLOSED/PASS EV-384.
+Focused raw55 New Balance compatibility is CLOSED/PASS through EV-382. Broad intended-stack New Balance compatibility is CLOSED/PASS EV-384 on the source lineage preceding the final standalone SP1 correction.
 
-EV-385's standalone current-SPRINT/SP1 contradiction is **CLOSED by EV-386** on the corrected final candidate. The marked standalone matrix now passes 1+3, 1+8, 1+15, single Sprint/SP1, and factual true-Power single/double controls with no reviewed rejection/anomaly and clean cleanup/unload.
-
-One standalone item remains before the already-run New Balance final-candidate logs are reviewed:
+EV-385's standalone current-SPRINT/SP1 contradiction is **CLOSED by EV-386** on the corrected final candidate. EV-386 closes the marked final-candidate matrix including factual true-Power single/double controls; EV-387 closes unmarked raw55 native fallback. Therefore:
 
 ```text
-unmarked raw55 native-fallback control
+standalone/no-New-Balance final-candidate diagnostic raw55 sentinel
+= CLOSED/PASS EV-386–EV-387
 ```
 
 Current route:
 
 ```text
-one unmarked standalone raw55 native-fallback control
--> bounded review / standalone diagnostic sentinel PASS if clean
--> publish/review already-run New Balance final-candidate batch
--> verify compatibility-sensitive Sprint SP2 / Action9->Action2 semantics
--> diagnostic phase PASS
+publish/review already-run New Balance final-candidate batch
+-> POP-06 bounded retrieval only; no rerun
+-> verify compatibility-sensitive Sprint SP2 / same-C1 Action9->Action2 semantics
+-> if PASS: diagnostic phase CLOSED
 -> behavior-twin-only release-purity observational validation
 -> production collision migration only after behavior-only PASS
 ```
