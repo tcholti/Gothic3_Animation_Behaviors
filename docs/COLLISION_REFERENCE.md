@@ -1,7 +1,7 @@
 # Collision Reference
 
 **Status:** Current factual reference  
-**Updated:** 2026-09-26  
+**Updated:** 2026-09-27  
 **Purpose:** Compact projection of established Gothic 3 collision facts. Read this before opening evidence ledgers for an already-researched collision question.
 
 > This file states **what is currently established**. It is not the proof record. Each claim routes to EV evidence; open the ledger/raw source only when exact provenance, qualification, contradiction, or re-interpretation matters.
@@ -42,9 +42,9 @@ G3AB_COL_OFF   -> exact desired active set {}
 
 Repeated RIGHT/LEFT/BOTH later in the same Hit can author another contact by rearming the selected source through `ClearTriggeredList()`. OFF creates an intra-Hit inactive gap; it is not terminal cleanup.
 
-Supported/proven equipped scope includes Normal, Quick, full Whirl, Power, Pierce, SimpleWhirl, tested 2H/Staff Hack, and factual equipped Sprint under permanent `EquippedSprintCollision` policy.
+Supported/proven equipped scope includes Normal, Quick, full Whirl, Power, Pierce, SimpleWhirl, tested 2H/Staff Hack, and factual equipped Sprint under permanent `EquippedSprintCollision` policy. EV-383 additionally proves a four-marker `BOTH -> single side -> OFF -> BOTH` pattern forming three independently controlled offensive windows in representative dual-1H Normal/Quick/SimpleWhirl/Pierce executions.
 
-Evidence: EV-106–EV-116, EV-143–EV-147, EV-217–EV-220, EV-241–EV-244, EV-299–EV-306, EV-309–EV-314, EV-318, EV-370–EV-372, EV-375, EV-377.
+Evidence: EV-106–EV-116, EV-143–EV-147, EV-217–EV-220, EV-241–EV-244, EV-299–EV-306, EV-309–EV-314, EV-318, EV-370–EV-375, EV-377, EV-383.
 
 ## 3. Equipped lifecycle / terminal repair
 
@@ -61,9 +61,9 @@ exact outstanding equipped source
 -> verify group5
 ```
 
-If native cleanup already fulfilled the obligation, repair does nothing. LEFT/RIGHT obligations remain independent.
+If native cleanup already fulfilled the obligation, repair does nothing. LEFT/RIGHT obligations remain independent. EV-384 broad New Balance stress evidence includes single- and dual-source bounded repairs converging exact outstanding group7 sources to group5 without sampled repair divergence.
 
-Evidence: EV-180–EV-215, EV-299–EV-306, EV-367, EV-373–EV-374.  
+Evidence: EV-180–EV-215, EV-299–EV-306, EV-367, EV-373–EV-374, EV-384.  
 Architecture: `COLLISION_LIFECYCLE.md`.
 
 ## 4. Raw8 Fist
@@ -119,7 +119,7 @@ Supported marked families:
 Normal + Quick + true Power + Sprint-origin
 ```
 
-Permanent behavior:
+Permanent mechanism:
 
 ```text
 eligible marked execution
@@ -139,12 +139,12 @@ end
 
 Scope remains exact current RIGHT PhysicalFist/raw55, marker-owned, 1 or 2 FIST markers, no LEFT raw55 generalization, no mixed equipped+FIST authoring, no species/name/file inference and no custom damage.
 
-### Final family state rules
+### Current implemented family state gates before EV-385 correction
 
 ```text
 QUICK
   first: evidence-backed factual Quick states
-  second: current QUICK; existing repeated-contact route
+  second: current QUICK; established repeated-contact route
 
 NORMAL
   first: current NORMAL, evidence-backed SP0/SP1 first-marker route
@@ -158,10 +158,10 @@ SPRINT ORIGIN
   first: current SPRINT + explicit SP1 OR SP2 + earlyOpeningSuppressed
   second:
     current POWER  + explicit SP1 OR SP2
-    OR current SPRINT + explicit SP2 only
+    OR current SPRINT + SP2 only
 ```
 
-No generic StatePosition range expression is used.
+These lines describe the **currently implemented pre-correction source**, not the final accepted post-EV-385 contract.
 
 ### Normal repeated-contact semantics — EV-382
 
@@ -171,7 +171,7 @@ Normal has a proven exact native between-contact clear caller:
 
 For marked Normal, that native clear is suppressed so authored marker2 owns the second-contact rearm.
 
-EV-382 runtime-validates the final explicit `{SP0,SP1}` second-FIST rule. The decisive route is:
+EV-382 runtime-validates explicit `{SP0,SP1}` second-FIST acceptance. The decisive route is:
 
 ```text
 marker1 NORMAL/SP0 -> accepted / 5 -> 7 / initial clear
@@ -186,30 +186,38 @@ native cleanup 7 -> 5 / Outstanding=0
 
 Very-early marker2 before hit1 is also accepted. It may clear an empty visited list and does not guarantee two damage events. This requires no hit1 flag, visited-target check, delay, queue or timer.
 
-The current New Balance frame15 fixture can still place Normal marker2 at SP0; this does not invalidate SP1. SP1 remains explicitly accepted and was runtime-proven in the earlier Normal causal campaign.
-
-Implementation: `a31c66b97e45c27d0739b7df51252d33f490e7e1`.  
 Evidence: EV-277–EV-279, EV-286–EV-292, EV-380, EV-382.
 
-### Power/Sprint New Balance compatibility
+### Sprint-origin compatibility state — EV-381 and EV-385
 
-Runtime-confirmed corrections:
+New Balance compatibility evidence established:
 
 ```text
-6eb3e3ca96da55e89127c24d5f656e05610d315f
-  Power first/second SP2
-  Sprint-origin later current-Power SP2
-
-ce59e5a2bad564652eaba970e959bdef0b479d82
-  Sprint-origin first current-Sprint SP2
-
-4c85193f4efd31e789bc07d7e3c71d31a9b5326e
-  Sprint-origin second current-Sprint SP2
+Sprint-origin first current SPRINT/SP2 is legitimate
+Sprint-origin second current SPRINT/SP2 is legitimate
+Sprint-origin second after same-C1 transition current POWER/SP1/SP2 is legitimate
 ```
 
-EV-380 proved Sprint marker2 can land on either side of the same-C1 Action9 -> Action2 transition. EV-381 proves the final asymmetric rule accepts both factual routes without adding Sprint/SP1.
+EV-385 then runs the required standalone/no-New-Balance sentinel and adds the previously missing factual state:
 
-Evidence: EV-376–EV-381.
+```text
+Sprint-origin marker1 current SPRINT/SP1 -> accepted/open
+Sprint-origin marker2 may still be current SPRINT/SP1 in the same C1/source/origin
+```
+
+In the standalone `1+3` fixture, four distinct Sprint executions repeat that exact state and the current source rejects marker2 as `REJECTED_UNSUPPORTED_HIT`. The same batch proves `1+8`/`1+15` remain healthy when marker2 has transitioned to current POWER/SP1, and single-FIST current SPRINT/SP1 remains healthy. Cleanup is safe in all cases.
+
+Therefore the current-SPRINT/SP1 second-FIST state is now **evidence-backed but not yet implemented/accepted on the tested source**. The frozen correction is explicit:
+
+```text
+Sprint-origin second FIST:
+  current POWER  -> SP1 OR SP2 (preserve)
+  current SPRINT -> SP1 OR SP2 (add SP1)
+```
+
+No generic `>=1` widening is authorized. The correction remains pending runtime acceptance on the changed final candidate.
+
+Evidence: EV-280–EV-285, EV-294, EV-376–EV-381, EV-385.
 
 ### Native misses are not marker failure
 
@@ -217,14 +225,14 @@ EV-381 proves correct raw55 open/rearm/cleanup can coexist with zero `ONDAMAGE`;
 
 The User's sheath/draw-associated miss observation is not a collision-marker blocker on current evidence. Do not add custom contact/damage policy for it without a new causal need.
 
-### Focused raw55 disposition
+### Current raw55 disposition
 
-**Focused raw55 Normal / Quick / true-Power / Sprint-origin compatibility is CLOSED/PASS for the tested intended New Balance route through EV-382.**
+Focused New Balance raw55 compatibility remains CLOSED/PASS through EV-382, and broad intended-stack New Balance compatibility is CLOSED/PASS through EV-384.
 
-No further focused raw55 source change is currently indicated.
+The post-compatibility standalone sentinel is **PARTIAL FAIL EV-385** because the pre-correction source rejects legitimate current-SPRINT/SP1 second-FIST traffic. Production migration is blocked until the bounded correction and corrected-final-candidate sentinel pass.
 
 Architecture: `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`.  
-Evidence: EV-262–EV-298, EV-317, EV-341, EV-366, EV-376–EV-382.
+Evidence: EV-262–EV-298, EV-317, EV-341, EV-366, EV-376–EV-385.
 
 ## 6. Sprint transport
 
@@ -232,11 +240,11 @@ SprintAttack is factual `gEAction_SprintAttack = 9`.
 
 For raw8, Sprint may use a Power-named physical transport while factual actor action is already Sprint. Filename/transport does not redefine factual family.
 
-For raw55, immutable Sprint-origin identity survives the legitimate same-C1 Action9 -> Action2 continuation. EV-380–EV-381 prove authored marker2 may occur before or after that transition at SP2.
+For raw55, immutable Sprint-origin identity survives the legitimate same-C1 Action9 -> Action2 continuation. EV-380–EV-381 prove authored marker2 may occur before or after that transition under New Balance at SP2; EV-385 proves that in standalone timing marker2 can legitimately remain Action9/SPRINT at SP1.
 
 Equipped Sprint RIGHT/LEFT/BOTH/OFF is permanent supported behavior through `EquippedSprintCollision`. Its bound continuation is exact-identity-only; a new ordinary true Power execution cannot inherit Sprint authorization.
 
-Evidence: raw8 EV-250–EV-251, EV-316, EV-354, EV-377; raw55 EV-280–EV-285, EV-294, EV-298, EV-317, EV-376–EV-381; equipped Sprint EV-311, EV-315, EV-320–EV-329, EV-368, EV-377.
+Evidence: raw8 EV-250–EV-251, EV-316, EV-354, EV-377; raw55 EV-280–EV-285, EV-294, EV-298, EV-317, EV-376–EV-381, EV-385; equipped Sprint EV-311, EV-315, EV-320–EV-329, EV-368, EV-377.
 
 ## 7. Shield / raw9 boundary
 
@@ -295,13 +303,15 @@ Zombie+Axe asset-gap remedy                  PASS EV-375
 New Balance equipped/raw8 controls           PASS EV-377
 raw55 Power/Sprint compatibility             PASS EV-378–EV-381
 raw55 Normal SP0 compatibility               PASS EV-382
-focused raw55 New Balance compatibility      CLOSED/PASS
-broader New Balance full-stack gate          OPEN
-standalone post-compat raw55 sentinel        PENDING after New Balance full-stack
-production collision migration               PENDING
+focused raw55 New Balance compatibility      CLOSED/PASS EV-382
+dual-1H multi-window authoring               PASS EV-383
+broader New Balance full-stack gate          CLOSED/PASS EV-384
+standalone post-compat raw55 sentinel        PARTIAL FAIL EV-385
+Sprint current-SPRINT/SP1 second-FIST fix    FROZEN / IMPLEMENTATION PENDING
+production collision migration               BLOCKED
 ```
 
-Latest reviewed/deployed diagnostic SHA256:
+Latest deployed diagnostic SHA256 before EV-385 correction:
 `81CF4C99BDA65EA6FBBC02839680E83B719B6E535407EB604E6AD015B038F2D3`
 
 Current validation authority: `COLLISION_TEST_PLAN.md`.
