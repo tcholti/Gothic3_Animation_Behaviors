@@ -1,7 +1,7 @@
 # Collision Validation Plan
 
 **Status:** Current collision validation authority  
-**Updated:** 2026-09-26
+**Updated:** 2026-09-27
 
 ## Purpose
 
@@ -36,6 +36,7 @@ The detailed pre-New-Balance standalone campaign plan is preserved at:
 - Every uploaded runtime batch closes fully under POP-06 before the next batch unless an explicit active-comparison need is recorded.
 - If a broad test exposes a failure, reduce it to the smallest factual route before source changes are considered.
 - An accepted marker/open/rearm does **not** guarantee `ONDAMAGE`; native target/contact/geometry/gameplay state remain authoritative.
+- A processed large log is analyzed through its derived package under POP-07; the large raw artifact remains provenance and is not the routine retrieval surface.
 
 Current research products:
 
@@ -98,9 +99,9 @@ EV-375 Zombie+Axe asset-gap remedy
 
 ---
 
-## 4. New Balance exact distributed-bundle compatibility — OPEN / BROADER REPRESENTATIVE GATE CURRENT
+## 4. New Balance exact distributed-bundle compatibility — CLOSED/PASS EV-384
 
-Environment to certify:
+Environment certified by the current representative gate:
 
 ```text
 New Balance 0.7 as distributed
@@ -113,11 +114,11 @@ New Balance 0.7 as distributed
 + exactly one Gothic3_Animation_Behaviors collision twin
 ```
 
-Source-level preflight alone is not final certification.
+Source-level preflight alone was not final certification; the gate is closed by runtime evidence through EV-384.
 
 ### 4.1 Environment preflight
 
-Require:
+Required and satisfied for the tested compatibility environment:
 
 ```text
 exact intended New Balance bundle/DLL composition
@@ -127,11 +128,11 @@ startup succeeds
 expected diagnostic banner present for diagnostic twin
 ```
 
-Record any environment difference because compatibility is environment-specific.
+Compatibility remains environment-specific. A materially different future DLL/mod composition is a new compatibility scope, not a reason to rewrite this result.
 
-### 4.2 Representative full-gate coverage — CURRENT NEXT RUNTIME BATCH
+### 4.2 Representative full-gate coverage — CLOSED/PASS EV-383–EV-384
 
-Across the complete gate include:
+The complete gate required representative coverage of:
 
 ```text
 equipped marker combat
@@ -159,11 +160,15 @@ mixed stress
   ordinary world/settlement transitions if convenient
 ```
 
-This may be one broad gameplay run plus focused controls rather than many narrow fixtures. If the log becomes large, process it with the established log-preparation workflow and use event/count sampling rather than loading the full raw artifact into ordinary context.
+EV-383 supplies additional equipped-authoring coverage: representative dual-1H Normal / Quick / SimpleWhirl / Pierce motions accept four authored markers forming three offensive windows in one execution, including direct multi-window native-contact evidence.
 
-### 4.3 Acceptance
+EV-384 supplies the broad mixed-gameplay stress closure. The User reports correct gameplay behavior across the run. The 4.19 MB runtime log was processed under POP-07; its whole-run derived package contains 27 C1 finalization/repair events and 5 marker anomaly events. All five reviewed marker anomalies are Whirl `REJECTED_C1_GENERATION_INCONSISTENCY` fail-closed stale callbacks. Bounded repair samples include single-source, dual-source and late-run cases converging exact outstanding group7 sources to group5 as `REPAIRED_TO_ITEM_EQUIPPED`, with no sampled divergent repair. The final run tail cleans normally and unloads cleanly.
 
-Require for the tested environment:
+No production source file changed between the EV-382 correction and EV-383/EV-384 runtime evidence.
+
+### 4.3 Acceptance — SATISFIED FOR TESTED ENVIRONMENT
+
+Required:
 
 ```text
 no startup/load crash or hook conflict
@@ -181,9 +186,11 @@ clean unload
 no user-observed collision regression
 ```
 
+EV-384 satisfies this representative acceptance surface for the tested intended New Balance stack. Generation-inconsistent Whirl callbacks are expected fail-closed safety behavior, not a new contradiction. C1-R1 repair records are accepted only where exact-source repair converges to group5; no reviewed repair divergence was found.
+
 Missing `ONDAMAGE` is not automatically a failure when ownership/open/rearm/cleanup are correct. EV-381 proves both marked and native raw55 collision windows can legitimately miss downstream.
 
-A compatibility failure does not authorize a broad patch. Reduce the exact factual route first.
+A future compatibility failure does not authorize a broad patch. Reduce the exact factual route first.
 
 ### 4.4 Focused raw55 New Balance compatibility — CLOSED/PASS EV-376–EV-382
 
@@ -252,11 +259,11 @@ EV-381 confirms correctly accepted/open/rearmed marked attacks can produce no `O
 
 The User's sheath/draw miss observation therefore does not identify a marker defect. Do not add marker widening, direct damage, or custom contact policy for it absent a new causal responsibility.
 
-### 4.5 Standalone / no-New-Balance post-compatibility sentinel
+### 4.5 Standalone / no-New-Balance post-compatibility sentinel — CURRENT NEXT GATE
 
 The mod must remain correct when New Balance / Script_AttackCollision is absent or disabled. New Balance support is additive, not a dependency.
 
-Run **after the broader New Balance full-stack gate passes** and before final collision-source certification / production migration.
+Run **now that the broader New Balance full-stack gate has passed** and before final collision-source certification / production migration.
 
 Environment:
 
@@ -284,6 +291,8 @@ Minimum raw55 sentinel:
 4. Normal + Quick control
 5. unmarked raw55 native-fallback sentinel
 ```
+
+The immediate planned first control is Troll/raw55 without New Balance; keep the sentinel bounded and use the minimum additional controls needed to satisfy the matrix above.
 
 Acceptance:
 
@@ -321,13 +330,13 @@ freeze setup + filename
 -> only then next batch
 ```
 
-The EV-382 Normal acceptance logs are processed and archived byte-identically during closure maintenance. `research/raw/` should return to `Keep.txt` only.
+The EV-382 Normal acceptance logs and EV-384 New Balance stress log are processed and archived byte-identically. The EV-384 derived package remains available under `research/derived/` for bounded retrieval. `research/raw/` should return to `Keep.txt` only.
 
 ---
 
-## 6. Production collision migration — after compatibility gates
+## 6. Production collision migration — after standalone sentinel
 
-After broader New Balance compatibility **and** the standalone sentinel pass:
+The broader New Balance compatibility gate is closed through EV-384. After the standalone sentinel passes:
 
 ```text
 mature collision behavior
@@ -336,7 +345,7 @@ mature collision behavior
 -> release-purity/integration validation
 ```
 
-Do not migrate before both gates close.
+Do not migrate before the standalone post-compatibility sentinel closes.
 
 ---
 
@@ -363,8 +372,9 @@ New Balance controls                          PASS EV-377
 raw55 Power/Sprint focused compatibility      PASS EV-378–EV-381
 raw55 Normal SP0 compatibility                PASS EV-382
 focused raw55 New Balance compatibility       CLOSED/PASS
--> representative/full-stack New Balance compatibility
--> standalone/no-New-Balance raw55 sentinel
+dual-1H four-marker / three-window authoring  PASS EV-383
+representative/full-stack New Balance         CLOSED/PASS EV-384
+-> standalone/no-New-Balance raw55 sentinel   CURRENT
 -> production collision migration
 -> diagnostics-free integration validation
 -> later Raise + Speed + Config under DESIGN.md §3 / ADR-0004
