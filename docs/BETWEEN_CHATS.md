@@ -8,68 +8,74 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Current gate: **broader intended-stack New Balance compatibility is CLOSED/PASS through EV-384.**
+Current gate: **standalone/no-New-Balance post-compat raw55 sentinel = PARTIAL FAIL EV-385; bounded correction is frozen before further runtime testing.**
 
-Runtime-confirmed raw55 compatibility corrections remain:
-
-```text
-6eb3e3ca96da55e89127c24d5f656e05610d315f
-  true-Power first/second SP2
-  Sprint-origin later current-Power SP2
-
-ce59e5a2bad564652eaba970e959bdef0b479d82
-  Sprint-origin first current-Sprint SP2
-
-4c85193f4efd31e789bc07d7e3c71d31a9b5326e
-  Sprint-origin second current-Sprint SP2
-
-a31c66b97e45c27d0739b7df51252d33f490e7e1
-  Normal second-FIST explicit SP0 or SP1
-```
-
-Latest runtime diagnostic built/live SHA256:
-
-`81CF4C99BDA65EA6FBBC02839680E83B719B6E535407EB604E6AD015B038F2D3`
-
-No production source file changed between the EV-382 correction and the EV-383/EV-384 runtime-evidence tail.
-
-Recent closure:
+Closed compatibility background:
 
 ```text
-EV-383
-  dual-1H four-marker / three-offensive-window equipped authoring PASS
-  Normal / Quick / SimpleWhirl / Pierce representative fixtures
-
-EV-384
-  broad mixed New Balance full-stack gameplay stress PASS
-  User reports gameplay looked correct
-  processed large-log package:
-    27 C1 finalization/repair events
-    5 marker anomalies
-  all 5 marker anomalies:
-    WHIRL
-    REJECTED_C1_GENERATION_INCONSISTENCY
-    fail-closed stale callback traffic
-  sampled C1-R1 repairs:
-    exact outstanding group7 source(s) -> group5
-    REPAIRED_TO_ITEM_EQUIPPED
-    single-source + dual-source + late-run coverage
-    no sampled repair divergence
-  clean end/unload reported by recovered processed-evidence analysis
+focused raw55 New Balance compatibility = CLOSED/PASS EV-376–EV-382
+New Balance intended full-stack compatibility = CLOSED/PASS EV-384
 ```
 
-Large-log handling for this run follows POP-07: the 4.19 MB raw source is archived as canonical provenance and is **not** the normal analysis surface; `research/derived/2026.09.27_newbalance_stresstest_large_log/` is the retrieval surface, with `full_source_part_*` opened only for specifically identified event context.
-
-Current exact next gate:
+EV-385 batch:
 
 ```text
-standalone/no-New-Balance post-compat raw55 sentinel
--> begin with planned Troll/raw55 control without New Balance
--> if sentinel passes:
-   production collision migration
-   diagnostics-free integration validation
+standalone/no-New-Balance BlackTroll raw55
+
+1+3 double FIST:
+  four distinct Sprint-origin C1s repeat:
+  first marker  SPRINT/SP1 -> ACCEPTED / RIGHT 5 -> 7
+  second marker SPRINT/SP1 -> REJECTED_UNSUPPORTED_HIT
+  marker2 does not ClearTriggeredList
+  native cleanup remains healthy -> group5 / Outstanding=0
+
+1+8 and 1+15 double FIST:
+  zero marker anomalies
+  first marker SPRINT/SP1 -> ACCEPTED/open
+  second marker same Sprint-origin C1 after transition -> POWER/SP1
+  -> ACCEPTED clear-only / GroupRequested=0 / ClearTriggeredList=1
+  -> clean cleanup
+
+single marker:
+  zero anomalies
+  SPRINT/SP1 accepted/open/clean cleanup
+
+all four logs:
+  no C1 invariant warning
+  no terminal C1 repair anomaly
 ```
 
-Do not rerun the broad standalone campaign or reopen closed New Balance/focused raw55 behavior without contradictory evidence.
+The exact compatibility hole is therefore current-SPRINT/SP1 **second** FIST only. Current source already accepts current POWER/SP1+SP2 and current SPRINT/SP2 for the same Sprint-origin second-FIST ownership.
 
-Paused speed authority: `DESIGN.md` §3 + ADR-0004. Configured speed is base-speed authority; native/New Balance dynamic modifiers must remain composable.
+Frozen correction:
+
+```text
+PhysicalFistCollision::IsSecondFistAllowed()
+origin SPRINT:
+  current POWER  -> explicit SP1 or SP2 (unchanged)
+  current SPRINT -> explicit SP1 or SP2 (add SP1)
+```
+
+Do not use generic `>=1` and do not change first-FIST rules, hooks, damage ownership, cleanup, Normal/Quick/Power, or any other collision policy.
+
+Active Work task:
+
+`docs/work/active/COLLISION_RAW55_STANDALONE_SPRINT_SECOND_FIST_SP1_COMPATIBILITY_CORRECTION.md`
+
+Immediate route:
+
+```text
+bounded Work implementation
+-> independent Normal Chat review
+-> build both collision twins
+-> deploy diagnostic twin / SHA + sole-live-twin verification
+-> direct standalone 1+3 acceptance retest
+-> preserve 1+8/1+15 + single Sprint controls
+-> bounded New Balance Sprint SP2/transition regression because source changed after EV-384
+-> finish factual true-Power single/double + unmarked raw55 fallback sentinel controls
+-> only then production collision migration if final sentinel passes
+```
+
+Do not run more tests on the pre-correction source.
+
+EV-385 logs are to be archived during POP-06 closure; `research/raw/` must return to `Keep.txt` only before the task handoff is considered clean.
