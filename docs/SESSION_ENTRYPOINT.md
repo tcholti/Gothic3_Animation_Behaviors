@@ -34,35 +34,31 @@ DIAGNOSTIC PHASE = CLOSED/PASS EV-386–EV-388
 behavior-only deployment identity = PASS EV-389
 behavior-only startup smoke = PASS EV-389
 behavior-only functional release-purity validation = PASS EV-389
-CURRENT = bounded production collision migration into src/Script_G3AnimationBehaviors
+
+CURRENT = bounded source-only production collision-core migration
+TASK = docs/work/active/PRODUCTION_COLLISION_CORE_MIGRATION.md
 ```
 
-## Final-candidate source / binaries
-
-Reviewed correction source:
-`1c45e5ec3de1194e43b2f2200a28fe7846bd5ce0`
+## Product architecture decisions now frozen
 
 ```text
-Sprint-origin second FIST:
-  current POWER  -> explicit SP1 or SP2
-  current SPRINT -> explicit SP1 or SP2
+final release DLL = Script_G3AnimationBehaviors.dll
+validated collision behavior core = production architectural foundation
+EngineBridge = sole physical hook owner inside the DLL
+release build = behavior only; no collision diagnostic implementation
+prototype/diagnostic twins remain separate reference/research products
+
+Raise/speed profile architecture:
+  startup-loaded normalized INI profiles
+  AnimationFamily + LeftAnimationUseType + RightAnimationUseType + ActionProfile
+  user-facing Raise/speed families = Normal + Quick
+  no weapon-specific C++ policy branches merely for configuration selection
+  Raise preserves Gothic animation resolution
+  Speed v2 authors the base term while preserving applicable contextual modifiers
+  exact Speed v2 intervention remains future focused research
 ```
 
-Independent source review: **PASS**. The second-FIST path remains clear-only: two authored FIST markers + one prior accepted FIST + RIGHT already group7 -> `RearmTriggeredContacts()` only; no second `ActivateAttackSource()`.
-
-Both twins were rebuilt from the same reviewed behavior source:
-
-```text
-Script_FrameCollisionBehaviorTest SHA256:
-D5BECB2C32A9766B1B444CB5864C0C30C9AC251A1679F605127F4D7318900B78
-
-Script_FrameCollisionTest SHA256:
-AEF0E18205BAA9258D50B2E934173C48B845E0F1B9A9F425D622F4E4598EE773
-```
-
-Diagnostic runtime acceptance is CLOSED/PASS through EV-386–EV-388.
-
-EV-389 verifies the diagnostics-free behavior twin as the sole live collision twin with exact built/live SHA match and successful Gothic 3 startup.
+Raise/speed rationale: ADR-0004 + ADR-0005. Current Jackydima/New Balance source is pinned under `references/jackydima-gothic3sdk`; routing is `references/README.md`.
 
 ## EV-389 behavior-only release-purity closure
 
@@ -91,21 +87,22 @@ Therefore:
 
 ```text
 BEHAVIOR-ONLY RELEASE-PURITY COLLISION GATE = CLOSED/PASS EV-389
-MATURE COLLISION SUBSYSTEM = READY FOR PRODUCTION MIGRATION
+MATURE COLLISION SUBSYSTEM = APPROVED FOR PRODUCTION MIGRATION
 ```
-
-No diagnostic log is expected from this gate; exact behavior-binary identity plus the frozen observational matrix and User result are the evidence.
 
 ## Exact next route
 
 ```text
-1. freeze a bounded production-migration responsibility
-2. migrate mature collision behavior into src/Script_G3AnimationBehaviors
-3. keep diagnostic-only machinery separate from shipping production code
-4. preserve accepted collision semantics and one-owner architecture; no redesign during migration
-5. build/test only on the User's home PC under the normal source/build provenance rules
-6. production integration validation after migration
-7. only after integration PASS advance to the next planned feature responsibility
+1. execute only docs/work/active/PRODUCTION_COLLISION_CORE_MIGRATION.md
+2. exact-copy the accepted collision behavior modules into src/Script_G3AnimationBehaviors
+3. adapt only production entry point + CMake target as authorized
+4. exclude old AttackRaise / AttackSpeed / SharedConfig from the production build but leave their files untouched
+5. do not modify the prototype/diagnostic twins
+6. Work/source-only session MUST NOT build or run Gothic 3
+7. Normal Chat independently reviews the implementation diff against the frozen contract
+8. User builds Script_G3AnimationBehaviors.dll locally at home
+9. focused production integration validation
+10. migration PASS -> archive task and advance to Raise/config before Speed v2 research
 ```
 
 Do not rerun closed diagnostic or behavior-only campaigns absent contradictory evidence.
@@ -116,17 +113,21 @@ Do not rerun closed diagnostic or behavior-only campaigns absent contradictory e
 
 ## Read next by question
 
+- exact implementation task -> `work/active/PRODUCTION_COLLISION_CORE_MIGRATION.md`
 - exact continuation -> `BETWEEN_CHATS.md`
+- overall architecture -> `DESIGN.md`
+- release/diagnostic separation -> `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`
 - current facts -> `COLLISION_REFERENCE.md`
-- validation gate -> `COLLISION_TEST_PLAN.md`
-- bounded log retrieval -> `PROJECT_OPERATING_PROCEDURES.md` POP-06/POP-07
-- raw55 architecture -> `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`
+- Raise/speed decisions -> `decisions/ADR-0004-speed-control-base-speed-preserves-dynamic-modifiers.md` + `decisions/ADR-0005-raise-speed-config-profiles.md`
+- third-party source -> `../references/README.md`
 - proof -> `EVIDENCE_INDEX.md` -> EV-385–EV-389
 
 ## Still paused
 
 ```text
-NO collision behavior redesign during production migration without new contradictory evidence
-NO Raise/speed implementation yet
+NO collision behavior redesign during migration without contradictory evidence
+NO Raise implementation in the collision migration task
+NO Speed v1/v2 implementation in the collision migration task
 NO AttackContinuationProtection work
+NO load-order compensation experiment
 ```
