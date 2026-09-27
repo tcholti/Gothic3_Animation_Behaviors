@@ -38,3 +38,36 @@ Disposition:
 - **PASS — BEHAVIOR-ONLY RELEASE-PURITY COLLISION VALIDATION CLOSED.**
 - **MATURE COLLISION SUBSYSTEM IS READY FOR PRODUCTION MIGRATION.**
 - Next gate: bounded migration into `src/Script_G3AnimationBehaviors` with diagnostics remaining separate, followed by production integration validation.
+
+### EV-390 — Production `Script_G3AnimationBehaviors.dll` collision integration PASS
+
+Observed:
+- The production target built successfully from the reviewed production-migration source lineage on `development`.
+- The deployed production DLL was the sole live G3AB/collision product among `Script_G3AnimationBehaviors.dll`, `Script_FrameCollisionTest.dll`, and `Script_FrameCollisionBehaviorTest.dll`.
+- Built and live production SHA256 matched exactly:
+  `12FA5819FEEB5033B2D747A9B57CA1591E588EAAC0BAC9CC386307B77C367A55`.
+- The production DLL loaded far enough for a full gameplay collision run; no startup/load failure was observed.
+- The User repeated essentially the same deliberately impossible-native positive controls used in EV-389 Run 2:
+  - 2H double attacks with three authored markers worked;
+  - 1H1H triple attacks with four authored markers worked;
+  - human Fist double attacks with two markers worked;
+  - Sabretooth raw8 double attacks with two markers worked;
+  - Troll raw55 double attacks with two markers worked.
+- These controls require authored extra collision opportunities beyond native Gothic timing and therefore provide strong causal evidence that the migrated production DLL is executing the accepted marker behavior rather than merely loading successfully.
+- No collision regression was reported during the production validation run.
+
+Scope / limits:
+- This is focused production-integration validation after an exact-source migration, not a new collision-semantics campaign.
+- It does not re-prove every historical family/source/native-fallback case; those remain protected by the byte-identical migration/static review plus EV-386–EV-389.
+- No diagnostic log is expected because the shipping production target is intentionally diagnostics-free.
+
+Provenance:
+- production migration implementation: `9da92dc559d8897a675d575f8d88b3631470ed7d`;
+- independent migration source review: PASS, including 21/21 migrated behavior files matching prototype Git blobs;
+- production built/live SHA256: `12FA5819FEEB5033B2D747A9B57CA1591E588EAAC0BAC9CC386307B77C367A55`;
+- deployment/hash output and gameplay observations reported by the User on 2026-09-27.
+
+Disposition:
+- **PASS — PRODUCTION COLLISION INTEGRATION CLOSED.**
+- **COLLISION MIGRATION INTO `Script_G3AnimationBehaviors.dll` IS COMPLETE.**
+- Next phase: freeze the shared generic INI/profile foundation for Speed + later Raise, then work exclusively on Speed until Speed closes.
