@@ -73,6 +73,8 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | standalone/no-New-Balance Sprint-origin second-FIST SP1 discovery/correction | EV-385–EV-386 |
 | corrected marked standalone raw55 final-candidate matrix | EV-386 |
 | final-candidate factual true-Power single/double marked controls | EV-386 |
+| final-candidate unmarked raw55 native fallback | EV-387 |
+| final-candidate standalone/no-New-Balance diagnostic raw55 closure | EV-386–EV-387 |
 | native contact misses vs authored marker correctness | EV-381 |
 | sheath/draw contact observation | EV-380–EV-381; not a marker blocker |
 
@@ -114,31 +116,30 @@ EV-383         dual-1H four-marker / three-offensive-window equipped authoring P
 EV-384         broad intended-stack New Balance mixed-gameplay compatibility PASS/CLOSED
 EV-385         standalone Sprint-origin second FIST at current SPRINT/SP1 contradiction discovered
 EV-386         corrected current-SPRINT/SP1 marker2 PASS; marked standalone matrix + true-Power controls PASS
+EV-387         unmarked raw55 native fallback PASS; final-candidate standalone diagnostic sentinel CLOSED
 ```
 
 ## 4. Current next gate
 
 ```text
-New Balance 0.7 intended-stack compatibility is CLOSED/PASS through EV-384.
+New Balance 0.7 intended-stack compatibility is CLOSED/PASS through EV-384 on the pre-final-SP1-correction lineage.
 
-EV-385 standalone defect is CLOSED by EV-386.
+Final candidate 1c45e5e...:
+  EV-385 standalone defect = CLOSED by EV-386
+  marked standalone matrix = PASS EV-386
+  unmarked raw55 native fallback = PASS EV-387
+  standalone/no-New-Balance final-candidate diagnostic sentinel = CLOSED/PASS EV-386–EV-387
 
-EV-386 proves on reviewed final candidate 1c45e5e...:
-  1+3 SPRINT/SP1 -> same-C1 SPRINT/SP1 marker2 = ACCEPTED clear-only
-  marker2 GroupRequested=0 / ClearTriggeredList=1
-  1+8 / 1+15 SPRINT/SP1 -> POWER/SP1 continuation remains healthy
-  factual true-Power single + double marked controls are healthy
-  single-FIST SPRINT/SP1 remains healthy
-  reviewed marked traffic cleans group7->5 / Outstanding=0
-  zero REJECTED_* and zero ANOMALY matches across the four artifacts
-
-Not yet proven by EV-386:
-  one representative unmarked raw55 native-fallback final-candidate control
+EV-387 proves unmarked BlackTroll raw55 Quick/Normal/true-Power/Sprint remain native:
+  MarkerPresent=0 / FistMarkers=0 / SuppressNative=0
+  zero raw55 marker-owner/suppression records
+  Gothic native 5->7 and 7->5 remain authoritative
+  Outstanding=0 / no rejection-anomaly-invariant warning / clean unload
 
 Next:
-  unmarked standalone raw55 fallback control
-  -> if PASS, review User's already-run New Balance final-candidate logs
-  -> verify compatibility-sensitive Sprint SP2 / Action9->Action2 semantics
+  publish/review User's already-run New Balance final-candidate logs; NO rerun
+  -> verify compatibility-sensitive Sprint SP2 / same-C1 Action9->Action2 semantics
+  -> if PASS, diagnostic phase CLOSED
   -> behavior-only diagnostics-free release-purity validation
   -> production collision migration only after behavior-only PASS
 ```
@@ -165,7 +166,7 @@ research/derived/  deterministic retrieval aids
 research/archive/  processed canonical runtime provenance
 ```
 
-The EV-382 test3 logs, EV-384 New Balance stress log, EV-385 four-log standalone batch, and EV-386 corrected four-log marked standalone batch are processed and archived byte-identically under `research/archive/`. The EV-384 derived package remains under `research/derived/2026.09.27_newbalance_stresstest_large_log/` for bounded retrieval. `research/raw/` should contain only `Keep.txt` after EV-386 closure.
+The EV-382 test3 logs, EV-384 New Balance stress log, EV-385 four-log standalone batch, EV-386 corrected four-log marked standalone batch, and EV-387 unmarked fallback artifact are processed and archived byte-identically under `research/archive/`. The EV-384 derived package remains under `research/derived/2026.09.27_newbalance_stresstest_large_log/` for bounded retrieval. `research/raw/` should contain only `Keep.txt` after EV-387 closure.
 
 Historical ledger rows may retain paths that were correct when written. Use `EVIDENCE_PATH_MIGRATIONS.md` when a later archive move makes an old path ambiguous.
 
