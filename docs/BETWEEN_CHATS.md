@@ -8,108 +8,74 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `docs/collision-source-evidence`
 
-Current gate: **standalone/no-New-Balance post-compat raw55 sentinel = PARTIAL FAIL EV-385; bounded correction is frozen before further runtime testing.**
+Current gate: **standalone/no-New-Balance post-compat raw55 sentinel = PARTIAL FAIL EV-385; bounded correction frozen.**
 
-Closed compatibility background:
-
-```text
-focused raw55 New Balance compatibility = CLOSED/PASS EV-376–EV-382
-New Balance intended full-stack compatibility = CLOSED/PASS EV-384
-```
-
-EV-385 batch:
+EV-385 exact contradiction:
 
 ```text
-standalone/no-New-Balance BlackTroll raw55
+Sprint-origin double FIST 1+3, standalone:
+  marker1 current SPRINT/SP1 -> ACCEPTED / RIGHT 5 -> 7
+  marker2 same C1/source/origin, still SPRINT/SP1
+  -> REJECTED_UNSUPPORTED_HIT
 
-1+3 double FIST:
-  four distinct Sprint-origin C1s repeat:
-  first marker  SPRINT/SP1 -> ACCEPTED / RIGHT 5 -> 7
-  second marker SPRINT/SP1 -> REJECTED_UNSUPPORTED_HIT
-  marker2 does not ClearTriggeredList
-  native cleanup remains healthy -> group5 / Outstanding=0
+1+8 / 1+15:
+  marker2 transitions to POWER/SP1 -> ACCEPTED clear-only
 
-1+8 and 1+15 double FIST:
-  zero marker anomalies
-  first marker SPRINT/SP1 -> ACCEPTED/open
-  second marker same Sprint-origin C1 after transition -> POWER/SP1
-  -> ACCEPTED clear-only / GroupRequested=0 / ClearTriggeredList=1
-  -> clean cleanup
-
-single marker:
-  zero anomalies
-  SPRINT/SP1 accepted/open/clean cleanup
-
-all four logs:
-  no C1 invariant warning
-  no terminal C1 repair anomaly
+single FIST SPRINT/SP1 -> ACCEPTED
+cleanup/lifecycle remain healthy
 ```
 
-The exact compatibility hole is therefore current-SPRINT/SP1 **second** FIST only. Current source already accepts current POWER/SP1+SP2 and current SPRINT/SP2 for the same Sprint-origin second-FIST ownership.
-
-Frozen correction:
-
-```text
-PhysicalFistCollision::IsSecondFistAllowed()
-origin SPRINT:
-  current POWER  -> explicit SP1 or SP2 (unchanged)
-  current SPRINT -> explicit SP1 or SP2 (add SP1)
-```
-
-Do not use generic `>=1` and do not change first-FIST rules, hooks, damage ownership, cleanup, Normal/Quick/Power, or any other collision policy.
-
-Active Work task:
+Frozen correction in active task:
 
 `docs/work/active/COLLISION_RAW55_STANDALONE_SPRINT_SECOND_FIST_SP1_COMPATIBILITY_CORRECTION.md`
 
-## Collision-twin state
-
-Both collision twins compile the same shared behavior source. The diagnostic twin only adds diagnostic compilation/files.
-
 ```text
-behavior SOURCE = current with shared behavior changes
-behavior BINARY = NOT proven current unless rebuilt
+origin SPRINT second FIST:
+  current POWER  -> SP1 or SP2 (unchanged)
+  current SPRINT -> SP1 or SP2 (add SP1)
 ```
 
-Last recorded validated behavior SHA256 is still the pre-New-Balance standalone binary:
+Do not broaden anything else.
 
+Collision-twin state:
+
+```text
+both twins compile the same shared behavior source
+behavior source candidate = current
+behavior binary = NOT current/validated until rebuilt
+```
+
+Last recorded behavior SHA256 is pre-compatibility:
 `A806EC6523116286335A659735067B1AA6C581837B3E0D604E6271AC98079340`
 
-Latest recorded diagnostic SHA256 after raw55 compatibility corrections:
-
+Latest recorded diagnostic SHA256:
 `81CF4C99BDA65EA6FBBC02839680E83B719B6E535407EB604E6AD015B038F2D3`
 
-There is no post-compatibility behavior built/live hash on record. After the EV-385 correction and source review, build **both** twins and record both new hashes.
+No post-compatibility behavior built/live hash is recorded. After correction + source review, build **both** twins and record both new hashes.
 
-## Runtime-log context rule
-
-`PROJECT_OPERATING_PROCEDURES.md` v1.19 now hard-requires bounded retrieval for every runtime log, regardless of size. Normal Chat should analyze through exact searches/counts and bounded event windows, retaining conclusions/provenance and only minimal supporting excerpts in Chat context. POP-07 remains the large-log specialization.
+Runtime-log rule: `PROJECT_OPERATING_PROCEDURES.md` v1.19 / POP-06 now hard-requires bounded retrieval for every runtime log regardless of size; keep whole log bodies out of Chat context unless a concrete exceptional reason requires incremental full-source reading.
 
 Immediate route:
 
 ```text
-bounded Work implementation
--> independent Normal Chat review
--> build BOTH collision twins from same exact reviewed source
--> record behavior + diagnostic SHA256
--> deploy diagnostic twin / SHA + sole-live-twin verification
--> corrected standalone diagnostic sentinel:
-   direct 1+3 SPRINT/SP1 second-marker retest
-   one representative POWER/SP1 continuation control
-   single-FIST SPRINT/SP1
-   factual true-Power single/double
-   unmarked raw55 native fallback
--> one SMALL diagnostic New Balance/raw55 regression
-   preserve Sprint-origin SP2 / Action9->Action2 compatibility
--> deploy behavior twin ONLY / SHA + sole-live-twin verification
--> final diagnostics-free observational collision session
-   include representative raw55/equipped/native traffic
-   include several authored animations whose desired RIGHT collision exists only through G3AB marker behavior
--> if behavior-only PASS:
-   production collision migration
-   production integration validation
+Work correction
+-> Normal Chat source review
+-> build BOTH twins
+-> diagnostic standalone completion:
+   1+3 direct retest
+   one POWER/SP1 continuation control
+   single SPRINT/SP1
+   true-Power single/double
+   unmarked raw55 fallback
+-> one small diagnostic New Balance/raw55 Sprint SP2/transition regression
+-> deploy behavior twin ONLY
+-> final diagnostics-free observational session:
+   representative raw55/equipped/native
+   several animations whose desired RIGHT collision exists only through G3AB markers
+-> behavior-only PASS
+-> production collision migration + integration validation
 ```
 
-Do not run more tests on the pre-correction source. Do not treat the old behavior DLL hash as the final candidate.
-
-EV-385 logs are already archived under POP-06 and `research/raw/` is back to `Keep.txt` only.
+Exact validation details: `COLLISION_TEST_PLAN.md` §4.5–§4.6.  
+Do not run more tests on the pre-correction source.  
+EV-385 artifacts are archived; `research/raw/` is `Keep.txt` only.
