@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Index
 
 **Status:** Compact evidence-routing index  
-**Updated:** 2026-09-26
+**Updated:** 2026-09-27
 
 ## Purpose
 
@@ -29,7 +29,8 @@ Canonical evidence uses one global monotonic EV namespace. Closed ledger volumes
 | EV-342–EV-364 | `archive/evidence/EVIDENCE_LEDGER_342_ONWARD.md` |
 | EV-365–EV-372 | `archive/evidence/EVIDENCE_LEDGER_365_372.md` |
 | EV-373–EV-379 | `archive/evidence/EVIDENCE_LEDGER_373_379.md` |
-| EV-380 onward | `EVIDENCE_LEDGER_380_ONWARD.md` |
+| EV-380–EV-383 | `archive/evidence/EVIDENCE_LEDGER_380_383.md` |
+| EV-384 onward | `EVIDENCE_LEDGER_384_ONWARD.md` |
 
 The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2026-09-19_PRE_COMPRESSION.md`.
 
@@ -43,7 +44,7 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | equipped side / UseType semantics | EV-036–EV-065, EV-090–EV-094 |
 | repeated contact / OFF / ClearTriggeredList | EV-106–EV-116, EV-330–EV-331 |
 | occurrence/dedupe / C1 generation | EV-131–EV-167, EV-213–EV-215 |
-| lifecycle / C1-R1 exact-source repair | EV-180–EV-215, EV-367, EV-373–EV-374 |
+| lifecycle / C1-R1 exact-source repair | EV-180–EV-215, EV-367, EV-373–EV-374, EV-384 |
 | Power / Pierce / SimpleWhirl / Hack | EV-217–EV-220, EV-241–EV-244, EV-318 |
 | raw55 discovery and permanent four-family route | EV-262–EV-298, EV-341, EV-366 |
 | equipped Sprint permanent behavior | EV-311, EV-315, EV-320–EV-329, EV-368, EV-377 |
@@ -58,13 +59,17 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | Rapier separation compatibility | EV-372 |
 | broad mixed-gameplay stress / Stage-D closure | EV-373–EV-374 |
 | Zombie+Axe separation asset-gap remedy | EV-375 |
-| New Balance / AttackCollision final compatibility gate | EV-284 preflight + EV-376–EV-382 |
+| New Balance / AttackCollision compatibility | EV-284 preflight + EV-376–EV-384 |
 | New Balance raw55 Power/Sprint-origin SP2 compatibility | EV-376, EV-378–EV-381 |
 | New Balance equipped Sprint + raw8 Sprint controls | EV-377 |
 | New Balance raw55 Sprint-first SP2 discovery/correction | EV-378–EV-379 |
 | New Balance raw55 Sprint-origin second-FIST timing/correction | EV-379–EV-381 |
 | Normal raw55 second-FIST SP0 discovery/correction | EV-380–EV-382 |
 | focused raw55 New Balance compatibility closure | EV-376–EV-382 |
+| dual-1H four-marker / three-offensive-window authoring | EV-383 |
+| broad intended-stack New Balance mixed-gameplay compatibility closure | EV-384 |
+| New Balance stress-run Whirl generation-mismatch fail-closed handling | EV-384 |
+| New Balance stress-run C1-R1 single/dual-source repair convergence | EV-384 |
 | native contact misses vs authored marker correctness | EV-381 |
 | sheath/draw contact observation | EV-380–EV-381; not a marker blocker |
 
@@ -102,37 +107,32 @@ EV-379         Sprint-first SP2 correction runtime PASS; Sprint marker2 may rema
 EV-380         Sprint marker2 state envelope mapped; Normal/SP0 second-marker boundary discovered
 EV-381         Sprint second-FIST SP2 correction runtime PASS; focused Sprint contradiction CLOSED
 EV-382         Normal second-FIST {SP0,SP1} correction runtime PASS; focused raw55 New Balance compatibility CLOSED
+EV-383         dual-1H four-marker / three-offensive-window equipped authoring PASS
+EV-384         broad intended-stack New Balance mixed-gameplay compatibility PASS/CLOSED
 ```
 
 ## 4. Current next gate
 
 ```text
-New Balance 0.7 exact distributed-bundle compatibility remains OPEN.
+New Balance 0.7 intended-stack compatibility is CLOSED/PASS through EV-384.
 
 Focused raw55 Normal/Quick/true-Power/Sprint-origin compatibility is CLOSED/PASS through EV-382.
+EV-383 extends equipped authoring proof to four markers / three offensive windows.
+EV-384 closes the broader representative/full intended New Balance stack gate.
 
-Final raw55 repeated-marker state rules relevant to New Balance:
+Final raw55 repeated-marker state rules relevant to compatibility remain:
   Normal second FIST -> current NORMAL + explicit SP0 or SP1
   true Power first/second -> current POWER + explicit SP1/SP2
   Sprint-origin first -> current SPRINT + explicit SP1/SP2 + early-opening suppression
   Sprint-origin second -> current POWER SP1/SP2 OR current SPRINT SP2 only
 
-EV-382 decisive Normal route:
-  marker1 NORMAL/SP0 -> open
-  hit1 occurs
-  marker2 still NORMAL/SP0 -> accepted clear-only rearm
-  later hit2 may occur
-  native cleanup -> group5 / zero outstanding
-
-All three EV-382 fixtures have zero marker anomalies and preserve Quick/Power/Sprint controls.
-
 Next:
-  broader representative/full intended New Balance stack compatibility
-  then standalone/no-New-Balance post-compat raw55 sentinel
-  then production collision migration
+  standalone/no-New-Balance post-compat raw55 sentinel
+  begin with planned Troll/raw55 control without New Balance
+  then production collision migration if sentinel passes
 ```
 
-Source-level preflight alone is not final compatibility certification.
+Do not rerun the full standalone campaign unless the sentinel finds contradictory evidence.
 
 ## 5. Escalation order
 
@@ -154,8 +154,8 @@ research/derived/  deterministic retrieval aids
 research/archive/  processed canonical runtime provenance
 ```
 
-The EV-382 `1+3`, `1+8`, and `1+15` test3 logs are processed and archived byte-identically under `research/archive/`. `research/raw/` should return to `Keep.txt` only.
+The EV-382 test3 logs and the EV-384 New Balance stress log are processed and archived byte-identically under `research/archive/`. The EV-384 derived package remains under `research/derived/2026.09.27_newbalance_stresstest_large_log/` for bounded retrieval. `research/raw/` should return to `Keep.txt` only.
 
 Historical ledger rows may retain paths that were correct when written. Use `EVIDENCE_PATH_MIGRATIONS.md` when a later archive move makes an old path ambiguous.
 
-Closed ledger volumes are immutable historical proof records. New evidence goes only to `EVIDENCE_LEDGER_380_ONWARD.md` until the ledger-rotation rule in `KNOWLEDGE_MAINTENANCE.md` closes it.
+Closed ledger volumes are immutable historical proof records. New evidence goes only to `EVIDENCE_LEDGER_384_ONWARD.md` until the ledger-rotation rule in `KNOWLEDGE_MAINTENANCE.md` closes it.
