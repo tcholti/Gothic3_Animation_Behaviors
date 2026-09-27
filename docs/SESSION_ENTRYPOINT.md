@@ -18,8 +18,8 @@ Sprint-first SP2 correction = ce59e5a2bad564652eaba970e959bdef0b479d82
 Sprint-second SP2 correction = 4c85193f4efd31e789bc07d7e3c71d31a9b5326e
 Normal-second SP0 correction = a31c66b97e45c27d0739b7df51252d33f490e7e1
 standalone Sprint-second SP1 final candidate = 1c45e5ec3de1194e43b2f2200a28fe7846bd5ce0
-latest runtime evidence = EV-388
-current ledger = EVIDENCE_LEDGER_384_ONWARD.md
+latest runtime/observational evidence = EV-389
+current ledger = EVIDENCE_LEDGER_389_ONWARD.md
 
 standalone final-source regression = CLOSED/PASS EV-299–EV-374
 Zombie+Axe asset-gap remedy = PASS EV-375
@@ -29,10 +29,12 @@ New Balance full intended-stack compatibility = CLOSED/PASS EV-384
 EV-385 standalone Sprint/SP1 defect = CLOSED by EV-386
 corrected marked standalone raw55 matrix = PASS EV-386
 unmarked raw55 native fallback = PASS EV-387
-standalone/no-New-Balance final-candidate diagnostic sentinel = CLOSED/PASS EV-386–EV-387
 final-candidate New Balance/raw55 focused diagnostic regression = PASS EV-388
 DIAGNOSTIC PHASE = CLOSED/PASS EV-386–EV-388
-CURRENT = deploy diagnostics-free Script_FrameCollisionBehaviorTest as sole live collision twin
+behavior-only deployment identity = PASS EV-389
+behavior-only startup smoke = PASS EV-389
+behavior-only functional release-purity validation = PASS EV-389
+CURRENT = bounded production collision migration into src/Script_G3AnimationBehaviors
 ```
 
 ## Final-candidate source / binaries
@@ -58,76 +60,55 @@ Script_FrameCollisionTest SHA256:
 AEF0E18205BAA9258D50B2E934173C48B845E0F1B9A9F425D622F4E4598EE773
 ```
 
-Diagnostic twin sole-live deployment/startup = PASS. Diagnostic runtime acceptance is now CLOSED/PASS through EV-386–EV-388.
+Diagnostic runtime acceptance is CLOSED/PASS through EV-386–EV-388.
 
-## Final-candidate diagnostic closure
+EV-389 verifies the diagnostics-free behavior twin as the sole live collision twin with exact built/live SHA match and successful Gothic 3 startup.
 
-EV-386–EV-387 close standalone/no-New-Balance:
+## EV-389 behavior-only release-purity closure
 
-```text
-1+3 SPRINT/SP1 -> same-C1 SPRINT/SP1 marker2 = ACCEPTED clear-only
-1+8 / 1+15 SPRINT/SP1 -> POWER/SP1 continuation = PASS
-single SPRINT/SP1 = PASS
-factual true-Power single + double = PASS
-unmarked raw55 native fallback = PASS
-cleanup -> group5 / Outstanding=0
-```
-
-EV-388 closes the required post-correction New Balance regression:
+The final diagnostics-free observational gate deliberately used behavior that native Gothic collision timing could not explain:
 
 ```text
-1+3:
-  SPRINT/SP1 marker1 -> accepted/open
-  same-C1 current SPRINT/SP2 marker2 -> accepted clear-only
+Run 1:
+  long-developed/released authored animations across weapon types
+  collision timing observed at authored marker locations
+  Hack attacks successfully produce authored offensive collision
 
-1+8 / 1+15:
-  SPRINT/SP1 marker1 -> accepted/open
-  same-C1 Action9/SPRINT -> Action2/POWER/SP2 marker2
-  -> accepted clear-only
-
-single marker:
-  current SPRINT/SP2 first FIST -> accepted/open -> native cleanup
-
-true Power:
-  POWER/SP1 first -> open
-  POWER/SP2 second -> clear-only
-
-all five New Balance logs:
-  zero REJECTED_*
-  zero ANOMALY
-  zero C1 INVARIANT WARNING
-  clean lifecycle tails and clean diagnostic unload
+Run 2:
+  2H ON -> OFF -> ON produces separate offensive windows
+  opponent entering weapon during authored OFF does not get hit
+  1H1H/dual BOTH -> single-side -> OFF -> BOTH produces intended multi-window contacts
+  extra authored swings beyond native attack structure collide with opponents
+  human Fist double markers can hit twice
+  Sabretooth raw8 double markers can hit twice
+  Troll raw55 double markers can hit twice
+  one-on-one and group combat show no observed stuck/persistent collision regression
 ```
 
-The fully unmarked New Balance artifact additionally preserves observed native Power/Normal/Quick raw55 fallback; it did not contain Sprint/Action9, so no unmarked-New-Balance Sprint claim is made from that artifact.
+User disposition: very confident the DLL works as intended.
 
-EV-388 logs are archived byte-identically under `research/archive/`; `research/raw/` should contain only `Keep.txt` after closure.
+Therefore:
+
+```text
+BEHAVIOR-ONLY RELEASE-PURITY COLLISION GATE = CLOSED/PASS EV-389
+MATURE COLLISION SUBSYSTEM = READY FOR PRODUCTION MIGRATION
+```
+
+No diagnostic log is expected from this gate; exact behavior-binary identity plus the frozen observational matrix and User result are the evidence.
 
 ## Exact next route
 
 ```text
-1. deploy Script_FrameCollisionBehaviorTest.dll ONLY
-   -> physically remove Script_FrameCollisionTest.dll
-   -> exactly one collision twin live
-   -> verify built/live behavior SHA256 = D5BECB2C32A9766B1B444CB5864C0C30C9AC251A1679F605127F4D7318900B78
-2. launch Gothic 3 for behavior-only startup smoke
-   -> no startup/load crash
-   -> no diagnostic log is expected from the behavior twin
-3. run one diagnostics-free observational release-purity session
-   -> representative raw55 marked combat
-   -> representative ordinary equipped marker combat
-   -> representative native/unmarked behavior
-   -> several authored animations whose desired RIGHT collision window exists only through G3AB marker behavior
-   -> ordinary combat/weapon/source churn sufficient to reveal stuck/persistent collision cleanup failure
-4. acceptance:
-   -> marker-dependent windows visibly work
-   -> representative raw55/equipped/native behavior looks correct
-   -> no stuck collision / persistent-hit / cleanup regression
-   -> no user-observed collision regression
-5. behavior-only PASS -> production collision migration + integration validation
+1. freeze a bounded production-migration responsibility
+2. migrate mature collision behavior into src/Script_G3AnimationBehaviors
+3. keep diagnostic-only machinery separate from shipping production code
+4. preserve accepted collision semantics and one-owner architecture; no redesign during migration
+5. build/test only on the User's home PC under the normal source/build provenance rules
+6. production integration validation after migration
+7. only after integration PASS advance to the next planned feature responsibility
 ```
 
-Do not rerun full historical diagnostic campaigns absent contradictory evidence.
+Do not rerun closed diagnostic or behavior-only campaigns absent contradictory evidence.
 
 ## Runtime-log retrieval rule
 
@@ -137,15 +118,15 @@ Do not rerun full historical diagnostic campaigns absent contradictory evidence.
 
 - exact continuation -> `BETWEEN_CHATS.md`
 - current facts -> `COLLISION_REFERENCE.md`
-- validation gate -> `COLLISION_TEST_PLAN.md` §4.5–§4.6
+- validation gate -> `COLLISION_TEST_PLAN.md`
 - bounded log retrieval -> `PROJECT_OPERATING_PROCEDURES.md` POP-06/POP-07
 - raw55 architecture -> `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`
-- proof -> `EVIDENCE_INDEX.md` -> EV-385–EV-388
+- proof -> `EVIDENCE_INDEX.md` -> EV-385–EV-389
 
 ## Still paused
 
 ```text
-NO production migration until behavior-only confirmation passes
+NO collision behavior redesign during production migration without new contradictory evidence
 NO Raise/speed implementation yet
 NO AttackContinuationProtection work
 ```
