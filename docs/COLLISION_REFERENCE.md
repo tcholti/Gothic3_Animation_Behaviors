@@ -122,6 +122,9 @@ Normal + Quick + true Power + Sprint-origin
 Permanent mechanism:
 
 ```text
+unmarked raw55
+-> completely native Gothic behavior
+
 eligible marked execution
 -> selectively suppress evidence-backed premature native RIGHT 5 -> 7 opening
 
@@ -138,6 +141,8 @@ end
 ```
 
 Scope remains exact current RIGHT PhysicalFist/raw55, marker-owned, 1 or 2 FIST markers, no LEFT raw55 generalization, no mixed equipped+FIST authoring, no species/name/file inference and no custom damage.
+
+EV-387 final-candidate standalone evidence directly confirms unmarked raw55 fallback: BlackTroll Quick, Normal, factual true Power and Sprint execute with `MarkerPresent=0`, `FistMarkers=0`, `SuppressNative=0`; there are no raw55 marker-owner/suppression records; Gothic performs native 5->7 and 7->5 with healthy finalization.
 
 ### Current final-candidate family state gates
 
@@ -227,12 +232,14 @@ The User's sheath/draw-associated miss observation is not a collision-marker blo
 
 ### Current raw55 disposition
 
-Focused New Balance raw55 compatibility remains CLOSED/PASS through EV-382, and broad intended-stack New Balance compatibility is CLOSED/PASS through EV-384.
+Focused New Balance raw55 compatibility remains CLOSED/PASS through EV-382, and broad intended-stack New Balance compatibility is CLOSED/PASS through EV-384 on the source lineage preceding the final standalone SP1 correction.
 
-The EV-385 standalone current-SPRINT/SP1 eligibility defect is **CLOSED by EV-386**. The corrected marked standalone final-candidate matrix, including factual true-Power single/double controls, is PASS. The only unfinished standalone diagnostic sentinel item is one representative **unmarked raw55 native-fallback** control. The already-run New Balance final-candidate batch remains unpublished/unreviewed and follows after that standalone control.
+The EV-385 standalone current-SPRINT/SP1 eligibility defect is **CLOSED by EV-386**. The corrected marked standalone final-candidate matrix, including factual true-Power single/double controls, is PASS. EV-387 additionally confirms unmarked raw55 native fallback across Quick, Normal, true Power and Sprint. Therefore the **final-candidate standalone/no-New-Balance diagnostic raw55 sentinel is CLOSED/PASS through EV-386–EV-387**.
+
+The next diagnostic gate is bounded review of the User's already-recorded New Balance final-candidate logs, specifically preserving compatibility-sensitive Sprint SP2 / same-C1 Action9->Action2 behavior. No rerun is required.
 
 Architecture: `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`.  
-Evidence: EV-262–EV-298, EV-317, EV-341, EV-366, EV-376–EV-386.
+Evidence: EV-262–EV-298, EV-317, EV-341, EV-366, EV-376–EV-387.
 
 ## 6. Sprint transport
 
@@ -244,7 +251,7 @@ For raw55, immutable Sprint-origin identity survives the legitimate same-C1 Acti
 
 Equipped Sprint RIGHT/LEFT/BOTH/OFF is permanent supported behavior through `EquippedSprintCollision`. Its bound continuation is exact-identity-only; a new ordinary true Power execution cannot inherit Sprint authorization.
 
-Evidence: raw8 EV-250–EV-251, EV-316, EV-354, EV-377; raw55 EV-280–EV-285, EV-294, EV-298, EV-317, EV-376–EV-386; equipped Sprint EV-311, EV-315, EV-320–EV-329, EV-368, EV-377.
+Evidence: raw8 EV-250–EV-251, EV-316, EV-354, EV-377; raw55 EV-280–EV-285, EV-294, EV-298, EV-317, EV-376–EV-387; equipped Sprint EV-311, EV-315, EV-320–EV-329, EV-368, EV-377.
 
 ## 7. Shield / raw9 boundary
 
@@ -308,7 +315,8 @@ dual-1H multi-window authoring               PASS EV-383
 broader New Balance full-stack gate          CLOSED/PASS EV-384
 standalone Sprint/SP1 defect                 FOUND EV-385 / CLOSED EV-386
 corrected marked standalone raw55 matrix     PASS EV-386
-unmarked raw55 final-candidate fallback      PENDING
+unmarked raw55 final-candidate fallback      PASS EV-387
+final-candidate standalone diagnostic gate   CLOSED/PASS EV-386–EV-387
 final-candidate New Balance regression       RUN LOCALLY / LOGS PENDING REVIEW
 behavior-only release-purity validation      PENDING
 production collision migration               BLOCKED
