@@ -12,78 +12,52 @@ Stable: `main` — keep frozen until Speed + Raise + assembled regression close.
 ## State
 
 ```text
-EV-390 production collision integration = CLOSED/PASS
-ADR-0007 shared Speed/Raise INI schema = ACCEPTED
-BehaviorProfiles foundation = source-review PASS
+EV-390 collision production integration = CLOSED/PASS
+ADR-0007 shared Speed/Raise schema = ACCEPTED
+BehaviorProfiles foundation = PASS
 implementation = 81d4964201579c9f7a989404426c3d9dc9ab4834
 EV-391 Speed v2 caller-side composition static evidence = RECORDED
 CURRENT = Speed v2 mechanism research/design ONLY
-RAISE = PAUSED until Speed fully closes
+RAISE = PAUSED until Speed closes
 ```
 
-Config task archived at `docs/archive/investigations/SHARED_PROFILE_CONFIG_FOUNDATION.md`. `docs/work/active/` is clean.
+`docs/work/active/` is clean.
 
-## Speed contract
+## Speed v2 handoff
 
-Profile identity:
-
-```text
-AnimationFamily + LeftAnimationUseType + RightAnimationUseType + ActionProfile
-ActionProfile = Normal | Quick only
-```
-
-INI loads once at startup. `BaseSpeed` absent = native/mod fallback. `BaseSpeed=1.00` = explicit authored base 1.00. No P0/P1/P2 split; no weapon-specific C++ policy branches.
-
-For configured Normal/Quick profiles, `1.0` is the intended neutral authored playback scale. Known native/current-NB values such as Normal 1H `0.6`, Normal 2H/Axe/Staff/Halberd `0.7`, Quick `1.0` are technical base-selection facts, not desired G3AB defaults. Goal: author attacks around a common convenient Blender timing/frame convention, then tune gameplay through INI. Do not claim as proven that most/all Gothic animations use 1.0 engine-wide.
-
-Required composition:
+Required invariant:
 
 ```text
 unconfigured = B * M
 configured   = C * M
 ```
 
-`C` = configured authored base. `M` = legitimate Gothic/New Balance modifiers and must remain effective.
+`C` is configured authored base; legitimate Gothic/New Balance modifiers `M` must remain effective. Configured Normal/Quick uses `1.0` as the intended neutral authored reference; native/NB `0.6`/`0.7` Normal values are technical base facts, not desired G3AB defaults.
 
-## EV-391 mechanism finding
-
-Static tracing found a viable composition boundary **after** the live `GetAnimationSpeedModifier` policy result but **before** downstream playback/state consumption.
-
-Proven Hit consumers:
-
-```text
-Script_Game+0x383F0  explicit Action1 / gEAction_Attack / Normal
-Script_Game+0x48677  PSRoutine::PropertyAction route after explicit Action4/5 assignment / Quick R/L
-```
-
-Nearby dynamic Hit consumers (`+0x38A8B`, `+0x38E9D`, `+0x38F22`, `+0x3937D`, `+0x39402`) preserve exact action context at the same boundary.
-
-Preferred candidate shape:
+EV-391 statically proves a narrower post-policy/pre-playback composition class outside competing `+0x42A0` ownership:
 
 ```text
 exact target caller
--> invoke LIVE Script_Game+0x42A0  # New Balance remains owner and computes B*M
--> if exact configured supported profile: multiply by C/B
--> result = C*M
--> continue native downstream path
+-> invoke LIVE Script_Game+0x42A0       # NB computes B*M
+-> exact configured profile: * (C/B)
+-> C*M
+-> existing downstream path
 ```
 
-A targeted caller-side thunk/call redirection is therefore preferred over:
+Direct Hit-consumer proof:
 
 ```text
-competing hook ownership of +0x42A0
-final-result replacement
-global StartPlayAni/StartPlayAniEx interception
-copied New Balance multiplier policy
+Script_Game+0x383F0  Action1 / Attack / Normal
+Script_Game+0x48677  PropertyAction after explicit Action4/5 / Quick R/L
 ```
 
-Existing runtime/ADR evidence plus pinned New Balance source already supplies the first intended base groups (`0.6`, `0.7`, `1.0`), so **do not request more native-speed logging now**.
+Nearby dynamic Hit callers (`+0x38A8B`, `+0x38E9D`, `+0x38F22`, `+0x3937D`, `+0x39402`) preserve action context and support the same intervention class. Prefer targeted caller-side thunk/call redirection; do not hook all `StartPlayAni*` calls and do not compete for `+0x42A0` ownership.
 
-This is not yet a frozen production call-site list. Generic `gEAction_QuickAttack` / Action3 remains the exact static gap; ADR-0007 Quick includes Action3/4/5.
+Existing evidence plus pinned New Balance source already supplies the first intended base groups (`0.6`, `0.7`, `1.0`), so **do not request another native-speed logger run now**.
 
-## Primary compatibility stack
+Open static gap: ADR-0007 Quick includes Action3/4/5. Action4/5 provenance is proven; generic `gEAction_QuickAttack` / Action3 is not yet closed. The production call-site list is therefore not frozen.
 
-Keep live during Speed development/testing:
+Primary runtime compatibility stack remains:
 
 ```text
 Script_G3AnimationBehaviors.dll
@@ -91,22 +65,18 @@ Script_NewBalance.dll
 Script_AttackCollision.dll
 ```
 
-New Balance compatibility is PRIMARY; native-only is later sanity/fallback.
-
-Pinned Jackydima source: `316d32406a133f8884e7e302752c35f66b4f54fc`.
-
 ## Next route
 
 ```text
-1. trace generic gEAction_QuickAttack / Action3 into the dynamic combat consumer family
-2. close the exact Normal+Quick Hit consumer-callsite set
-3. verify selected sites retain entity + exact action/profile identity for BehaviorProfiles lookup
-4. if static evidence remains insufficient, freeze only the smallest diagnostics-only causal probe
-5. after closure, freeze bounded Speed v2 implementation
-6. validate intended New Balance stack first
-7. close Speed completely before any Raise work
+1. trace generic QuickAttack / Action3 into the dynamic combat consumer family
+2. close exact Normal+Quick Hit consumer-callsite set
+3. verify entity + exact action/profile identity survives at each selected site
+4. if static proof fails, freeze only the smallest diagnostics-only probe
+5. then freeze bounded Speed v2 implementation
+6. validate New Balance composition first; native-only sanity later
+7. close Speed before any Raise work
 ```
 
-Authorities: ADR-0004, ADR-0007, `DESIGN.md` §§2–3, `SOURCE_HOOK_GUIDE.md`, EV-391, `references/README.md`.
+Authorities: ADR-0004, ADR-0007, `SESSION_ENTRYPOINT.md`, EV-391, `DESIGN.md` §§2–3, `SOURCE_HOOK_GUIDE.md`.
 
-Hard exclusions: final-result replacement; same-hook load-order dependency; copied NB multiplier policy; global speed override; stamina bypass; premature Raise work; collision redesign.
+Hard exclusions: final-result replacement; same-hook load-order dependency; copied NB multiplier policy; global speed override; stamina bypass; Raise work; collision redesign.
