@@ -81,7 +81,7 @@ Phase 7  stress regression                    PASS EV-373–EV-374
 
 Final frozen-source comprehensive stages A–D are CLOSED/PASS through EV-374. EV-375 additionally verifies the Zombie+Axe copied/renamed asset-gap remedy.
 
-Later compatibility changes did not reopen the entire campaign. §4.5 owns the bounded post-compatibility standalone sentinel for the changed final candidate; that sentinel is now CLOSED/PASS EV-386–EV-387.
+Later compatibility changes did not reopen the entire campaign. §4.5 owns the bounded post-compatibility standalone sentinel for the changed final candidate; that sentinel is CLOSED/PASS EV-386–EV-387.
 
 ---
 
@@ -109,7 +109,7 @@ EV-375 Zombie+Axe asset-gap remedy
 
 ---
 
-## 4. New Balance exact distributed-bundle compatibility — CLOSED/PASS EV-384, FINAL-CANDIDATE FOCUSED REGRESSION PENDING REVIEW
+## 4. New Balance exact distributed-bundle compatibility — CLOSED/PASS EV-384; FINAL-CANDIDATE FOCUSED REGRESSION PASS EV-388
 
 Environment certified by the representative gate:
 
@@ -144,7 +144,7 @@ The complete gate covered representative equipped marker combat, raw8 body-conta
 
 EV-383 adds dual-1H four-marker / three-offensive-window authoring proof. EV-384 supplies broad mixed-gameplay stress closure. The User reported correct gameplay behavior. Its processed whole-run package contains 27 C1 finalization/repair events and 5 marker anomalies; the reviewed marker anomalies are Whirl `REJECTED_C1_GENERATION_INCONSISTENCY` fail-closed stale callbacks, while reviewed single/dual-source C1-R1 repairs converge exact outstanding group7 sources to group5 with no sampled repair divergence. The run ends with normal cleanup and clean unload.
 
-No production source file changed between the EV-382 correction and EV-383/EV-384 runtime evidence. The later standalone SP1 correction therefore requires only the bounded final-candidate New Balance regression defined below; it does not reopen the full EV-376–EV-384 campaign.
+No production source file changed between the EV-382 correction and EV-383/EV-384 runtime evidence. The later standalone SP1 correction therefore required only the bounded final-candidate New Balance regression now closed by EV-388; it did not reopen the full EV-376–EV-384 campaign.
 
 ### 4.3 Acceptance — SATISFIED FOR TESTED ENVIRONMENT
 
@@ -171,7 +171,7 @@ a31c66b97e45c27d0739b7df51252d33f490e7e1
   Normal second-FIST explicit {SP0,SP1} acceptance
 ```
 
-The New Balance evidence establishes the compatible SP2 and Action9→Action2 transition routes. It did not establish current-SPRINT/SP1 second-FIST behavior; the post-compatibility standalone sentinel deliberately existed to ensure those compatibility additions remained additive rather than becoming a New Balance dependency. EV-386–EV-387 now close that standalone requirement on the corrected final candidate.
+The New Balance evidence establishes the compatible SP2 and Action9→Action2 transition routes. It did not establish current-SPRINT/SP1 second-FIST behavior; the post-compatibility standalone sentinel deliberately existed to ensure those compatibility additions remained additive rather than becoming a New Balance dependency. EV-386–EV-387 close that standalone requirement on the corrected final candidate, and EV-388 reconfirms the New Balance-specific routes on the same final candidate.
 
 Hard boundaries remain:
 
@@ -282,33 +282,58 @@ FINAL-CANDIDATE STANDALONE/NO-NEW-BALANCE DIAGNOSTIC RAW55 SENTINEL
 = CLOSED/PASS EV-386–EV-387
 ```
 
-### 4.5.1 Remaining diagnostic gate — bounded final-candidate New Balance regression
+### 4.5.1 Final-candidate New Balance regression — CLOSED/PASS EV-388
 
-Because the behavior-facing source changed after EV-384, one focused New Balance regression remains required on the same reviewed final candidate.
+Because the behavior-facing source changed after EV-384, the same reviewed final candidate required one bounded New Balance/raw55 regression. The User supplied five already-recorded BlackTroll logs: `1+3`, `1+8`, `1+15`, single-marker, and no-marker.
 
-The User has **already recorded** a New Balance matrix corresponding to the standalone fixtures. Do not ask for a rerun. Once published, review it under POP-06 bounded retrieval.
-
-Minimum required proof from that already-run batch:
+Required compatibility behavior is preserved:
 
 ```text
-New Balance final-candidate startup/load remains healthy
-compatibility-sensitive Sprint-origin marked route remains accepted
-established SP2 behavior remains supported when present
-same-C1 Action9/SPRINT -> Action2/POWER continuation remains supported
-second FIST remains clear-only / no second physical opening
-native cleanup returns exact RIGHT raw55 to group5
-Outstanding=0 at normal finalization
-no new supported-traffic rejection / ownership contradiction
-clean unload
+1+3:
+  marker1 SPRINT/Action9/SP1 -> accepted/open
+  marker2 same C1 still SPRINT/Action9/SP2
+  -> accepted clear-only
+  -> GroupRequested=0 / ClearTriggeredList=1
+
+1+8 / 1+15:
+  marker1 SPRINT/Action9/SP1 -> accepted/open
+  marker2 after same-C1 Action9->Action2 transition
+  -> current POWER/SP2
+  -> accepted clear-only
+
+single-marker:
+  current SPRINT/Action9/SP2 first FIST -> accepted/open
+  -> ordinary native cleanup
+
+true Power control:
+  POWER/SP1 first FIST -> accepted/open
+  POWER/SP2 second FIST -> accepted clear-only
 ```
 
-The User's extra 1+3 / 1+8 / 1+15 / single-marker coverage may be used as additional confidence, but the full EV-376–EV-384 campaign must not be repeated absent contradictory evidence.
+Across all five artifacts, bounded searches find:
 
-The diagnostic phase closes only when this bounded final-candidate New Balance regression passes.
+```text
+REJECTED_* = 0
+ANOMALY = 0
+C1 INVARIANT WARNING = 0
+```
 
-### 4.6 Final behavior-only / diagnostics-free collision confirmation — REQUIRED AFTER DIAGNOSTIC PASS
+Reviewed lifecycle routes and every artifact tail converge with raw55 RIGHT returned to group5, `Outstanding=0`, and clean diagnostic unload.
 
-After the final-candidate New Balance regression passes:
+The fully unmarked New Balance artifact contains repeated `MarkerPresent=0 / FistMarkers=0 / SuppressNative=0` Power, Normal and Quick raw55 traffic, with zero raw55 marker-owner/native-opening-suppression records. It did not happen to contain Sprint/Action9, so no unmarked-New-Balance Sprint claim is made from that artifact. The frozen EV-388 gate does not require that occurrence because the compatibility-sensitive marked Sprint SP2 / Action9->Action2 routes are directly present, while standalone EV-387 already proves unmarked Sprint fallback.
+
+Therefore:
+
+```text
+FINAL-CANDIDATE NEW BALANCE/RAW55 FOCUSED DIAGNOSTIC REGRESSION = PASS EV-388
+DIAGNOSTIC PHASE = CLOSED/PASS EV-386–EV-388
+```
+
+Do not repeat the full EV-376–EV-384 campaign absent contradictory evidence.
+
+### 4.6 Final behavior-only / diagnostics-free collision confirmation — CURRENT
+
+The final-candidate diagnostic phase has passed. Now:
 
 ```text
 deploy Script_FrameCollisionBehaviorTest ONLY
@@ -368,29 +393,28 @@ freeze setup + filename
 
 Behavior-only diagnostics-free validation follows §4.6 instead: exact binary identity + frozen observational matrix + User result; do not manufacture a raw log requirement for a product that intentionally emits no diagnostic evidence.
 
-The EV-382 Normal logs, EV-384 New Balance stress log, EV-385 discovery batch, EV-386 corrected marked standalone batch, and EV-387 unmarked fallback run are processed and archived byte-identically. `research/raw/` should contain only `Keep.txt` after EV-387 closure.
+The EV-382 Normal logs, EV-384 New Balance stress log, EV-385 discovery batch, EV-386 corrected marked standalone batch, EV-387 unmarked fallback run, and EV-388 final-candidate New Balance regression are processed and archived byte-identically. `research/raw/` should contain only `Keep.txt` after EV-388 closure.
 
 ---
 
 ## 6. Production collision migration — BLOCKED UNTIL FINAL BEHAVIOR-ONLY PASS
 
-The broader New Balance compatibility gate is closed through EV-384, and the changed final candidate has now passed its complete standalone/no-New-Balance diagnostic sentinel through EV-386–EV-387.
+The final-candidate diagnostic phase is CLOSED/PASS through EV-386–EV-388. Production migration remains blocked only by the diagnostics-free behavior-twin release-purity confirmation.
 
 Therefore:
 
 ```text
-review already-run final-candidate New Balance/raw55 batch
--> bounded compatibility-sensitive regression PASS
--> diagnostic phase CLOSED
--> diagnostics-free behavior-twin observational confirmation
--> only after behavior-only PASS:
+deploy diagnostics-free behavior twin only
+-> verify exact live behavior binary identity
+-> behavior-only observational confirmation PASS
+-> only then:
    mature collision behavior
    -> migrate into src/Script_G3AnimationBehaviors
    -> diagnostics remain separate
    -> production integration validation
 ```
 
-The behavior twin is the pre-migration release-purity proof for the collision subsystem; production migration still remains a separate integration step into the shipping product.
+The behavior twin is the pre-migration release-purity proof for the collision subsystem; production migration remains a separate integration step into the shipping product.
 
 ---
 
@@ -420,8 +444,9 @@ standalone SP1 contradiction                  FOUND EV-385
 corrected marked standalone matrix            PASS EV-386
 unmarked native-fallback standalone           PASS EV-387
 standalone final-candidate diagnostic gate    CLOSED/PASS EV-386–EV-387
--> review already-run New Balance final-candidate logs CURRENT
--> final diagnostics-free behavior-only observational confirmation
+final-candidate New Balance regression        PASS EV-388
+diagnostic phase                              CLOSED/PASS EV-386–EV-388
+-> final diagnostics-free behavior-only observational confirmation CURRENT
 -> production collision migration only after behavior-only PASS
 -> production integration validation
 -> later Raise + Speed + Config under DESIGN.md §3 / ADR-0004
