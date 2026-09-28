@@ -11,11 +11,12 @@ Speed is the next exclusive feature after EV-390 closed collision production int
 
 The original prototype INI hard-coded 2H Normal keys and therefore did not represent the intended generic product architecture.
 
-Runtime work on 2026-09-28 additionally established important constraints:
+Runtime work on 2026-09-28 established important constraints:
 
-1. the user-facing animation family must remain the Gothic animation-name family token (`Hero`, `Demon`, `Goblin`, etc.), not an incidental resource API string such as `G3_Hero_Skeleton`;
-2. the selected downstream Speed composition mechanism needs factual reference base values `B` in order to transform a compatible result `B*M` into configured `C*M` without replacing contextual modifiers;
-3. Speed/Raise profile selection must preserve the successful pre-collision request-semantics design: factual requested `gEAction` and `gEPhase` come from Gothic's request path, not from whichever motion happens to be playing at that instant.
+1. the user-facing animation family remains the Gothic animation-family token (`Hero`, `Sabretooth`, `Demon`, `Goblin`, etc.), not an incidental resource API string such as `G3_Hero_Skeleton` or `G3_Sabertooth_Body_01`;
+2. the generic runtime source for this family token is `Animation.GetSkeletonName(...)`, proven with both Hero and Sabretooth and corroborated by `Entity.GetSkeletonName()`;
+3. the selected downstream Speed composition mechanism needs factual reference base values `B` in order to transform a compatible result `B*M` into configured `C*M` without replacing contextual modifiers;
+4. Speed/Raise profile selection preserves the successful pre-collision request-semantics design: factual requested `gEAction` and `gEPhase` come from Gothic's request path, not from whichever motion happens to be playing at that instant.
 
 The pre-collision prototypes already proved this separation:
 
@@ -24,7 +25,7 @@ The pre-collision prototypes already proved this separation:
 
 The 2026-09-28 family-source probe is consistent with that architecture. At the CombatMove request boundary, `CurrentMovementAni()` may still name the outgoing/current motion while the new Hit is already being requested. That is expected and is not a reason to delay profile selection until the new motion becomes current.
 
-The revised schema therefore stores factual reference values in generic profile data instead of hard-coding weapon/family base tables in behavior code, while runtime identity remains split cleanly between stable actor/equipment facts and Gothic's factual action/phase request.
+The schema therefore stores factual reference values in generic profile data instead of hard-coding weapon/family base tables in behavior code, while runtime identity remains split cleanly between stable actor/equipment facts and Gothic's factual action/phase request.
 
 The production project builds against Gothic 3 SDK revision:
 
@@ -77,7 +78,7 @@ AnimationFamily
 + ActionProfile
 ```
 
-`AnimationFamily` uses the Gothic animation-family token, for example `Hero`, `Demon`, `Goblin`, `Wolf`, etc. `ANIMATION_RULES.md` defines the first animation-name token as this family. Runtime work must obtain this as a stable actor/animation-family fact; it must not require raw resource names such as `G3_Hero_Skeleton` and must not infer the requested attack from `CurrentMovementAni()`.
+`AnimationFamily` uses the stable Gothic animation-family token exposed by `Animation.GetSkeletonName(...)`. Proven examples are `Hero` and `Sabretooth`. Runtime configuration does not use raw resource identities such as `G3_Hero_Skeleton` or `G3_Sabertooth_Body_01`, and it does not infer the requested attack from `CurrentMovementAni()`.
 
 `LeftAnimationUseType` and `RightAnimationUseType` use normalized animation tokens owned by `ANIMATION_RULES.md`, not blindly serialized raw `gEUseType` spelling.
 
@@ -100,7 +101,7 @@ For Speed and later Raise, the runtime model is:
 
 ```text
 stable actor/equipment facts:
-  AnimationFamily
+  AnimationFamily from Animation.GetSkeletonName(...)
   LeftAnimationUseType
   RightAnimationUseType
 
@@ -310,7 +311,7 @@ read G3AnimationBehaviors.ini once
 Runtime:
 
 ```text
-obtain stable factual AnimationFamily
+obtain AnimationFamily from Animation.GetSkeletonName(...)
 + normalized left/right animation UseTypes
 + factual requested gEAction mapped to Normal/Quick
 + factual requested gEPhase used as behavior gate
@@ -356,6 +357,7 @@ Hero + Shield + 1H + Quick
 Hero + Torch + 1H + Normal
 Hero + 1H + 1H + Quick
 Hero + None + 2H + Normal
+Sabretooth + None + Fist + Normal
 Demon + None + 2H + Normal
 ```
 
@@ -364,7 +366,7 @@ are data, not C++ feature-policy branches.
 C++ owns generic engine interpretation:
 
 ```text
-stable factual animation family source
+Animation.GetSkeletonName(...) -> AnimationFamily
 raw UseTypes -> normalized animation tokens
 factual requested action -> ActionProfile
 factual requested phase -> behavior gate
@@ -379,7 +381,8 @@ Configuration owns profile selection and factual reference calibration. Supporti
 - One desired `BaseSpeed` governs Hit and, when later enabled, the inserted Raise by default.
 - Recover stays derived from Hit and remains absent from the INI.
 - Phase-specific factual reference values remain separate where the composition mechanism requires them.
-- The current hard-coded Hero reference-base table is transitional and must be removed by the later bounded generic-profile implementation.
+- The transitional Hero/weapon hard-coded reference-base table has been removed from `AttackSpeed`; reference calibration now comes from the matched profile.
 - Speed/Raise attack identity follows Gothic's factual request semantics; `CurrentMovementAni()` is not part of user-facing profile identity and is not used to infer the requested attack/phase.
-- The exact stable runtime source for `AnimationFamily` is being closed by the active diagnostics-only family-source probe; the human control supports `Animation.GetSkeletonName(...)`, with one non-Hero generalization control remaining.
+- `Animation.GetSkeletonName(...)` is the accepted generic runtime `AnimationFamily` source after consistent Hero and Sabretooth controls.
+- Missing/invalid family or reference calibration fails closed to native/compatible behavior.
 - Raise behavior remains paused until Speed closes under ADR-0006.
