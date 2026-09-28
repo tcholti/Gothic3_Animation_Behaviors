@@ -89,6 +89,8 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | Speed v2 New Balance-preserving B*M -> C*M mechanism candidate | EV-391 |
 | Speed v2 generic Quick/Action3 provenance | EV-392 |
 | Speed v2 exact six-site caller set / +0x38A8B exclusion | EV-392 |
+| Speed v2 deep independent static audit | `archive/investigations/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT_RESULT.md` |
+| Speed v2 S-01 finite-output correction | `archive/investigations/SPEED_V2_S01_FINITE_OUTPUT_GUARD.md` |
 | native contact misses vs authored marker correctness | EV-381 |
 | sheath/draw contact observation | EV-380–EV-381; not a marker blocker |
 
@@ -147,11 +149,12 @@ Speed preparation:
   BehaviorProfiles foundation = IMPLEMENTED / SOURCE-REVIEW PASS
   caller-side composition mechanism = EV-391
   generic Quick provenance + exact six-site caller set = CLOSED EV-392
-  production Speed v2 source = IMPLEMENTED / SOURCE-REVIEW PASS
-  final reviewed source = 4f9911f57d8d6b36efd35adee41920560c3986e0
+  deep independent static audit = PASS WITH NON-BLOCKING FINDINGS
+  S-01 finite-output correction = CLOSED / SOURCE-REVIEW PASS
+  final corrected Speed source = db7b24f1a0c19beaaf4e720cd69d19c331854340
 
 Current project gate:
-  local build/deploy of final reviewed Speed v2 source
+  local build/deploy of corrected Speed v2 source
   -> primary New Balance composition/runtime validation
   -> native-only sanity/fallback
   -> close Speed completely
@@ -182,7 +185,7 @@ research/archive/  processed canonical runtime provenance
 
 The EV-382 test3 logs, EV-384 New Balance stress log, EV-385 four-log standalone batch, EV-386 corrected four-log marked standalone batch, EV-387 unmarked fallback artifact, and EV-388 five-log final-candidate New Balance batch are processed and archived byte-identically under `research/archive/`. The EV-384 derived package remains under `research/derived/2026.09.27_newbalance_stresstest_large_log/` for bounded retrieval. `research/raw/` should contain only `Keep.txt` after EV-388 closure.
 
-EV-389 and EV-390 are diagnostics-free observational evidence and therefore have no diagnostic runtime artifact by design. EV-391 and EV-392 are static source/binary-reference evidence and have no runtime artifacts.
+EV-389 and EV-390 are diagnostics-free observational evidence and therefore have no diagnostic runtime artifact by design. EV-391 and EV-392 are static source/binary-reference evidence and have no runtime artifacts. The later deep Speed audit and S-01 correction closure are archived investigation records rather than new EV entries because they validate/correct the already-recorded Speed mechanism without adding runtime evidence.
 
 Historical ledger rows may retain paths that were correct when written. Use `EVIDENCE_PATH_MIGRATIONS.md` when a later archive move makes an old path ambiguous.
 
