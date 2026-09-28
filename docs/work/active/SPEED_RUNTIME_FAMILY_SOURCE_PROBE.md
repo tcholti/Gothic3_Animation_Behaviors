@@ -6,18 +6,39 @@
 
 ## Purpose
 
-Resolve the last factual identity question before the generic Speed profile refactor: which runtime API surface can reliably provide the user-facing Gothic animation family token (`Hero`, `Demon`, `Goblin`, etc.) at the point where Normal/Quick attack profile identity is being observed.
+Resolve the last factual identity question before the generic Speed profile refactor: which runtime API surface can reliably provide the user-facing Gothic animation family token (`Hero`, `Demon`, `Goblin`, etc.) while preserving the already-proven request-semantics architecture for Speed and later Raise.
 
 The first identity probe proved that `Animation.GetResourceName()` returns `G3_Hero_Skeleton` for the tested player route, which is not the ADR-0007 family token `Hero`. A direct resource-name alias was deliberately rejected as premature architecture.
 
-Canonical animation naming already defines the first animation-name token as `AnimationFamily`.
+Canonical animation naming already defines the first animation-name token as `AnimationFamily`, but the family source is an actor/animation identity concern only. The requested attack itself remains identified from Gothic's factual action/phase request.
+
+## Preserved pre-collision architecture
+
+The successful pre-collision prototypes already established the intended separation:
+
+```text
+Speed:
+requested gEAction from Gothic
++ requested gEPhase from Gothic
++ actor/equipment facts
+-> configured behavior
+
+Raise:
+matching attack/profile
+-> explicitly request factual Action + Raise through CombatMove
+-> Gothic resolves the concrete Raise animation
+```
+
+The old Speed prototype did not inspect `CurrentMovementAni()` to decide which attack was being requested. The old Raise prototype did not wait for a Raise motion to become current; it asked Gothic for `gEAction_Attack + Raise` and let Gothic resolve P0/P1/etc.
+
+Therefore this probe is **not** trying to find a current Hit filename to identify the attack. It is only selecting the stable runtime source for the `AnimationFamily` component of profile identity.
 
 ## Frozen causal questions
 
-For player Normal/Quick CombatMove observations, record together:
+For Normal/Quick CombatMove observations, record together:
 
 1. factual action and requested phase;
-2. `NPC.GetCurrentMovementAni()`;
+2. `NPC.GetCurrentMovementAni()` as observational timing context only;
 3. `Animation.GetResourceName()`;
 4. `Animation.GetSkeletonName(...)` availability and value;
 5. `Entity.GetSkeletonName()`;
@@ -46,7 +67,7 @@ RawRightUseType=2
 
 Normal observations used Action1; Quick observations used Action4/5.
 
-`CurrentMovementAni()` was not the requested/new Hit identity at this observation point. Across observations it could still report prior/current motions such as:
+`CurrentMovementAni()` could still report the outgoing/current motion while the new Hit request was already factual, including:
 
 ```text
 Hero_..._HoldRight_End_...
@@ -55,14 +76,15 @@ Hero_..._Ambient_Loop_...
 Hero_..._Parade_Begin_...
 ```
 
-Therefore the current-motion filename is rejected as the production family source for Speed at this hook: its `Hero_` prefix happens to remain useful for this actor, but the actual motion identity is stale relative to the requested Hit.
+This is now interpreted as expected request-boundary behavior, not as a defect in the observation point. It confirms why Speed must continue to trust Gothic's factual requested Action/Phase instead of inferring the requested attack from whichever motion is currently playing.
 
-Both skeleton APIs returned the exact author-facing family token `Hero` on every observation. `Animation.GetSkeletonName(...)` is the preferred candidate because:
+Both skeleton APIs returned the exact author-facing family token `Hero` on every observation. `Animation.GetSkeletonName(...)` is the preferred candidate for the separate family component because:
 
 - it belongs directly to the animation property set whose family is being keyed;
 - it returns the exact `Hero` token expected by ADR-0007;
 - it provides an explicit success/failure result, allowing a natural fail-closed runtime-key build;
-- it avoids one-off parsing/aliasing of `G3_Hero_Skeleton`.
+- it avoids one-off parsing/aliasing of `G3_Hero_Skeleton`;
+- it does not replace or duplicate the factual Action/Phase request semantics.
 
 The current production key still uses `GetResourceName()` and therefore still produced `g3_hero_skeleton` / `ProfileMatch=false`; this is expected and confirms no production behavior changed during the probe.
 
@@ -72,9 +94,11 @@ Processed human-control log:
 
 ## Why one non-human control remains
 
-The human result is sufficient to reject current-motion parsing and raw resource-name identity for Hero, and it strongly supports `Animation.GetSkeletonName(...)`.
+The human result is sufficient to reject raw resource-name identity for Hero and to keep `CurrentMovementAni()` out of Speed request classification. It strongly supports `Animation.GetSkeletonName(...)` as the stable family component.
 
-Before using that API as the generic production family source, run one additional known non-Hero family. This is not a new architecture investigation; it is a bounded generalization check that the same API returns another stable Gothic family token rather than a Hero-specific special case.
+Before using that API as the generic production family source, run one additional known non-Hero family. This is a bounded generalization check that the same API returns another stable Gothic family token rather than a Hero-specific special case.
+
+This control does **not** re-test action/phase timing or attack animation resolution; those remain governed by Gothic's factual request semantics.
 
 ## Final runtime control
 
@@ -89,9 +113,7 @@ perform several Quick attacks if available on the transformed player route
 exit normally
 ```
 
-No Sabretooth INI profile is required. The only required facts are the logged identity surfaces.
-
-Acceptance:
+No Sabretooth INI profile is required. The only required family facts are:
 
 ```text
 AnimationSkeletonNameAvailable=true
@@ -99,9 +121,9 @@ AnimationSkeletonName=<stable non-Hero family token>
 EntitySkeletonName=<same stable family token>
 ```
 
-`CurrentMovementAni` and `AnimationResourceName` remain observational comparison fields only.
+Action/phase and UseTypes remain useful context. `CurrentMovementAni` and `AnimationResourceName` remain observational comparison fields only.
 
-If the skeleton APIs agree on a stable non-Hero token, close the family-source probe and use `Animation.GetSkeletonName(...)` as the generic runtime `AnimationFamily` source.
+If the skeleton APIs agree on a stable non-Hero token, close the family-source probe and use `Animation.GetSkeletonName(...)` as the generic runtime `AnimationFamily` source while retaining Gothic's factual requested Action/Phase as the attack/phase authority.
 
 If they disagree or return unsuitable resource-style names, do not guess; inspect the exact contradiction before changing production.
 
@@ -119,9 +141,13 @@ Production behavior source remains frozen for this probe. The temporary `g3_hero
 
 ## Protected architecture already agreed
 
-ADR-0007 revision freezes:
+ADR-0007 freezes:
 
 ```text
+AnimationFamily = stable actor/animation family component
+ActionProfile = mapped from factual requested gEAction
+factual gEPhase = runtime behavior gate
+CurrentMovementAni = not request identity
 ReferenceHitBaseSpeed = factual Hit reference B
 ReferenceRaiseBaseSpeed = factual Raise reference B when later needed
 BaseSpeed = single desired authored base C
