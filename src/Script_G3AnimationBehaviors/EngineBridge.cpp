@@ -1,6 +1,7 @@
 #include "EngineBridge.h"
 
 #include "AttackMotionRouting.h"
+#include "AttackSpeed.h"
 #include "CollisionLifecycleGuard.h"
 #include "CollisionSources.h"
 #include "EquippedSprintCollision.h"
@@ -50,6 +51,13 @@ static mCFunctionHook Hook_RunScriptFunction;
 static mCCallHook Hook_Raw8FistTimingGateGetPlayTime;
 static mCFunctionHook Hook_ClearTriggeredListAll;
 static mCFunctionHook Hook_EntityOnDamage;
+static mCCallHook Hook_SpeedModifierCall_383F0;
+static mCCallHook Hook_SpeedModifierCall_38E9D;
+static mCCallHook Hook_SpeedModifierCall_38F22;
+static mCCallHook Hook_SpeedModifierCall_3937D;
+static mCCallHook Hook_SpeedModifierCall_39402;
+static mCCallHook Hook_SpeedModifierCall_48677;
+static mCCaller Call_GetAnimationSpeedModifier;
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS
 static GEU32 const EntityOnDamageEntryLogCap = 64;
@@ -101,6 +109,21 @@ static bool IsPlayerEntity(eCEntity *instance)
     return player != None && instance == player.GetInstance();
 }
 #endif
+
+using mFGetAnimationSpeedModifier = GEFloat (GE_STDCALL *)(Entity, gEPhase);
+
+static GEFloat GE_STDCALL GetAnimationSpeedModifier_Composed(
+    gEAction a_Action, Entity a_Entity, gEPhase a_Phase)
+{
+    Call_GetAnimationSpeedModifier.SetImmEax(a_Action);
+    GEFloat const compatibleSpeed =
+        Call_GetAnimationSpeedModifier
+            .GetFunction<mFGetAnimationSpeedModifier>()(
+                a_Entity, a_Phase);
+
+    return G3AB::AttackSpeed::ComposeCompatibleSpeed(
+        a_Entity, a_Action, a_Phase, compatibleSpeed);
+}
 
 static GEDouble GE_STDCALL Raw8FistTimingGateGetPlayTime_FrameCollisionTest(
     gCScriptProcessingUnit *a_pSPU,
@@ -947,6 +970,41 @@ static GEInt GE_STDCALL OnTick_FrameCollisionTest(
 void FrameCollision::EngineBridge::InstallHooks()
 {
     GetScriptAdmin().LoadScriptDLL("Script_Game.dll");
+
+    Call_GetAnimationSpeedModifier.Init(
+        mCCaller::GetCallerParams(
+            RVA_ScriptGame(0x42A0), mERegisterType_Eax));
+
+    Hook_SpeedModifierCall_383F0
+        .Prepare(RVA_ScriptGame(0x383F0),
+                 &GetAnimationSpeedModifier_Composed)
+        .AddRegArg(mERegisterType_Eax)
+        .Hook();
+    Hook_SpeedModifierCall_38E9D
+        .Prepare(RVA_ScriptGame(0x38E9D),
+                 &GetAnimationSpeedModifier_Composed)
+        .AddRegArg(mERegisterType_Eax)
+        .Hook();
+    Hook_SpeedModifierCall_38F22
+        .Prepare(RVA_ScriptGame(0x38F22),
+                 &GetAnimationSpeedModifier_Composed)
+        .AddRegArg(mERegisterType_Eax)
+        .Hook();
+    Hook_SpeedModifierCall_3937D
+        .Prepare(RVA_ScriptGame(0x3937D),
+                 &GetAnimationSpeedModifier_Composed)
+        .AddRegArg(mERegisterType_Eax)
+        .Hook();
+    Hook_SpeedModifierCall_39402
+        .Prepare(RVA_ScriptGame(0x39402),
+                 &GetAnimationSpeedModifier_Composed)
+        .AddRegArg(mERegisterType_Eax)
+        .Hook();
+    Hook_SpeedModifierCall_48677
+        .Prepare(RVA_ScriptGame(0x48677),
+                 &GetAnimationSpeedModifier_Composed)
+        .AddRegArg(mERegisterType_Eax)
+        .Hook();
 
     Hook_OnAI_Attack.Hook(
         GetScriptAdminExt().GetScriptAICallback("OnAI_Attack")
