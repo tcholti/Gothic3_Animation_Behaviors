@@ -3,7 +3,7 @@
 **Purpose:** Minimal durable current-state pointer. Repository startup begins at root `README.md` **Start Here**.  
 **Active development branch:** `development`  
 **Stable integration branch:** `main`  
-**Updated:** 2026-09-27
+**Updated:** 2026-09-28
 
 > **INTERRUPTED-CHAT ENTRY RULE:** after an abrupt/max-context/unusable Chat, return to root `README.md` and enter Recovery Lock. This file is then a clue, not unquestioned truth, until POP-11 reconciliation.
 
@@ -17,14 +17,14 @@ collision production integration = CLOSED/PASS
 ADR-0007 shared Speed/Raise INI schema = ACCEPTED
 BehaviorProfiles foundation = IMPLEMENTED + independent source-review PASS
 implementation SHA = 81d4964201579c9f7a989404426c3d9dc9ab4834
-Speed v2 static mechanism evidence = EV-391
+Speed v2 mechanism proof = EV-391
+Speed v2 Quick/caller-set static closure = EV-392
 
-CURRENT = Speed v2 mechanism research/design ONLY
-NEXT = close generic Quick/Action3 consumer provenance, then freeze smallest Speed implementation
+CURRENT = bounded Speed v2 source implementation
+ACTIVE TASK = docs/work/active/SPEED_V2_CALLER_SIDE_COMPOSITION_IMPLEMENTATION.md
+BUILD/RUN FOR ACTIVE TASK = PROHIBITED
 RAISE = PAUSED until Speed is completely closed
 ```
-
-`docs/work/active/` is clean; there is no active bounded Work implementation task.
 
 ## Shared profile foundation — accepted
 
@@ -56,7 +56,7 @@ INI parsed once during ScriptInit before hook installation
 
 Exact schema: ADR-0007. Completed config task: `archive/investigations/SHARED_PROFILE_CONFIG_FOUNDATION.md`.
 
-## Speed v2 — current exclusive feature
+## Speed v2 — frozen production mechanism
 
 Required composition:
 
@@ -67,15 +67,97 @@ configured effective speed   = C * M
 
 `C` is the configured authored base; legitimate Gothic/New Balance contextual modifiers `M` remain effective.
 
-### Authoring model
+For explicitly controlled Normal/Quick profiles, `1.0` remains the intended neutral authored playback scale. Native/mod `B` values such as `0.6`/`0.7` are technical facts only, not desired authoring defaults.
 
-For explicitly controlled Normal/Quick profiles, `1.0` is the intended **neutral authored playback scale**. Known `0.6`/`0.7` Normal attack values are treated as attack-specific reductions from that neutral reference, not desired G3AB authoring defaults. Authors can build Normal/Quick animations around a common convenient timing/frame convention and tune gameplay speed in the INI.
+### Generic Quick / Action3 closure
 
-Do not overclaim that all or most Gothic animations have been proven to use `1.0`; that engine-wide statement is not exhaustively measured. Native/mod `B` values are technical facts only and should be measured further only if the selected implementation mechanism requires them.
+Static tracing now closes the ADR-0007 Action3 gap:
 
-### Primary compatibility environment
+```text
+GetPrimaryPoseExt(Action3, Hit)
+-> engine selects/writes PropertyAction = Action4 or Action5
+-> later PropertyAction() returns 4/5
+-> Script_Game+0x48677 calls +0x42A0 with EAX=4/5
+```
 
-Keep live during Speed development/testing:
+Action3 is therefore selector/request identity on this proven route; actual playback-speed action is factual QuickAttackR/L 4/5.
+
+### Exact production call-site set
+
+EV-392 freezes six tested-build callers:
+
+```text
+Script_Game+0x383F0  Action1 / Normal / Hit
+Script_Game+0x38E9D  factual FEA8 action carrier / Hit
+Script_Game+0x38F22  factual FEA8 action carrier / Hit
+Script_Game+0x3937D  factual FEA8 action carrier / Hit
+Script_Game+0x39402  factual FEA8 action carrier / Hit
+Script_Game+0x48677  generic Quick route after Action3 -> Action4/5 / Hit
+```
+
+Important exclusion:
+
+```text
+Script_Game+0x38A8B
+```
+
+is **not** a factual action carrier. Its apparent `+0x158` action value originates from integerized `PSRoutine::GetStateTime()` and is copied forward. Do not match numeric 4/5 there as Quick.
+
+Other inspected non-targets remain excluded, including `+0x4AC6F` (action 27/28) and the `+0x4C6FA` Action6 route.
+
+### Production transport
+
+Do not own/hook the whole `Script_Game+0x42A0` entry.
+
+```text
+exact selected caller
+-> EngineBridge-owned mCCallHook
+-> pass incoming EAX factual action explicitly
+-> invoke LIVE Script_Game+0x42A0 exactly once
+-> compatible owner computes B*M
+-> AttackSpeed applies C/B only for exact configured + evidenced route
+-> C*M
+-> existing downstream path
+```
+
+`EngineBridge.cpp` remains sole low-level hook owner. `AttackSpeed` owns feature composition only.
+
+The pinned SDK supports the required transport:
+
+```text
+mCCallHook + AddRegArg(Eax)
+mCCaller with EAX register argument for calling live +0x42A0
+```
+
+This avoids competing New Balance entry ownership and does not depend on arbitrary DLL load order.
+
+### Technical base facts
+
+The caller-side transform needs factual `B`; keep it as a small immutable technical data lookup keyed by exact runtime facts, not weapon-policy branches and not a new INI field.
+
+Current first production facts under the primary New Balance stack:
+
+```text
+Normal Action1:
+None+1H       -> 0.6
+Shield+1H     -> 0.6
+Torch+1H      -> 0.6
+1H+1H         -> 0.6
+None+2H       -> 0.7
+None+Axe      -> 0.7
+None+Staff    -> 0.7
+None+Halberd  -> 0.7
+
+Quick Action4/5 -> 1.0
+```
+
+Runtime profile matching still uses normalized ADR-0007 animation tokens. Technical `B` lookup must preserve **raw** UseTypes separately because multiple raw UseTypes can serialize to the same animation token while not sharing the same compatible base policy.
+
+Fail closed for unsupported/unproven routes. Normal Fist/PhysicalFist is explicitly outside this first composition contract because current New Balance's special Fist Normal branch does not use the ordinary `B*M` path.
+
+## Primary compatibility environment
+
+Keep live during later Speed runtime testing:
 
 ```text
 Script_G3AnimationBehaviors.dll
@@ -83,77 +165,50 @@ Script_NewBalance.dll
 Script_AttackCollision.dll
 ```
 
-New Balance compatibility is the primary target; native-only testing is later sanity/fallback.
+New Balance compatibility is primary; native-only testing is later sanity/fallback.
 
-Pinned Jackydima source `316d32406a133f8884e7e302752c35f66b4f54fc` matched upstream `master` when checked 2026-09-27.
+Pinned Jackydima source:
 
 ```text
-Script_NewBalance/FunctionHook.cpp
--> owns Script_Game +0x42A0 GetAnimationSpeedModifier
--> combines base choices with stamina/disease/arena/etc. modifiers
-
-Script_AttackCollision/Script_AttackCollision.cpp
--> owns melee callback/collision timing behavior
--> does not own GetAnimationSpeedModifier
+316d32406a133f8884e7e302752c35f66b4f54fc
 ```
 
-### Static mechanism state — EV-391
-
-The old G3AB prototype is rejected because it replaces the previous hook's final result for configured attacks.
-
-Static consumer tracing now proves a narrower composition class outside competing `+0x42A0` ownership:
+Pinned SDK:
 
 ```text
-target Script_Game attack/Hit caller
--> call LIVE Script_Game+0x42A0
--> receive compatible result B*M
--> caller-side G3AB transform only for exact configured profile
--> (B*M) * (C/B) = C*M
--> existing downstream animation/state path
+90bfd344de4510dda7ac9da7461cc7f1eac911f7
 ```
 
-Direct Hit-consumer proof currently includes:
+Pinned binary reference:
 
 ```text
-Normal / gEAction_Attack (1)                 Script_Game+0x383F0
-QuickAttackR/L / gEAction 4/5 route          Script_Game+0x48677
-```
-
-Additional nearby dynamic Hit consumers preserve exact action context and strengthen the same intervention class, but the exhaustive production call-site set is not yet frozen.
-
-This mechanism can avoid owning/hooking the whole `+0x42A0` function: a targeted caller-side thunk/call redirection can invoke the live entry, allowing New Balance to compute `B*M` first, then apply only `C/B` for a configured supported profile.
-
-Existing evidence is sufficient for the first intended base groups; do **not** request another native-speed logger run now. Unsupported/future routes remain native/fail-closed until their exact `B` is proven.
-
-Remaining static gap before implementation freeze:
-
-```text
-ADR-0007 Quick = QuickAttack / QuickAttackR / QuickAttackL
-Action4/5 consumer provenance = proven
-Action3 generic QuickAttack consumer provenance = still open
+c9d12cb5f0dcb4f96af6a82c02138c1c15e981b6
 ```
 
 ## Immediate route
 
 ```text
-1. trace gEAction_QuickAttack / Action3 into the dynamic Script_Game combat consumer family
-2. close the exact Normal+Quick Hit consumer-callsite set
-3. verify each selected site retains entity + exact action/profile identity needed by BehaviorProfiles
-4. only if that static closure fails, freeze the smallest diagnostics-only causal probe
-5. after mechanism/callsite proof, freeze bounded Speed v2 implementation
-6. validate New Balance composition first; native-only sanity later
-7. close Speed completely before Raise begins
+1. execute ONLY docs/work/active/SPEED_V2_CALLER_SIDE_COMPOSITION_IMPLEMENTATION.md
+2. source/static audit only; no build/run in that task
+3. independent source review after implementation commit
+4. User local build/deploy
+5. validate New Balance configured/unconfigured + modifier preservation
+6. native-only sanity/fallback
+7. close Speed completely
+8. only then begin Raise
 ```
+
+No diagnostics-only Speed probe is currently justified before implementation.
 
 ## Read next
 
+- exact active responsibility -> `work/active/SPEED_V2_CALLER_SIDE_COMPOSITION_IMPLEMENTATION.md`
 - exact handoff -> `BETWEEN_CHATS.md`
 - Speed authority -> `decisions/ADR-0004-speed-control-base-speed-preserves-dynamic-modifiers.md`
-- profile schema -> `decisions/ADR-0007-shared-ini-profile-schema.md`
-- static mechanism evidence -> EV-391 in `EVIDENCE_LEDGER_389_ONWARD.md`
-- architecture -> `DESIGN.md` §§2–3
-- hook/source route -> `SOURCE_HOOK_GUIDE.md`
-- third-party source -> `../references/README.md`
+- generic profile architecture -> ADR-0005 + ADR-0007
+- static mechanism/closure evidence -> EV-391 + EV-392 in `EVIDENCE_LEDGER_389_ONWARD.md`
+- runtime normalization -> `ANIMATION_RULES.md` §§3–5
+- implementation protocol -> `WORK_IMPLEMENTATION_PROTOCOL.md`
 
 ## Still paused
 
