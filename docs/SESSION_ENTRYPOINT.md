@@ -16,12 +16,11 @@ collision production integration = CLOSED/PASS through EV-390
 Speed v2 caller-side mechanism/caller set = CLOSED STATIC through EV-391/EV-392
 Speed deep independent static audit = PASS WITH NON-BLOCKING FINDINGS
 S-01 finite-output correction = CLOSED / SOURCE-REVIEW PASS
-first Speed production build/deploy/startup = PASS
-first Speed behavior check = FAIL BEFORE COMPOSITION
-profile identity mismatch cause = CLOSED
-runtime family-source probe = CLOSED/PASS (Hero + Sabretooth)
+runtime family-source probe = CLOSED/PASS on Hero + Sabretooth
 generic profile calibration refactor = IMPLEMENTED / STATIC REVIEW PASS
-CURRENT = local production build gate
+production build/deploy = PASS
+initial generic Hero None+1H Normal/Quick behavior = PASS at BaseSpeed 0.40
+CURRENT = New Balance contextual-modifier preservation runtime gate
 RAISE = PAUSED until Speed closes
 main = FROZEN
 ```
@@ -30,66 +29,29 @@ Active task:
 
 `docs/work/active/SPEED_GENERIC_PROFILE_CALIBRATION_IMPLEMENTATION.md`
 
-## Runtime profile identity — CLOSED
-
-The final family-source evidence established:
-
-```text
-Hero:
-  Animation.GetSkeletonName(...) = Hero
-  Entity.GetSkeletonName()       = Hero
-
-Sabretooth:
-  Animation.GetSkeletonName(...) = Sabretooth
-  Entity.GetSkeletonName()       = Sabretooth
-```
-
-Resource identities were different (`G3_Hero_Skeleton`, `G3_Sabertooth_Body_01`) and are not used as the author-facing family token.
-
-`CurrentMovementAni()` may still be the outgoing/current motion while Gothic is already requesting a new Hit. Preserve the pre-collision request-semantics architecture:
+## Frozen runtime/profile rule
 
 ```text
 requested gEAction + requested gEPhase = Gothic request authority
-Animation.GetSkeletonName(...)         = stable AnimationFamily
-left/right UseTypes                     = stable equipment facts
+Animation.GetSkeletonName(...)         = runtime AnimationFamily
+left/right UseTypes                     = normalized equipment profile facts
 CurrentMovementAni                      = observational context only
+```
+
+Family-source evidence:
+
+```text
+Hero       -> Hero
+Sabretooth -> Sabretooth
 ```
 
 Closed result:
 
 `docs/archive/investigations/SPEED_RUNTIME_FAMILY_SOURCE_PROBE_RESULT.md`
 
-Processed logs:
+## Generic Speed implementation — runtime PASS so far
 
-```text
-research/archive/2026.09.28_SpeedIdentityProbetest_2.log
-research/archive/2026.09.28_SpeedIdentityProbetest_sabertooth.log
-```
-
-## Generic Speed profile implementation — STATIC PASS
-
-Production changes are bounded to:
-
-```text
-src/Script_G3AnimationBehaviors/BehaviorProfiles.h
-src/Script_G3AnimationBehaviors/BehaviorProfiles.cpp
-src/Script_G3AnimationBehaviors/AttackSpeed.cpp
-src/Script_G3AnimationBehaviors/Ini/G3AnimationBehaviors.ini
-```
-
-Implemented behavior:
-
-```text
-AnimationFamily -> Animation.GetSkeletonName(...), fail closed
-ReferenceHitBaseSpeed -> parsed from matching profile
-BaseSpeed -> desired configured base
-AttackSpeed -> compatibleSpeed * (BaseSpeed / ReferenceHitBaseSpeed)
-missing/invalid calibration -> compatible result unchanged
-```
-
-The transitional Hero/weapon hard-coded reference-base table is removed. The six caller-side hooks, `EngineBridge`, collision behavior, and Raise behavior are unchanged. The S-01 finite composed-output fallback remains present.
-
-ADR-0007 profile shape:
+Production uses profile-owned calibration:
 
 ```ini
 [Profile.Hero_None_1H_Normal]
@@ -100,36 +62,60 @@ ActionProfile=Normal
 ReferenceHitBaseSpeed=0.60
 BaseSpeed=0.40
 RaiseOverride=Off
+
+[Profile.Hero_None_1H_Quick]
+AnimationFamily=Hero
+LeftAnimationUseType=None
+RightAnimationUseType=1H
+ActionProfile=Quick
+ReferenceHitBaseSpeed=1.00
+BaseSpeed=0.40
+RaiseOverride=Off
 ```
 
-Quick uses factual reference `1.00` for the existing Hero/None/1H fixture. `ReferenceRaiseBaseSpeed` and `RaiseOverride=On` are parsed/reserved only; Raise behavior remains paused. Recover remains derived from effective Hit with no independent key/reference/hook.
+`AttackSpeed` no longer contains a Hero/weapon reference-base table. It composes the live compatible result with the matched profile's `BaseSpeed / ReferenceHitBaseSpeed` ratio and retains the S-01 finite-output fallback.
+
+Production built/live SHA256:
+
+```text
+6DD8C9CE46E3398DC725A5F4D9C2D3D2F073707094AFDDE30C385CC32F6AEEAD
+```
+
+The diagnostic identity probe was removed before the behavior run.
+
+User runtime result:
+
+```text
+multiple Hero None+1H Normal variants = configured slow speed works
+multiple Hero None+1H Quick variants  = configured slow speed works
+```
+
+Therefore the earlier profile-match failure is closed for the tested profiles.
 
 ## Immediate route
 
-On the local build PC:
+Do **not** deploy the historical `Script_CombatMoveLogger` unchanged; it also hooks `Script_Game+0x42A0` and would contaminate the caller-side/New Balance compatibility architecture.
 
-```powershell
-cmake --build build --config Release --target Script_G3AnimationBehaviors
+Keep the current production DLL and INI unchanged.
+
+Using the same Hero / right-hand 1H / empty-left-hand setup:
+
+```text
+1. with stamina available, perform Normal + Quick and note the current configured 0.40 feel
+2. deplete stamina until New Balance's low/depleted-stamina slowdown is active
+3. immediately repeat the same Normal + Quick attacks while still depleted
+4. compare depleted vs full-stamina configured attacks
 ```
 
-Do not deploy/run until the build passes.
+Acceptance:
 
-After build PASS:
+```text
+depleted configured attacks remain slower than full-stamina configured attacks
+```
 
-1. deploy/hash the production DLL;
-2. update the live INI to the ADR-0007 Normal + Quick test profiles with `ReferenceHitBaseSpeed`;
-3. repeat the small human None+1H Normal/Quick behavior test;
-4. if visible Speed control works, continue New Balance compatibility acceptance;
-5. close Speed completely;
-6. only then begin Raise.
+If PASS, the key ADR-0004 runtime invariant is validated: G3AB authors base speed while New Balance contextual multipliers remain effective.
 
-## Read next
-
-- exact continuation -> `BETWEEN_CHATS.md`
-- active implementation/build gate -> `work/active/SPEED_GENERIC_PROFILE_CALIBRATION_IMPLEMENTATION.md`
-- family-source closure -> `archive/investigations/SPEED_RUNTIME_FAMILY_SOURCE_PROBE_RESULT.md`
-- profile/request-semantics authority -> `decisions/ADR-0007-shared-ini-profile-schema.md`
-- Speed architecture -> ADR-0004 + ADR-0005 + ADR-0006
+Then continue the smallest remaining Speed compatibility/fallback gates, close Speed, and only then begin Raise.
 
 ## Still paused
 
