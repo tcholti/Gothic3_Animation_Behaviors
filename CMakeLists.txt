@@ -23,4 +23,5 @@ endif()
 
 if(G3AB_BUILD_TOOLS)
     add_subdirectory(tools/Script_CombatMoveLogger)
+    add_subdirectory(tools/Script_SpeedIdentityProbe)
 endif()
