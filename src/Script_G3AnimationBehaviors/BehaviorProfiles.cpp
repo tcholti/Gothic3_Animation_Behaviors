@@ -173,28 +173,59 @@ Profile ParseOptionalValues(
     bCString const &section,
     ProfileKey const &key)
 {
-    Profile profile = {key, false, 0.0f, RaiseMode::Native};
+    Profile profile = {
+        key,
+        false, 0.0f,
+        false, 0.0f,
+        false, 0.0f,
+        RaiseOverride::Off};
+
+    bCString const referenceHitBaseSpeedKey("ReferenceHitBaseSpeed");
+    if (config.Contains(section, referenceHitBaseSpeedKey))
+    {
+        float value = 0.0f;
+        if (ParsePositiveFiniteFloat(
+                config.GetString(section, referenceHitBaseSpeedKey).GetText(),
+                value))
+        {
+            profile.hasReferenceHitBaseSpeed = true;
+            profile.referenceHitBaseSpeed = value;
+        }
+    }
 
     bCString const baseSpeedKey("BaseSpeed");
     if (config.Contains(section, baseSpeedKey))
     {
-        float baseSpeed = 0.0f;
+        float value = 0.0f;
         if (ParsePositiveFiniteFloat(
                 config.GetString(section, baseSpeedKey).GetText(),
-                baseSpeed))
+                value))
         {
             profile.hasBaseSpeed = true;
-            profile.baseSpeed = baseSpeed;
+            profile.baseSpeed = value;
         }
     }
 
-    bCString const raiseKey("Raise");
-    if (config.Contains(section, raiseKey))
+    bCString const referenceRaiseBaseSpeedKey("ReferenceRaiseBaseSpeed");
+    if (config.Contains(section, referenceRaiseBaseSpeedKey))
     {
-        std::string const raise = NormalizeIdentityString(
-            config.GetString(section, raiseKey).GetText());
-        if (raise == "on")
-            profile.raiseMode = RaiseMode::On;
+        float value = 0.0f;
+        if (ParsePositiveFiniteFloat(
+                config.GetString(section, referenceRaiseBaseSpeedKey).GetText(),
+                value))
+        {
+            profile.hasReferenceRaiseBaseSpeed = true;
+            profile.referenceRaiseBaseSpeed = value;
+        }
+    }
+
+    bCString const raiseOverrideKey("RaiseOverride");
+    if (config.Contains(section, raiseOverrideKey))
+    {
+        std::string const value = NormalizeIdentityString(
+            config.GetString(section, raiseOverrideKey).GetText());
+        if (value == "on")
+            profile.raiseOverride = RaiseOverride::On;
     }
 
     return profile;
@@ -305,8 +336,11 @@ bool TryBuildRuntimeKey(
     if (entity == None)
         return false;
 
-    key.animationFamily = NormalizeIdentityString(
-        entity.Animation.GetResourceName().GetText());
+    bCString skeletonName;
+    if (!entity.Animation.GetSkeletonName(skeletonName))
+        return false;
+
+    key.animationFamily = NormalizeIdentityString(skeletonName.GetText());
     if (key.animationFamily.empty())
         return false;
 
