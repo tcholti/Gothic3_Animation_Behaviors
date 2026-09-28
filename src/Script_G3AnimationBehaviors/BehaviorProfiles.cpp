@@ -65,18 +65,6 @@ std::string NormalizeIdentityString(char const *text)
     return result;
 }
 
-std::string NormalizeRuntimeAnimationFamily(char const *text)
-{
-    std::string const resourceName = NormalizeIdentityString(text);
-
-    // EV-393: the player Hero runtime resource is G3_Hero_Skeleton,
-    // while ADR-0007 deliberately exposes the author-facing family token Hero.
-    if (resourceName == "g3_hero_skeleton")
-        return "hero";
-
-    return resourceName;
-}
-
 ProfileKey NormalizeKey(ProfileKey const &key)
 {
     ProfileKey normalized = key;
@@ -317,7 +305,7 @@ bool TryBuildRuntimeKey(
     if (entity == None)
         return false;
 
-    key.animationFamily = NormalizeRuntimeAnimationFamily(
+    key.animationFamily = NormalizeIdentityString(
         entity.Animation.GetResourceName().GetText());
     if (key.animationFamily.empty())
         return false;
