@@ -148,3 +148,36 @@ Disposition:
 - **PASS — SMALLEST EXACT NORMAL+QUICK CALLER SET FROZEN AT SIX CALL SITES.**
 - **NO SPEED DIAGNOSTIC PROBE REQUIRED BEFORE IMPLEMENTATION.**
 - Next gate: bounded source-only production implementation under `SPEED_V2_CALLER_SIDE_COMPOSITION_IMPLEMENTATION.md`; build/run remain separate later validation work.
+
+### EV-393 — Speed runtime animation-family source: Hero control PASS
+
+Observed:
+- The refreshed standalone `Script_SpeedIdentityProbe.dll` built and deployed with matching built/live SHA256 `DE9039372E9CA2C2D0FBB6DA581613E47628724249AF35C54E47DAE68B14470F`.
+- The player used ordinary right-hand 1H with empty left hand and exercised Normal Action1 plus Quick Action4/5, all requested as Hit.
+- `Animation.GetResourceName()` remained `G3_Hero_Skeleton`, which is not the ADR-0007 author-facing family token.
+- `Animation.GetSkeletonName(...)` succeeded on every observation and returned exactly `Hero`.
+- `Entity.GetSkeletonName()` independently returned exactly `Hero` on every observation.
+- `NPC.GetCurrentMovementAni()` was not reliably the newly requested Hit animation at this observation point. It could still report `HoldRight_End`, `Attack_Recover`, `Ambient_Loop`, or `Parade_Begin` motions while the CombatMove request was already Normal/Quick Hit.
+- The existing production `BehaviorProfiles` key still used the raw resource identity and therefore produced `Key.AnimationFamily=g3_hero_skeleton` / `ProfileMatch=false`; this was expected because production behavior source remained frozen during the probe.
+
+Interpretation:
+- Current-motion filename parsing is rejected as the Speed runtime family source at `Game+0x16B065`; the motion can be stale relative to the attack request.
+- `Animation.GetResourceName()` is rejected as the user-facing family source for this route because its factual value is a resource-style name rather than the schema token.
+- `Animation.GetSkeletonName(...)` is the preferred generic family-source candidate: it belongs to the animation property set, returned the exact schema token `Hero`, and exposes explicit success/failure for fail-closed handling.
+- `Entity.GetSkeletonName()` corroborates the same Hero token.
+
+Scope / limits:
+- This runtime control proves the family-source decision for the tested Hero human route only.
+- One bounded non-Hero control remains before promoting `Animation.GetSkeletonName(...)` as the generic production `AnimationFamily` source.
+- No production Speed, Raise, collision, or profile-matching behavior was changed by this probe.
+
+Provenance:
+- probe built/live SHA256: `DE9039372E9CA2C2D0FBB6DA581613E47628724249AF35C54E47DAE68B14470F`;
+- user-pushed runtime source commit: `765e3ee948f0169f827fe207dab975decdef7f73`;
+- processed log: `research/archive/2026.09.28_SpeedIdentityProbetest_2.log`;
+- active bounded task: `docs/work/active/SPEED_RUNTIME_FAMILY_SOURCE_PROBE.md`.
+
+Disposition:
+- **PASS — HERO FAMILY SOURCE RESOLVED.**
+- **PREFERRED CANDIDATE: `Animation.GetSkeletonName(...)`.**
+- Next gate: one transformed/non-Hero Normal/Quick control; if the skeleton APIs agree on a stable non-Hero family token, close the probe and refactor production profile identity generically.
