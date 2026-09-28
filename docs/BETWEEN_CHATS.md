@@ -14,18 +14,17 @@ Stable: `main` — keep frozen until Speed + Raise + assembled regression close.
 ```text
 EV-390 collision production integration = CLOSED/PASS
 EV-391/EV-392 Speed caller-side mechanism + six-site caller set = CLOSED STATIC
-Speed deep independent audit = PASS WITH NON-BLOCKING FINDINGS
-S-01 finite-output correction = CLOSED / SOURCE-REVIEW PASS
-first Speed production build/deploy/startup = PASS
-first Speed behavior check = FAIL before composition
 family-source probe = CLOSED/PASS on Hero + Sabretooth
 ADR-0007 generic profile/request semantics = ACCEPTED
 generic profile calibration refactor = IMPLEMENTED / STATIC REVIEW PASS
-CURRENT = local production build gate
+production build/deploy = PASS
+built/live SHA = 6DD8C9CE46E3398DC725A5F4D9C2D3D2F073707094AFDDE30C385CC32F6AEEAD
+Hero None+1H Normal + Quick BaseSpeed=0.40 behavior = PASS across multiple variants
+CURRENT = New Balance low/depleted-stamina modifier-preservation gate
 RAISE = PAUSED until Speed closes
 ```
 
-## Frozen request/profile rule
+## Frozen rule
 
 ```text
 requested gEAction + requested gEPhase = Gothic request authority
@@ -34,18 +33,7 @@ left/right UseTypes                     = normalized equipment profile facts
 CurrentMovementAni                      = observational context only
 ```
 
-Family-source evidence:
-
-```text
-Hero       -> Hero
-Sabretooth -> Sabretooth
-```
-
-Closed result:
-
-`docs/archive/investigations/SPEED_RUNTIME_FAMILY_SOURCE_PROBE_RESULT.md`
-
-## Implemented generic Speed profile
+## Current live profiles
 
 ```ini
 [Profile.Hero_None_1H_Normal]
@@ -56,11 +44,7 @@ ActionProfile=Normal
 ReferenceHitBaseSpeed=0.60
 BaseSpeed=0.40
 RaiseOverride=Off
-```
 
-Quick fixture:
-
-```ini
 [Profile.Hero_None_1H_Quick]
 AnimationFamily=Hero
 LeftAnimationUseType=None
@@ -71,29 +55,29 @@ BaseSpeed=0.40
 RaiseOverride=Off
 ```
 
-`AttackSpeed` no longer owns a Hero/weapon reference-base table. It uses the matched profile's `ReferenceHitBaseSpeed`. Missing/invalid calibration fails closed to the compatible result. `ReferenceRaiseBaseSpeed` and `RaiseOverride` are reserved/parsed only; no Raise behavior is active. Recover has no independent setting.
+The original profile-match failure is closed for these profiles. `AttackSpeed` now uses profile-owned `ReferenceHitBaseSpeed`; no Hero/weapon base table remains in behavior C++.
+
+Do not deploy the historical `Script_CombatMoveLogger` unchanged because it also hooks `Script_Game+0x42A0` and would contaminate the exact compatibility architecture under test.
+
+## Next
+
+Keep DLL and INI unchanged:
+
+```text
+full/available stamina -> perform Normal + Quick and note configured 0.40 feel
+-> deplete stamina until New Balance slowdown is active
+-> immediately repeat same Normal + Quick while depleted
+-> compare
+```
+
+Acceptance:
+
+```text
+depleted configured attacks are slower than full-stamina configured attacks
+```
+
+PASS means the key Speed v2 invariant is working at runtime: G3AB changes the base while New Balance's contextual multiplier still applies.
 
 Active task:
 
 `docs/work/active/SPEED_GENERIC_PROFILE_CALIBRATION_IMPLEMENTATION.md`
-
-## Next
-
-Sync `development`, then build only production:
-
-```powershell
-cmake --build build --config Release --target Script_G3AnimationBehaviors
-```
-
-Do not deploy/run until build PASS.
-
-After PASS:
-
-```text
-deploy/hash production DLL
--> update live INI to the two profiles above
--> small human None+1H Normal + Quick runtime test
--> if visible Speed control works, continue New Balance acceptance
--> close Speed
--> only then begin Raise
-```
