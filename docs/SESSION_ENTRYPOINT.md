@@ -15,15 +15,15 @@
 collision production integration = CLOSED/PASS through EV-390
 Speed v2 mechanism proof = EV-391
 Quick/caller-set static closure = EV-392
+Hero runtime animation-family source = EV-393 PASS
 Speed deep independent audit = PASS WITH NON-BLOCKING FINDINGS
 S-01 finite-output correction = CLOSED / SOURCE-REVIEW PASS
 corrected production build/deploy/startup = PASS
 first Speed behavior check = FAIL BEFORE COMPOSITION
-first runtime identity probe = CLOSED / CAUSAL RESULT CAPTURED
 ADR-0007 shared profile schema = REVISED/ACCEPTED 2026-09-28
-interim g3_hero_skeleton -> hero production alias = SUPERSEDED AND REVERTED
-production behavior source = back to pre-alias tested content
-CURRENT = diagnostics-only runtime animation-family source probe
+interim g3_hero_skeleton -> hero production alias = SUPERSEDED/REVERTED
+production behavior source = pre-alias tested content
+CURRENT = one bounded non-Hero family-source runtime control
 RAISE = PAUSED until Speed closes
 main = FROZEN
 ```
@@ -32,66 +32,62 @@ Active task:
 
 `docs/work/active/SPEED_RUNTIME_FAMILY_SOURCE_PROBE.md`
 
-## First Speed runtime result
+## Speed runtime causal state
 
-Production `Script_G3AnimationBehaviors.dll` built, deployed and reached main menu successfully. Built/live SHA256 matched:
+The first production Speed behavior test showed no visible change with active Hero/None/1H Normal + Quick profiles, even at extreme `BaseSpeed=2.0` and `0.4`. The INI path/name/content were confirmed correct.
 
-`7CD8507A267384AED86E2CDEF8C29098D55221C05158DEA4117C1D96D781C959`
+The first identity probe then proved the failure occurs before `AttackSpeed` composition because production `BehaviorProfiles` derives family from:
 
-The first behavior test used active Hero/None/1H Normal + Quick profiles, including extreme `BaseSpeed=2.0` and `0.4`, but produced no visible speed change.
+```text
+Animation.GetResourceName() = G3_Hero_Skeleton
+-> normalized key = g3_hero_skeleton
+```
 
-The INI path/name/content were confirmed correct.
+while ADR-0007 uses the author-facing family token `Hero`.
 
-## First identity probe result
+A temporary exact alias was deliberately reverted before another production build so the project could establish the correct generic family source rather than encode a one-off Hero fix.
 
-Standalone `Script_SpeedIdentityProbe` built/deployed with SHA256:
+## EV-393 — Hero family-source result
 
-`4CE2AE915B3B76D867DDDAD6F1AC2C1848389DAF3CBCFDEE0E3783BA2DB5CC8E`
+The refreshed standalone `Script_SpeedIdentityProbe.dll` built/deployed with matching SHA256:
 
-The player 1H Normal/Quick run proved:
+`DE9039372E9CA2C2D0FBB6DA581613E47628724249AF35C54E47DAE68B14470F`
+
+The human right-hand 1H / empty-left Normal + Quick run established consistently:
 
 ```text
 AnimationResourceName=G3_Hero_Skeleton
-RawLeftUseType=0 -> none
-RawRightUseType=2 -> 1h
-Normal Action=1 / Hit
-Quick Action=4 or 5 / Hit
-RuntimeKeyBuilt=true
-Key.AnimationFamily=g3_hero_skeleton
-ProfileMatch=false
+AnimationSkeletonNameAvailable=true
+AnimationSkeletonName=Hero
+EntitySkeletonName=Hero
+RawLeftUseType=None
+RawRightUseType=1H
+Normal Action1 / Hit
+Quick Action4/5 / Hit
 ```
 
-Therefore the first Speed runtime failure occurs before `AttackSpeed` composition.
+`NPC.GetCurrentMovementAni()` is not suitable as the production family source at this observation point. It could still report prior/current motions such as HoldRight_End, Attack_Recover, Ambient_Loop or Parade_Begin while the new CombatMove request was already Normal/Quick Hit.
 
-Closed probe record:
-
-`docs/archive/investigations/SPEED_RUNTIME_PROFILE_IDENTITY_PROBE_RESULT.md`
-
-Processed raw log:
-
-`research/archive/2026.09.28_SpeedIdentityProbe.log`
-
-## Why the narrow Hero-resource correction was rejected
-
-A direct runtime alias:
+Therefore:
 
 ```text
-g3_hero_skeleton -> hero
+CurrentMovementAni filename parsing = rejected at this hook
+Animation.GetResourceName()          = rejected as user-facing family source
+Animation.GetSkeletonName(...)       = preferred generic candidate
+Entity.GetSkeletonName()             = corroborating candidate
 ```
 
-was prepared briefly, then superseded before a new production build/runtime test.
+`Animation.GetSkeletonName(...)` is preferred because it is owned by the animation property set, returns the exact schema token `Hero`, and exposes explicit success/failure for fail-closed runtime-key construction.
 
-Reason: `Animation.GetResourceName()` is only one identity surface and returned a resource name, not necessarily the canonical animation family. The User identified the distinct human skeleton/armature naming, while `ANIMATION_RULES.md` already defines the first animation-name token as the animation family (`Hero`, `Demon`, `Goblin`, etc.).
+EV-393 remains deliberately Hero-scoped. One non-Hero runtime control is required before generic production adoption.
 
-The temporary production alias was reverted. Production `BehaviorProfiles.cpp` is again byte-identical to its pre-alias content.
+Processed log:
 
-Superseded-correction record:
-
-`docs/archive/investigations/SPEED_RUNTIME_HERO_FAMILY_NORMALIZATION_CORRECTION_SUPERSEDED.md`
+`research/archive/2026.09.28_SpeedIdentityProbetest_2.log`
 
 ## Revised generic profile contract
 
-ADR-0007 now freezes the intended generic data model:
+ADR-0007 now freezes:
 
 ```ini
 [Profile.Hero_None_1H_Normal]
@@ -119,7 +115,7 @@ ReferenceRaiseBaseSpeed = factual Raise reference B when later needed
 BaseSpeed               = single desired authored base C
 RaiseOverride=Off       = no G3AB Raise intervention
 RaiseOverride=On        = later request G3AB Raise handling
-Recover                 = follows effective Hit; NO RecoverSpeed/reference/override key
+Recover                 = follows effective Hit; NO independent INI key/reference/hook
 ```
 
 The later generic production refactor must remove the transitional Hero-only reference-base policy table from `AttackSpeed` and consume factual reference calibration from profile data instead.
@@ -154,26 +150,40 @@ NO final-result replacement
 
 ## Immediate route
 
-On the local build/game PC:
+No probe rebuild is required. First sync `development` because repository evidence/maintenance moved after the last user push.
+
+Then on the local game PC:
 
 ```text
-1. sync development
-2. rebuild Script_SpeedIdentityProbe
-3. deploy/hash refreshed probe beside existing production stack
-4. keep current human 1H test setup
-5. run several Normal + Quick attacks
-6. inspect together:
-   CurrentMovementAni
-   AnimationResourceName
-   AnimationSkeletonName
-   EntitySkeletonName
-   raw left/right UseTypes
-   action/phase
-7. decide the factual generic AnimationFamily source
-8. only then freeze/implement generic BehaviorProfiles + profile-calibrated AttackSpeed refactor
-9. rebuild/deploy production and resume Speed runtime acceptance
-10. close Speed completely
-11. only then begin Raise
+1. keep the currently deployed Script_SpeedIdentityProbe.dll
+2. transform player into Sabretooth
+3. perform several ordinary Normal attacks
+4. perform several Quick attacks if available on that transformed route
+5. exit normally
+6. push the resulting SpeedIdentityProbe.log to research/raw/
+```
+
+No Sabretooth INI profile is required.
+
+Acceptance is only:
+
+```text
+AnimationSkeletonNameAvailable=true
+AnimationSkeletonName=<stable non-Hero family token>
+EntitySkeletonName=<same stable family token>
+```
+
+If that passes:
+
+```text
+close family-source probe
+-> freeze Animation.GetSkeletonName(...) as generic AnimationFamily source
+-> implement generic BehaviorProfiles calibration fields
+-> remove Hero-only reference-base table from AttackSpeed
+-> rebuild/deploy production
+-> resume New Balance Speed runtime acceptance
+-> close Speed
+-> only then begin Raise
 ```
 
 Primary runtime stack remains:
@@ -182,19 +192,18 @@ Primary runtime stack remains:
 Script_G3AnimationBehaviors.dll
 Script_NewBalance.dll
 Script_AttackCollision.dll
+Script_SpeedIdentityProbe.dll   ; diagnostics only for current bounded probe
 ```
-
-`Script_SpeedIdentityProbe.dll` may coexist only for the bounded diagnostic run.
 
 ## Read next
 
 - exact continuation -> `BETWEEN_CHATS.md`
 - active probe -> `work/active/SPEED_RUNTIME_FAMILY_SOURCE_PROBE.md`
 - revised schema -> `decisions/ADR-0007-shared-ini-profile-schema.md`
+- EV-393 -> `EVIDENCE_LEDGER_389_ONWARD.md`
 - first identity probe closure -> `archive/investigations/SPEED_RUNTIME_PROFILE_IDENTITY_PROBE_RESULT.md`
 - superseded narrow correction -> `archive/investigations/SPEED_RUNTIME_HERO_FAMILY_NORMALIZATION_CORRECTION_SUPERSEDED.md`
 - Speed architecture -> ADR-0004 + ADR-0005 + ADR-0007
-- static mechanism evidence -> EV-391 + EV-392 in `EVIDENCE_LEDGER_389_ONWARD.md`
 - build/deploy/startup -> `PROJECT_OPERATING_PROCEDURES.md` POP-02/03/04
 
 ## Still paused
