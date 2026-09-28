@@ -13,113 +13,82 @@ Stable: `main` — keep frozen until Speed + Raise + assembled regression close.
 
 ```text
 EV-390 collision production integration = CLOSED/PASS
-ADR-0007 shared Speed/Raise schema = ACCEPTED
-BehaviorProfiles foundation = PASS
-implementation = 81d4964201579c9f7a989404426c3d9dc9ab4834
-EV-391 Speed v2 caller-side mechanism = RECORDED
-EV-392 Quick provenance + exact caller-set closure = PASS/RECORDED
-CURRENT = bounded Speed v2 source implementation
-ACTIVE TASK = docs/work/active/SPEED_V2_CALLER_SIDE_COMPOSITION_IMPLEMENTATION.md
-BUILD/RUN = PROHIBITED for active source task
+BehaviorProfiles foundation = IMPLEMENTED/PASS
+EV-391 Speed caller-side mechanism = RECORDED
+EV-392 Quick provenance + exact six-site caller set = PASS/RECORDED
+Speed v2 production source = IMPLEMENTED / SOURCE-REVIEW PASS
+final reviewed source = 4f9911f57d8d6b36efd35adee41920560c3986e0
+CURRENT = local build/deploy gate
 RAISE = PAUSED until Speed closes
 ```
 
-## Frozen Speed v2 handoff
+The first review caught one omission in `c11c1486...`: `AttackSpeed` was compiled but the six `EngineBridge` caller transports were missing. Correction `4f9911f5...` adds only the frozen transport; the correction diff leaves collision untouched.
 
-Required invariant:
+Completed contract:
 
-```text
-unconfigured = B * M
-configured   = C * M
-```
+`docs/archive/investigations/SPEED_V2_CALLER_SIDE_COMPOSITION_IMPLEMENTATION.md`
 
-Production mechanism:
+## Frozen Speed v2 implementation
 
 ```text
-selected Script_Game caller
--> EngineBridge-owned mCCallHook
--> pass factual incoming EAX action explicitly
--> invoke LIVE Script_Game+0x42A0 exactly once
--> receive compatible B*M
--> exact configured/evidenced route: * (C/B)
+six callers:
++0x383F0
++0x38E9D
++0x38F22
++0x3937D
++0x39402
++0x48677
+
+caller mCCallHook
+-> explicit factual EAX action
+-> mCCaller invokes LIVE Script_Game+0x42A0 once with EAX restored
+-> compatible result B*M
+-> exact configured/evidenced route applies C/B
 -> C*M
--> existing downstream playback path
 ```
 
-Do not hook/own the `+0x42A0` entry. New Balance remains authoritative for its modifier calculation.
+Do not hook `+0x42A0` itself. Do not hook `+0x38A8B`. Unconfigured/unsupported routes return the compatible result unchanged.
 
-### Generic Quick closure
-
-```text
-Action3 / QuickAttack
--> GetPrimaryPoseExt(Action3, Hit)
--> PropertyAction = Action4 or Action5
--> +0x48677 calls +0x42A0 with factual 4/5
-```
-
-No separate Action3 speed hook is required on the proven route.
-
-### Exact six call sites
-
-```text
-+0x383F0  Normal Action1 / Hit
-+0x38E9D  FEA8 factual action carrier / Hit
-+0x38F22  FEA8 factual action carrier / Hit
-+0x3937D  FEA8 factual action carrier / Hit
-+0x39402  FEA8 factual action carrier / Hit
-+0x48677  Quick after Action3 -> Action4/5 / Hit
-```
-
-Explicitly exclude `+0x38A8B`: its `+0x158` value is propagated integerized `PSRoutine::GetStateTime()`, not factual Quick action. Also exclude inspected action27/28 and Action6 routes.
-
-### Technical B facts
-
-Keep `B` as immutable evidence data keyed by exact factual raw runtime facts. Profile selection remains normalized ADR-0007 identity.
-
-Current first facts:
+Technical bases:
 
 ```text
 Normal:
 None+1H / Shield+1H / Torch+1H / 1H+1H = 0.6
 None+2H / None+Axe / None+Staff / None+Halberd = 0.7
-
 Quick Action4/5 = 1.0
 ```
 
-Unknown/unproven routes fail closed. Do not treat normalized token equality as proof of technical B; retain raw UseTypes for B lookup. Normal Fist/PhysicalFist is outside this first composition contract.
+Normal Fist/PhysicalFist and non-Hero routes remain unsupported/fail-closed in this first Speed contract.
 
-## Active implementation boundary
+## Next
 
-Read and execute only:
+User is currently away from the local build/game PC. No more source work is required before the next gate.
 
-`docs/work/active/SPEED_V2_CALLER_SIDE_COMPOSITION_IMPLEMENTATION.md`
-
-Expected source scope:
+When back on that PC:
 
 ```text
-EngineBridge.cpp
-AttackSpeed.cpp/.h
-BehaviorProfiles.cpp/.h
-CMakeLists.txt
-```
-
-`EngineBridge` stays sole hook owner. `AttackSpeed` becomes composition policy only. Dormant prototype hook semantics are rejected.
-
-Static/source audit only. **No build, deployment, runtime test, diagnostic logger or Raise work** in the active bounded task.
-
-## After source implementation
-
-```text
-independent source review
--> User local build/deploy
--> New Balance composition validation first
+build source 4f9911f57d8d6b36efd35adee41920560c3986e0 via POP-02
+-> deploy/hash via POP-03
+-> startup/load gate via POP-04
+-> New Balance runtime validation first
+-> configured Normal/Quick full stamina
+-> equivalent depleted stamina
+-> representative modifier control(s)
 -> unconfigured controls
--> depleted-stamina / relevant modifier preservation
+-> supported hand configurations
 -> native-only sanity/fallback
 -> close Speed
--> only then Raise
+-> Raise only afterward
 ```
 
-Authorities: active task, `SESSION_ENTRYPOINT.md`, ADR-0004/0005/0007, EV-391/EV-392, `ANIMATION_RULES.md`, `WORK_IMPLEMENTATION_PROTOCOL.md`.
+Primary runtime stack:
 
-Hard exclusions: final-result replacement; same-hook load-order dependency; copied NB multiplier policy; global speed override; Action3 guesswork; StateTime-as-action matching; Raise; collision redesign.
+```text
+Script_G3AnimationBehaviors.dll
+Script_NewBalance.dll
+Script_AttackCollision.dll
+```
+
+Expected invariant: configured base changes **and** the relative compatible contextual modifiers remain effective.
+
+No additional native-speed logger run is currently requested.
