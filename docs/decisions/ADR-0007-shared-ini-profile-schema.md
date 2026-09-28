@@ -2,6 +2,7 @@
 
 **Status:** Accepted  
 **Date:** 2026-09-27  
+**Revised:** 2026-09-28  
 **Related:** ADR-0004, ADR-0005, ADR-0006, `docs/DESIGN.md` §§2–3, `docs/ANIMATION_RULES.md`
 
 ## Context
@@ -10,22 +11,18 @@ Speed is the next exclusive feature after EV-390 closed collision production int
 
 The original prototype INI hard-coded 2H Normal keys and therefore did not represent the intended generic product architecture.
 
+Runtime work on 2026-09-28 additionally established two important constraints:
+
+1. the user-facing animation family must remain the Gothic animation-name family token (`Hero`, `Demon`, `Goblin`, etc.), not an incidental skeleton/resource API string;
+2. the selected downstream Speed composition mechanism needs factual reference base values `B` in order to transform a compatible result `B*M` into configured `C*M` without replacing contextual modifiers.
+
+The revised schema therefore stores those factual reference values in generic profile data instead of hard-coding weapon/family base tables in behavior code.
+
 The production project builds against Gothic 3 SDK revision:
 
 `90bfd344de4510dda7ac9da7461cc7f1eac911f7`
 
-At that exact revision `eCConfigFile` supports both direct known-key access and enumeration, including:
-
-```text
-ReadFile
-Contains
-GetBool / GetFloat / GetInt / GetString / GetValue
-GetSections
-GetSectionBlock
-GetSectionArray
-```
-
-`eCConfigFile_SectionObject` also exposes section names, key counts and indexed key objects. Therefore the schema does not need a numbered `[Profiles] Count=N` registry merely to make profiles discoverable.
+At that exact revision `eCConfigFile` supports direct known-key access and section enumeration, so the schema does not need a numbered profile registry.
 
 ## Decision
 
@@ -45,25 +42,12 @@ AnimationFamily=Hero
 LeftAnimationUseType=None
 RightAnimationUseType=1H
 ActionProfile=Normal
+ReferenceHitBaseSpeed=0.60
 BaseSpeed=0.80
-Raise=Native
+RaiseOverride=Off
 ```
 
-The text after `Profile.` is a unique author-facing label only. It is **not** parsed as behavior identity and does not participate in runtime matching.
-
-Therefore this is equally valid:
-
-```ini
-[Profile.MyModSwordNormal]
-AnimationFamily=Hero
-LeftAnimationUseType=None
-RightAnimationUseType=1H
-ActionProfile=Normal
-BaseSpeed=0.80
-Raise=Native
-```
-
-This keeps human naming independent from engine policy and avoids delimiter/filename-style parsing inside the configuration layer.
+The text after `Profile.` is an author-facing label only. It is **not** parsed as behavior identity and does not participate in runtime matching.
 
 ### 2. Exact profile identity lives in explicit fields
 
@@ -76,7 +60,7 @@ RightAnimationUseType
 ActionProfile
 ```
 
-Together they form the already accepted profile key:
+Together they form:
 
 ```text
 AnimationFamily
@@ -85,91 +69,158 @@ AnimationFamily
 + ActionProfile
 ```
 
-`AnimationFamily` uses the Gothic animation/resource-family token (`Hero`, `Demon`, etc.).
+`AnimationFamily` uses the Gothic animation-name family token, for example `Hero`, `Demon`, `Goblin`, `Wolf`, etc. `ANIMATION_RULES.md` defines the first animation-name token as this family. The exact runtime source used to recover that token must be factual and is being validated separately; the schema must not require raw skeleton/resource names such as `G3_Hero_Skeleton`.
 
-`LeftAnimationUseType` and `RightAnimationUseType` use the **normalized animation tokens** owned by `ANIMATION_RULES.md`, not blindly serialized raw `gEUseType` spelling. Examples include `None`, `1H`, `2H`, `Shield`, `Torch`, `Staff`, and `Fist`.
+`LeftAnimationUseType` and `RightAnimationUseType` use normalized animation tokens owned by `ANIMATION_RULES.md`, not blindly serialized raw `gEUseType` spelling.
 
-`ActionProfile` accepts only:
+`ActionProfile` currently accepts only:
 
 ```text
 Normal
 Quick
 ```
 
-Quick's multiple factual Gothic action variants may normalize to the single user-facing `Quick` profile as decided by ADR-0005; factual action distinctions remain available internally where engine behavior requires them.
+C++ remains responsible for mapping factual engine actions to these profile classes. Configuration does not redefine Gothic action identity.
 
 There is no P0/P1/P2/P3 field in the user-facing profile identity.
 
-### 3. `BaseSpeed` is optional and absence is meaningful
+### 3. `BaseSpeed` is the single desired authored playback base
 
 Speed uses:
 
 ```ini
-BaseSpeed=<positive float>
+BaseSpeed=<positive finite float>
 ```
 
-Examples:
-
-```ini
-BaseSpeed=0.80
-BaseSpeed=1.00
-BaseSpeed=1.15
-```
-
-The key is deliberately named `BaseSpeed`, not merely `Speed`, because ADR-0004 requires G3AB to author the base term while applicable Gothic/New Balance contextual modifiers remain effective.
+`BaseSpeed` is the desired configured base `C`, not the native/reference value `B` and not the final effective speed.
 
 Semantics:
 
 ```text
-BaseSpeed key absent
+BaseSpeed absent
 -> no G3AB Speed override for this profile
 -> native / compatible-mod behavior remains authoritative
 
-BaseSpeed=1.00
--> explicit configured base value of 1.00
--> NOT the same as absence/native fallback
+BaseSpeed present and valid
+-> desired configured authored base C
+-> Hit targets C while preserving applicable contextual modifier M
 ```
 
-`eCConfigFile::Contains(section,key)` makes this distinction directly representable; no sentinel float is required.
+A non-numeric, non-finite, zero or negative `BaseSpeed` is invalid and must fail closed for Speed.
 
-A non-numeric, non-finite, zero or negative `BaseSpeed` is invalid for Speed and must not create an active Speed override. An invalid Speed field does not by itself invalidate another independently valid feature field in the same profile.
+No separate user-facing `HitSpeed` exists. `BaseSpeed` is the Hit target.
 
-No arbitrary upper bound is frozen without runtime evidence requiring one.
+### 4. `ReferenceHitBaseSpeed` is factual calibration data
 
-### 4. `Raise` is part of the shared schema but behavior remains paused
-
-The shared profile format reserves:
-
-```ini
-Raise=Native
-```
-
-and future configured activation:
-
-```ini
-Raise=On
-```
-
-Current schema semantics are:
+The selected downstream composition mechanism observes an already-compatible result:
 
 ```text
-Raise key absent
-or Raise=Native
--> no G3AB Raise override; preserve native behavior
-
-Raise=On
--> profile requests G3AB Raise behavior once the later Raise feature is implemented/validated
+compatible = B_hit * M
 ```
 
-No `Raise=Off` suppression behavior is promised by this ADR. If later Raise research establishes a useful and safe explicit suppression mode, the value set may be extended without changing the profile structure.
+and therefore requires the factual reference base `B_hit` for the exact configured profile:
 
-During the Speed-only phase the configuration foundation may parse/store the Raise field for schema completeness, but no Raise hook, Raise intervention or Raise behavior is activated. Raise research/implementation remains blocked until Speed is closed under ADR-0006.
+```ini
+ReferenceHitBaseSpeed=<positive finite float>
+```
 
-### 5. Profiles may contain either or both feature controls
+Composition is conceptually:
 
-Valid examples:
+```text
+(B_hit * M) * (BaseSpeed / B_hit) = BaseSpeed * M
+```
 
-Speed only:
+`ReferenceHitBaseSpeed` is not a tuning value. It records an evidence-backed native/compatible base fact required by the mechanism.
+
+For this mechanism:
+
+```text
+BaseSpeed present + missing/invalid ReferenceHitBaseSpeed
+-> no Speed intervention
+-> return compatible result unchanged
+```
+
+Reference base facts belong in generic profile/configuration data or another generic factual source, not in weapon/family-specific C++ policy tables.
+
+### 5. Raise uses `RaiseOverride=On|Off`
+
+The user-facing Raise key is:
+
+```ini
+RaiseOverride=Off
+```
+
+or:
+
+```ini
+RaiseOverride=On
+```
+
+Semantics:
+
+```text
+RaiseOverride missing or Off
+-> G3AB does not insert/own a custom Raise for this profile
+-> existing Gothic/compatible behavior remains authoritative
+
+RaiseOverride=On
+-> profile requests G3AB Raise behavior once the later Raise feature is implemented and validated
+```
+
+`Off` means the **G3AB override is off**. It does not promise active suppression of every native Raise animation.
+
+This wording is preferred over `Raise=Native` because it states the ownership decision directly and avoids implying that `Off` disables Gothic's native phase globally.
+
+### 6. A G3AB-inserted Raise inherits the same desired `BaseSpeed`
+
+Gothic speed selection is phase-specific. Existing runtime evidence includes:
+
+```text
+Power Action2 Raise = 1.500
+Power Action2 Hit   = 1.000
+2H Normal Raise     = 1.000
+2H Normal Hit       = 0.700
+```
+
+Therefore a custom Raise cannot assume the Hit reference base.
+
+When `RaiseOverride=On`, the profile may provide:
+
+```ini
+ReferenceRaiseBaseSpeed=<positive finite float>
+```
+
+This is the factual Raise reference `B_raise`, not a second desired tuning speed.
+
+The desired Raise base remains the same `BaseSpeed`:
+
+```text
+compatible Raise = B_raise * M_raise
+configured Raise = (B_raise * M_raise) * (BaseSpeed / B_raise)
+                 = BaseSpeed * M_raise
+```
+
+The initial schema intentionally does **not** expose `RaiseSpeed` or `RaiseBaseSpeed`. If later authoring experience proves a real need to tune Raise differently from Hit, an optional separate desired Raise value may be added without changing profile identity.
+
+During the current Speed-only phase, Raise behavior remains paused under ADR-0006.
+
+### 7. Recover is derived from Hit and has no configuration key
+
+There is no:
+
+```text
+RecoverSpeed
+ReferenceRecoverBaseSpeed
+RecoverOverride
+```
+
+Recover follows the effective Hit playback as already decided by ADR-0004/ADR-0005 and observed in the earlier 2H speed work.
+
+Therefore the shared profile controls only the desired Hit base and, later, whether G3AB inserts Raise. Recover requires no independent user-facing tuning or reference calibration.
+
+### 8. Example profiles
+
+Speed-only profile:
 
 ```ini
 [Profile.Hero_None_1H_Normal]
@@ -177,84 +228,79 @@ AnimationFamily=Hero
 LeftAnimationUseType=None
 RightAnimationUseType=1H
 ActionProfile=Normal
+ReferenceHitBaseSpeed=0.60
 BaseSpeed=0.80
+RaiseOverride=Off
 ```
 
-Future Raise only:
+Future profile with G3AB Raise:
 
 ```ini
-[Profile.Hero_None_1H_Quick]
+[Profile.Hero_None_2H_Normal]
 AnimationFamily=Hero
 LeftAnimationUseType=None
-RightAnimationUseType=1H
-ActionProfile=Quick
-Raise=On
-```
-
-Both in one profile:
-
-```ini
-[Profile.Hero_Torch_1H_Normal]
-AnimationFamily=Hero
-LeftAnimationUseType=Torch
-RightAnimationUseType=1H
+RightAnimationUseType=2H
 ActionProfile=Normal
-BaseSpeed=0.85
-Raise=On
+ReferenceHitBaseSpeed=0.70
+ReferenceRaiseBaseSpeed=1.00
+BaseSpeed=0.80
+RaiseOverride=On
 ```
 
-This is one shared profile table, not independent Speed and Raise weapon tables.
+Only `BaseSpeed` is an author tuning target. `ReferenceHitBaseSpeed` and `ReferenceRaiseBaseSpeed` are mechanism calibration facts.
 
-### 6. Startup enumeration and runtime lookup
+### 9. Startup enumeration and runtime lookup
 
 Startup:
 
 ```text
 read G3AnimationBehaviors.ini once
--> enumerate sections through eCConfigFile
--> consider only section names beginning with Profile.
--> parse/normalize mandatory identity fields
--> parse optional feature fields
--> build immutable/normalized in-memory profile table
+-> enumerate sections
+-> consider only names beginning with Profile.
+-> parse/normalize mandatory identity
+-> parse optional feature/calibration fields
+-> build immutable normalized profile table
 ```
 
 Runtime:
 
 ```text
-obtain factual animation family + normalized left/right animation UseTypes + Normal/Quick profile
--> construct normalized profile key
+obtain factual animation family
++ normalized left/right animation UseTypes
++ factual action mapped to Normal/Quick
+-> construct normalized key
 -> bounded in-memory lookup
--> apply only the feature override actually present
--> missing profile/feature = native fallback
+-> apply only feature override with complete valid factual calibration
+-> missing/invalid/unsupported = native-compatible fallback
 ```
 
-The INI is never reread/reparsed for each attack.
+The INI is never reread for every attack.
 
-### 7. Ambiguity and malformed-profile policy
+### 10. Ambiguity and malformed-profile policy
 
 Fail safely rather than depending on INI order.
 
 ```text
-section missing/invalid mandatory identity field
--> ignore that section
+missing/invalid mandatory identity
+-> ignore section
 
 unsupported ActionProfile
--> ignore that section
+-> ignore section
 
-unknown/un-normalizable animation UseType token
--> ignore that section
+duplicate normalized profile identity
+-> identity ambiguous
+-> no G3AB override for that identity
 
-multiple sections normalize to the same exact profile identity
--> identity is ambiguous
--> no G3AB feature override is active for that identity
--> do NOT use first-wins or last-wins behavior
+invalid BaseSpeed or required reference base
+-> Speed inactive for that profile
+
+RaiseOverride=On without later-proven Raise requirements
+-> Raise remains inactive/fail-closed until the Raise feature owns that case
 ```
 
-A malformed optional feature field disables only that feature override where practical; independently valid fields may remain usable.
+Unknown non-owned keys may be ignored for forward compatibility.
 
-Unknown non-owned keys may be ignored for forward compatibility. User-facing startup warning/reporting for malformed configuration is an implementation concern and must remain lightweight; it is not permission to add research diagnostics to the release DLL.
-
-### 8. No weapon-specific policy is encoded in C++
+### 11. No weapon/family policy table in behavior C++
 
 Profiles such as:
 
@@ -264,20 +310,29 @@ Hero + Shield + 1H + Quick
 Hero + Torch + 1H + Normal
 Hero + 1H + 1H + Quick
 Hero + None + 2H + Normal
-Hero + None + Staff + Quick
+Demon + None + 2H + Normal
 ```
 
-are data, not C++ feature branches.
+are data, not C++ feature-policy branches.
 
-Raw runtime UseTypes that normalize to an existing animation token follow `ANIMATION_RULES.md`. For example, animation-token normalization may intentionally collapse multiple raw UseTypes onto the same animation category. Supporting a modded item that uses an existing factual animation category therefore does not require adding a weapon-named behavior branch.
+C++ owns generic engine interpretation:
 
-This ADR does not promise support for an invented runtime UseType/category that Gothic itself does not expose or that the project cannot normalize factually.
+```text
+factual action -> ActionProfile
+factual phase
+factual/current animation family source
+raw UseTypes -> normalized animation tokens
+generic compatible C/B composition
+```
+
+Configuration owns profile selection and factual reference calibration. Supporting another evidence-backed family/use-type profile should not require adding a new weapon/family branch to `AttackSpeed`.
 
 ## Consequences
 
-- The old `[AttackRaise] EnableTwoHandedNormal` and `[AttackSpeed] TwoHandedNormal` layout is historical prototype syntax and will not define the new production configuration.
-- Profile discovery is generic and does not require a compile-time list of weapon combinations.
-- `BaseSpeed=1.0` remains distinguishable from native fallback.
-- Raise can be added later without changing the profile identity or moving settings into a second table.
-- Speed implementation can proceed independently while Raise stays behaviorally dormant.
-- The exact Speed v2 hook/composition mechanism remains unresolved under ADR-0004; this ADR freezes configuration semantics, not engine intervention.
+- The previous `Raise=Native|On` spelling is superseded by `RaiseOverride=Off|On`.
+- One desired `BaseSpeed` governs Hit and, when later enabled, the inserted Raise by default.
+- Recover stays derived from Hit and remains absent from the INI.
+- Phase-specific factual reference values remain separate where the composition mechanism requires them.
+- The current hard-coded Hero reference-base table is transitional and must be removed by the later bounded generic-profile implementation.
+- The exact runtime source for the `AnimationFamily` token is being resolved by the active diagnostics-only family-source probe before production refactoring.
+- Raise behavior remains paused until Speed closes under ADR-0006.
