@@ -33,7 +33,7 @@ struct ProfileKeyLess
 };
 
 using ProfileMap = std::map<ProfileKey, Profile, ProfileKeyLess>;
-using AmbiguousKeySet = std::set<ProfileKey>;
+using AmbiguousKeySet = std::set<ProfileKey, ProfileKeyLess>;
 
 ProfileMap g_Profiles;
 AmbiguousKeySet g_AmbiguousKeys;
