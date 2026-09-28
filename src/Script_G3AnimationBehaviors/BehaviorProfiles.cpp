@@ -77,6 +77,35 @@ ProfileKey NormalizeKey(ProfileKey const &key)
     return normalized;
 }
 
+bool TryGetAnimationUseTypeToken(gEUseType useType, std::string &token)
+{
+    switch (useType)
+    {
+        case gEUseType_None:         token = "none"; return true;
+        case gEUseType_1H:           token = "1h"; return true;
+        case gEUseType_2H:           token = "2h"; return true;
+        case gEUseType_Fist:         token = "fist"; return true;
+        case gEUseType_Shield:       token = "shield"; return true;
+        case gEUseType_Staff:        token = "staff"; return true;
+        case gEUseType_Torch:        token = "torch"; return true;
+        case gEUseType_Broom:        token = "staff"; return true;
+        case gEUseType_Rake:         token = "staff"; return true;
+        case gEUseType_Shovel:       token = "staff"; return true;
+        case gEUseType_Fan:          token = "staff"; return true;
+        case gEUseType_Pickaxe:      token = "2h"; return true;
+        case gEUseType_Axe:          token = "2h"; return true;
+        case gEUseType_Halberd:      token = "staff"; return true;
+        case gEUseType_PhysicalFist: token = "fist"; return true;
+        default:                     return false;
+    }
+}
+
+gEUseType GetHandUseType(Entity const &entity, gESlot slot)
+{
+    Entity item = entity.Inventory.GetItemFromSlot(slot);
+    return item == None ? gEUseType_None : item.Interaction.GetUseType();
+}
+
 std::string GetGothic3Path()
 {
     char path[MAX_PATH] = {};
@@ -264,5 +293,35 @@ Profile const *Find(ProfileKey const &key)
 {
     ProfileMap::const_iterator const profile = g_Profiles.find(NormalizeKey(key));
     return profile != g_Profiles.end() ? &profile->second : nullptr;
+}
+
+bool TryBuildRuntimeKey(
+    Entity const &entity,
+    ActionProfile actionProfile,
+    ProfileKey &key,
+    gEUseType &rawLeftUseType,
+    gEUseType &rawRightUseType)
+{
+    if (entity == None)
+        return false;
+
+    key.animationFamily = NormalizeIdentityString(
+        entity.Animation.GetResourceName().GetText());
+    if (key.animationFamily.empty())
+        return false;
+
+    rawLeftUseType = GetHandUseType(entity, gESlot_LeftHand);
+    rawRightUseType = GetHandUseType(entity, gESlot_RightHand);
+    if (!TryGetAnimationUseTypeToken(
+            rawLeftUseType, key.leftAnimationUseType)
+        || !TryGetAnimationUseTypeToken(
+            rawRightUseType, key.rightAnimationUseType))
+    {
+        return false;
+    }
+
+    key.actionProfile = actionProfile;
+    key = NormalizeKey(key);
+    return true;
 }
 }
