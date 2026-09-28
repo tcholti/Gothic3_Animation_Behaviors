@@ -1,6 +1,6 @@
 # Speed Generic Profile Calibration Implementation
 
-**Status:** ACTIVE  
+**Status:** IMPLEMENTED / STATIC REVIEW PASS / BUILD PENDING  
 **Task class:** Bounded production source correction/refactor  
 **Branch:** `development`
 
@@ -87,20 +87,59 @@ Do not change:
 - Recover behavior;
 - Normal/Quick ActionProfile scope.
 
-## Static acceptance
+## Static acceptance result — PASS
 
-1. runtime family uses successful `Animation.GetSkeletonName(...)` only;
+Implemented source satisfies the frozen checks:
+
+1. runtime family now uses successful `Animation.GetSkeletonName(...)` only;
 2. resource-name aliases are absent;
 3. no current-motion filename parsing is introduced;
-4. profile parser accepts positive finite Hit/Raise reference values and desired BaseSpeed;
-5. `RaiseOverride` defaults Off and accepts On without activating Raise behavior;
-6. `AttackSpeed` contains no Hero-only family/base table;
+4. profile parser accepts positive finite `ReferenceHitBaseSpeed`, `BaseSpeed`, and reserved `ReferenceRaiseBaseSpeed` independently;
+5. `RaiseOverride` defaults `Off` and accepts `On` without activating Raise behavior;
+6. `AttackSpeed` contains no Hero-only family/base table and no weapon-specific reference lookup;
 7. missing/invalid `ReferenceHitBaseSpeed` returns compatible speed unchanged;
-8. composed non-finite output still returns compatible speed unchanged;
-9. no `EngineBridge`, collision, or Raise source changes.
+8. the S-01 composed non-finite output guard remains present;
+9. compare from the user-pushed Sabretooth evidence checkpoint `f2d40c89cda314b98c640f956af003168ab7abec` shows no `EngineBridge`, collision, or Raise behavior source change.
 
-## Runtime gate after source review/build/deploy
+Production files changed are exactly:
 
-First use only the existing human Hero/None/1H profiles with deliberately visible values and known factual reference bases. Confirm exact profile match and visible Speed behavior before widening acceptance.
+```text
+src/Script_G3AnimationBehaviors/BehaviorProfiles.h
+src/Script_G3AnimationBehaviors/BehaviorProfiles.cpp
+src/Script_G3AnimationBehaviors/AttackSpeed.cpp
+src/Script_G3AnimationBehaviors/Ini/G3AnimationBehaviors.ini
+```
+
+## Next gate — local build
+
+Build only the production target from current `development`:
+
+```powershell
+cmake --build build --config Release --target Script_G3AnimationBehaviors
+```
+
+Do not deploy or run until the build passes.
+
+After build/deploy, the first behavior test must use an ADR-0007 profile containing both `ReferenceHitBaseSpeed` and `BaseSpeed`. For Hero + None + 1H:
+
+```ini
+[Profile.Hero_None_1H_Normal]
+AnimationFamily=Hero
+LeftAnimationUseType=None
+RightAnimationUseType=1H
+ActionProfile=Normal
+ReferenceHitBaseSpeed=0.60
+BaseSpeed=0.40
+RaiseOverride=Off
+
+[Profile.Hero_None_1H_Quick]
+AnimationFamily=Hero
+LeftAnimationUseType=None
+RightAnimationUseType=1H
+ActionProfile=Quick
+ReferenceHitBaseSpeed=1.00
+BaseSpeed=0.40
+RaiseOverride=Off
+```
 
 Raise remains paused until Speed is completely closed.
