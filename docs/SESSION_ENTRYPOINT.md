@@ -17,57 +17,70 @@ ADR-0007 shared Speed/Raise INI schema = ACCEPTED
 BehaviorProfiles foundation = IMPLEMENTED / SOURCE-REVIEW PASS
 Speed v2 mechanism proof = EV-391
 Speed v2 Quick/caller-set static closure = EV-392
-Speed v2 production source = IMPLEMENTED / SOURCE-REVIEW PASS
-final reviewed source SHA = 4f9911f57d8d6b36efd35adee41920560c3986e0
+Speed v2 deep independent static audit = PASS WITH NON-BLOCKING FINDINGS
+Speed v2 S-01 finite-output correction = CLOSED / SOURCE-REVIEW PASS
+final corrected Speed source SHA = db7b24f1a0c19beaaf4e720cd69d19c331854340
 
-CURRENT = Speed v2 deep independent static audit (Work) before local build
-ACTIVE AUDIT = docs/work/active/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT.md
-BUILD/RUN = not attempted; wait for audit verdict before local build/deploy gate
+CURRENT = Speed v2 local build/deploy/startup/runtime gate
+BUILD/RUN = not yet attempted for corrected Speed source
 RAISE = PAUSED until Speed is completely closed
 main = FROZEN
 ```
 
-The first source-review pass found one blocker in the pre-final lineage: `c11c1486c05161a300fcb3ea6de1da5e5140cb04` compiled `AttackSpeed` but omitted the six caller-side `EngineBridge` transports. The bounded correction at `4f9911f5...` added only that frozen transport; post-correction static review passed and the correction diff did not alter collision behavior.
+`docs/work/active/` is clean except its README.
 
-Because the source/review sequence was interrupted several times, the User requested one additional heavy independent audit before local build. That audit must re-derive the critical SDK/x86 ABI and tested-build caller facts rather than merely trusting EV-391/EV-392 or the earlier source-review conclusion. It is read-only with respect to production code.
+## Independent audit closure
 
-Active audit contract:
+The heavy Work audit independently re-derived the tested-build caller/ABI/compatibility mechanism rather than trusting prior conclusions. It found no BLOCKER or MAJOR finding and confirmed:
 
-`docs/work/active/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT.md`
+- the exact six `Script_Game+0x42A0` caller sites;
+- exclusion of `+0x38A8B` because its scalar originates from integerized `GetStateTime()`, not factual action identity;
+- `mCCallHook` EAX capture, thunk stack/cleanup, `mCCaller` EAX restoration and x87 return compatibility;
+- exactly-once invocation of the live `Script_Game+0x42A0` owner, including New Balance;
+- `B*M -> (C/B) -> C*M` compatibility composition;
+- EngineBridge/AttackSpeed/BehaviorProfiles responsibility boundaries and fail-closed unsupported routes;
+- no collision-source change or dependency.
 
-Closed implementation contract:
+Audit closure record:
 
-`docs/archive/investigations/SPEED_V2_CALLER_SIDE_COMPOSITION_IMPLEMENTATION.md`
+`docs/archive/investigations/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT_RESULT.md`
 
-## Speed v2 — accepted source shape under audit
+## S-01 correction
 
-Required composition:
+The audit found one MINOR edge: an extreme but finite configured `BaseSpeed` could make the composed arithmetic result non-finite.
+
+Correction `db7b24f1a0c19beaaf4e720cd69d19c331854340` changes only `AttackSpeed.cpp`:
 
 ```text
-live compatible result = B * M
-configured result      = (B * M) * (C / B) = C * M
+compute composedSpeed = compatibleSpeed * (C / B)
+-> if composedSpeed is non-finite, return compatibleSpeed unchanged
+-> otherwise return composedSpeed
 ```
 
-The final source uses six tested-build `Script_Game` caller hooks owned by `EngineBridge.cpp`:
+No parser cap, hook/ABI change, technical-base change, profile/schema change, collision change, diagnostics or Raise behavior was introduced.
+
+Correction closure record:
+
+`docs/archive/investigations/SPEED_V2_S01_FINITE_OUTPUT_GUARD.md`
+
+## Frozen Speed v2 production shape
 
 ```text
+six callers:
 +0x383F0
 +0x38E9D
 +0x38F22
 +0x3937D
 +0x39402
 +0x48677
-```
 
-Transport:
-
-```text
-selected caller
--> mCCallHook passes factual EAX action explicitly
--> mCCaller invokes LIVE Script_Game+0x42A0 exactly once with EAX restored
--> compatible owner (including New Balance) produces B*M
--> AttackSpeed applies C/B only for exact configured + evidenced route
--> existing downstream path receives C*M
+caller mCCallHook
+-> explicit factual EAX action
+-> mCCaller invokes LIVE Script_Game+0x42A0 once with EAX restored
+-> compatible result B*M
+-> exact configured/evidenced route applies C/B
+-> finite C*M returned
+-> non-finite composed result fails closed to compatible result
 ```
 
 Hard exclusions remain:
@@ -94,7 +107,7 @@ Unsupported/unproven routes, including Normal Fist/PhysicalFist and non-Hero fam
 
 ## Primary runtime compatibility environment
 
-Keep active for the first runtime acceptance after audit/build/deploy:
+Keep active for first runtime acceptance:
 
 ```text
 Script_G3AnimationBehaviors.dll
@@ -102,7 +115,7 @@ Script_NewBalance.dll
 Script_AttackCollision.dll
 ```
 
-Pinned references:
+Pinned static references:
 
 ```text
 SDK:              georgeto/gothic3sdk@90bfd344de4510dda7ac9da7461cc7f1eac911f7
@@ -112,29 +125,24 @@ Binary reference: tcholti/Gothic3_Binary_Reference@c9d12cb5f0dcb4f96af6a82c02138
 
 ## Immediate route
 
+When the User is on the local build/game PC:
+
 ```text
-1. execute ONLY docs/work/active/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT.md in Work
-2. production-code edits/build/deploy/run are prohibited during that audit
-3. if verdict = BLOCKED:
-   -> return to Normal Chat
-   -> freeze the smallest separate correction task
-4. if verdict = PASS or PASS WITH NON-BLOCKING FINDINGS:
-   -> return to Normal Chat
-   -> local build final source lineage through POP-02
-   -> deploy/hash through POP-03
-   -> startup/load gate through POP-04
-   -> validate New Balance composition first:
-      - configured Normal + Quick full-stamina controls
-      - equivalent depleted-stamina controls
-      - representative compatible modifier control(s) where practical
-      - unconfigured controls
-      - representative supported hand configurations
-   -> native-only sanity/fallback
-   -> close Speed completely
-5. only then begin Raise
+1. build corrected source lineage containing db7b24f1a0c19beaaf4e720cd69d19c331854340 via POP-02
+2. deploy/hash via POP-03
+3. startup/load gate via POP-04
+4. New Balance runtime validation first:
+   - configured Normal + Quick full-stamina controls
+   - equivalent depleted-stamina controls
+   - representative compatible modifier control(s) where practical
+   - unconfigured controls
+   - representative supported hand configurations
+5. native-only sanity/fallback
+6. close Speed completely
+7. only then begin Raise
 ```
 
-Expected later runtime invariant:
+Expected runtime invariant:
 
 ```text
 configured base changes
@@ -142,21 +150,21 @@ AND
 relative Gothic/New Balance contextual modifiers remain effective
 ```
 
-No additional native-speed logging is currently requested.
+No additional native-speed logger run is currently requested.
 
 ## Read next
 
-- current bounded responsibility -> `work/active/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT.md`
 - exact short continuation -> `BETWEEN_CHATS.md`
 - Speed architecture -> ADR-0004 + ADR-0005 + ADR-0007
-- static proof -> EV-391 + EV-392 in `EVIDENCE_LEDGER_389_ONWARD.md`
-- completed source contract -> `archive/investigations/SPEED_V2_CALLER_SIDE_COMPOSITION_IMPLEMENTATION.md`
-- later build/deploy/startup procedures -> `PROJECT_OPERATING_PROCEDURES.md` POP-02/03/04
+- static mechanism evidence -> EV-391 + EV-392 in `EVIDENCE_LEDGER_389_ONWARD.md`
+- independent audit closure -> `archive/investigations/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT_RESULT.md`
+- S-01 correction closure -> `archive/investigations/SPEED_V2_S01_FINITE_OUTPUT_GUARD.md`
+- completed implementation contract -> `archive/investigations/SPEED_V2_CALLER_SIDE_COMPOSITION_IMPLEMENTATION.md`
+- build/deploy/startup procedures -> `PROJECT_OPERATING_PROCEDURES.md` POP-02/03/04
 
 ## Still paused
 
 ```text
-NO local build/deploy/runtime until deep audit verdict
 NO Raise work while Speed is open
 NO AttackContinuationProtection
 NO targeting/climbing
