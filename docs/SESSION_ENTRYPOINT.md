@@ -16,78 +16,80 @@ collision production integration = CLOSED/PASS through EV-390
 Speed v2 caller-side mechanism/caller set = CLOSED STATIC through EV-391/EV-392
 Speed deep independent static audit = PASS WITH NON-BLOCKING FINDINGS
 S-01 finite-output correction = CLOSED / SOURCE-REVIEW PASS
-production build/deploy/startup = PASS
+first Speed production build/deploy/startup = PASS
 first Speed behavior check = FAIL BEFORE COMPOSITION
-first profile identity probe = CLOSED / mismatch proven before AttackSpeed
-EV-393 Hero family-source control = PASS
-ADR-0007 generic Speed/Raise profile contract = REVISED/ACCEPTED
-CURRENT = one non-Hero family-source control only
+profile identity mismatch cause = CLOSED
+runtime family-source probe = CLOSED/PASS (Hero + Sabretooth)
+generic profile calibration refactor = IMPLEMENTED / STATIC REVIEW PASS
+CURRENT = local production build gate
 RAISE = PAUSED until Speed closes
 main = FROZEN
 ```
 
 Active task:
 
-`docs/work/active/SPEED_RUNTIME_FAMILY_SOURCE_PROBE.md`
+`docs/work/active/SPEED_GENERIC_PROFILE_CALIBRATION_IMPLEMENTATION.md`
 
-## Preserved request-semantics rule
+## Runtime profile identity — CLOSED
 
-The successful pre-collision prototypes already established the intended architecture:
-
-```text
-Speed:
-Gothic factual requested gEAction
-+ Gothic factual requested gEPhase
-+ stable actor/equipment facts
--> profile/behavior decision
-
-Raise later:
-matching profile
--> explicitly request factual Action + Raise through CombatMove
--> Gothic resolves concrete P0/P1/etc. animation
-```
-
-Do **not** infer the requested attack/phase from `CurrentMovementAni()`.
-
-EV-393 observed that `CurrentMovementAni()` can still be the outgoing/current motion while the new Hit request is already factual. That is expected request-boundary behavior, not a broken observation point.
-
-## EV-393 Hero family-source result
-
-Refreshed standalone probe deployed with matching built/live SHA256:
-
-`DE9039372E9CA2C2D0FBB6DA581613E47628724249AF35C54E47DAE68B14470F`
-
-Human right-hand 1H / empty-left Normal + Quick observations consistently showed:
+The final family-source evidence established:
 
 ```text
-RequestedPhaseName=Hit
-AnimationResourceName=G3_Hero_Skeleton
-AnimationSkeletonNameAvailable=true
-AnimationSkeletonName=Hero
-EntitySkeletonName=Hero
-RawLeftUseType=None
-RawRightUseType=1H
-Normal Action=1
-Quick Action=4/5
+Hero:
+  Animation.GetSkeletonName(...) = Hero
+  Entity.GetSkeletonName()       = Hero
+
+Sabretooth:
+  Animation.GetSkeletonName(...) = Sabretooth
+  Entity.GetSkeletonName()       = Sabretooth
 ```
 
-Therefore:
+Resource identities were different (`G3_Hero_Skeleton`, `G3_Sabertooth_Body_01`) and are not used as the author-facing family token.
+
+`CurrentMovementAni()` may still be the outgoing/current motion while Gothic is already requesting a new Hit. Preserve the pre-collision request-semantics architecture:
 
 ```text
-requested attack/phase authority = factual Gothic Action + Phase
-Animation.GetSkeletonName(...)   = preferred stable family-source candidate
-Entity.GetSkeletonName()         = corroborating family source
-Animation.GetResourceName()      = rejected as author-facing family source
-CurrentMovementAni               = observational context only
+requested gEAction + requested gEPhase = Gothic request authority
+Animation.GetSkeletonName(...)         = stable AnimationFamily
+left/right UseTypes                     = stable equipment facts
+CurrentMovementAni                      = observational context only
 ```
 
-One non-Hero control remains before generic production adoption.
+Closed result:
 
-Processed log:
+`docs/archive/investigations/SPEED_RUNTIME_FAMILY_SOURCE_PROBE_RESULT.md`
 
-`research/archive/2026.09.28_SpeedIdentityProbetest_2.log`
+Processed logs:
 
-## Generic profile contract
+```text
+research/archive/2026.09.28_SpeedIdentityProbetest_2.log
+research/archive/2026.09.28_SpeedIdentityProbetest_sabertooth.log
+```
+
+## Generic Speed profile implementation — STATIC PASS
+
+Production changes are bounded to:
+
+```text
+src/Script_G3AnimationBehaviors/BehaviorProfiles.h
+src/Script_G3AnimationBehaviors/BehaviorProfiles.cpp
+src/Script_G3AnimationBehaviors/AttackSpeed.cpp
+src/Script_G3AnimationBehaviors/Ini/G3AnimationBehaviors.ini
+```
+
+Implemented behavior:
+
+```text
+AnimationFamily -> Animation.GetSkeletonName(...), fail closed
+ReferenceHitBaseSpeed -> parsed from matching profile
+BaseSpeed -> desired configured base
+AttackSpeed -> compatibleSpeed * (BaseSpeed / ReferenceHitBaseSpeed)
+missing/invalid calibration -> compatible result unchanged
+```
+
+The transitional Hero/weapon hard-coded reference-base table is removed. The six caller-side hooks, `EngineBridge`, collision behavior, and Raise behavior are unchanged. The S-01 finite composed-output fallback remains present.
+
+ADR-0007 profile shape:
 
 ```ini
 [Profile.Hero_None_1H_Normal]
@@ -96,73 +98,43 @@ LeftAnimationUseType=None
 RightAnimationUseType=1H
 ActionProfile=Normal
 ReferenceHitBaseSpeed=0.60
-BaseSpeed=0.80
+BaseSpeed=0.40
 RaiseOverride=Off
 ```
 
-Later Raise-enabled profiles may additionally use:
-
-```ini
-ReferenceRaiseBaseSpeed=1.00
-RaiseOverride=On
-```
-
-Semantics:
-
-```text
-AnimationFamily         = stable actor/animation family component
-ActionProfile           = mapped from factual requested gEAction
-factual gEPhase         = runtime behavior gate
-CurrentMovementAni      = NOT request identity
-ReferenceHitBaseSpeed   = factual Hit reference B
-ReferenceRaiseBaseSpeed = factual Raise reference B when later needed
-BaseSpeed               = one desired authored C
-Recover                 = follows effective Hit; no separate key/reference/hook
-```
-
-The later generic production refactor must remove the transitional Hero-only reference-base table from `AttackSpeed` and consume profile calibration data instead.
+Quick uses factual reference `1.00` for the existing Hero/None/1H fixture. `ReferenceRaiseBaseSpeed` and `RaiseOverride=On` are parsed/reserved only; Raise behavior remains paused. Recover remains derived from effective Hit with no independent key/reference/hook.
 
 ## Immediate route
 
-No rebuild or source change is required for the remaining control.
+On the local build PC:
 
-```text
-1. keep the currently deployed Script_SpeedIdentityProbe.dll
-2. transform player into Sabretooth
-3. perform several ordinary Normal attacks
-4. perform several Quick attacks if that transformed route offers them
-5. exit normally
-6. push SpeedIdentityProbe.log to research/raw/
-7. inspect whether Animation.GetSkeletonName / Entity.GetSkeletonName return one stable non-Hero family token
-8. if yes: close family-source probe
-9. then implement generic BehaviorProfiles + profile-calibrated AttackSpeed
-10. rebuild/deploy production and resume Speed runtime acceptance
+```powershell
+cmake --build build --config Release --target Script_G3AnimationBehaviors
 ```
 
-No Sabretooth INI profile is needed.
+Do not deploy/run until the build passes.
 
-Primary runtime stack remains:
+After build PASS:
 
-```text
-Script_G3AnimationBehaviors.dll
-Script_NewBalance.dll
-Script_AttackCollision.dll
-Script_SpeedIdentityProbe.dll   # diagnostic only for current bounded control
-```
+1. deploy/hash the production DLL;
+2. update the live INI to the ADR-0007 Normal + Quick test profiles with `ReferenceHitBaseSpeed`;
+3. repeat the small human None+1H Normal/Quick behavior test;
+4. if visible Speed control works, continue New Balance compatibility acceptance;
+5. close Speed completely;
+6. only then begin Raise.
 
 ## Read next
 
 - exact continuation -> `BETWEEN_CHATS.md`
-- active probe -> `work/active/SPEED_RUNTIME_FAMILY_SOURCE_PROBE.md`
-- schema/request-semantics decision -> `decisions/ADR-0007-shared-ini-profile-schema.md`
+- active implementation/build gate -> `work/active/SPEED_GENERIC_PROFILE_CALIBRATION_IMPLEMENTATION.md`
+- family-source closure -> `archive/investigations/SPEED_RUNTIME_FAMILY_SOURCE_PROBE_RESULT.md`
+- profile/request-semantics authority -> `decisions/ADR-0007-shared-ini-profile-schema.md`
 - Speed architecture -> ADR-0004 + ADR-0005 + ADR-0006
-- static caller proof -> EV-391 + EV-392
 
 ## Still paused
 
 ```text
 NO Raise implementation while Speed is open
-NO production family-source change before the final non-Hero control
 NO targeting/climbing
 NO promotion to main before agreed integrated checkpoint
 NO collision redesign absent contradictory evidence
