@@ -11,12 +11,20 @@ Speed is the next exclusive feature after EV-390 closed collision production int
 
 The original prototype INI hard-coded 2H Normal keys and therefore did not represent the intended generic product architecture.
 
-Runtime work on 2026-09-28 additionally established two important constraints:
+Runtime work on 2026-09-28 additionally established important constraints:
 
-1. the user-facing animation family must remain the Gothic animation-name family token (`Hero`, `Demon`, `Goblin`, etc.), not an incidental skeleton/resource API string;
-2. the selected downstream Speed composition mechanism needs factual reference base values `B` in order to transform a compatible result `B*M` into configured `C*M` without replacing contextual modifiers.
+1. the user-facing animation family must remain the Gothic animation-name family token (`Hero`, `Demon`, `Goblin`, etc.), not an incidental resource API string such as `G3_Hero_Skeleton`;
+2. the selected downstream Speed composition mechanism needs factual reference base values `B` in order to transform a compatible result `B*M` into configured `C*M` without replacing contextual modifiers;
+3. Speed/Raise profile selection must preserve the successful pre-collision request-semantics design: factual requested `gEAction` and `gEPhase` come from Gothic's request path, not from whichever motion happens to be playing at that instant.
 
-The revised schema therefore stores those factual reference values in generic profile data instead of hard-coding weapon/family base tables in behavior code.
+The pre-collision prototypes already proved this separation:
+
+- Speed received the factual requested action from EAX and the factual requested phase as the `GetAnimationSpeedModifier` argument, and never needed `CurrentMovementAni()` to identify the requested attack.
+- Raise hooked the original melee state and explicitly requested factual `gEAction_Attack` + `Raise` through `sAICombatMoveInstr`; Gothic then resolved the concrete P0/P1/etc. Raise animation itself.
+
+The 2026-09-28 family-source probe is consistent with that architecture. At the CombatMove request boundary, `CurrentMovementAni()` may still name the outgoing/current motion while the new Hit is already being requested. That is expected and is not a reason to delay profile selection until the new motion becomes current.
+
+The revised schema therefore stores factual reference values in generic profile data instead of hard-coding weapon/family base tables in behavior code, while runtime identity remains split cleanly between stable actor/equipment facts and Gothic's factual action/phase request.
 
 The production project builds against Gothic 3 SDK revision:
 
@@ -69,7 +77,7 @@ AnimationFamily
 + ActionProfile
 ```
 
-`AnimationFamily` uses the Gothic animation-name family token, for example `Hero`, `Demon`, `Goblin`, `Wolf`, etc. `ANIMATION_RULES.md` defines the first animation-name token as this family. The exact runtime source used to recover that token must be factual and is being validated separately; the schema must not require raw skeleton/resource names such as `G3_Hero_Skeleton`.
+`AnimationFamily` uses the Gothic animation-family token, for example `Hero`, `Demon`, `Goblin`, `Wolf`, etc. `ANIMATION_RULES.md` defines the first animation-name token as this family. Runtime work must obtain this as a stable actor/animation-family fact; it must not require raw resource names such as `G3_Hero_Skeleton` and must not infer the requested attack from `CurrentMovementAni()`.
 
 `LeftAnimationUseType` and `RightAnimationUseType` use normalized animation tokens owned by `ANIMATION_RULES.md`, not blindly serialized raw `gEUseType` spelling.
 
@@ -82,9 +90,46 @@ Quick
 
 C++ remains responsible for mapping factual engine actions to these profile classes. Configuration does not redefine Gothic action identity.
 
-There is no P0/P1/P2/P3 field in the user-facing profile identity.
+The factual requested `gEPhase` is also engine-owned. It gates the feature behavior at runtime but is not part of the user-facing profile identity for the current Normal/Quick design. Hit Speed therefore uses factual `gEPhase_Hit`; later Raise behavior explicitly requests/handles factual Raise rather than deducing it from a current filename.
 
-### 3. `BaseSpeed` is the single desired authored playback base
+There is no P0/P1/P2/P3 field in the user-facing profile identity. Gothic remains responsible for resolving the exact concrete animation variant from its normal request facts.
+
+### 3. Request semantics are authoritative; current motion is not profile identity
+
+For Speed and later Raise, the runtime model is:
+
+```text
+stable actor/equipment facts:
+  AnimationFamily
+  LeftAnimationUseType
+  RightAnimationUseType
+
+request facts owned by Gothic:
+  factual gEAction
+  factual gEPhase
+```
+
+These facts select/gate behavior. The currently playing motion is observational context only and must not be used as the sole authority for the requested attack family or phase.
+
+This deliberately preserves the successful pre-collision architecture:
+
+```text
+Speed:
+Gothic requested action + requested phase
+-> map factual action to Normal/Quick
+-> build profile from family + UseTypes + ActionProfile
+-> apply configured base composition only for the factual supported phase
+
+Raise later:
+matching profile + RaiseOverride=On
+-> explicitly request the corresponding action + Raise phase
+-> Gothic resolves the exact P0/P1/etc. Raise animation
+-> continue the untouched original attack path
+```
+
+A stale/outgoing `CurrentMovementAni()` at the request boundary is therefore expected and does not invalidate the request facts.
+
+### 4. `BaseSpeed` is the single desired authored playback base
 
 Speed uses:
 
@@ -110,7 +155,7 @@ A non-numeric, non-finite, zero or negative `BaseSpeed` is invalid and must fail
 
 No separate user-facing `HitSpeed` exists. `BaseSpeed` is the Hit target.
 
-### 4. `ReferenceHitBaseSpeed` is factual calibration data
+### 5. `ReferenceHitBaseSpeed` is factual calibration data
 
 The selected downstream composition mechanism observes an already-compatible result:
 
@@ -142,7 +187,7 @@ BaseSpeed present + missing/invalid ReferenceHitBaseSpeed
 
 Reference base facts belong in generic profile/configuration data or another generic factual source, not in weapon/family-specific C++ policy tables.
 
-### 5. Raise uses `RaiseOverride=On|Off`
+### 6. Raise uses `RaiseOverride=On|Off`
 
 The user-facing Raise key is:
 
@@ -171,7 +216,7 @@ RaiseOverride=On
 
 This wording is preferred over `Raise=Native` because it states the ownership decision directly and avoids implying that `Off` disables Gothic's native phase globally.
 
-### 6. A G3AB-inserted Raise inherits the same desired `BaseSpeed`
+### 7. A G3AB-inserted Raise inherits the same desired `BaseSpeed`
 
 Gothic speed selection is phase-specific. Existing runtime evidence includes:
 
@@ -204,7 +249,7 @@ The initial schema intentionally does **not** expose `RaiseSpeed` or `RaiseBaseS
 
 During the current Speed-only phase, Raise behavior remains paused under ADR-0006.
 
-### 7. Recover is derived from Hit and has no configuration key
+### 8. Recover is derived from Hit and has no configuration key
 
 There is no:
 
@@ -218,7 +263,7 @@ Recover follows the effective Hit playback as already decided by ADR-0004/ADR-00
 
 Therefore the shared profile controls only the desired Hit base and, later, whether G3AB inserts Raise. Recover requires no independent user-facing tuning or reference calibration.
 
-### 8. Example profiles
+### 9. Example profiles
 
 Speed-only profile:
 
@@ -249,7 +294,7 @@ RaiseOverride=On
 
 Only `BaseSpeed` is an author tuning target. `ReferenceHitBaseSpeed` and `ReferenceRaiseBaseSpeed` are mechanism calibration facts.
 
-### 9. Startup enumeration and runtime lookup
+### 10. Startup enumeration and runtime lookup
 
 Startup:
 
@@ -265,10 +310,11 @@ read G3AnimationBehaviors.ini once
 Runtime:
 
 ```text
-obtain factual animation family
+obtain stable factual AnimationFamily
 + normalized left/right animation UseTypes
-+ factual action mapped to Normal/Quick
--> construct normalized key
++ factual requested gEAction mapped to Normal/Quick
++ factual requested gEPhase used as behavior gate
+-> construct normalized profile key from family/use types/action profile
 -> bounded in-memory lookup
 -> apply only feature override with complete valid factual calibration
 -> missing/invalid/unsupported = native-compatible fallback
@@ -276,7 +322,7 @@ obtain factual animation family
 
 The INI is never reread for every attack.
 
-### 10. Ambiguity and malformed-profile policy
+### 11. Ambiguity and malformed-profile policy
 
 Fail safely rather than depending on INI order.
 
@@ -300,7 +346,7 @@ RaiseOverride=On without later-proven Raise requirements
 
 Unknown non-owned keys may be ignored for forward compatibility.
 
-### 11. No weapon/family policy table in behavior C++
+### 12. No weapon/family policy table in behavior C++
 
 Profiles such as:
 
@@ -318,10 +364,10 @@ are data, not C++ feature-policy branches.
 C++ owns generic engine interpretation:
 
 ```text
-factual action -> ActionProfile
-factual phase
-factual/current animation family source
+stable factual animation family source
 raw UseTypes -> normalized animation tokens
+factual requested action -> ActionProfile
+factual requested phase -> behavior gate
 generic compatible C/B composition
 ```
 
@@ -334,5 +380,6 @@ Configuration owns profile selection and factual reference calibration. Supporti
 - Recover stays derived from Hit and remains absent from the INI.
 - Phase-specific factual reference values remain separate where the composition mechanism requires them.
 - The current hard-coded Hero reference-base table is transitional and must be removed by the later bounded generic-profile implementation.
-- The exact runtime source for the `AnimationFamily` token is being resolved by the active diagnostics-only family-source probe before production refactoring.
+- Speed/Raise attack identity follows Gothic's factual request semantics; `CurrentMovementAni()` is not part of user-facing profile identity and is not used to infer the requested attack/phase.
+- The exact stable runtime source for `AnimationFamily` is being closed by the active diagnostics-only family-source probe; the human control supports `Animation.GetSkeletonName(...)`, with one non-Hero generalization control remaining.
 - Raise behavior remains paused until Speed closes under ADR-0006.
