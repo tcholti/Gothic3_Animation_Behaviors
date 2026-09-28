@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Index
 
 **Status:** Compact evidence-routing index  
-**Updated:** 2026-09-27
+**Updated:** 2026-09-28
 
 ## Purpose
 
@@ -87,6 +87,8 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | Speed v2 caller-side composition / GetAnimationSpeedModifier consumers | EV-391 |
 | Speed v2 Normal/Quick Hit consumer call-site evidence | EV-391 |
 | Speed v2 New Balance-preserving B*M -> C*M mechanism candidate | EV-391 |
+| Speed v2 generic Quick/Action3 provenance | EV-392 |
+| Speed v2 exact six-site caller set / +0x38A8B exclusion | EV-392 |
 | native contact misses vs authored marker correctness | EV-381 |
 | sheath/draw contact observation | EV-380–EV-381; not a marker blocker |
 
@@ -137,32 +139,22 @@ EV-390         final Script_G3AnimationBehaviors.dll production collision integr
 ## 4. Current collision disposition / next project gate
 
 ```text
-Final collision candidate 1c45e5e...:
-  standalone/no-New-Balance diagnostic sentinel = CLOSED/PASS EV-386–EV-387
-  bounded New Balance final-candidate regression = PASS EV-388
-  diagnostic phase = CLOSED/PASS EV-386–EV-388
-  behavior-only deployment identity/startup = PASS EV-389
-  behavior-only marker-dependent functional validation = PASS EV-389
-  production migration source parity/review = PASS
-  final production DLL integration = CLOSED/PASS EV-390
-
-EV-390 directly proves production execution through:
-  exact built/live Script_G3AnimationBehaviors.dll SHA match
-  sole-live G3AB/collision deployment
-  working 2H double-attack / three-marker windows
-  working 1H1H triple-attack / four-marker windows
-  double-contact human Fist, Sabretooth raw8 and Troll raw55
-
 Collision project phase:
-  CLOSED / stable production foundation
+  CLOSED / stable production foundation through EV-390
+
+Speed preparation:
+  shared generic Speed+Raise INI/profile schema = ACCEPTED
+  BehaviorProfiles foundation = IMPLEMENTED / SOURCE-REVIEW PASS
+  caller-side composition mechanism = EV-391
+  generic Quick provenance + exact six-site caller set = CLOSED EV-392
+  production Speed v2 source = IMPLEMENTED / SOURCE-REVIEW PASS
+  final reviewed source = 4f9911f57d8d6b36efd35adee41920560c3986e0
 
 Current project gate:
-  shared generic Speed+Raise INI/profile schema = ACCEPTED
-  BehaviorProfiles foundation = IMPLEMENTED/PASS
-  Speed v2 caller-side composition class = STATICALLY SUPPORTED EV-391
-  -> close generic Quick/Action3 consumer provenance
-  -> freeze smallest exact Speed implementation
-  -> validate Speed completely
+  local build/deploy of final reviewed Speed v2 source
+  -> primary New Balance composition/runtime validation
+  -> native-only sanity/fallback
+  -> close Speed completely
   -> Raise only afterward
 ```
 
@@ -190,7 +182,7 @@ research/archive/  processed canonical runtime provenance
 
 The EV-382 test3 logs, EV-384 New Balance stress log, EV-385 four-log standalone batch, EV-386 corrected four-log marked standalone batch, EV-387 unmarked fallback artifact, and EV-388 five-log final-candidate New Balance batch are processed and archived byte-identically under `research/archive/`. The EV-384 derived package remains under `research/derived/2026.09.27_newbalance_stresstest_large_log/` for bounded retrieval. `research/raw/` should contain only `Keep.txt` after EV-388 closure.
 
-EV-389 and EV-390 are diagnostics-free observational evidence and therefore have no diagnostic runtime artifact by design. EV-391 is static source/binary-reference evidence and has no runtime artifact.
+EV-389 and EV-390 are diagnostics-free observational evidence and therefore have no diagnostic runtime artifact by design. EV-391 and EV-392 are static source/binary-reference evidence and have no runtime artifacts.
 
 Historical ledger rows may retain paths that were correct when written. Use `EVIDENCE_PATH_MIGRATIONS.md` when a later archive move makes an old path ambiguous.
 
