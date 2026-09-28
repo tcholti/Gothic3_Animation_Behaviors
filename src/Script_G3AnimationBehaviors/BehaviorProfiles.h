@@ -1,5 +1,7 @@
 #pragma once
 
+#include <g3sdk/Script.h>
+
 #include <string>
 
 namespace G3AB::BehaviorProfiles
@@ -34,4 +36,10 @@ struct Profile
 
 void Load();
 Profile const *Find(ProfileKey const &key);
+bool TryBuildRuntimeKey(
+    Entity const &entity,
+    ActionProfile actionProfile,
+    ProfileKey &key,
+    gEUseType &rawLeftUseType,
+    gEUseType &rawRightUseType);
 }
