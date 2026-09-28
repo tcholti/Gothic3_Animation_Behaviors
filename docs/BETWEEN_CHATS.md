@@ -1,7 +1,7 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-09-27
+**Updated:** 2026-09-28
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
@@ -16,14 +16,15 @@ EV-390 collision production integration = CLOSED/PASS
 ADR-0007 shared Speed/Raise schema = ACCEPTED
 BehaviorProfiles foundation = PASS
 implementation = 81d4964201579c9f7a989404426c3d9dc9ab4834
-EV-391 Speed v2 caller-side composition static evidence = RECORDED
-CURRENT = Speed v2 mechanism research/design ONLY
+EV-391 Speed v2 caller-side mechanism = RECORDED
+EV-392 Quick provenance + exact caller-set closure = PASS/RECORDED
+CURRENT = bounded Speed v2 source implementation
+ACTIVE TASK = docs/work/active/SPEED_V2_CALLER_SIDE_COMPOSITION_IMPLEMENTATION.md
+BUILD/RUN = PROHIBITED for active source task
 RAISE = PAUSED until Speed closes
 ```
 
-`docs/work/active/` is clean.
-
-## Speed v2 handoff
+## Frozen Speed v2 handoff
 
 Required invariant:
 
@@ -32,51 +33,93 @@ unconfigured = B * M
 configured   = C * M
 ```
 
-`C` is configured authored base; legitimate Gothic/New Balance modifiers `M` must remain effective. Configured Normal/Quick uses `1.0` as the intended neutral authored reference; native/NB `0.6`/`0.7` Normal values are technical base facts, not desired G3AB defaults.
-
-EV-391 statically proves a narrower post-policy/pre-playback composition class outside competing `+0x42A0` ownership:
+Production mechanism:
 
 ```text
-exact target caller
--> invoke LIVE Script_Game+0x42A0       # NB computes B*M
--> exact configured profile: * (C/B)
+selected Script_Game caller
+-> EngineBridge-owned mCCallHook
+-> pass factual incoming EAX action explicitly
+-> invoke LIVE Script_Game+0x42A0 exactly once
+-> receive compatible B*M
+-> exact configured/evidenced route: * (C/B)
 -> C*M
--> existing downstream path
+-> existing downstream playback path
 ```
 
-Direct Hit-consumer proof:
+Do not hook/own the `+0x42A0` entry. New Balance remains authoritative for its modifier calculation.
+
+### Generic Quick closure
 
 ```text
-Script_Game+0x383F0  Action1 / Attack / Normal
-Script_Game+0x48677  PropertyAction after explicit Action4/5 / Quick R/L
+Action3 / QuickAttack
+-> GetPrimaryPoseExt(Action3, Hit)
+-> PropertyAction = Action4 or Action5
+-> +0x48677 calls +0x42A0 with factual 4/5
 ```
 
-Nearby dynamic Hit callers (`+0x38A8B`, `+0x38E9D`, `+0x38F22`, `+0x3937D`, `+0x39402`) preserve action context and support the same intervention class. Prefer targeted caller-side thunk/call redirection; do not hook all `StartPlayAni*` calls and do not compete for `+0x42A0` ownership.
+No separate Action3 speed hook is required on the proven route.
 
-Existing evidence plus pinned New Balance source already supplies the first intended base groups (`0.6`, `0.7`, `1.0`), so **do not request another native-speed logger run now**.
-
-Open static gap: ADR-0007 Quick includes Action3/4/5. Action4/5 provenance is proven; generic `gEAction_QuickAttack` / Action3 is not yet closed. The production call-site list is therefore not frozen.
-
-Primary runtime compatibility stack remains:
+### Exact six call sites
 
 ```text
-Script_G3AnimationBehaviors.dll
-Script_NewBalance.dll
-Script_AttackCollision.dll
++0x383F0  Normal Action1 / Hit
++0x38E9D  FEA8 factual action carrier / Hit
++0x38F22  FEA8 factual action carrier / Hit
++0x3937D  FEA8 factual action carrier / Hit
++0x39402  FEA8 factual action carrier / Hit
++0x48677  Quick after Action3 -> Action4/5 / Hit
 ```
 
-## Next route
+Explicitly exclude `+0x38A8B`: its `+0x158` value is propagated integerized `PSRoutine::GetStateTime()`, not factual Quick action. Also exclude inspected action27/28 and Action6 routes.
+
+### Technical B facts
+
+Keep `B` as immutable evidence data keyed by exact factual raw runtime facts. Profile selection remains normalized ADR-0007 identity.
+
+Current first facts:
 
 ```text
-1. trace generic QuickAttack / Action3 into the dynamic combat consumer family
-2. close exact Normal+Quick Hit consumer-callsite set
-3. verify entity + exact action/profile identity survives at each selected site
-4. if static proof fails, freeze only the smallest diagnostics-only probe
-5. then freeze bounded Speed v2 implementation
-6. validate New Balance composition first; native-only sanity later
-7. close Speed before any Raise work
+Normal:
+None+1H / Shield+1H / Torch+1H / 1H+1H = 0.6
+None+2H / None+Axe / None+Staff / None+Halberd = 0.7
+
+Quick Action4/5 = 1.0
 ```
 
-Authorities: ADR-0004, ADR-0007, `SESSION_ENTRYPOINT.md`, EV-391, `DESIGN.md` §§2–3, `SOURCE_HOOK_GUIDE.md`.
+Unknown/unproven routes fail closed. Do not treat normalized token equality as proof of technical B; retain raw UseTypes for B lookup. Normal Fist/PhysicalFist is outside this first composition contract.
 
-Hard exclusions: final-result replacement; same-hook load-order dependency; copied NB multiplier policy; global speed override; stamina bypass; Raise work; collision redesign.
+## Active implementation boundary
+
+Read and execute only:
+
+`docs/work/active/SPEED_V2_CALLER_SIDE_COMPOSITION_IMPLEMENTATION.md`
+
+Expected source scope:
+
+```text
+EngineBridge.cpp
+AttackSpeed.cpp/.h
+BehaviorProfiles.cpp/.h
+CMakeLists.txt
+```
+
+`EngineBridge` stays sole hook owner. `AttackSpeed` becomes composition policy only. Dormant prototype hook semantics are rejected.
+
+Static/source audit only. **No build, deployment, runtime test, diagnostic logger or Raise work** in the active bounded task.
+
+## After source implementation
+
+```text
+independent source review
+-> User local build/deploy
+-> New Balance composition validation first
+-> unconfigured controls
+-> depleted-stamina / relevant modifier preservation
+-> native-only sanity/fallback
+-> close Speed
+-> only then Raise
+```
+
+Authorities: active task, `SESSION_ENTRYPOINT.md`, ADR-0004/0005/0007, EV-391/EV-392, `ANIMATION_RULES.md`, `WORK_IMPLEMENTATION_PROTOCOL.md`.
+
+Hard exclusions: final-result replacement; same-hook load-order dependency; copied NB multiplier policy; global speed override; Action3 guesswork; StateTime-as-action matching; Raise; collision redesign.
