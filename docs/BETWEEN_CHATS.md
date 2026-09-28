@@ -16,26 +16,28 @@ EV-390 collision production integration = CLOSED/PASS
 BehaviorProfiles foundation = IMPLEMENTED/PASS
 EV-391 Speed caller-side mechanism = RECORDED
 EV-392 Quick provenance + exact six-site caller set = PASS/RECORDED
-Speed v2 production source = IMPLEMENTED / SOURCE-REVIEW PASS
-final reviewed source = 4f9911f57d8d6b36efd35adee41920560c3986e0
-CURRENT = deep independent static audit before local build/deploy
-ACTIVE = docs/work/active/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT.md
+Speed v2 deep independent Work audit = PASS WITH NON-BLOCKING FINDINGS
+S-01 finite-output correction = CLOSED / SOURCE-REVIEW PASS
+final corrected Speed source = db7b24f1a0c19beaaf4e720cd69d19c331854340
+CURRENT = local build/deploy/startup/runtime gate
 RAISE = PAUSED until Speed closes
 ```
 
-The first review caught one omission in `c11c1486...`: `AttackSpeed` was compiled but the six `EngineBridge` caller transports were missing. Correction `4f9911f5...` adds only the frozen transport; the correction diff leaves collision untouched.
+The Work audit independently re-derived the six caller sites, `+0x38A8B` exclusion, SDK x86 ABI, live-owner New Balance interaction, `B*M -> C*M` composition, fail-closed matrix and module responsibility boundaries. No blocker or major finding was found.
 
-The User requested one additional heavy Work audit because the earlier implementation/review sequence suffered repeated interrupted/timed-out Chats. This audit is intentionally independent and adversarial: it must re-derive the critical caller/ABI/compatibility facts from pinned SDK, binary-reference and New Balance sources rather than rubber-stamping the earlier evidence. Production-code edits/build/run are prohibited inside the audit.
+The only audit finding was MINOR S-01: extreme positive finite `BaseSpeed` could overflow the composed result. Correction `db7b24f1...` changes only `AttackSpeed.cpp` to return the live compatible result when `composedSpeed` is non-finite. Focused source review PASS.
 
-Active audit contract:
+Archive records:
 
-`docs/work/active/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT.md`
+```text
+docs/archive/investigations/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT_RESULT.md
+docs/archive/investigations/SPEED_V2_S01_FINITE_OUTPUT_GUARD.md
+docs/archive/investigations/SPEED_V2_CALLER_SIDE_COMPOSITION_IMPLEMENTATION.md
+```
 
-Completed implementation contract:
+`docs/work/active/` is clean except README.
 
-`docs/archive/investigations/SPEED_V2_CALLER_SIDE_COMPOSITION_IMPLEMENTATION.md`
-
-## Frozen Speed v2 implementation under audit
+## Frozen Speed v2 implementation
 
 ```text
 six callers:
@@ -47,16 +49,17 @@ six callers:
 +0x48677
 
 caller mCCallHook
--> explicit factual EAX action
--> mCCaller invokes LIVE Script_Game+0x42A0 once with EAX restored
+-> factual EAX action
+-> mCCaller invokes LIVE Script_Game+0x42A0 exactly once
 -> compatible result B*M
 -> exact configured/evidenced route applies C/B
--> C*M
+-> finite C*M
+-> non-finite composed result fails closed to compatible result
 ```
 
 Do not hook `+0x42A0` itself. Do not hook `+0x38A8B`. Unconfigured/unsupported routes return the compatible result unchanged.
 
-Technical bases under audit:
+Technical bases:
 
 ```text
 Normal:
@@ -67,36 +70,26 @@ Quick Action4/5 = 1.0
 
 Normal Fist/PhysicalFist and non-Hero routes remain unsupported/fail-closed in this first Speed contract.
 
-Pinned independent references:
-
-```text
-SDK:              georgeto/gothic3sdk@90bfd344de4510dda7ac9da7461cc7f1eac911f7
-New Balance:      Jackydima/gothic3sdk@316d32406a133f8884e7e302752c35f66b4f54fc
-Binary reference: tcholti/Gothic3_Binary_Reference@c9d12cb5f0dcb4f96af6a82c02138c1c15e981b6
-```
-
 ## Next
 
+When back on the local build/game PC:
+
 ```text
-run ONLY the deep independent static audit in Work
--> return its full report to Normal Chat
--> if BLOCKED: freeze smallest separate correction task
--> if PASS / PASS WITH NON-BLOCKING FINDINGS:
-   local build via POP-02
-   -> deploy/hash via POP-03
-   -> startup/load via POP-04
-   -> New Balance runtime validation
-   -> configured Normal/Quick full stamina
-   -> equivalent depleted stamina
-   -> representative modifier control(s)
-   -> unconfigured controls
-   -> supported hand configurations
-   -> native-only sanity/fallback
-   -> close Speed
-   -> Raise only afterward
+build current development source containing db7b24f1... via POP-02
+-> deploy/hash via POP-03
+-> startup/load via POP-04
+-> New Balance runtime validation first
+-> configured Normal/Quick full stamina
+-> equivalent depleted stamina
+-> representative compatible modifier control(s)
+-> unconfigured controls
+-> supported hand configurations
+-> native-only sanity/fallback
+-> close Speed
+-> Raise only afterward
 ```
 
-Primary later runtime stack:
+Primary runtime stack:
 
 ```text
 Script_G3AnimationBehaviors.dll
