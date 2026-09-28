@@ -12,9 +12,9 @@ enum class ActionProfile
     Quick
 };
 
-enum class RaiseMode
+enum class RaiseOverride
 {
-    Native,
+    Off,
     On
 };
 
@@ -29,9 +29,13 @@ struct ProfileKey
 struct Profile
 {
     ProfileKey key;
+    bool hasReferenceHitBaseSpeed;
+    float referenceHitBaseSpeed;
     bool hasBaseSpeed;
     float baseSpeed;
-    RaiseMode raiseMode;
+    bool hasReferenceRaiseBaseSpeed;
+    float referenceRaiseBaseSpeed;
+    RaiseOverride raiseOverride;
 };
 
 void Load();
