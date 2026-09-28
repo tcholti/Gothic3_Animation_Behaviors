@@ -1,70 +1,126 @@
 #include "AttackSpeed.h"
-#include "SharedConfig.h"
 
-#include <g3sdk/Script.h>
-#include <g3sdk/util/Hook.h>
-#include <g3sdk/util/Memory.h>
+#include "BehaviorProfiles.h"
 
-static mCFunctionHook Hook_GetAnimationSpeedModifier;
+#include <cmath>
 
-static GEBool IsPlayerUsingTwoHandedWeapon(Entity &a_Entity)
+namespace G3AB::AttackSpeed
 {
-    if (a_Entity != Entity::GetPlayer())
-        return GEFalse;
+namespace
+{
+struct NormalReferenceBaseFact
+{
+    gEUseType leftUseType;
+    gEUseType rightUseType;
+    GEFloat baseSpeed;
+};
 
-    gEUseType leftUseType =
-        a_Entity.Inventory.GetItemFromSlot(gESlot_LeftHand)
-            .Interaction.GetUseType();
+NormalReferenceBaseFact const NormalReferenceBaseFacts[] = {
+    {gEUseType_None,   gEUseType_1H,      0.6f},
+    {gEUseType_Shield, gEUseType_1H,      0.6f},
+    {gEUseType_Torch,  gEUseType_1H,      0.6f},
+    {gEUseType_1H,     gEUseType_1H,      0.6f},
+    {gEUseType_None,   gEUseType_2H,      0.7f},
+    {gEUseType_None,   gEUseType_Axe,     0.7f},
+    {gEUseType_None,   gEUseType_Staff,   0.7f},
+    {gEUseType_None,   gEUseType_Halberd, 0.7f},
+};
 
-    gEUseType rightUseType =
-        a_Entity.Inventory.GetItemFromSlot(gESlot_RightHand)
-            .Interaction.GetUseType();
-
-    return leftUseType == gEUseType_None
-        && rightUseType == gEUseType_2H;
+bool TryGetActionProfile(
+    gEAction action,
+    BehaviorProfiles::ActionProfile &actionProfile)
+{
+    switch (action)
+    {
+        case gEAction_Attack:
+            actionProfile = BehaviorProfiles::ActionProfile::Normal;
+            return true;
+        case gEAction_QuickAttackR:
+        case gEAction_QuickAttackL:
+            actionProfile = BehaviorProfiles::ActionProfile::Quick;
+            return true;
+        default:
+            return false;
+    }
 }
 
-GEFloat GE_STDCALL GetAnimationSpeedModifier_G3AB(
-    Entity a_Entity,
-    gEPhase a_Phase)
+bool TryGetReferenceBase(
+    BehaviorProfiles::ProfileKey const &key,
+    gEUseType rawLeftUseType,
+    gEUseType rawRightUseType,
+    gEAction action,
+    GEFloat &referenceBase)
 {
-    // Gothic 3 supplies Action through EAX at this function.
-    gEAction action =
-        Hook_GetAnimationSpeedModifier.GetImmEax<gEAction>();
+    // EV-392 freezes the initial technical base facts to the proven Hero routes.
+    if (key.animationFamily != "hero")
+        return false;
 
-    // Preserve Gothic 3's original calculation first.
-    GEFloat originalSpeed =
-        Hook_GetAnimationSpeedModifier
-            .GetOriginalFunction(&GetAnimationSpeedModifier_G3AB)(
-                a_Entity,
-                a_Phase);
+    if (action == gEAction_QuickAttackR
+        || action == gEAction_QuickAttackL)
+    {
+        referenceBase = 1.0f;
+        return true;
+    }
 
-    if (a_Entity == None)
-        return originalSpeed;
-
-    // v0.1: player only.
-    if (!IsPlayerUsingTwoHandedWeapon(a_Entity))
-        return originalSpeed;
-
-    // v0.1: normal Attack only.
     if (action != gEAction_Attack)
-        return originalSpeed;
+        return false;
 
-    // v0.1: Hit only.
-    // Automatic Recover is deliberately left to Gothic 3.
-    if (a_Phase != gEPhase_Hit)
-        return originalSpeed;
+    for (NormalReferenceBaseFact const &fact : NormalReferenceBaseFacts)
+    {
+        if (fact.leftUseType == rawLeftUseType
+            && fact.rightUseType == rawRightUseType)
+        {
+            referenceBase = fact.baseSpeed;
+            return true;
+        }
+    }
 
-    return G3ABConfig::TwoHandedNormalAttackSpeed;
+    return false;
+}
 }
 
-void InstallAttackSpeedHook()
+GEFloat ComposeCompatibleSpeed(
+    Entity const &entity,
+    gEAction action,
+    gEPhase phase,
+    GEFloat compatibleSpeed)
 {
-    Hook_GetAnimationSpeedModifier
-        .Prepare(
-            RVA_ScriptGame(0x42A0),
-            &GetAnimationSpeedModifier_G3AB,
-            mCBaseHook::mEHookType_Mixed,
-            mERegisterType_Eax)
-        .Hook();
+    if (phase != gEPhase_Hit || entity == None)
+        return compatibleSpeed;
+
+    BehaviorProfiles::ActionProfile actionProfile;
+    if (!TryGetActionProfile(action, actionProfile))
+        return compatibleSpeed;
+
+    BehaviorProfiles::ProfileKey key;
+    gEUseType rawLeftUseType = gEUseType_None;
+    gEUseType rawRightUseType = gEUseType_None;
+    if (!BehaviorProfiles::TryBuildRuntimeKey(
+            entity, actionProfile, key,
+            rawLeftUseType, rawRightUseType))
+    {
+        return compatibleSpeed;
+    }
+
+    BehaviorProfiles::Profile const *profile = BehaviorProfiles::Find(key);
+    if (profile == nullptr || !profile->hasBaseSpeed)
+        return compatibleSpeed;
+
+    GEFloat referenceBase = 0.0f;
+    if (!TryGetReferenceBase(
+            key, rawLeftUseType, rawRightUseType,
+            action, referenceBase))
+    {
+        return compatibleSpeed;
+    }
+
+    if (!(referenceBase > 0.0f)
+        || !std::isfinite(referenceBase)
+        || !std::isfinite(compatibleSpeed))
+    {
+        return compatibleSpeed;
+    }
+
+    return compatibleSpeed * (profile->baseSpeed / referenceBase);
+}
 }
