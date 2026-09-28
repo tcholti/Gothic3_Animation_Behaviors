@@ -12,152 +12,82 @@
 ## Current gate
 
 ```text
-latest closed collision evidence = EV-390
-collision production integration = CLOSED/PASS
+collision production integration = CLOSED/PASS through EV-390
 ADR-0007 shared Speed/Raise INI schema = ACCEPTED
-BehaviorProfiles foundation = IMPLEMENTED + independent source-review PASS
-implementation SHA = 81d4964201579c9f7a989404426c3d9dc9ab4834
+BehaviorProfiles foundation = IMPLEMENTED / SOURCE-REVIEW PASS
 Speed v2 mechanism proof = EV-391
 Speed v2 Quick/caller-set static closure = EV-392
+Speed v2 production source = IMPLEMENTED / SOURCE-REVIEW PASS
+final reviewed source SHA = 4f9911f57d8d6b36efd35adee41920560c3986e0
 
-CURRENT = bounded Speed v2 source implementation
-ACTIVE TASK = docs/work/active/SPEED_V2_CALLER_SIDE_COMPOSITION_IMPLEMENTATION.md
-BUILD/RUN FOR ACTIVE TASK = PROHIBITED
+CURRENT = Speed v2 local build/deploy gate
+BUILD/RUN = not attempted in source task; requires User local game/build PC
 RAISE = PAUSED until Speed is completely closed
+main = FROZEN
 ```
 
-## Shared profile foundation — accepted
+The first source-review pass found one blocker in the pre-final lineage: `c11c1486c05161a300fcb3ea6de1da5e5140cb04` compiled `AttackSpeed` but omitted the six caller-side `EngineBridge` transports. The bounded correction at `4f9911f5...` added only that frozen transport; post-correction static review passed and the correction diff did not alter collision behavior.
 
-Profile identity:
+Closed implementation contract:
 
-```text
-AnimationFamily
-+ LeftAnimationUseType
-+ RightAnimationUseType
-+ ActionProfile(Normal|Quick)
-```
+`archive/investigations/SPEED_V2_CALLER_SIDE_COMPOSITION_IMPLEMENTATION.md`
 
-Optional profile data:
-
-```text
-BaseSpeed=<positive finite float>
-Raise=Native|On   # parsed/stored only; Raise behavior inactive
-```
-
-Semantics:
-
-```text
-BaseSpeed absent -> no G3AB Speed override
-BaseSpeed=1.00 -> explicit authored base 1.00
-duplicate normalized identity -> ambiguous -> no G3AB override
-invalid identity -> ignored
-INI parsed once during ScriptInit before hook installation
-```
-
-Exact schema: ADR-0007. Completed config task: `archive/investigations/SHARED_PROFILE_CONFIG_FOUNDATION.md`.
-
-## Speed v2 — frozen production mechanism
+## Speed v2 — accepted source shape
 
 Required composition:
 
 ```text
-unconfigured effective speed = B * M
-configured effective speed   = C * M
+live compatible result = B * M
+configured result      = (B * M) * (C / B) = C * M
 ```
 
-`C` is the configured authored base; legitimate Gothic/New Balance contextual modifiers `M` remain effective.
-
-For explicitly controlled Normal/Quick profiles, `1.0` remains the intended neutral authored playback scale. Native/mod `B` values such as `0.6`/`0.7` are technical facts only, not desired authoring defaults.
-
-### Generic Quick / Action3 closure
-
-Static tracing now closes the ADR-0007 Action3 gap:
+The final source uses six tested-build `Script_Game` caller hooks owned by `EngineBridge.cpp`:
 
 ```text
-GetPrimaryPoseExt(Action3, Hit)
--> engine selects/writes PropertyAction = Action4 or Action5
--> later PropertyAction() returns 4/5
--> Script_Game+0x48677 calls +0x42A0 with EAX=4/5
++0x383F0
++0x38E9D
++0x38F22
++0x3937D
++0x39402
++0x48677
 ```
 
-Action3 is therefore selector/request identity on this proven route; actual playback-speed action is factual QuickAttackR/L 4/5.
-
-### Exact production call-site set
-
-EV-392 freezes six tested-build callers:
+Transport:
 
 ```text
-Script_Game+0x383F0  Action1 / Normal / Hit
-Script_Game+0x38E9D  factual FEA8 action carrier / Hit
-Script_Game+0x38F22  factual FEA8 action carrier / Hit
-Script_Game+0x3937D  factual FEA8 action carrier / Hit
-Script_Game+0x39402  factual FEA8 action carrier / Hit
-Script_Game+0x48677  generic Quick route after Action3 -> Action4/5 / Hit
-```
-
-Important exclusion:
-
-```text
-Script_Game+0x38A8B
-```
-
-is **not** a factual action carrier. Its apparent `+0x158` action value originates from integerized `PSRoutine::GetStateTime()` and is copied forward. Do not match numeric 4/5 there as Quick.
-
-Other inspected non-targets remain excluded, including `+0x4AC6F` (action 27/28) and the `+0x4C6FA` Action6 route.
-
-### Production transport
-
-Do not own/hook the whole `Script_Game+0x42A0` entry.
-
-```text
-exact selected caller
--> EngineBridge-owned mCCallHook
--> pass incoming EAX factual action explicitly
--> invoke LIVE Script_Game+0x42A0 exactly once
--> compatible owner computes B*M
+selected caller
+-> mCCallHook passes factual EAX action explicitly
+-> mCCaller invokes LIVE Script_Game+0x42A0 exactly once with EAX restored
+-> compatible owner (including New Balance) produces B*M
 -> AttackSpeed applies C/B only for exact configured + evidenced route
--> C*M
--> existing downstream path
+-> existing downstream path receives C*M
 ```
 
-`EngineBridge.cpp` remains sole low-level hook owner. `AttackSpeed` owns feature composition only.
-
-The pinned SDK supports the required transport:
+Hard exclusions remain:
 
 ```text
-mCCallHook + AddRegArg(Eax)
-mCCaller with EAX register argument for calling live +0x42A0
+NO hook/ownership of Script_Game+0x42A0 entry
+NO +0x38A8B StateTime-as-action site
+NO global StartPlayAni/speed override
+NO copied New Balance multiplier policy
+NO final-result replacement
 ```
 
-This avoids competing New Balance entry ownership and does not depend on arbitrary DLL load order.
-
-### Technical base facts
-
-The caller-side transform needs factual `B`; keep it as a small immutable technical data lookup keyed by exact runtime facts, not weapon-policy branches and not a new INI field.
-
-Current first production facts under the primary New Balance stack:
+Initial evidence-bounded technical bases:
 
 ```text
 Normal Action1:
-None+1H       -> 0.6
-Shield+1H     -> 0.6
-Torch+1H      -> 0.6
-1H+1H         -> 0.6
-None+2H       -> 0.7
-None+Axe      -> 0.7
-None+Staff    -> 0.7
-None+Halberd  -> 0.7
+None+1H / Shield+1H / Torch+1H / 1H+1H = 0.6
+None+2H / None+Axe / None+Staff / None+Halberd = 0.7
 
-Quick Action4/5 -> 1.0
+Quick Action4/5 = 1.0
 ```
 
-Runtime profile matching still uses normalized ADR-0007 animation tokens. Technical `B` lookup must preserve **raw** UseTypes separately because multiple raw UseTypes can serialize to the same animation token while not sharing the same compatible base policy.
+Unsupported/unproven routes, including Normal Fist/PhysicalFist and non-Hero families, fail closed to the live compatible result.
 
-Fail closed for unsupported/unproven routes. Normal Fist/PhysicalFist is explicitly outside this first composition contract because current New Balance's special Fist Normal branch does not use the ordinary `B*M` path.
+## Primary runtime compatibility environment
 
-## Primary compatibility environment
-
-Keep live during later Speed runtime testing:
+Keep active for the first runtime acceptance:
 
 ```text
 Script_G3AnimationBehaviors.dll
@@ -165,55 +95,55 @@ Script_NewBalance.dll
 Script_AttackCollision.dll
 ```
 
-New Balance compatibility is primary; native-only testing is later sanity/fallback.
-
-Pinned Jackydima source:
+Pinned references:
 
 ```text
-316d32406a133f8884e7e302752c35f66b4f54fc
-```
-
-Pinned SDK:
-
-```text
-90bfd344de4510dda7ac9da7461cc7f1eac911f7
-```
-
-Pinned binary reference:
-
-```text
-c9d12cb5f0dcb4f96af6a82c02138c1c15e981b6
+SDK:              90bfd344de4510dda7ac9da7461cc7f1eac911f7
+New Balance:      316d32406a133f8884e7e302752c35f66b4f54fc
+Binary reference: c9d12cb5f0dcb4f96af6a82c02138c1c15e981b6
 ```
 
 ## Immediate route
 
+When the User is back on the local build/game PC:
+
 ```text
-1. execute ONLY docs/work/active/SPEED_V2_CALLER_SIDE_COMPOSITION_IMPLEMENTATION.md
-2. source/static audit only; no build/run in that task
-3. independent source review after implementation commit
-4. User local build/deploy
-5. validate New Balance configured/unconfigured + modifier preservation
-6. native-only sanity/fallback
-7. close Speed completely
-8. only then begin Raise
+1. build final reviewed source 4f9911f57d8d6b36efd35adee41920560c3986e0 using the current POP-02 production build procedure
+2. deploy/hash through POP-03
+3. startup/load gate through POP-04
+4. validate New Balance composition first:
+   - configured Normal + Quick full-stamina controls
+   - equivalent depleted-stamina controls
+   - representative compatible modifier control(s) where practical
+   - unconfigured controls
+   - representative supported hand configurations
+5. native-only sanity/fallback
+6. close Speed completely
+7. only then begin Raise
 ```
 
-No diagnostics-only Speed probe is currently justified before implementation.
+Expected runtime invariant:
+
+```text
+configured base changes
+AND
+relative Gothic/New Balance contextual modifiers remain effective
+```
+
+No additional native-speed logging is currently requested.
 
 ## Read next
 
-- exact active responsibility -> `work/active/SPEED_V2_CALLER_SIDE_COMPOSITION_IMPLEMENTATION.md`
-- exact handoff -> `BETWEEN_CHATS.md`
-- Speed authority -> `decisions/ADR-0004-speed-control-base-speed-preserves-dynamic-modifiers.md`
-- generic profile architecture -> ADR-0005 + ADR-0007
-- static mechanism/closure evidence -> EV-391 + EV-392 in `EVIDENCE_LEDGER_389_ONWARD.md`
-- runtime normalization -> `ANIMATION_RULES.md` §§3–5
-- implementation protocol -> `WORK_IMPLEMENTATION_PROTOCOL.md`
+- exact short continuation -> `BETWEEN_CHATS.md`
+- Speed architecture -> ADR-0004 + ADR-0005 + ADR-0007
+- static proof -> EV-391 + EV-392 in `EVIDENCE_LEDGER_389_ONWARD.md`
+- completed source contract -> `archive/investigations/SPEED_V2_CALLER_SIDE_COMPOSITION_IMPLEMENTATION.md`
+- build/deploy/startup procedures -> `PROJECT_OPERATING_PROCEDURES.md` POP-02/03/04
 
 ## Still paused
 
 ```text
-NO Raise implementation/research while Speed is open
+NO Raise work while Speed is open
 NO AttackContinuationProtection
 NO targeting/climbing
 NO promotion to main before agreed integrated checkpoint
