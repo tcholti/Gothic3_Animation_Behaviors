@@ -98,3 +98,53 @@ Disposition:
 - **STATIC MECHANISM CANDIDATE PROVEN IN PRINCIPLE: targeted caller-side post-`+0x42A0` composition.**
 - **NO ADDITIONAL NATIVE-SPEED LOGGER RUN REQUESTED.**
 - Next static gate: trace generic `gEAction_QuickAttack` / Action3 into the dynamic combat consumer family, then freeze the smallest exact Normal+Quick call-site set before any Speed v2 implementation.
+
+### EV-392 — Speed v2 Quick provenance and exact caller-set static closure
+
+Observed:
+- The generic Quick combat routine at `Script_Game+0x48340` uses `GetPrimaryPoseExt(Action3, Hit)` as a Quick selector/request, then explicitly writes `PSRoutine::PropertyAction = Action4` or `Action5` according to the combat branch. Before `Script_Game+0x48677`, the routine reads `PropertyAction()` back into EAX and therefore calls `GetAnimationSpeedModifier` with factual Action4/5, not Action3.
+- Generic `gEAction_QuickAttack` / Action3 therefore does not require its own speed-consumer hook on this proven route. ADR-0007 may continue to normalize the user-facing family as Quick while the engine-facing playback action remains factual 4/5.
+- The part-13 `100FFEA8` carrier uses helper `Script_Game+0x3A2D0` to store an explicit constructor argument into object field `+0x158`. Static constructor routes pass Action4 and Action5 into that exact field. The consumers at `+0x38E9D`, `+0x38F22`, `+0x3937D`, and `+0x39402` load that same `+0x158` field into EAX immediately before calling `+0x42A0`; both branch variants supply `gEPhase_Hit` (`1`). These four sites are therefore genuine Quick-capable factual-action consumers.
+- `Script_Game+0x38A8B` is a different lineage and is excluded. Its source object `+0x158` is populated by helper `+0x37E20` from the integer result of `PSRoutine::GetStateTime()`; the later `100FFEA0` copy helper `+0x3A330` propagates that scalar into the new object's `+0x158`. A numeric `4` or `5` at `+0x38A8B` is thus not proof of Quick action identity. Hooking this site as an action consumer would create false-positive classification.
+- Other previously inspected dynamic consumers are also excluded from Normal/Quick production scope: `+0x4AC6F` concretely constructs action `27/28`, and the `+0x4C6FA` route is tied to Action6.
+- The smallest exact tested-build production caller set is therefore six call sites:
+
+```text
+Script_Game+0x383F0  Action1 / Normal / Hit
+Script_Game+0x38E9D  factual FEA8 action carrier / Hit
+Script_Game+0x38F22  factual FEA8 action carrier / Hit
+Script_Game+0x3937D  factual FEA8 action carrier / Hit
+Script_Game+0x39402  factual FEA8 action carrier / Hit
+Script_Game+0x48677  generic Quick route after Action3 -> Action4/5 / Hit
+```
+
+- The pinned SDK `mCCallHook` can redirect these exact CALL instructions without taking ownership of the `+0x42A0` function entry. Its register-argument builder can pass incoming EAX as an explicit thunk argument. A bridge thunk can then invoke the **live** `Script_Game+0x42A0` address with the captured action restored in EAX, allowing the current owner (including New Balance) to compute `B*M` exactly once before G3AB applies `C/B`.
+- `EngineBridge.cpp` is already the production DLL's sole low-level hook owner, so Speed's six call hooks belong there. `AttackSpeed` remains feature policy/composition only.
+- The selected downstream mechanism technically requires factual base `B`. ADR-0004 already permits evidence-bounded base facts where the chosen mechanism requires them. The production design therefore keeps `B` as a small immutable technical fact lookup keyed by exact runtime facts, not a copied multiplier table and not user-facing INI policy.
+- Pinned New Balance source corroborates the first production facts: Normal raw hand combinations None+1H, Shield+1H, Torch+1H and 1H+1H use `0.6*M`; None+2H, None+Axe, None+Staff and None+Halberd use `0.7*M`; QuickAttackR/L use `1.0*M`. Direct runtime evidence already includes 1H Normal `0.600`, 2H Normal `0.700`, and QuickAttackL `1.000` on tested routes.
+- Normal human Fist is deliberately excluded from this first composition table because current New Balance returns its special `0.7` directly rather than through the ordinary `B*M` path. Unknown/unproven raw combinations and non-Hero families remain native/fail-closed.
+
+Implementation consequence:
+- No diagnostics-only probe is required before production source implementation.
+- Production transport is six bridge-owned `mCCallHook`s plus one common thunk that passes factual EAX action explicitly, calls live `+0x42A0` exactly once, and delegates only the `C/B` composition decision to `AttackSpeed`.
+- Runtime profile matching continues to use ADR-0007 normalized identity; technical `B` lookup must retain factual **raw** UseTypes separately because different raw UseTypes can normalize to the same animation token while having different compatible base policy.
+- The bounded production implementation contract is `docs/work/active/SPEED_V2_CALLER_SIDE_COMPOSITION_IMPLEMENTATION.md`.
+
+Scope / limits:
+- This is static proof and design freeze, not source implementation, build acceptance, or runtime acceptance.
+- The six RVAs are current-tested-build specific.
+- New Balance is the primary runtime compatibility environment. Native-only sanity remains a later runtime gate after source implementation and primary composition validation.
+- Unsupported/future routes must remain untouched until their exact factual base/composition contract is proven.
+
+Provenance:
+- Gothic3_Binary_Reference `part_0013.txt`, `part_0014.txt`, `part_0017.txt`, `part_0018.txt` and `imports.txt`, pinned current-tested reference `c9d12cb5f0dcb4f96af6a82c02138c1c15e981b6`;
+- SDK hook implementation/API at `georgeto/gothic3sdk@90bfd344de4510dda7ac9da7461cc7f1eac911f7`;
+- pinned New Balance `FunctionHook.cpp` at `Jackydima/gothic3sdk@316d32406a133f8884e7e302752c35f66b4f54fc`;
+- ADR-0004, ADR-0005, ADR-0007;
+- static inspection completed 2026-09-28.
+
+Disposition:
+- **PASS — GENERIC QUICK/ACTION3 PROVENANCE CLOSED.**
+- **PASS — SMALLEST EXACT NORMAL+QUICK CALLER SET FROZEN AT SIX CALL SITES.**
+- **NO SPEED DIAGNOSTIC PROBE REQUIRED BEFORE IMPLEMENTATION.**
+- Next gate: bounded source-only production implementation under `SPEED_V2_CALLER_SIDE_COMPOSITION_IMPLEMENTATION.md`; build/run remain separate later validation work.
