@@ -33,7 +33,7 @@ struct ProfileKeyLess
 };
 
 using ProfileMap = std::map<ProfileKey, Profile, ProfileKeyLess>;
-using AmbiguousKeySet = std::set<ProfileKey, ProfileKeyLess>;
+using AmbiguousKeySet = std::set<ProfileKey>;
 
 ProfileMap g_Profiles;
 AmbiguousKeySet g_AmbiguousKeys;
@@ -63,6 +63,18 @@ std::string NormalizeIdentityString(char const *text)
             value = static_cast<char>(value + ('a' - 'A'));
     }
     return result;
+}
+
+std::string NormalizeRuntimeAnimationFamily(char const *text)
+{
+    std::string const resourceName = NormalizeIdentityString(text);
+
+    // EV-393: the player Hero runtime resource is G3_Hero_Skeleton,
+    // while ADR-0007 deliberately exposes the author-facing family token Hero.
+    if (resourceName == "g3_hero_skeleton")
+        return "hero";
+
+    return resourceName;
 }
 
 ProfileKey NormalizeKey(ProfileKey const &key)
@@ -305,7 +317,7 @@ bool TryBuildRuntimeKey(
     if (entity == None)
         return false;
 
-    key.animationFamily = NormalizeIdentityString(
+    key.animationFamily = NormalizeRuntimeAnimationFamily(
         entity.Animation.GetResourceName().GetText());
     if (key.animationFamily.empty())
         return false;
