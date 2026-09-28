@@ -19,49 +19,86 @@ Speed v2 mechanism proof = EV-391
 Speed v2 Quick/caller-set static closure = EV-392
 Speed v2 deep independent static audit = PASS WITH NON-BLOCKING FINDINGS
 Speed v2 S-01 finite-output correction = CLOSED / SOURCE-REVIEW PASS
-final corrected Speed source SHA = db7b24f1a0c19beaaf4e720cd69d19c331854340
+first corrected-Speed build/deploy/startup = PASS
+first Speed behavior check = FAIL BEFORE COMPOSITION
+Speed runtime identity probe = CLOSED / CAUSAL RESULT CAPTURED
+factual player animation resource = G3_Hero_Skeleton
+runtime profile-family mismatch = CONFIRMED
+current bounded correction = exact g3_hero_skeleton -> hero normalization in BehaviorProfiles
+current correction source lineage = 28182c8898a29b5fa61b6b5c3a044b882550d54f
 
-CURRENT = Speed v2 local build/deploy/startup/runtime gate
-BUILD/RUN = not yet attempted for corrected Speed source
+CURRENT = rebuild/redeploy SpeedIdentityProbe and require exact profile match before rebuilding production DLL
 RAISE = PAUSED until Speed is completely closed
 main = FROZEN
 ```
 
-`docs/work/active/` is clean except its README.
+Active task:
 
-## Independent audit closure
+`docs/work/active/SPEED_RUNTIME_HERO_FAMILY_NORMALIZATION_CORRECTION.md`
 
-The heavy Work audit independently re-derived the tested-build caller/ABI/compatibility mechanism rather than trusting prior conclusions. It found no BLOCKER or MAJOR finding and confirmed:
+## First Speed runtime result
 
-- the exact six `Script_Game+0x42A0` caller sites;
-- exclusion of `+0x38A8B` because its scalar originates from integerized `GetStateTime()`, not factual action identity;
-- `mCCallHook` EAX capture, thunk stack/cleanup, `mCCaller` EAX restoration and x87 return compatibility;
-- exactly-once invocation of the live `Script_Game+0x42A0` owner, including New Balance;
-- `B*M -> (C/B) -> C*M` compatibility composition;
-- EngineBridge/AttackSpeed/BehaviorProfiles responsibility boundaries and fail-closed unsupported routes;
-- no collision-source change or dependency.
+The production target built and deployed successfully from the corrected S-01 lineage. Built/live SHA256 matched:
 
-Audit closure record:
+`7CD8507A267384AED86E2CDEF8C29098D55221C05158DEA4117C1D96D781C959`
 
-`docs/archive/investigations/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT_RESULT.md`
+Gothic 3 reached the main menu and exited normally.
 
-## S-01 correction
+The first behavior check used active Hero/None/1H Normal and Quick profiles, including deliberately extreme `BaseSpeed=2.0` and `0.4`, but no visible speed change occurred.
 
-The audit found one MINOR edge: an extreme but finite configured `BaseSpeed` could make the composed arithmetic result non-finite.
+INI path/name/content were then verified correct at:
 
-Correction `db7b24f1a0c19beaaf4e720cd69d19c331854340` changes only `AttackSpeed.cpp`:
+`<Gothic3>\Ini\G3AnimationBehaviors.ini`
+
+## Runtime identity probe closure
+
+The bounded standalone `Script_SpeedIdentityProbe` compiled and deployed with built/live SHA256:
+
+`4CE2AE915B3B76D867DDDAD6F1AC2C1848389DAF3CBCFDEE0E3783BA2DB5CC8E`
+
+It reuses the exact production `BehaviorProfiles` implementation and does not modify speed.
+
+The player 1H Normal/Quick run established:
 
 ```text
-compute composedSpeed = compatibleSpeed * (C / B)
--> if composedSpeed is non-finite, return compatibleSpeed unchanged
--> otherwise return composedSpeed
+AnimationResourceName=G3_Hero_Skeleton
+RawLeftUseType=0
+RawRightUseType=2
+RuntimeKeyBuilt=true
+Key.AnimationFamily=g3_hero_skeleton
+Key.LeftAnimationUseType=none
+Key.RightAnimationUseType=1h
+Normal Action=1 / Hit
+Quick Action=4 or 5 / Hit
+ProfileMatch=false
 ```
 
-No parser cap, hook/ABI change, technical-base change, profile/schema change, collision change, diagnostics or Raise behavior was introduced.
+Therefore the first runtime failure occurs before `AttackSpeed` composition: ADR-0007 config `AnimationFamily=Hero` normalizes to `hero`, while factual runtime extraction previously normalized the raw resource literally to `g3_hero_skeleton`.
 
-Correction closure record:
+Closed probe result:
 
-`docs/archive/investigations/SPEED_V2_S01_FINITE_OUTPUT_GUARD.md`
+`docs/archive/investigations/SPEED_RUNTIME_PROFILE_IDENTITY_PROBE_RESULT.md`
+
+Processed raw log:
+
+`research/archive/2026.09.28_SpeedIdentityProbe.log`
+
+## Current bounded production correction
+
+Preserve ADR-0007's user-facing token:
+
+```ini
+AnimationFamily=Hero
+```
+
+The only authorized production correction is inside `BehaviorProfiles::TryBuildRuntimeKey()` runtime-family extraction:
+
+```text
+exact observed g3_hero_skeleton -> hero
+all other unproven runtime family strings unchanged/fail-closed
+```
+
+Current implementation changes only `src/Script_G3AnimationBehaviors/BehaviorProfiles.cpp`. `AttackSpeed`, all six Speed caller hooks, collision behavior, Raise behavior and the INI schema remain untouched.
 
 ## Frozen Speed v2 production shape
 
@@ -93,7 +130,7 @@ NO copied New Balance multiplier policy
 NO final-result replacement
 ```
 
-Initial evidence-bounded technical bases:
+Initial evidence-bounded technical bases remain:
 
 ```text
 Normal Action1:
@@ -103,11 +140,31 @@ None+2H / None+Axe / None+Staff / None+Halberd = 0.7
 Quick Action4/5 = 1.0
 ```
 
-Unsupported/unproven routes, including Normal Fist/PhysicalFist and non-Hero families, fail closed to the live compatible result.
+Unsupported/unproven routes, including Normal Fist/PhysicalFist and non-Hero families, remain compatible/native fail-closed.
 
-## Primary runtime compatibility environment
+## Immediate route
 
-Keep active for first runtime acceptance:
+When the User is on the local build/game PC:
+
+```text
+1. synchronize development to current remote
+2. rebuild Script_SpeedIdentityProbe (it compiles the same production BehaviorProfiles.cpp)
+3. deploy/hash refreshed probe beside the existing production stack
+4. keep current Hero/None/1H Normal + Quick BaseSpeed=0.4 INI
+5. repeat several Normal + Quick 1H attacks
+6. require:
+   Key.AnimationFamily=hero
+   ProfileMatch=true
+   ProfileHasBaseSpeed=true
+   ProfileBaseSpeed=0.400000
+7. only then rebuild/deploy Script_G3AnimationBehaviors.dll
+8. repeat the small Speed behavior check
+9. if Speed changes correctly, continue New Balance full/depleted/contextual/unconfigured/native-only acceptance
+10. close Speed completely
+11. only then begin Raise
+```
+
+Primary production runtime stack remains:
 
 ```text
 Script_G3AnimationBehaviors.dll
@@ -115,34 +172,9 @@ Script_NewBalance.dll
 Script_AttackCollision.dll
 ```
 
-Pinned static references:
+`Script_SpeedIdentityProbe.dll` may coexist only for the bounded identity-validation run.
 
-```text
-SDK:              georgeto/gothic3sdk@90bfd344de4510dda7ac9da7461cc7f1eac911f7
-New Balance:      Jackydima/gothic3sdk@316d32406a133f8884e7e302752c35f66b4f54fc
-Binary reference: tcholti/Gothic3_Binary_Reference@c9d12cb5f0dcb4f96af6a82c02138c1c15e981b6
-```
-
-## Immediate route
-
-When the User is on the local build/game PC:
-
-```text
-1. build corrected source lineage containing db7b24f1a0c19beaaf4e720cd69d19c331854340 via POP-02
-2. deploy/hash via POP-03
-3. startup/load gate via POP-04
-4. New Balance runtime validation first:
-   - configured Normal + Quick full-stamina controls
-   - equivalent depleted-stamina controls
-   - representative compatible modifier control(s) where practical
-   - unconfigured controls
-   - representative supported hand configurations
-5. native-only sanity/fallback
-6. close Speed completely
-7. only then begin Raise
-```
-
-Expected runtime invariant:
+Expected final runtime invariant remains:
 
 ```text
 configured base changes
@@ -150,11 +182,11 @@ AND
 relative Gothic/New Balance contextual modifiers remain effective
 ```
 
-No additional native-speed logger run is currently requested.
-
 ## Read next
 
 - exact short continuation -> `BETWEEN_CHATS.md`
+- active correction -> `work/active/SPEED_RUNTIME_HERO_FAMILY_NORMALIZATION_CORRECTION.md`
+- closed identity probe -> `archive/investigations/SPEED_RUNTIME_PROFILE_IDENTITY_PROBE_RESULT.md`
 - Speed architecture -> ADR-0004 + ADR-0005 + ADR-0007
 - static mechanism evidence -> EV-391 + EV-392 in `EVIDENCE_LEDGER_389_ONWARD.md`
 - independent audit closure -> `archive/investigations/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT_RESULT.md`
