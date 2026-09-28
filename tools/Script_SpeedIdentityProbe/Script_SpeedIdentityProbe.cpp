@@ -78,7 +78,12 @@ void GE_STDCALL CombatMoveIdentityProbe(
         rawLeftUseType,
         rawRightUseType);
 
+    bCString const currentMovementAni = actor.NPC.GetCurrentMovementAni();
     bCString const animationResourceName = actor.Animation.GetResourceName();
+    bCString animationSkeletonName;
+    GEBool const hasAnimationSkeletonName =
+        actor.Animation.GetSkeletonName(animationSkeletonName);
+    bCString const entitySkeletonName = actor.GetSkeletonName();
 
     std::fprintf(g_pLogFile, "===== SpeedIdentity =====\n");
     std::fprintf(
@@ -95,8 +100,24 @@ void GE_STDCALL CombatMoveIdentityProbe(
         a_pArgs->PhaseName.GetText());
     std::fprintf(
         g_pLogFile,
+        "CurrentMovementAni=%s\n",
+        currentMovementAni.GetText());
+    std::fprintf(
+        g_pLogFile,
         "AnimationResourceName=%s\n",
         animationResourceName.GetText());
+    std::fprintf(
+        g_pLogFile,
+        "AnimationSkeletonNameAvailable=%s\n",
+        hasAnimationSkeletonName ? "true" : "false");
+    std::fprintf(
+        g_pLogFile,
+        "AnimationSkeletonName=%s\n",
+        hasAnimationSkeletonName ? animationSkeletonName.GetText() : "");
+    std::fprintf(
+        g_pLogFile,
+        "EntitySkeletonName=%s\n",
+        entitySkeletonName.GetText());
     std::fprintf(
         g_pLogFile,
         "RawLeftUseType=%d\n",
