@@ -175,9 +175,83 @@ Provenance:
 - probe built/live SHA256: `DE9039372E9CA2C2D0FBB6DA581613E47628724249AF35C54E47DAE68B14470F`;
 - user-pushed runtime source commit: `765e3ee948f0169f827fe207dab975decdef7f73`;
 - processed log: `research/archive/2026.09.28_SpeedIdentityProbetest_2.log`;
-- active bounded task: `docs/work/active/SPEED_RUNTIME_FAMILY_SOURCE_PROBE.md`.
+- active bounded task at the time: `docs/work/active/SPEED_RUNTIME_FAMILY_SOURCE_PROBE.md`.
 
 Disposition:
 - **PASS — HERO FAMILY SOURCE RESOLVED.**
 - **PREFERRED CANDIDATE: `Animation.GetSkeletonName(...)`.**
 - Next gate: one transformed/non-Hero Normal/Quick control; if the skeleton APIs agree on a stable non-Hero family token, close the probe and refactor production profile identity generically.
+
+### EV-394 — Speed runtime animation-family source: Sabretooth generalization control PASS
+
+Observed:
+- The already-built/deployed diagnostics-only identity probe was reused without source changes.
+- The player transformed into Sabretooth and exercised multiple Normal Action1 plus Quick Action4/5 Hit requests.
+- Every recorded observation reported:
+
+```text
+AnimationSkeletonNameAvailable=true
+AnimationSkeletonName=Sabertooth
+EntitySkeletonName=Sabertooth
+```
+
+- `Animation.GetResourceName()` was consistently the implementation-resource identity `G3_Sabertooth_Body_01`, not the author-facing family token.
+- `CurrentMovementAni()` remained `Sabertooth_..._Ambient_Loop_...` while factual Normal/Quick Hit requests were observed, independently reinforcing that current motion is not the requested-attack authority at this request boundary.
+
+Interpretation:
+- The non-Hero control generalizes the Hero result: `Animation.GetSkeletonName(...)` returns the stable Gothic family token needed by ADR-0007 on two materially different families.
+- `Entity.GetSkeletonName()` independently corroborates the same token.
+- `Animation.GetResourceName()` and current-motion filename parsing remain rejected as production profile identity sources.
+- Factual requested `gEAction`/`gEPhase` remain the attack/phase authority; skeleton-family identity is a separate stable profile component.
+
+Provenance:
+- user-pushed raw log commit: `f2d40c89cda314b98c640f956af003168ab7abec`;
+- processed log: `research/archive/2026.09.28_SpeedIdentityProbetest_sabertooth.log`;
+- closed result: `docs/archive/investigations/SPEED_RUNTIME_FAMILY_SOURCE_PROBE_RESULT.md`.
+
+Disposition:
+- **PASS — GENERIC RUNTIME `AnimationFamily` SOURCE CLOSED.**
+- **PRODUCTION SOURCE: `Animation.GetSkeletonName(...)`, fail closed when unavailable/empty.**
+
+### EV-395 — Generic profile Speed behavior and New Balance multiplier preservation PASS
+
+Observed:
+- The generic profile/calibration refactor passed static review and the production target built successfully.
+- Built/live `Script_G3AnimationBehaviors.dll` SHA256 matched exactly:
+
+```text
+6DD8C9CE46E3398DC725A5F4D9C2D3D2F073707094AFDDE30C385CC32F6AEEAD
+```
+
+- The completed `Script_SpeedIdentityProbe.dll` was removed before production behavior testing.
+- With Hero / empty-left / right-hand 1H Normal and Quick profiles configured at `BaseSpeed=0.40`, multiple Normal variants and multiple Quick variants visibly obeyed the configured slow speed.
+- This closed the earlier runtime profile-match failure and showed that one profile applies across the tested pose/animation variants without P0/P1/P2/P3-specific policy.
+- For the key New Balance compatibility control, the User configured Hero / empty-left / right-hand 2H Normal with factual `ReferenceHitBaseSpeed=0.70` and desired `BaseSpeed=1.00`. The User's 2H animations are authored around the neutral `1.0` playback baseline, making the comparison visually clear.
+- At available/full stamina the configured 2H attack used the expected faster authored base. When stamina reached zero/depleted state, the same configured 2H attack visibly slowed.
+- This demonstrates that configured base-speed authority does not erase the tested New Balance stamina/context multiplier.
+
+Interpretation:
+- Runtime behavior matches the ADR-0004 composition invariant:
+
+```text
+compatible = B * M
+configured = (B * M) * (C / B) = C * M
+```
+
+- G3AB successfully authors `C` while the tested New Balance `M` remains effective.
+- The historical same-function `Script_CombatMoveLogger` was deliberately not deployed because its `+0x42A0` hook would contaminate this caller-side compatibility test.
+
+Scope / limits:
+- This is not yet full Speed feature closure. Remaining work is the smallest final runtime acceptance/fallback matrix, including representative unconfigured fallback and native-only sanity where required.
+- Staff also appeared to retain stamina slowdown, but the configured 2H control is the clearer acceptance fixture and is the basis for this evidence entry.
+- Raise remains paused until Speed closes completely.
+
+Provenance:
+- production source lineage through generic calibration implementation on `development`;
+- built/live SHA256 and runtime observations reported by the User on 2026-09-28;
+- implementation closure: `docs/archive/investigations/SPEED_GENERIC_PROFILE_CALIBRATION_IMPLEMENTATION_RESULT.md`.
+
+Disposition:
+- **PASS — GENERIC CONFIGURED NORMAL/QUICK SPEED BEHAVIOR VALIDATED ON TESTED HERO PROFILES.**
+- **PASS — KEY NEW BALANCE CONTEXTUAL-MULTIPLIER-PRESERVATION INVARIANT VALIDATED ON CONFIGURED 2H NORMAL.**
+- Next gate: bounded final Speed runtime acceptance/fallback coverage; no mechanism redesign absent contradictory evidence.
