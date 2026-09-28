@@ -121,6 +121,11 @@ GEFloat ComposeCompatibleSpeed(
         return compatibleSpeed;
     }
 
-    return compatibleSpeed * (profile->baseSpeed / referenceBase);
+    GEFloat const composedSpeed =
+        compatibleSpeed * (profile->baseSpeed / referenceBase);
+    if (!std::isfinite(composedSpeed))
+        return compatibleSpeed;
+
+    return composedSpeed;
 }
 }
