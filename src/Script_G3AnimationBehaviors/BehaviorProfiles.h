@@ -6,10 +6,15 @@
 
 namespace G3AB::BehaviorProfiles
 {
-enum class ActionProfile
+enum class AttackType
 {
     Normal,
-    Quick
+    Quick,
+    Power,
+    Pierce,
+    Hack,
+    SimpleWhirl,
+    Whirl
 };
 
 enum class RaiseOverride
@@ -23,27 +28,31 @@ struct ProfileKey
     std::string animationFamily;
     std::string leftAnimationUseType;
     std::string rightAnimationUseType;
-    ActionProfile actionProfile;
+};
+
+struct AttackSettings
+{
+    bool hasReferenceHitBaseSpeed;
+    float referenceHitBaseSpeed;
+    bool hasBaseSpeed;
+    float baseSpeed;
+    RaiseOverride raiseOverride;
 };
 
 struct Profile
 {
     ProfileKey key;
-    bool hasReferenceHitBaseSpeed;
-    float referenceHitBaseSpeed;
-    bool hasBaseSpeed;
-    float baseSpeed;
-    bool hasReferenceRaiseBaseSpeed;
-    float referenceRaiseBaseSpeed;
-    RaiseOverride raiseOverride;
+    AttackSettings normal;
+    AttackSettings quick;
+    AttackSettings power;
+    AttackSettings pierce;
+    AttackSettings hack;
+    AttackSettings simpleWhirl;
+    AttackSettings whirl;
 };
 
 void Load();
 Profile const *Find(ProfileKey const &key);
-bool TryBuildRuntimeKey(
-    Entity const &entity,
-    ActionProfile actionProfile,
-    ProfileKey &key,
-    gEUseType &rawLeftUseType,
-    gEUseType &rawRightUseType);
+AttackSettings const *GetAttackSettings(Profile const &profile, AttackType attackType);
+bool TryBuildRuntimeKey(Entity const &entity, ProfileKey &key);
 }
