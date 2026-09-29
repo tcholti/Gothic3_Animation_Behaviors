@@ -22,13 +22,11 @@ struct ProfileKeyLess
         return std::tie(
                    left.animationFamily,
                    left.leftAnimationUseType,
-                   left.rightAnimationUseType,
-                   left.actionProfile)
+                   left.rightAnimationUseType)
             < std::tie(
                    right.animationFamily,
                    right.leftAnimationUseType,
-                   right.rightAnimationUseType,
-                   right.actionProfile);
+                   right.rightAnimationUseType);
     }
 };
 
@@ -136,21 +134,6 @@ bool ReadIdentityString(
     return !result.empty();
 }
 
-bool ParseActionProfile(std::string const &value, ActionProfile &result)
-{
-    if (value == "normal")
-    {
-        result = ActionProfile::Normal;
-        return true;
-    }
-    if (value == "quick")
-    {
-        result = ActionProfile::Quick;
-        return true;
-    }
-    return false;
-}
-
 bool ParsePositiveFiniteFloat(char const *text, float &result)
 {
     std::string const value = NormalizeIdentityString(text);
@@ -168,67 +151,56 @@ bool ParsePositiveFiniteFloat(char const *text, float &result)
     return true;
 }
 
-Profile ParseOptionalValues(
+AttackSettings ParseAttackSettings(
     eCConfigFile const &config,
     bCString const &section,
-    ProfileKey const &key)
+    char const *prefix)
 {
-    Profile profile = {
-        key,
-        false, 0.0f,
+    AttackSettings settings = {
         false, 0.0f,
         false, 0.0f,
         RaiseOverride::Off};
 
-    bCString const referenceHitBaseSpeedKey("ReferenceHitBaseSpeed");
-    if (config.Contains(section, referenceHitBaseSpeedKey))
+    std::string const prefixText(prefix);
+
+    std::string const referenceName =
+        prefixText + "_ReferenceHitBaseSpeed";
+    bCString const referenceKey(referenceName.c_str());
+    if (config.Contains(section, referenceKey))
     {
         float value = 0.0f;
         if (ParsePositiveFiniteFloat(
-                config.GetString(section, referenceHitBaseSpeedKey).GetText(),
-                value))
+                config.GetString(section, referenceKey).GetText(), value))
         {
-            profile.hasReferenceHitBaseSpeed = true;
-            profile.referenceHitBaseSpeed = value;
+            settings.hasReferenceHitBaseSpeed = true;
+            settings.referenceHitBaseSpeed = value;
         }
     }
 
-    bCString const baseSpeedKey("BaseSpeed");
-    if (config.Contains(section, baseSpeedKey))
+    std::string const baseName = prefixText + "_BaseSpeed";
+    bCString const baseKey(baseName.c_str());
+    if (config.Contains(section, baseKey))
     {
         float value = 0.0f;
         if (ParsePositiveFiniteFloat(
-                config.GetString(section, baseSpeedKey).GetText(),
-                value))
+                config.GetString(section, baseKey).GetText(), value))
         {
-            profile.hasBaseSpeed = true;
-            profile.baseSpeed = value;
+            settings.hasBaseSpeed = true;
+            settings.baseSpeed = value;
         }
     }
 
-    bCString const referenceRaiseBaseSpeedKey("ReferenceRaiseBaseSpeed");
-    if (config.Contains(section, referenceRaiseBaseSpeedKey))
-    {
-        float value = 0.0f;
-        if (ParsePositiveFiniteFloat(
-                config.GetString(section, referenceRaiseBaseSpeedKey).GetText(),
-                value))
-        {
-            profile.hasReferenceRaiseBaseSpeed = true;
-            profile.referenceRaiseBaseSpeed = value;
-        }
-    }
-
-    bCString const raiseOverrideKey("RaiseOverride");
-    if (config.Contains(section, raiseOverrideKey))
+    std::string const raiseName = prefixText + "_RaiseOverride";
+    bCString const raiseKey(raiseName.c_str());
+    if (config.Contains(section, raiseKey))
     {
         std::string const value = NormalizeIdentityString(
-            config.GetString(section, raiseOverrideKey).GetText());
+            config.GetString(section, raiseKey).GetText());
         if (value == "on")
-            profile.raiseOverride = RaiseOverride::On;
+            settings.raiseOverride = RaiseOverride::On;
     }
 
-    return profile;
+    return settings;
 }
 
 bool ParseProfileKey(
@@ -236,32 +208,31 @@ bool ParseProfileKey(
     bCString const &section,
     ProfileKey &result)
 {
-    std::string actionProfile;
-    if (!ReadIdentityString(
-            config,
-            section,
-            "AnimationFamily",
-            result.animationFamily)
-        || !ReadIdentityString(
-            config,
-            section,
-            "LeftAnimationUseType",
-            result.leftAnimationUseType)
-        || !ReadIdentityString(
-            config,
-            section,
-            "RightAnimationUseType",
-            result.rightAnimationUseType)
-        || !ReadIdentityString(
-            config,
-            section,
-            "ActionProfile",
-            actionProfile))
-    {
-        return false;
-    }
+    return ReadIdentityString(
+               config, section, "AnimationFamily", result.animationFamily)
+        && ReadIdentityString(
+               config, section, "LeftAnimationUseType",
+               result.leftAnimationUseType)
+        && ReadIdentityString(
+               config, section, "RightAnimationUseType",
+               result.rightAnimationUseType);
+}
 
-    return ParseActionProfile(actionProfile, result.actionProfile);
+Profile ParseProfile(
+    eCConfigFile const &config,
+    bCString const &section,
+    ProfileKey const &key)
+{
+    Profile profile = {
+        key,
+        ParseAttackSettings(config, section, "Normal"),
+        ParseAttackSettings(config, section, "Quick"),
+        ParseAttackSettings(config, section, "Power"),
+        ParseAttackSettings(config, section, "Pierce"),
+        ParseAttackSettings(config, section, "Hack"),
+        ParseAttackSettings(config, section, "SimpleWhirl"),
+        ParseAttackSettings(config, section, "Whirl")};
+    return profile;
 }
 
 void InsertProfile(Profile const &profile)
@@ -316,22 +287,35 @@ void Load()
         if (!ParseProfileKey(config, section, key))
             continue;
 
-        InsertProfile(ParseOptionalValues(config, section, key));
+        key = NormalizeKey(key);
+        InsertProfile(ParseProfile(config, section, key));
     }
 }
 
 Profile const *Find(ProfileKey const &key)
 {
-    ProfileMap::const_iterator const profile = g_Profiles.find(NormalizeKey(key));
+    ProfileMap::const_iterator const profile =
+        g_Profiles.find(NormalizeKey(key));
     return profile != g_Profiles.end() ? &profile->second : nullptr;
 }
 
-bool TryBuildRuntimeKey(
-    Entity const &entity,
-    ActionProfile actionProfile,
-    ProfileKey &key,
-    gEUseType &rawLeftUseType,
-    gEUseType &rawRightUseType)
+AttackSettings const *GetAttackSettings(
+    Profile const &profile, AttackType attackType)
+{
+    switch (attackType)
+    {
+        case AttackType::Normal:      return &profile.normal;
+        case AttackType::Quick:       return &profile.quick;
+        case AttackType::Power:       return &profile.power;
+        case AttackType::Pierce:      return &profile.pierce;
+        case AttackType::Hack:        return &profile.hack;
+        case AttackType::SimpleWhirl: return &profile.simpleWhirl;
+        case AttackType::Whirl:       return &profile.whirl;
+        default:                      return nullptr;
+    }
+}
+
+bool TryBuildRuntimeKey(Entity const &entity, ProfileKey &key)
 {
     if (entity == None)
         return false;
@@ -344,8 +328,10 @@ bool TryBuildRuntimeKey(
     if (key.animationFamily.empty())
         return false;
 
-    rawLeftUseType = GetHandUseType(entity, gESlot_LeftHand);
-    rawRightUseType = GetHandUseType(entity, gESlot_RightHand);
+    gEUseType const rawLeftUseType =
+        GetHandUseType(entity, gESlot_LeftHand);
+    gEUseType const rawRightUseType =
+        GetHandUseType(entity, gESlot_RightHand);
     if (!TryGetAnimationUseTypeToken(
             rawLeftUseType, key.leftAnimationUseType)
         || !TryGetAnimationUseTypeToken(
@@ -354,7 +340,6 @@ bool TryBuildRuntimeKey(
         return false;
     }
 
-    key.actionProfile = actionProfile;
     key = NormalizeKey(key);
     return true;
 }
