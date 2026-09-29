@@ -14,12 +14,13 @@
 ```text
 collision production integration = CLOSED/PASS through EV-390
 initial Speed v2 Normal/Quick runtime proof = PASS through EV-395
-expanded Speed product scope = Normal, Quick, Power, Pierce, Hack, SimpleWhirl, Whirl
-expanded grouped-profile source implementation = INTERNAL STATIC REVIEW PASS
-production source frozen for review/build = 642c88a4e6244ae7377ba835507750af7914e2f5
-CURRENT = LIGHT INDEPENDENT READ-ONLY REVIEW + SPRINT/Action9 RESEARCH
-NEXT if review accepts source = LOCAL BUILD / DEPLOY
-Sprint / Action9 Speed = NOT IMPLEMENTED; factual transport remains unproven
+expanded Speed scope = Normal, Quick, Power, Pierce, Hack, SimpleWhirl, Whirl
+expanded production source = 642c88a4e6244ae7377ba835507750af7914e2f5
+internal expanded-source static review = PASS
+independent expanded-source review = BLOCKED on one Sprint/Power non-interference question
+Sprint transport classification = PLAUSIBLE BUT UNPROVEN
+CURRENT = build/run standalone Sprint shared-Power Hit causal probe
+expanded production build/deploy = PAUSED until probe closes
 Raise behavior = PAUSED until Speed closes
 main = FROZEN
 ```
@@ -28,107 +29,88 @@ Primary implementation task:
 
 `docs/work/active/SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md`
 
-Current independent review task:
+Current causal-probe task:
 
-`docs/work/active/SPEED_EXPANDED_SCOPE_LIGHT_INDEPENDENT_REVIEW_AND_SPRINT_RESEARCH.md`
+`docs/work/active/SPEED_SPRINT_SHARED_POWER_HIT_CAUSAL_PROBE.md`
 
-## Frozen grouped profile rule
+Archived independent review:
 
-One profile section represents one animation-family/loadout identity:
+`docs/archive/investigations/SPEED_EXPANDED_SCOPE_LIGHT_INDEPENDENT_REVIEW_AND_SPRINT_RESEARCH_RESULT.md`
+
+## Independent-review finding
+
+The new Power Hit caller is:
 
 ```text
-AnimationFamily
-+ LeftAnimationUseType
-+ RightAnimationUseType
+Script_Game+0x47F67  mov eax,2
+Script_Game+0x47F6C  call +0x42A0
 ```
 
-Attack settings live inside that loadout:
+Earlier in the same shared routine:
 
 ```text
-Normal
-Quick
-Power
-Pierce
-Hack
-SimpleWhirl
-Whirl
++0x47CE2  reads current PropertyAction
++0x47CE8  compares with Action9 / Sprint
++0x47CEB  Action9 follows the shared continuation at +0x47D02
 ```
 
-Section suffix is label-only; runtime identity comes from the explicit fields.
+Native `+0x42A0` also has an explicit current-Action9 branch at `+0x431D..+0x4329`.
 
-## Frozen composition rule
+Therefore current actor action 9 and passed speed action 2 may coexist at the shared Power Hit-speed path. The expanded G3AB hook currently maps passed action 2 to the configured Power profile, so Sprint non-interference must be proven before production build acceptance.
+
+## Current diagnostic
+
+Standalone tool only:
 
 ```text
-requested factual gEAction + gEPhase = Gothic request authority
-Animation.GetSkeletonName(...)         = runtime AnimationFamily
-left/right UseTypes                     = normalized loadout facts
-CurrentMovementAni                      = observational context only
-
-compatible = B * M
-configured = compatible * (BaseSpeed / ReferenceHitBaseSpeed)
-           = C * M
+tools/Script_SpeedSprintProbe
 ```
 
-No New Balance multiplier policy is copied into G3AB.
+It hooks only `Script_Game+0x47F6C`, calls the live `+0x42A0` compatible owner once with the original EAX, logs the factual state, and returns the speed unchanged.
 
-## Expanded internal static PASS
+Log fields:
 
 ```text
-grouped loadout parser                         PASS
-seven independent attack settings             PASS
-Action1/2/4/5/6/10/11/14 mapping             PASS
-Action3 generic Quick remains non-playback     PASS
-Action9/Sprint remains fail-closed             PASS
-missing/invalid calibration fallback           PASS
-finite composed-output guard                   PASS
-original six Normal/Quick caller hooks         unchanged
-nine proven new Hit caller hooks               added
-Power Raise +0x47D51                           not hooked
-live +0x42A0 compatible-owner call             preserved exactly once
-collision / Raise behavior                     no bounded drift found
-shipped INI                                    grouped/commented
+PassedAction
+CurrentActionBefore
+RequestedPhase
+CompatibleSpeed
+CurrentActionAfter
+CurrentMovementAni
 ```
 
-Production implementation lineage ends at:
+## Immediate route at local build PC
+
+Do **not** build the expanded production DLL first.
 
 ```text
-642c88a4e6244ae7377ba835507750af7914e2f5
+sync development
+-> build target Script_SpeedSprintProbe Release
+-> deploy Script_SpeedSprintProbe.dll beside the currently accepted live stack
+-> run several ordinary Power attacks
+-> run several factual Sprint attacks
+-> upload/push SpeedSprintProbe.log
 ```
 
-## Immediate route
-
-Run the light independent review first. It is read-only and must independently check the new implementation/hook set and research whether Sprint has a factual safe Speed route.
-
-If the review returns `PASS` or `PASS WITH FINDINGS` with no blocking source defect:
+Acceptance discriminator:
 
 ```text
-sync development at local build PC
--> build Script_G3AnimationBehaviors Release
--> deploy sole production DLL as usual
--> verify built/live SHA match
--> startup smoke
--> then run the small expanded-Speed runtime matrix
+Sprint log shows PassedAction=2 + CurrentActionBefore=9 + Hit
+-> shared Sprint/Power Hit transport CONFIRMED
+-> implement narrow Sprint non-interference correction before expanded production build
+
+Sprint never reaches +0x47F6C with current Action9, Power does
+-> Work blocker not reproduced
+-> proceed to expanded production build/runtime gate
 ```
 
-Runtime matrix after successful build/deploy:
+## Still frozen
 
 ```text
-Normal + Quick regression control
-Power configured-speed control
-Pierce / Hack configured controls where visually practical
-SimpleWhirl / Whirl configured controls where visually practical
-unconfigured/fail-closed fallback
-New Balance compatibility sanity
-```
-
-Sprint enters implementation/runtime acceptance only if the independent review proves a safe factual route and the normal engineering chat accepts it.
-
-## Still paused
-
-```text
-NO Raise implementation while expanded Speed is open
-NO speculative Sprint hook
-NO targeting/climbing
-NO promotion to main before agreed integrated checkpoint
+NO speculative Sprint authoring support
+NO change to live compatible-owner input
+NO +0x42A0 entry hook
+NO Raise implementation while Speed is open
 NO collision redesign absent contradictory evidence
+NO promotion to main before agreed integrated checkpoint
 ```
