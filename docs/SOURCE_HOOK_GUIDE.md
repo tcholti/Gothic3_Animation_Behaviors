@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Source & Hook Guide
 
 **Status:** Canonical practical source/hook lookup guide  
-**Updated:** 2026-09-16
+**Updated:** 2026-09-29
 
 ## Purpose
 
@@ -65,6 +65,8 @@ StateTime
 StatePosition
 AIFullStop / FullStop
 AISetState / SetState
+GetPrimaryPoseExt
+PropertyAction
 ```
 
 Durable attack execution identity is the plugin C1 generation, not a raw state-stack or arguments pointer.
@@ -98,6 +100,10 @@ Search for `UpdateFrameEffects`, `GetFrameEffectList`, `eSFrameEffect`, `StartEf
 
 Search for `GetAnimationSpeedModifier`, `AniSpeedScale`, `GetMaxTime`, `GetPlayTime`, `PlayMotion`.
 
+### Movement / displacement
+
+Search around CombatMove reach/vector/movement calls, motion/root translation, actor/world transforms, movement instructions and animation descriptors. Do not assume root motion is the movement owner until static/runtime evidence proves it.
+
 ---
 
 ## 3. Tested RVA Index
@@ -106,10 +112,10 @@ Search for `GetAnimationSpeedModifier`, `AniSpeedScale`, `GetMaxTime`, `GetPlayT
 
 | Purpose | Module + RVA | Meaning |
 |---|---:|---|
-| `GetAnimationSpeedModifier` | `Script_Game +0x42A0` | proven speed-modifier hook; final compatibility still open |
+| `GetAnimationSpeedModifier` | `Script_Game +0x42A0` | live native/compatible speed-policy owner; production Speed deliberately does **not** own this entry |
 | CombatMove animation-string call | `Game +0x16B065` | narrow substitution point used by New Balance |
-| CombatMove reach/vector call | `Game +0x16B8A3` | reference hook point |
-| CombatMove movement call | `Game +0x16B8A9` | reference hook point |
+| CombatMove reach/vector call | `Game +0x16B8A3` | factual reference surface for future movement/displacement research; exact semantic ownership still open |
+| CombatMove movement call | `Game +0x16B8A9` | factual reference surface for future movement/displacement research; exact semantic ownership still open |
 | full-Whirl break-block call/test | `Script_Game +0x4DF8C / +0x4DF92` | incomplete CombatMove suspends ScriptFunction |
 | full-Whirl ordinary cleanup continuation | `Script_Game +0x4E03C` | resumed path reaches native cleanup |
 | GetUp pre-Combat offense | `Script_Game +0x41CA6` | legitimate offense can precede CombatMove |
@@ -119,6 +125,36 @@ Search for `GetAnimationSpeedModifier`, `AniSpeedScale`, `GetMaxTime`, `GetPlayT
 | `GetAniEx` | `Script +0x15C10` | animation query |
 | motion data string | `Game +0xD97D5` | motion resource string |
 | cached motion actor | `Game +0xDA344` | animation actor |
+
+### Speed v2 proven Hit consumers
+
+Production Speed uses exact caller-side interception after live `+0x42A0` policy rather than entry ownership.
+
+| Attack route | Script_Game caller RVA | Factual caller action / note |
+|---|---:|---|
+| Normal | `+0x383F0` | Action1 / Hit |
+| Quick carrier | `+0x38E9D` | factual Action4/5 carrier / Hit |
+| Quick carrier | `+0x38F22` | factual Action4/5 carrier / Hit |
+| Quick carrier | `+0x3937D` | factual Action4/5 carrier / Hit |
+| Quick carrier | `+0x39402` | factual Action4/5 carrier / Hit |
+| Quick route | `+0x48677` | PropertyAction after Action3 selector resolves to Action4/5 / Hit |
+| Hack | `+0x42FF4` | Action14 / Hit |
+| Hack | `+0x431B4` | Action14 / Hit |
+| Hack | `+0x432EB` | Action14 / Hit |
+| Pierce | `+0x47328` | Action11 / Hit |
+| Pierce | `+0x4770F` | Action11 / Hit |
+| Pierce | `+0x4786F` | Action11 / Hit |
+| Power + Sprint-shared transport | `+0x47F6C` | caller hard-passes Action2 / Hit; factual actor may remain Action2 **or Action9 Sprint** |
+| SimpleWhirl | `+0x4C6FA` | factual Action6 carrier / Hit |
+| Whirl | `+0x4DF1F` | Action10 / Hit |
+
+Related Power route:
+
+```text
+Script_Game+0x47D51 = factual Power Raise speed consumer
+```
+
+It is evidence for Raise work and is not part of the current Hit-only Speed composition set.
 
 ### Motion lifecycle
 
@@ -183,6 +219,97 @@ attack ScriptFunction suspended at CombatMove break block
 ```
 
 Held Use2 / ~2500 ms is a test trigger, not collision ownership.
+
+---
+
+## 3A. Speed v2 reusable engine facts
+
+### Caller-side compatibility boundary
+
+The accepted Speed architecture uses the proven Hit caller sites above.
+
+```text
+caller prepares factual action/Hit request
+-> G3AB call-site thunk captures caller action
+-> thunk calls the live Script_Game+0x42A0 owner exactly once with the original caller action
+-> live Gothic/New Balance/compatible owner returns compatibleSpeed
+-> G3AB optionally applies configured C/B composition
+-> original caller receives the composed result
+```
+
+This deliberately leaves `Script_Game+0x42A0` entry ownership to the live compatible stack and avoids copying New Balance policy.
+
+### Native reference and algebra
+
+For a configured profile:
+
+```text
+B = factual native Gothic Hit base for that exact attack/loadout route
+C = configured authored BaseSpeed
+compatibleSpeed = B * M
+```
+
+where `M` means the combined relative effect already present in the live compatible result at this boundary. G3AB does not need to identify individual modifiers.
+
+Composition:
+
+```text
+compatibleSpeed * (C / B)
+= (B * M) * (C / B)
+= C * M
+```
+
+Therefore `ReferenceHitBaseSpeed` is a native Gothic calibration fact required by this safe downstream mechanism. It is not a New Balance value and is not a gameplay tuning value. Third-party changes already present in `compatibleSpeed` remain relative effects if they are multiplicative with respect to the native base.
+
+If a future mod changes the speed path structurally rather than as a compatible relative effect, that route requires evidence; do not silently reinterpret the third-party result as the native reference.
+
+### Power / Sprint shared timing route
+
+Runtime causal evidence on Goblin, Troll and Sabertooth proves:
+
+```text
+factual actor current action = Action9 Sprint
+caller at Script_Game+0x47F6C = Action2 Power / Hit
+current movement = PowerAttack-named animation
+actor remains Action9 before and after the live +0x42A0 call
+```
+
+Thus Speed authoring intentionally treats Sprint as inheriting the Power timing profile on this proven route. Collision may still distinguish Sprint where collision lifecycle semantics require it.
+
+Native-only Troll control further proves on the tested Troll/Fist Power/Sprint route:
+
+```text
+native compatible Hit speed = 1.000000
+```
+
+while the New Balance stack previously returned `1.500000` on the same shared route. The native `1.0` is the calibration `B`; the New Balance increase belongs to the live compatible result, not to `ReferenceHitBaseSpeed`.
+
+Evidence route: ADR-0004, ADR-0009, EV-391–EV-395, Sprint shared-Power causal probe/runtime logs.
+
+---
+
+## 3B. Future movement / displacement research seed
+
+The project has already established two narrow CombatMove call surfaces that may matter when researching attack displacement:
+
+```text
+Game+0x16B8A3  CombatMove reach/vector call
+Game+0x16B8A9  CombatMove movement call
+```
+
+These are **starting surfaces, not yet ownership proof**. Before implementing attack forward-displacement control, determine factually:
+
+```text
+animation/root translation contribution
+vs CombatMove-requested displacement
+vs motion/pose descriptor values
+vs action-specific Script_Game policy
+vs New Balance intervention
+```
+
+Do not label the future feature “root-motion control” until root motion is actually proven to own the relevant displacement.
+
+This information is also potentially reusable for future traversal work such as climbing/vaulting because those systems will need a factual understanding of how Gothic requests, applies and bounds actor movement. Reuse the established CombatMove/state/motion lifecycle map above before creating new global movement hooks.
 
 ---
 
@@ -317,4 +444,6 @@ Jackydima/New Balance source is practical compatibility reference, not native au
 
 Do not assume same-function hook chaining is safe. For collisions/continuation/speed, identify whether another mod already owns the relevant path and prefer the narrowest downstream or shared authoritative intervention supported by evidence.
 
-EV-242 is a bounded Pierce-specific New Balance + Jackydima control only. Full mature collision compatibility remains a later gate.
+For Speed specifically, third-party changes observed in the live `+0x42A0` result are compatible effects to preserve; they do **not** redefine the native `ReferenceHitBaseSpeed` calibration value.
+
+EV-242 is a bounded Pierce-specific New Balance + Jackydima control only. Mature collision compatibility and Speed compatibility have separate evidence routes; do not infer one subsystem from the other.
