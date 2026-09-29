@@ -20,66 +20,69 @@ EV-395 configured Speed + New Balance stamina multiplier preservation = PASS
 expanded grouped Speed source = IMPLEMENTED
 production source frozen = 642c88a4e6244ae7377ba835507750af7914e2f5
 internal expanded-source review = PASS
-independent Sprint/Power blocker = CLOSED by runtime causal evidence
+Sprint/Power blocker = CLOSED by runtime causal evidence
 Sprint Speed model = inherits Power profile; no separate Sprint prefix
-expanded production build/runtime = NEXT
+expanded production Release build = PASS locally; deployment deferred
+Speed calibration probe build = PASS
+first native calibration control = PASS
+CURRENT = broad native Speed calibration
 Raise = PAUSED
 ```
 
-## Sprint evidence
-
-The standalone `Script_SpeedSprintProbe` proved that Goblin, Troll and Sabertooth factual Sprint/Action9 reaches the shared Power Hit caller at `Script_Game+0x47F6C` while the caller passes Action2:
+## Calibration model
 
 ```text
-PassedAction=2
-CurrentActionBefore=9
-RequestedPhase=Hit
-CurrentActionAfter=9
-PowerAttack-named motion
+B = native Gothic ReferenceHitBaseSpeed
+compatible = B * M
+configured = compatible * (C / B) = C * M
 ```
 
-Tested compatible bases match ordinary Power within each family:
+New Balance values are compatibility observations, not native reference values.
+
+The validated `Script_SpeedCalibrationProbe.dll` observes the 15 proven Hit callers plus Power Raise, returns live speeds unchanged and deduplicates repeated factual rows.
+
+First native Hero 1H + Troll control:
 
 ```text
-Goblin       Power 1.0 / Sprint 1.0
-Troll        Power 1.5 / Sprint 1.5
-Sabertooth   Power 1.0 / Sprint 1.0
+55 intercepted calls -> 12 unique rows -> 0 dropped
+Hero None+1H Normal Hit 0.6
+Hero None+1H Quick R/L Hit 1.0
+Hero Power Raise 1.5 / Hit 1.0
+Troll PhysicalFist Normal/Quick/Power Hit 1.0
+Troll Power Raise 1.0
+Troll factual Sprint Raise/Hit through passed Action2 = 1.0
 ```
 
-ADR-0009 therefore freezes Sprint as an intentional Power timing alias for Speed authoring. Do not add `Sprint_BaseSpeed` or rewrite Action2 to Action9.
+## Critical DLL-loader rule
 
-Authority:
+Renaming a DLL while leaving it inside Gothic's `scripts` folder does **not** reliably disable it; Gothic may still load it.
 
-`docs/decisions/ADR-0009-sprint-inherits-power-speed-profile.md`
+For any bounded fixture, excluded DLLs must be physically moved or removed completely from `scripts` before launch.
 
-Probe result:
+The first clean native control removed:
 
-`docs/archive/investigations/SPEED_SPRINT_SHARED_POWER_HIT_CAUSAL_PROBE_RESULT.md`
+```text
+Script_G3AnimationBehaviors.dll
+Script_NewBalance.dll
+Script_NewMagicforNPCs.dll
+Script_AttackCollision.dll
+```
+
+and left only the calibration probe from this project active.
 
 ## Next at local build PC
 
-First remove:
+Keep the clean native fixture and perform broad practical calibration runs across:
 
 ```text
-Script_SpeedSprintProbe.dll
+human weapon/loadout combinations intended for release profiles
+supported attacks naturally available for each loadout
+representative NPC users
+representative nonhuman families
 ```
 
-Then:
+Push each resulting `SpeedCalibrationProbe.log` under a descriptive filename. Broad runs are preferred because repeated identical observations are deduplicated.
 
-```text
-sync development
--> build Script_G3AnimationBehaviors Release
--> deploy production DLL
--> verify built/live SHA equality
--> startup smoke
--> runtime matrix:
-   Normal/Quick regression
-   Power configured control
-   Sprint inherited-Power control where practical
-   Pierce/Hack where practical
-   SimpleWhirl/Whirl where practical
-   unconfigured fallback
-   New Balance compatibility sanity
-```
+If one factual route reports multiple native speeds, preserve all values and investigate before choosing a reference.
 
-Do not begin Raise or reopen collision before expanded Speed acceptance closes.
+After sufficient native coverage, restore the intended New Balance stack and perform comparable compatibility runs. Do not begin Raise or deploy the expanded production DLL until calibration closes and the common reference values are settled.
