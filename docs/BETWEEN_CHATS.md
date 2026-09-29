@@ -21,13 +21,30 @@ expanded Speed scope = Normal, Quick, Power, Pierce, Hack, SimpleWhirl, Whirl
 grouped loadout INI/profile architecture = IMPLEMENTED
 expanded attack mapping = IMPLEMENTED
 nine additional proven Hit caller hooks = IMPLEMENTED
-expanded source static review = PASS
-production source frozen for build = 642c88a4e6244ae7377ba835507750af7914e2f5
+internal expanded-source static review = PASS
+production source frozen for review/build = 642c88a4e6244ae7377ba835507750af7914e2f5
 
-Sprint / Action9 Speed = deliberately unsupported until factual transport is proven
+CURRENT = light independent read-only review + focused Sprint/Action9 research
+NEXT if accepted = local build/deploy gate
+Sprint / Action9 Speed = unsupported until factual transport is proven
 Raise behavior = PAUSED until Speed closes
-CURRENT = local build/deploy gate
 ```
+
+## Current review task
+
+`docs/work/active/SPEED_EXPANDED_SCOPE_LIGHT_INDEPENDENT_REVIEW_AND_SPRINT_RESEARCH.md`
+
+The review is intentionally lighter than the prior deep Speed audit. It must independently verify the grouped-profile implementation, factual action mapping, old and newly added caller hooks, fail-closed behavior, common compatible-owner composition, and absence of Raise/collision drift.
+
+It must separately research Sprint / Action9 and classify it as one of:
+
+```text
+PROVEN SAFE ROUTE
+PLAUSIBLE BUT UNPROVEN
+NO DISTINCT ROUTE FOUND / REMAINS UNPROVEN
+```
+
+No implementation is allowed in the review task.
 
 ## Grouped profile shape
 
@@ -50,7 +67,7 @@ Power_BaseSpeed=1.00
 Power_RaiseOverride=Off
 ```
 
-Supported attack prefixes:
+Supported attack prefixes currently implemented:
 
 ```text
 Normal
@@ -62,7 +79,7 @@ SimpleWhirl
 Whirl
 ```
 
-No separate Raise speed setting. When Raise work begins, first test whether the inserted Raise naturally follows the attack's BaseSpeed; add extra code/config only if runtime evidence requires it.
+No separate Raise speed setting. When Raise work begins, first test whether inserted Raise naturally follows the attack's BaseSpeed; add extra code/config only if runtime evidence requires it.
 
 ## Composition
 
@@ -73,16 +90,12 @@ configured = (B * M) * (C / B) = C * M
 
 The live compatible owner, including New Balance, is still invoked first. G3AB does not copy multiplier policy.
 
-## Next
+## After independent review
 
-Active task:
-
-`docs/work/active/SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md`
-
-When back at the build PC:
+If no blocking source defect is found:
 
 ```text
-sync development
+sync development at build PC
 -> build Script_G3AnimationBehaviors Release
 -> deploy as usual
 -> verify built/live SHA equality
@@ -96,4 +109,4 @@ sync development
    New Balance compatibility sanity
 ```
 
-Do not add Sprint or begin Raise before this expanded Speed runtime gate closes.
+Sprint is added only if the review proves a safe factual route and the normal engineering chat accepts the result. Do not begin Raise before expanded Speed closes.
