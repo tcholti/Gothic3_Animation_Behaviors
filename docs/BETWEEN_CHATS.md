@@ -1,7 +1,7 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-09-28
+**Updated:** 2026-09-29
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
@@ -13,77 +13,87 @@ Stable: `main` — keep frozen until Speed + Raise + assembled regression close.
 
 ```text
 EV-390 collision production integration = CLOSED/PASS
-EV-391/EV-392 Speed caller-side mechanism + six-site caller set = CLOSED STATIC
-EV-393 Hero family-source control = PASS
-EV-394 Sabretooth family-source generalization = PASS
-generic profile calibration implementation = CLOSED/PASS
-production build/deploy = PASS
-built/live SHA = 6DD8C9CE46E3398DC725A5F4D9C2D3D2F073707094AFDDE30C385CC32F6AEEAD
-Hero None+1H Normal + Quick configured behavior = PASS
-EV-395 configured Hero None+2H Normal preserves New Balance stamina slowdown = PASS
-CURRENT = final bounded Speed runtime acceptance/fallback coverage
-RAISE = PAUSED until Speed closes
+EV-391/EV-392 original Speed Normal/Quick transport = CLOSED STATIC
+EV-393/EV-394 family-source evidence = PASS
+EV-395 configured Speed + New Balance stamina multiplier preservation = PASS
+
+expanded Speed scope = Normal, Quick, Power, Pierce, Hack, SimpleWhirl, Whirl
+grouped loadout INI/profile architecture = IMPLEMENTED
+expanded attack mapping = IMPLEMENTED
+nine additional proven Hit caller hooks = IMPLEMENTED
+expanded source static review = PASS
+production source frozen for build = 642c88a4e6244ae7377ba835507750af7914e2f5
+
+Sprint / Action9 Speed = deliberately unsupported until factual transport is proven
+Raise behavior = PAUSED until Speed closes
+CURRENT = local build/deploy gate
 ```
 
-## Frozen rule
+## Grouped profile shape
+
+```ini
+[Profile.Hero_None_1H]
+AnimationFamily=Hero
+LeftAnimationUseType=None
+RightAnimationUseType=1H
+
+Normal_ReferenceHitBaseSpeed=0.60
+Normal_BaseSpeed=1.00
+Normal_RaiseOverride=On
+
+Quick_ReferenceHitBaseSpeed=1.00
+Quick_BaseSpeed=1.00
+Quick_RaiseOverride=On
+
+Power_ReferenceHitBaseSpeed=1.00
+Power_BaseSpeed=1.00
+Power_RaiseOverride=Off
+```
+
+Supported attack prefixes:
 
 ```text
-requested gEAction + requested gEPhase = Gothic request authority
-Animation.GetSkeletonName(...)         = runtime AnimationFamily
-left/right UseTypes                     = normalized equipment profile facts
-CurrentMovementAni                      = observational context only
+Normal
+Quick
+Power
+Pierce
+Hack
+SimpleWhirl
+Whirl
 ```
 
-Composition:
+No separate Raise speed setting. When Raise work begins, first test whether the inserted Raise naturally follows the attack's BaseSpeed; add extra code/config only if runtime evidence requires it.
+
+## Composition
 
 ```text
 compatible = B * M
 configured = (B * M) * (C / B) = C * M
 ```
 
-## Proven runtime controls
-
-### 1H Normal + Quick
-
-With Hero / empty-left / right-hand 1H profiles configured at `BaseSpeed=0.40`, multiple Normal and Quick variants visibly used the configured slow speed.
-
-### New Balance multiplier preservation
-
-With Hero / empty-left / right-hand 2H Normal configured as:
-
-```ini
-AnimationFamily=Hero
-LeftAnimationUseType=None
-RightAnimationUseType=2H
-ActionProfile=Normal
-ReferenceHitBaseSpeed=0.70
-BaseSpeed=1.00
-RaiseOverride=Off
-```
-
-the attack used the intended faster `1.0` authored base at available/full stamina and visibly slowed at zero/depleted stamina.
-
-This closes the key ADR-0004 compatibility question for a representative configured route: the G3AB base override does not erase the tested New Balance stamina/context multiplier.
-
-Do not use the historical `Script_CombatMoveLogger` unchanged; its `+0x42A0` hook would contaminate this architecture.
+The live compatible owner, including New Balance, is still invoked first. G3AB does not copy multiplier policy.
 
 ## Next
 
 Active task:
 
-`docs/work/active/SPEED_V2_FINAL_RUNTIME_ACCEPTANCE.md`
+`docs/work/active/SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md`
 
-Closed implementation result:
-
-`docs/archive/investigations/SPEED_GENERIC_PROFILE_CALIBRATION_IMPLEMENTATION_RESULT.md`
-
-Tomorrow, do not redesign or re-probe family identity. Run only the smallest remaining Speed closure matrix:
+When back at the build PC:
 
 ```text
-representative unconfigured fallback
--> representative configured Normal/Quick/use-type coverage as still needed
--> native-only sanity/fallback if required
--> extra contextual modifier only if a real ambiguity remains
--> close Speed if all pass
--> activate Raise only afterward
+sync development
+-> build Script_G3AnimationBehaviors Release
+-> deploy as usual
+-> verify built/live SHA equality
+-> startup smoke
+-> run small runtime matrix:
+   Normal/Quick regression
+   Power
+   Pierce/Hack where visually practical
+   SimpleWhirl/Whirl where visually practical
+   unconfigured fallback
+   New Balance compatibility sanity
 ```
+
+Do not add Sprint or begin Raise before this expanded Speed runtime gate closes.
