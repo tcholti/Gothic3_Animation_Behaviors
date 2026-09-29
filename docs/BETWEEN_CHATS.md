@@ -17,96 +17,81 @@ EV-391/EV-392 original Speed Normal/Quick transport = CLOSED STATIC
 EV-393/EV-394 family-source evidence = PASS
 EV-395 configured Speed + New Balance stamina multiplier preservation = PASS
 
-expanded Speed scope = Normal, Quick, Power, Pierce, Hack, SimpleWhirl, Whirl
-grouped loadout INI/profile architecture = IMPLEMENTED
-expanded attack mapping = IMPLEMENTED
-nine additional proven Hit caller hooks = IMPLEMENTED
-internal expanded-source static review = PASS
-production source frozen for review/build = 642c88a4e6244ae7377ba835507750af7914e2f5
-
-CURRENT = light independent read-only review + focused Sprint/Action9 research
-NEXT if accepted = local build/deploy gate
-Sprint / Action9 Speed = unsupported until factual transport is proven
-Raise behavior = PAUSED until Speed closes
+expanded grouped Speed source = IMPLEMENTED
+production source frozen = 642c88a4e6244ae7377ba835507750af7914e2f5
+internal expanded-source review = PASS
+independent review = BLOCKED on Sprint/Power shared-call isolation
+Sprint classification = PLAUSIBLE BUT UNPROVEN
+expanded production build = PAUSED
+Raise = PAUSED
+CURRENT = Script_SpeedSprintProbe local build/runtime gate
 ```
 
-## Current review task
+## Why build is paused
 
-`docs/work/active/SPEED_EXPANDED_SCOPE_LIGHT_INDEPENDENT_REVIEW_AND_SPRINT_RESEARCH.md`
-
-The review is intentionally lighter than the prior deep Speed audit. It must independently verify the grouped-profile implementation, factual action mapping, old and newly added caller hooks, fail-closed behavior, common compatible-owner composition, and absence of Raise/collision drift.
-
-It must separately research Sprint / Action9 and classify it as one of:
+Static binary evidence shows factual Action9 is recognized on the shared Power routine before the later Hit-speed consumer:
 
 ```text
-PROVEN SAFE ROUTE
-PLAUSIBLE BUT UNPROVEN
-NO DISTINCT ROUTE FOUND / REMAINS UNPROVEN
++0x47CE2..+0x47CEB  current action 9 recognized, shared continuation
++0x47F67            EAX=2
++0x47F6C            call +0x42A0
 ```
 
-No implementation is allowed in the review task.
+Native `+0x42A0` separately checks current Action9. Therefore current Action9 and passed Power/2 may coexist. The expanded G3AB hook maps passed `2` to Power, so configured Power could affect Sprint if the factual Action9 survives to the Hit call.
 
-## Grouped profile shape
+## Current probe
 
-```ini
-[Profile.Hero_None_1H]
-AnimationFamily=Hero
-LeftAnimationUseType=None
-RightAnimationUseType=1H
+Active task:
 
-Normal_ReferenceHitBaseSpeed=0.60
-Normal_BaseSpeed=1.00
-Normal_RaiseOverride=On
+`docs/work/active/SPEED_SPRINT_SHARED_POWER_HIT_CAUSAL_PROBE.md`
 
-Quick_ReferenceHitBaseSpeed=1.00
-Quick_BaseSpeed=1.00
-Quick_RaiseOverride=On
-
-Power_ReferenceHitBaseSpeed=1.00
-Power_BaseSpeed=1.00
-Power_RaiseOverride=Off
-```
-
-Supported attack prefixes currently implemented:
+Tool source:
 
 ```text
-Normal
-Quick
-Power
-Pierce
-Hack
-SimpleWhirl
-Whirl
+tools/Script_SpeedSprintProbe/CMakeLists.txt
+tools/Script_SpeedSprintProbe/Script_SpeedSprintProbe.cpp
 ```
 
-No separate Raise speed setting. When Raise work begins, first test whether inserted Raise naturally follows the attack's BaseSpeed; add extra code/config only if runtime evidence requires it.
-
-## Composition
+Probe properties:
 
 ```text
-compatible = B * M
-configured = (B * M) * (C / B) = C * M
+hooks only Script_Game+0x47F6C
+captures passed EAX and current PropertyAction
+calls live +0x42A0 exactly once with original EAX
+returns compatible speed unchanged
+player-only logging
+no production behavior change
 ```
 
-The live compatible owner, including New Balance, is still invoked first. G3AB does not copy multiplier policy.
+Expected output:
 
-## After independent review
+`SpeedSprintProbe.log`
 
-If no blocking source defect is found:
+## Next at local build PC
 
 ```text
-sync development at build PC
--> build Script_G3AnimationBehaviors Release
--> deploy as usual
--> verify built/live SHA equality
--> startup smoke
--> run small runtime matrix:
-   Normal/Quick regression
-   Power
-   Pierce/Hack where visually practical
-   SimpleWhirl/Whirl where visually practical
-   unconfigured fallback
-   New Balance compatibility sanity
+sync development
+-> build Script_SpeedSprintProbe Release
+-> deploy diagnostic DLL beside existing accepted live G3AB/NewBalance/AttackCollision stack
+-> ordinary Power attacks
+-> factual Sprint attacks
+-> provide SpeedSprintProbe.log
 ```
 
-Sprint is added only if the review proves a safe factual route and the normal engineering chat accepts the result. Do not begin Raise before expanded Speed closes.
+Decision:
+
+```text
+PassedAction=2 + CurrentActionBefore=9 + RequestedPhase=Hit during Sprint
+-> shared Sprint/Power transport confirmed
+-> make narrow Sprint non-interference correction before expanded production build
+
+Power reaches probe but Sprint never does with current Action9
+-> independent blocker not reproduced
+-> resume expanded production build/runtime acceptance
+```
+
+Archived review:
+
+`docs/archive/investigations/SPEED_EXPANDED_SCOPE_LIGHT_INDEPENDENT_REVIEW_AND_SPRINT_RESEARCH_RESULT.md`
+
+Do not begin Raise or speculative Sprint authoring support before this gate closes.
