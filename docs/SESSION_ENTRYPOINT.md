@@ -14,103 +14,88 @@
 ```text
 collision production integration = CLOSED/PASS through EV-390
 initial Speed v2 Normal/Quick runtime proof = PASS through EV-395
-expanded Speed scope = Normal, Quick, Power, Pierce, Hack, SimpleWhirl, Whirl
-expanded production source = 642c88a4e6244ae7377ba835507750af7914e2f5
+expanded Speed source = 642c88a4e6244ae7377ba835507750af7914e2f5
+expanded user-facing scope = Normal, Quick, Power, Pierce, Hack, SimpleWhirl, Whirl
 internal expanded-source static review = PASS
-independent expanded-source review = BLOCKED on one Sprint/Power non-interference question
-Sprint transport classification = PLAUSIBLE BUT UNPROVEN
-CURRENT = build/run standalone Sprint shared-Power Hit causal probe
-expanded production build/deploy = PAUSED until probe closes
+independent review Sprint/Power blocker = CLOSED by runtime causal probe
+Sprint Speed authoring = inherits Power profile on proven shared Hit route
+CURRENT = expanded production local build/deploy/runtime acceptance
 Raise behavior = PAUSED until Speed closes
 main = FROZEN
 ```
 
-Primary implementation task:
+Primary task:
 
 `docs/work/active/SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md`
 
-Current causal-probe task:
+Sprint authority:
 
-`docs/work/active/SPEED_SPRINT_SHARED_POWER_HIT_CAUSAL_PROBE.md`
+`docs/decisions/ADR-0009-sprint-inherits-power-speed-profile.md`
 
-Archived independent review:
+Sprint probe result:
 
-`docs/archive/investigations/SPEED_EXPANDED_SCOPE_LIGHT_INDEPENDENT_REVIEW_AND_SPRINT_RESEARCH_RESULT.md`
+`docs/archive/investigations/SPEED_SPRINT_SHARED_POWER_HIT_CAUSAL_PROBE_RESULT.md`
 
-## Independent-review finding
+## Sprint closure
 
-The new Power Hit caller is:
-
-```text
-Script_Game+0x47F67  mov eax,2
-Script_Game+0x47F6C  call +0x42A0
-```
-
-Earlier in the same shared routine:
+Runtime diagnostics at `Script_Game+0x47F6C` proved on Goblin, Troll and Sabertooth:
 
 ```text
-+0x47CE2  reads current PropertyAction
-+0x47CE8  compares with Action9 / Sprint
-+0x47CEB  Action9 follows the shared continuation at +0x47D02
+PassedAction=2
+CurrentActionBefore=9
+RequestedPhase=Hit
+CurrentActionAfter=9
+CurrentMovementAni=*PowerAttack*
 ```
 
-Native `+0x42A0` also has an explicit current-Action9 branch at `+0x431D..+0x4329`.
-
-Therefore current actor action 9 and passed speed action 2 may coexist at the shared Power Hit-speed path. The expanded G3AB hook currently maps passed action 2 to the configured Power profile, so Sprint non-interference must be proven before production build acceptance.
-
-## Current diagnostic
-
-Standalone tool only:
+The tested families also showed matching compatible bases between ordinary Power and Sprint:
 
 ```text
-tools/Script_SpeedSprintProbe
+Goblin       1.0 / 1.0
+Troll        1.5 / 1.5
+Sabertooth   1.0 / 1.0
 ```
 
-It hooks only `Script_Game+0x47F6C`, calls the live `+0x42A0` compatible owner once with the original EAX, logs the factual state, and returns the speed unchanged.
-
-Log fields:
-
-```text
-PassedAction
-CurrentActionBefore
-RequestedPhase
-CompatibleSpeed
-CurrentActionAfter
-CurrentMovementAni
-```
+Therefore Sprint deliberately inherits configured Power timing. No Sprint-specific profile key or source correction is required.
 
 ## Immediate route at local build PC
 
-Do **not** build the expanded production DLL first.
+Remove the diagnostic DLL first:
+
+```text
+Script_SpeedSprintProbe.dll
+```
+
+Then:
 
 ```text
 sync development
--> build target Script_SpeedSprintProbe Release
--> deploy Script_SpeedSprintProbe.dll beside the currently accepted live stack
--> run several ordinary Power attacks
--> run several factual Sprint attacks
--> upload/push SpeedSprintProbe.log
+-> build Script_G3AnimationBehaviors Release
+-> deploy the production DLL
+-> verify built/live SHA equality
+-> startup smoke
+-> bounded expanded-Speed runtime matrix
 ```
 
-Acceptance discriminator:
+Runtime matrix:
 
 ```text
-Sprint log shows PassedAction=2 + CurrentActionBefore=9 + Hit
--> shared Sprint/Power Hit transport CONFIRMED
--> implement narrow Sprint non-interference correction before expanded production build
-
-Sprint never reaches +0x47F6C with current Action9, Power does
--> Work blocker not reproduced
--> proceed to expanded production build/runtime gate
+Normal + Quick regression
+Power configured-speed control
+Sprint inherited-Power control where practical
+Pierce / Hack where visually practical
+SimpleWhirl / Whirl where visually practical
+unconfigured fallback
+New Balance compatibility sanity
 ```
 
 ## Still frozen
 
 ```text
-NO speculative Sprint authoring support
-NO change to live compatible-owner input
 NO +0x42A0 entry hook
-NO Raise implementation while Speed is open
+NO rewrite of live compatible-owner EAX
+NO Sprint-specific Speed keys absent contradictory evidence
+NO Raise implementation until Speed closes
 NO collision redesign absent contradictory evidence
 NO promotion to main before agreed integrated checkpoint
 ```
