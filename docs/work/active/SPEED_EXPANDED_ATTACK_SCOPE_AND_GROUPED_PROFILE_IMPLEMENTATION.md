@@ -1,6 +1,6 @@
 # Speed Expanded Attack Scope and Grouped Profile Implementation
 
-**Status:** ACTIVE  
+**Status:** SOURCE IMPLEMENTED / STATIC REVIEW PASS / BUILD+RUNTIME PENDING  
 **Task class:** Bounded production source extension + static review; build/runtime remain later gates  
 **Branch:** `development`
 
@@ -70,6 +70,7 @@ Power_RaiseOverride=Off
 
 Pierce_ReferenceHitBaseSpeed=1.00
 Pierce_BaseSpeed=1.00
+Pierce_RaiseOverride=Off
 ```
 
 Section suffix is label-only. Do not parse identity from the section name.
@@ -248,31 +249,43 @@ src/Script_G3AnimationBehaviors/Ini/G3AnimationBehaviors.ini
 
 Touch another production file only if a concrete compile/API dependency requires it; document why before widening scope.
 
-## Required static acceptance
+## Static review result
 
-Before asking the User to build:
+Reviewed current source through production HEAD `642c88a4e6244ae7377ba835507750af7914e2f5`.
 
 ```text
-[ ] grouped section identity is family + left + right only
-[ ] seven attack settings are independently parsed/stored
-[ ] Action1/2/4/5/6/10/11/14 map correctly
-[ ] Action3 is not treated as factual playback Quick
-[ ] Action9/Sprint remains unsupported/fail-closed
-[ ] missing/invalid per-attack calibration returns compatible unchanged
-[ ] S-01 finite composed-output guard remains
-[ ] existing six Normal/Quick hooks remain unchanged
-[ ] only nine newly proven Hit call sites are added
-[ ] Power Raise +0x47D51 is not hooked
-[ ] common thunk still calls live +0x42A0 exactly once
-[ ] no collision or Raise behavior drift
-[ ] shipped INI uses grouped neutral/commented examples
+[x] grouped section identity is family + left + right only
+[x] seven attack settings are independently parsed/stored
+[x] Action1/2/4/5/6/10/11/14 map correctly
+[x] Action3 is not treated as factual playback Quick
+[x] Action9/Sprint remains unsupported/fail-closed
+[x] missing/invalid per-attack calibration returns compatible unchanged
+[x] S-01 finite composed-output guard remains
+[x] existing six Normal/Quick hooks remain unchanged
+[x] only nine newly proven Hit call sites are added
+[x] Power Raise +0x47D51 is not hooked
+[x] common thunk still calls live +0x42A0 exactly once
+[x] no collision or Raise behavior drift found in the bounded implementation lineage
+[x] shipped INI uses grouped neutral/commented examples
 ```
+
+Implementation lineage is bounded to the expected five production files:
+
+```text
+61e805ea9eaf0cbb2e0765fe65df97252c46a554  Group behavior profiles by loadout
+8c8ebe37ccd66a9e8317ded611418b6b0f1f881d  Parse grouped attack settings
+1ed68e8ae8867c6f7f8be63050aad9a185188e48  Map expanded factual attack speed profiles
+ad3e5e01fc581dc36dc4d0b6e33a0e46d2a19156  Group Speed INI settings by loadout
+642c88a4e6244ae7377ba835507750af7914e2f5  Extend Speed transport to proven attack callers
+```
+
+Static verdict: **PASS**. No further production-source change is justified before local build/deploy.
 
 ## Build/runtime boundary
 
 The User is currently away from the local build PC.
 
-Source implementation and static review may proceed now. Stop when the next required gate is local build/deploy/runtime validation; do not claim build or runtime acceptance before the User performs it.
+**NEXT GATE = local build/deploy.** Do not claim build or runtime acceptance before the User performs it.
 
 ## Later runtime acceptance
 
