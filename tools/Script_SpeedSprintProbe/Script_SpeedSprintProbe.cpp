@@ -9,6 +9,8 @@ namespace
 static mCCallHook Hook_SpeedModifierCall_47F6C;
 static mCCaller Call_GetAnimationSpeedModifier;
 static FILE *g_pLogFile = nullptr;
+static GEU32 g_EventOrdinal = 0;
+static GEU32 const EventLogCap = 1024;
 
 using mFGetAnimationSpeedModifier = GEFloat (GE_STDCALL *)(Entity, gEPhase);
 
@@ -59,57 +61,72 @@ GEFloat GE_STDCALL SpeedSprintProbe(
             entity.Routine.GetProperty<PSRoutine::PropertyAction>();
     }
 
-    if (g_pLogFile != nullptr && entity != None)
+    // The first runtime probe filtered non-player calls by observing Action9 at
+    // this exact point. That was circular: the question is whether Gothic may
+    // enter this shared routine as Sprint and change PropertyAction before the
+    // Hit-speed call. Therefore log every +0x47F6C call, bounded by a cap.
+    if (g_pLogFile != nullptr
+        && entity != None
+        && g_EventOrdinal < EventLogCap)
     {
+        ++g_EventOrdinal;
+
         bool const isPlayer = entity == Entity::GetPlayer();
-        bool const sprintObserved =
-            currentActionBefore == gEAction_SprintAttack
-            || currentActionAfter == gEAction_SprintAttack;
+        bool const sprintBefore =
+            currentActionBefore == gEAction_SprintAttack;
+        bool const sprintAfter =
+            currentActionAfter == gEAction_SprintAttack;
+        bCString const currentMovementAni = entity.NPC.GetCurrentMovementAni();
+        bCString const entityName = entity.GetName();
 
-        // Keep the log bounded: retain player Power as the control case,
-        // plus every factual Sprint/Action9 occurrence regardless of actor.
-        if (isPlayer || sprintObserved)
-        {
-            bCString const currentMovementAni = entity.NPC.GetCurrentMovementAni();
-            bCString const entityName = entity.GetName();
-
-            std::fprintf(g_pLogFile, "===== SprintSharedPowerHit =====\n");
-            std::fprintf(
-                g_pLogFile,
-                "Entity=%s\n",
-                entityName.GetText());
-            std::fprintf(
-                g_pLogFile,
-                "IsPlayer=%s\n",
-                isPlayer ? "true" : "false");
-            std::fprintf(
-                g_pLogFile,
-                "PassedAction=%d\n",
-                static_cast<GEInt>(passedAction));
-            std::fprintf(
-                g_pLogFile,
-                "CurrentActionBefore=%d\n",
-                static_cast<GEInt>(currentActionBefore));
-            std::fprintf(
-                g_pLogFile,
-                "RequestedPhase=%s (%d)\n",
-                GetPhaseName(phase),
-                static_cast<GEInt>(phase));
-            std::fprintf(
-                g_pLogFile,
-                "CompatibleSpeed=%.6f\n",
-                compatibleSpeed);
-            std::fprintf(
-                g_pLogFile,
-                "CurrentActionAfter=%d\n",
-                static_cast<GEInt>(currentActionAfter));
-            std::fprintf(
-                g_pLogFile,
-                "CurrentMovementAni=%s\n",
-                currentMovementAni.GetText());
-            std::fprintf(g_pLogFile, "===============================\n\n");
-            std::fflush(g_pLogFile);
-        }
+        std::fprintf(g_pLogFile, "===== SprintSharedPowerHit =====\n");
+        std::fprintf(
+            g_pLogFile,
+            "Ordinal=%u\n",
+            static_cast<unsigned>(g_EventOrdinal));
+        std::fprintf(
+            g_pLogFile,
+            "Entity=%s\n",
+            entityName.GetText());
+        std::fprintf(
+            g_pLogFile,
+            "IsPlayer=%s\n",
+            isPlayer ? "true" : "false");
+        std::fprintf(
+            g_pLogFile,
+            "PassedAction=%d\n",
+            static_cast<GEInt>(passedAction));
+        std::fprintf(
+            g_pLogFile,
+            "CurrentActionBefore=%d\n",
+            static_cast<GEInt>(currentActionBefore));
+        std::fprintf(
+            g_pLogFile,
+            "SprintBefore=%s\n",
+            sprintBefore ? "true" : "false");
+        std::fprintf(
+            g_pLogFile,
+            "RequestedPhase=%s (%d)\n",
+            GetPhaseName(phase),
+            static_cast<GEInt>(phase));
+        std::fprintf(
+            g_pLogFile,
+            "CompatibleSpeed=%.6f\n",
+            compatibleSpeed);
+        std::fprintf(
+            g_pLogFile,
+            "CurrentActionAfter=%d\n",
+            static_cast<GEInt>(currentActionAfter));
+        std::fprintf(
+            g_pLogFile,
+            "SprintAfter=%s\n",
+            sprintAfter ? "true" : "false");
+        std::fprintf(
+            g_pLogFile,
+            "CurrentMovementAni=%s\n",
+            currentMovementAni.GetText());
+        std::fprintf(g_pLogFile, "===============================\n\n");
+        std::fflush(g_pLogFile);
     }
 
     return compatibleSpeed;
@@ -126,7 +143,8 @@ extern "C" __declspec(dllexport) gSScriptInit const *GE_STDCALL ScriptInit(void)
             "Script_SpeedSprintProbe loaded. Diagnostics only; no speed composition.\n");
         std::fprintf(
             g_pLogFile,
-            "Logging player control calls plus all observed Sprint/Action9 actors.\n\n");
+            "Logging every Script_Game+0x47F6C call, capped at %u events.\n\n",
+            static_cast<unsigned>(EventLogCap));
         std::fflush(g_pLogFile);
     }
 
@@ -163,7 +181,10 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD dwReason, LPVOID)
         case DLL_PROCESS_DETACH:
             if (g_pLogFile != nullptr)
             {
-                std::fprintf(g_pLogFile, "Script_SpeedSprintProbe unloading.\n");
+                std::fprintf(
+                    g_pLogFile,
+                    "Script_SpeedSprintProbe unloading after %u logged events.\n",
+                    static_cast<unsigned>(g_EventOrdinal));
                 std::fflush(g_pLogFile);
                 std::fclose(g_pLogFile);
                 g_pLogFile = nullptr;
