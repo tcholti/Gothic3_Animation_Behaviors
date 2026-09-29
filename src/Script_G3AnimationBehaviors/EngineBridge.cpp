@@ -57,6 +57,15 @@ static mCCallHook Hook_SpeedModifierCall_38F22;
 static mCCallHook Hook_SpeedModifierCall_3937D;
 static mCCallHook Hook_SpeedModifierCall_39402;
 static mCCallHook Hook_SpeedModifierCall_48677;
+static mCCallHook Hook_SpeedModifierCall_42FF4;
+static mCCallHook Hook_SpeedModifierCall_431B4;
+static mCCallHook Hook_SpeedModifierCall_432EB;
+static mCCallHook Hook_SpeedModifierCall_47328;
+static mCCallHook Hook_SpeedModifierCall_4770F;
+static mCCallHook Hook_SpeedModifierCall_4786F;
+static mCCallHook Hook_SpeedModifierCall_47F6C;
+static mCCallHook Hook_SpeedModifierCall_4C6FA;
+static mCCallHook Hook_SpeedModifierCall_4DF1F;
 static mCCaller Call_GetAnimationSpeedModifier;
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS
@@ -1002,6 +1011,51 @@ void FrameCollision::EngineBridge::InstallHooks()
         .Hook();
     Hook_SpeedModifierCall_48677
         .Prepare(RVA_ScriptGame(0x48677),
+                 &GetAnimationSpeedModifier_Composed)
+        .AddRegArg(mERegisterType_Eax)
+        .Hook();
+    Hook_SpeedModifierCall_42FF4
+        .Prepare(RVA_ScriptGame(0x42FF4),
+                 &GetAnimationSpeedModifier_Composed)
+        .AddRegArg(mERegisterType_Eax)
+        .Hook();
+    Hook_SpeedModifierCall_431B4
+        .Prepare(RVA_ScriptGame(0x431B4),
+                 &GetAnimationSpeedModifier_Composed)
+        .AddRegArg(mERegisterType_Eax)
+        .Hook();
+    Hook_SpeedModifierCall_432EB
+        .Prepare(RVA_ScriptGame(0x432EB),
+                 &GetAnimationSpeedModifier_Composed)
+        .AddRegArg(mERegisterType_Eax)
+        .Hook();
+    Hook_SpeedModifierCall_47328
+        .Prepare(RVA_ScriptGame(0x47328),
+                 &GetAnimationSpeedModifier_Composed)
+        .AddRegArg(mERegisterType_Eax)
+        .Hook();
+    Hook_SpeedModifierCall_4770F
+        .Prepare(RVA_ScriptGame(0x4770F),
+                 &GetAnimationSpeedModifier_Composed)
+        .AddRegArg(mERegisterType_Eax)
+        .Hook();
+    Hook_SpeedModifierCall_4786F
+        .Prepare(RVA_ScriptGame(0x4786F),
+                 &GetAnimationSpeedModifier_Composed)
+        .AddRegArg(mERegisterType_Eax)
+        .Hook();
+    Hook_SpeedModifierCall_47F6C
+        .Prepare(RVA_ScriptGame(0x47F6C),
+                 &GetAnimationSpeedModifier_Composed)
+        .AddRegArg(mERegisterType_Eax)
+        .Hook();
+    Hook_SpeedModifierCall_4C6FA
+        .Prepare(RVA_ScriptGame(0x4C6FA),
+                 &GetAnimationSpeedModifier_Composed)
+        .AddRegArg(mERegisterType_Eax)
+        .Hook();
+    Hook_SpeedModifierCall_4DF1F
+        .Prepare(RVA_ScriptGame(0x4DF1F),
                  &GetAnimationSpeedModifier_Composed)
         .AddRegArg(mERegisterType_Eax)
         .Hook();
