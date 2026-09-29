@@ -8,18 +8,33 @@ namespace G3AB::AttackSpeed
 {
 namespace
 {
-bool TryGetActionProfile(
+bool TryGetAttackType(
     gEAction action,
-    BehaviorProfiles::ActionProfile &actionProfile)
+    BehaviorProfiles::AttackType &attackType)
 {
     switch (action)
     {
         case gEAction_Attack:
-            actionProfile = BehaviorProfiles::ActionProfile::Normal;
+            attackType = BehaviorProfiles::AttackType::Normal;
             return true;
         case gEAction_QuickAttackR:
         case gEAction_QuickAttackL:
-            actionProfile = BehaviorProfiles::ActionProfile::Quick;
+            attackType = BehaviorProfiles::AttackType::Quick;
+            return true;
+        case gEAction_PowerAttack:
+            attackType = BehaviorProfiles::AttackType::Power;
+            return true;
+        case gEAction_PierceAttack:
+            attackType = BehaviorProfiles::AttackType::Pierce;
+            return true;
+        case gEAction_HackAttack:
+            attackType = BehaviorProfiles::AttackType::Hack;
+            return true;
+        case gEAction_SimpleWhirl:
+            attackType = BehaviorProfiles::AttackType::SimpleWhirl;
+            return true;
+        case gEAction_WhirlAttack:
+            attackType = BehaviorProfiles::AttackType::Whirl;
             return true;
         default:
             return false;
@@ -36,29 +51,28 @@ GEFloat ComposeCompatibleSpeed(
     if (phase != gEPhase_Hit || entity == None)
         return compatibleSpeed;
 
-    BehaviorProfiles::ActionProfile actionProfile;
-    if (!TryGetActionProfile(action, actionProfile))
+    BehaviorProfiles::AttackType attackType;
+    if (!TryGetAttackType(action, attackType))
         return compatibleSpeed;
 
     BehaviorProfiles::ProfileKey key;
-    gEUseType rawLeftUseType = gEUseType_None;
-    gEUseType rawRightUseType = gEUseType_None;
-    if (!BehaviorProfiles::TryBuildRuntimeKey(
-            entity, actionProfile, key,
-            rawLeftUseType, rawRightUseType))
-    {
+    if (!BehaviorProfiles::TryBuildRuntimeKey(entity, key))
         return compatibleSpeed;
-    }
 
     BehaviorProfiles::Profile const *profile = BehaviorProfiles::Find(key);
-    if (profile == nullptr
-        || !profile->hasBaseSpeed
-        || !profile->hasReferenceHitBaseSpeed)
+    if (profile == nullptr)
+        return compatibleSpeed;
+
+    BehaviorProfiles::AttackSettings const *settings =
+        BehaviorProfiles::GetAttackSettings(*profile, attackType);
+    if (settings == nullptr
+        || !settings->hasBaseSpeed
+        || !settings->hasReferenceHitBaseSpeed)
     {
         return compatibleSpeed;
     }
 
-    GEFloat const referenceBase = profile->referenceHitBaseSpeed;
+    GEFloat const referenceBase = settings->referenceHitBaseSpeed;
     if (!(referenceBase > 0.0f)
         || !std::isfinite(referenceBase)
         || !std::isfinite(compatibleSpeed))
@@ -67,7 +81,7 @@ GEFloat ComposeCompatibleSpeed(
     }
 
     GEFloat const composedSpeed =
-        compatibleSpeed * (profile->baseSpeed / referenceBase);
+        compatibleSpeed * (settings->baseSpeed / referenceBase);
     if (!std::isfinite(composedSpeed))
         return compatibleSpeed;
 
