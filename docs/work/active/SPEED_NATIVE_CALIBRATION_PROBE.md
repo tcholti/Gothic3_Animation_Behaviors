@@ -1,6 +1,6 @@
 # Speed Native/Compatible Calibration Probe
 
-**Status:** ACTIVE  
+**Status:** ACTIVE — PROBE BUILD/RUNTIME VALIDATED; BROAD CALIBRATION ACTIVE  
 **Task class:** Bounded diagnostics-only calibration tool  
 **Branch:** `development`
 
@@ -50,6 +50,7 @@ raw left-hand UseType
 raw right-hand UseType
 passed caller action
 factual current actor action before the live call
+factual current actor action after the live call
 requested phase
 returned live compatible speed (quantized to 1e-6 for grouping)
 New Balance loaded state
@@ -112,20 +113,34 @@ This is observation only. It does not authorize Raise behavior.
 
 ## Runtime discipline
 
-The calibration probe must **not** coexist with `Script_G3AnimationBehaviors.dll` during calibration because both may own the same caller-site hooks. Runtime instructions must temporarily remove/disable the production DLL while the probe is active.
+Gothic's script loader may still load renamed DLLs that remain inside the game `scripts` folder. Therefore **renaming a DLL in place is not a valid disable method** for calibration.
+
+Any DLL that must be excluded from a test must be physically removed or moved completely outside the `scripts` folder before Gothic starts.
+
+The calibration probe must not coexist with `Script_G3AnimationBehaviors.dll` because both may own the same caller-site hooks.
 
 Two useful environments:
 
 ```text
 Native calibration:
-  Script_G3AnimationBehaviors.dll absent
-  Script_NewBalance.dll absent
+  Script_G3AnimationBehaviors.dll physically outside scripts
+  Script_NewBalance.dll physically outside scripts
+  other optional combat/gameplay script mods that could affect the measurement removed for the clean fixture
   Script_SpeedCalibrationProbe.dll present
 
 New Balance comparison:
-  Script_G3AnimationBehaviors.dll absent
-  Script_NewBalance.dll present
+  Script_G3AnimationBehaviors.dll physically outside scripts
+  intended New Balance stack restored
   Script_SpeedCalibrationProbe.dll present
+```
+
+For the first clean native control the User removed:
+
+```text
+Script_G3AnimationBehaviors.dll
+Script_NewBalance.dll
+Script_NewMagicforNPCs.dll
+Script_AttackCollision.dll
 ```
 
 The native run establishes `B`. The New Balance run is compatibility evidence only.
@@ -140,11 +155,76 @@ SpeedCalibrationProbe.log
 
 Requirements:
 
-- bounded unique-observation table (target cap 2048);
+- bounded unique-observation table (cap 2048);
 - no per-frame spam;
 - first occurrence of each unique observation flushed immediately;
 - final summary sorted by observation key and including counts;
-- explicit warning in the log if `Script_G3AnimationBehaviors.dll` is observed loaded while calibration calls occur.
+- explicit loaded-state fields for New Balance and production G3AB.
+
+The loaded-state fields are supporting diagnostics, not a substitute for the physical-removal rule above.
+
+## First runtime validation — PASS
+
+Built Release probe SHA256:
+
+```text
+4140867626119632929D2286A173E97B3A4ACE6EDBCA4E2DBFE30AC28FE28E82
+```
+
+Native-only control log:
+
+```text
+research/raw/2026.09.29_speed calibration_1h_troll.log
+```
+
+The run intercepted 55 calls but reduced them to 12 unique observations with zero dropped rows.
+
+Known controls matched exactly:
+
+```text
+Hero / None+1H / Normal Hit       0.600000
+Hero / None+1H / QuickR Hit       1.000000
+Hero / None+1H / QuickL Hit       1.000000
+Hero / None+1H / Power Raise      1.500000
+Hero / None+1H / Power Hit        1.000000
+
+Troll / PhysicalFist+PhysicalFist / Normal Hit       1.000000
+Troll / PhysicalFist+PhysicalFist / QuickR Hit       1.000000
+Troll / PhysicalFist+PhysicalFist / QuickL Hit       1.000000
+Troll / PhysicalFist+PhysicalFist / Power Raise      1.000000
+Troll / PhysicalFist+PhysicalFist / Power Hit        1.000000
+Troll / PhysicalFist+PhysicalFist / Sprint Raise via passed Power  1.000000
+Troll / PhysicalFist+PhysicalFist / Sprint Hit via passed Power    1.000000
+```
+
+The Sprint rows retained factual Action9 before and after the shared Power calls while the caller passed Action2, independently reconfirming the shared Power/Sprint transport.
+
+The Power Raise observation also shows factual Troll Sprint reaching the shared Power Raise speed caller with native `1.0`; preserve this as evidence for later Raise research without beginning Raise implementation now.
+
+Disposition:
+
+```text
+probe build = PASS
+small native runtime control = PASS
+aggregation compactness = PASS on first control
+known base values = PASS
+NEXT = broad native calibration sampling
+```
+
+## Broad native calibration gate
+
+Use several practical runs rather than trying to exercise everything in one session. Prioritize:
+
+```text
+human weapon/loadout combinations intended for the shipped INI
+all supported attack types that are naturally available for each loadout
+representative NPC users of the same loadouts
+representative nonhuman families
+```
+
+Repeated calls are cheap because the final report deduplicates by factual route/speed. If one nominal route produces more than one speed under the clean native fixture, preserve all rows rather than assuming one is the base; investigate the contextual difference before promoting a reference value.
+
+After native calibration is sufficiently broad, run a comparable New Balance environment to confirm compatible changes remain observable. New Balance values remain compatibility observations, never native `ReferenceHitBaseSpeed` values.
 
 ## Protected boundaries
 
@@ -177,8 +257,9 @@ production DLL untouched
 Runtime acceptance:
 
 ```text
-native control produces plausible known values (e.g. tested 1H Normal / Troll Power)
+small native known-value control PASS
 broad native runs remain compact
+common release-profile native values are established with sufficient coverage
 New Balance comparison records changed live values without changing behavior
 no startup/runtime regression attributable to the probe
 ```
