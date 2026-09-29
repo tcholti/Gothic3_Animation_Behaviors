@@ -1,12 +1,12 @@
 # Speed Expanded Attack Scope and Grouped Profile Implementation
 
-**Status:** SOURCE IMPLEMENTED / INTERNAL STATIC PASS / INDEPENDENT REVIEW BLOCKED ON SPRINT ISOLATION / BUILD PENDING  
-**Task class:** Bounded production source extension + static/runtime acceptance  
+**Status:** SOURCE IMPLEMENTED / STATIC REVIEW PASS / SPRINT BLOCKER CLOSED / BUILD+RUNTIME PENDING  
+**Task class:** Bounded production source extension + runtime acceptance  
 **Branch:** `development`
 
 ## Purpose
 
-Extend the runtime-proven Speed v2 mechanism from Normal/Quick to additional factual Hit-speed routes while replacing the one-section-per-attack INI layout with grouped loadout profiles.
+Extend the runtime-proven Speed v2 mechanism from Normal/Quick to additional factual Hit-speed routes while using grouped loadout profiles.
 
 The compatible-composition architecture remains frozen:
 
@@ -31,7 +31,7 @@ AnimationFamily
 + RightAnimationUseType
 ```
 
-Each supported attack owns independent optional settings inside that loadout:
+Each supported attack owns independent optional settings:
 
 ```text
 <Attack>_ReferenceHitBaseSpeed
@@ -39,7 +39,7 @@ Each supported attack owns independent optional settings inside that loadout:
 <Attack>_RaiseOverride
 ```
 
-Supported Speed attack types in this source:
+User-facing Speed attack prefixes:
 
 ```text
 Normal
@@ -51,7 +51,7 @@ SimpleWhirl
 Whirl
 ```
 
-Sprint remains intentionally absent from the public profile schema until its transport is proven.
+Sprint has no separate prefix. ADR-0009 establishes that factual Sprint/Action9 inherits the Power timing profile on its proven shared Hit-speed route.
 
 ## Factual action mapping
 
@@ -66,16 +66,18 @@ Action6  -> SimpleWhirl
 Action10 -> Whirl
 ```
 
-Generic Quick Action3 is not treated as factual playback Quick.
+Generic Quick Action3 remains a selector and is not treated as factual playback Quick.
+
+Sprint remains factual Action9 in actor state but the proven Hit-speed caller supplies Action2; no Action9 mapping is required in `AttackSpeed`.
 
 ## Caller-side transport
 
 Existing Normal/Quick six-site set remains unchanged.
 
-Newly added Hit consumers:
+New Hit consumers:
 
 ```text
-Power:
+Power / shared Sprint-Power:
   Script_Game+0x47F6C
 
 Pierce:
@@ -97,9 +99,7 @@ Whirl:
 
 Power Raise at `Script_Game+0x47D51` remains evidence only and is not hooked.
 
-## Internal static result
-
-The implementation passed the original bounded internal static checklist:
+## Static review result
 
 ```text
 grouped identity family+left+right                 PASS
@@ -116,67 +116,65 @@ no bounded collision/Raise drift                    PASS
 shipped INI grouped/commented                       PASS
 ```
 
-## Independent review blocker
+The independent review found one material Sprint/Power question at `+0x47F6C`. That question is now runtime-resolved rather than suppressed.
 
-The later independent read-only review found one material non-interference question at the new Power Hit caller `Script_Game+0x47F6C`.
+## Sprint causal closure
 
-Pinned Script_Game evidence:
-
-```text
-+0x47CE2  reads current PropertyAction
-+0x47CE8  compares with Action9 / Sprint
-+0x47CEB  Action9 remains on the shared continuation at +0x47D02
-
-+0x47F67  mov eax,2
-+0x47F6C  call +0x42A0
-```
-
-Native `+0x42A0` separately reads current PropertyAction and contains an Action9 branch at `+0x431D..+0x4329`.
-
-Therefore the shared routine may reach the hooked Hit caller with:
-
-```text
-passed action = Power / 2
-factual current actor action = Sprint / 9
-```
-
-The current expanded G3AB thunk receives passed EAX=2 and therefore maps it to configured Power. If current Action9 is still present at the Hit call, configured Power could compose Sprint and violate the intended unsupported-Sprint fallback.
-
-The independent review classified Sprint transport as:
-
-```text
-PLAUSIBLE BUT UNPROVEN
-```
-
-This is a pre-build blocker, not a proven runtime regression and not a rejection of the broader Speed design.
-
-Archived independent review result:
-
-`docs/archive/investigations/SPEED_EXPANDED_SCOPE_LIGHT_INDEPENDENT_REVIEW_AND_SPRINT_RESEARCH_RESULT.md`
-
-## Current gate
-
-Resolve only the Sprint-vs-Power discrimination question through:
-
-`docs/work/active/SPEED_SPRINT_SHARED_POWER_HIT_CAUSAL_PROBE.md`
-
-A standalone diagnostics-only tool observes `Script_Game+0x47F6C` and returns the live compatible speed unchanged.
-
-Do **not** build/deploy the expanded production source until that probe resolves whether factual Sprint reaches `+0x47F6C` with current Action9.
-
-## Decision after probe
-
-If actual Sprint produces:
+The diagnostics-only `Script_SpeedSprintProbe` proved on Goblin, Troll and Sabertooth that actual Sprint reaches `Script_Game+0x47F6C` with:
 
 ```text
 PassedAction=2
 CurrentActionBefore=9
 RequestedPhase=Hit
+CurrentActionAfter=9
+PowerAttack-named motion
 ```
 
-then implement only the smallest Sprint non-interference correction before production build. Preserve the original caller EAX when invoking the live compatible owner; do not rewrite New Balance/native policy speculatively.
+Within the tested families, ordinary Power and Sprint also used the same compatible Hit base:
 
-If factual Sprint does not reach this caller with current Action9, the independent blocker is not reproduced and the expanded source can proceed to build/runtime acceptance.
+```text
+Goblin       Power=1.0  Sprint=1.0
+Troll        Power=1.5  Sprint=1.5
+Sabertooth   Power=1.0  Sprint=1.0
+```
+
+Therefore configured Power timing intentionally governs Sprint on this shared route. Do not add Sprint-specific INI keys or Action9 policy mapping absent contradictory evidence.
+
+Authority:
+
+`docs/decisions/ADR-0009-sprint-inherits-power-speed-profile.md`
+
+Probe result:
+
+`docs/archive/investigations/SPEED_SPRINT_SHARED_POWER_HIT_CAUSAL_PROBE_RESULT.md`
+
+## Current gate
+
+The independent pre-build blocker is closed. No production-source correction is required for Sprint timing.
+
+**NEXT = local expanded production build/deploy/runtime acceptance.**
+
+Before deployment remove the diagnostic DLL:
+
+```text
+Script_SpeedSprintProbe.dll
+```
+
+Then build/deploy `Script_G3AnimationBehaviors.dll` from current `development`, verify built/live SHA equality, and run the bounded matrix below.
+
+## Runtime acceptance matrix
+
+Use representative tests rather than exhaustive repetition:
+
+```text
+Normal + Quick regression control
+Power configured-speed control
+Sprint control demonstrating inherited Power timing where practical
+Pierce / Hack configured controls where visually practical
+SimpleWhirl / Whirl configured controls where visually practical
+unconfigured/fail-closed fallback
+New Balance compatibility sanity
+```
 
 ## Protected boundaries
 
@@ -184,12 +182,13 @@ Do not:
 
 ```text
 hook Script_Game+0x42A0 entry
+rewrite the live compatible owner's EAX input
 copy New Balance multiplier policy
 hard-replace final compatible speed
-begin Raise behavior
+add Sprint-specific speed keys without contradictory evidence
+begin Raise behavior before Speed acceptance closes
 change collision behavior
 promote to main
-add Sprint authoring support without factual transport proof
 ```
 
 Raise remains paused until expanded Speed closes.
