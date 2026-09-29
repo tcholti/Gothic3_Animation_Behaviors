@@ -1,6 +1,6 @@
 # Speed Sprint Shared-Power Hit Causal Probe
 
-**Status:** ACTIVE  
+**Status:** SOURCE IMPLEMENTED / STATIC PASS / LOCAL BUILD+RUNTIME PENDING  
 **Task class:** Bounded diagnostics-only implementation + runtime evidence  
 **Branch:** `development`
 
@@ -8,7 +8,7 @@
 
 Resolve the single blocker found by the light independent expanded-Speed review: determine whether factual Sprint / `gEAction_SprintAttack` (Action9) reaches the shared Power Hit-speed caller at `Script_Game+0x47F6C` while the caller still passes `EAX=2` / Power.
 
-This probe exists only to decide Sprint non-interference and the safety of the expanded Power hook. It must not change gameplay behavior.
+This probe exists only to decide Sprint non-interference and the safety of the expanded Power hook. It does not change gameplay behavior.
 
 ## Frozen evidence
 
@@ -29,30 +29,36 @@ Pinned New Balance replaces `+0x42A0` and branches on the action passed in EAX; 
 
 Current expanded production source `642c88a4e6244ae7377ba835507750af7914e2f5` hooks `+0x47F6C`, receives passed `EAX=2`, and maps it to the Power profile. If factual current Action9 is still present there, configured Power can incorrectly compose Sprint unless the transport/policy distinguishes it.
 
-## Diagnostic responsibility
+## Implemented diagnostic
 
-Create a standalone diagnostic DLL only. Do not modify `src/Script_G3AnimationBehaviors` production behavior.
+Standalone tool:
 
-Hook only:
+```text
+tools/Script_SpeedSprintProbe/CMakeLists.txt
+tools/Script_SpeedSprintProbe/Script_SpeedSprintProbe.cpp
+```
+
+Root CMake registers the tool only under `G3AB_BUILD_TOOLS`.
+
+The probe owns exactly one hook:
 
 ```text
 Script_Game+0x47F6C
 ```
 
-Use the existing SDK `mCCallHook` + `mCCaller` pattern to preserve the original call semantics:
+Runtime sequence:
 
 ```text
 capture passed EAX action
 -> capture entity current PropertyAction before live call
--> call live Script_Game+0x42A0 exactly once with the original passed EAX
--> capture entity current PropertyAction after live call
--> log evidence
--> return the live compatible speed unchanged
+-> restore original passed EAX into mCCaller
+-> call live Script_Game+0x42A0 exactly once
+-> capture current PropertyAction after live call
+-> log player-only evidence
+-> return compatible speed unchanged
 ```
 
-Player-only logging is sufficient.
-
-Log at minimum:
+Logged fields:
 
 ```text
 PassedAction
@@ -60,18 +66,19 @@ CurrentActionBefore
 RequestedPhase
 CompatibleSpeed
 CurrentActionAfter
-CurrentMovementAni (observational only)
+CurrentMovementAni
 ```
 
-The probe must not:
+Static review of the probe source confirms:
 
 ```text
-compose or override speed
-change EAX before the live call except restoring the original captured value
-change current action/state
-hook +0x42A0 entry
-hook any other Speed caller
-modify collision or Raise behavior
+no production source change
+no speed composition
+no state/action mutation
+no +0x42A0 entry hook
+no second Speed caller hook
+original EAX preserved for live compatible owner
+live compatible result returned unchanged
 ```
 
 ## Runtime test
@@ -90,6 +97,12 @@ Perform:
 1. several ordinary Power attacks;
 2. several factual Sprint attacks;
 3. if practical, repeat with different equipped melee families that use Sprint.
+
+Expected log:
+
+```text
+SpeedSprintProbe.log
+```
 
 ## Decision rule
 
@@ -115,8 +128,8 @@ If factual Sprint never reaches this caller with current Action9, while ordinary
 
 If Sprint reaches the caller but current action has already changed, or evidence is inconsistent, stop and report the exact sequence. Do not infer a fix.
 
-## Build boundary
+## Current gate
 
-Source/static work may be prepared away from the game PC. Runtime acceptance requires the User's local build/game environment.
+**NEXT = local build of `Script_SpeedSprintProbe`, deploy diagnostic DLL only, then runtime Power/Sprint observation.**
 
-Do not build or claim runtime evidence until the User performs the probe locally.
+Do not build/deploy the expanded production Speed source until this probe closes.
