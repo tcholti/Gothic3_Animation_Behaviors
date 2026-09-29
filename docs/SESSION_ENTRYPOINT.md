@@ -17,83 +17,73 @@ initial Speed v2 Normal/Quick runtime proof = PASS through EV-395
 expanded Speed source = 642c88a4e6244ae7377ba835507750af7914e2f5
 expanded user-facing scope = Normal, Quick, Power, Pierce, Hack, SimpleWhirl, Whirl
 internal expanded-source static review = PASS
-independent review Sprint/Power blocker = CLOSED by runtime causal probe
+independent Sprint/Power blocker = CLOSED by runtime causal probe
 Sprint Speed authoring = inherits Power profile on proven shared Hit route
-CURRENT = expanded production local build/deploy/runtime acceptance
+expanded production Release build = PASS locally; deployment deliberately deferred
+CURRENT = reusable Speed calibration probe build/runtime gate
 Raise behavior = PAUSED until Speed closes
 main = FROZEN
 ```
 
-Primary task:
+Primary production task:
 
 `docs/work/active/SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md`
 
-Sprint authority:
+Current calibration task:
 
-`docs/decisions/ADR-0009-sprint-inherits-power-speed-profile.md`
+`docs/work/active/SPEED_NATIVE_CALIBRATION_PROBE.md`
 
-Sprint probe result:
+Canonical reusable engine lookup:
 
-`docs/archive/investigations/SPEED_SPRINT_SHARED_POWER_HIT_CAUSAL_PROBE_RESULT.md`
+`docs/SOURCE_HOOK_GUIDE.md`
 
-## Sprint closure
+## Calibration rule
 
-Runtime diagnostics at `Script_Game+0x47F6C` proved on Goblin, Troll and Sabertooth:
+`ReferenceHitBaseSpeed` is the native Gothic base `B` for the exact route. It is not a New Balance value.
 
-```text
-PassedAction=2
-CurrentActionBefore=9
-RequestedPhase=Hit
-CurrentActionAfter=9
-CurrentMovementAni=*PowerAttack*
-```
-
-The tested families also showed matching compatible bases between ordinary Power and Sprint:
+The caller-side production mechanism remains:
 
 ```text
-Goblin       1.0 / 1.0
-Troll        1.5 / 1.5
-Sabertooth   1.0 / 1.0
+compatible = B * M
+configured = compatible * (C / B) = C * M
 ```
 
-Therefore Sprint deliberately inherits configured Power timing. No Sprint-specific profile key or source correction is required.
+Native-only Troll Power/Sprint control at the shared `Script_Game+0x47F6C` route returned `1.0`; the earlier New Balance environment returned `1.5`. This validates the distinction between native calibration `B` and a compatible modified live result.
 
 ## Immediate route at local build PC
 
-Remove the diagnostic DLL first:
+Sync `development` and build:
 
 ```text
-Script_SpeedSprintProbe.dll
+Script_SpeedCalibrationProbe
 ```
 
-Then:
+The calibration probe must run **without** `Script_G3AnimationBehaviors.dll`, because both may hook the same Speed caller sites.
+
+First small acceptance run:
 
 ```text
-sync development
--> build Script_G3AnimationBehaviors Release
--> deploy the production DLL
--> verify built/live SHA equality
+Script_G3AnimationBehaviors.dll absent
+Script_NewBalance.dll absent
+Script_SpeedCalibrationProbe.dll present
 -> startup smoke
--> bounded expanded-Speed runtime matrix
+-> Hero 1H Normal/Quick control
+-> Troll Power/Sprint control if convenient
+-> exit normally
+-> inspect SpeedCalibrationProbe.log
 ```
 
-Runtime matrix:
+Expected known controls include native Hero 1H Normal near `0.6`, Quick near `1.0`, and native Troll Power/Sprint `1.0` on the tested route.
 
-```text
-Normal + Quick regression
-Power configured-speed control
-Sprint inherited-Power control where practical
-Pierce / Hack where visually practical
-SimpleWhirl / Whirl where visually practical
-unconfigured fallback
-New Balance compatibility sanity
-```
+If the probe format/aggregation is sound, continue broad native calibration across human loadouts/attack types and representative nonhuman families. A later New Balance run uses the same probe with New Balance restored; those values are compatibility observations, not `ReferenceHitBaseSpeed` facts.
 
 ## Still frozen
 
 ```text
 NO +0x42A0 entry hook
 NO rewrite of live compatible-owner EAX
+NO production Speed source redesign absent contradictory evidence
+NO New Balance result used as native ReferenceHitBaseSpeed
 NO Sprint-specific Speed keys absent contradictory evidence
 NO Raise implementation until Speed closes
 NO collision redesign absent contradictory evidence
