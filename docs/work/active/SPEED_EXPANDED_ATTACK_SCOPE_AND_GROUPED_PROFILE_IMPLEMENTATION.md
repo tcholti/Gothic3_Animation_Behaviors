@@ -1,6 +1,6 @@
 # Speed Expanded Attack Scope and Grouped Profile Implementation
 
-**Status:** SOURCE IMPLEMENTED / STATIC REVIEW PASS / SPRINT BLOCKER CLOSED / BUILD+RUNTIME PENDING  
+**Status:** SOURCE IMPLEMENTED / STATIC REVIEW PASS / LOCAL BUILD PASS / CALIBRATION SUB-GATE ACTIVE  
 **Task class:** Bounded production source extension + runtime acceptance  
 **Branch:** `development`
 
@@ -20,6 +20,26 @@ Production source under acceptance remains:
 ```text
 642c88a4e6244ae7377ba835507750af7914e2f5
 ```
+
+## Calibration semantics
+
+For this downstream caller-side mechanism:
+
+```text
+B = native Gothic Hit base for the exact route
+C = configured authored BaseSpeed
+compatible = live result from the current +0x42A0 owner
+```
+
+`ReferenceHitBaseSpeed` is therefore a native Gothic calibration fact, not a New Balance value and not a gameplay tuning value. Compatible relative changes already present in the live result are preserved by the `C/B` composition.
+
+A native-only Troll control on the shared Power/Sprint route proved `B=1.0`; the previously observed New Balance result was `1.5`. This directly demonstrates why the reference must remain native while the third-party increase stays in the live compatible result.
+
+Before expanded production deployment, the User chose to establish a broader native calibration catalogue using the reusable diagnostics-only task:
+
+`docs/work/active/SPEED_NATIVE_CALIBRATION_PROBE.md`
+
+This is a calibration/configuration sub-gate, not a production mechanism redesign.
 
 ## Grouped profile schema
 
@@ -97,7 +117,7 @@ Whirl:
   Script_Game+0x4DF1F
 ```
 
-Power Raise at `Script_Game+0x47D51` remains evidence only and is not hooked.
+Power Raise at `Script_Game+0x47D51` remains evidence/observation only and is not hooked by production Speed.
 
 ## Static review result
 
@@ -110,13 +130,13 @@ missing/invalid calibration fallback                PASS
 finite composed-output guard                        PASS
 original Normal/Quick hooks unchanged               PASS
 nine intended new Hit call sites added              PASS
-Power Raise +0x47D51 not hooked                     PASS
+Power Raise +0x47D51 not hooked by production       PASS
 common live +0x42A0 call exactly once               PASS
 no bounded collision/Raise drift                    PASS
 shipped INI grouped/commented                       PASS
 ```
 
-The independent review found one material Sprint/Power question at `+0x47F6C`. That question is now runtime-resolved rather than suppressed.
+The independent review found one material Sprint/Power question at `+0x47F6C`. That question is runtime-resolved rather than suppressed.
 
 ## Sprint causal closure
 
@@ -130,13 +150,7 @@ CurrentActionAfter=9
 PowerAttack-named motion
 ```
 
-Within the tested families, ordinary Power and Sprint also used the same compatible Hit base:
-
-```text
-Goblin       Power=1.0  Sprint=1.0
-Troll        Power=1.5  Sprint=1.5
-Sabertooth   Power=1.0  Sprint=1.0
-```
+The New Balance test environment showed matching live compatible results between ordinary Power and Sprint within each tested family. Native-only Troll later established the shared native Power/Sprint Hit base as `1.0` while New Balance returned `1.5` on that route.
 
 Therefore configured Power timing intentionally governs Sprint on this shared route. Do not add Sprint-specific INI keys or Action9 policy mapping absent contradictory evidence.
 
@@ -148,21 +162,37 @@ Probe result:
 
 `docs/archive/investigations/SPEED_SPRINT_SHARED_POWER_HIT_CAUSAL_PROBE_RESULT.md`
 
+## Build state
+
+Expanded `Script_G3AnimationBehaviors.dll` Release build completed successfully on the local build PC after the Sprint blocker closed. Deployment was deliberately deferred when the native-reference calibration requirement was clarified.
+
+No production source correction is currently indicated.
+
 ## Current gate
 
-The independent pre-build blocker is closed. No production-source correction is required for Sprint timing.
+**NEXT = build and run `Script_SpeedCalibrationProbe` for broad native calibration, then New Balance comparison where useful.**
 
-**NEXT = local expanded production build/deploy/runtime acceptance.**
-
-Before deployment remove the diagnostic DLL:
+Calibration discipline:
 
 ```text
-Script_SpeedSprintProbe.dll
+Script_G3AnimationBehaviors.dll absent while calibration probe is active
+native run: Script_NewBalance.dll absent
+NB comparison run: Script_NewBalance.dll present
+probe returns live speed unchanged in both cases
 ```
 
-Then build/deploy `Script_G3AnimationBehaviors.dll` from current `development`, verify built/live SHA equality, and run the bounded matrix below.
+After enough common native references are established:
 
-## Runtime acceptance matrix
+```text
+remove calibration probe
+restore intended compatible stack
+rebuild only if source changed
+otherwise deploy already-reviewed expanded production target
+verify built/live SHA equality
+run bounded expanded-Speed runtime acceptance
+```
+
+## Runtime acceptance matrix after calibration
 
 Use representative tests rather than exhaustive repetition:
 
@@ -185,6 +215,7 @@ hook Script_Game+0x42A0 entry
 rewrite the live compatible owner's EAX input
 copy New Balance multiplier policy
 hard-replace final compatible speed
+use New Balance results as native ReferenceHitBaseSpeed values
 add Sprint-specific speed keys without contradictory evidence
 begin Raise behavior before Speed acceptance closes
 change collision behavior
