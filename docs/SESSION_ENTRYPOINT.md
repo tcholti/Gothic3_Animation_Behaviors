@@ -3,7 +3,7 @@
 **Purpose:** minimal durable current-state pointer. Repository startup begins at root `README.md` **Start Here**.  
 **Active development branch:** `development`  
 **Stable integration branch:** `main`  
-**Updated:** 2026-09-28
+**Updated:** 2026-09-29
 
 > After abrupt/max-context recovery, return to root `README.md` and apply POP-11 before trusting this pointer.
 
@@ -13,141 +13,141 @@
 
 ```text
 collision production integration = CLOSED/PASS through EV-390
-Speed v2 caller-side mechanism/caller set = CLOSED STATIC through EV-391/EV-392
-runtime family-source = CLOSED/PASS through EV-394 (Hero + Sabretooth)
-generic profile calibration implementation = CLOSED/PASS
-production build/deploy = PASS
-configured Hero None+1H Normal/Quick behavior = PASS
-New Balance stamina/context multiplier preservation = PASS on configured Hero None+2H Normal (EV-395)
-CURRENT = final bounded Speed runtime acceptance/fallback coverage
-RAISE = PAUSED until Speed closes
+initial Speed v2 Normal/Quick runtime proof = PASS through EV-395
+expanded Speed product scope = Normal, Quick, Power, Pierce, Hack, SimpleWhirl, Whirl
+expanded grouped-profile source implementation = STATIC REVIEW PASS
+production source under next build gate = 642c88a4e6244ae7377ba835507750af7914e2f5
+CURRENT = LOCAL BUILD / DEPLOY of expanded Speed source
+Sprint / Action9 Speed = NOT IMPLEMENTED; factual transport remains unproven
+Raise behavior = PAUSED until Speed closes
 main = FROZEN
 ```
 
 Active task:
 
-`docs/work/active/SPEED_V2_FINAL_RUNTIME_ACCEPTANCE.md`
+`docs/work/active/SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md`
 
-Closed implementation result:
+## Frozen grouped profile rule
 
-`docs/archive/investigations/SPEED_GENERIC_PROFILE_CALIBRATION_IMPLEMENTATION_RESULT.md`
-
-## Frozen runtime/profile rule
+One profile section represents one animation-family/loadout identity:
 
 ```text
-requested gEAction + requested gEPhase = Gothic request authority
+AnimationFamily
++ LeftAnimationUseType
++ RightAnimationUseType
+```
+
+Attack settings live inside that loadout:
+
+```text
+Normal
+Quick
+Power
+Pierce
+Hack
+SimpleWhirl
+Whirl
+```
+
+Example shape:
+
+```ini
+[Profile.Hero_None_1H]
+AnimationFamily=Hero
+LeftAnimationUseType=None
+RightAnimationUseType=1H
+
+Normal_ReferenceHitBaseSpeed=0.60
+Normal_BaseSpeed=1.00
+Normal_RaiseOverride=On
+
+Quick_ReferenceHitBaseSpeed=1.00
+Quick_BaseSpeed=1.00
+Quick_RaiseOverride=On
+
+Power_ReferenceHitBaseSpeed=1.00
+Power_BaseSpeed=1.00
+Power_RaiseOverride=Off
+```
+
+Section suffix is label-only; runtime identity comes from the explicit fields.
+
+## Frozen composition rule
+
+```text
+requested factual gEAction + gEPhase = Gothic request authority
 Animation.GetSkeletonName(...)         = runtime AnimationFamily
-left/right UseTypes                     = normalized equipment profile facts
+left/right UseTypes                     = normalized loadout facts
 CurrentMovementAni                      = observational context only
-```
 
-Family-source evidence:
-
-```text
-Hero       -> Hero
-Sabretooth -> Sabretooth
-```
-
-## Production Speed v2 state
-
-Production built/live SHA256:
-
-```text
-6DD8C9CE46E3398DC725A5F4D9C2D3D2F073707094AFDDE30C385CC32F6AEEAD
-```
-
-Primary intended stack:
-
-```text
-Script_G3AnimationBehaviors.dll
-Script_NewBalance.dll
-Script_AttackCollision.dll
-```
-
-Generic profile-owned composition:
-
-```text
 compatible = B * M
 configured = compatible * (BaseSpeed / ReferenceHitBaseSpeed)
            = C * M
 ```
 
-`AttackSpeed` no longer contains a Hero/weapon reference-base table. Factual reference bases live in the matching INI profile.
+No New Balance multiplier policy is copied into G3AB.
 
-## Runtime evidence now passed
+## Expanded static PASS
 
-### Generic configured behavior
-
-Hero / empty-left / right-hand 1H:
+Current implementation statically passes the bounded acceptance contract:
 
 ```text
-multiple Normal variants at BaseSpeed=0.40 = PASS
-multiple Quick variants at BaseSpeed=0.40  = PASS
+grouped loadout parser                         PASS
+seven independent attack settings             PASS
+Action1/2/4/5/6/10/11/14 mapping             PASS
+Action3 generic Quick remains non-playback     PASS
+Action9/Sprint remains fail-closed             PASS
+missing/invalid calibration fallback           PASS
+finite composed-output guard                   PASS
+original six Normal/Quick caller hooks         unchanged
+nine proven new Hit caller hooks               added
+Power Raise +0x47D51                           not hooked
+live +0x42A0 compatible-owner call             preserved exactly once
+collision / Raise behavior                     no bounded drift found
+shipped INI                                    grouped/commented
 ```
 
-One profile applies across the tested pose/animation variants; no P0/P1/P2/P3 split is required.
-
-### New Balance contextual multiplier preservation
-
-Hero / empty-left / right-hand 2H Normal:
-
-```ini
-AnimationFamily=Hero
-LeftAnimationUseType=None
-RightAnimationUseType=2H
-ActionProfile=Normal
-ReferenceHitBaseSpeed=0.70
-BaseSpeed=1.00
-RaiseOverride=Off
-```
-
-The configured 2H attack used the expected faster authored base at available/full stamina and visibly slowed at zero/depleted stamina.
-
-Therefore the key ADR-0004 runtime invariant is now proven for this representative configured control:
+Production implementation lineage:
 
 ```text
-G3AB authors the base C
-+ New Balance stamina/context multiplier M remains effective
+61e805ea9eaf0cbb2e0765fe65df97252c46a554
+8c8ebe37ccd66a9e8317ded611418b6b0f1f881d
+1ed68e8ae8867c6f7f8be63050aad9a185188e48
+ad3e5e01fc581dc36dc4d0b6e33a0e46d2a19156
+642c88a4e6244ae7377ba835507750af7914e2f5
 ```
 
-Evidence:
+## Immediate route
+
+When the User is back at the local build PC:
 
 ```text
-EV-394 = Sabretooth non-Hero family-source generalization PASS
-EV-395 = generic configured Speed behavior + New Balance multiplier preservation PASS
+sync development
+-> build Script_G3AnimationBehaviors Release
+-> deploy sole production DLL as usual
+-> verify built/live SHA match
+-> startup smoke
+-> then run the small expanded-Speed runtime matrix
 ```
 
-Do **not** deploy the historical `Script_CombatMoveLogger` unchanged; it also hooks `Script_Game+0x42A0` and would contaminate the caller-side compatibility architecture.
-
-## Immediate route for next session
-
-Do not redesign anything.
-
-Start from:
-
-`docs/work/active/SPEED_V2_FINAL_RUNTIME_ACCEPTANCE.md`
-
-Run only the smallest remaining controls needed to close Speed, expected to cover:
+Runtime matrix after successful build/deploy:
 
 ```text
-representative unconfigured fallback
-representative configured Normal/Quick/use-type coverage beyond the first fixture as needed
-native-only sanity/fallback if still required by ADR-0004 acceptance
-additional contextual modifier only if a real ambiguity remains
+Normal + Quick regression control
+Power configured-speed control
+Pierce / Hack configured controls where visually practical
+SimpleWhirl / Whirl configured controls where visually practical
+unconfigured/fail-closed fallback
+New Balance compatibility sanity
 ```
 
-If those pass:
-
-```text
-close Speed v2
--> update current authorities/evidence
--> only then activate Raise under ADR-0006
-```
+Sprint remains outside this runtime acceptance until a separate factual Speed transport route is proven.
 
 ## Still paused
 
 ```text
-NO Raise implementation while Speed is open
+NO Raise implementation while expanded Speed is open
+NO speculative Sprint hook
 NO targeting/climbing
 NO promotion to main before agreed integrated checkpoint
 NO collision redesign absent contradictory evidence
