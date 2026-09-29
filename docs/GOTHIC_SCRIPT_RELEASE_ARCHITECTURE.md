@@ -1,7 +1,7 @@
 # Gothic 3 Script Release Architecture
 
 **Status:** Canonical project-wide release/build rule  
-**Updated:** 2026-09-20  
+**Updated:** 2026-09-29  
 **Scope:** All present and future Gothic 3 script/DLL systems in this project
 
 ## 1. Governing Rule
@@ -120,6 +120,20 @@ Script_G3AnimationBehaviors_DIAGNOSTIC
 but they should be treated as mutually exclusive runtime products unless a future architecture explicitly proves safe coexistence.
 
 This preserves the one-hook-owner rule and avoids accidental same-function hook competition.
+
+### 3.1 Gothic script-folder loader rule
+
+A DLL is **not** safely disabled merely by renaming it while leaving it inside Gothic 3's `scripts` folder. Runtime testing established that Gothic may still load renamed DLL files from that folder.
+
+For any bounded runtime fixture that requires a script DLL to be absent:
+
+```text
+do not rename it in place
+move or remove it completely from the scripts folder before Gothic starts
+verify only the intended runtime DLL set remains in scripts
+```
+
+This applies to release/diagnostic twin separation and to compatibility fixtures such as native-only versus New Balance testing. File-name/module checks inside a diagnostic tool are supporting evidence only; they do not replace physical removal from `scripts` when absence is required.
 
 ---
 
