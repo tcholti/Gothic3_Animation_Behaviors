@@ -362,6 +362,57 @@ research/raw/Keep.txt
 
 ---
 
+
+## 2026-09-30 — Speed Sprint provenance reconciliation and native calibration closure
+
+Normal Chat positively reconciled the three previously retained Sprint speed-probe artifacts and closed the processed September 30 human/Finishing calibration intake under POP-06.
+
+The following artifacts were moved byte-identically by reusing their existing Git blob identities:
+
+```text
+research/raw/2026.09.29_sprint_probe_goblin.log
+ -> research/archive/2026.09.29_sprint_probe_goblin.log
+ blob 8e0472f1ca86202964eb05f54d6f9c2aa11d0db6
+
+research/raw/2026.09.29_sprint_probe_troll.log
+ -> research/archive/2026.09.29_sprint_probe_troll.log
+ blob e65a0b4d1e4c81f01f33c181193db2d3391b2c5a
+
+research/raw/2026.09.29_sprint_probe_troll_sabertooth_zombie.log
+ -> research/archive/2026.09.29_sprint_probe_troll_sabertooth_zombie.log
+ blob 18b31ccb65e5af283df28c6ef5be1cec515d009e
+
+research/raw/2026.09.30_speed_calibration_human_weapon_types.log
+ -> research/archive/2026.09.30_speed_calibration_human_weapon_types.log
+ blob d69f4012bc1697c315bd0fe81c58843fd007c006
+
+research/raw/2026.09.30_speed_calibration_human_weapon_types_finishing attacks.log
+ -> research/archive/2026.09.30_speed_calibration_human_weapon_types_finishing attacks.log
+ blob faadc0fa72fcb6921a895accdbf836f42b22d8ed
+
+research/raw/2026.09.30_speed_calibration_human_weapon_types_finishing attacks2.log
+ -> research/archive/2026.09.30_speed_calibration_human_weapon_types_finishing attacks2.log
+ blob 8f8b76f5f98694d2ce833d0db3cddea2fffaafd8
+```
+
+Disposition/provenance:
+
+- `sprint_probe_goblin.log` and `sprint_probe_troll_sabertooth_zombie.log` are explicitly named by the closed `SPEED_SPRINT_SHARED_POWER_HIT_CAUSAL_PROBE_RESULT.md` and ADR-0009.
+- `sprint_probe_troll.log` is an earlier same-probe standalone Troll control showing ordinary Power and factual Sprint reaching the shared Power caller at the same `1.0` compatible speed. It adds no unresolved mechanism beyond the closed Sprint result and EV-396 and is archived as superseded/duplicate provenance rather than left in intake indefinitely.
+- `speed_calibration_human_weapon_types.log` and the pre-extension finishing-attempt log are promoted through EV-397.
+- `speed_calibration_human_weapon_types_finishing attacks2.log` is promoted through EV-398.
+- All moves preserve exact existing blob identity; no runtime log content was rewritten.
+
+After this transaction, intended intake is:
+
+```text
+research/raw/Keep.txt
+research/raw/2026.09.29_speed calibration_1h_troll.log
+```
+
+The remaining EV-396 log is an explicit active comparison baseline and is not stale intake.
+
+
 ## Rule for Future Moves
 
 Record a migration boundary here when all are true:

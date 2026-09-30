@@ -298,3 +298,75 @@ Disposition:
 - **PASS — FIRST NATIVE REFERENCE CONTROL CLOSED.**
 - The raw control log remains intentionally available during the active calibration campaign as a baseline/comparison fixture; archive it when the campaign no longer needs active comparison.
 - Next calibration gate: broad native human/loadout/NPC/nonhuman sampling, followed by useful New Balance comparison; expanded production Speed deployment remains deferred until calibration settles common reference values.
+
+### EV-397 — Broad native Hero/loadout Speed calibration PASS; normalized loadout equivalence and family-specific bases observed
+
+Observed:
+- The User ran the reusable diagnostics-only Speed calibration probe in the clean native fixture with production G3AB and New Balance excluded. For this broader human calibration, the custom animation-routing DLLs `Script_Animation.dll`, `Script_RapierAnimation.dll`, and `Script_ZombieAnimation.dll` were also physically removed so the sampled routes used native Gothic animation routing.
+- User-pushed source commit `60a411abb1cb351ca996df4a63816032a7fb07e0` contains:
+  - `research/archive/2026.09.30_speed_calibration_human_weapon_types.log`;
+  - `research/archive/2026.09.30_speed_calibration_human_weapon_types_finishing attacks.log`.
+- The broad human/loadout run intercepted 219 calls, reduced them to 53 unique observations, and dropped zero rows.
+- Native Hero observations established:
+  - None+1H, Torch+1H, Shield+1H: Normal Hit `0.6`, Quick R/L `1.0`, Power Hit `1.0`, Pierce Hit `1.0`;
+  - 1H+1H: Normal Hit `0.6`, Quick R/L `1.0`, Power Hit `0.9`, SimpleWhirl Hit `1.3`, Pierce Hit `1.0`;
+  - None+Staff and raw Halberd/51 normalized to Staff: Normal Hit `0.7`, Quick R/L `1.0`, Power Hit `1.0`, Hack Hit `1.0`, Whirl Hit `1.0`;
+  - None+2H and raw Axe/52 normalized to 2H: Normal Hit `0.7`, Quick R/L `1.0`, Power Hit `1.0`, Hack Hit `1.0`, Whirl Hit `1.0`;
+  - all sampled Hero Power Raise observations returned `1.5`.
+- Within the sampled native routes, raw Axe behaved equivalently to normalized 2H and raw Halberd behaved equivalently to normalized Staff. This directly supports the existing runtime normalization rather than relying only on naming assumptions.
+- The first deliberate finishing-attack run used the pre-extension probe and therefore produced no factual Action15 rows. It is preserved as provenance, not as Finishing calibration evidence.
+- That same run provided useful representative Orc/Staff-family observations: Normal Hit `0.7`, Quick R/L `1.0`, Power Raise `1.0`, Power Hit `0.7`, Whirl Hit `1.0`, Hack Hit `1.0`.
+- The Orc versus Hero Staff/Halberd contrast is material: Hero Power Hit was `1.0` and Power Raise `1.5`, while Orc Power Hit was `0.7` and Power Raise `1.0`.
+
+Interpretation:
+- The grouped profile identity must retain `AnimationFamily`; normalized loadout identity alone is not enough to select a native reference base.
+- The current Axe -> 2H and Halberd -> Staff normalization is supported by direct sampled native Speed behavior.
+- Native reference bases are route-specific. In particular, dual-1H Power `B=0.9` and SimpleWhirl `B=1.3` must not be flattened to a generic `1.0`.
+- Power Raise observations remain research evidence only and do not authorize Raise implementation.
+
+Scope / limits:
+- These facts apply to the exact exercised families/loadouts/actions under the clean native fixture; they are not a complete catalogue for all NPC/nonhuman families.
+- The first finishing-attempt log cannot establish Finishing speed because the probe did not yet observe Action15.
+
+Disposition:
+- **PASS — BROAD NATIVE HERO/LOADOUT CALIBRATION CHECKPOINT.**
+- **PASS — AXE/2H AND HALBERD/STAFF NORMALIZATION SUPPORTED ON SAMPLED SPEED ROUTES.**
+- **PASS — ANIMATION FAMILY REMAINS A REQUIRED PROFILE IDENTITY COMPONENT.**
+- Both processed September 30 logs are archived byte-identically after promotion; they are no longer active raw intake.
+- Next calibration work remains representative NPC/nonhuman coverage after the bounded Finishing/Hack shared-asset question is resolved.
+
+### EV-398 — Finishing Action15 Speed observation PASS; distinct factual route from Hack
+
+Observed:
+- Static `Script_Game` analysis established three Finishing Hit speed consumers at:
+  - `Script_Game+0x41551`;
+  - `Script_Game+0x41680`;
+  - `Script_Game+0x417F0`.
+- Each site hard-passes `EAX=0x0F` / `gEAction_FinishingAttack` to the live `Script_Game+0x42A0 GetAnimationSpeedModifier` owner. These sites are distinct from the three Hack/Action14 callers.
+- The diagnostics-only calibration probe was extended in commit `bcb0f056bbb153b4d42f3f84345aefc8a1f96c72` with exactly those three Action15 observation sites and readable `FinishingAttack` diagnostics; production G3AB source remained untouched.
+- The focused native run was pushed in commit `8e4ba688cbe873d1e3436d07c047b892cf9bca2d` and is archived as `research/archive/2026.09.30_speed_calibration_human_weapon_types_finishing attacks2.log`.
+- The extended probe startup banner reported 18 proven Hit callers including three Finishing/Action15 sites.
+- The focused run intercepted 139 calls, reduced them to 17 unique observations, and dropped zero rows.
+- Clean native Hero results:
+  - None+2H Hack/Action14 Hit = `1.000000`;
+  - None+2H Finishing/Action15 Hit = `1.000000`;
+  - raw Halberd/51 normalized Staff Hack/Action14 Hit = `1.000000`;
+  - raw Halberd/51 normalized Staff Finishing/Action15 Hit = `1.000000`.
+- The observed Finishing rows retained `PassedAction=FinishingAttack(15)`, factual current Action15 before/after, `Phase=Hit(1)`, `NewBalance=false`, and `G3AB=false`.
+- Native Gothic may use the same underlying 2H/Staff animation asset for Hack and Finishing, but the speed-consumer action transport remains factually distinct.
+
+Interpretation:
+- Shared animation-file identity does not collapse Hack/Action14 and Finishing/Action15 into one factual Speed action route.
+- This observation does **not** yet prove that a configured G3AB Hack speed cannot indirectly affect a Finishing execution when both actions resolve to the same shared `.xmot`; that is the next explicit runtime question.
+- Finishing remains intentionally outside the current production Speed profile set and outside the distributed INI. Native/default execution timing remains untouched. A later optional advanced Finishing configuration capability may be considered only after the shared/separated animation experiments; it is not implied by this evidence.
+
+Scope / limits:
+- The deduplicated probe does not identify which of the three static Action15 caller addresses produced a particular row. Runtime Action15 observation therefore validates the factual route but does not claim that all three sites were individually exercised.
+- The exact built/live SHA256 of the extended calibration binary was not durably recorded in the repository/conversation. The distinctive 18-caller startup banner and factual Action15 observations establish that the extended probe loaded, but POP-03 exact built/live identity cannot be reconstructed for this run. Before the probe is reused for later calibration, built/live identity must be re-established and recorded.
+
+Disposition:
+- **PASS — FOCUSED FINISHING/ACTION15 OBSERVATION CLOSED.**
+- **PASS — HACK AND FINISHING ARE DISTINCT FACTUAL SPEED ACTION ROUTES DESPITE SHARED NATIVE ASSET USE.**
+- The focused raw log is archived byte-identically after promotion.
+- **NEXT CAUSAL QUESTION:** production G3AB active, calibration probe absent, native shared Hack/Finishing assets retained, configure Hero 2H/Staff Hack deliberately slow (target `BaseSpeed=0.4` with correct native `B=1.0`) and verify whether factual Finishing remains visually/native-timed; then repeat with separated Hack assets.
+

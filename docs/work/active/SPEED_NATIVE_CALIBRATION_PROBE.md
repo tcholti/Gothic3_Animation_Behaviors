@@ -222,13 +222,46 @@ known base values = PASS
 NEXT = broad native calibration sampling
 ```
 
-## Immediate focused gate — Finishing / Action15 observation
+## Focused Finishing / Action15 gate — PASS EV-398
 
-After Normal Chat source review, locally build the extended standalone probe and use POP-03/POP-04 for exact product exclusion, built/live identity and product-appropriate startup verification. Normal Chat freezes the clean native fixture and raw filename before the run; excluded DLLs remain physically outside `scripts`.
+Static evidence and the three-site probe extension established distinct Action15 speed-consumer transport. The focused clean-native runtime run then observed factual Finishing Hit on both Hero 2H and Hero raw-Halberd/normalized-Staff:
 
-Exercise naturally available factual Finishing attacks on 2H and Staff. Require compact `PassedAction=FinishingAttack(15)` / `Phase=Hit(1)` observations, retaining factual actor actions and movement names as diagnostics rather than inferring identity from the shared asset. Where Hack is also exercised, its rows must remain separately labeled `Hack(14)`. Preserve the live return value, bounded aggregation and normal-unload summary. Unexercised routes remain unvalidated; do not invent values or claim all three callers were exercised from deduplicated rows alone.
+```text
+Hero None+2H:
+  Hack/Action14 Hit = 1.000000
+  Finishing/Action15 Hit = 1.000000
 
-The immediate gate is observation only. Do not begin the later Hack=0.4 shared-animation experiment or add Finishing configuration/production behavior. Resume broad native sampling only after Normal Chat reviews the focused result.
+Hero None+Halberd -> Staff:
+  Hack/Action14 Hit = 1.000000
+  Finishing/Action15 Hit = 1.000000
+```
+
+The run recorded 139 intercepted calls, 17 unique observations and zero drops, with `G3AB=false` and `NewBalance=false`. Deduplication does not expose which of the three static Action15 caller sites produced each row, so do not claim all three sites were individually exercised.
+
+The extended probe's exact built/live SHA256 was not durably captured. Its distinctive 18-Hit-caller startup banner and factual Action15 rows establish that the extension loaded, but before the calibration probe is reused later, repeat POP-03 built/live identity verification and record the hash.
+
+The pre-extension broad native human/loadout checkpoint is EV-397. It established direct sampled Axe->2H and Halberd->Staff equivalence and showed family-specific base differences, including Hero Staff Power Hit `1.0` versus Orc Staff Power Hit `0.7`.
+
+### Next bounded research gate — Hack/Finishing shared-asset isolation
+
+Before resuming the remaining broad native calibration matrix:
+
+```text
+remove Script_SpeedCalibrationProbe.dll
+restore production Script_G3AnimationBehaviors.dll
+keep native shared 2H/Staff Hack+Finishing animation assets
+configure Hero 2H and/or Staff Hack:
+  Hack_ReferenceHitBaseSpeed=1.00
+  Hack_BaseSpeed=0.40
+exercise ordinary Hack
+then execute an enemy with factual Finishing
+```
+
+Question: does changing factual Hack/Action14 playback through production G3AB alter factual Finishing/Action15 merely because both actions resolve to the same native animation asset?
+
+Expected mechanism evidence suggests they should remain independent, but runtime behavior owns the answer. After the shared-asset control, repeat with separated Hack assets. Finishing remains absent from shipped/default INI configuration throughout.
+
+This bounded production test must not coexist with the calibration probe because both own overlapping Speed caller sites. After the shared/separated Hack/Finishing question closes, remove production G3AB again and re-establish the clean probe fixture before continuing native NPC/nonhuman calibration.
 
 ## Broad native calibration gate
 

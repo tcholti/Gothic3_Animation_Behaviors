@@ -98,6 +98,11 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | reusable Speed calibration probe / first native control | EV-396 |
 | native Hero None+1H Normal/Quick/Power calibration | EV-396 |
 | native Troll PhysicalFist Normal/Quick/Power/Sprint calibration | EV-396 |
+| broad native Hero/loadout Speed calibration / route-specific bases | EV-397 |
+| sampled Axe -> 2H and Halberd -> Staff Speed normalization equivalence | EV-397 |
+| Hero vs Orc Staff-family native Power-base difference / family identity necessity | EV-397 |
+| Finishing Action15 distinct native Speed route / Hero 2H+Staff native value | EV-398 |
+| Hack vs Finishing shared-asset factual action separation | EV-398 |
 | Sprint shared Power Raise observation for later Raise research | EV-396 |
 | Speed v2 deep independent static audit | `archive/investigations/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT_RESULT.md` |
 | Speed v2 S-01 finite-output correction | `archive/investigations/SPEED_V2_S01_FINITE_OUTPUT_GUARD.md` |
@@ -165,12 +170,15 @@ Speed v2 / expanded Speed:
   expanded user-facing attack scope = Normal, Quick, Power, Pierce, Hack, SimpleWhirl, Whirl
   Sprint speed authoring = inherits Power profile on proven shared route (ADR-0009)
   expanded production source = static-review PASS / local Release build PASS / deployment deferred
-  reusable Speed calibration probe = build + first native control PASS EV-396
+  reusable Speed calibration probe = native control PASS EV-396
+  broad Hero/loadout calibration = PASS EV-397
+  Finishing/Action15 native observation = PASS EV-398
+  Finishing = not a shipped/default Speed profile; shared-asset isolation test pending
 
 Durable post-audit Speed continuation (after Normal Chat review closure):
-  broad native Speed calibration sampling
-  -> common human/loadout reference values
-  -> representative NPC/nonhuman values
+  Hack/Finishing shared-asset isolation with production G3AB
+  -> separated Hack-asset control
+  -> representative NPC/nonhuman native values
   -> useful New Balance comparison as compatibility evidence
   -> expanded production Speed deployment/runtime acceptance
   -> close Speed completely
@@ -203,16 +211,13 @@ research/archive/  processed canonical runtime provenance
 
 Processed collision and earlier Speed identity evidence has been archived byte-identically under `research/archive/`; large deterministic retrieval aids remain under `research/derived/` when still useful.
 
-Explicit raw preservation state (no move/archive/delete/rewrite is authorized by this maintenance pass):
+Explicit raw preservation state:
 
 | Artifact under `research/raw/` | Disposition |
 |---|---|
-| `2026.09.29_speed calibration_1h_troll.log` | **ACTIVE COMPARISON / KEEP RAW**, EV-396, while calibration campaign remains active |
-| `2026.09.29_sprint_probe_goblin.log` | Closed-probe provenance; **KEEP RAW** pending explicit provenance/disposition reconciliation |
-| `2026.09.29_sprint_probe_troll.log` | Closed-probe provenance; **KEEP RAW** pending explicit provenance/disposition reconciliation |
-| `2026.09.29_sprint_probe_troll_sabertooth_zombie.log` | Closed-probe provenance; **KEEP RAW** pending explicit provenance/disposition reconciliation |
+| `2026.09.29_speed calibration_1h_troll.log` | **ACTIVE COMPARISON / KEEP RAW**, EV-396, while the calibration campaign remains active |
 
-The three Sprint logs remain byte-identical and in place until Normal Chat positively maps every artifact and authorizes archival. The archived Sprint result and ADR-0009 preserve the settled mechanism conclusion, but standalone `sprint_probe_troll.log` has insufficient exact current routing to justify automatic archival. A closed probe is not permission to move/delete these artifacts.
+The EV-396 native calibration control remains the only active runtime comparison artifact in intake. The three closed Sprint-probe logs were positively reconciled and moved byte-identically to `research/archive/`; their historical raw routes are mapped in `EVIDENCE_PATH_MIGRATIONS.md`. The three processed September 30 human/Finishing calibration logs are also archived after EV-397–EV-398 promotion.
 
 The EV-396 native calibration control log remains intentionally in `research/raw/2026.09.29_speed calibration_1h_troll.log` during the active broad-calibration campaign because it is the baseline comparison fixture for the same reusable probe. Once the campaign no longer needs active comparison, close/archive it under the runtime-evidence lifecycle rather than deleting it.
 

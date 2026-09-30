@@ -134,6 +134,9 @@ Whirl
 
 Power Raise at `Script_Game+0x47D51` is currently observation/research evidence only and is not a production Speed hook.
 
+Finishing / `gEAction_FinishingAttack` / Action15 is also intentionally outside the current production Speed profile set. EV-398 establishes three distinct native Finishing Hit speed consumers and direct native Action15 observations on Hero 2H and Staff while Hack/Action14 remains separately transported, even though native Gothic may resolve both actions to the same animation asset. Shared `.xmot` identity therefore does not define Speed action identity. The distributed INI contains no Finishing speed entries and default execution timing remains native; any later advanced optional Finishing configuration is a separate decision after shared/separated-asset runtime research.
+
+
 Runtime identity is generic:
 
 ```text

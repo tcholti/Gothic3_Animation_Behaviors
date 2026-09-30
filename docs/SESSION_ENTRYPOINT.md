@@ -18,8 +18,8 @@ expanded Speed source = IMPLEMENTED / STATIC REVIEW PASS / LOCAL RELEASE BUILD P
 Sprint Speed authoring = inherits Power profile on proven shared route (ADR-0009)
 repository health/authority audit = CLOSED / NORMAL CHAT REVIEW PASS
 reviewed maintenance = commit 4090298a409172dcee2bc5e6dc1d267b1e22f75e / knowledge-state CI PASS
-Speed calibration probe = BUILD + FIRST NATIVE CONTROL PASS EV-396
-CURRENT = broad native Speed calibration
+Speed calibration probe = native control PASS EV-396; broad Hero/loadout calibration PASS EV-397; Finishing Action15 gate PASS EV-398
+CURRENT = bounded Hack/Finishing shared-asset Speed isolation -> separated-asset control -> resume broad native calibration
 Raise behavior = PAUSED until Speed closes
 main = FROZEN
 ```
@@ -35,25 +35,32 @@ Canonical reusable engine lookup:
 
 `docs/SOURCE_HOOK_GUIDE.md`
 
-The completed preservation-biased repository audit and Work result are archived under `docs/archive/investigations/`. Its accepted RH-01–RH-13 maintenance is represented in the durable owners; RH-14–RH-17 were KEEP/no-action. The three closed Sprint-probe logs remain explicit KEEP RAW pending positive provenance/disposition reconciliation; do not move them by inference.
+The completed preservation-biased repository audit and Work result are archived under `docs/archive/investigations/`. Its accepted RH-01–RH-13 maintenance is represented in the durable owners; RH-14–RH-17 were KEEP/no-action. The three previously retained Sprint-probe logs were positively reconciled during EV-397/EV-398 maintenance and archived byte-identically; path migration is recorded in `EVIDENCE_PATH_MIGRATIONS.md`.
 
-## Immediate continuation — broad native Speed calibration
+## Immediate continuation — Hack/Finishing shared-asset isolation
 
 Use `docs/work/active/SPEED_NATIVE_CALIBRATION_PROBE.md` as the active calibration contract.
 
 ```text
-human release loadouts / naturally available supported attacks
+production G3AB ON / calibration probe OFF
+-> native shared 2H/Staff Hack+Finishing assets
+-> configure Hack B=1.0, C=0.4
+-> ordinary Hack then factual Finishing
+-> repeat with separated Hack assets
+-> production G3AB OFF / calibration probe rebuilt+identity-verified
 -> representative NPC users
 -> representative nonhuman families
 -> useful New Balance comparison as compatibility evidence
--> expanded production Speed deployment/runtime acceptance
+-> expanded production Speed runtime acceptance
 -> close Speed completely
 -> Raise afterward
 ```
 
-Validated calibration probe SHA256:
+Historical original-probe SHA256:
 
 `4140867626119632929D2286A173E97B3A4ACE6EDBCA4E2DBFE30AC28FE28E82`
+
+That hash identifies the earlier 15-Hit-caller probe only. The extended 18-Hit-caller source passed focused runtime observation in EV-398, but its exact built/live hash was not durably captured; re-establish POP-03 identity before reusing the probe.
 
 EV-396 native controls establish, within their exact tested fixtures:
 

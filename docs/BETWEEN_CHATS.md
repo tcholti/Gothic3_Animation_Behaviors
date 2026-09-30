@@ -17,8 +17,8 @@ configured Speed + New Balance multiplier preservation = PASS EV-395
 expanded Speed production source = implemented / static-review PASS / local Release build PASS
 Sprint Speed = inherits Power profile on proven shared route (ADR-0009)
 repository health/authority audit = CLOSED / reviewed maintenance PASS at 4090298a409172dcee2bc5e6dc1d267b1e22f75e
-Speed calibration probe = build + first clean native control PASS EV-396
-CURRENT = broad native Speed calibration
+Speed calibration = native control PASS EV-396; broad Hero/loadout checkpoint PASS EV-397; Finishing Action15 observation PASS EV-398
+CURRENT = Hack/Finishing shared-asset isolation, then separated-asset control, then resume broad native calibration
 Raise = paused until Speed closes
 ```
 
@@ -28,14 +28,21 @@ Read:
 
 `docs/work/active/SPEED_NATIVE_CALIBRATION_PROBE.md`
 
-Validated probe SHA256:
+Historical original 15-Hit-caller probe SHA256:
 
 `4140867626119632929D2286A173E97B3A4ACE6EDBCA4E2DBFE30AC28FE28E82`
 
-Broad native sampling order:
+The current 18-Hit-caller source passed focused Action15 runtime observation but its exact built/live hash was not durably captured. Re-establish POP-03 identity before the probe is reused.
+
+Immediate sequence:
 
 ```text
-human release loadouts + naturally available supported attacks
+production G3AB ON / calibration probe OFF
+-> shared native 2H/Staff Hack+Finishing assets
+-> Hack Reference B=1.0 / Base C=0.4
+-> ordinary Hack + factual Finishing
+-> separated Hack-asset control
+-> production G3AB OFF / probe identity re-established
 -> representative NPC users
 -> representative nonhuman families
 -> useful New Balance comparison
@@ -48,6 +55,6 @@ human release loadouts + naturally available supported attacks
 
 Runtime fixture rule: excluded Gothic script DLLs must be physically moved/removed outside `scripts`; renaming in place does not reliably disable them. POP-03 owns project-product exclusion; each frozen fixture decides whether New Balance/AttackCollision/other third-party DLLs are present.
 
-The completed repository audit task/result are archived under `docs/archive/investigations/`. Three closed Sprint-probe logs remain explicit KEEP RAW pending positive provenance/disposition reconciliation; do not archive them by inference.
+The completed repository audit task/result are archived under `docs/archive/investigations/`. The three formerly retained Sprint-probe logs are now positively reconciled and archived byte-identically; see `docs/EVIDENCE_PATH_MIGRATIONS.md`.
 
 Do not begin Raise, attack displacement, climbing, collision redesign, or `main` promotion before the current gates close.
