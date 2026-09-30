@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Index
 
 **Status:** Compact evidence-routing index  
-**Updated:** 2026-09-28
+**Updated:** 2026-09-30
 
 ## Purpose
 
@@ -46,7 +46,7 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | repeated contact / OFF / ClearTriggeredList | EV-106–EV-116, EV-330–EV-331, EV-389–EV-390 |
 | occurrence/dedupe / C1 generation | EV-131–EV-167, EV-213–EV-215 |
 | lifecycle / C1-R1 exact-source repair | EV-180–EV-215, EV-367, EV-373–EV-374, EV-384 |
-| Power / Pierce / SimpleWhirl / Hack | EV-217–EV-220, EV-241–EV-244, EV-318, EV-389 |
+| Power / Pierce / SimpleWhirl / Hack collision | EV-217–EV-220, EV-241–EV-244, EV-318, EV-389 |
 | raw55 discovery and permanent four-family route | EV-262–EV-298, EV-341, EV-366 |
 | equipped Sprint permanent behavior | EV-311, EV-315, EV-320–EV-329, EV-368, EV-377 |
 | standalone collision regression | EV-299–EV-374 |
@@ -86,7 +86,7 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | production human/raw8/raw55 double-contact controls | EV-390 |
 | Speed v2 caller-side composition / GetAnimationSpeedModifier consumers | EV-391 |
 | Speed v2 Normal/Quick Hit consumer call-site evidence | EV-391 |
-| Speed v2 New Balance-preserving B*M -> C*M mechanism candidate | EV-391 |
+| Speed v2 New Balance-preserving B*M -> C*M mechanism candidate | EV-391, EV-395–EV-396 |
 | Speed v2 generic Quick/Action3 provenance | EV-392 |
 | Speed v2 exact six-site caller set / +0x38A8B exclusion | EV-392 |
 | Speed runtime family source / request-boundary semantics | EV-393–EV-394 |
@@ -94,6 +94,10 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | Sabretooth non-Hero family-source generalization | EV-394 |
 | generic configured Speed behavior / profile-match closure | EV-395 |
 | New Balance stamina/context multiplier preservation under configured Speed | EV-395 |
+| reusable Speed calibration probe / first native control | EV-396 |
+| native Hero None+1H Normal/Quick/Power calibration | EV-396 |
+| native Troll PhysicalFist Normal/Quick/Power/Sprint calibration | EV-396 |
+| Sprint shared Power Raise observation for later Raise research | EV-396 |
 | Speed v2 deep independent static audit | `archive/investigations/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT_RESULT.md` |
 | Speed v2 S-01 finite-output correction | `archive/investigations/SPEED_V2_S01_FINITE_OUTPUT_GUARD.md` |
 | generic Speed profile calibration implementation closure | `archive/investigations/SPEED_GENERIC_PROFILE_CALIBRATION_IMPLEMENTATION_RESULT.md` |
@@ -150,23 +154,22 @@ EV-390         final Script_G3AnimationBehaviors.dll production collision integr
 Collision project phase:
   CLOSED / stable production foundation through EV-390
 
-Speed v2:
-  shared generic Speed+Raise INI/profile schema = ACCEPTED
-  caller-side composition mechanism = EV-391
-  generic Quick provenance + exact six-site caller set = CLOSED EV-392
-  deep independent static audit = PASS WITH NON-BLOCKING FINDINGS
-  S-01 finite-output correction = CLOSED / SOURCE-REVIEW PASS
+Speed v2 / expanded Speed:
+  generic family+left+right profile schema = IMPLEMENTED
+  caller-side compatible composition architecture = ACCEPTED
   runtime AnimationFamily source = CLOSED EV-393–EV-394
-  generic profile calibration implementation = CLOSED/PASS
-  production build/deploy SHA = 6DD8C9CE46E3398DC725A5F4D9C2D3D2F073707094AFDDE30C385CC32F6AEEAD
-  configured Hero None+1H Normal/Quick behavior = PASS EV-395
-  configured Hero None+2H New Balance stamina/context multiplier preservation = PASS EV-395
+  generic configured Normal/Quick behavior + New Balance multiplier preservation = PASS EV-395
+  expanded user-facing attack scope = Normal, Quick, Power, Pierce, Hack, SimpleWhirl, Whirl
+  Sprint speed authoring = inherits Power profile on proven shared route (ADR-0009)
+  expanded production source = static-review PASS / local Release build PASS / deployment deferred
+  reusable Speed calibration probe = build + first native control PASS EV-396
 
 Current project gate:
-  bounded final Speed runtime acceptance/fallback coverage
-  -> representative unconfigured fallback
-  -> remaining representative configured coverage only as needed
-  -> native-only sanity/fallback if required
+  broad native Speed calibration sampling
+  -> common human/loadout reference values
+  -> representative NPC/nonhuman values
+  -> useful New Balance comparison as compatibility evidence
+  -> expanded production Speed deployment/runtime acceptance
   -> close Speed completely
   -> Raise only afterward
 ```
@@ -193,9 +196,11 @@ research/derived/  deterministic retrieval aids
 research/archive/  processed canonical runtime provenance
 ```
 
-The EV-382 test3 logs, EV-384 New Balance stress log, EV-385 four-log standalone batch, EV-386 corrected four-log marked standalone batch, EV-387 unmarked fallback artifact, and EV-388 five-log final-candidate New Balance batch are processed and archived byte-identically under `research/archive/`. The EV-384 derived package remains under `research/derived/2026.09.27_newbalance_stresstest_large_log/` for bounded retrieval. `research/raw/` should contain only `Keep.txt` after processed runtime evidence is archived.
+Processed collision and earlier Speed identity evidence has been archived byte-identically under `research/archive/`; large deterministic retrieval aids remain under `research/derived/` when still useful.
 
-EV-389 and EV-390 are diagnostics-free observational evidence and therefore have no diagnostic runtime artifact by design. EV-391 and EV-392 are static source/binary-reference evidence and have no runtime artifacts. EV-393 and EV-394 use archived identity-probe logs. EV-395 is diagnostics-free observational runtime evidence by design: no extra same-function logger was introduced because doing so would contaminate the `+0x42A0` compatibility architecture.
+The EV-396 native calibration control log remains intentionally in `research/raw/2026.09.29_speed calibration_1h_troll.log` during the active broad-calibration campaign because it is the baseline comparison fixture for the same reusable probe. Once the campaign no longer needs active comparison, close/archive it under the runtime-evidence lifecycle rather than deleting it.
+
+EV-389 and EV-390 are diagnostics-free observational evidence and therefore have no diagnostic runtime artifact by design. EV-391 and EV-392 are static source/binary-reference evidence and have no runtime artifacts. EV-393 and EV-394 use archived identity-probe logs. EV-395 is diagnostics-free observational runtime evidence by design: no extra same-function logger was introduced because doing so would contaminate the `+0x42A0` compatibility architecture. EV-396 uses the reusable calibration probe and committed raw native-control log.
 
 Historical ledger rows may retain paths that were correct when written. Use `EVIDENCE_PATH_MIGRATIONS.md` when a later archive move makes an old path ambiguous.
 
