@@ -1,12 +1,12 @@
 # Gothic 3 Animation Behaviors — Design
 
 **Status:** Canonical project architecture  
-**Updated:** 2026-09-27
+**Updated:** 2026-09-30
 **Project:** `Gothic3_Animation_Behaviors`
 
 ## Purpose
 
-`Script_G3AnimationBehaviors` is the general animation-behavior layer for Gothic 3. Active behavior domains are Raise-phase control, attack playback-speed control, and authored-frame collision control. Future independent domains may include target acquisition and climbing.
+`Script_G3AnimationBehaviors` is the general animation-behavior layer for Gothic 3. Production collision is integrated and closed; attack playback-speed control is the active implementation/validation domain; Raise-phase control remains deliberately paused until Speed closes. Future independent domains may include target acquisition, attack displacement control, and climbing.
 
 This file owns overall intended architecture and implementation order. Established collision facts are projected in `COLLISION_REFERENCE.md`; collision lifecycle authority is `COLLISION_LIFECYCLE.md`; validation authority is `COLLISION_TEST_PLAN.md`; diagnostics are owned by `COLLISION_DIAGNOSTICS.md`; permanent raw8 behavior is owned by `COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`; permanent raw55 behavior is owned by `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`; practical source/hook lookup is `SOURCE_HOOK_GUIDE.md`; exact proof routes through `EVIDENCE_INDEX.md`.
 
@@ -34,33 +34,47 @@ This file owns overall intended architecture and implementation order. Establish
 
 ## 2. Configuration Identity
 
-Raise/speed profile identity is:
+The shared Raise/speed profile identity is:
 
 ```text
 AnimationFamily
 + LeftAnimationUseType
 + RightAnimationUseType
-+ ActionProfile
 ```
 
 Normalize raw `gEUseType` to animation categories according to `ANIMATION_RULES.md`.
 
-`G3AnimationBehaviors.ini` is loaded once during DLL startup into a normalized in-memory rule table. Runtime attack handling performs only an in-memory profile lookup; it does not reread or reparse the INI on each attack. Missing/unconfigured profiles preserve native behavior.
+`G3AnimationBehaviors.ini` is loaded once during DLL startup into a normalized in-memory profile table. Runtime handling performs only an in-memory profile lookup; it does not reread or reparse the INI on each attack. Missing/unconfigured profiles and missing/invalid per-attack settings preserve the live compatible behavior.
 
-The intended user-facing Raise/speed `ActionProfile` scope is deliberately:
+Each profile contains independent optional settings for the factual attack families currently supported by Speed:
 
 ```text
 Normal
 Quick
+Power
+Pierce
+Hack
+SimpleWhirl
+Whirl
 ```
 
-Quick runtime variants may remain distinct factual Gothic actions internally, but configuration treats them as the Quick profile unless later evidence requires a narrower distinction. No P0/P1/P2/P3 pose split belongs in the user-facing Raise/speed profile identity.
+Each supported attack may contain:
+
+```text
+<Attack>_ReferenceHitBaseSpeed
+<Attack>_BaseSpeed
+<Attack>_RaiseOverride
+```
+
+Quick runtime variants remain factual Action4/Action5 internally but share the user-facing `Quick` settings. Generic Action3 is a selector rather than the proven playback-speed action. Sprint remains factual Action9 in actor state, but its proven shared Power speed route supplies Action2 to the speed owner; under ADR-0009 Sprint therefore inherits the `Power` timing settings and has no separate Speed prefix.
+
+No P0/P1/P2/P3 pose split belongs in the user-facing profile identity.
 
 Raise/speed feature policy must not grow weapon-specific C++ branches such as `if 1H`, `if 2H`, `if Axe`, or `if Staff` merely to select configured behavior. Weapon/use-type selection belongs to profile data plus normalized runtime facts. A modded item participates through the runtime UseType / animation category and animation family it exposes; adding another configured profile should not require a new C++ weapon branch.
 
-The exact INI syntax is deliberately not inherited from the old 2H-only prototype. One generic schema will be frozen after inspecting the actual Gothic config API, and it must be capable of representing both Speed and later Raise from the start. During the current cycle, only the Speed consumer is implemented while Speed remains the active feature; Raise stays paused until Speed closes. Sequencing rationale: ADR-0006.
+The generic INI schema is now implemented. `RaiseOverride` is parsed/stored across the grouped attack settings, but this is configuration readiness only: Raise behavior remains paused until Speed closes and later Raise research/acceptance determines exactly which attack families should use it in production.
 
-Architecture rationale: ADR-0005 + ADR-0006.
+Architecture rationale: ADR-0005 + ADR-0006 + ADR-0009.
 
 ---
 
@@ -68,44 +82,74 @@ Architecture rationale: ADR-0005 + ADR-0006.
 
 ### Raise
 
-A configured custom Raise is prepended before the untouched original melee state. Preserve native Raise where already correct. Keep Raise independent from collision lifecycle and continuation protection.
+A configured custom Raise is intended to prepend the appropriate preparatory CombatMove phase before the untouched original melee state while preserving native Raise where already correct. Keep Raise independent from collision lifecycle and continuation protection.
 
-Custom Raise does **not** hard-code an animation filename. The intended mechanism is:
+Custom Raise does **not** hard-code an animation filename. The intended mechanism remains:
 
 ```text
-matching configured Normal/Quick profile
+matching configured profile/attack
 -> request the corresponding Raise CombatMove phase
 -> let Gothic resolve the actual animation from its normal request facts
    (animation family/state/use types/pose/action/phase/direction/etc.)
 -> after Raise completes, continue the untouched original attack path
 ```
 
-The existing 2H Normal prototype proves this mechanism by asking Gothic for `Raise`; its player + None/2H gate is fixture scope, not the final architecture. Other Normal/Quick profiles, especially custom Quick Raise, require focused runtime validation before production acceptance.
+The existing 2H Normal prototype proves the basic “ask Gothic for Raise” mechanism; its player + None/2H gate is fixture scope, not final architecture. `RaiseOverride` fields already exist in the grouped configuration schema, but Raise behavior is deliberately **not** the current feature. Under ADR-0006 it remains paused until expanded Speed is calibrated, runtime-accepted and closed.
 
-Raise is deliberately **not** the current feature. Under ADR-0006 it remains paused until Speed v2 is fully researched, implemented, validated and closed. The shared configuration model may already contain the future Raise field/semantics; that does not authorize early Raise behavior work.
+The first future Raise-speed question should remain evidence-driven: test whether an inserted Raise naturally follows the configured attack `BaseSpeed` before adding any separate Raise-speed setting or hook.
 
 ### Speed
 
-A configured speed authors the **base speed term** for the matching Normal/Quick profile/phase; it does not own the final effective playback speed.
+A configured speed authors the **base speed term** for the matching profile/attack; it does not own the final effective playback speed.
 
-For a compatible route, reason about composition as:
+The accepted production mechanism is caller-side composition **after** the live `Script_Game+0x42A0 GetAnimationSpeedModifier` owner has calculated the compatible result for the caller, rather than taking over the `+0x42A0` entry.
+
+Reason about the route as:
 
 ```text
-unconfigured effective speed = B(profile, action, phase) * M(context)
-configured effective speed   = C(profile, action, phase) * M(context)
+B = native Gothic reference base for the exact route
+C = configured G3AB BaseSpeed
+M = combined compatible/contextual multiplier effect already present in the live result
+
+compatibleSpeed = B * M
+configuredSpeed = compatibleSpeed * (C / B)
+                = C * M
 ```
 
-where `B` is the native/compatible-mod base choice, `C` is the G3AB configured base choice, and `M` is the set of contextual modifiers that should still affect the equivalent unconfigured attack.
+`ReferenceHitBaseSpeed` is therefore a **native Gothic calibration fact** for the exact family/loadout/attack route. It is not a New Balance value and normally is not an author-tuning control. `BaseSpeed` is the author-facing speed value.
 
-Current New Balance source confirms why the old final-return replacement prototype is insufficient: its `GetAnimationSpeedModifier` combines action/use-type base terms with contextual logic in the same function. For Normal it includes base terms such as `0.6` and `0.7` multiplied by `multiPlier`; Quick/default routes use a `1.0` base with the applicable multiplier, while stamina, arena, disease and other conditions contribute contextual behavior.
+This downstream algebra is intentionally the small price paid for the safer intervention boundary: Gothic/New Balance retain ownership of their internal speed policy, G3AB calls the live owner exactly once with the original caller action, then substitutes only the known base contribution while preserving compatible relative modifiers already present in the live result.
 
-Therefore the production speed system must effectively substitute the configured base term while preserving every applicable modifier factor. It must not copy New Balance's complete multiplier table or rely on arbitrary same-hook DLL load order. `Script_Game +0x42A0 GetAnimationSpeedModifier` remains a proven/prototype surface, not frozen final architecture; the exact intervention/composition mechanism remains a focused research responsibility under ADR-0004.
+The production caller-side set currently covers 15 proven Hit call sites across:
 
-If profile-specific reference/base data is eventually required, it belongs in generic profile/configuration data or another generic factual source, not in weapon-specific behavior branches.
+```text
+Normal
+Quick
+Power / shared Sprint-Power
+Pierce
+Hack
+SimpleWhirl
+Whirl
+```
+
+Power Raise at `Script_Game+0x47D51` is currently observation/research evidence only and is not a production Speed hook.
+
+Runtime identity is generic:
+
+```text
+AnimationFamily = Animation.GetSkeletonName(...)
++ normalized left/right animation UseType
+```
+
+Unknown/missing family/profile/calibration remains fail-closed to the live compatible value.
+
+ADR-0009 freezes factual Sprint/Action9 as an intentional Power timing alias on the proven shared speed route. Do not add `Sprint_BaseSpeed`, `Sprint_ReferenceHitBaseSpeed`, or rewrite Action2 to Action9 absent contradictory evidence.
+
+The expanded production Speed source is implemented, has passed static review and local Release build, and remains undeployed while the reusable `Script_SpeedCalibrationProbe` establishes broader native `B` values for common release profiles. The calibration tool is diagnostics-only and returns observed live values unchanged.
 
 Recover follows the effective Hit speed; no separate user-facing `RecoverSpeed` key is planned.
 
-Speed is the first feature responsibility after the production collision integration check. Keep the project single-focus: research/design/implement/validate Speed to closure before beginning Raise. Architecture/sequencing rationale: ADR-0004 + ADR-0005 + ADR-0006.
+Speed remains the single active feature responsibility. Complete native calibration, useful New Balance comparison, and expanded runtime acceptance before beginning Raise. Architecture/sequencing rationale: ADR-0004 + ADR-0005 + ADR-0006 + ADR-0009.
 
 ---
 
@@ -296,16 +340,9 @@ C1-R1 remains closed through EV-206–EV-207.
 
 ---
 
-## 7. Collision Architecture — Stage A Source Implemented
+## 7. Collision Architecture — Production Integrated
 
-The 2026-09-10 architecture audit is complete. Stage A implemented the three justified behavior-boundary corrections in commit:
-
-```text
-7c5874932cd6eafa5af3414c65a4442b3d74bb73
-Refactor collision behavior ownership boundaries
-```
-
-Independent Normal Chat static review: PASS.
+The collision architecture was first boundary-refactored in Stage A and later migrated into the production target. Production integration closed/PASS at EV-390.
 
 Governing rule:
 
@@ -325,7 +362,7 @@ collision policy owner
 research/probe policy owner
 ```
 
-Implemented ownership:
+Current production ownership:
 
 ```text
 Raw8FistCollision
@@ -333,6 +370,9 @@ Raw8FistCollision
   marked-execution state
   initial latch close + accepted-marker rearm
   threshold/timing permission and exact one-shot decision
+
+PhysicalFistCollision
+  raw55 Normal/Quick/Power/Sprint family policy and lifecycle-specific source behavior
 
 AttackMotionRouting
   proven factual Hack optional motion-substitution policy
@@ -348,7 +388,7 @@ CollisionSourceOperations
 
 Unknown/new mechanisms follow `FEATURE_DEVELOPMENT_METHOD.md`: dedicated temporary probe first, then the smallest proven permanent owner after research closure.
 
-Current architecture is owned by this file plus `COLLISION_REFERENCE.md`, `COLLISION_LIFECYCLE.md`, and `COLLISION_DIAGNOSTICS.md`; the completed redesign plan is archived provenance.
+Current architecture is owned by this file plus `COLLISION_REFERENCE.md`, `COLLISION_LIFECYCLE.md`, `COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`, `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`, and `COLLISION_DIAGNOSTICS.md`; completed redesign/migration plans are archived provenance.
 
 ---
 
@@ -417,132 +457,3 @@ Do not begin with an independent timer, polling loop, permanent watchdog, uncond
 `CollisionLifecycleGuard`/C1-R1 remains the independent fail-safe underneath.
 
 ---
-
-## 10. Compatibility
-
-Do not rely on arbitrary DLL load order or assumed same-function hook chaining.
-
-Required checkpoints:
-
-```text
-migrated diagnostics-free Script_G3AnimationBehaviors collision core
--> focused production integration compatibility
-
-Speed v2 production candidate
--> standalone + New Balance / relevant Jackydima compatibility
-
-Raise production candidate after Speed closure
--> focused Raise compatibility
-
-assembled collision + Speed + Raise candidate
--> final integrated compatibility/regression before stable promotion
-```
-
-Historical EV-242 is Pierce-specific compatibility evidence only; EV-384/EV-388/EV-389 carry the mature collision/New Balance release-candidate evidence. New feature changes still require their own bounded compatibility proof.
-
----
-
-## 11. Current Modular DLL Architecture
-
-```text
-Script_G3AnimationBehaviors / research twin
-|
-+-- EngineBridge
-|    sole shared-hook owner
-|    transport/delegation only
-+-- FrameCollisionMarkers
-|    exact current-motion ownership
-|    action/phase marker-family resolution
-|    equipped RIGHT/LEFT/BOTH/OFF generic semantics
-|    marker occurrence bookkeeping
-|    production FIST dispatch into proven feature owner(s)
-+-- EquippedSprintCollision
-|    factual Sprint eligibility + bound Sprint-origin identity
-|    exact Action9 -> same-C1 Action2 continuation policy
-|    authorization into generic equipped marker semantics
-+-- CollisionSources
-|    factual source identities / UseTypes
-+-- CollisionSourceOperations
-|    source-specific mutations
-|    equipped activation/rearm + terminal deactivation/repair mutation
-+-- CollisionLifecycleGuard
-|    C1 execution/source obligations
-|    terminal repair decision/classification
-+-- Raw8FistCollision
-|    raw8 FIST Normal+Power+Quick+Sprint policy/state/latch/timing
-+-- PhysicalFistCollision
-|    permanent raw55 Normal/Quick/Power/Sprint policy/state/rearm
-|    Sprint-origin continuity + narrow Normal native-clear suppression
-+-- AttackMotionRouting
-|    factual Hack optional motion-substitution policy
-+-- RuntimeClock
-+-- AttackContinuationProtection [later, separate cpp]
-+-- AttackRaise
-+-- AttackSpeed
-+-- Config
-+-- TargetAcquisition [future]
-+-- Climbing [future]
-```
-
-Diagnostic research products may add dedicated removable probes for future unknown mechanisms; probes are not permanent children of `EngineBridge`. The completed raw55 `PhysicalFistProbe` research path has been replaced by permanent `PhysicalFistCollision` behavior.
-
----
-
-## 12. Durable Implementation Order
-
-The current deliberate sequence is single-focus and is governed by ADR-0006:
-
-```text
-closed collision architecture + EV-389 release-purity evidence
--> production collision-core source migration [COMPLETE / source review PASS]
--> focused diagnostics-free Script_G3AnimationBehaviors production integration validation
--> inspect config API and freeze one generic INI/profile schema usable by Speed + later Raise
--> Speed v2 research / implementation / validation ONLY
--> Speed fully CLOSED
--> Raise research / implementation / validation ONLY
--> Raise fully CLOSED
--> assembled collision + Speed + Raise compatibility/regression
--> deliberate development -> main promotion
--> later adopted systems (targeting / climbing / etc.) continue from the general development model
-```
-
-The shared config foundation may contain or reserve Raise profile data while Speed is active, but that does not authorize Raise behavior work before Speed closure.
-
-`AttackContinuationProtection` remains a separate future responsibility and is not implicitly inserted into the Speed/Raise sequence.
-
-Live campaign status and the exact next setup belong in `SESSION_ENTRYPOINT.md`; stable branch semantics belong in `PROJECT_PIPELINE.md`.
-
----
-
-## 13. Current Non-Goals
-
-Until the current responsibility advances deliberately, do not combine it with:
-
-- reopening closed collision causal research without contradictory evidence;
-- raw8 or raw55 redesign from routine integration confirmation;
-- moving feature policy/state into `EngineBridge`;
-- species-specific monster/body marker vocabulary or filename-based actor gating;
-- authored FIST_OFF resurrection;
-- unrelated marker-vocabulary changes;
-- AttackContinuationProtection implementation;
-- Raise implementation/research while Speed remains open;
-- target acquisition or climbing;
-- intermediate promotion to `main` merely because another feature phase begins.
-
----
-
-## 14. Retrieval
-
-| Need | Authority |
-|---|---|
-| Current exact task | `SESSION_ENTRYPOINT.md` + `BETWEEN_CHATS.md` |
-| Feature research -> production method | `FEATURE_DEVELOPMENT_METHOD.md` |
-| Current established collision facts | `COLLISION_REFERENCE.md` |
-| Overall architecture/order | this file |
-| Branch + Speed-first sequencing rationale | `decisions/ADR-0006-development-branch-and-sequential-speed-raise.md` |
-| Collision lifecycle | `COLLISION_LIFECYCLE.md` |
-| Validation | `COLLISION_TEST_PLAN.md` / current feature test plan when created |
-| Diagnostics | `COLLISION_DIAGNOSTICS.md` |
-| Source/hooks/RVAs | `SOURCE_HOOK_GUIDE.md` |
-| Animation authoring semantics | `ANIMATION_INDEX.md` -> `ANIMATION_RULES.md` |
-| Exact evidence | `EVIDENCE_INDEX.md` -> canonical ledgers -> archived provenance |
