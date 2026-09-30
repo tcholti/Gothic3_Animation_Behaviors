@@ -70,7 +70,7 @@ Raw UseTypes are retained because several raw types normalize to the same INI to
 
 ## Hook scope
 
-Proven Hit callers:
+Proven Hit callers (18 total, including three Finishing / Action15 sites):
 
 ```text
 Normal
@@ -82,6 +82,11 @@ Quick
   Script_Game+0x3937D
   Script_Game+0x39402
   Script_Game+0x48677
+
+Finishing / Action15
+  Script_Game+0x41551
+  Script_Game+0x41680
+  Script_Game+0x417F0
 
 Hack
   Script_Game+0x42FF4
@@ -102,6 +107,10 @@ SimpleWhirl
 Whirl
   Script_Game+0x4DF1F
 ```
+
+Static Script_Game evidence establishes that each of the three Finishing sites hard-passes EAX = `0x0F` / Action15 to the same live `+0x42A0` owner. They are distinct from the three Hack / Action14 callers. The probe observes them through the existing pass-through mechanism: original caller action forwarded, live owner called exactly once, returned value unchanged.
+
+Native 2H/Staff Hack and Finishing may reuse the same animation asset; G3AB may separate the files. Shared names/assets do not establish factual action identity. This extension makes Action15 observable only: Finishing remains native by default, with no shipped INI entries or production Speed-profile support added. Any later advanced optional configuration decision is outside this task.
 
 Also observe the already-proven Power Raise speed caller:
 
@@ -165,6 +174,8 @@ The loaded-state fields are supporting diagnostics, not a substitute for the phy
 
 ## First runtime validation — PASS
 
+This checkpoint validates the original 15-Hit-caller probe plus Power Raise. The three-site Finishing extension still requires independent review, local build and focused runtime validation; the historical hash below does not identify the extended binary.
+
 Built Release probe SHA256:
 
 ```text
@@ -210,6 +221,14 @@ aggregation compactness = PASS on first control
 known base values = PASS
 NEXT = broad native calibration sampling
 ```
+
+## Immediate focused gate — Finishing / Action15 observation
+
+After Normal Chat source review, locally build the extended standalone probe and use POP-03/POP-04 for exact product exclusion, built/live identity and product-appropriate startup verification. Normal Chat freezes the clean native fixture and raw filename before the run; excluded DLLs remain physically outside `scripts`.
+
+Exercise naturally available factual Finishing attacks on 2H and Staff. Require compact `PassedAction=FinishingAttack(15)` / `Phase=Hit(1)` observations, retaining factual actor actions and movement names as diagnostics rather than inferring identity from the shared asset. Where Hack is also exercised, its rows must remain separately labeled `Hack(14)`. Preserve the live return value, bounded aggregation and normal-unload summary. Unexercised routes remain unvalidated; do not invent values or claim all three callers were exercised from deduplicated rows alone.
+
+The immediate gate is observation only. Do not begin the later Hack=0.4 shared-animation experiment or add Finishing configuration/production behavior. Resume broad native sampling only after Normal Chat reviews the focused result.
 
 ## Broad native calibration gate
 

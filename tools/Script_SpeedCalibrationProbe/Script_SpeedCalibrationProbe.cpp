@@ -18,6 +18,9 @@ static mCCallHook Hook_SpeedModifierCall_38F22;
 static mCCallHook Hook_SpeedModifierCall_3937D;
 static mCCallHook Hook_SpeedModifierCall_39402;
 static mCCallHook Hook_SpeedModifierCall_48677;
+static mCCallHook Hook_SpeedModifierCall_41551;
+static mCCallHook Hook_SpeedModifierCall_41680;
+static mCCallHook Hook_SpeedModifierCall_417F0;
 static mCCallHook Hook_SpeedModifierCall_42FF4;
 static mCCallHook Hook_SpeedModifierCall_431B4;
 static mCCallHook Hook_SpeedModifierCall_432EB;
@@ -130,6 +133,7 @@ char const *GetActionName(gEAction action)
         case gEAction_WhirlAttack:  return "Whirl";
         case gEAction_PierceAttack: return "Pierce";
         case gEAction_HackAttack:   return "Hack";
+        case gEAction_FinishingAttack: return "FinishingAttack";
         case gEAction_None:         return "None";
         default:                    return "Other";
     }
@@ -437,6 +441,9 @@ extern "C" __declspec(dllexport) gSScriptInit const *GE_STDCALL ScriptInit(void)
     InstallSpeedCallHook(Hook_SpeedModifierCall_3937D, 0x3937D);
     InstallSpeedCallHook(Hook_SpeedModifierCall_39402, 0x39402);
     InstallSpeedCallHook(Hook_SpeedModifierCall_48677, 0x48677);
+    InstallSpeedCallHook(Hook_SpeedModifierCall_41551, 0x41551);
+    InstallSpeedCallHook(Hook_SpeedModifierCall_41680, 0x41680);
+    InstallSpeedCallHook(Hook_SpeedModifierCall_417F0, 0x417F0);
     InstallSpeedCallHook(Hook_SpeedModifierCall_42FF4, 0x42FF4);
     InstallSpeedCallHook(Hook_SpeedModifierCall_431B4, 0x431B4);
     InstallSpeedCallHook(Hook_SpeedModifierCall_432EB, 0x432EB);
@@ -452,7 +459,7 @@ extern "C" __declspec(dllexport) gSScriptInit const *GE_STDCALL ScriptInit(void)
     {
         std::fprintf(
             g_pLogFile,
-            "Installed 15 proven Hit caller hooks plus the proven Power Raise observation hook.\n\n");
+            "Installed 18 proven Hit caller hooks (including 3 Finishing/Action15 sites) plus the proven Power Raise observation hook.\n\n");
         std::fflush(g_pLogFile);
     }
 
