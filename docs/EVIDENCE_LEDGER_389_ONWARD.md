@@ -255,3 +255,46 @@ Disposition:
 - **PASS — GENERIC CONFIGURED NORMAL/QUICK SPEED BEHAVIOR VALIDATED ON TESTED HERO PROFILES.**
 - **PASS — KEY NEW BALANCE CONTEXTUAL-MULTIPLIER-PRESERVATION INVARIANT VALIDATED ON CONFIGURED 2H NORMAL.**
 - Next gate: bounded final Speed runtime acceptance/fallback coverage; no mechanism redesign absent contradictory evidence.
+
+### EV-396 — Reusable Speed calibration probe native control PASS
+
+Observed:
+- The standalone diagnostics-only `Script_SpeedCalibrationProbe.dll` built successfully with SHA256 `4140867626119632929D2286A173E97B3A4ACE6EDBCA4E2DBFE30AC28FE28E82`.
+- For the clean native fixture, the User physically removed `Script_G3AnimationBehaviors.dll`, `Script_NewBalance.dll`, `Script_NewMagicforNPCs.dll`, and `Script_AttackCollision.dll` from Gothic 3's `scripts` folder before launch. This follows the established loader rule that renaming a DLL in place is not a reliable disable method.
+- The probe returned live speed values unchanged, intercepted 55 calls, deduplicated them to 12 unique observations, and dropped zero observations.
+- Native Hero / None+1H values were stable across repeated samples:
+  - Normal Hit `0.600000` (15 samples);
+  - QuickR Hit `1.000000` (2 samples);
+  - QuickL Hit `1.000000` (3 samples);
+  - Power Raise `1.500000` (5 samples);
+  - Power Hit `1.000000` (4 samples).
+- Native Troll / PhysicalFist+PhysicalFist values were stable:
+  - Normal Hit `1.000000` (12 samples);
+  - QuickR Hit `1.000000` (3 samples);
+  - QuickL Hit `1.000000` (5 samples);
+  - ordinary Power Raise `1.000000` and Power Hit `1.000000`;
+  - factual Sprint/Action9 reached the shared Power route with caller-passed Action2 and returned `1.000000` for both observed Raise and Hit calls while `CurrentActionBefore/After` remained Sprint.
+
+Interpretation:
+- The reusable calibration-probe design is runtime-valid for broad sampling: it is observational, preserves live speed, and substantially reduces repeated traffic without losing distinct route/speed observations.
+- Native Hero None+1H and Troll PhysicalFist reference facts independently confirm known values and establish a clean baseline for the broader calibration campaign.
+- The Troll comparison strengthens the Speed calibration model: native Power/Sprint Hit base `B=1.0` versus previously observed New Balance live result `1.5`; New Balance's increase belongs to the compatible live result, not `ReferenceHitBaseSpeed`.
+- The factual Sprint Raise observation is retained for later Raise research only; it does not authorize Raise behavior now.
+
+Scope / limits:
+- This is the first calibration control, not a complete native base-speed catalogue.
+- Only the exercised Hero None+1H and Troll PhysicalFist routes are promoted as native calibration facts here.
+- New Balance and other compatibility comparisons remain a later campaign; no claim is made for untested third-party speed implementations.
+
+Provenance:
+- probe source: `tools/Script_SpeedCalibrationProbe/` on `development`;
+- built probe SHA256: `4140867626119632929D2286A173E97B3A4ACE6EDBCA4E2DBFE30AC28FE28E82`;
+- raw control log: `research/raw/2026.09.29_speed calibration_1h_troll.log`;
+- user-pushed raw-log commit: `9449e4b3f37114e104595a61355b61fd472eb873`;
+- active calibration contract: `docs/work/active/SPEED_NATIVE_CALIBRATION_PROBE.md`.
+
+Disposition:
+- **PASS — CALIBRATION PROBE BUILD/RUNTIME FORMAT VALIDATED.**
+- **PASS — FIRST NATIVE REFERENCE CONTROL CLOSED.**
+- The raw control log remains intentionally available during the active calibration campaign as a baseline/comparison fixture; archive it when the campaign no longer needs active comparison.
+- Next calibration gate: broad native human/loadout/NPC/nonhuman sampling, followed by useful New Balance comparison; expanded production Speed deployment remains deferred until calibration settles common reference values.
