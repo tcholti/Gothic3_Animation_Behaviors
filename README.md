@@ -6,8 +6,9 @@ General Gothic 3 animation-behavior research and implementation for configurable
 
 ## Branches
 
-- **`docs/collision-source-evidence`** — current active development/research branch. It contains the newest implementation, current project state, and latest evidence.
-- **`main`** — stable integration and reusable Gothic 3 knowledge baseline. Promotion from the active branch is deliberate rather than automatic.
+- **`development`** — current active development/research/integration branch. It contains the newest implementation, current project state, and latest evidence.
+- **`main`** — stable integration and reusable Gothic 3 knowledge baseline. Promotion from `development` is deliberate rather than automatic.
+- **`docs/collision-source-evidence`** — historical collision-development provenance. Ordinary new work no longer continues there.
 
 Do not assume `main` contains the newest working implementation merely because it is the default branch.
 
@@ -25,7 +26,7 @@ Use one first hop:
 
 **Paste into a fresh Chat when no reliable handoff was possible:**
 
-> Continue `Gothic3_Animation_Behaviors` in **NORMAL CHAT**. The previous Chat ended unexpectedly or reached maximum context before a reliable handoff could be prepared. Start from this README's interrupted-Chat **Recovery Lock**, treat `SESSION_ENTRYPOINT.md` and `BETWEEN_CHATS.md` as clues until reconciled, reconstruct only the recent durable tail on `docs/collision-source-evidence`, and do not begin new implementation or runtime testing until recovery is closed.
+> Continue `Gothic3_Animation_Behaviors` in **NORMAL CHAT**. The previous Chat ended unexpectedly or reached maximum context before a reliable handoff could be prepared. Start from this README's interrupted-Chat **Recovery Lock**, treat `SESSION_ENTRYPOINT.md` and `BETWEEN_CHATS.md` as clues until reconciled, reconstruct only the recent durable tail on `development`, and do not begin new implementation or runtime testing until recovery is closed.
 
 Do **not** blindly follow the old `NEXT` pointer. Start here and enter **Recovery Lock**:
 
@@ -45,6 +46,7 @@ Only broaden when the current responsibility requires it:
 - [Collision reference](docs/COLLISION_REFERENCE.md) — compact current collision facts; use before evidence for already-settled questions.
 - [Evidence index](docs/EVIDENCE_INDEX.md) — route proof-sensitive questions to exact EV ranges and provenance only when needed.
 - [Animation knowledge index](docs/ANIMATION_INDEX.md) — route filename/UseType/action/pose/asset questions to exact sections/data.
+- [Source and hook guide](docs/SOURCE_HOOK_GUIDE.md) — reusable engine/API/RVA/hook facts, including current Speed and movement-research surfaces.
 - [Project operating procedures](docs/PROJECT_OPERATING_PROCEDURES.md) — retrieve the exact recurring Git/build/deploy/test/evidence/review/continuity procedure when that operation is active.
 - [Work implementation protocol](docs/WORK_IMPLEMENTATION_PROTOCOL.md) — retrieve for bounded Work/coding sessions.
 - [Knowledge maintenance protocol](docs/KNOWLEDGE_MAINTENANCE.md) and [authority registry](docs/KNOWLEDGE_REGISTRY.md) — maintenance/update routing tools, applied when meaningful project events or ownership questions require them.
@@ -96,37 +98,41 @@ cmake -S . -B build -G "Visual Studio 17 2022" -A Win32
 
 ## Current Build Products and Tools
 
-The root CMake project currently exposes these DLL targets:
+The root CMake project currently exposes these relevant DLL targets:
 
 ```text
 Script_G3AnimationBehaviors
 = production-direction behavior DLL
-= currently owns the existing Raise / playback-speed implementation
-= eventual public integration target; collision migration into it is later work
+= contains the accepted production collision integration
+= contains the current expanded Speed source under calibration/runtime acceptance
+= Raise behavior remains paused until Speed closes
 
-Script_FrameCollisionBehaviorTest
-= diagnostics-free collision behavior research build
-= same shared collision behavior source as the diagnostic twin
+Script_SpeedCalibrationProbe
+= standalone diagnostics-only speed calibration tool
+= observes proven Speed caller sites and returns live values unchanged
+= current broad native-calibration tool
 
-Script_FrameCollisionTest
-= instrumented collision diagnostic twin
-= same collision behavior source + CollisionDiagnostics / optional deep diagnostics
+Script_SpeedSprintProbe
+= diagnostics-only causal probe retained for provenance/reproduction of the closed Sprint/Power transport question
+
+Script_SpeedIdentityProbe
+= diagnostics-only family/profile identity probe retained for provenance/reproduction
 
 Script_CombatMoveLogger
 = independent generic CombatMove / animation-speed diagnostic tool
-= remains useful for future Raise/playback-speed research
+
+Script_FrameCollisionBehaviorTest / Script_FrameCollisionTest
+= historical/research collision twins retained for controlled reproduction; collision production behavior has already migrated into Script_G3AnimationBehaviors
 ```
 
-`Script_FrameCollisionBehaviorTest` and `Script_FrameCollisionTest` are mutually exclusive runtime twins for controlled collision work; do not normally install/load both together.
-
-The repository also contains the offline deterministic large-log processor under `tools/log_evidence/`. It is not a Gothic DLL build target.
+Runtime diagnostic/release products that hook the same Gothic surfaces must be treated as mutually exclusive unless a task explicitly proves coexistence safe. Renaming a script DLL while leaving it inside Gothic's `scripts` directory is **not** a reliable disable method; excluded DLLs must be physically moved or removed from that folder.
 
 For actual local validation, do **not** reconstruct build/deploy/hash/startup commands from this README or from historical task documents. Use the exact current blocks in `docs/PROJECT_OPERATING_PROCEDURES.md`:
 
 ```text
 POP-01 = local branch synchronization
 POP-02 = build target selection + exact build commands
-POP-03 = selected-twin deployment + sole-live-DLL + SHA256 verification
+POP-03 = selected runtime product deployment + sole-live-DLL + SHA256 verification
 POP-04 = startup/load verification
 ```
 
