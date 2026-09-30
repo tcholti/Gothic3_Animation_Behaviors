@@ -1,88 +1,64 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-09-29
+**Updated:** 2026-09-30
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active: `development`  
-Stable: `main` — keep frozen until Speed + Raise + assembled regression close.
+Stable: `main` — frozen.
 
-## State
-
-```text
-EV-390 collision production integration = CLOSED/PASS
-EV-391/EV-392 original Speed Normal/Quick transport = CLOSED STATIC
-EV-393/EV-394 family-source evidence = PASS
-EV-395 configured Speed + New Balance stamina multiplier preservation = PASS
-
-expanded grouped Speed source = IMPLEMENTED
-production source frozen = 642c88a4e6244ae7377ba835507750af7914e2f5
-internal expanded-source review = PASS
-Sprint/Power blocker = CLOSED by runtime causal evidence
-Sprint Speed model = inherits Power profile; no separate Sprint prefix
-expanded production Release build = PASS locally; deployment deferred
-Speed calibration probe build = PASS
-first native calibration control = PASS
-CURRENT = broad native Speed calibration
-Raise = PAUSED
-```
-
-## Calibration model
+## Current state
 
 ```text
-B = native Gothic ReferenceHitBaseSpeed
-compatible = B * M
-configured = compatible * (C / B) = C * M
+collision production integration = CLOSED/PASS EV-390
+configured Speed + New Balance multiplier preservation = PASS EV-395
+expanded Speed production source = implemented / static-review PASS / local Release build PASS
+Speed calibration probe = build + first clean native control PASS EV-396
+broad native calibration = ready but paused
+CURRENT = preservation-biased repository health/authority audit
+Raise = paused
 ```
 
-New Balance values are compatibility observations, not native reference values.
+Audit contract:
 
-The validated `Script_SpeedCalibrationProbe.dll` observes the 15 proven Hit callers plus Power Raise, returns live speeds unchanged and deduplicates repeated factual rows.
+`docs/work/active/REPOSITORY_HEALTH_AND_AUTHORITY_AUDIT.md`
 
-First native Hero 1H + Troll control:
+Work is allowed to inspect broadly but may change **only**:
+
+`docs/work/active/REPOSITORY_HEALTH_AND_AUTHORITY_AUDIT_RESULT.md`
+
+It must not delete, move, archive, rename, rewrite or modify existing evidence/docs/source. Normal Chat must independently review the Work findings before accepting cleanup.
+
+## After Work returns
 
 ```text
-55 intercepted calls -> 12 unique rows -> 0 dropped
-Hero None+1H Normal Hit 0.6
-Hero None+1H Quick R/L Hit 1.0
-Hero Power Raise 1.5 / Hit 1.0
-Troll PhysicalFist Normal/Quick/Power Hit 1.0
-Troll Power Raise 1.0
-Troll factual Sprint Raise/Hit through passed Action2 = 1.0
+Normal Chat reads audit result
+-> verify findings against authorities/evidence/source as needed
+-> reject any unsafe cleanup recommendation
+-> implement only accepted smallest-owner maintenance
+-> run POP-12 knowledge-state validation
+-> compress SESSION_ENTRYPOINT / BETWEEN_CHATS if needed
+-> move to fresh Normal Chat
+-> resume broad native Speed calibration
 ```
 
-## Critical DLL-loader rule
+## Speed continuation after audit closure
 
-Renaming a DLL while leaving it inside Gothic's `scripts` folder does **not** reliably disable it; Gothic may still load it.
+Validated calibration probe SHA256:
 
-For any bounded fixture, excluded DLLs must be physically moved or removed completely from `scripts` before launch.
+`4140867626119632929D2286A173E97B3A4ACE6EDBCA4E2DBFE30AC28FE28E82`
 
-The first clean native control removed:
+Broad native sampling order:
 
 ```text
-Script_G3AnimationBehaviors.dll
-Script_NewBalance.dll
-Script_NewMagicforNPCs.dll
-Script_AttackCollision.dll
+human release loadouts + naturally available supported attacks
+-> representative NPC users
+-> representative nonhuman families
+-> useful New Balance comparison
 ```
 
-and left only the calibration probe from this project active.
+Critical fixture rule: excluded Gothic script DLLs must be physically moved/removed outside `scripts`; renaming in place does not reliably disable them.
 
-## Next at local build PC
-
-Keep the clean native fixture and perform broad practical calibration runs across:
-
-```text
-human weapon/loadout combinations intended for release profiles
-supported attacks naturally available for each loadout
-representative NPC users
-representative nonhuman families
-```
-
-Push each resulting `SpeedCalibrationProbe.log` under a descriptive filename. Broad runs are preferred because repeated identical observations are deduplicated.
-
-If one factual route reports multiple native speeds, preserve all values and investigate before choosing a reference.
-
-After sufficient native coverage, restore the intended New Balance stack and perform comparable compatibility runs. Do not begin Raise or deploy the expanded production DLL until calibration closes and the common reference values are settled.
+Do not begin Raise, attack displacement, climbing, collision redesign, or `main` promotion before the current gates close.
