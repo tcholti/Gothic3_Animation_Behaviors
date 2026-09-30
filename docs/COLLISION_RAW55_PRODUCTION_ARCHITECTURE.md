@@ -348,17 +348,10 @@ standalone/no-New-Balance final-candidate raw55 sentinel = CLOSED/PASS EV-386–
 final-candidate New Balance/raw55 focused regression = PASS EV-388
 diagnostic phase = CLOSED/PASS EV-386–EV-388
 behavior-only release-purity validation = CLOSED/PASS EV-389
-production collision migration = CURRENT
+production collision migration = COMPLETE EV-390
+production Script_G3AnimationBehaviors collision integration = CLOSED/PASS EV-390
 ```
 
-Current route:
-
-```text
-freeze bounded migration into src/Script_G3AnimationBehaviors
--> preserve this accepted architecture and state contract
--> keep diagnostic-only machinery separate
--> source review
--> local production build/startup + focused integration validation
-```
+Production migration/integration closure: EV-390. The accepted architecture/state contract and diagnostic separation remain governing constraints. Validation posture is owned by [COLLISION_TEST_PLAN.md](COLLISION_TEST_PLAN.md); the immediate project gate is owned by [SESSION_ENTRYPOINT.md](SESSION_ENTRYPOINT.md).
 
 Do not reopen closed raw55 mechanisms or broad compatibility scope unless migration/integration evidence produces a new contradiction.

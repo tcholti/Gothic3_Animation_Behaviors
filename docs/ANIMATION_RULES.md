@@ -323,7 +323,7 @@ G3AB_COL_FIST
 
 Meaning:
 
-> Rearm one native raw-8 body-damage opportunity at this authored Hit frame.
+> Create or refresh one persistent native raw-8 body-contact opportunity at this authored Hit frame.
 
 This is **not** an equipped source-set command.
 
@@ -335,11 +335,18 @@ unmarked exact raw8 Fist Hit
 
 marked exact supported raw8 Fist Hit
 -> custom ownership closes the native opportunity before first FIST
--> each accepted FIST rearms one native opportunity
--> native target/contact/damage remains Gothic's responsibility
+-> each accepted FIST creates or refreshes ONE pending opportunity for exact actor/C1/source/SPU
+-> while pending, timing permission may repeat at proven Game+0x16E180 checkpoint
+   for matching timing actor/motion while real time is below threshold + epsilon
+-> native miss rearms latch 1 -> 0 without consuming the opportunity
+-> first exact native contact-resolution dispatch at caller-return Game+0x16E348
+   consumes the pending opportunity before Gothic original; it is not an HP-success test
+-> later FIST refreshes/reopens one opportunity, never stacks opportunities
+-> execution replacement/finalization/end may retire an unused pending opportunity
+-> native contact geometry/target/damage remains Gothic's responsibility
 ```
 
-There is **no authored `G3AB_COL_FIST_OFF`** in the production vocabulary. Gothic self-closes a successful raw8 Fist opportunity; the next `FIST` marker rearms the next intended contact.
+There is **no authored `G3AB_COL_FIST_OFF`** in the production vocabulary. Timing permission itself is not consumption and never mutates the real animation clock. Timing retirement (including timing identity changes) does not consume the logical opportunity. The exact contact dispatch consumes it even if Gothic subsequently blocks damage; the next `FIST` can reopen the next intended contact. Permanent owner: [COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md](COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md), §§3–9; evidence EV-346–EV-364.
 
 EV-305 directly confirms the multi-contact authoring meaning on human raw8 Fist: two authored `FIST` markers in one supported Hit are accepted in the same C1, and on contacting executions they produce two native damage contacts. EV-307 independently confirms the same mechanism on Sabretooth/transformed Sabretooth: marker1 uses the early-permission path, marker2 is accepted later as `NATIVE_TIMING`, and contacting executions can damage twice. Therefore repeat `FIST` only when the animation genuinely intends another body-contact hit; the rule is factual-source/mechanism based, not human-species specific.
 

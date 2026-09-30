@@ -1,6 +1,6 @@
 # Speed Expanded Attack Scope and Grouped Profile Implementation
 
-**Status:** SOURCE IMPLEMENTED / STATIC REVIEW PASS / LOCAL BUILD PASS / CALIBRATION SUB-GATE ACTIVE  
+**Status:** ACTIVE — SOURCE IMPLEMENTED / STATIC REVIEW PASS / LOCAL BUILD PASS / CALIBRATION SUB-GATE ACTIVE
 **Task class:** Bounded production source extension + runtime acceptance  
 **Branch:** `development`
 

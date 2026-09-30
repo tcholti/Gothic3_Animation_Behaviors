@@ -4,6 +4,10 @@
 **Date:** 2026-09-29  
 **Related:** ADR-0004, ADR-0005, ADR-0006, ADR-0007, `docs/ANIMATION_RULES.md`
 
+**Current qualification — partial supersession:** The seven-prefix grouped-profile decision remains current. Only its Sprint-deferral/fail-closed wording (§§4, 9 and consequences) is superseded by [ADR-0009](ADR-0009-sprint-inherits-power-speed-profile.md): Sprint has no separate key/profile and inherits Power on the proven shared route. Other fail-closed rules remain valid.
+
+The historical decision body below is preserved.
+
 ## Context
 
 The first production Speed v2 implementation deliberately proved the architecture with Normal and Quick attacks only. Runtime acceptance established that:

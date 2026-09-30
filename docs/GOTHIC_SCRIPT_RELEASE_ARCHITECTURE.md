@@ -257,11 +257,11 @@ For `Script_G3AnimationBehaviors`, the final release compatibility gate still in
 
 ## 9. Current Project Consequence
 
-The mature `Script_FrameCollisionTest` research architecture is becoming the architectural ancestor of the final `Script_G3AnimationBehaviors` behavior core.
+The mature `Script_FrameCollisionTest` research architecture was migrated into the `Script_G3AnimationBehaviors` behavior core; production collision integration is CLOSED/PASS EV-390 and migration is COMPLETE. The immediate project gate belongs to [SESSION_ENTRYPOINT.md](SESSION_ENTRYPOINT.md).
 
 During research, retain useful diagnostics and deep probes where they answer concrete questions.
 
-During production extraction:
+For future production extraction:
 
 ```text
 keep proven behavior architecture

@@ -263,6 +263,22 @@ Therefore `ReferenceHitBaseSpeed` is a native Gothic calibration fact required b
 
 If a future mod changes the speed path structurally rather than as a compatible relative effect, that route requires evidence; do not silently reinterpret the third-party result as the native reference.
 
+### Evidence-bounded native calibration controls — EV-396
+
+| Exact tested family / loadout | Factual route / phase | Native speed |
+|---|---|---:|
+| Hero / None+1H | Normal Hit | 0.6 |
+| Hero / None+1H | QuickR Hit / QuickL Hit | 1.0 / 1.0 |
+| Hero / None+1H | Power Raise / Power Hit | 1.5 / 1.0 |
+| Troll / PhysicalFist+PhysicalFist | Normal Hit | 1.0 |
+| Troll / PhysicalFist+PhysicalFist | QuickR Hit / QuickL Hit | 1.0 / 1.0 |
+| Troll / PhysicalFist+PhysicalFist | Power Hit | 1.0 |
+| Troll / PhysicalFist+PhysicalFist | factual Sprint, shared-Power Raise / Hit | 1.0 / 1.0 |
+
+These are evidence-bounded native-only controls, not a complete native catalogue. Do not generalize them to untested families/loadouts. PhysicalFist here is factual raw55, not a source classification inferred from the serialized `Fist` token. `ReferenceHitBaseSpeed` is native Hit base **B**; New Balance/compatible modified live values are not native B. Raise observations are retained for later research, not as `ReferenceHitBaseSpeed` or current Hit-hook scope; Raise remains PAUSED.
+
+Proof: EV-396, retrieved through [EVIDENCE_INDEX.md](EVIDENCE_INDEX.md).
+
 ### Power / Sprint shared timing route
 
 Runtime causal evidence on Goblin, Troll and Sabertooth proves:
@@ -354,11 +370,16 @@ has a separate native arm and is **not** covered by the generic-human model abov
 The production marker mechanism keeps one exact call-site hook at `Game +0x16E180`.
 
 ```text
-accepted FIST below real native threshold
--> arm permission bound to actor/SPU/C1 generation/animation actor/current motion/callsite
--> call native GetPlayTime
--> only that matching comparison receives threshold + epsilon
--> consume once
+accepted raw8 FIST
+-> create or refresh ONE persistent pending opportunity for exact actor/C1/source/SPU
+-> call native GetPlayTime at Game+0x16E180; while pending, repeated timing permission
+   may return threshold + epsilon only to that matching comparison, for matching
+   timing actor/motion while real play time is below that forced value
+-> native miss: rearm exact latch 1 -> 0; same authored opportunity remains pending
+-> first exact native contact-resolution dispatch, caller-return Game+0x16E348:
+   consume pending opportunity before Gothic original
+-> later FIST refreshes/reopens one opportunity; opportunities never stack
+-> execution replacement/finalization/end may retire an unused opportunity
 ```
 
 Do not replace this with:
@@ -371,9 +392,11 @@ branch patch
 direct damage dispatch
 ```
 
-Marked-execution start closes `SPU+0x164 = 1`; each accepted FIST rearms `=0`. EV-347 proves the tested native attempt leaves the latch at `1` after the instruction returns whether or not the `Game+0x16E348` boundary is entered, so do not describe `+0x16E1A3` as success-only consumption. EV-349 further shows that entering `+0x16E348` does not imply visible HP damage: Parade/block can still prevent the gameplay damage result. Treat `+0x16E348` as an observed native hit/contact-resolution candidate boundary, not as a damage-success oracle.
+Timing permission is not consumption. Reaching the forced time or changing timing identity retires only the timing helper; it does not consume the logical opportunity. Native contact geometry, target selection and damage remain Gothic-owned.
 
-Evidence route: EV-221–EV-240 for human production, with later raw8 actor/family controls through EV-263. Raw8 production semantics must not be generalized to raw55 merely because both serialize through a `Fist` animation category.
+Marked-execution start closes `SPU+0x164 = 1`; each accepted FIST rearms `=0`. EV-347 proves the tested native attempt leaves the latch at `1` after the instruction returns whether or not the `Game+0x16E348` boundary is entered, so do not describe `+0x16E1A3` as success-only consumption. EV-349 further shows that entering `+0x16E348` does not imply visible HP damage: Parade/block can still prevent the gameplay damage result. The persistent-opportunity implementation uses only the exact native contact-resolution dispatch at caller-return `+0x16E348` as consumption, not as a damage-success oracle; Gothic original runs once with unchanged arguments.
+
+Permanent owner: [COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md](COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md), §§3–9. Evidence route: EV-221–EV-240 for human production, with later raw8 actor/family controls through EV-263; EV-346–EV-364 for persistent-opportunity evidence, implementation and focused acceptance. Raw8 production semantics must not be generalized to raw55 merely because both serialize through a `Fist` animation category.
 
 ---
 

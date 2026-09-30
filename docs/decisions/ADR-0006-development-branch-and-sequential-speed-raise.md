@@ -4,6 +4,10 @@
 **Date:** 2026-09-27  
 **Related:** ADR-0004, ADR-0005, `docs/DESIGN.md`, `docs/PROJECT_PIPELINE.md`
 
+**Current qualification — partial supersession:** The development-branch model and Speed-before-Raise sequencing remain valid. Historical Normal/Quick/profile-scope wording is qualified by the grouped/expanded schema in [ADR-0008](ADR-0008-grouped-loadout-profiles-expanded-attack-scope.md) and Sprint/Power inheritance in [ADR-0009](ADR-0009-sprint-inherits-power-speed-profile.md).
+
+The historical decision body below is preserved.
+
 ## Context
 
 The collision subsystem benefited from sustained single-focus development: one mechanism was researched, implemented, tested, corrected and closed before unrelated feature work resumed. That reduced cross-feature confusion and made evidence/causality easier to preserve.

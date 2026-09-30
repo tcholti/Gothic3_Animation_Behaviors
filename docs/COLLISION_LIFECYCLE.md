@@ -274,7 +274,7 @@ unsupported bow/crossbow/magic negatives
 
 ## 10. Durable Downstream Order
 
-Lifecycle architecture and permanent raw55 ownership are closed; permanent raw8 opportunity architecture is frozen with focused implementation/acceptance pending. The durable downstream dependency order is:
+Lifecycle architecture and permanent raw55 ownership are closed; permanent raw8 focused implementation/acceptance is CLOSED/PASS through EV-359–EV-364. Production collision integration is CLOSED/PASS EV-390 and migration is COMPLETE. The durable collision dependency chain below has reached integration closure; AttackContinuationProtection remains separate until deliberately resumed:
 
 ```text
 closed collision behavior/lifecycle architecture
@@ -285,6 +285,6 @@ closed collision behavior/lifecycle architecture
 -> separate AttackContinuationProtection investigation/implementation when deliberately resumed
 ```
 
-Live campaign status and the exact next setup belong in `SESSION_ENTRYPOINT.md` and `COLLISION_TEST_PLAN.md`.
+The immediate project gate and exact next setup belong in `SESSION_ENTRYPOINT.md`; durable validation posture/sequence belongs in `COLLISION_TEST_PLAN.md`.
 
 Even if continuation prevention later succeeds, C1-R1 remains the independent equipped-source fail-safe.

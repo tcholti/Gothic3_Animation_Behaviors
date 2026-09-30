@@ -242,10 +242,10 @@ The EV-385 standalone current-SPRINT/SP1 eligibility defect is **CLOSED by EV-38
 
 EV-389 then confirms the same mature behavior in the diagnostics-free twin: Troll/raw55 double-marker animations can hit twice from two authored opportunities, while the broader behavior-only run shows marker-controlled active/inactive windows and no observed persistent collision regression.
 
-Therefore the **final-candidate diagnostic phase is CLOSED/PASS through EV-386–EV-388 and behavior-only release-purity is CLOSED/PASS EV-389**. Collision is ready for production migration.
+Therefore the **final-candidate diagnostic phase is CLOSED/PASS through EV-386–EV-388 and behavior-only release-purity is CLOSED/PASS EV-389**. Production `Script_G3AnimationBehaviors` collision integration is **CLOSED/PASS EV-390**; collision migration is **COMPLETE**.
 
 Architecture: `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`.  
-Evidence: EV-262–EV-298, EV-317, EV-341, EV-366, EV-376–EV-389.
+Evidence: EV-262–EV-298, EV-317, EV-341, EV-366, EV-376–EV-390.
 
 ## 6. Sprint transport
 
@@ -326,8 +326,8 @@ final-candidate standalone diagnostic gate   CLOSED/PASS EV-386–EV-387
 final-candidate New Balance regression       PASS EV-388
 diagnostic phase                             CLOSED/PASS EV-386–EV-388
 behavior-only release-purity validation      CLOSED/PASS EV-389
-production collision migration               CURRENT
-production integration validation            PENDING AFTER MIGRATION
+production collision migration               COMPLETE EV-390
+production integration validation            CLOSED/PASS EV-390
 ```
 
 Final-candidate hashes:
@@ -337,7 +337,7 @@ Behavior   D5BECB2C32A9766B1B444CB5864C0C30C9AC251A1679F605127F4D7318900B78
 Diagnostic AEF0E18205BAA9258D50B2E934173C48B845E0F1B9A9F425D622F4E4598EE773
 ```
 
-Current validation authority: `COLLISION_TEST_PLAN.md`.
+Validation posture/sequence: `COLLISION_TEST_PLAN.md`. Immediate project gate: `SESSION_ENTRYPOINT.md`.
 
 ## 11. Evidence escalation rule
 

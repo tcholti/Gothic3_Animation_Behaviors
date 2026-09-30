@@ -5,6 +5,10 @@
 **Revised:** 2026-09-28  
 **Related:** ADR-0004, ADR-0005, ADR-0006, `docs/DESIGN.md` §§2–3, `docs/ANIMATION_RULES.md`
 
+**Current qualification — partial supersession:** The shared-profile foundation remains preserved rationale; startup loading, factual request identity and compatible base composition remain valid. [ADR-0008](ADR-0008-grouped-loadout-profiles-expanded-attack-scope.md) supersedes the per-ActionProfile section shape with grouped loadouts/expanded attack prefixes and supersedes the ReferenceRaiseBaseSpeed requirement. [ADR-0009](ADR-0009-sprint-inherits-power-speed-profile.md) owns Sprint/Power inheritance.
+
+The historical decision body below is preserved.
+
 ## Context
 
 Speed is the next exclusive feature after EV-390 closed collision production integration. Raise remains paused until Speed is completely closed, but both features must share one configuration/profile model so the project does not redesign its INI when Raise work begins.

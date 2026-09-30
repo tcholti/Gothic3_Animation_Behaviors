@@ -4,6 +4,10 @@
 **Date:** 2026-09-27  
 **Related:** `docs/DESIGN.md` §§2–3, `docs/ANIMATION_RULES.md`, ADR-0004, `references/README.md`
 
+**Current qualification — partial supersession:** Startup-loaded generic configuration, native animation resolution and compatible base composition remain valid. The original Normal/Quick-era scope/profile shape is historical: [ADR-0008](ADR-0008-grouped-loadout-profiles-expanded-attack-scope.md) owns the later grouped/expanded schema; [ADR-0009](ADR-0009-sprint-inherits-power-speed-profile.md) owns Sprint/Power inheritance.
+
+The historical decision body below is preserved.
+
 ## Context
 
 The early `Script_G3AnimationBehaviors` prototype proved two useful mechanisms with a deliberately narrow 2H Normal fixture:

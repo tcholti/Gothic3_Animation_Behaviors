@@ -245,7 +245,7 @@ correct branch/source state
 -> STOP build stage
 ```
 
-Do not use the live Gothic 3 `scripts` directory as build output/staging/backup. Current collision research products are:
+Do not use the live Gothic 3 `scripts` directory as build output/staging/backup. The frozen task selects the exact project runtime product/target; building a product does not authorize co-loading it with production or another probe. POP-03 owns the full project-product exclusion check. The following build rules/blocks are specific to the collision research twins:
 
 ```text
 Script_FrameCollisionTest
@@ -285,7 +285,7 @@ cmake --build build --config Release --target Script_FrameCollisionTest
 
 A successful build does not deploy it.
 
-**Do not insert an extra artifact-formatting gate merely to print `FullName/Length/LastWriteTime`.** POP-03 verifies the exact built artifact, live artifact, sole-live-twin state and SHA256 in one bounded step. A separate artifact inspection is justified only when the build output itself is ambiguous or a specific artifact question exists.
+**Do not insert an extra artifact-formatting gate merely to print `FullName/Length/LastWriteTime`.** POP-03 verifies the exact built artifact, live artifact, selected-only project-product state and SHA256 in one bounded step. A separate artifact inspection is justified only when the build output itself is ambiguous or a specific artifact question exists.
 
 Request only compact success or the smallest useful failure excerpt.
 
@@ -300,16 +300,32 @@ Use after a successful build and before launching Gothic 3 for that build.
 ### Invariant
 
 ```text
-resolve exact selected built DLL
--> ensure every mutually exclusive non-selected collision twin is physically absent from live scripts
+freeze exact selected project runtime product and resolve its built DLL
+-> physically remove conflicting/unwanted G3AB runtime products from live scripts
 -> copy only selected DLL
--> enumerate Script_FrameCollision* files in live scripts
--> require exactly one selected collision twin
+-> enumerate/check all relevant project runtime products and renamed backups
+-> require selected-only state; unexpected coexistence is STOP before launch
 -> SHA256 built == selected live DLL
 -> only then launch
 ```
 
 Do not co-load the diagnostic and behavior-only twins. The live scripts directory is deployment surface, not storage. Renaming a script DLL in place is not a safe disable mechanism; EV-173 showed a renamed backup can still participate in runtime loading.
+
+Project runtime products covered by exclusion/verification:
+
+```text
+Script_G3AnimationBehaviors.dll
+Script_FrameCollisionBehaviorTest.dll
+Script_FrameCollisionTest.dll
+Script_SpeedCalibrationProbe.dll
+Script_SpeedSprintProbe.dll
+Script_SpeedIdentityProbe.dll
+Script_CombatMoveLogger.dll
+```
+
+The default is exactly one selected project product. Coexistence requires explicit authorization/proof in the frozen task and verification of that exact allowed set; the blocks below enforce the default selected-only state. Third-party DLLs such as New Balance or AttackCollision are not automatically removed: their inclusion/exclusion remains fixture-specific and must be frozen by the active task.
+
+Before using a block, physically remove any project DLL backups with unrecognized/changed names from `scripts` (store backups outside it). The pattern below also catches recognized product prefixes with renamed DLL suffixes; a filename scan cannot identify arbitrarily renamed binaries. Renaming in place never establishes exclusion. For production or another probe, use the same full product inventory/exclusion and built/live hash invariant with its exact frozen artifact path; the twin-specific paths/PASS labels below are not generic product paths.
 
 ### Canonical diagnostic-twin deployment block
 
@@ -319,33 +335,36 @@ Use this block verbatim for `Script_FrameCollisionTest` unless workstation paths
 $buildDir = ".\build\prototypes\Script_FrameCollisionTest\Release"
 $liveDir  = "E:\SteamLibrary\steamapps\common\Gothic 3\scripts"
 
-$behaviorLive   = Join-Path $liveDir "Script_FrameCollisionBehaviorTest.dll"
 $diagnosticBuilt = Join-Path $buildDir "Script_FrameCollisionTest.dll"
 $diagnosticLive  = Join-Path $liveDir "Script_FrameCollisionTest.dll"
 
-if (Test-Path $behaviorLive) {
-    Remove-Item -LiteralPath $behaviorLive -Force
+$selectedName = "Script_FrameCollisionTest.dll"
+$projectPattern = '^Script_(G3AnimationBehaviors|FrameCollisionBehaviorTest|FrameCollisionTest|SpeedCalibrationProbe|SpeedSprintProbe|SpeedIdentityProbe|CombatMoveLogger).*\.dll'
+$unwanted = @(Get-ChildItem -LiteralPath $liveDir -File -ErrorAction Stop |
+    Where-Object { $_.Name -match $projectPattern -and $_.Name -ne $selectedName })
+foreach ($dll in $unwanted) {
+    Remove-Item -LiteralPath $dll.FullName -Force -ErrorAction Stop
 }
 
-Copy-Item -LiteralPath $diagnosticBuilt -Destination $diagnosticLive -Force
+Copy-Item -LiteralPath $diagnosticBuilt -Destination $diagnosticLive -Force -ErrorAction Stop
 
-Write-Host "`n=== LIVE COLLISION DLLS ==="
-$twins = @(Get-ChildItem -LiteralPath $liveDir -File |
-    Where-Object { $_.Name -like "Script_FrameCollision*" })
+Write-Host "`n=== LIVE G3AB PROJECT DLLS ==="
+$projectDlls = @(Get-ChildItem -LiteralPath $liveDir -File -ErrorAction Stop |
+    Where-Object { $_.Name -match $projectPattern })
 
-$twins | Select-Object Name, Length, LastWriteTime
+$projectDlls | Select-Object Name, Length, LastWriteTime
 
-$builtHash = (Get-FileHash -LiteralPath $diagnosticBuilt -Algorithm SHA256).Hash
-$liveHash  = (Get-FileHash -LiteralPath $diagnosticLive -Algorithm SHA256).Hash
+$builtHash = (Get-FileHash -LiteralPath $diagnosticBuilt -Algorithm SHA256 -ErrorAction Stop).Hash
+$liveHash  = (Get-FileHash -LiteralPath $diagnosticLive -Algorithm SHA256 -ErrorAction Stop).Hash
 
 Write-Host "`nBuilt SHA256: $builtHash"
 Write-Host "Live  SHA256: $liveHash"
 
-if ($twins.Count -ne 1 -or $twins[0].Name -ne "Script_FrameCollisionTest.dll") {
-    Write-Host "`nSTOP: unexpected collision DLL state."
+if ($projectDlls.Count -ne 1 -or $projectDlls[0].Name -ne $selectedName) {
+    throw "STOP: unexpected G3AB project DLL coexistence/state."
 }
 elseif ($builtHash -ne $liveHash) {
-    Write-Host "`nSTOP: built/live hash mismatch."
+    throw "STOP: built/live hash mismatch."
 }
 else {
     Write-Host "`nDIAGNOSTIC DEPLOYMENT PASS"
@@ -355,7 +374,7 @@ else {
 Required success surface:
 
 ```text
-exactly one Script_FrameCollision* live DLL
+exactly one recognized G3AB project live DLL; no renamed project backups remain
 selected DLL = Script_FrameCollisionTest.dll
 Built SHA256 == Live SHA256
 DIAGNOSTIC DEPLOYMENT PASS
@@ -369,40 +388,43 @@ Use this block verbatim for `Script_FrameCollisionBehaviorTest`:
 $buildDir = ".\build\prototypes\Script_FrameCollisionTest\Release"
 $liveDir  = "E:\SteamLibrary\steamapps\common\Gothic 3\scripts"
 
-$diagnosticLive = Join-Path $liveDir "Script_FrameCollisionTest.dll"
 $behaviorBuilt  = Join-Path $buildDir "Script_FrameCollisionBehaviorTest.dll"
 $behaviorLive   = Join-Path $liveDir "Script_FrameCollisionBehaviorTest.dll"
 
-if (Test-Path $diagnosticLive) {
-    Remove-Item -LiteralPath $diagnosticLive -Force
+$selectedName = "Script_FrameCollisionBehaviorTest.dll"
+$projectPattern = '^Script_(G3AnimationBehaviors|FrameCollisionBehaviorTest|FrameCollisionTest|SpeedCalibrationProbe|SpeedSprintProbe|SpeedIdentityProbe|CombatMoveLogger).*\.dll'
+$unwanted = @(Get-ChildItem -LiteralPath $liveDir -File -ErrorAction Stop |
+    Where-Object { $_.Name -match $projectPattern -and $_.Name -ne $selectedName })
+foreach ($dll in $unwanted) {
+    Remove-Item -LiteralPath $dll.FullName -Force -ErrorAction Stop
 }
 
-Copy-Item -LiteralPath $behaviorBuilt -Destination $behaviorLive -Force
+Copy-Item -LiteralPath $behaviorBuilt -Destination $behaviorLive -Force -ErrorAction Stop
 
-Write-Host "`n=== LIVE COLLISION DLLS ==="
-$twins = @(Get-ChildItem -LiteralPath $liveDir -File |
-    Where-Object { $_.Name -like "Script_FrameCollision*" })
+Write-Host "`n=== LIVE G3AB PROJECT DLLS ==="
+$projectDlls = @(Get-ChildItem -LiteralPath $liveDir -File -ErrorAction Stop |
+    Where-Object { $_.Name -match $projectPattern })
 
-$twins | Select-Object Name, Length, LastWriteTime
+$projectDlls | Select-Object Name, Length, LastWriteTime
 
-$builtHash = (Get-FileHash -LiteralPath $behaviorBuilt -Algorithm SHA256).Hash
-$liveHash  = (Get-FileHash -LiteralPath $behaviorLive -Algorithm SHA256).Hash
+$builtHash = (Get-FileHash -LiteralPath $behaviorBuilt -Algorithm SHA256 -ErrorAction Stop).Hash
+$liveHash  = (Get-FileHash -LiteralPath $behaviorLive -Algorithm SHA256 -ErrorAction Stop).Hash
 
 Write-Host "`nBuilt SHA256: $builtHash"
 Write-Host "Live  SHA256: $liveHash"
 
-if ($twins.Count -ne 1 -or $twins[0].Name -ne "Script_FrameCollisionBehaviorTest.dll") {
-    Write-Host "`nSTOP: unexpected collision DLL state."
+if ($projectDlls.Count -ne 1 -or $projectDlls[0].Name -ne $selectedName) {
+    throw "STOP: unexpected G3AB project DLL coexistence/state."
 }
 elseif ($builtHash -ne $liveHash) {
-    Write-Host "`nSTOP: built/live hash mismatch."
+    throw "STOP: built/live hash mismatch."
 }
 else {
     Write-Host "`nBEHAVIOR DEPLOYMENT PASS"
 }
 ```
 
-If either block prints `STOP`, or the expected PASS line is absent, stop before launch.
+The behavior block requires the same selected-only project inventory and matching hashes, with `Script_FrameCollisionBehaviorTest.dll` selected. If either block throws/reports `STOP`, a filesystem/hash operation fails, or the expected PASS line is absent, stop before launch.
 
 The table is human-readable context only. **The required values are the explicit scalar PASS/hash lines; never require a width-dependent `Select-Object` table to prove binary identity.**
 
@@ -423,6 +445,8 @@ launch only far enough to exercise script loading
 -> verify loading using evidence surface appropriate to selected product
 -> only then run behavioral matrix
 ```
+
+For `Script_G3AnimationBehaviors` and other probes, the frozen task must specify product-appropriate startup/load evidence. The FrameCollision banners/log/unload checks below apply only to their named twins; do not invent equivalent indicators for other products. POP-03 project-product exclusion must pass before any startup gate.
 
 ### Diagnostic twin — canonical startup gate
 

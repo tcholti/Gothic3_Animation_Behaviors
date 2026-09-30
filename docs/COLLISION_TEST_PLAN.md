@@ -177,17 +177,19 @@ Production behavior validation may remain observational where diagnostics are in
 
 ---
 
-## 7. Current sequence
+## 7. Durable dependency sequence
 
 ```text
 EV-386–EV-388 diagnostic final candidate      CLOSED/PASS
 EV-389 behavior-only release-purity            CLOSED/PASS
 EV-390 production integration                  CLOSED/PASS
 COLLISION                                      CLOSED / stable foundation
-CURRENT PROJECT PHASE                          shared Speed+Raise config foundation
-NEXT                                           Speed v2 only until closed
-LATER                                          Raise only after Speed closes
+SHARED SPEED+RAISE CONFIG FOUNDATION            IMPLEMENTED
+DEPENDENCY ORDER                               Speed v2 only until closed
+THEN                                           Raise only after Speed closes
 FINAL BEFORE MAIN                              assembled collision + Speed + Raise regression
 
 AttackContinuationProtection remains separate unless deliberately reopened.
 ```
+
+The immediate project gate is owned by [SESSION_ENTRYPOINT.md](SESSION_ENTRYPOINT.md); this section records durable dependency order, not another current-state pointer.

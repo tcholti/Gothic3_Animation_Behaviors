@@ -83,38 +83,19 @@ This avoids creating another independently stale chronology that fresh Chats mus
 
 ---
 
-## 4. Current Intake State
+## 4. Current Intake Routing
 
-Latest processed collision evidence checkpoint:
-
-```text
-EV-299 — Golem 1H regression PASS
-EV-300 — Golem 1H+torch regression PASS
-EV-301 — Golem dual-1H regression PASS
-EV-302 — Golem 2H regression PASS
-EV-303 — Golem Staff regression PASS
-EV-304 — Golem human raw8 Fist single-marker/native-fallback PASS
-EV-305 — Golem human raw8 Fist double-marker repeated-contact PASS
-EV-306 — Golem 1H+shield exact-source regression PASS
-EV-307 — Sabretooth raw8 double-FIST actor-general regression PASS
-EV-308 — shield/raw9 LEFT activation negative control; shield-bash damage deferred
-```
-
-All standalone-regression batches through EV-308 have been processed and archived byte-identically. Current expected active-intake baseline is:
+This README does not maintain a per-run current-intake history.
 
 ```text
-research/raw/Keep.txt
+current raw state
+-> inspect the actual research/raw tree
+-> retrieve exact disposition/current evidence through the active Evidence Ledger / EVIDENCE_INDEX
+-> retrieve the immediate project gate through SESSION_ENTRYPOINT
+-> apply POP-06 archive/disposition mechanics only after explicit evidence closure
 ```
 
-That baseline has been verified again after closure of EV-308.
-
-A future artifact belongs in raw only while it is genuinely unprocessed or intentionally retained as an active comparison. After each uploaded test batch, POP-06 requires processed artifacts to be archived before the next batch is requested.
-
-Migration details/provenance:
-
-```text
-docs/EVIDENCE_PATH_MIGRATIONS.md
-```
+An artifact remains in raw while unprocessed, intentionally retained for an active comparison, or explicitly KEEP RAW pending provenance/disposition reconciliation. Do not infer archive permission merely from a closed mechanism conclusion. Storage notes in `docs/EVIDENCE_INDEX.md` route explicit preservation states; deliberate later moves are traced by `docs/EVIDENCE_PATH_MIGRATIONS.md`.
 
 For large archived logs, routine retrieval should begin with the canonical EV and committed `research/derived/` package when one exists. Small CORE logs may be read directly from archive. The archive is opened only when exact source verification is needed beyond maintained evidence.
 

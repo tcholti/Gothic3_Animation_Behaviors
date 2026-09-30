@@ -39,6 +39,7 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 
 | Question / topic | Start with |
 |---|---|
+| early Raise / CombatMove mechanism proof (scoped prototype, not general Raise acceptance) | EV-001 payload surface; EV-002 tested 2H Normal Hit without Raise; EV-005 native Power Raise -> Hit; EV-006 asynchronous Raise insertion prototype; EV-007 engine P0/P1 Raise resolution |
 | frame effects / authored marker channel | EV-012–EV-018 |
 | native weapon reset / marker timing | EV-019–EV-023 |
 | raw8 Fist/body-contact foundations | EV-029–EV-032, EV-080–EV-085, EV-221–EV-251 |
@@ -104,6 +105,8 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | native contact misses vs authored marker correctness | EV-381 |
 | sheath/draw contact observation | EV-380–EV-381; not a marker blocker |
 
+Raise remains **PAUSED**; the early route above and EV-396 Sprint/Power Raise observations are retrieval only and do not authorize implementation.
+
 ## 3. Current collision closure landmarks
 
 ```text
@@ -148,7 +151,7 @@ EV-389         diagnostics-free behavior-only release-purity PASS; collision rea
 EV-390         final Script_G3AnimationBehaviors.dll production collision integration PASS; migration CLOSED
 ```
 
-## 4. Current project disposition / next gate
+## 4. Established disposition / durable continuation
 
 ```text
 Collision project phase:
@@ -164,7 +167,7 @@ Speed v2 / expanded Speed:
   expanded production source = static-review PASS / local Release build PASS / deployment deferred
   reusable Speed calibration probe = build + first native control PASS EV-396
 
-Current project gate:
+Durable post-audit Speed continuation (after Normal Chat review closure):
   broad native Speed calibration sampling
   -> common human/loadout reference values
   -> representative NPC/nonhuman values
@@ -173,6 +176,8 @@ Current project gate:
   -> close Speed completely
   -> Raise only afterward
 ```
+
+The immediate project gate is owned by [SESSION_ENTRYPOINT.md](SESSION_ENTRYPOINT.md), not this sequence.
 
 Do not rerun the full standalone, New Balance, behavior-only, or production-collision campaigns unless later integration produces contradictory evidence.
 
@@ -197,6 +202,17 @@ research/archive/  processed canonical runtime provenance
 ```
 
 Processed collision and earlier Speed identity evidence has been archived byte-identically under `research/archive/`; large deterministic retrieval aids remain under `research/derived/` when still useful.
+
+Explicit raw preservation state (no move/archive/delete/rewrite is authorized by this maintenance pass):
+
+| Artifact under `research/raw/` | Disposition |
+|---|---|
+| `2026.09.29_speed calibration_1h_troll.log` | **ACTIVE COMPARISON / KEEP RAW**, EV-396, while calibration campaign remains active |
+| `2026.09.29_sprint_probe_goblin.log` | Closed-probe provenance; **KEEP RAW** pending explicit provenance/disposition reconciliation |
+| `2026.09.29_sprint_probe_troll.log` | Closed-probe provenance; **KEEP RAW** pending explicit provenance/disposition reconciliation |
+| `2026.09.29_sprint_probe_troll_sabertooth_zombie.log` | Closed-probe provenance; **KEEP RAW** pending explicit provenance/disposition reconciliation |
+
+The three Sprint logs remain byte-identical and in place until Normal Chat positively maps every artifact and authorizes archival. The archived Sprint result and ADR-0009 preserve the settled mechanism conclusion, but standalone `sprint_probe_troll.log` has insufficient exact current routing to justify automatic archival. A closed probe is not permission to move/delete these artifacts.
 
 The EV-396 native calibration control log remains intentionally in `research/raw/2026.09.29_speed calibration_1h_troll.log` during the active broad-calibration campaign because it is the baseline comparison fixture for the same reusable probe. Once the campaign no longer needs active comparison, close/archive it under the runtime-evidence lifecycle rather than deleting it.
 
