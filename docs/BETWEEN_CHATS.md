@@ -19,7 +19,9 @@ Sprint Speed = inherits Power profile on proven shared route (ADR-0009)
 repository health/authority audit = CLOSED / reviewed maintenance PASS at 4090298a409172dcee2bc5e6dc1d267b1e22f75e
 Speed calibration = native control PASS EV-396; broad Hero/loadout checkpoint PASS EV-397; Finishing Action15 observation PASS EV-398
 Hack/Finishing action-route Speed isolation = PASS EV-399 on shared + separated assets
-CURRENT = representative NPC/nonhuman native calibration
+extended 18-Hit probe identity/startup = PASS EV-400 / F63EB6D169778079D6E60B62DF7E00F586B1987E05F4557BC61AF3D45071C05B
+representative Hero/Orc/Goblin NPC calibration = PASS EV-400
+CURRENT = same-run Goblin ordinary-Power/Sprint context control -> representative nonhuman native calibration
 Raise = paused until Speed closes
 ```
 
@@ -33,16 +35,17 @@ Historical original 15-Hit-caller probe SHA256:
 
 `4140867626119632929D2286A173E97B3A4ACE6EDBCA4E2DBFE30AC28FE28E82`
 
-The current 18-Hit-caller source passed focused Action15 runtime observation but its exact built/live hash was not durably captured. Re-establish POP-03 identity before the probe is reused.
+Current extended 18-Hit-caller probe built/live SHA256:
+
+`F63EB6D169778079D6E60B62DF7E00F586B1987E05F4557BC61AF3D45071C05B`
+
+EV-400 verified that current hash with one sole live project DLL and a clean 18-hook startup/unload gate. It does not retroactively identify the EV-398 binary.
 
 Immediate sequence:
 
 ```text
-production G3AB OFF
--> restore/rebuild extended calibration probe
--> POP-03 built/live SHA verification and record exact hash
--> clean native fixture
--> representative NPC users
+keep current clean-native probe fixture
+-> same-run Goblin ordinary Power + factual Sprint
 -> representative nonhuman families
 -> useful New Balance comparison
 -> expanded production Speed runtime acceptance
@@ -50,7 +53,7 @@ production G3AB OFF
 -> Raise afterward
 ```
 
-EV-399 closes the shared/separated Hack+Finishing experiment: configured Hack speed remained isolated from Finishing in both asset arrangements. Existing Hack Raise/Recover followed Hack's configured speed, but future inserted custom Raise remains untested.
+EV-400 keeps `research/raw/2026.09.30_speed_calibration_representative_npcs.log` as an explicit active comparison: current Goblin Sprint Hit `1.5` differs from the earlier same-family run where ordinary Power and Sprint Hit were both `1.0`. Do not promote `1.5` as Goblin Power `B` until the same-run context control closes.
 
 `ReferenceHitBaseSpeed` is native Gothic `B`, never a New Balance-modified live value.
 

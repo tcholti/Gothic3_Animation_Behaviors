@@ -106,6 +106,11 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | Hack/Finishing Speed isolation with shared and separated animation assets | EV-399 |
 | Speed authority follows factual action route, not animation-file identity | EV-399 |
 | existing Hack Raise/Recover follow configured Hack playback speed | EV-399; later Raise evidence only |
+| current extended 18-Hit Speed calibration probe exact identity/startup | EV-400 |
+| representative Hero/Orc/Goblin native NPC Speed calibration | EV-400 |
+| Hero NPC values match sampled corresponding Hero routes | EV-400 |
+| Orc Staff-family Power difference reproduced | EV-397, EV-400 |
+| Goblin factual Sprint contextual 1.5 vs historical same-family Power/Sprint 1.0 comparison | EV-400; bounded follow-up open |
 | Sprint shared Power Raise observation for later Raise research | EV-396 |
 | Speed v2 deep independent static audit | `archive/investigations/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT_RESULT.md` |
 | Speed v2 S-01 finite-output correction | `archive/investigations/SPEED_V2_S01_FINITE_OUTPUT_GUARD.md` |
@@ -177,10 +182,14 @@ Speed v2 / expanded Speed:
   broad Hero/loadout calibration = PASS EV-397
   Finishing/Action15 native observation = PASS EV-398
   Hack/Finishing shared+separated asset Speed isolation = PASS EV-399
+  extended 18-Hit calibration probe identity/startup = PASS EV-400
+  representative NPC checkpoint = PASS EV-400
+  Goblin same-run ordinary-Power/Sprint context comparison = OPEN
   Finishing = not a shipped/default Speed profile; Speed isolation closed
 
 Durable post-audit Speed continuation (after Normal Chat review closure):
-  representative NPC/nonhuman native values
+  bounded Goblin Power/Sprint context control
+  -> representative nonhuman native values
   -> useful New Balance comparison as compatibility evidence
   -> expanded production Speed deployment/runtime acceptance
   -> close Speed completely
@@ -218,8 +227,9 @@ Explicit raw preservation state:
 | Artifact under `research/raw/` | Disposition |
 |---|---|
 | `2026.09.29_speed calibration_1h_troll.log` | **ACTIVE COMPARISON / KEEP RAW**, EV-396, while the calibration campaign remains active |
+| `2026.09.30_speed_calibration_representative_npcs.log` | **ACTIVE COMPARISON / KEEP RAW**, EV-400, until the Goblin ordinary-Power/Sprint contextual repeat closes |
 
-The EV-396 native calibration control remains the only active runtime comparison artifact in intake. The three closed Sprint-probe logs were positively reconciled and moved byte-identically to `research/archive/`; their historical raw routes are mapped in `EVIDENCE_PATH_MIGRATIONS.md`. The three processed September 30 human/Finishing calibration logs are also archived after EV-397–EV-398 promotion.
+The EV-396 native calibration control and the EV-400 representative-NPC/Goblin contextual comparison are the only active runtime comparison artifacts in intake. The three closed Sprint-probe logs were positively reconciled and moved byte-identically to `research/archive/`; their historical raw routes are mapped in `EVIDENCE_PATH_MIGRATIONS.md`. The three processed September 30 human/Finishing calibration logs are also archived after EV-397–EV-398 promotion.
 
 The EV-396 native calibration control log remains intentionally in `research/raw/2026.09.29_speed calibration_1h_troll.log` during the active broad-calibration campaign because it is the baseline comparison fixture for the same reusable probe. Once the campaign no longer needs active comparison, close/archive it under the runtime-evidence lifecycle rather than deleting it.
 

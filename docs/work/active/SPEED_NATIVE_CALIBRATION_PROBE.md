@@ -174,7 +174,7 @@ The loaded-state fields are supporting diagnostics, not a substitute for the phy
 
 ## First runtime validation — PASS
 
-This checkpoint validates the original 15-Hit-caller probe plus Power Raise. The three-site Finishing extension still requires independent review, local build and focused runtime validation; the historical hash below does not identify the extended binary.
+This historical checkpoint validates the original 15-Hit-caller probe plus Power Raise. The historical hash below identifies that earlier binary only; the current extended 18-Hit-caller identity is recorded separately below.
 
 Built Release probe SHA256:
 
@@ -238,7 +238,7 @@ Hero None+Halberd -> Staff:
 
 The run recorded 139 intercepted calls, 17 unique observations and zero drops, with `G3AB=false` and `NewBalance=false`. Deduplication does not expose which of the three static Action15 caller sites produced each row, so do not claim all three sites were individually exercised.
 
-The extended probe's exact built/live SHA256 was not durably captured. Its distinctive 18-Hit-caller startup banner and factual Action15 rows establish that the extension loaded, but before the calibration probe is reused later, repeat POP-03 built/live identity verification and record the hash.
+The extended probe's exact built/live SHA256 was not durably captured for the EV-398 run itself. Its distinctive 18-Hit-caller startup banner and factual Action15 rows establish that the extension loaded. This historical provenance gap cannot be reconstructed retroactively; current reuse identity was later re-established exactly in EV-400.
 
 The pre-extension broad native human/loadout checkpoint is EV-397. It established direct sampled Axe->2H and Halberd->Staff equivalence and showed family-specific base differences, including Hero Staff Power Hit `1.0` versus Orc Staff Power Hit `0.7`.
 
@@ -277,6 +277,63 @@ restore the clean native fixture
 ```
 
 Then continue representative NPC/nonhuman calibration. The calibration probe and production G3AB must not coexist.
+
+## Current extended-probe identity and representative NPC checkpoint — PASS EV-400
+
+After EV-399 the current 18-Hit-caller probe was rebuilt and POP-03 identity-verified before reuse:
+
+```text
+Built SHA256 = F63EB6D169778079D6E60B62DF7E00F586B1987E05F4557BC61AF3D45071C05B
+Live  SHA256 = F63EB6D169778079D6E60B62DF7E00F586B1987E05F4557BC61AF3D45071C05B
+sole recognized G3AB project DLL = Script_SpeedCalibrationProbe.dll
+startup = 18 Hit hooks + Power Raise hook
+main-menu control = 0 calls / 0 unique / 0 dropped
+```
+
+This closes the missing identity requirement for **current and subsequent** calibration runs. It does not retroactively assign this hash to EV-398.
+
+Representative clean-native NPC observations:
+
+```text
+Hero None+1H:
+  Normal .6
+  Quick R/L 1.0
+  Power Raise 1.5 / Hit 1.0
+  Pierce 1.0
+
+Hero None+Staff:
+  Normal .7
+  Quick R/L 1.0
+  Power Raise 1.5 / Hit 1.0
+  Hack 1.0
+  Whirl 1.0
+
+Orc Halberd51 -> Staff:
+  Normal .7
+  Quick R/L 1.0
+  Power Raise 1.0 / Hit .7
+  Hack 1.0
+  Whirl 1.0
+
+Goblin None+1H:
+  Normal .6
+  Quick R/L 1.0
+  factual Sprint Action9 via passed Power:
+    Raise 1.5
+    Hit 1.5
+```
+
+The Goblin Sprint value is **not** promoted as ordinary Goblin Power `B`. The earlier closed Sprint causal run observed ordinary Goblin Power Hit `1.0` and factual Sprint Hit `1.0` together. Keep today's log as an active comparison and resolve the contextual difference with one same-run Goblin ordinary-Power + Sprint control.
+
+The User deliberately used Hero 2H for cleanup/engagement. Those rows are cleanly marked `Player>0, NPC=0` and reproduced established Hero controls; they do not contaminate the NPC facts above.
+
+Next bounded native sequence:
+
+```text
+same-run Goblin ordinary Power + factual Sprint control
+-> representative nonhuman families
+-> useful New Balance comparison
+```
 
 ## Broad native calibration gate
 

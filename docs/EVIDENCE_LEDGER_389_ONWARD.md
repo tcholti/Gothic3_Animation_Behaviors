@@ -399,3 +399,46 @@ Disposition:
 - The bounded Finishing/Hack research detour is CLOSED.
 - **NEXT:** remove production G3AB, re-establish exact identity for the extended calibration probe, and resume representative NPC/nonhuman native Speed calibration before later New Balance comparison and final expanded-production acceptance.
 
+### EV-400 — Representative native NPC Speed calibration PASS; Goblin contextual Sprint comparison retained
+
+Observed:
+- After EV-399, the current extended `Script_SpeedCalibrationProbe.dll` was rebuilt from `development` and deployed as the sole recognized G3AB project runtime product.
+- POP-03 built/live identity matched exactly:
+  `F63EB6D169778079D6E60B62DF7E00F586B1987E05F4557BC61AF3D45071C05B`.
+- The startup gate reported all 18 proven Hit caller hooks, including the three Finishing/Action15 sites, plus the proven Power Raise observation hook. A main-menu-only control exited with `InterceptedCalls=0`, `UniqueObservations=0`, and zero drops.
+- The clean native fixture kept production G3AB, New Balance, NewMagicforNPCs, AttackCollision, and the custom Animation/Rapier/Zombie script DLLs physically outside `scripts`.
+- The representative NPC run is preserved at `research/raw/2026.09.30_speed_calibration_representative_npcs.log` because one contextual Goblin comparison remains open.
+- Final summary: 248 intercepted calls, 33 unique observations, zero dropped observations. The 2H player cleanup/control traffic is explicitly identified by `Player>0, NPC=0`; NPC observations are therefore separable from the User's attacks.
+- NPC native observations:
+  - Hero / None+1H / `MoraSul_Bandit_03`: Normal Hit `0.6`; Quick R/L Hit `1.0`; Power Raise `1.5`; Power Hit `1.0`; Pierce Hit `1.0`.
+  - Hero / None+Staff / `NomadElite_01`: Normal Hit `0.7`; Quick R/L Hit `1.0`; Power Raise `1.5`; Power Hit `1.0`; Hack Hit `1.0`; Whirl Hit `1.0`.
+  - Orc / raw Halberd51 -> Staff / `Montera_Orc_01`: Normal Hit `0.7`; Quick R/L Hit `1.0`; Power Raise `1.0`; Power Hit `0.7`; Hack Hit `1.0`; Whirl Hit `1.0`.
+  - Goblin / None+1H / Goblin+BlackGoblin samples: Normal Hit `0.6`; Quick R/L Hit `1.0`; factual Sprint/Action9 through passed Power/Action2 returned Raise `1.5` and Hit `1.5`.
+- The player's deliberate Hero None+2H cleanup traffic reproduced established controls: Normal `0.7`, Quick R/L `1.0`, Power Raise `1.5`, Power Hit `1.0`, Hack `1.0`, Whirl `1.0`, Finishing `1.0`. Those rows are control/provenance only and are not promoted as NPC facts.
+- The older closed Sprint causal run on BlackGoblin recorded ordinary Power Hit `1.0` and factual Sprint Hit `1.0` in the same run. Today's factual Sprint Hit `1.5` is therefore preserved as a contextual native variation, not re-labelled as a new ordinary Goblin Power base.
+
+Interpretation:
+- Sampled Hero NPCs use the same native values already established for the corresponding Hero family/loadout routes. No player-vs-NPC Speed split was observed for those exercised routes.
+- The Orc/Halberd sample strongly reproduces EV-397's family-specific Power facts: Orc Power Raise `1.0` / Hit `0.7` remains materially different from Hero Staff Power Raise `1.5` / Hit `1.0`.
+- The Goblin result does not contradict the proven shared Sprint/Power transport or ADR-0009. It shows that the live native result on that route can differ across runtime contexts. Because the current run did not capture ordinary Goblin Power alongside Sprint, do not infer `ReferenceHitBaseSpeed=1.5` for Goblin Power from this run.
+- The next smallest control is same-run Goblin ordinary Power plus factual Sprint. If both move together, the difference is compatible with a contextual multiplier `M`; if they diverge, investigate before promoting a Goblin Power reference.
+
+Scope / limits:
+- This checkpoint covers only the naturally exercised NPC routes above; unsupported actions were not forced.
+- No SimpleWhirl or ordinary Goblin Power/Pierce/Hack observation was produced for the NPC samples.
+- The current raw log remains an explicit active comparison input until the Goblin contextual repeat closes; this is intentional POP-06 retention, not stale intake.
+
+Provenance:
+- User-pushed runtime commit: `5205fb98538f07dd668164152ba3fd5a29c50383`;
+- current extended probe built/live SHA256: `F63EB6D169778079D6E60B62DF7E00F586B1987E05F4557BC61AF3D45071C05B`;
+- current active log blob: `e800b0d0836b36e85c15a6c681415f9490a02809`;
+- historical Goblin shared-Power/Sprint control: `docs/archive/investigations/SPEED_SPRINT_SHARED_POWER_HIT_CAUSAL_PROBE_RESULT.md`.
+
+Disposition:
+- **PASS — EXTENDED 18-HIT-CALLER PROBE IDENTITY/STARTUP GAP CLOSED FOR CURRENT CALIBRATION.**
+- **PASS — REPRESENTATIVE HERO/ORC/GOBLIN NPC CALIBRATION CHECKPOINT.**
+- **CONFIRMED — HERO NPC VALUES MATCH THE CORRESPONDING ESTABLISHED HERO ROUTES IN THIS SAMPLE.**
+- **CONFIRMED — ORC STAFF-FAMILY POWER DIFFERENCE REPRODUCED.**
+- **OPEN BOUNDED FOLLOW-UP — GOBLIN SAME-RUN ORDINARY POWER + SPRINT CONTEXT CONTROL.**
+- After that small control, continue representative nonhuman native calibration, then the useful New Balance comparison.
+
