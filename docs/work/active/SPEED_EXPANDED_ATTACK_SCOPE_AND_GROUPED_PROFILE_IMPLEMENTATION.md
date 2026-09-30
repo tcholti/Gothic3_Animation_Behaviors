@@ -170,21 +170,34 @@ No production source correction is currently indicated.
 
 ## Current gate
 
-**NEXT = build and run `Script_SpeedCalibrationProbe` for broad native calibration, then New Balance comparison where useful.**
+**NEXT = broad native calibration with the validated `Script_SpeedCalibrationProbe`, then New Balance comparison where useful.**
 
 Calibration discipline:
 
 ```text
-Script_G3AnimationBehaviors.dll absent while calibration probe is active
-native run: Script_NewBalance.dll absent
-NB comparison run: Script_NewBalance.dll present
+Gothic may still load renamed DLLs left inside scripts; renaming in place is not a disable method.
+Any DLL that must be excluded from a fixture must be physically moved/removed outside scripts before launch.
+
+native run:
+  Script_G3AnimationBehaviors.dll physically outside scripts
+  Script_NewBalance.dll physically outside scripts
+  other optional combat/gameplay DLLs that could contaminate the clean fixture removed as required
+  Script_SpeedCalibrationProbe.dll present
+
+NB comparison run:
+  Script_G3AnimationBehaviors.dll physically outside scripts
+  intended New Balance stack restored
+  Script_SpeedCalibrationProbe.dll present
+
 probe returns live speed unchanged in both cases
 ```
+
+EV-396 validates the first native Hero None+1H + Troll PhysicalFist calibration control and the probe's compact aggregation.
 
 After enough common native references are established:
 
 ```text
-remove calibration probe
+remove calibration probe from scripts
 restore intended compatible stack
 rebuild only if source changed
 otherwise deploy already-reviewed expanded production target
