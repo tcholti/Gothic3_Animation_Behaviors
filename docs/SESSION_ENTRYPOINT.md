@@ -16,20 +16,15 @@ collision production integration = CLOSED/PASS through EV-390
 configured Speed + New Balance multiplier preservation = PASS EV-395
 expanded Speed source = IMPLEMENTED / STATIC REVIEW PASS / LOCAL RELEASE BUILD PASS
 Sprint Speed authoring = inherits Power profile on proven shared route (ADR-0009)
+repository health/authority audit = CLOSED / NORMAL CHAT REVIEW PASS
+reviewed maintenance = commit 4090298a409172dcee2bc5e6dc1d267b1e22f75e / knowledge-state CI PASS
 Speed calibration probe = BUILD + FIRST NATIVE CONTROL PASS EV-396
-broad native calibration = READY but deliberately PAUSED
-CURRENT = formal preservation-biased repository health/authority audit
+CURRENT = broad native Speed calibration
 Raise behavior = PAUSED until Speed closes
 main = FROZEN
 ```
 
-Current audit task:
-
-`docs/work/active/REPOSITORY_HEALTH_AND_AUTHORITY_AUDIT.md`
-
-The audit is read-only except for one allowed Work result file. Work must not delete/move/archive/rewrite existing evidence/docs/source. Normal Chat reviews the findings before any cleanup is accepted.
-
-Current Speed tasks remain active but paused behind the audit:
+Current Speed tasks:
 
 ```text
 docs/work/active/SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md
@@ -40,9 +35,27 @@ Canonical reusable engine lookup:
 
 `docs/SOURCE_HOOK_GUIDE.md`
 
-## Latest Speed evidence
+The completed preservation-biased repository audit and Work result are archived under `docs/archive/investigations/`. Its accepted RH-01–RH-13 maintenance is represented in the durable owners; RH-14–RH-17 were KEEP/no-action. The three closed Sprint-probe logs remain explicit KEEP RAW pending positive provenance/disposition reconciliation; do not move them by inference.
 
-EV-396 validates the reusable calibration probe and first clean native fixture:
+## Immediate continuation — broad native Speed calibration
+
+Use `docs/work/active/SPEED_NATIVE_CALIBRATION_PROBE.md` as the active calibration contract.
+
+```text
+human release loadouts / naturally available supported attacks
+-> representative NPC users
+-> representative nonhuman families
+-> useful New Balance comparison as compatibility evidence
+-> expanded production Speed deployment/runtime acceptance
+-> close Speed completely
+-> Raise afterward
+```
+
+Validated calibration probe SHA256:
+
+`4140867626119632929D2286A173E97B3A4ACE6EDBCA4E2DBFE30AC28FE28E82`
+
+EV-396 native controls establish, within their exact tested fixtures:
 
 ```text
 Hero None+1H Normal Hit = 0.6
@@ -53,35 +66,18 @@ Troll PhysicalFist Normal/Quick/Power Hit = 1.0
 Troll factual Sprint Raise/Hit through passed Power = 1.0
 ```
 
-Probe SHA256:
-
-`4140867626119632929D2286A173E97B3A4ACE6EDBCA4E2DBFE30AC28FE28E82`
-
-`ReferenceHitBaseSpeed` remains native Gothic `B`; compatible live modifiers remain in the result and production composes:
+`ReferenceHitBaseSpeed` remains native Gothic `B`; compatible live modifiers remain in the live result and production composes:
 
 ```text
 compatible = B * M
 configured = compatible * (C / B) = C * M
 ```
 
-## Critical runtime rule
+## Runtime fixture rule
 
-Renaming a script DLL while leaving it inside Gothic 3's `scripts` folder is **not** a valid disable method. A DLL that must be absent from a fixture must be physically moved/removed completely outside `scripts` before launch.
+Each frozen runtime fixture owns its allowed third-party DLL set. POP-03 owns project-product exclusion/deployment verification.
 
-## Route after audit closure
-
-Only after Normal Chat reviews and disposes the Work audit findings:
-
-```text
-resume broad native Speed calibration
--> human release loadouts / supported attacks
--> representative NPCs
--> representative nonhuman families
--> useful New Balance comparison
--> expanded production Speed runtime acceptance
--> close Speed
--> Raise afterward
-```
+Any DLL excluded from a fixture must be physically moved/removed completely outside Gothic 3's `scripts` folder before launch. Renaming a DLL in place is **not** a disable method.
 
 ## Still frozen
 

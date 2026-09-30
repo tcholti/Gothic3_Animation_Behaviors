@@ -15,38 +15,20 @@ Stable: `main` — frozen.
 collision production integration = CLOSED/PASS EV-390
 configured Speed + New Balance multiplier preservation = PASS EV-395
 expanded Speed production source = implemented / static-review PASS / local Release build PASS
+Sprint Speed = inherits Power profile on proven shared route (ADR-0009)
+repository health/authority audit = CLOSED / reviewed maintenance PASS at 4090298a409172dcee2bc5e6dc1d267b1e22f75e
 Speed calibration probe = build + first clean native control PASS EV-396
-broad native calibration = ready but paused
-CURRENT = preservation-biased repository health/authority audit
-Raise = paused
+CURRENT = broad native Speed calibration
+Raise = paused until Speed closes
 ```
 
-Audit contract:
+## Continue here
 
-`docs/work/active/REPOSITORY_HEALTH_AND_AUTHORITY_AUDIT.md`
+Read:
 
-Work is allowed to inspect broadly but may change **only**:
+`docs/work/active/SPEED_NATIVE_CALIBRATION_PROBE.md`
 
-`docs/work/active/REPOSITORY_HEALTH_AND_AUTHORITY_AUDIT_RESULT.md`
-
-It must not delete, move, archive, rename, rewrite or modify existing evidence/docs/source. Normal Chat must independently review the Work findings before accepting cleanup.
-
-## After Work returns
-
-```text
-Normal Chat reads audit result
--> verify findings against authorities/evidence/source as needed
--> reject any unsafe cleanup recommendation
--> implement only accepted smallest-owner maintenance
--> run POP-12 knowledge-state validation
--> compress SESSION_ENTRYPOINT / BETWEEN_CHATS if needed
--> move to fresh Normal Chat
--> resume broad native Speed calibration
-```
-
-## Speed continuation after audit closure
-
-Validated calibration probe SHA256:
+Validated probe SHA256:
 
 `4140867626119632929D2286A173E97B3A4ACE6EDBCA4E2DBFE30AC28FE28E82`
 
@@ -57,8 +39,15 @@ human release loadouts + naturally available supported attacks
 -> representative NPC users
 -> representative nonhuman families
 -> useful New Balance comparison
+-> expanded production Speed runtime acceptance
+-> close Speed
+-> Raise afterward
 ```
 
-Critical fixture rule: excluded Gothic script DLLs must be physically moved/removed outside `scripts`; renaming in place does not reliably disable them.
+`ReferenceHitBaseSpeed` is native Gothic `B`, never a New Balance-modified live value.
+
+Runtime fixture rule: excluded Gothic script DLLs must be physically moved/removed outside `scripts`; renaming in place does not reliably disable them. POP-03 owns project-product exclusion; each frozen fixture decides whether New Balance/AttackCollision/other third-party DLLs are present.
+
+The completed repository audit task/result are archived under `docs/archive/investigations/`. Three closed Sprint-probe logs remain explicit KEEP RAW pending positive provenance/disposition reconciliation; do not archive them by inference.
 
 Do not begin Raise, attack displacement, climbing, collision redesign, or `main` promotion before the current gates close.
