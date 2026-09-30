@@ -18,7 +18,8 @@ expanded Speed production source = implemented / static-review PASS / local Rele
 Sprint Speed = inherits Power profile on proven shared route (ADR-0009)
 repository health/authority audit = CLOSED / reviewed maintenance PASS at 4090298a409172dcee2bc5e6dc1d267b1e22f75e
 Speed calibration = native control PASS EV-396; broad Hero/loadout checkpoint PASS EV-397; Finishing Action15 observation PASS EV-398
-CURRENT = Hack/Finishing shared-asset isolation, then separated-asset control, then resume broad native calibration
+Hack/Finishing action-route Speed isolation = PASS EV-399 on shared + separated assets
+CURRENT = representative NPC/nonhuman native calibration
 Raise = paused until Speed closes
 ```
 
@@ -37,12 +38,10 @@ The current 18-Hit-caller source passed focused Action15 runtime observation but
 Immediate sequence:
 
 ```text
-production G3AB ON / calibration probe OFF
--> shared native 2H/Staff Hack+Finishing assets
--> Hack Reference B=1.0 / Base C=0.4
--> ordinary Hack + factual Finishing
--> separated Hack-asset control
--> production G3AB OFF / probe identity re-established
+production G3AB OFF
+-> restore/rebuild extended calibration probe
+-> POP-03 built/live SHA verification and record exact hash
+-> clean native fixture
 -> representative NPC users
 -> representative nonhuman families
 -> useful New Balance comparison
@@ -50,6 +49,8 @@ production G3AB ON / calibration probe OFF
 -> close Speed
 -> Raise afterward
 ```
+
+EV-399 closes the shared/separated Hack+Finishing experiment: configured Hack speed remained isolated from Finishing in both asset arrangements. Existing Hack Raise/Recover followed Hack's configured speed, but future inserted custom Raise remains untested.
 
 `ReferenceHitBaseSpeed` is native Gothic `B`, never a New Balance-modified live value.
 

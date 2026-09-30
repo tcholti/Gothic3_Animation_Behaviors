@@ -19,7 +19,8 @@ Sprint Speed authoring = inherits Power profile on proven shared route (ADR-0009
 repository health/authority audit = CLOSED / NORMAL CHAT REVIEW PASS
 reviewed maintenance = commit 4090298a409172dcee2bc5e6dc1d267b1e22f75e / knowledge-state CI PASS
 Speed calibration probe = native control PASS EV-396; broad Hero/loadout calibration PASS EV-397; Finishing Action15 gate PASS EV-398
-CURRENT = bounded Hack/Finishing shared-asset Speed isolation -> separated-asset control -> resume broad native calibration
+Hack/Finishing action-route Speed isolation = PASS EV-399 on shared + separated assets
+CURRENT = resume broad native Speed calibration at representative NPC/nonhuman coverage
 Raise behavior = PAUSED until Speed closes
 main = FROZEN
 ```
@@ -37,17 +38,15 @@ Canonical reusable engine lookup:
 
 The completed preservation-biased repository audit and Work result are archived under `docs/archive/investigations/`. Its accepted RH-01–RH-13 maintenance is represented in the durable owners; RH-14–RH-17 were KEEP/no-action. The three previously retained Sprint-probe logs were positively reconciled during EV-397/EV-398 maintenance and archived byte-identically; path migration is recorded in `EVIDENCE_PATH_MIGRATIONS.md`.
 
-## Immediate continuation — Hack/Finishing shared-asset isolation
+## Immediate continuation — resume broad native Speed calibration
 
 Use `docs/work/active/SPEED_NATIVE_CALIBRATION_PROBE.md` as the active calibration contract.
 
 ```text
-production G3AB ON / calibration probe OFF
--> native shared 2H/Staff Hack+Finishing assets
--> configure Hack B=1.0, C=0.4
--> ordinary Hack then factual Finishing
--> repeat with separated Hack assets
--> production G3AB OFF / calibration probe rebuilt+identity-verified
+production G3AB OFF
+-> restore/rebuild extended calibration probe
+-> POP-03 built/live SHA verification and record exact hash
+-> clean native fixture
 -> representative NPC users
 -> representative nonhuman families
 -> useful New Balance comparison as compatibility evidence
@@ -55,6 +54,8 @@ production G3AB ON / calibration probe OFF
 -> close Speed completely
 -> Raise afterward
 ```
+
+EV-399 closes the Hack/Finishing detour: Hack `C=0.40` remained independent from Finishing on both shared and separated animation assets. Speed follows factual action transport, not animation-file identity. Existing Hack Raise/Recover also followed the slowed Hack playback; future inserted custom Raise remains untested.
 
 Historical original-probe SHA256:
 

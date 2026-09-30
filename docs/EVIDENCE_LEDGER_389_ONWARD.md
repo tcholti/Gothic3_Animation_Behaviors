@@ -370,3 +370,32 @@ Disposition:
 - The focused raw log is archived byte-identically after promotion.
 - **NEXT CAUSAL QUESTION:** production G3AB active, calibration probe absent, native shared Hack/Finishing assets retained, configure Hero 2H/Staff Hack deliberately slow (target `BaseSpeed=0.4` with correct native `B=1.0`) and verify whether factual Finishing remains visually/native-timed; then repeat with separated Hack assets.
 
+### EV-399 — Hack/Finishing playback isolation PASS on shared and separated assets
+
+Observed:
+- The User restored production `Script_G3AnimationBehaviors.dll`, removed the standalone calibration probe, and used the new grouped-profile INI design.
+- An initial apparent failure in which configured Hack `BaseSpeed=0.40` did not change playback was invalid fixture evidence: an older production DLL had accidentally been restored. The User rebuilt and deployed the current production DLL, after which grouped-profile Speed behavior worked normally. No mechanism conclusion is drawn from the stale-DLL run.
+- With the current production DLL and Hero 2H/Staff Hack configured using native `ReferenceHitBaseSpeed=1.00` and authored `BaseSpeed=0.40`, ordinary Hack playback became visibly slow as expected.
+- While Hack and Finishing still resolved to the same native animation asset, factual Finishing execution retained its normal playback speed rather than inheriting Hack's configured `0.40`.
+- The User then repeated the comparison with Hack and Finishing using separated animation assets. Hack again obeyed the configured slow speed while Finishing remained independently native-timed.
+- In the slowed Hack execution, the visible Raise and Recover portions also followed the slow configured Hack playback rather than retaining an independent native pace.
+
+Interpretation:
+- G3AB Speed authority is action-route based, not animation-resource based. A configured Hack/Action14 speed does not spill into Finishing/Action15 merely because both actions share the same `.xmot`.
+- Separating Hack and Finishing assets remains useful for animation authoring and collision-marker semantics, but is **not required for Speed isolation**.
+- The shared-asset and separated-asset results independently reinforce EV-398's static/runtime action separation.
+- Existing/native Hack Raise and Recover portions follow the configured Hack playback speed. This is useful evidence for later Raise research, but it does **not** yet prove that a future G3AB-inserted custom Raise phase will inherit the same timing; that question remains under the paused Raise feature.
+
+Scope / limits:
+- This was a diagnostics-free visual runtime test reported by the User. No dedicated runtime log was expected for this production behavior comparison.
+- Exact built/live SHA256 for this rebuilt production DLL was not reported in the conversation. The result is accepted as behavioral evidence from the User's corrected latest-DLL fixture, but future formal production acceptance should continue to use POP-03 exact binary-identity verification.
+- Finishing remains intentionally absent from the shipped/default Speed profile set and INI.
+
+Disposition:
+- **PASS — HACK/FINISHING SHARED-ASSET SPEED ISOLATION.**
+- **PASS — HACK/FINISHING SEPARATED-ASSET CONTROL.**
+- **PASS — SPEED AUTHORITY FOLLOWS FACTUAL ACTION ROUTE, NOT ANIMATION FILE IDENTITY.**
+- **OBSERVED — EXISTING HACK RAISE/RECOVER PLAYBACK FOLLOWS CONFIGURED HACK SPEED.**
+- The bounded Finishing/Hack research detour is CLOSED.
+- **NEXT:** remove production G3AB, re-establish exact identity for the extended calibration probe, and resume representative NPC/nonhuman native Speed calibration before later New Balance comparison and final expanded-production acceptance.
+

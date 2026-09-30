@@ -242,26 +242,41 @@ The extended probe's exact built/live SHA256 was not durably captured. Its disti
 
 The pre-extension broad native human/loadout checkpoint is EV-397. It established direct sampled Axe->2H and Halberd->Staff equivalence and showed family-specific base differences, including Hero Staff Power Hit `1.0` versus Orc Staff Power Hit `0.7`.
 
-### Next bounded research gate — Hack/Finishing shared-asset isolation
+### Hack/Finishing shared-asset isolation — PASS EV-399
 
-Before resuming the remaining broad native calibration matrix:
+The production comparison is closed:
 
 ```text
-remove Script_SpeedCalibrationProbe.dll
-restore production Script_G3AnimationBehaviors.dll
-keep native shared 2H/Staff Hack+Finishing animation assets
-configure Hero 2H and/or Staff Hack:
-  Hack_ReferenceHitBaseSpeed=1.00
-  Hack_BaseSpeed=0.40
-exercise ordinary Hack
-then execute an enemy with factual Finishing
+current grouped-profile production DLL
+Hack_ReferenceHitBaseSpeed=1.00
+Hack_BaseSpeed=0.40
+
+shared native Hack+Finishing asset:
+  Hack visibly slowed
+  Finishing remained native-timed
+
+separated Hack/Finishing assets:
+  Hack visibly slowed
+  Finishing remained native-timed
 ```
 
-Question: does changing factual Hack/Action14 playback through production G3AB alter factual Finishing/Action15 merely because both actions resolve to the same native animation asset?
+The initial no-slow observation was caused by an older production DLL accidentally being restored and is not mechanism evidence. After rebuilding/deploying the current DLL, grouped-profile Speed behaved correctly.
 
-Expected mechanism evidence suggests they should remain independent, but runtime behavior owns the answer. After the shared-asset control, repeat with separated Hack assets. Finishing remains absent from shipped/default INI configuration throughout.
+Conclusion: Speed intervention follows factual action transport, not animation-file identity. Asset separation remains useful for authoring/collision-marker independence, not for Speed isolation.
 
-This bounded production test must not coexist with the calibration probe because both own overlapping Speed caller sites. After the shared/separated Hack/Finishing question closes, remove production G3AB again and re-establish the clean probe fixture before continuing native NPC/nonhuman calibration.
+The existing Hack Raise and Recover portions also visibly followed the configured slow Hack playback. Preserve this for later Raise research only; a future inserted custom Raise is still untested.
+
+Before resuming calibration:
+
+```text
+remove production Script_G3AnimationBehaviors.dll
+restore the standalone extended calibration probe
+rebuild if needed
+perform POP-03 built/live SHA verification and record the hash
+restore the clean native fixture
+```
+
+Then continue representative NPC/nonhuman calibration. The calibration probe and production G3AB must not coexist.
 
 ## Broad native calibration gate
 

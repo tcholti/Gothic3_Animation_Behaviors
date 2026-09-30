@@ -134,7 +134,9 @@ Whirl
 
 Power Raise at `Script_Game+0x47D51` is currently observation/research evidence only and is not a production Speed hook.
 
-Finishing / `gEAction_FinishingAttack` / Action15 is also intentionally outside the current production Speed profile set. EV-398 establishes three distinct native Finishing Hit speed consumers and direct native Action15 observations on Hero 2H and Staff while Hack/Action14 remains separately transported, even though native Gothic may resolve both actions to the same animation asset. Shared `.xmot` identity therefore does not define Speed action identity. The distributed INI contains no Finishing speed entries and default execution timing remains native; any later advanced optional Finishing configuration is a separate decision after shared/separated-asset runtime research.
+Finishing / `gEAction_FinishingAttack` / Action15 is intentionally outside the current production Speed profile set. EV-398 establishes three distinct native Finishing Hit speed consumers and direct native Action15 observations on Hero 2H and Staff while Hack/Action14 remains separately transported, even though native Gothic may resolve both actions to the same animation asset. EV-399 then closes the practical playback question: configured Hack `BaseSpeed=0.40` slowed Hack while Finishing remained native-timed both when the actions shared the same animation asset and after their assets were separated. Speed authority therefore follows the factual action route, not animation-file identity. The distributed INI contains no Finishing speed entries and default execution timing remains native; any later advanced optional Finishing configuration is a separate product decision, not required for Hack isolation.
+
+EV-399 also observed the existing Hack Raise and Recover portions following the configured slow Hack playback. Preserve that as later Raise evidence only; it does not yet establish whether a future G3AB-inserted custom Raise phase naturally inherits the configured attack speed.
 
 
 Runtime identity is generic:

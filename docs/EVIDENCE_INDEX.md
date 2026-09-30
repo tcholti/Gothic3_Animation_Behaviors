@@ -102,7 +102,10 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | sampled Axe -> 2H and Halberd -> Staff Speed normalization equivalence | EV-397 |
 | Hero vs Orc Staff-family native Power-base difference / family identity necessity | EV-397 |
 | Finishing Action15 distinct native Speed route / Hero 2H+Staff native value | EV-398 |
-| Hack vs Finishing shared-asset factual action separation | EV-398 |
+| Hack vs Finishing factual action separation | EV-398 |
+| Hack/Finishing Speed isolation with shared and separated animation assets | EV-399 |
+| Speed authority follows factual action route, not animation-file identity | EV-399 |
+| existing Hack Raise/Recover follow configured Hack playback speed | EV-399; later Raise evidence only |
 | Sprint shared Power Raise observation for later Raise research | EV-396 |
 | Speed v2 deep independent static audit | `archive/investigations/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT_RESULT.md` |
 | Speed v2 S-01 finite-output correction | `archive/investigations/SPEED_V2_S01_FINITE_OUTPUT_GUARD.md` |
@@ -173,12 +176,11 @@ Speed v2 / expanded Speed:
   reusable Speed calibration probe = native control PASS EV-396
   broad Hero/loadout calibration = PASS EV-397
   Finishing/Action15 native observation = PASS EV-398
-  Finishing = not a shipped/default Speed profile; shared-asset isolation test pending
+  Hack/Finishing shared+separated asset Speed isolation = PASS EV-399
+  Finishing = not a shipped/default Speed profile; Speed isolation closed
 
 Durable post-audit Speed continuation (after Normal Chat review closure):
-  Hack/Finishing shared-asset isolation with production G3AB
-  -> separated Hack-asset control
-  -> representative NPC/nonhuman native values
+  representative NPC/nonhuman native values
   -> useful New Balance comparison as compatibility evidence
   -> expanded production Speed deployment/runtime acceptance
   -> close Speed completely
