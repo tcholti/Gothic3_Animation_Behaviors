@@ -29,7 +29,7 @@ late Boar/Batch2/tool calibration = PASS EV-404
 raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
-CURRENT = implement ADR-0011 resolved animation-set profile identity + full active Speed INI
+CURRENT = bounded production implementation under SPEED_RESOLVED_PROFILE_IMPLEMENTATION.md
 Raise behavior = PAUSED until Speed closes
 main = FROZEN
 ```
@@ -37,6 +37,7 @@ main = FROZEN
 Current Speed tasks:
 
 ```text
+docs/work/active/SPEED_RESOLVED_PROFILE_IMPLEMENTATION.md
 docs/work/active/SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md
 docs/work/active/SPEED_NATIVE_CALIBRATION_PROBE.md
 ```

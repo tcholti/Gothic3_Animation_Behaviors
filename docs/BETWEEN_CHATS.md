@@ -28,7 +28,7 @@ late calibration logs = PASS EV-404
 raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation identity probe = PASS EV-406
 human Fist Normal/Power B=1.0 = PASS EV-406
-CURRENT = implement ADR-0011 + full active Speed INI
+CURRENT = bounded production implementation under SPEED_RESOLVED_PROFILE_IMPLEMENTATION.md
 Raise = paused until Speed closes
 ```
 
@@ -36,7 +36,7 @@ Raise = paused until Speed closes
 
 Read:
 
-`docs/work/active/SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md`
+`docs/work/active/SPEED_RESOLVED_PROFILE_IMPLEMENTATION.md`
 
 Historical original 15-Hit-caller probe SHA256:
 
