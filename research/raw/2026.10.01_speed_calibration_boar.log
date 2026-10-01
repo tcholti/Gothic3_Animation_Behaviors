@@ -1,0 +1,26 @@
+Script_SpeedCalibrationProbe loaded. Diagnostics only; returned speeds are unchanged.
+Unique observations are deduplicated and capped at 2048. NEW rows are flushed immediately; ROW rows form the final summary.
+IMPORTANT: Script_G3AnimationBehaviors.dll must be absent during calibration because it may hook the same caller sites.
+
+Installed 18 proven Hit caller hooks (including 3 Finishing/Action15 sites) plus the proven Power Raise observation hook.
+
+NEW|Family=Boar|LeftRaw=None(0)|LeftToken=none|RightRaw=Fist(8)|RightToken=fist|PassedAction=Power(2)|CurrentBefore=Power(2)|CurrentAfter=Power(2)|Phase=Raise(0)|Speed=1.500000|NewBalance=false|G3AB=false|Count=1|Player=0|NPC=1|SampleEntity=Boar|SampleAni=Boar_Stand_None_Fist_P0_HoldRight_End_N_Fwd_00_%_00_P0_0.xmot
+NEW|Family=Boar|LeftRaw=None(0)|LeftToken=none|RightRaw=Fist(8)|RightToken=fist|PassedAction=Power(2)|CurrentBefore=Power(2)|CurrentAfter=Power(2)|Phase=Hit(1)|Speed=1.000000|NewBalance=false|G3AB=false|Count=1|Player=0|NPC=1|SampleEntity=Boar|SampleAni=Boar_Stand_None_Fist_P0_PowerAttack_Raise_N_Fwd_00_%_00_P0_0.xmot
+NEW|Family=Boar|LeftRaw=None(0)|LeftToken=none|RightRaw=Fist(8)|RightToken=fist|PassedAction=Normal(1)|CurrentBefore=Normal(1)|CurrentAfter=Normal(1)|Phase=Hit(1)|Speed=1.000000|NewBalance=false|G3AB=false|Count=1|Player=0|NPC=1|SampleEntity=Boar|SampleAni=Boar_Stand_None_Fist_P0_Move_Stand_N_Fwd_00_%_00_P0_0.xmot
+NEW|Family=Hero|LeftRaw=None(0)|LeftToken=none|RightRaw=2H(3)|RightToken=2h|PassedAction=QuickR(4)|CurrentBefore=QuickR(4)|CurrentAfter=QuickR(4)|Phase=Hit(1)|Speed=1.000000|NewBalance=false|G3AB=false|Count=1|Player=1|NPC=0|SampleEntity=PC_Hero|SampleAni=
+NEW|Family=Hero|LeftRaw=None(0)|LeftToken=none|RightRaw=2H(3)|RightToken=2h|PassedAction=QuickL(5)|CurrentBefore=QuickL(5)|CurrentAfter=QuickL(5)|Phase=Hit(1)|Speed=1.000000|NewBalance=false|G3AB=false|Count=1|Player=1|NPC=0|SampleEntity=PC_Hero|SampleAni=Hero_Stand_None_2H_P1_QuickAttackR_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+NEW|Family=Boar|LeftRaw=None(0)|LeftToken=none|RightRaw=Fist(8)|RightToken=fist|PassedAction=Power(2)|CurrentBefore=Sprint(9)|CurrentAfter=Sprint(9)|Phase=Raise(0)|Speed=1.500000|NewBalance=false|G3AB=false|Count=1|Player=0|NPC=1|SampleEntity=Boar|SampleAni=Boar_Stand_None_Fist_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+NEW|Family=Boar|LeftRaw=None(0)|LeftToken=none|RightRaw=Fist(8)|RightToken=fist|PassedAction=Power(2)|CurrentBefore=Sprint(9)|CurrentAfter=Sprint(9)|Phase=Hit(1)|Speed=1.500000|NewBalance=false|G3AB=false|Count=1|Player=0|NPC=1|SampleEntity=Boar|SampleAni=Boar_Stand_None_Fist_P0_PowerAttack_Raise_N_Fwd_00_%_00_P0_0.xmot
+
+===== FINAL SUMMARY =====
+InterceptedCalls=38
+UniqueObservations=7
+DroppedUniqueObservations=0
+ROW|Family=Boar|LeftRaw=None(0)|LeftToken=none|RightRaw=Fist(8)|RightToken=fist|PassedAction=Normal(1)|CurrentBefore=Normal(1)|CurrentAfter=Normal(1)|Phase=Hit(1)|Speed=1.000000|NewBalance=false|G3AB=false|Count=8|Player=0|NPC=8|SampleEntity=Boar|SampleAni=Boar_Stand_None_Fist_P0_Move_Stand_N_Fwd_00_%_00_P0_0.xmot
+ROW|Family=Boar|LeftRaw=None(0)|LeftToken=none|RightRaw=Fist(8)|RightToken=fist|PassedAction=Power(2)|CurrentBefore=Power(2)|CurrentAfter=Power(2)|Phase=Raise(0)|Speed=1.500000|NewBalance=false|G3AB=false|Count=10|Player=0|NPC=10|SampleEntity=Boar|SampleAni=Boar_Stand_None_Fist_P0_HoldRight_End_N_Fwd_00_%_00_P0_0.xmot
+ROW|Family=Boar|LeftRaw=None(0)|LeftToken=none|RightRaw=Fist(8)|RightToken=fist|PassedAction=Power(2)|CurrentBefore=Power(2)|CurrentAfter=Power(2)|Phase=Hit(1)|Speed=1.000000|NewBalance=false|G3AB=false|Count=10|Player=0|NPC=10|SampleEntity=Boar|SampleAni=Boar_Stand_None_Fist_P0_PowerAttack_Raise_N_Fwd_00_%_00_P0_0.xmot
+ROW|Family=Boar|LeftRaw=None(0)|LeftToken=none|RightRaw=Fist(8)|RightToken=fist|PassedAction=Power(2)|CurrentBefore=Sprint(9)|CurrentAfter=Sprint(9)|Phase=Raise(0)|Speed=1.500000|NewBalance=false|G3AB=false|Count=2|Player=0|NPC=2|SampleEntity=Boar|SampleAni=Boar_Stand_None_Fist_P0_Ambient_Loop_N_Fwd_00_%_00_P0_0.xmot
+ROW|Family=Boar|LeftRaw=None(0)|LeftToken=none|RightRaw=Fist(8)|RightToken=fist|PassedAction=Power(2)|CurrentBefore=Sprint(9)|CurrentAfter=Sprint(9)|Phase=Hit(1)|Speed=1.500000|NewBalance=false|G3AB=false|Count=2|Player=0|NPC=2|SampleEntity=Boar|SampleAni=Boar_Stand_None_Fist_P0_PowerAttack_Raise_N_Fwd_00_%_00_P0_0.xmot
+ROW|Family=Hero|LeftRaw=None(0)|LeftToken=none|RightRaw=2H(3)|RightToken=2h|PassedAction=QuickR(4)|CurrentBefore=QuickR(4)|CurrentAfter=QuickR(4)|Phase=Hit(1)|Speed=1.000000|NewBalance=false|G3AB=false|Count=3|Player=3|NPC=0|SampleEntity=PC_Hero|SampleAni=
+ROW|Family=Hero|LeftRaw=None(0)|LeftToken=none|RightRaw=2H(3)|RightToken=2h|PassedAction=QuickL(5)|CurrentBefore=QuickL(5)|CurrentAfter=QuickL(5)|Phase=Hit(1)|Speed=1.000000|NewBalance=false|G3AB=false|Count=3|Player=3|NPC=0|SampleEntity=PC_Hero|SampleAni=Hero_Stand_None_2H_P1_QuickAttackR_Recover_N_Fwd_00_%_00_P1_0_R.xmot
+===== END SUMMARY =====
