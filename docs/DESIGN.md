@@ -66,7 +66,7 @@ Each supported attack may contain:
 <Attack>_RaiseOverride
 ```
 
-Quick runtime variants remain factual Action4/Action5 internally but share the user-facing `Quick` settings. Generic Action3 is a selector rather than the proven playback-speed action. Sprint remains factual Action9 in actor state, but its proven shared Power speed route supplies Action2 to the speed owner; under ADR-0009 Sprint therefore inherits the `Power` timing settings and has no separate Speed prefix.
+Quick runtime variants remain factual Action4/Action5 internally but share the user-facing `Quick` settings. Generic Action3 is a selector rather than the proven playback-speed action. Sprint remains factual Action9 in actor state, but its proven shared Power speed route supplies Action2 to the speed owner; under ADR-0009 Sprint therefore inherits the `Power` timing settings and has no separate Speed prefix. EV-401 clarifies that profile inheritance does **not** require equal live Power/Sprint results: in one same-run BlackGoblin control ordinary Power Hit was `1.0` while factual Sprint Hit was `1.5`, despite both passing Action2. The Power profile supplies the authoring base; the live compatible result may still contain Sprint-context effects that C/B composition must preserve.
 
 No P0/P1/P2/P3 pose split belongs in the user-facing profile identity.
 
@@ -148,7 +148,7 @@ AnimationFamily = Animation.GetSkeletonName(...)
 
 Unknown/missing family/profile/calibration remains fail-closed to the live compatible value.
 
-ADR-0009 freezes factual Sprint/Action9 as an intentional Power timing alias on the proven shared speed route. Do not add `Sprint_BaseSpeed`, `Sprint_ReferenceHitBaseSpeed`, or rewrite Action2 to Action9 absent contradictory evidence.
+ADR-0009 freezes factual Sprint/Action9 as an intentional Power timing alias on the proven shared speed route. EV-401 further establishes that this is a **profile/authoring alias**, not a promise that the live compatible value equals ordinary Power: Gothic may return a different Sprint-context result through the same passed Action2 route, and the accepted `compatible * (C/B)` composition preserves that difference. Do not add `Sprint_BaseSpeed`, `Sprint_ReferenceHitBaseSpeed`, or rewrite Action2 to Action9 absent contradictory evidence.
 
 The expanded production Speed source is implemented, has passed static review and local Release build, and remains undeployed while the reusable `Script_SpeedCalibrationProbe` establishes broader native `B` values for common release profiles. The calibration tool is diagnostics-only and returns observed live values unchanged.
 
