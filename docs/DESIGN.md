@@ -42,7 +42,7 @@ AnimationFamily
 + RightAnimationUseType
 ```
 
-Normalize raw `gEUseType` to animation categories according to `ANIMATION_RULES.md`.
+Profile identity uses stable author-facing UseType tokens, but Speed calibration safety requires that raw types with different native bases do not collapse into one calibrated profile. Proven-equivalent aliases may normalize (currently Axe -> 2H and Halberd -> Staff). EV-403 freezes Pickaxe/Broom/Rake/Shovel/Fan as distinct fail-closed profile tokens rather than allowing them to inherit 2H/Staff Speed calibration accidentally. PhysicalFist remains represented as Fist within its established family/loadout identity.
 
 `G3AnimationBehaviors.ini` is loaded once during DLL startup into a normalized in-memory profile table. Runtime handling performs only an in-memory profile lookup; it does not reread or reparse the INI on each attack. Missing/unconfigured profiles and missing/invalid per-attack settings preserve the live compatible behavior.
 
@@ -150,7 +150,7 @@ Unknown/missing family/profile/calibration remains fail-closed to the live compa
 
 ADR-0009 freezes factual Sprint/Action9 as an intentional Power timing alias on the proven shared speed route. EV-401 establishes that this is a **profile/authoring alias**, not a promise that the live compatible value equals ordinary Power: Gothic may return a different Sprint-context result through the same passed Action2 route, and the accepted `compatible * (C/B)` composition preserves that difference. EV-402 generalizes this across nonhuman families: Sabertooth and Wolf showed Power Hit `1.0` versus Sprint live Hit `1.5`, while Troll remained `1.0` for both. Therefore G3AB must not copy a universal Sprint multiplier; it preserves the live result. Do not add `Sprint_BaseSpeed`, `Sprint_ReferenceHitBaseSpeed`, or rewrite Action2 to Action9 absent contradictory evidence.
 
-The expanded production Speed source is implemented, has passed static review and local Release build, and remains undeployed while the reusable `Script_SpeedCalibrationProbe` establishes broader native `B` values for common release profiles. The calibration tool is diagnostics-only and returns observed live values unchanged.
+The expanded production Speed source is implemented and has passed static review/local Release build. Native calibration is sufficient for the initial calibrated human-weapon profiles plus selected Sabertooth/Troll examples (EV-397–EV-403). Before final deployment, EV-403 requires one fail-closed profile-token correction so uncalibrated tool aliases cannot inherit 2H/Staff Normal references. After that correction, populate the active shipping INI and proceed directly to bounded intended-stack runtime acceptance. Broad creature catalogue calibration is deferred rather than required for Speed closure.
 
 Recover follows the effective Hit speed; no separate user-facing `RecoverSpeed` key is planned.
 

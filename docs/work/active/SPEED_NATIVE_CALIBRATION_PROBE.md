@@ -1,6 +1,6 @@
 # Speed Native/Compatible Calibration Probe
 
-**Status:** ACTIVE — PROBE BUILD/RUNTIME VALIDATED; BROAD CALIBRATION ACTIVE  
+**Status:** ACTIVE TOOL / INITIAL RELEASE CALIBRATION SUFFICIENT EV-403; BROAD CATALOGUE DEFERRED  
 **Task class:** Bounded diagnostics-only calibration tool  
 **Branch:** `development`
 
@@ -388,13 +388,26 @@ Troll / PhysicalFist(raw55):
 
 This generalizes EV-401: Sprint inherits the Power **authoring profile**, while the live compatible result may differ by family/execution context. Sabertooth and Wolf show the `1.0 -> 1.5` Hit differential; Troll does not. Do not encode a universal Sprint multiplier.
 
-Next bounded native sequence:
+### Initial release calibration sufficiency — CLOSED EV-403
+
+The User chose not to turn Speed finalization into an exhaustive creature catalogue. Existing evidence is sufficient for the initial calibrated human-weapon profiles plus selected Sabertooth/Troll profiles.
+
+A gameplay mod was active during creature testing that can expose additional attack types to some creatures. It does not replace the live speed owner, so recorded Speed values remain useful route observations; however, they must not be cited as proof that those creature/action combinations exist in vanilla Gothic.
+
+Broad creature/reference catalogue work is deferred for later documentation/readme expansion. It is **not** a current Speed blocker.
+
+One finalization issue discovered from source review belongs to production profile safety, not more calibration: Pickaxe/Broom/Rake/Shovel/Fan currently collapse into 2H/Staff tokens even though pinned compatible-owner policy distinguishes their Normal bases. EV-403 routes that correction to the expanded-production task.
+
+Current sequence:
 
 ```text
-representative nonhuman Batch 2
--> assess native coverage sufficiency
--> useful New Balance comparison
+stop broad calibration
+-> raw-alias fail-closed correction
+-> populate full calibrated INI
+-> final production runtime acceptance
 ```
+
+Human bare Fist remains unconfigured until a native reference is established later.
 
 ## Broad native calibration gate
 

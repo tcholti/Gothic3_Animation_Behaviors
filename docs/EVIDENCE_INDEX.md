@@ -117,6 +117,10 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | Sabertooth/Wolf Power Hit B=1.0 with contextual Sprint live Hit=1.5 | EV-402 |
 | Troll raw55 Power/Sprint Hit=1.0 reconfirmed | EV-396, EV-402 |
 | Boar Sprint live Hit=1.5; ordinary Power B not established | EV-402 |
+| creature attack-expansion fixture limitation / speed-route evidence remains valid, vanilla capability not proven | EV-403 |
+| initial Speed release calibration sufficiency / broad creature catalogue deferred | EV-403 |
+| raw tool-alias profile safety: Pickaxe/tools must not inherit 2H/Staff Normal B | EV-403 |
+| initial full calibrated human-weapon + Sabertooth/Troll profile set | EV-403 |
 | Sprint shared Power Raise observation for later Raise research | EV-396 |
 | Speed v2 deep independent static audit | `archive/investigations/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT_RESULT.md` |
 | Speed v2 S-01 finite-output correction | `archive/investigations/SPEED_V2_S01_FINITE_OUTPUT_GUARD.md` |
@@ -192,13 +196,14 @@ Speed v2 / expanded Speed:
   representative NPC checkpoint = PASS EV-400
   Goblin same-run Power/Sprint context comparison = PASS EV-401
   representative nonhuman native Batch 1 = PASS EV-402
+  initial release native calibration sufficiency = PASS EV-403
+  raw tool-alias profile safety correction = OPEN EV-403
   Finishing = not a shipped/default Speed profile; Speed isolation closed
 
 Durable post-audit Speed continuation (after Normal Chat review closure):
-  representative nonhuman native Batch 2
-  -> assess native coverage sufficiency
-  -> useful New Balance comparison as compatibility evidence
-  -> expanded production Speed deployment/runtime acceptance
+  raw-alias fail-closed correction
+  -> full active calibrated INI
+  -> expanded production build/deployment/runtime acceptance with intended New Balance stack
   -> close Speed completely
   -> Raise only afterward
 ```
