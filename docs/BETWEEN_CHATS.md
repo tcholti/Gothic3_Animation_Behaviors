@@ -25,8 +25,9 @@ Goblin same-run ordinary-Power/Sprint context control = PASS EV-401
 representative nonhuman native Batch 1 = PASS EV-402
 initial release calibration sufficiency = PASS EV-403–EV-404
 late calibration logs = PASS EV-404
-raw UseType profile identity = ACCEPTED EV-405 / ADR-0010
-CURRENT = implement ADR-0010 + full active raw-UseType Speed INI
+raw UseType profile identity = ACCEPTED DIMENSION EV-405 / ADR-0010
+separation-profile identity completeness = OPEN, especially Rapier
+CURRENT = diagnostics-only separation profile identity probe
 Raise = paused until Speed closes
 ```
 
@@ -34,7 +35,7 @@ Raise = paused until Speed closes
 
 Read:
 
-`docs/work/active/SPEED_NATIVE_CALIBRATION_PROBE.md`
+`docs/work/active/SPEED_SEPARATION_PROFILE_IDENTITY_PROBE.md`
 
 Historical original 15-Hit-caller probe SHA256:
 
@@ -49,16 +50,19 @@ EV-400 verified that current hash with one sole live project DLL and a clean 18-
 Immediate sequence:
 
 ```text
-use SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md
--> implement ADR-0010 raw UseType profile identity
--> populate full calibrated INI with separate 2H/Axe and Staff/Halberd sections
--> review/build/deploy
--> Axe Separation + intended-stack runtime acceptance
+extend Script_SpeedCalibrationProbe with request-time resolved animation identity
+-> human bare-Fist native control
+-> Axe Separation
+-> Zombie Separation
+-> Rapier Separation
+-> freeze final profile identity
+-> implement matcher/full INI
+-> final intended-stack runtime acceptance
 -> close Speed
 -> Raise afterward
 ```
 
-EV-404 closes Boar Power B and records Batch-2/tool-use observations. EV-405 corrects configuration identity: raw UseType, not serialized animation token, owns the Speed profile. Shared vanilla animations may use identical values; separation mods can tune the raw profile independently.
+EV-405 still stands: raw UseType is an independent profile fact. The remaining question is whether it is sufficient by itself. Rapier collision evidence says the separated motion token changes to Rapier while the equipped source remains raw 1H, so production implementation is paused until this diagnostic gate resolves the generic selector.
 
 `ReferenceHitBaseSpeed` is native Gothic `B`, never a New Balance-modified live value.
 

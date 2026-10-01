@@ -1,6 +1,6 @@
 # Speed Expanded Attack Scope and Grouped Profile Implementation
 
-**Status:** ACTIVE — FINALIZATION GATE: ADR-0010 RAW-USETYPE IDENTITY + FULL INI + RUNTIME ACCEPTANCE
+**Status:** ACTIVE — PRODUCTION FINALIZATION PAUSED PENDING SEPARATION PROFILE IDENTITY GATE
 **Task class:** Bounded production source extension + runtime acceptance  
 **Branch:** `development`
 
@@ -168,9 +168,17 @@ Expanded `Script_G3AnimationBehaviors.dll` Release build completed successfully 
 
 No production source correction is currently indicated.
 
-## Current finalization gate — EV-404 / EV-405 / ADR-0010
+## Current finalization gate — separation identity research before production
 
 Broad native catalogue calibration is no longer required before Speed closure. EV-397–EV-404 establish enough native references for the initial human-weapon profiles and selected creatures.
+
+ADR-0010 establishes raw `gEUseType` as a required independent profile fact, but **do not implement the final matcher yet**. Accepted collision evidence for Rapier Separation shows a separated `Hero_..._Rapier_...` motion while the equipped item remains raw `1H/UseType2`. The final generic identity may therefore require one additional request-time animation fact.
+
+Current owning probe:
+
+`docs/work/active/SPEED_SEPARATION_PROFILE_IDENTITY_PROBE.md`
+
+After that probe closes, return here and implement only the evidence-backed final identity.
 
 ### Raw UseType profile identity
 

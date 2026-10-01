@@ -26,8 +26,9 @@ Goblin same-run Power/Sprint context control = PASS EV-401
 representative nonhuman native Batch 1 = PASS EV-402
 initial release calibration sufficiency = PASS EV-403–EV-404
 late Boar/Batch2/tool calibration = PASS EV-404
-raw UseType Speed-profile identity = ACCEPTED EV-405 / ADR-0010
-CURRENT = implement ADR-0010 + full active raw-UseType Speed INI
+raw UseType Speed-profile identity = ACCEPTED DIMENSION EV-405 / ADR-0010
+separation-profile identity completeness = OPEN; Rapier collision evidence shows separated motion while equipped raw source remains 1H
+CURRENT = diagnostics-only Speed separation profile identity probe before production profile implementation
 Raise behavior = PAUSED until Speed closes
 main = FROZEN
 ```
@@ -35,6 +36,7 @@ main = FROZEN
 Current Speed tasks:
 
 ```text
+docs/work/active/SPEED_SEPARATION_PROFILE_IDENTITY_PROBE.md
 docs/work/active/SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md
 docs/work/active/SPEED_NATIVE_CALIBRATION_PROBE.md
 ```
@@ -50,17 +52,19 @@ The completed preservation-biased repository audit and Work result are archived 
 Use `docs/work/active/SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md` as the owning finalization contract.
 
 ```text
-broad calibration stopped after EV-404
--> implement ADR-0010 raw UseType profile identity
--> populate full calibrated human-weapon + Sabertooth/Troll INI
--> bounded source/static review
--> local Release build + exact deployment identity
--> Axe Separation + intended-stack runtime acceptance
+extend calibration probe with request-time resolved animation observation
+-> human bare-Fist native Speed control
+-> Axe Separation identity run
+-> Zombie Separation identity run
+-> Rapier Separation identity run
+-> decide final generic profile identity dimensions
+-> only then implement profile matcher + full INI
+-> final intended-stack runtime acceptance
 -> close Speed completely
 -> Raise afterward
 ```
 
-EV-405 supersedes EV-403's specific alias-preservation remedy. Profile UseType identity now preserves raw `gEUseType`; filename normalization remains separate. Vanilla 2H/Axe and Staff/Halberd may ship with identical values while separation mods tune Axe or Halberd independently.
+EV-405 establishes that raw `gEUseType` must remain distinguishable for Speed/Raise profiles, but the final identity is not yet complete. Prior collision evidence shows Rapier Separation resolving `Hero_..._Rapier_...` motions while the factual equipped item remained raw `1H/UseType2`; therefore do not implement the final profile matcher until request-time separation identity is observed directly.
 
 Historical original 15-Hit-caller probe SHA256:
 
