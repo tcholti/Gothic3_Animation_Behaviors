@@ -1,6 +1,6 @@
 # Speed Expanded Attack Scope and Grouped Profile Implementation
 
-**Status:** ACTIVE — FINALIZATION GATE: RAW-ALIAS SAFETY + FULL INI + RUNTIME ACCEPTANCE
+**Status:** ACTIVE — FINALIZATION GATE: ADR-0010 RAW-USETYPE IDENTITY + FULL INI + RUNTIME ACCEPTANCE
 **Task class:** Bounded production source extension + runtime acceptance  
 **Branch:** `development`
 
@@ -168,111 +168,66 @@ Expanded `Script_G3AnimationBehaviors.dll` Release build completed successfully 
 
 No production source correction is currently indicated.
 
-## Current finalization gate — EV-403
+## Current finalization gate — EV-404 / EV-405 / ADR-0010
 
-Broad native catalogue calibration is no longer required before Speed closure. EV-397–EV-402 establish enough native references for the initial human-weapon release profiles and selected creature profiles. Creature tests performed with an attack-expansion gameplay mod remain valid speed-route observations, but they do not prove vanilla attack availability.
+Broad native catalogue calibration is no longer required before Speed closure. EV-397–EV-404 establish enough native references for the initial human-weapon profiles and selected creatures.
 
-One source-safety correction is required before the full INI becomes active.
+### Raw UseType profile identity
 
-### Raw alias safety correction
+Implement ADR-0010 in `BehaviorProfiles`. Profile matching must use canonical raw `gEUseType` tokens, not serialized animation aliases.
 
-Current profile tokenization collapses:
-
-```text
-Pickaxe -> 2H
-Broom/Rake/Shovel/Fan -> Staff
-```
-
-That is unsafe for Speed calibration. Pinned New Balance source explicitly gives Normal `0.7*M` only to 2H/Axe/Staff/Halberd among these groups; the tool aliases fall through to generic `1.0*M`. A grouped 2H/Staff profile must therefore not claim those raw routes accidentally.
-
-Implement the smallest fail-closed correction in `BehaviorProfiles::TryGetAnimationUseTypeToken`:
+Minimum required distinct tokens:
 
 ```text
-KEEP:
-  Axe -> "2h"
-  Halberd -> "staff"
-  PhysicalFist -> "fist"
-
-CHANGE:
-  Pickaxe -> "pickaxe"
-  Broom -> "broom"
-  Rake -> "rake"
-  Shovel -> "shovel"
-  Fan -> "fan"
+None, 1H, 2H, Axe, Staff, Halberd,
+Fist, PhysicalFist, Pickaxe, Broom, Rake, Shovel, Fan
 ```
 
-Do not add attack-specific C++ branches. Do not change the profile key shape. The purpose is only to prevent uncalibrated raw types from matching a calibrated profile. Future explicit profiles may use those distinct tokens after calibration.
+Other already-supported raw UseTypes should likewise retain stable distinct raw tokens.
+
+Prefer renaming `TryGetAnimationUseTypeToken` to profile/raw-UseType terminology so future contributors do not confuse profile identity with `ANIMATION_RULES.md` filename normalization.
+
+Do not inspect `CurrentMovementAni()`, add weapon-specific `AttackSpeed` branches, add automatic filename-based profile inheritance, or change collision behavior.
 
 ### Full active shipping INI
 
-After the alias correction, replace the comment-only example with active initial profiles. Use `BaseSpeed=1.00` as the authored default for every included attack. Include only calibrated attacks; omission means native/fail-closed behavior.
-
-Required active profiles:
+Use `BaseSpeed=1.00` as the initial authored default. Include only calibrated attack blocks.
 
 ```text
-[Profile.Hero_None_1H]
-Normal B=.60
-Quick B=1.00
-Power B=1.00
-Pierce B=1.00
+Hero + None + 1H:
+  Normal .60, Quick 1.00, Power 1.00, Pierce 1.00
 
-[Profile.Hero_Shield_1H]
-Normal B=.60
-Quick B=1.00
-Power B=1.00
-Pierce B=1.00
+Hero + Shield + 1H:
+  same
 
-[Profile.Hero_Torch_1H]
-Normal B=.60
-Quick B=1.00
-Power B=1.00
-Pierce B=1.00
+Hero + Torch + 1H:
+  same
 
-[Profile.Hero_1H_1H]
-Normal B=.60
-Quick B=1.00
-Power B=.90
-Pierce B=1.00
-SimpleWhirl B=1.30
+Hero + 1H + 1H:
+  Normal .60, Quick 1.00, Power .90, Pierce 1.00, SimpleWhirl 1.30
 
-[Profile.Hero_None_2H]
-Normal B=.70
-Quick B=1.00
-Power B=1.00
-Hack B=1.00
-Whirl B=1.00
-; raw Axe intentionally matches this proven-equivalent profile
+Hero + None + 2H:
+  Normal .70, Quick 1.00, Power 1.00, Hack 1.00, Whirl 1.00
 
-[Profile.Hero_None_Staff]
-Normal B=.70
-Quick B=1.00
-Power B=1.00
-Hack B=1.00
-Whirl B=1.00
-; raw Halberd intentionally matches this proven-equivalent profile
+Hero + None + Axe:
+  same initial values as 2H, DISTINCT raw profile
 
-[Profile.Sabertooth_None_Fist]
-Normal B=1.00
-Quick B=1.00
-Power B=1.00
-; Sprint inherits Power; no Sprint keys
+Hero + None + Staff:
+  Normal .70, Quick 1.00, Power 1.00, Hack 1.00, Whirl 1.00
 
-[Profile.Troll_Fist_Fist]
-Normal B=1.00
-Quick B=1.00
-Power B=1.00
-; Sprint inherits Power; no Sprint keys
+Hero + None + Halberd:
+  same initial values as Staff, DISTINCT raw profile
+
+Sabertooth + None + Fist:
+  Normal 1.00, Quick 1.00, Power 1.00
+
+Troll + PhysicalFist + PhysicalFist:
+  Normal 1.00, Quick 1.00, Power 1.00
 ```
 
-Do not add:
-- human bare Fist profile yet;
-- Boar Power reference;
-- Finishing keys;
-- Sprint keys;
-- uncalibrated creature/action entries;
-- active Raise behavior.
+Sprint remains absent and inherits Power under ADR-0009.
 
-`RaiseOverride` may remain documented as reserved schema, but it is not necessary on every active Speed row while Raise is paused.
+Do not add Finishing keys, Sprint keys, uncalibrated work-tool profiles, or active Raise behavior. Human bare Fist remains a separate calibration choice if desired.
 
 ### Post-implementation sequence
 
@@ -280,14 +235,13 @@ Do not add:
 bounded source/static review
 -> local Release build
 -> POP-03 built/live identity
--> restore intended compatible stack
--> deploy full active INI
--> bounded expanded-Speed runtime acceptance
+-> intended compatible stack + full INI
+-> Axe Separation positive control + expanded Speed runtime acceptance
 -> close Speed
 -> Raise afterward
 ```
 
-A separate broad New Balance calibration-probe campaign is no longer required. EV-395 already proves multiplier-preserving composition with New Balance for the mechanism; final intended-stack runtime acceptance must include New Balance compatibility sanity for the expanded profile set.
+EV-395 already proves New Balance multiplier preservation for the mechanism; no broad New Balance calibration-probe campaign is required.
 
 ## Runtime acceptance matrix after calibration
 
@@ -301,8 +255,9 @@ Pierce configured control
 Hack configured control + Finishing remains independent
 SimpleWhirl configured dual-1H control
 Whirl configured 2H/Staff control
-Axe -> 2H and Halberd -> Staff proven-alias sanity
-Pickaxe or Staff-tool alias negative control: must NOT match calibrated 2H/Staff profile
+Axe and 2H raw-profile independence using Axe Separation
+Halberd and Staff raw-profile independence sanity where practical
+unconfigured Pickaxe/tool raw profile remains fail-closed
 Sabertooth or Troll configured creature control
 unconfigured/fail-closed fallback
 New Balance intended-stack compatibility sanity

@@ -1,6 +1,6 @@
 # Speed Native/Compatible Calibration Probe
 
-**Status:** ACTIVE TOOL / INITIAL RELEASE CALIBRATION SUFFICIENT EV-403; BROAD CATALOGUE DEFERRED  
+**Status:** ACTIVE TOOL / INITIAL RELEASE CALIBRATION SUFFICIENT EV-404; BROAD CATALOGUE DEFERRED  
 **Task class:** Bounded diagnostics-only calibration tool  
 **Branch:** `development`
 
@@ -396,18 +396,20 @@ A gameplay mod was active during creature testing that can expose additional att
 
 Broad creature/reference catalogue work is deferred for later documentation/readme expansion. It is **not** a current Speed blocker.
 
-One finalization issue discovered from source review belongs to production profile safety, not more calibration: Pickaxe/Broom/Rake/Shovel/Fan currently collapse into 2H/Staff tokens even though pinned compatible-owner policy distinguishes their Normal bases. EV-403 routes that correction to the expanded-production task.
+EV-404 processed the late Boar, nonhuman Batch-2 and tool/use-type runs. Boar ordinary Power Hit B=1.0 is closed; Minecrawler/Gargoyle/Golem/Bison speed routes are recorded with the attack-expansion-mod availability caveat; Axe/Halberd full sampled values are reconfirmed. No factual player melee route was observed for the tested work tools.
+
+EV-405 / ADR-0010 supersede EV-403's specific alias remedy: Speed/Raise profile matching preserves raw UseType identity rather than serialized animation-token aliases.
 
 Current sequence:
 
 ```text
 stop broad calibration
--> raw-alias fail-closed correction
--> populate full calibrated INI
+-> implement ADR-0010 raw-UseType profile identity
+-> populate full calibrated INI with separate 2H/Axe and Staff/Halberd profiles
 -> final production runtime acceptance
 ```
 
-Human bare Fist remains unconfigured until a native reference is established later.
+Human bare Fist remains unconfigured until a native reference is established later if desired.
 
 ## Broad native calibration gate
 

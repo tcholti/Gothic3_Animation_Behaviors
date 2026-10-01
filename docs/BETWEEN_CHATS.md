@@ -23,9 +23,10 @@ extended 18-Hit probe identity/startup = PASS EV-400 / F63EB6D169778079D6E60B62D
 representative Hero/Orc/Goblin NPC calibration = PASS EV-400
 Goblin same-run ordinary-Power/Sprint context control = PASS EV-401
 representative nonhuman native Batch 1 = PASS EV-402
-initial release calibration sufficiency = PASS EV-403
-raw tool-alias profile safety = OPEN EV-403
-CURRENT = raw-alias safety correction + full active Speed INI
+initial release calibration sufficiency = PASS EV-403–EV-404
+late calibration logs = PASS EV-404
+raw UseType profile identity = ACCEPTED EV-405 / ADR-0010
+CURRENT = implement ADR-0010 + full active raw-UseType Speed INI
 Raise = paused until Speed closes
 ```
 
@@ -49,15 +50,15 @@ Immediate sequence:
 
 ```text
 use SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md
--> implement fail-closed raw tool-alias token correction
--> populate full calibrated INI
+-> implement ADR-0010 raw UseType profile identity
+-> populate full calibrated INI with separate 2H/Axe and Staff/Halberd sections
 -> review/build/deploy
--> intended-stack runtime acceptance including New Balance sanity
+-> Axe Separation + intended-stack runtime acceptance
 -> close Speed
 -> Raise afterward
 ```
 
-EV-403 ends broad catalogue calibration for the initial release. Creature attack-expansion mods affected attack availability but not the observed live Speed owner, so existing values remain route evidence only. The current blocker is profile safety: uncalibrated Pickaxe/Broom/Rake/Shovel/Fan must not inherit 2H/Staff references. Human bare Fist remains fail-closed until later calibration.
+EV-404 closes Boar Power B and records Batch-2/tool-use observations. EV-405 corrects configuration identity: raw UseType, not serialized animation token, owns the Speed profile. Shared vanilla animations may use identical values; separation mods can tune the raw profile independently.
 
 `ReferenceHitBaseSpeed` is native Gothic `B`, never a New Balance-modified live value.
 

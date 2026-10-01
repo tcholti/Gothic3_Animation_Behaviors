@@ -181,7 +181,7 @@ Raw engine UseType and serialized animation token are not always 1:1. Preserve t
 | Flee | Flee |
 | Talk | Talk |
 
-Use normalized animation categories for profile matching; do not blindly serialize raw enum spelling.
+This table is authoritative for **serialized animation filename/resource tokens**. It is no longer the Speed/Raise profile-identity normalization table. Under ADR-0010, Speed/Raise profiles preserve canonical raw `gEUseType` tokens so separation mods can configure Axe separately from 2H, Halberd separately from Staff, Fist separately from PhysicalFist, etc. Do not infer shared configuration identity merely because two raw UseTypes serialize through the same animation token.
 
 **Important collision consequence:** raw `Fist` and raw `PhysicalFist` both map to the serialized token `Fist`, but the token does **not** identify the factual runtime source. Raw8 `gEUseType_Fist` and raw55 `gEUseType_PhysicalFist` now both have accepted production behavior, but they remain separate mechanisms with different source/contact rules. Production `FIST` authoring is governed by factual runtime source identity and the evidence-backed family contract; never infer raw8 vs raw55 from the serialized token alone.
 
@@ -416,7 +416,8 @@ Prefer runtime native values for behavior:
 ```text
 exact gEAction
 exact gEPhase
-normalized left/right animation UseTypes
+raw left/right gEUseType for Speed/Raise profile identity
+serialized animation-token normalization where asset naming requires it
 current resolved motion and marker list
 actor animation family where needed
 ```

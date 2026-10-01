@@ -594,3 +594,78 @@ Disposition:
 - **HUMAN BARE FIST SPEED PROFILE DEFERRED UNTIL NATIVE B IS ESTABLISHED.**
 - **NEXT:** bounded source correction + full active INI, then final intended-stack production runtime acceptance. No separate broad New Balance calibration campaign is required; EV-395 plus final intended-stack acceptance own compatibility closure.
 
+### EV-404 — Late native calibration additions processed; Boar Power closed and Batch 2 recorded
+
+Observed:
+- Three User-pushed clean-native calibration artifacts were processed with the unchanged extended 18-Hit-caller probe and are archived byte-identically:
+  - `research/archive/2026.10.01_speed_calibration_boar.log`;
+  - `research/archive/2026.10.01_speed_calibration_nonhuman_batch2.log`;
+  - `research/archive/2026.10.01_speed_calibration_shovel_pickaxe.log`.
+- Boar follow-up: 38 calls / 7 unique / 0 drops; Normal Hit `1.0`; ordinary Power Raise/Hit `1.5 / 1.0`; factual Sprint through passed Power Raise/Hit `1.5 / 1.5`. This closes the EV-402 Boar gap: ordinary Power Hit reference `B=1.0`.
+- Nonhuman Batch 2: 463 calls / 29 unique / 0 drops.
+  - Minecrawler None+Fist: Normal `1.0`, Quick R/L `1.0`, Power Raise/Hit `1.5 / 1.0`;
+  - Gargoyle None+Fist: observed Normal `1.0`, Power Raise/Hit `1.5 / 1.0`;
+  - Golem None+Fist: Normal `1.0`, Power Raise/Hit `1.5 / 1.0`, Sprint Raise/Hit `1.5 / 1.5`;
+  - Bison None+Fist: Normal `1.0`, Power Raise/Hit `1.5 / 1.0`, Sprint Raise/Hit `1.5 / 1.5`;
+  - T-Rex was not tested.
+- The User clarified that a gameplay mod can expose additional factual attack types to creatures beyond their vanilla repertoire. In particular, vanilla Gargoyle normally has only Power-attack animation coverage. The probe still records the live Gothic speed result for any factual action that executes, so these rows are valid speed-route observations but not a vanilla attack-availability catalogue.
+- Tool/use-type run: 33 calls / 15 unique / 0 drops.
+  - raw Axe52: Normal `0.7`, Quick R/L `1.0`, Power Raise/Hit `1.5 / 1.0`, Hack `1.0`, Whirl `1.0`;
+  - raw Halberd51: corresponding Staff-shaped routes at the same values;
+  - no factual melee Normal/Power/Quick/Hack/Whirl rows were produced for Pickaxe/Shovel/Fan/Broom/Rake;
+  - one raw Unknown15 / Other48 / Hit `1.5` cast-like row is not evidence for a melee tool profile.
+- The User reports the tested work tools generally played dedicated interaction animations and returned to inventory instead of remaining equipped as weapons; Fan could not be equipped in the tested player fixture.
+
+Interpretation:
+- Axe/Halberd independently reconfirm EV-397's sampled vanilla speed equivalence with 2H/Staff-shaped routes.
+- The tool run does not establish a current player melee Speed route for Pickaxe/Shovel/Fan/Broom/Rake, and it does not prohibit a future mod from making those raw UseTypes combat-capable.
+- Broad creature calibration is sufficient for current Speed development; additional species may be catalogued later for documentation/readme expansion.
+- Creature rows observed under the attack-expansion mod are factual executed speed routes, not claims about vanilla attack availability.
+
+Provenance:
+- User-pushed source commit: `826cd8e49dea464661a02dd3f69b2d2b286b3cc5`;
+- Boar blob: `b3db18521e0f86b1ff830ce52f8cf7f6bdc4e8ef`;
+- Batch-2 blob: `c0f1be70187adc6db7ba3c69e5822b22523429c3`;
+- tool/use-type blob: `3e6d62de5374e5a93eea22856d0fd0314b2bcd5b`;
+- probe SHA256: `F63EB6D169778079D6E60B62DF7E00F586B1987E05F4557BC61AF3D45071C05B`.
+
+Disposition:
+- **PASS — BOAR ORDINARY POWER HIT B=1.0 CLOSED.**
+- **PASS — REPRESENTATIVE NONHUMAN BATCH 2 RECORDED; T-REX NOT TESTED.**
+- **PASS — AXE/HALBERD FULL SAMPLED SPEED ROUTES RECONFIRMED.**
+- **NO CURRENT PLAYER MELEE SPEED ROUTE ESTABLISHED FOR THE TESTED WORK TOOLS.**
+- **BROAD NATIVE CALIBRATION IS NO LONGER A SPEED-FINALIZATION BLOCKER.**
+
+### EV-405 — Raw UseType becomes Speed profile identity; animation-token normalization remains filename-only
+
+Observed / design correction:
+- After EV-403, the User clarified the intended mod-compatibility rule: if two raw UseTypes share vanilla animation assets, their shipped Speed values may be identical; if a separation mod gives one UseType distinct animations, G3AB should allow a distinct Speed profile for that raw UseType without another C++ feature branch.
+- Current `BehaviorProfiles::TryGetAnimationUseTypeToken` reuses serialized-animation normalization for profile identity, including `Axe -> 2H`, `Halberd -> Staff`, `Pickaxe -> 2H`, `Broom/Rake/Shovel/Fan -> Staff`, and `PhysicalFist -> Fist`.
+- This conflates animation token normalization (correct for filename/resource interpretation under `ANIMATION_RULES.md`) with Speed/Raise profile identity (which should preserve factual raw equipment UseType).
+- Current-motion/asset identity is not suitable for deciding this at the Speed request boundary because request semantics are authoritative and the current motion may be stale/outgoing.
+
+Accepted rule (ADR-0010):
+- Keep the profile key shape `AnimationFamily + LeftAnimationUseType + RightAnimationUseType`, but profile UseType fields now mean canonical raw `gEUseType` token.
+- Distinct raw values remain distinct profile values, including `2H` vs `Axe` vs `Pickaxe`; `Staff` vs `Halberd` vs work-tool raw types; and `Fist` vs `PhysicalFist`.
+- Vanilla/shared-animation defaults may give separate raw profiles identical calibrated values. There is no automatic inheritance requirement and no need to inspect animation filenames.
+- A separation mod can change only the raw profile it separates. Example: `Hero + None + Axe` may use a different `BaseSpeed` from `Hero + None + 2H` while both ship identically by default.
+- Unknown/unconfigured raw UseTypes fail closed to the live compatible result.
+- This supersedes EV-403's proposed remedy of retaining Axe->2H / Halberd->Staff profile aliasing while only separating work-tool aliases. EV-403 remains valid for calibration-sufficiency and for identifying that profile identity needed review; its specific remedy is superseded.
+
+Initial active INI consequence:
+- separate `Hero_None_2H` and `Hero_None_Axe` sections with identical initial reference/default values;
+- separate `Hero_None_Staff` and `Hero_None_Halberd` sections likewise;
+- `Sabertooth_None_Fist` remains raw Fist;
+- `Troll_PhysicalFist_PhysicalFist` uses distinct raw PhysicalFist identity;
+- uncalibrated work-tool profiles remain absent;
+- human bare Fist remains a separate future calibration/profile question if desired.
+
+Runtime acceptance consequence:
+- After raw-UseType identity and the full INI are implemented, the User's Axe Separation mod is an excellent bounded positive control: give 2H and Axe visibly different `BaseSpeed` values and verify raw UseType selects the profile independently of whether the asset is shared or separated.
+
+Disposition:
+- **ACCEPTED — SPEED/RAISE PROFILE USETYPE IDENTITY PRESERVES RAW USETYPE.**
+- **ANIMATION_RULES FILENAME NORMALIZATION REMAINS UNCHANGED.**
+- **NO AUTOMATIC SPEED PROFILE COUPLING IS INFERRED FROM SHARED ANIMATION ASSETS.**
+- **NEXT — IMPLEMENT ADR-0010 + FULL RAW-USETYPE INI, THEN AXE-SEPARATION/INTENDED-STACK RUNTIME ACCEPTANCE.**
+

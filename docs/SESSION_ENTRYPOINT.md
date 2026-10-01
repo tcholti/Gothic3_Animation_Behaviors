@@ -24,9 +24,10 @@ extended 18-Hit calibration probe identity/startup = PASS EV-400 / SHA256 F63EB6
 representative Hero/Orc/Goblin NPC calibration = PASS EV-400
 Goblin same-run Power/Sprint context control = PASS EV-401
 representative nonhuman native Batch 1 = PASS EV-402
-initial release calibration sufficiency / scope decision = PASS EV-403
-raw tool-alias profile safety = OPEN FINALIZATION BLOCKER EV-403
-CURRENT = bounded raw-alias safety correction + full active Speed INI
+initial release calibration sufficiency = PASS EV-403–EV-404
+late Boar/Batch2/tool calibration = PASS EV-404
+raw UseType Speed-profile identity = ACCEPTED EV-405 / ADR-0010
+CURRENT = implement ADR-0010 + full active raw-UseType Speed INI
 Raise behavior = PAUSED until Speed closes
 main = FROZEN
 ```
@@ -49,17 +50,17 @@ The completed preservation-biased repository audit and Work result are archived 
 Use `docs/work/active/SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md` as the owning finalization contract.
 
 ```text
-broad calibration stopped at EV-403
--> fail-closed raw tool-alias token correction
+broad calibration stopped after EV-404
+-> implement ADR-0010 raw UseType profile identity
 -> populate full calibrated human-weapon + Sabertooth/Troll INI
 -> bounded source/static review
 -> local Release build + exact deployment identity
--> intended-stack runtime acceptance including New Balance sanity
+-> Axe Separation + intended-stack runtime acceptance
 -> close Speed completely
 -> Raise afterward
 ```
 
-EV-403 records that creature attack-expansion mods affected availability during some calibration runs but not the live speed owner; those logs remain valid speed-route evidence, not vanilla capability catalogues. It also identifies the only current source blocker: Pickaxe/Broom/Rake/Shovel/Fan must no longer inherit calibrated 2H/Staff profile references through token collapse.
+EV-405 supersedes EV-403's specific alias-preservation remedy. Profile UseType identity now preserves raw `gEUseType`; filename normalization remains separate. Vanilla 2H/Axe and Staff/Halberd may ship with identical values while separation mods tune Axe or Halberd independently.
 
 Historical original 15-Hit-caller probe SHA256:
 

@@ -5,7 +5,7 @@
 **Revised:** 2026-09-28  
 **Related:** ADR-0004, ADR-0005, ADR-0006, `docs/DESIGN.md` §§2–3, `docs/ANIMATION_RULES.md`
 
-**Current qualification — partial supersession:** The shared-profile foundation remains preserved rationale; startup loading, factual request identity and compatible base composition remain valid. [ADR-0008](ADR-0008-grouped-loadout-profiles-expanded-attack-scope.md) supersedes the per-ActionProfile section shape with grouped loadouts/expanded attack prefixes and supersedes the ReferenceRaiseBaseSpeed requirement. [ADR-0009](ADR-0009-sprint-inherits-power-speed-profile.md) owns Sprint/Power inheritance.
+**Current qualification — partial supersession:** The shared-profile foundation remains preserved rationale; startup loading, factual request identity and compatible base composition remain valid. [ADR-0008](ADR-0008-grouped-loadout-profiles-expanded-attack-scope.md) supersedes the per-ActionProfile section shape with grouped loadouts/expanded attack prefixes and supersedes the ReferenceRaiseBaseSpeed requirement. [ADR-0009](ADR-0009-sprint-inherits-power-speed-profile.md) owns Sprint/Power inheritance. [ADR-0010](ADR-0010-raw-use-type-speed-profile-identity.md) supersedes this ADR's normalized-animation-token semantics for profile UseType fields: current Speed/Raise profile identity preserves raw `gEUseType`.
 
 The historical decision body below is preserved.
 
