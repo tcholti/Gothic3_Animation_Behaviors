@@ -21,12 +21,12 @@ struct ProfileKeyLess
     {
         return std::tie(
                    left.animationFamily,
-                   left.leftAnimationUseType,
-                   left.rightAnimationUseType)
+                   left.leftAnimationToken,
+                   left.rightAnimationToken)
             < std::tie(
                    right.animationFamily,
-                   right.leftAnimationUseType,
-                   right.rightAnimationUseType);
+                   right.leftAnimationToken,
+                   right.rightAnimationToken);
     }
 };
 
@@ -68,40 +68,11 @@ ProfileKey NormalizeKey(ProfileKey const &key)
     ProfileKey normalized = key;
     normalized.animationFamily =
         NormalizeIdentityString(key.animationFamily.c_str());
-    normalized.leftAnimationUseType =
-        NormalizeIdentityString(key.leftAnimationUseType.c_str());
-    normalized.rightAnimationUseType =
-        NormalizeIdentityString(key.rightAnimationUseType.c_str());
+    normalized.leftAnimationToken =
+        NormalizeIdentityString(key.leftAnimationToken.c_str());
+    normalized.rightAnimationToken =
+        NormalizeIdentityString(key.rightAnimationToken.c_str());
     return normalized;
-}
-
-bool TryGetAnimationUseTypeToken(gEUseType useType, std::string &token)
-{
-    switch (useType)
-    {
-        case gEUseType_None:         token = "none"; return true;
-        case gEUseType_1H:           token = "1h"; return true;
-        case gEUseType_2H:           token = "2h"; return true;
-        case gEUseType_Fist:         token = "fist"; return true;
-        case gEUseType_Shield:       token = "shield"; return true;
-        case gEUseType_Staff:        token = "staff"; return true;
-        case gEUseType_Torch:        token = "torch"; return true;
-        case gEUseType_Broom:        token = "staff"; return true;
-        case gEUseType_Rake:         token = "staff"; return true;
-        case gEUseType_Shovel:       token = "staff"; return true;
-        case gEUseType_Fan:          token = "staff"; return true;
-        case gEUseType_Pickaxe:      token = "2h"; return true;
-        case gEUseType_Axe:          token = "2h"; return true;
-        case gEUseType_Halberd:      token = "staff"; return true;
-        case gEUseType_PhysicalFist: token = "fist"; return true;
-        default:                     return false;
-    }
-}
-
-gEUseType GetHandUseType(Entity const &entity, gESlot slot)
-{
-    Entity item = entity.Inventory.GetItemFromSlot(slot);
-    return item == None ? gEUseType_None : item.Interaction.GetUseType();
 }
 
 std::string GetGothic3Path()
@@ -211,11 +182,11 @@ bool ParseProfileKey(
     return ReadIdentityString(
                config, section, "AnimationFamily", result.animationFamily)
         && ReadIdentityString(
-               config, section, "LeftAnimationUseType",
-               result.leftAnimationUseType)
+               config, section, "LeftAnimationToken",
+               result.leftAnimationToken)
         && ReadIdentityString(
-               config, section, "RightAnimationUseType",
-               result.rightAnimationUseType);
+               config, section, "RightAnimationToken",
+               result.rightAnimationToken);
 }
 
 Profile ParseProfile(
@@ -315,7 +286,8 @@ AttackSettings const *GetAttackSettings(
     }
 }
 
-bool TryBuildRuntimeKey(Entity const &entity, ProfileKey &key)
+bool TryBuildRuntimeKey(
+    Entity const &entity, gEAction action, gEPhase phase, ProfileKey &key)
 {
     if (entity == None)
         return false;
@@ -328,18 +300,34 @@ bool TryBuildRuntimeKey(Entity const &entity, ProfileKey &key)
     if (key.animationFamily.empty())
         return false;
 
-    gEUseType const rawLeftUseType =
-        GetHandUseType(entity, gESlot_LeftHand);
-    gEUseType const rawRightUseType =
-        GetHandUseType(entity, gESlot_RightHand);
-    if (!TryGetAnimationUseTypeToken(
-            rawLeftUseType, key.leftAnimationUseType)
-        || !TryGetAnimationUseTypeToken(
-            rawRightUseType, key.rightAnimationUseType))
-    {
+    bCString const requestedAni = entity.GetAni(action, phase);
+    char const *requestedText = requestedAni.GetText();
+    if (requestedText == nullptr || *requestedText == '\0')
         return false;
+
+    // Only Family_State_LeftAnimationToken_RightAnimationToken is needed.
+    // The skeleton lookup above remains the profile family authority.
+    std::string const requestName(requestedText);
+    std::string fields[4];
+    std::string::size_type begin = 0;
+    for (int field = 0; field < 4; ++field)
+    {
+        std::string::size_type const end = requestName.find('_', begin);
+        if (field < 3 && end == std::string::npos)
+            return false;
+
+        std::string const fieldText = requestName.substr(
+            begin, end == std::string::npos ? std::string::npos : end - begin);
+        fields[field] = NormalizeIdentityString(fieldText.c_str());
+        if (fields[field].empty())
+            return false;
+
+        if (field < 3)
+            begin = end + 1;
     }
 
+    key.leftAnimationToken = fields[2];
+    key.rightAnimationToken = fields[3];
     key = NormalizeKey(key);
     return true;
 }

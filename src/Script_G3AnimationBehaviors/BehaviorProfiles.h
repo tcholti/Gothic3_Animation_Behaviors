@@ -26,8 +26,8 @@ enum class RaiseOverride
 struct ProfileKey
 {
     std::string animationFamily;
-    std::string leftAnimationUseType;
-    std::string rightAnimationUseType;
+    std::string leftAnimationToken;
+    std::string rightAnimationToken;
 };
 
 struct AttackSettings
@@ -54,5 +54,6 @@ struct Profile
 void Load();
 Profile const *Find(ProfileKey const &key);
 AttackSettings const *GetAttackSettings(Profile const &profile, AttackType attackType);
-bool TryBuildRuntimeKey(Entity const &entity, ProfileKey &key);
+bool TryBuildRuntimeKey(
+    Entity const &entity, gEAction action, gEPhase phase, ProfileKey &key);
 }

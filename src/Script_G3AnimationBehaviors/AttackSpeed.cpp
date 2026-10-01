@@ -56,7 +56,7 @@ GEFloat ComposeCompatibleSpeed(
         return compatibleSpeed;
 
     BehaviorProfiles::ProfileKey key;
-    if (!BehaviorProfiles::TryBuildRuntimeKey(entity, key))
+    if (!BehaviorProfiles::TryBuildRuntimeKey(entity, action, phase, key))
         return compatibleSpeed;
 
     BehaviorProfiles::Profile const *profile = BehaviorProfiles::Find(key);
