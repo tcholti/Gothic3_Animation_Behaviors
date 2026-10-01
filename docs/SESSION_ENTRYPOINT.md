@@ -41,7 +41,7 @@ Current Speed task:
 docs/work/active/SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md
 ```
 
-The completed ADR-0011 bounded source task is archived under `docs/archive/investigations/SPEED_RESOLVED_PROFILE_IMPLEMENTATION.md`. The reusable calibration probe task remains reference material but is not the current blocking responsibility.
+The completed ADR-0011 bounded source task is archived under `docs/archive/investigations/SPEED_RESOLVED_PROFILE_IMPLEMENTATION.md`. The completed native calibration probe task is archived under `docs/archive/investigations/SPEED_NATIVE_CALIBRATION_PROBE.md`; neither is a current blocking responsibility.
 
 Canonical reusable engine lookup:
 

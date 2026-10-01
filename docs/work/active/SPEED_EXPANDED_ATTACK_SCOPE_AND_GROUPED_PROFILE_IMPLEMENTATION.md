@@ -39,7 +39,7 @@ A native-only Troll control on the shared Power/Sprint route proved `B=1.0`; the
 
 Before expanded production deployment, the User chose to establish a broader native calibration catalogue using the reusable diagnostics-only task:
 
-`docs/work/active/SPEED_NATIVE_CALIBRATION_PROBE.md`
+`docs/archive/investigations/SPEED_NATIVE_CALIBRATION_PROBE.md`
 
 This is a calibration/configuration sub-gate, not a production mechanism redesign.
 

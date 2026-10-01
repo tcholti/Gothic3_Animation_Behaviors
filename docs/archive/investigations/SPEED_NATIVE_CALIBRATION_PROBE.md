@@ -1,6 +1,6 @@
 # Speed Native/Compatible Calibration Probe
 
-**Status:** ACTIVE TOOL / INITIAL RELEASE CALIBRATION SUFFICIENT EV-404; BROAD CATALOGUE DEFERRED  
+**Status:** CLOSED — INITIAL RELEASE CALIBRATION SUFFICIENT EV-404 / SEPARATION IDENTITY CLOSED EV-406  
 **Task class:** Bounded diagnostics-only calibration tool  
 **Branch:** `development`
 
@@ -465,3 +465,18 @@ no startup/runtime regression attributable to the probe
 ```
 
 After calibration, promote native reference facts into current reference/release calibration material and archive this active task only when the reusable tool/design is settled.
+
+## Closure
+
+The calibration responsibility is closed for the initial Speed release.
+
+Durable outcome:
+
+```text
+native reference catalogue sufficient for current active INI
+broad creature catalogue deferred to optional future documentation work
+separation identity closed by EV-406 / ADR-0011
+production finalization owned by SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md
+```
+
+The probe source remains reusable diagnostic tooling, but this temporary calibration task no longer owns an active project gate.

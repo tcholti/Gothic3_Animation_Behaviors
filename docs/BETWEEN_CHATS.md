@@ -81,3 +81,6 @@ No new research or source edits are authorized before the current candidate is b
 1. Fetch/Pull `development` so local HEAD includes the maintenance commit after `ba3e765...`.
 2. Build `Script_G3AnimationBehaviors` Release locally.
 3. Do not launch Gothic until Normal Chat has established the exact deployment fixture and built/live SHA identity.
+
+
+The completed native calibration task is archived at `docs/archive/investigations/SPEED_NATIVE_CALIBRATION_PROBE.md`; no further broad calibration is required before final Speed acceptance.
