@@ -14,7 +14,7 @@ Stable: `main` — frozen.
 ```text
 collision production integration = CLOSED/PASS EV-390
 configured Speed + New Balance multiplier preservation = PASS EV-395
-expanded Speed production source = implemented / static-review PASS / local Release build PASS
+expanded Speed production source = ADR-0011 final candidate implemented / Normal Chat source-review PASS / local build pending
 Sprint Speed = inherits Power profile on proven shared route (ADR-0009)
 repository health/authority audit = CLOSED / reviewed maintenance PASS at 4090298a409172dcee2bc5e6dc1d267b1e22f75e
 Speed calibration = native control PASS EV-396; broad Hero/loadout checkpoint PASS EV-397; Finishing Action15 observation PASS EV-398
@@ -28,7 +28,8 @@ late calibration logs = PASS EV-404
 raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation identity probe = PASS EV-406
 human Fist Normal/Power B=1.0 = PASS EV-406
-CURRENT = bounded production implementation under SPEED_RESOLVED_PROFILE_IMPLEMENTATION.md
+ADR-0011 production candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c
+CURRENT = local Release build -> POP-03 deployment identity -> final Speed runtime acceptance
 Raise = paused until Speed closes
 ```
 
@@ -36,7 +37,7 @@ Raise = paused until Speed closes
 
 Read:
 
-`docs/work/active/SPEED_RESOLVED_PROFILE_IMPLEMENTATION.md`
+`docs/work/active/SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md`
 
 Historical original 15-Hit-caller probe SHA256:
 
@@ -53,9 +54,10 @@ EV-406 resolved-request identity probe built/live SHA256:
 Immediate sequence:
 
 ```text
-implement ADR-0011 resolved animation-set identity
--> full active INI
--> native + Axe/Rapier/Zombie/Zombie+Axe profile-selection acceptance
+candidate ba3e76549eff5c7fdfc2d165ec976e640ef9c24c source review = PASS
+-> local Release build
+-> POP-03 built/live SHA identity
+-> native/shared + human Fist + Axe/Rapier/Zombie/Zombie+Axe acceptance
 -> intended New Balance compatibility sanity
 -> close Speed
 -> Raise afterward
@@ -70,3 +72,12 @@ Runtime fixture rule: excluded Gothic script DLLs must be physically moved/remov
 The completed repository audit task/result are archived under `docs/archive/investigations/`. The three formerly retained Sprint-probe logs are now positively reconciled and archived byte-identically; see `docs/EVIDENCE_PATH_MIGRATIONS.md`.
 
 Do not begin Raise, attack displacement, climbing, collision redesign, or `main` promotion before the current gates close.
+
+
+## Tomorrow's first action
+
+No new research or source edits are authorized before the current candidate is built.
+
+1. Fetch/Pull `development` so local HEAD includes the maintenance commit after `ba3e765...`.
+2. Build `Script_G3AnimationBehaviors` Release locally.
+3. Do not launch Gothic until Normal Chat has established the exact deployment fixture and built/live SHA identity.

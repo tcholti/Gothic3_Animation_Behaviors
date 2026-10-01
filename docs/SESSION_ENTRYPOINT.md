@@ -14,7 +14,7 @@
 ```text
 collision production integration = CLOSED/PASS through EV-390
 configured Speed + New Balance multiplier preservation = PASS EV-395
-expanded Speed source = IMPLEMENTED / STATIC REVIEW PASS / LOCAL RELEASE BUILD PASS
+expanded Speed source = ADR-0011 FINAL SOURCE CANDIDATE IMPLEMENTED / NORMAL CHAT SOURCE REVIEW PASS / LOCAL BUILD PENDING
 Sprint Speed authoring = inherits Power profile on proven shared route (ADR-0009)
 repository health/authority audit = CLOSED / NORMAL CHAT REVIEW PASS
 reviewed maintenance = commit 4090298a409172dcee2bc5e6dc1d267b1e22f75e / knowledge-state CI PASS
@@ -29,18 +29,19 @@ late Boar/Batch2/tool calibration = PASS EV-404
 raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
-CURRENT = bounded production implementation under SPEED_RESOLVED_PROFILE_IMPLEMENTATION.md
+ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
+CURRENT = local Release build -> POP-03 deployment identity -> final Speed runtime acceptance
 Raise behavior = PAUSED until Speed closes
 main = FROZEN
 ```
 
-Current Speed tasks:
+Current Speed task:
 
 ```text
-docs/work/active/SPEED_RESOLVED_PROFILE_IMPLEMENTATION.md
 docs/work/active/SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md
-docs/work/active/SPEED_NATIVE_CALIBRATION_PROBE.md
 ```
+
+The completed ADR-0011 bounded source task is archived under `docs/archive/investigations/SPEED_RESOLVED_PROFILE_IMPLEMENTATION.md`. The reusable calibration probe task remains reference material but is not the current blocking responsibility.
 
 Canonical reusable engine lookup:
 
@@ -53,11 +54,10 @@ The completed preservation-biased repository audit and Work result are archived 
 Use `docs/work/active/SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md` as the owning finalization contract.
 
 ```text
-implement ADR-0011 resolved animation-set profile identity
--> populate full calibrated human + selected creature/separation-mod INI
--> bounded source/static review
--> local Release build + exact deployment identity
--> focused native + Axe/Rapier/Zombie/Zombie+Axe profile-selection acceptance
+candidate ba3e76549eff5c7fdfc2d165ec976e640ef9c24c source review = PASS
+-> local Release build
+-> POP-03 exact built/live deployment identity
+-> focused native + human Fist + Axe/Rapier/Zombie/Zombie+Axe profile-selection acceptance
 -> intended New Balance compatibility sanity
 -> close Speed completely
 -> Raise afterward

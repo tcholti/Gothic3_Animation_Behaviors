@@ -1,6 +1,6 @@
 # Speed Resolved Profile Implementation
 
-**Status:** ACTIVE
+**Status:** CLOSED — IMPLEMENTED / NORMAL CHAT SOURCE REVIEW PASS
 **Task class:** Bounded production source + shipping INI implementation
 **Branch:** `development`
 
@@ -369,3 +369,39 @@ Normal Chat + User own independent review, local Release build, deployment, and 
 Commit/push the bounded four-file implementation to `development`, report the commit SHA and exact changed files, and STOP.
 
 Do not begin runtime testing or Raise work.
+
+
+## Closure
+
+Work published the bounded four-file implementation as:
+
+```text
+ba3e76549eff5c7fdfc2d165ec976e640ef9c24c
+```
+
+Exact changed files:
+
+```text
+src/Script_G3AnimationBehaviors/BehaviorProfiles.h
+src/Script_G3AnimationBehaviors/BehaviorProfiles.cpp
+src/Script_G3AnimationBehaviors/AttackSpeed.cpp
+src/Script_G3AnimationBehaviors/Ini/G3AnimationBehaviors.ini
+```
+
+Work reported static audit, `git diff --check`, and local knowledge-state validation PASS. Build was not attempted, as prohibited.
+
+Normal Chat independently reviewed the published source and accepted the implementation boundary:
+
+- request-time `GetAni(action, phase)` identity only;
+- skeleton family remains family authority;
+- raw item UseType/current movement fallbacks removed from Speed profile lookup;
+- factual action mapping unchanged;
+- C/B composition unchanged;
+- 11 active profiles / 44 calibrated attack blocks;
+- no active Raise, Sprint, Finishing, or native human-Fist Quick configuration.
+
+Runtime acceptance is **not** part of this closed source task. It remains owned by:
+
+`docs/work/active/SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md`
+
+Next gate: local Release build -> POP-03 deployment identity -> focused final Speed runtime acceptance.

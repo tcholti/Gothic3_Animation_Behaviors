@@ -1,6 +1,6 @@
 # Speed Expanded Attack Scope and Grouped Profile Implementation
 
-**Status:** ACTIVE — FINALIZATION GATE: ADR-0011 RESOLVED ANIMATION-SET IDENTITY + FULL INI + RUNTIME ACCEPTANCE
+**Status:** ACTIVE — ADR-0011 SOURCE REVIEW PASS; LOCAL BUILD / DEPLOYMENT / RUNTIME ACCEPTANCE PENDING
 **Task class:** Bounded production source extension + runtime acceptance  
 **Branch:** `development`
 
@@ -15,11 +15,13 @@ compatible = B * M
 configured = compatible * (C / B) = C * M
 ```
 
-Production source under acceptance remains:
+Current production candidate under acceptance:
 
 ```text
-642c88a4e6244ae7377ba835507750af7914e2f5
+ba3e76549eff5c7fdfc2d165ec976e640ef9c24c
 ```
+
+This supersedes the older pre-ADR-0011 source candidate for current acceptance. It changes only `BehaviorProfiles.h/.cpp`, `AttackSpeed.cpp`, and the shipping INI as frozen by the bounded task.
 
 ## Calibration semantics
 
@@ -166,17 +168,28 @@ Probe result:
 
 ## Build state
 
-Expanded `Script_G3AnimationBehaviors.dll` Release build completed successfully on the local build PC after the Sprint blocker closed. Deployment was deliberately deferred when the native-reference calibration requirement was clarified.
+Historical pre-ADR-0011 expanded Speed builds are **not** valid binary identity for the current candidate.
 
-No production source correction is currently indicated.
+Current ADR-0011 candidate:
+
+```text
+source commit = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c
+Normal Chat independent source review = PASS
+Work build = NOT ATTEMPTED — prohibited by frozen task
+current local Release build = PENDING
+current deployed/live SHA = NOT YET ESTABLISHED
+runtime acceptance = PENDING
+```
+
+Do not reuse an older `Script_G3AnimationBehaviors.dll` for final acceptance.
 
 ## Current finalization gate — EV-406 / ADR-0011
 
 Separation identity research is closed. Production may now be finalized.
 
-### Resolved animation-set profile identity
+### Resolved animation-set profile identity — IMPLEMENTED / SOURCE REVIEW PASS
 
-Implement ADR-0011 in `BehaviorProfiles` and the Speed lookup path.
+ADR-0011 is implemented in candidate `ba3e76549eff5c7fdfc2d165ec976e640ef9c24c` and independently reviewed by Normal Chat. The next gate is build/deployment/runtime acceptance; do not redesign the identity mechanism absent contrary runtime evidence.
 
 Required runtime sequence:
 
@@ -210,9 +223,9 @@ Do not use raw inventory `gEUseType` to choose the Speed profile. Do not use `Cu
 
 Fail closed to the live compatible speed if `GetAni` is empty or the canonical minimum structure cannot be parsed.
 
-### Full active shipping INI
+### Full active shipping INI — IMPLEMENTED / SOURCE REVIEW PASS
 
-Use `BaseSpeed=1.00` as the initial authored default. Include only calibrated attack blocks.
+Candidate `ba3e76549eff5c7fdfc2d165ec976e640ef9c24c` contains 11 active profiles and 44 evidence-backed attack blocks, all with authored `BaseSpeed=1.00`, plus four commented Zombie examples. Runtime acceptance remains pending.
 
 Required core profiles:
 
