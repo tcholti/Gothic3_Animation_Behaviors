@@ -686,7 +686,7 @@ Observed:
   - Normal Hit = `1.0` on both P0/P1 samples;
   - Power Raise = `1.5`;
   - Power Hit = `1.0`;
-  - no player Quick-Fist Speed row occurred in this campaign.
+  - no player Quick-Fist Speed row occurred; the User clarified that native human Fist has no Quick attack animation family, so this is an intentional native absence rather than a calibration gap.
 - Native zombies without separation continued to resolve ordinary human animation names. Example factual raw Axe52 resolved `Hero_..._None_2H_...`; raw Staff resolved `Hero_..._None_Staff_...`; shield+1H resolved `Hero_..._Shield_1H_...`.
 - Native zombie Fist shared the `Hero + None + Fist` animation set but returned Normal live speed `1.4` while player Hero Fist returned `1.0`. Power Hit remained `1.0`. This demonstrates why the live compatible result must remain authoritative for contextual actor modifiers even when an animation-set profile is shared.
 - Zombie Separation changed the request-time family and exact requested assets:
@@ -733,7 +733,7 @@ Interpretation:
 
 Human Fist calibration consequence:
 - Initial `Hero + None + Fist` profile may include Normal `B=1.0` and Power `B=1.0`.
-- Do not add Quick for human Fist until a factual Quick route is observed/calibrated.
+- Do not add Quick for native human Fist: Gothic's native human Fist animation set does not provide that attack family. If a future custom/separation mod adds unique human-Fist Quick animations, calibrate that new resolved animation set before adding its Quick block.
 - Native zombie Hero/Fist Normal `1.4` is preserved as live compatible context when shared with the same animation-set profile: with `B=1.0`, composition retains the `1.4` factor.
 
 Architecture consequence:
@@ -756,7 +756,7 @@ Provenance:
 
 Disposition:
 - **PASS — SPEED SEPARATION PROFILE IDENTITY PROBE CLOSED.**
-- **PASS — HUMAN PLAYER FIST NORMAL/POWER B=1.0 CALIBRATION CLOSED; QUICK REMAINS UNCLAIMED.**
+- **PASS — HUMAN PLAYER FIST NORMAL/POWER B=1.0 CALIBRATION CLOSED; QUICK IS NATIVE-ABSENT AND INTENTIONALLY OMITTED.**
 - **SUPERSEDE ADR-0010 WITH ADR-0011 RESOLVED ANIMATION-SET PROFILE IDENTITY.**
 - **NEXT — IMPLEMENT ADR-0011 + FULL ACTIVE INI, THEN INTENDED-STACK PRODUCTION RUNTIME ACCEPTANCE.**
 

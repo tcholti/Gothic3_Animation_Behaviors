@@ -28,7 +28,7 @@ initial release calibration sufficiency = PASS EV-403–EV-404
 late Boar/Batch2/tool calibration = PASS EV-404
 raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
-human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; Quick unclaimed
+human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 CURRENT = implement ADR-0011 resolved animation-set profile identity + full active Speed INI
 Raise behavior = PAUSED until Speed closes
 main = FROZEN

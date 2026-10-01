@@ -239,7 +239,8 @@ Hero + None + Staff:
 
 Hero + None + Fist:
   Normal B=1.00, Power B=1.00
-  Quick omitted: not calibrated for player human Fist in EV-406
+  Quick omitted by design: native human Fist has no Quick attack animation family
+  a future custom human-Fist Quick set requires its own resolved-animation calibration before configuration
 
 Sabertooth + None + Fist:
   Normal B=1.00, Quick B=1.00, Power B=1.00

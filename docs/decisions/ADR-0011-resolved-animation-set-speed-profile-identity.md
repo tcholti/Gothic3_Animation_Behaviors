@@ -143,6 +143,6 @@ The former `LeftAnimationUseType` / `RightAnimationUseType` spelling is supersed
 - Axe and Rapier separation mods can be supported with ordinary data-only profiles.
 - Zombie family separation is expressed by `AnimationFamily=Zombie`.
 - Combined family + animation-set separation composes naturally.
-- Human bare Fist may now be included with calibrated Normal/Power reference `B=1.0`; Quick remains omitted until observed.
+- Human bare Fist may now be included with calibrated Normal/Power reference `B=1.0`. Quick is intentionally absent because native human Fist has no Quick attack animation family; a future custom human-Fist Quick animation set must be calibrated as its own resolved animation-set route before configuration.
 - The profile matcher may call `Entity.GetAni(action, phase)` once to obtain request identity; this call is identity lookup, not the live speed-owner call.
 - The live compatible speed owner remains called exactly once by the bridge; C/B composition remains unchanged.
