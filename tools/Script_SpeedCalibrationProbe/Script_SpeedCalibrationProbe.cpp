@@ -44,6 +44,7 @@ using mFGetAnimationSpeedModifier = GEFloat (GE_STDCALL *)(Entity, gEPhase);
 struct ObservationKey
 {
     std::string animationFamily;
+    std::string resolvedRequestedAni;
     GEInt rawLeftUseType;
     GEInt rawRightUseType;
     GEInt passedAction;
@@ -61,6 +62,7 @@ struct ObservationKeyLess
     {
         return std::tie(
                    left.animationFamily,
+                   left.resolvedRequestedAni,
                    left.rawLeftUseType,
                    left.rawRightUseType,
                    left.passedAction,
@@ -72,6 +74,7 @@ struct ObservationKeyLess
                    left.productionG3ABLoaded)
             < std::tie(
                    right.animationFamily,
+                   right.resolvedRequestedAni,
                    right.rawLeftUseType,
                    right.rawRightUseType,
                    right.passedAction,
@@ -230,7 +233,7 @@ void WriteObservationLine(
         "%s|Family=%s|LeftRaw=%s(%d)|LeftToken=%s|RightRaw=%s(%d)|RightToken=%s|"
         "PassedAction=%s(%d)|CurrentBefore=%s(%d)|CurrentAfter=%s(%d)|"
         "Phase=%s(%d)|Speed=%.6f|NewBalance=%s|G3AB=%s|Count=%u|Player=%u|NPC=%u|"
-        "SampleEntity=%s|SampleAni=%s\n",
+        "ResolvedRequestedAni=%s|SampleEntity=%s|SampleAni=%s\n",
         prefix,
         key.animationFamily.c_str(),
         GetRawUseTypeName(rawLeft), key.rawLeftUseType,
@@ -247,6 +250,7 @@ void WriteObservationLine(
         static_cast<unsigned>(value.count),
         static_cast<unsigned>(value.playerSamples),
         static_cast<unsigned>(value.npcSamples),
+        key.resolvedRequestedAni.c_str(),
         value.sampleEntity.c_str(),
         value.sampleMovementAni.c_str());
 }
@@ -255,6 +259,7 @@ void RecordObservation(
     gEAction passedAction,
     Entity const &entity,
     gEPhase phase,
+    std::string const &resolvedRequestedAni,
     gEAction currentActionBefore,
     gEAction currentActionAfter,
     GEFloat compatibleSpeed)
@@ -294,6 +299,7 @@ void RecordObservation(
 
     ObservationKey key = {
         GetAnimationFamily(entity),
+        resolvedRequestedAni,
         static_cast<GEInt>(rawLeft),
         static_cast<GEInt>(rawRight),
         static_cast<GEInt>(passedAction),
@@ -349,10 +355,15 @@ GEFloat GE_STDCALL SpeedCalibrationProbe(
     ++g_TotalInterceptedCalls;
 
     gEAction currentActionBefore = gEAction_None;
+    std::string resolvedRequestedAni = "<none>";
     if (entity != None)
     {
         currentActionBefore =
             entity.Routine.GetProperty<PSRoutine::PropertyAction>();
+        bCString const requestedAni = entity.GetAni(passedAction, phase);
+        char const *requestedText = requestedAni.GetText();
+        resolvedRequestedAni =
+            requestedText != nullptr ? requestedText : "<unknown>";
     }
 
     Call_GetAnimationSpeedModifier.SetImmEax(passedAction);
@@ -372,6 +383,7 @@ GEFloat GE_STDCALL SpeedCalibrationProbe(
         passedAction,
         entity,
         phase,
+        resolvedRequestedAni,
         currentActionBefore,
         currentActionAfter,
         compatibleSpeed);
