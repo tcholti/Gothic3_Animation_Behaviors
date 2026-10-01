@@ -181,7 +181,7 @@ Raw engine UseType and serialized animation token are not always 1:1. Preserve t
 | Flee | Flee |
 | Talk | Talk |
 
-This table is authoritative for **serialized animation filename/resource tokens**. It is no longer the Speed/Raise profile-identity normalization table. Under ADR-0010, Speed/Raise profiles preserve canonical raw `gEUseType` tokens so separation mods can configure Axe separately from 2H, Halberd separately from Staff, Fist separately from PhysicalFist, etc. Do not infer shared configuration identity merely because two raw UseTypes serialize through the same animation token.
+This table is authoritative for serialized animation filename/resource tokens. Under ADR-0011, Speed/Raise profile identity uses the **actual resolved request-time animation tokens** returned by Gothic, not a static raw-UseType normalization. Therefore native Axe can resolve token `2H` and share the 2H Speed profile, while Axe Separation can resolve token `Axe`; a Rapier item may remain raw `1H` while resolving token `Rapier`. Shared resolved animation tokens share Speed profiles; distinct resolved tokens are independently configurable.
 
 **Important collision consequence:** raw `Fist` and raw `PhysicalFist` both map to the serialized token `Fist`, but the token does **not** identify the factual runtime source. Raw8 `gEUseType_Fist` and raw55 `gEUseType_PhysicalFist` now both have accepted production behavior, but they remain separate mechanisms with different source/contact rules. Production `FIST` authoring is governed by factual runtime source identity and the evidence-backed family contract; never infer raw8 vs raw55 from the serialized token alone.
 
@@ -416,8 +416,8 @@ Prefer runtime native values for behavior:
 ```text
 exact gEAction
 exact gEPhase
-raw left/right gEUseType for Speed/Raise profile identity
-serialized animation-token normalization where asset naming requires it
+factual raw left/right gEUseType for source diagnostics/collision where needed
+request-time resolved left/right animation tokens for Speed/Raise profile identity
 current resolved motion and marker list
 actor animation family where needed
 ```

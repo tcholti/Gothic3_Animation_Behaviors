@@ -4,7 +4,7 @@
 **Date:** 2026-09-29  
 **Related:** ADR-0004, ADR-0005, ADR-0006, ADR-0007, `docs/ANIMATION_RULES.md`
 
-**Current qualification — partial supersession:** The seven-prefix grouped-profile decision remains current. Its Sprint-deferral/fail-closed wording (§§4, 9 and consequences) is superseded by [ADR-0009](ADR-0009-sprint-inherits-power-speed-profile.md): Sprint has no separate key/profile and inherits Power on the proven shared route. [ADR-0010](ADR-0010-raw-use-type-speed-profile-identity.md) refines the grouped left/right UseType fields to preserve raw `gEUseType` identity rather than serialized animation-token aliases. Other fail-closed rules remain valid.
+**Current qualification — partial supersession:** The seven-prefix grouped-profile decision remains current. Its Sprint-deferral/fail-closed wording (§§4, 9 and consequences) is superseded by [ADR-0009](ADR-0009-sprint-inherits-power-speed-profile.md): Sprint has no separate key/profile and inherits Power on the proven shared route. [ADR-0011](ADR-0011-resolved-animation-set-speed-profile-identity.md) now owns grouped profile identity: request-time resolved animation-family/tokens select the profile. ADR-0010 is superseded. Other fail-closed rules remain valid.
 
 The historical decision body below is preserved.
 

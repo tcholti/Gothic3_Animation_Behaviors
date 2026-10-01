@@ -1,6 +1,6 @@
 # ADR-0010 — Raw UseType Identity for Speed/Raise Profiles
 
-**Status:** Accepted
+**Status:** Superseded by ADR-0011
 **Date:** 2026-10-01
 **Related:** ADR-0004, ADR-0005, ADR-0007, ADR-0008, ADR-0009, `docs/ANIMATION_RULES.md`, EV-397, EV-404–EV-405
 
@@ -89,6 +89,10 @@ A raw UseType with no matching profile receives no G3AB Speed intervention. Unca
 ### 7. Fist and PhysicalFist remain distinct
 
 Although both serialize as `Fist`, raw8 Fist and raw55 PhysicalFist remain distinct profile identities, matching their factual runtime distinction.
+
+## Supersession
+
+EV-406 proved that raw UseType is not sufficient profile identity: Rapier Separation kept factual raw `1H` while Gothic resolved `Hero_..._Rapier_...`. ADR-0011 therefore supersedes this decision with resolved animation-set identity. The evidence here remains useful in showing that raw UseType and serialized animation tokens are distinct facts.
 
 ## Consequences
 

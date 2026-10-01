@@ -398,18 +398,18 @@ Broad creature/reference catalogue work is deferred for later documentation/read
 
 EV-404 processed the late Boar, nonhuman Batch-2 and tool/use-type runs. Boar ordinary Power Hit B=1.0 is closed; Minecrawler/Gargoyle/Golem/Bison speed routes are recorded with the attack-expansion-mod availability caveat; Axe/Halberd full sampled values are reconfirmed. No factual player melee route was observed for the tested work tools.
 
-EV-405 / ADR-0010 supersede EV-403's specific alias remedy: Speed/Raise profile matching preserves raw UseType identity rather than serialized animation-token aliases.
+EV-406 closes the later separation-identity gate and supersedes ADR-0010. Final Speed/Raise profile identity follows the request-time resolved animation family + left/right animation tokens. Shared native assets therefore share profiles; separated Axe/Rapier/Zombie animation sets become independently configurable automatically.
+
+Human player bare Fist is now calibrated for Normal `B=1.0` and Power `B=1.0`; no player Quick-Fist row was observed, so Quick remains unconfigured.
 
 Current sequence:
 
 ```text
 stop broad calibration
--> implement ADR-0010 raw-UseType profile identity
--> populate full calibrated INI with separate 2H/Axe and Staff/Halberd profiles
+-> implement ADR-0011 resolved animation-set profile identity
+-> populate full calibrated INI
 -> final production runtime acceptance
 ```
-
-Human bare Fist remains unconfigured until a native reference is established later if desired.
 
 ## Broad native calibration gate
 

@@ -123,9 +123,13 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | Minecrawler/Gargoyle/Golem/Bison executed speed-route observations | EV-404 |
 | Axe/Halberd full sampled native Speed route reconfirmation | EV-397, EV-404 |
 | tested work tools produced no factual player melee Speed route | EV-404 |
-| raw UseType Speed/Raise profile identity / separation-mod support | EV-405; ADR-0010 |
-| normalized animation-token profile identity superseded | EV-405; ADR-0010 |
-| initial full calibrated raw-UseType human-weapon + Sabertooth/Troll profile set | EV-405 |
+| raw UseType-only Speed profile identity | EV-405; superseded by EV-406 / ADR-0011 |
+| resolved request-time animation-set Speed/Raise profile identity | EV-406; ADR-0011 |
+| human player Fist Normal/Power B=1.0 calibration | EV-406 |
+| Axe Separation resolved Axe-token profile identity | EV-406 |
+| Rapier Separation raw1H -> resolved Rapier-token identity | EV-406 |
+| Zombie AnimationFamily separation and Zombie+Axe composition | EV-406 |
+| initial full resolved-animation-set human + selected creature profile set | EV-406 |
 | Sprint shared Power Raise observation for later Raise research | EV-396 |
 | Speed v2 deep independent static audit | `archive/investigations/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT_RESULT.md` |
 | Speed v2 S-01 finite-output correction | `archive/investigations/SPEED_V2_S01_FINITE_OUTPUT_GUARD.md` |
@@ -202,13 +206,16 @@ Speed v2 / expanded Speed:
   Goblin same-run Power/Sprint context comparison = PASS EV-401
   representative nonhuman native Batch 1 = PASS EV-402
   initial release native calibration sufficiency = PASS EV-403–EV-404
-  raw UseType profile identity decision = ACCEPTED EV-405 / ADR-0010
+  raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
+  resolved animation-set profile identity = PASS EV-406
+  human Fist Normal/Power calibration = PASS EV-406
   Finishing = not a shipped/default Speed profile; Speed isolation closed
 
-Durable post-audit Speed continuation (after Normal Chat review closure):
-  implement ADR-0010 raw UseType profile identity
-  -> full active calibrated raw-UseType INI
-  -> expanded production build/deployment/runtime acceptance with Axe Separation + intended New Balance stack
+Durable post-audit Speed continuation:
+  implement ADR-0011 resolved animation-set identity
+  -> full active calibrated INI
+  -> native + Axe/Rapier/Zombie/Zombie+Axe runtime acceptance
+  -> intended New Balance sanity
   -> close Speed completely
   -> Raise only afterward
 ```

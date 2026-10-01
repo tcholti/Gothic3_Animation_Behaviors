@@ -42,7 +42,15 @@ AnimationFamily
 + RightAnimationUseType
 ```
 
-Under ADR-0010, the UseType fields preserve canonical **raw gEUseType identity** for profile matching. This is intentionally different from filename normalization in `ANIMATION_RULES.md`. Raw Axe remains profile token `Axe` even though vanilla assets serialize it as `2H`; raw Halberd remains `Halberd` even though vanilla assets serialize it as `Staff`; raw Fist and PhysicalFist likewise remain distinct. Shared vanilla routes may ship with identical values, while separation mods can tune the raw profile independently without new C++ policy.
+Under ADR-0011, Speed/Raise profile identity follows the **resolved animation set actually requested by Gothic**:
+
+```text
+AnimationFamily
++ ResolvedLeftAnimationToken
++ ResolvedRightAnimationToken
+```
+
+At the factual Speed request boundary, production resolves `Entity.GetAni(action, phase)` and extracts the left/right animation tokens from Gothic's canonical animation-name structure. This is deliberately different from using raw equipped `gEUseType`. Native Axe that resolves `..._None_2H_...` shares the 2H profile; Axe Separation resolving `..._None_Axe_...` gets an Axe profile; Rapier remains raw 1H but resolves `..._None_Rapier_...` and therefore gets a Rapier profile; Zombie Separation changes `AnimationFamily` to `Zombie`. Shared animations share Speed settings automatically, while genuinely separated animation sets are independently configurable without mod-specific C++ branches.
 
 `G3AnimationBehaviors.ini` is loaded once during DLL startup into a normalized in-memory profile table. Runtime handling performs only an in-memory profile lookup; it does not reread or reparse the INI on each attack. Missing/unconfigured profiles and missing/invalid per-attack settings preserve the live compatible behavior.
 
@@ -150,7 +158,7 @@ Unknown/missing family/profile/calibration remains fail-closed to the live compa
 
 ADR-0009 freezes factual Sprint/Action9 as an intentional Power timing alias on the proven shared speed route. EV-401 establishes that this is a **profile/authoring alias**, not a promise that the live compatible value equals ordinary Power: Gothic may return a different Sprint-context result through the same passed Action2 route, and the accepted `compatible * (C/B)` composition preserves that difference. EV-402 generalizes this across nonhuman families: Sabertooth and Wolf showed Power Hit `1.0` versus Sprint live Hit `1.5`, while Troll remained `1.0` for both. Therefore G3AB must not copy a universal Sprint multiplier; it preserves the live result. Do not add `Sprint_BaseSpeed`, `Sprint_ReferenceHitBaseSpeed`, or rewrite Action2 to Action9 absent contradictory evidence.
 
-The expanded production Speed source is implemented and has passed static review/local Release build. Native calibration is sufficient for the initial calibrated human-weapon profiles plus selected creature profiles (EV-397–EV-404). Before final deployment, implement ADR-0010 raw-UseType profile identity, then populate the active shipping INI with separate 2H/Axe and Staff/Halberd sections. Broad creature catalogue calibration is deferred rather than required for Speed closure.
+The expanded production Speed source is implemented and has passed static review/local Release build. Native calibration and separation-identity research are sufficient for finalization (EV-397–EV-406). Before final deployment, implement ADR-0011 resolved animation-set profile identity, populate the active shipping INI, then perform intended-stack runtime acceptance. Broad creature catalogue calibration is deferred rather than required for Speed closure.
 
 Recover follows the effective Hit speed; no separate user-facing `RecoverSpeed` key is planned.
 

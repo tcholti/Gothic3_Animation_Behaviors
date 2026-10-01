@@ -444,6 +444,41 @@ research/raw/2026.09.29_speed calibration_1h_troll.log
 The EV-396 baseline remains an explicit active comparison fixture while broad native calibration continues.
 
 
+## 2026-10-01 — Speed separation identity campaign closure
+
+EV-406 closed the diagnostics-only separation-profile identity campaign. All five processed runtime artifacts were moved byte-identically by reusing their existing Git blob identities:
+
+```text
+research/raw/2026.10.01_speed_identity_native_fist_orc_demon.log
+ -> research/archive/2026.10.01_speed_identity_native_fist_orc_demon.log
+ blob 4c8cb5466762e8854264bcc345c385c4c40f5dd2
+
+research/raw/2026.10.01_speed_identity_zombie_separation.log
+ -> research/archive/2026.10.01_speed_identity_zombie_separation.log
+ blob d259ea2dd4d24a85f704558ae2815d69f6226b05
+
+research/raw/2026.10.01_speed_identity_axe_separation.log
+ -> research/archive/2026.10.01_speed_identity_axe_separation.log
+ blob a73758f78812b521e3a9f034605234cb7597c94f
+
+research/raw/2026.10.01_speed_identity_rapier_separation.log
+ -> research/archive/2026.10.01_speed_identity_rapier_separation.log
+ blob cfcb457361dff01ea6d7692b00da1d53c7efbfc1
+
+research/raw/2026.10.01_speed_identity_zombie_axe_separation.log.log
+ -> research/archive/2026.10.01_speed_identity_zombie_axe_separation.log.log
+ blob e168c4f06e3f1ec60c850aab7830ad7d0b4007e8
+```
+
+Disposition/provenance:
+
+- the unusual double `.log.log` basename on the combined Zombie+Axe artifact is preserved deliberately;
+- no runtime artifact was rewritten, normalized, trimmed or regenerated;
+- EV-406 owns the promoted human-Fist calibration and resolved animation-set identity conclusions;
+- the closed temporary task moved to `docs/archive/investigations/SPEED_SEPARATION_PROFILE_IDENTITY_PROBE.md`;
+- intended raw intake after this transaction returns to `Keep.txt` plus the deliberately retained EV-396 calibration baseline.
+
+
 ## Rule for Future Moves
 
 Record a migration boundary here when all are true:

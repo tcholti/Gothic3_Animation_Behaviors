@@ -26,9 +26,10 @@ Goblin same-run Power/Sprint context control = PASS EV-401
 representative nonhuman native Batch 1 = PASS EV-402
 initial release calibration sufficiency = PASS EV-403–EV-404
 late Boar/Batch2/tool calibration = PASS EV-404
-raw UseType Speed-profile identity = ACCEPTED DIMENSION EV-405 / ADR-0010
-separation-profile identity completeness = OPEN; Rapier collision evidence shows separated motion while equipped raw source remains 1H
-CURRENT = diagnostics-only Speed separation profile identity probe before production profile implementation
+raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
+separation profile identity = PASS EV-406; resolved animation-set identity selected
+human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; Quick unclaimed
+CURRENT = implement ADR-0011 resolved animation-set profile identity + full active Speed INI
 Raise behavior = PAUSED until Speed closes
 main = FROZEN
 ```
@@ -36,7 +37,6 @@ main = FROZEN
 Current Speed tasks:
 
 ```text
-docs/work/active/SPEED_SEPARATION_PROFILE_IDENTITY_PROBE.md
 docs/work/active/SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md
 docs/work/active/SPEED_NATIVE_CALIBRATION_PROBE.md
 ```
@@ -52,29 +52,31 @@ The completed preservation-biased repository audit and Work result are archived 
 Use `docs/work/active/SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md` as the owning finalization contract.
 
 ```text
-extend calibration probe with request-time resolved animation observation
--> human bare-Fist native Speed control
--> Axe Separation identity run
--> Zombie Separation identity run
--> Rapier Separation identity run
--> decide final generic profile identity dimensions
--> only then implement profile matcher + full INI
--> final intended-stack runtime acceptance
+implement ADR-0011 resolved animation-set profile identity
+-> populate full calibrated human + selected creature/separation-mod INI
+-> bounded source/static review
+-> local Release build + exact deployment identity
+-> focused native + Axe/Rapier/Zombie/Zombie+Axe profile-selection acceptance
+-> intended New Balance compatibility sanity
 -> close Speed completely
 -> Raise afterward
 ```
 
-EV-405 establishes that raw `gEUseType` must remain distinguishable for Speed/Raise profiles, but the final identity is not yet complete. Prior collision evidence shows Rapier Separation resolving `Hero_..._Rapier_...` motions while the factual equipped item remained raw `1H/UseType2`; therefore do not implement the final profile matcher until request-time separation identity is observed directly.
+EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
 
 Historical original 15-Hit-caller probe SHA256:
 
 `4140867626119632929D2286A173E97B3A4ACE6EDBCA4E2DBFE30AC28FE28E82`
 
-Current extended 18-Hit-caller probe built/live SHA256, verified before EV-400 runtime sampling:
+Pre-separation 18-Hit-caller probe SHA256 used through EV-404:
 
 `F63EB6D169778079D6E60B62DF7E00F586B1987E05F4557BC61AF3D45071C05B`
 
-The current hash is authoritative for subsequent unchanged probe reuse; it does not retroactively identify the EV-398 binary.
+Current resolved-request identity probe built/live SHA256 used by EV-406:
+
+`76B65B57ACFB536E7B044751B3576B912ECE741F8C73480BFAA6680DDBEA7702`
+
+The EV-406 probe retains the same 18 Hit callers + Power Raise observation caller and adds request-time identity diagnostics only.
 
 EV-396 native controls establish, within their exact tested fixtures:
 

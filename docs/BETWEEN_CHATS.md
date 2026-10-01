@@ -25,9 +25,10 @@ Goblin same-run ordinary-Power/Sprint context control = PASS EV-401
 representative nonhuman native Batch 1 = PASS EV-402
 initial release calibration sufficiency = PASS EV-403–EV-404
 late calibration logs = PASS EV-404
-raw UseType profile identity = ACCEPTED DIMENSION EV-405 / ADR-0010
-separation-profile identity completeness = OPEN, especially Rapier
-CURRENT = diagnostics-only separation profile identity probe
+raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
+separation identity probe = PASS EV-406
+human Fist Normal/Power B=1.0 = PASS EV-406
+CURRENT = implement ADR-0011 + full active Speed INI
 Raise = paused until Speed closes
 ```
 
@@ -35,34 +36,32 @@ Raise = paused until Speed closes
 
 Read:
 
-`docs/work/active/SPEED_SEPARATION_PROFILE_IDENTITY_PROBE.md`
+`docs/work/active/SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md`
 
 Historical original 15-Hit-caller probe SHA256:
 
 `4140867626119632929D2286A173E97B3A4ACE6EDBCA4E2DBFE30AC28FE28E82`
 
-Current extended 18-Hit-caller probe built/live SHA256:
+Pre-separation 18-Hit probe SHA256 through EV-404:
 
 `F63EB6D169778079D6E60B62DF7E00F586B1987E05F4557BC61AF3D45071C05B`
 
-EV-400 verified that current hash with one sole live project DLL and a clean 18-hook startup/unload gate. It does not retroactively identify the EV-398 binary.
+EV-406 resolved-request identity probe built/live SHA256:
+
+`76B65B57ACFB536E7B044751B3576B912ECE741F8C73480BFAA6680DDBEA7702`
 
 Immediate sequence:
 
 ```text
-extend Script_SpeedCalibrationProbe with request-time resolved animation identity
--> human bare-Fist native control
--> Axe Separation
--> Zombie Separation
--> Rapier Separation
--> freeze final profile identity
--> implement matcher/full INI
--> final intended-stack runtime acceptance
+implement ADR-0011 resolved animation-set identity
+-> full active INI
+-> native + Axe/Rapier/Zombie/Zombie+Axe profile-selection acceptance
+-> intended New Balance compatibility sanity
 -> close Speed
 -> Raise afterward
 ```
 
-EV-405 still stands: raw UseType is an independent profile fact. The remaining question is whether it is sufficient by itself. Rapier collision evidence says the separated motion token changes to Rapier while the equipped source remains raw 1H, so production implementation is paused until this diagnostic gate resolves the generic selector.
+EV-406 proves the final selector: `AnimationFamily + resolved left/right animation tokens`. Native shared Axe/2H therefore share a profile, while Axe Separation, Rapier Separation, Zombie family separation and Zombie+Axe composition become data-only profiles.
 
 `ReferenceHitBaseSpeed` is native Gothic `B`, never a New Balance-modified live value.
 

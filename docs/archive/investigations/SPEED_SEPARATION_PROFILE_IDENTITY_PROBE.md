@@ -1,6 +1,6 @@
 # Speed Separation Profile Identity Probe
 
-**Status:** ACTIVE
+**Status:** CLOSED — PASS EV-406
 **Task class:** Bounded diagnostics-only probe extension + runtime identity research
 **Branch:** `development`
 
@@ -180,3 +180,18 @@ another factual source must be researched
 ```
 
 Do not implement the production matcher in the same task.
+
+
+## Closure
+
+EV-406 answered the causal question. Final Speed/Raise profile identity is the resolved animation set:
+
+```text
+AnimationFamily
++ ResolvedLeftAnimationToken
++ ResolvedRightAnimationToken
+```
+
+Raw UseType alone is insufficient because Rapier remains raw 1H while resolving Rapier animation tokens. Native Axe resolving 2H intentionally shares 2H timing; Axe Separation resolving Axe becomes independently configurable. Zombie family separation and Zombie+Axe composition both resolved cleanly.
+
+Production implementation is owned by `SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md` under ADR-0011.

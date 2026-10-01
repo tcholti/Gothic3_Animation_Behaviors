@@ -669,3 +669,94 @@ Disposition:
 - **NO AUTOMATIC SPEED PROFILE COUPLING IS INFERRED FROM SHARED ANIMATION ASSETS.**
 - **NEXT — IMPLEMENT ADR-0010 + FULL RAW-USETYPE INI, THEN AXE-SEPARATION/INTENDED-STACK RUNTIME ACCEPTANCE.**
 
+### EV-406 — Speed separation-profile identity probe PASS; resolved animation-set identity selected
+
+Observed:
+- The User ran the diagnostics-only separation identity probe built from source commit `2acde620648d05614c4970e8a0451a778baaef59`.
+- Built/live probe SHA256 matched exactly:
+  `76B65B57ACFB536E7B044751B3576B912ECE741F8C73480BFAA6680DDBEA7702`.
+- The probe captured `ResolvedRequestedAni = Entity.GetAni(passedAction, phase)` before the live speed-owner call, retained it in observation identity/output, called the live speed owner exactly once, and returned its result unchanged.
+- Five committed runs were processed:
+  - native Fist/Orc/Demon control: 628 intercepted calls, 88 unique observations, 0 drops;
+  - Zombie Separation: 430 / 50 / 0;
+  - Axe Separation: 393 / 42 / 0;
+  - Rapier Separation: 74 / 22 / 0;
+  - Zombie + Axe Separation: 118 / 17 / 0.
+- Human player bare Fist / `Hero_..._None_Fist_...`:
+  - Normal Hit = `1.0` on both P0/P1 samples;
+  - Power Raise = `1.5`;
+  - Power Hit = `1.0`;
+  - no player Quick-Fist Speed row occurred in this campaign.
+- Native zombies without separation continued to resolve ordinary human animation names. Example factual raw Axe52 resolved `Hero_..._None_2H_...`; raw Staff resolved `Hero_..._None_Staff_...`; shield+1H resolved `Hero_..._Shield_1H_...`.
+- Native zombie Fist shared the `Hero + None + Fist` animation set but returned Normal live speed `1.4` while player Hero Fist returned `1.0`. Power Hit remained `1.0`. This demonstrates why the live compatible result must remain authoritative for contextual actor modifiers even when an animation-set profile is shared.
+- Zombie Separation changed the request-time family and exact requested assets:
+  - `Family=Zombie`;
+  - examples resolve `Zombie_..._None_2H_...`, `Zombie_..._None_Staff_...`, `Zombie_..._Shield_1H_...`, and `Zombie_..._None_Fist_...`;
+  - underlying factual raw weapon UseTypes remained available independently.
+- Axe Separation:
+  - raw Axe52 remained factual;
+  - Hero player and compatible actors resolved `..._None_Axe_...` instead of the native shared `..._None_2H_...`;
+  - sampled values remained Normal `0.7`, Quick `1.0`, Power Hit `1.0`, Hack `1.0`, Whirl `1.0`.
+- Rapier Separation supplied the decisive counterexample to raw-UseType profile identity:
+  - `Family=Hero`;
+  - factual equipped right UseType remained ordinary `1H(2)`;
+  - resolved requests consistently used `Hero_..._None_Rapier_...`;
+  - Normal `0.6`, Quick `1.0`, Power Hit `1.0`, Pierce `1.0`;
+  - therefore `AnimationFamily + raw UseTypes` cannot distinguish ordinary 1H from Rapier.
+- Zombie + Axe composition:
+  - `Family=Zombie`;
+  - raw right source = Axe52;
+  - resolved requests = `Zombie_..._None_Axe_...`;
+  - sampled Normal `0.7`, Quick `1.0`, Power Hit `1.0`, Hack/Whirl `1.0`.
+  - Family separation and animation-set separation therefore compose without a mod-specific branch.
+
+Interpretation:
+- The Speed profile should identify **the animation set being timed**, not the inventory/source UseType that happened to select it.
+- Final grouped profile identity is:
+  ```text
+  AnimationFamily
+  + ResolvedLeftAnimationToken
+  + ResolvedRightAnimationToken
+  ```
+  where left/right tokens are parsed from the exact request-time string returned by `Entity.GetAni(factualAction, factualPhase)`.
+- Examples:
+  - vanilla Hero raw Axe -> resolved `Hero + None + 2H` -> shares the ordinary 2H profile;
+  - Axe Separation -> resolved `Hero + None + Axe` -> independently configurable Axe profile;
+  - Rapier Separation -> raw 1H but resolved `Hero + None + Rapier` -> independently configurable Rapier profile;
+  - Zombie Separation -> `Zombie + <resolved tokens>` -> independent family profiles;
+  - Zombie+Axe -> `Zombie + None + Axe` -> dimensions compose naturally.
+- This matches the User's authoring rule: **if animations are shared, their Speed profile is shared; if a mod resolves distinct animations, those animations can receive a distinct profile.**
+- Raw `gEUseType` remains important diagnostic/source/collision information but is not part of final Speed/Raise profile identity.
+- Factual `gEAction` remains the attack-family authority. The resolved animation's serialized action name does not replace it; e.g. factual Hack may resolve a `FinishingAttack`-named asset while remaining Hack for Speed policy.
+- `CurrentMovementAni()` remains observational only and is not profile identity.
+- Unknown/malformed request animation identity must fail closed to the live compatible result.
+
+Human Fist calibration consequence:
+- Initial `Hero + None + Fist` profile may include Normal `B=1.0` and Power `B=1.0`.
+- Do not add Quick for human Fist until a factual Quick route is observed/calibrated.
+- Native zombie Hero/Fist Normal `1.4` is preserved as live compatible context when shared with the same animation-set profile: with `B=1.0`, composition retains the `1.4` factor.
+
+Architecture consequence:
+- ADR-0010 raw-UseType profile identity is superseded by ADR-0011.
+- The existing grouped profile shape remains, but its two equipment fields are renamed conceptually/user-facing to resolved animation tokens:
+  `LeftAnimationToken` and `RightAnimationToken`.
+- Production lookup should resolve `Entity.GetAni(action, phase)` at the exact Speed request boundary, extract the family/use-type fields from Gothic's canonical animation-name structure, and use those tokens for matching.
+- No filename/current-motion polling and no Axe/Rapier/Zombie hard-coded cases are justified.
+
+Provenance:
+- User-pushed runtime commit: `d775c2d30a9823e6b9919de92037aa7084fd0fd6`;
+- probe implementation: `2acde620648d05614c4970e8a0451a778baaef59`;
+- probe built/live SHA256: `76B65B57ACFB536E7B044751B3576B912ECE741F8C73480BFAA6680DDBEA7702`;
+- native log blob: `4c8cb5466762e8854264bcc345c385c4c40f5dd2`;
+- Zombie Separation blob: `d259ea2dd4d24a85f704558ae2815d69f6226b05`;
+- Axe Separation blob: `a73758f78812b521e3a9f034605234cb7597c94f`;
+- Rapier Separation blob: `cfcb457361dff01ea6d7692b00da1d53c7efbfc1`;
+- Zombie+Axe blob: `e168c4f06e3f1ec60c850aab7830ad7d0b4007e8`;
+- prior collision compatibility controls: EV-369–EV-372.
+
+Disposition:
+- **PASS — SPEED SEPARATION PROFILE IDENTITY PROBE CLOSED.**
+- **PASS — HUMAN PLAYER FIST NORMAL/POWER B=1.0 CALIBRATION CLOSED; QUICK REMAINS UNCLAIMED.**
+- **SUPERSEDE ADR-0010 WITH ADR-0011 RESOLVED ANIMATION-SET PROFILE IDENTITY.**
+- **NEXT — IMPLEMENT ADR-0011 + FULL ACTIVE INI, THEN INTENDED-STACK PRODUCTION RUNTIME ACCEPTANCE.**
+

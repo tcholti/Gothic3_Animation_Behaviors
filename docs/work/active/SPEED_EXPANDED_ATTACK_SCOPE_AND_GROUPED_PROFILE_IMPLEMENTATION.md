@@ -1,6 +1,6 @@
 # Speed Expanded Attack Scope and Grouped Profile Implementation
 
-**Status:** ACTIVE — PRODUCTION FINALIZATION PAUSED PENDING SEPARATION PROFILE IDENTITY GATE
+**Status:** ACTIVE — FINALIZATION GATE: ADR-0011 RESOLVED ANIMATION-SET IDENTITY + FULL INI + RUNTIME ACCEPTANCE
 **Task class:** Bounded production source extension + runtime acceptance  
 **Branch:** `development`
 
@@ -43,13 +43,15 @@ This is a calibration/configuration sub-gate, not a production mechanism redesig
 
 ## Grouped profile schema
 
-One section represents:
+One section represents the resolved animation set:
 
 ```text
 AnimationFamily
-+ LeftAnimationUseType
-+ RightAnimationUseType
++ LeftAnimationToken
++ RightAnimationToken
 ```
+
+The left/right tokens come from the exact request-time animation returned by `Entity.GetAni(factualAction, factualPhase)`, not from raw equipped UseType normalization. Factual action still selects the attack prefix independently.
 
 Each supported attack owns independent optional settings:
 
@@ -168,42 +170,55 @@ Expanded `Script_G3AnimationBehaviors.dll` Release build completed successfully 
 
 No production source correction is currently indicated.
 
-## Current finalization gate — separation identity research before production
+## Current finalization gate — EV-406 / ADR-0011
 
-Broad native catalogue calibration is no longer required before Speed closure. EV-397–EV-404 establish enough native references for the initial human-weapon profiles and selected creatures.
+Separation identity research is closed. Production may now be finalized.
 
-ADR-0010 establishes raw `gEUseType` as a required independent profile fact, but **do not implement the final matcher yet**. Accepted collision evidence for Rapier Separation shows a separated `Hero_..._Rapier_...` motion while the equipped item remains raw `1H/UseType2`. The final generic identity may therefore require one additional request-time animation fact.
+### Resolved animation-set profile identity
 
-Current owning probe:
+Implement ADR-0011 in `BehaviorProfiles` and the Speed lookup path.
 
-`docs/work/active/SPEED_SEPARATION_PROFILE_IDENTITY_PROBE.md`
-
-After that probe closes, return here and implement only the evidence-backed final identity.
-
-### Raw UseType profile identity
-
-Implement ADR-0010 in `BehaviorProfiles`. Profile matching must use canonical raw `gEUseType` tokens, not serialized animation aliases.
-
-Minimum required distinct tokens:
+Required runtime sequence:
 
 ```text
-None, 1H, 2H, Axe, Staff, Halberd,
-Fist, PhysicalFist, Pickaxe, Broom, Rake, Shovel, Fan
+factual action + factual phase already known at caller
+-> AnimationFamily from Animation.GetSkeletonName(...)
+-> resolved request = Entity.GetAni(action, phase)
+-> parse canonical resolved LeftAnimationToken / RightAnimationToken
+-> construct profile key
+-> factual action maps to Normal/Quick/Power/Pierce/Hack/SimpleWhirl/Whirl
+-> compose live compatible result with C/B
 ```
 
-Other already-supported raw UseTypes should likewise retain stable distinct raw tokens.
+Rename the public/internal profile identity fields from:
 
-Prefer renaming `TryGetAnimationUseTypeToken` to profile/raw-UseType terminology so future contributors do not confuse profile identity with `ANIMATION_RULES.md` filename normalization.
+```text
+LeftAnimationUseType
+RightAnimationUseType
+```
 
-Do not inspect `CurrentMovementAni()`, add weapon-specific `AttackSpeed` branches, add automatic filename-based profile inheritance, or change collision behavior.
+to:
+
+```text
+LeftAnimationToken
+RightAnimationToken
+```
+
+before the finalized shipping INI.
+
+Do not use raw inventory `gEUseType` to choose the Speed profile. Do not use `CurrentMovementAni()`. Do not hard-code Axe, Rapier, Zombie or any mod name.
+
+Fail closed to the live compatible speed if `GetAni` is empty or the canonical minimum structure cannot be parsed.
 
 ### Full active shipping INI
 
 Use `BaseSpeed=1.00` as the initial authored default. Include only calibrated attack blocks.
 
+Required core profiles:
+
 ```text
 Hero + None + 1H:
-  Normal .60, Quick 1.00, Power 1.00, Pierce 1.00
+  Normal B=.60, Quick B=1.00, Power B=1.00, Pierce B=1.00
 
 Hero + Shield + 1H:
   same
@@ -212,30 +227,49 @@ Hero + Torch + 1H:
   same
 
 Hero + 1H + 1H:
-  Normal .60, Quick 1.00, Power .90, Pierce 1.00, SimpleWhirl 1.30
+  Normal B=.60, Quick B=1.00, Power B=.90, Pierce B=1.00, SimpleWhirl B=1.30
 
 Hero + None + 2H:
-  Normal .70, Quick 1.00, Power 1.00, Hack 1.00, Whirl 1.00
-
-Hero + None + Axe:
-  same initial values as 2H, DISTINCT raw profile
+  Normal B=.70, Quick B=1.00, Power B=1.00, Hack B=1.00, Whirl B=1.00
+  native Axe/Pickaxe-style routes share this ONLY when Gothic actually resolves token 2H
 
 Hero + None + Staff:
-  Normal .70, Quick 1.00, Power 1.00, Hack 1.00, Whirl 1.00
+  Normal B=.70, Quick B=1.00, Power B=1.00, Hack B=1.00, Whirl B=1.00
+  native Halberd/tool routes share this ONLY when Gothic actually resolves token Staff
 
-Hero + None + Halberd:
-  same initial values as Staff, DISTINCT raw profile
+Hero + None + Fist:
+  Normal B=1.00, Power B=1.00
+  Quick omitted: not calibrated for player human Fist in EV-406
 
 Sabertooth + None + Fist:
-  Normal 1.00, Quick 1.00, Power 1.00
+  Normal B=1.00, Quick B=1.00, Power B=1.00
 
-Troll + PhysicalFist + PhysicalFist:
-  Normal 1.00, Quick 1.00, Power 1.00
+Troll + Fist + Fist:
+  Normal B=1.00, Quick B=1.00, Power B=1.00
 ```
 
-Sprint remains absent and inherits Power under ADR-0009.
+Required tested separation-mod profiles may be shipped as active compatibility profiles because they are inert when those resolved animation sets do not exist:
 
-Do not add Finishing keys, Sprint keys, uncalibrated work-tool profiles, or active Raise behavior. Human bare Fist remains a separate calibration choice if desired.
+```text
+Hero + None + Axe:
+  Normal B=.70, Quick B=1.00, Power B=1.00, Hack B=1.00, Whirl B=1.00
+
+Hero + None + Rapier:
+  Normal B=.60, Quick B=1.00, Power B=1.00, Pierce B=1.00
+```
+
+Zombie Separation should be documented with example sections rather than exhaustively pre-populated. Demonstrate:
+
+```text
+Zombie + Shield + 1H
+Zombie + None + 2H
+Zombie + None + Staff
+Zombie + None + Axe   ; combined Zombie+Axe separation
+```
+
+The examples may use EV-406 reference values for the sampled routes, but documentation must state that profiles are selected by resolved animation family/tokens, not by mod name.
+
+Sprint remains absent and inherits Power under ADR-0009. Finishing remains unsupported as a Speed profile. Raise remains inactive.
 
 ### Post-implementation sequence
 
@@ -243,31 +277,39 @@ Do not add Finishing keys, Sprint keys, uncalibrated work-tool profiles, or acti
 bounded source/static review
 -> local Release build
 -> POP-03 built/live identity
--> intended compatible stack + full INI
--> Axe Separation positive control + expanded Speed runtime acceptance
+-> deploy finalized INI
+-> native/shared profile control including human Fist
+-> Axe Separation independent profile control
+-> Rapier Separation independent profile control
+-> Zombie family profile control
+-> Zombie+Axe composed profile control
+-> intended New Balance compatibility sanity
 -> close Speed
 -> Raise afterward
 ```
 
-EV-395 already proves New Balance multiplier preservation for the mechanism; no broad New Balance calibration-probe campaign is required.
+No further broad native calibration is required.
 
 ## Runtime acceptance matrix after calibration
 
 Use representative tests rather than exhaustive repetition:
 
 ```text
-Normal + Quick regression control across representative human profiles
+Normal + Quick regression across representative Hero profiles
 Power configured-speed control
-Sprint control demonstrating inherited Power authoring while preserving a live differential
+Sprint inherits Power while preserving live differential
 Pierce configured control
 Hack configured control + Finishing remains independent
-SimpleWhirl configured dual-1H control
-Whirl configured 2H/Staff control
-Axe and 2H raw-profile independence using Axe Separation
-Halberd and Staff raw-profile independence sanity where practical
-unconfigured Pickaxe/tool raw profile remains fail-closed
+SimpleWhirl dual-1H control
+Whirl 2H/Staff control
+human Hero Fist Normal/Power control
+native shared Axe -> resolved 2H profile control
+Axe Separation -> resolved Axe profile independence
+Rapier Separation -> raw 1H but resolved Rapier profile independence
+Zombie Separation -> AnimationFamily=Zombie profile independence
+Zombie+Axe -> Zombie + Axe composed profile
 Sabertooth or Troll configured creature control
-unconfigured/fail-closed fallback
+malformed/unconfigured resolved identity fail-closed
 New Balance intended-stack compatibility sanity
 ```
 
