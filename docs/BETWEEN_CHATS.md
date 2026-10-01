@@ -22,7 +22,8 @@ Hack/Finishing action-route Speed isolation = PASS EV-399 on shared + separated 
 extended 18-Hit probe identity/startup = PASS EV-400 / F63EB6D169778079D6E60B62DF7E00F586B1987E05F4557BC61AF3D45071C05B
 representative Hero/Orc/Goblin NPC calibration = PASS EV-400
 Goblin same-run ordinary-Power/Sprint context control = PASS EV-401
-CURRENT = representative nonhuman native calibration
+representative nonhuman native Batch 1 = PASS EV-402
+CURRENT = representative nonhuman native Batch 2
 Raise = paused until Speed closes
 ```
 
@@ -46,14 +47,15 @@ Immediate sequence:
 
 ```text
 keep current clean-native probe fixture
--> representative nonhuman families
+-> representative nonhuman Batch 2
+-> assess native coverage sufficiency
 -> useful New Balance comparison
 -> expanded production Speed runtime acceptance, including configured Power/Sprint preservation control
 -> close Speed
 -> Raise afterward
 ```
 
-EV-401 closes the Goblin comparison: same-run ordinary Power Hit = `1.0`, factual Sprint Hit = `1.5`, both through passed Power/Action2. Treat `1.0` as the supported Goblin Power reference and preserve the Sprint live differential through C/B composition. Both processed Goblin comparison logs are archived; only the EV-396 calibration baseline remains intentionally raw.
+EV-402 Batch 1 results: Sabertooth Power Hit `1.0` / Sprint live Hit `1.5`; Wolf Power Hit `1.0` / Sprint live Hit `1.5`; Troll raw55 Power/Sprint Hit `1.0`; Boar Normal `1.0` and Sprint live Hit `1.5` with no ordinary Power sample. The processed Batch-1 log is archived; EV-396 remains the only active raw comparison baseline.
 
 `ReferenceHitBaseSpeed` is native Gothic `B`, never a New Balance-modified live value.
 

@@ -22,8 +22,9 @@ Speed calibration probe = native control PASS EV-396; broad Hero/loadout calibra
 Hack/Finishing action-route Speed isolation = PASS EV-399 on shared + separated assets
 extended 18-Hit calibration probe identity/startup = PASS EV-400 / SHA256 F63EB6D169778079D6E60B62DF7E00F586B1987E05F4557BC61AF3D45071C05B
 representative Hero/Orc/Goblin NPC calibration = PASS EV-400
-Goblin same-run Power/Sprint context control = PASS EV-401; Power Hit B=1.0, Sprint live Hit=1.5 in current context
-CURRENT = representative nonhuman native Speed calibration
+Goblin same-run Power/Sprint context control = PASS EV-401
+representative nonhuman native Batch 1 = PASS EV-402; Sabertooth/Wolf contextual Sprint differential generalized, Troll control reconfirmed
+CURRENT = representative nonhuman native Batch 2
 Raise behavior = PAUSED until Speed closes
 main = FROZEN
 ```
@@ -47,14 +48,15 @@ Use `docs/work/active/SPEED_NATIVE_CALIBRATION_PROBE.md` as the active calibrati
 
 ```text
 current extended probe identity already verified at EV-400
--> representative nonhuman families
+-> representative nonhuman Batch 2
+-> assess whether native coverage is sufficient
 -> useful New Balance comparison as compatibility evidence
 -> expanded production Speed runtime acceptance, including configured Power/Sprint preservation control
 -> close Speed completely
 -> Raise afterward
 ```
 
-EV-401 closes the Goblin context question. In one clean same-run BlackGoblin control, ordinary Power Hit was `1.0` while factual Sprint/Action9 Hit was `1.5` through the same passed Power/Action2 transport. The Power profile therefore remains the correct authoring profile with `B=1.0`; equal live Power/Sprint speed is not an invariant, and C/B composition must preserve the Sprint-context differential.
+EV-402 closes nonhuman Batch 1. Sabertooth and Wolf directly repeated the EV-401 pattern (ordinary Power Hit `1.0`, factual Sprint live Hit `1.5`), while Troll remained `1.0` for both. Boar produced Normal `1.0` and Sprint live `1.5`, but no ordinary Power sample, so Boar Power `B` remains unclaimed.
 
 Historical original 15-Hit-caller probe SHA256:
 

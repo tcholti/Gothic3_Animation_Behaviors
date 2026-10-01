@@ -358,10 +358,41 @@ The earlier causal run where both Power and Sprint Hit were `1.0` remains valid 
 
 The later expanded-production acceptance should include a configured Power/Sprint control so the end-to-end runtime test demonstrates preservation of this differential.
 
+### Representative nonhuman native Batch 1 — PASS EV-402
+
+Clean-native results from Sabertooth, Wolf, Boar and Troll:
+
+```text
+Sabertooth / None+Fist(raw8):
+  Normal 1.0
+  Quick R/L 1.0
+  Power Raise 1.5 / Hit 1.0
+  Sprint Raise 1.5 / Hit 1.5
+
+Wolf / None+Fist(raw8):
+  Normal 1.0
+  Power Raise 1.5 / Hit 1.0
+  Sprint Raise 1.5 / Hit 1.5
+
+Boar / None+Fist(raw8):
+  Normal 1.0
+  Sprint Raise 1.5 / Hit 1.5
+  ordinary Power not observed -> B not established
+
+Troll / PhysicalFist(raw55):
+  Normal 1.0
+  Quick R/L 1.0
+  Power Raise 1.0 / Hit 1.0
+  Sprint Raise 1.0 / Hit 1.0
+```
+
+This generalizes EV-401: Sprint inherits the Power **authoring profile**, while the live compatible result may differ by family/execution context. Sabertooth and Wolf show the `1.0 -> 1.5` Hit differential; Troll does not. Do not encode a universal Sprint multiplier.
+
 Next bounded native sequence:
 
 ```text
-representative nonhuman families
+representative nonhuman Batch 2
+-> assess native coverage sufficiency
 -> useful New Balance comparison
 ```
 
