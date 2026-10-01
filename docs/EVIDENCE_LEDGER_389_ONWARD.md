@@ -487,3 +487,65 @@ Disposition:
 - The EV-400 representative-NPC log and this focused Goblin log no longer own an open comparison and are archived byte-identically.
 - **NEXT:** representative nonhuman native calibration.
 
+### EV-402 — Representative nonhuman native Speed Batch 1 PASS; Sprint-context differential generalizes
+
+Observed:
+- The User ran the unchanged clean-native extended 18-Hit-caller calibration probe against Sabertooth, Wolf, Boar and Troll, with the probe still identified by SHA256 `F63EB6D169778079D6E60B62DF7E00F586B1987E05F4557BC61AF3D45071C05B`.
+- User-pushed source commit `f96ab812db2335f7d3a3541228a92417b5549e27` contains the runtime artifact now archived byte-identically as `research/archive/2026.10.01_speed_calibration_sabertooth_wolf_boar_troll.log`.
+- Final summary: `InterceptedCalls=365`, `UniqueObservations=31`, `DroppedUniqueObservations=0`.
+- Player cleanup traffic was explicitly separable through `Player>0, NPC=0` and reproduced already-established Hero values; it is not promoted as nonhuman evidence.
+- Sabertooth / None+raw8 Fist:
+  - Normal Hit `1.0` (16);
+  - QuickR Hit `1.0` (5);
+  - QuickL Hit `1.0` (18);
+  - ordinary Power Raise `1.5` (8);
+  - ordinary Power Hit `1.0` (8);
+  - factual Sprint/Action9 through passed Power Raise `1.5` (14);
+  - factual Sprint/Action9 through passed Power Hit `1.5` (14).
+- Wolf / None+raw8 Fist:
+  - Normal Hit `1.0` (21);
+  - ordinary Power Raise `1.5` (14);
+  - ordinary Power Hit `1.0` (13);
+  - factual Sprint through passed Power Raise `1.5` (5);
+  - factual Sprint through passed Power Hit `1.5` (4).
+- Boar / None+raw8 Fist:
+  - Normal Hit `1.0` (39);
+  - factual Sprint through passed Power Raise `1.5` (7);
+  - factual Sprint through passed Power Hit `1.5` (7);
+  - no ordinary Power observation occurred naturally in this run.
+- Troll / raw55 PhysicalFist+PhysicalFist:
+  - Normal Hit `1.0` (20);
+  - QuickR Hit `1.0` (12);
+  - QuickL Hit `1.0` (20);
+  - ordinary Power Raise/Hit `1.0 / 1.0` (3 each);
+  - factual Sprint through passed Power Raise/Hit `1.0 / 1.0` (6 each).
+
+Interpretation:
+- EV-401's key distinction generalizes beyond Goblin. Sabertooth and Wolf both show ordinary Power Hit `B=1.0` while factual Sprint Hit returns `1.5` through the same passed Power/Action2 route.
+- Troll remains a counterexample to any hard-coded universal Sprint multiplier: ordinary Power and Sprint both return `1.0` in the sampled raw55 route.
+- Therefore the correct production abstraction remains:
+  `Power profile/reference base` + `live compatible/contextual result`, with C/B composition preserving whatever Sprint-context differential Gothic supplies for the current family/execution.
+- No Sprint-specific Speed option is justified. The evidence now spans Goblin, Sabertooth, Wolf and Troll with different live Power/Sprint relationships.
+- Sabertooth and Wolf ordinary Power Hit reference `B=1.0` are directly supported. Troll raw55 Power Hit `B=1.0` is reconfirmed.
+- Boar ordinary Power `B` is **not established** by this batch because only factual Sprint reached the shared Power caller. Do not promote the Sprint `1.5` live result as Boar Power `B`.
+
+Scope / limits:
+- This batch covers only naturally exercised actions. Missing actions are absence of coverage, not negative capability claims.
+- Boar ordinary Power remains an optional future calibration gap if a shipped/configured Boar Power profile requires an explicit reference.
+- Power Raise values remain observation-only evidence; Raise is still paused and the Raise caller is not part of production Speed composition.
+
+Provenance:
+- current probe SHA256: `F63EB6D169778079D6E60B62DF7E00F586B1987E05F4557BC61AF3D45071C05B`;
+- user-pushed source commit: `f96ab812db2335f7d3a3541228a92417b5549e27`;
+- archived log blob: `7c9db5650e0953d56057d7974595573ccd4fe82a`;
+- architecture clarification: EV-401 + ADR-0009.
+
+Disposition:
+- **PASS — REPRESENTATIVE NONHUMAN NATIVE SPEED BATCH 1.**
+- **PASS — SABERTOOTH POWER HIT B=1.0; SPRINT LIVE HIT=1.5 IN THIS RUN.**
+- **PASS — WOLF POWER HIT B=1.0; SPRINT LIVE HIT=1.5 IN THIS RUN.**
+- **PASS — TROLL RAW55 POWER/SPRINT HIT=1.0 RECONFIRMED.**
+- **BOAR POWER B REMAINS UNESTABLISHED; SPRINT LIVE HIT=1.5 OBSERVED ONLY.**
+- **CONFIRMED — NO UNIVERSAL SPRINT MULTIPLIER SHOULD BE COPIED INTO G3AB; PRESERVE THE LIVE RESULT.**
+- **NEXT:** representative nonhuman Batch 2, then assess whether native coverage is sufficient to move to New Balance comparison.
+
