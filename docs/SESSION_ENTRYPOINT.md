@@ -23,8 +23,10 @@ Hack/Finishing action-route Speed isolation = PASS EV-399 on shared + separated 
 extended 18-Hit calibration probe identity/startup = PASS EV-400 / SHA256 F63EB6D169778079D6E60B62DF7E00F586B1987E05F4557BC61AF3D45071C05B
 representative Hero/Orc/Goblin NPC calibration = PASS EV-400
 Goblin same-run Power/Sprint context control = PASS EV-401
-representative nonhuman native Batch 1 = PASS EV-402; Sabertooth/Wolf contextual Sprint differential generalized, Troll control reconfirmed
-CURRENT = representative nonhuman native Batch 2
+representative nonhuman native Batch 1 = PASS EV-402
+initial release calibration sufficiency / scope decision = PASS EV-403
+raw tool-alias profile safety = OPEN FINALIZATION BLOCKER EV-403
+CURRENT = bounded raw-alias safety correction + full active Speed INI
 Raise behavior = PAUSED until Speed closes
 main = FROZEN
 ```
@@ -42,21 +44,22 @@ Canonical reusable engine lookup:
 
 The completed preservation-biased repository audit and Work result are archived under `docs/archive/investigations/`. Its accepted RH-01–RH-13 maintenance is represented in the durable owners; RH-14–RH-17 were KEEP/no-action. The three previously retained Sprint-probe logs were positively reconciled during EV-397/EV-398 maintenance and archived byte-identically; path migration is recorded in `EVIDENCE_PATH_MIGRATIONS.md`.
 
-## Immediate continuation — resume broad native Speed calibration
+## Immediate continuation — Speed finalization
 
-Use `docs/work/active/SPEED_NATIVE_CALIBRATION_PROBE.md` as the active calibration contract.
+Use `docs/work/active/SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md` as the owning finalization contract.
 
 ```text
-current extended probe identity already verified at EV-400
--> representative nonhuman Batch 2
--> assess whether native coverage is sufficient
--> useful New Balance comparison as compatibility evidence
--> expanded production Speed runtime acceptance, including configured Power/Sprint preservation control
+broad calibration stopped at EV-403
+-> fail-closed raw tool-alias token correction
+-> populate full calibrated human-weapon + Sabertooth/Troll INI
+-> bounded source/static review
+-> local Release build + exact deployment identity
+-> intended-stack runtime acceptance including New Balance sanity
 -> close Speed completely
 -> Raise afterward
 ```
 
-EV-402 closes nonhuman Batch 1. Sabertooth and Wolf directly repeated the EV-401 pattern (ordinary Power Hit `1.0`, factual Sprint live Hit `1.5`), while Troll remained `1.0` for both. Boar produced Normal `1.0` and Sprint live `1.5`, but no ordinary Power sample, so Boar Power `B` remains unclaimed.
+EV-403 records that creature attack-expansion mods affected availability during some calibration runs but not the live speed owner; those logs remain valid speed-route evidence, not vanilla capability catalogues. It also identifies the only current source blocker: Pickaxe/Broom/Rake/Shovel/Fan must no longer inherit calibrated 2H/Staff profile references through token collapse.
 
 Historical original 15-Hit-caller probe SHA256:
 

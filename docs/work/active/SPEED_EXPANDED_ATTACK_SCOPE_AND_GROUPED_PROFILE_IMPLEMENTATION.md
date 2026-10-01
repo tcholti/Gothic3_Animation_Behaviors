@@ -1,6 +1,6 @@
 # Speed Expanded Attack Scope and Grouped Profile Implementation
 
-**Status:** ACTIVE — SOURCE IMPLEMENTED / STATIC REVIEW PASS / LOCAL BUILD PASS / CALIBRATION SUB-GATE ACTIVE
+**Status:** ACTIVE — FINALIZATION GATE: RAW-ALIAS SAFETY + FULL INI + RUNTIME ACCEPTANCE
 **Task class:** Bounded production source extension + runtime acceptance  
 **Branch:** `development`
 
@@ -168,55 +168,144 @@ Expanded `Script_G3AnimationBehaviors.dll` Release build completed successfully 
 
 No production source correction is currently indicated.
 
-## Current gate
+## Current finalization gate — EV-403
 
-**NEXT = broad native calibration with the validated `Script_SpeedCalibrationProbe`, then New Balance comparison where useful.**
+Broad native catalogue calibration is no longer required before Speed closure. EV-397–EV-402 establish enough native references for the initial human-weapon release profiles and selected creature profiles. Creature tests performed with an attack-expansion gameplay mod remain valid speed-route observations, but they do not prove vanilla attack availability.
 
-Calibration discipline:
+One source-safety correction is required before the full INI becomes active.
 
-```text
-Gothic may still load renamed DLLs left inside scripts; renaming in place is not a disable method.
-Any DLL that must be excluded from a fixture must be physically moved/removed outside scripts before launch.
+### Raw alias safety correction
 
-native run:
-  Script_G3AnimationBehaviors.dll physically outside scripts
-  Script_NewBalance.dll physically outside scripts
-  other optional combat/gameplay DLLs that could contaminate the clean fixture removed as required
-  Script_SpeedCalibrationProbe.dll present
-
-NB comparison run:
-  Script_G3AnimationBehaviors.dll physically outside scripts
-  intended New Balance stack restored
-  Script_SpeedCalibrationProbe.dll present
-
-probe returns live speed unchanged in both cases
-```
-
-EV-396 validates the first native Hero None+1H + Troll PhysicalFist calibration control and the probe's compact aggregation.
-
-After enough common native references are established:
+Current profile tokenization collapses:
 
 ```text
-remove calibration probe from scripts
-restore intended compatible stack
-rebuild only if source changed
-otherwise deploy already-reviewed expanded production target
-verify built/live SHA equality
-run bounded expanded-Speed runtime acceptance
+Pickaxe -> 2H
+Broom/Rake/Shovel/Fan -> Staff
 ```
+
+That is unsafe for Speed calibration. Pinned New Balance source explicitly gives Normal `0.7*M` only to 2H/Axe/Staff/Halberd among these groups; the tool aliases fall through to generic `1.0*M`. A grouped 2H/Staff profile must therefore not claim those raw routes accidentally.
+
+Implement the smallest fail-closed correction in `BehaviorProfiles::TryGetAnimationUseTypeToken`:
+
+```text
+KEEP:
+  Axe -> "2h"
+  Halberd -> "staff"
+  PhysicalFist -> "fist"
+
+CHANGE:
+  Pickaxe -> "pickaxe"
+  Broom -> "broom"
+  Rake -> "rake"
+  Shovel -> "shovel"
+  Fan -> "fan"
+```
+
+Do not add attack-specific C++ branches. Do not change the profile key shape. The purpose is only to prevent uncalibrated raw types from matching a calibrated profile. Future explicit profiles may use those distinct tokens after calibration.
+
+### Full active shipping INI
+
+After the alias correction, replace the comment-only example with active initial profiles. Use `BaseSpeed=1.00` as the authored default for every included attack. Include only calibrated attacks; omission means native/fail-closed behavior.
+
+Required active profiles:
+
+```text
+[Profile.Hero_None_1H]
+Normal B=.60
+Quick B=1.00
+Power B=1.00
+Pierce B=1.00
+
+[Profile.Hero_Shield_1H]
+Normal B=.60
+Quick B=1.00
+Power B=1.00
+Pierce B=1.00
+
+[Profile.Hero_Torch_1H]
+Normal B=.60
+Quick B=1.00
+Power B=1.00
+Pierce B=1.00
+
+[Profile.Hero_1H_1H]
+Normal B=.60
+Quick B=1.00
+Power B=.90
+Pierce B=1.00
+SimpleWhirl B=1.30
+
+[Profile.Hero_None_2H]
+Normal B=.70
+Quick B=1.00
+Power B=1.00
+Hack B=1.00
+Whirl B=1.00
+; raw Axe intentionally matches this proven-equivalent profile
+
+[Profile.Hero_None_Staff]
+Normal B=.70
+Quick B=1.00
+Power B=1.00
+Hack B=1.00
+Whirl B=1.00
+; raw Halberd intentionally matches this proven-equivalent profile
+
+[Profile.Sabertooth_None_Fist]
+Normal B=1.00
+Quick B=1.00
+Power B=1.00
+; Sprint inherits Power; no Sprint keys
+
+[Profile.Troll_Fist_Fist]
+Normal B=1.00
+Quick B=1.00
+Power B=1.00
+; Sprint inherits Power; no Sprint keys
+```
+
+Do not add:
+- human bare Fist profile yet;
+- Boar Power reference;
+- Finishing keys;
+- Sprint keys;
+- uncalibrated creature/action entries;
+- active Raise behavior.
+
+`RaiseOverride` may remain documented as reserved schema, but it is not necessary on every active Speed row while Raise is paused.
+
+### Post-implementation sequence
+
+```text
+bounded source/static review
+-> local Release build
+-> POP-03 built/live identity
+-> restore intended compatible stack
+-> deploy full active INI
+-> bounded expanded-Speed runtime acceptance
+-> close Speed
+-> Raise afterward
+```
+
+A separate broad New Balance calibration-probe campaign is no longer required. EV-395 already proves multiplier-preserving composition with New Balance for the mechanism; final intended-stack runtime acceptance must include New Balance compatibility sanity for the expanded profile set.
 
 ## Runtime acceptance matrix after calibration
 
 Use representative tests rather than exhaustive repetition:
 
 ```text
-Normal + Quick regression control
+Normal + Quick regression control across representative human profiles
 Power configured-speed control
-Sprint control demonstrating inherited Power timing where practical
-Pierce / Hack configured controls where visually practical
-SimpleWhirl / Whirl configured controls where visually practical
+Sprint control demonstrating inherited Power authoring while preserving a live differential
+Pierce configured control
+Hack configured control + Finishing remains independent
+SimpleWhirl configured dual-1H control
+Whirl configured 2H/Staff control
+Axe -> 2H and Halberd -> Staff proven-alias sanity
+Pickaxe or Staff-tool alias negative control: must NOT match calibrated 2H/Staff profile
+Sabertooth or Troll configured creature control
 unconfigured/fail-closed fallback
-New Balance compatibility sanity
+New Balance intended-stack compatibility sanity
 ```
 
 ## Protected boundaries

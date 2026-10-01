@@ -549,3 +549,48 @@ Disposition:
 - **CONFIRMED — NO UNIVERSAL SPRINT MULTIPLIER SHOULD BE COPIED INTO G3AB; PRESERVE THE LIVE RESULT.**
 - **NEXT:** representative nonhuman Batch 2, then assess whether native coverage is sufficient to move to New Balance comparison.
 
+### EV-403 — Initial Speed calibration scope sufficient; raw alias safety blocker identified before full INI
+
+Observed:
+- The User disclosed that a gameplay mod was active during creature testing which can expose additional attack types to some creatures beyond their vanilla attack repertoire. The mod does not replace the animation-speed owner; the calibration probe still observed the live Gothic speed result for the factual action that executed.
+- Therefore EV-402 remains valid as speed-route evidence for the actions that actually ran, but it must not be read as proof that every observed creature/action combination is available in unmodded Gothic.
+- The User chose to stop broad creature catalogue calibration for the current Speed feature. The existing human/loadout evidence plus selected creature evidence is sufficient for an initial shipping INI; a larger creature catalogue may be built later as documentation/reference work after the main mod is further along.
+- Current `BehaviorProfiles::TryGetAnimationUseTypeToken` collapses several raw UseTypes into animation-category tokens:
+  - `Axe -> 2h`;
+  - `Pickaxe -> 2h`;
+  - `Halberd -> staff`;
+  - `Broom/Rake/Shovel/Fan -> staff`;
+  - `PhysicalFist -> fist`.
+- EV-397 directly supports Axe behaving like 2H and Halberd behaving like Staff on sampled Speed routes.
+- The pinned New Balance `GetAnimationSpeedModifier` source distinguishes the raw Normal-attack policies: None+2H, None+Axe, None+Staff and None+Halberd receive `0.7*M`, while Pickaxe/Broom/Rake/Shovel/Fan are not in those explicit branches and fall through to the generic Normal result `1.0*M`.
+- Current `AttackSpeed::ComposeCompatibleSpeed` looks up only the normalized grouped profile and then uses that profile's single `ReferenceHitBaseSpeed`. Therefore an active `Hero_None_2H` Normal profile with `B=0.7` would also match raw Pickaxe under the current token collapse and could incorrectly compose a route whose compatible owner uses a different base. The same risk exists for Staff-group tool aliases.
+- This is the exact concern already anticipated by EV-392: normalized authoring identity and raw technical base policy are not always interchangeable.
+
+Interpretation:
+- Broad creature calibration is no longer a blocker for Speed finalization.
+- Before activating a full shipping INI, profile-token normalization must fail closed for raw aliases whose Speed base is not proven equivalent.
+- The smallest accepted correction is:
+  - retain `Axe -> 2h` and `Halberd -> staff`, because sampled native equivalence is proven;
+  - retain `PhysicalFist -> fist` for the established creature/raw55 profile model;
+  - stop collapsing `Pickaxe`, `Broom`, `Rake`, `Shovel`, and `Fan` into the calibrated 2H/Staff tokens; give them distinct profile tokens so ordinary 2H/Staff profiles cannot accidentally claim them.
+- This is a fail-closed calibration-safety correction, not a return to weapon-specific Speed policy. Those raw types may be configured later through their own explicit profiles if their native references are established.
+- Human bare Fist remains outside the initial full Speed INI because its native reference has not been cleanly calibrated and New Balance applies special Fist policy. This does not block the calibrated human weapon profiles.
+
+Initial full-INI calibration set:
+- Hero None+1H: Normal `0.60`, Quick `1.00`, Power `1.00`, Pierce `1.00`.
+- Hero Shield+1H: same.
+- Hero Torch+1H: same.
+- Hero 1H+1H: Normal `0.60`, Quick `1.00`, Power `0.90`, Pierce `1.00`, SimpleWhirl `1.30`.
+- Hero None+2H (also proven Axe alias): Normal `0.70`, Quick `1.00`, Power `1.00`, Hack `1.00`, Whirl `1.00`.
+- Hero None+Staff (also proven Halberd alias): Normal `0.70`, Quick `1.00`, Power `1.00`, Hack `1.00`, Whirl `1.00`.
+- Sabertooth None+Fist: Normal/Quick/Power `1.00`.
+- Troll Fist+Fist: Normal/Quick/Power `1.00`.
+- Sprint has no separate key and inherits Power authoring while preserving the live contextual differential.
+
+Disposition:
+- **PASS — INITIAL NATIVE CALIBRATION IS SUFFICIENT FOR SPEED FINALIZATION.**
+- **BROAD CREATURE CATALOGUE CALIBRATION DEFERRED; NOT A CURRENT BLOCKER.**
+- **OPEN FINALIZATION BLOCKER — FAIL-CLOSED RAW TOOL-ALIAS PROFILE SAFETY BEFORE FULL ACTIVE INI.**
+- **HUMAN BARE FIST SPEED PROFILE DEFERRED UNTIL NATIVE B IS ESTABLISHED.**
+- **NEXT:** bounded source correction + full active INI, then final intended-stack production runtime acceptance. No separate broad New Balance calibration campaign is required; EV-395 plus final intended-stack acceptance own compatibility closure.
+
