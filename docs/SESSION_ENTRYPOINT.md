@@ -3,7 +3,7 @@
 **Purpose:** minimal durable current-state pointer. Repository startup begins at root `README.md` **Start Here**.  
 **Active development branch:** `development`  
 **Stable integration branch:** `main`  
-**Updated:** 2026-09-30
+**Updated:** 2026-10-01
 
 > After abrupt/max-context recovery, return to root `README.md` and apply POP-11 before trusting this pointer.
 
@@ -22,7 +22,8 @@ Speed calibration probe = native control PASS EV-396; broad Hero/loadout calibra
 Hack/Finishing action-route Speed isolation = PASS EV-399 on shared + separated assets
 extended 18-Hit calibration probe identity/startup = PASS EV-400 / SHA256 F63EB6D169778079D6E60B62DF7E00F586B1987E05F4557BC61AF3D45071C05B
 representative Hero/Orc/Goblin NPC calibration = PASS EV-400
-CURRENT = bounded Goblin ordinary-Power/Sprint same-run context control -> representative nonhuman native calibration
+Goblin same-run Power/Sprint context control = PASS EV-401; Power Hit B=1.0, Sprint live Hit=1.5 in current context
+CURRENT = representative nonhuman native Speed calibration
 Raise behavior = PAUSED until Speed closes
 main = FROZEN
 ```
@@ -46,15 +47,14 @@ Use `docs/work/active/SPEED_NATIVE_CALIBRATION_PROBE.md` as the active calibrati
 
 ```text
 current extended probe identity already verified at EV-400
--> same-run Goblin ordinary Power + factual Sprint context control
 -> representative nonhuman families
 -> useful New Balance comparison as compatibility evidence
--> expanded production Speed runtime acceptance
+-> expanded production Speed runtime acceptance, including configured Power/Sprint preservation control
 -> close Speed completely
 -> Raise afterward
 ```
 
-EV-399 closes the Hack/Finishing detour. EV-400 closes the current extended-probe identity gap and the first representative NPC batch. Hero NPC routes matched established Hero values; Orc family-specific Power behavior reproduced. Goblin factual Sprint returned `1.5` in the current run versus `1.0` alongside ordinary Power `1.0` in the earlier causal run, so preserve both and resolve the context before promoting a Goblin Power reference.
+EV-401 closes the Goblin context question. In one clean same-run BlackGoblin control, ordinary Power Hit was `1.0` while factual Sprint/Action9 Hit was `1.5` through the same passed Power/Action2 transport. The Power profile therefore remains the correct authoring profile with `B=1.0`; equal live Power/Sprint speed is not an invariant, and C/B composition must preserve the Sprint-context differential.
 
 Historical original 15-Hit-caller probe SHA256:
 

@@ -442,3 +442,48 @@ Disposition:
 - **OPEN BOUNDED FOLLOW-UP — GOBLIN SAME-RUN ORDINARY POWER + SPRINT CONTEXT CONTROL.**
 - After that small control, continue representative nonhuman native calibration, then the useful New Balance comparison.
 
+### EV-401 — Goblin same-run Power/Sprint context control PASS; shared-profile multiplier preservation clarified
+
+Observed:
+- The User repeated the clean-native Goblin control with the unchanged extended 18-Hit-caller calibration probe identified by SHA256 `F63EB6D169778079D6E60B62DF7E00F586B1987E05F4557BC61AF3D45071C05B`.
+- User-pushed source commit `974d3119a8bc331775e4682fd956cfc8cbad6ed7` added `research/raw/2026.10.01_speed_calibration_goblin.log`; after interpretation it is archived byte-identically as `research/archive/2026.10.01_speed_calibration_goblin.log`.
+- Final summary: `InterceptedCalls=89`, `UniqueObservations=10`, `DroppedUniqueObservations=0`.
+- BlackGoblin / None+1H repeated observations:
+  - Normal Hit = `0.600000` (22 calls);
+  - QuickR Hit = `1.000000` (12 calls);
+  - QuickL Hit = `1.000000` (18 calls);
+  - ordinary Power/Action2 Raise = `1.500000` (8 calls);
+  - ordinary Power/Action2 Hit = `1.000000` (8 calls);
+  - factual Sprint/Action9 through passed Power/Action2 Raise = `1.500000` (4 calls);
+  - factual Sprint/Action9 through passed Power/Action2 Hit = `1.500000` (4 calls).
+- The same run therefore directly separates ordinary Power Hit `1.0` from factual Sprint Hit `1.5` while both calls pass Action2 to the live speed owner.
+- The earlier closed Goblin causal run observed ordinary Power Hit `1.0` and factual Sprint Hit `1.0` together. Sprint's live Hit result is therefore not a fixed second authoring base; it can vary by native runtime context while the shared Power transport remains unchanged.
+
+Interpretation:
+- Goblin None+1H ordinary Power Hit reference `B=1.0` is directly supported by same-run ordinary Power evidence.
+- ADR-0009's production decision remains correct: Sprint has no separate author-facing Speed profile and continues to inherit the Power profile on the proven shared caller.
+- Profile inheritance does **not** imply equal live effective playback speed. Gothic may contribute additional Sprint-context behavior inside the live compatible result even though the caller passes Power/Action2.
+- Under the accepted composition model this difference belongs to the preserved compatible/contextual term: with Power `B=1.0`, live Sprint `1.5`, and configured Power base `C`, production computes `1.5 * (C / 1.0) = 1.5C` rather than flattening Sprint to `C`.
+- Do not add `Sprint_BaseSpeed`, `Sprint_ReferenceHitBaseSpeed`, or rewrite Action2 to Action9. The later expanded-production runtime acceptance should include a configured Power/Sprint control to demonstrate preservation of this native differential end-to-end.
+- Raise values remain observation-only evidence because Power Raise is not currently a production Speed hook and Raise behavior remains paused.
+
+Scope / limits:
+- The exact engine cause of the changing Sprint live multiplier is not identified and does not need to be copied into G3AB policy. The accepted architecture deliberately leaves that policy inside the live Gothic/compatible owner.
+- This control resolves the EV-400 Goblin comparison only; broader nonhuman calibration remains open.
+
+Provenance:
+- current extended probe built/live SHA256: `F63EB6D169778079D6E60B62DF7E00F586B1987E05F4557BC61AF3D45071C05B`;
+- user-pushed runtime commit: `974d3119a8bc331775e4682fd956cfc8cbad6ed7`;
+- archived log blob: `9859e3d5e9a77a8662fa84562f2c4f74a25f8745`;
+- EV-400 comparison source blob: `e800b0d0836b36e85c15a6c681415f9490a02809`;
+- historical causal result: `docs/archive/investigations/SPEED_SPRINT_SHARED_POWER_HIT_CAUSAL_PROBE_RESULT.md`;
+- architecture decision: ADR-0009.
+
+Disposition:
+- **PASS — GOBLIN SAME-RUN ORDINARY POWER / SPRINT CONTEXT CONTROL CLOSED.**
+- **PASS — GOBLIN ORDINARY POWER HIT REFERENCE B=1.0 SUPPORTED.**
+- **CONFIRMED — POWER-PROFILE INHERITANCE DOES NOT REQUIRE EQUAL LIVE POWER/SPRINT SPEED.**
+- **CONFIRMED — CURRENT C/B COMPOSITION IS THE CORRECT PRESERVATION MECHANISM FOR THE OBSERVED SPRINT DIFFERENTIAL.**
+- The EV-400 representative-NPC log and this focused Goblin log no longer own an open comparison and are archived byte-identically.
+- **NEXT:** representative nonhuman native calibration.
+

@@ -323,15 +323,45 @@ Goblin None+1H:
     Hit 1.5
 ```
 
-The Goblin Sprint value is **not** promoted as ordinary Goblin Power `B`. The earlier closed Sprint causal run observed ordinary Goblin Power Hit `1.0` and factual Sprint Hit `1.0` together. Keep today's log as an active comparison and resolve the contextual difference with one same-run Goblin ordinary-Power + Sprint control.
+The EV-400 Goblin Sprint value was not promoted as ordinary Goblin Power `B` until a same-run comparison could separate base from live context.
 
 The User deliberately used Hero 2H for cleanup/engagement. Those rows are cleanly marked `Player>0, NPC=0` and reproduced established Hero controls; they do not contaminate the NPC facts above.
+
+### Goblin ordinary Power / Sprint same-run context control — PASS EV-401
+
+The focused BlackGoblin repeat closed the EV-400 ambiguity:
+
+```text
+ordinary Power:
+  Raise 1.5
+  Hit   1.0
+
+factual Sprint Action9 through passed Power Action2:
+  Raise 1.5
+  Hit   1.5
+```
+
+Counts were repeated and stable in the same run: ordinary Power Raise/Hit 8 each; Sprint Raise/Hit 4 each. The run had 89 intercepted calls, 10 unique observations and zero drops.
+
+Therefore:
+
+```text
+Goblin None+1H ordinary Power Hit B = 1.0
+Sprint inherits the Power authoring profile
+Sprint live compatible Hit may differ from ordinary Power
+the live differential belongs to compatible/contextual behavior preserved by C/B
+NO Sprint-specific Speed key
+NO Action2 -> Action9 rewrite
+```
+
+The earlier causal run where both Power and Sprint Hit were `1.0` remains valid historical evidence: together the runs show that Sprint's live result is contextual rather than a fixed separate authoring base.
+
+The later expanded-production acceptance should include a configured Power/Sprint control so the end-to-end runtime test demonstrates preservation of this differential.
 
 Next bounded native sequence:
 
 ```text
-same-run Goblin ordinary Power + factual Sprint control
--> representative nonhuman families
+representative nonhuman families
 -> useful New Balance comparison
 ```
 

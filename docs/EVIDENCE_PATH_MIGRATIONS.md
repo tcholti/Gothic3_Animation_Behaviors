@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Path Migrations
 
 **Status:** Canonical provenance-path lookup  
-**Updated:** 2026-09-26
+**Updated:** 2026-10-01
 
 ## Purpose
 
@@ -411,6 +411,37 @@ research/raw/2026.09.29_speed calibration_1h_troll.log
 ```
 
 The remaining EV-396 log is an explicit active comparison baseline and is not stale intake.
+
+
+## 2026-10-01 — Speed representative-NPC / Goblin context comparison closure
+
+EV-401 closed the only remaining comparison obligation owned by the September 30 representative-NPC log and the focused October 1 Goblin control. Both artifacts were moved byte-identically by reusing their existing Git blob identities:
+
+```text
+research/raw/2026.09.30_speed_calibration_representative_npcs.log
+ -> research/archive/2026.09.30_speed_calibration_representative_npcs.log
+ blob e800b0d0836b36e85c15a6c681415f9490a02809
+
+research/raw/2026.10.01_speed_calibration_goblin.log
+ -> research/archive/2026.10.01_speed_calibration_goblin.log
+ blob 9859e3d5e9a77a8662fa84562f2c4f74a25f8745
+```
+
+Disposition/provenance:
+
+- EV-400 owns the representative Hero/Orc/Goblin NPC checkpoint and originally retained the September 30 log for one open Goblin Power/Sprint comparison.
+- EV-401 closes that comparison with same-run ordinary BlackGoblin Power Hit `1.0` versus factual Sprint Hit `1.5` through passed Power/Action2.
+- The archive move preserves exact Git blob identity; neither runtime log was downloaded, rewritten, normalized, trimmed or regenerated.
+- Historical references to the September 30 raw path resolve to the archived basename through this migration entry.
+
+After this transaction, intended intake is again:
+
+```text
+research/raw/Keep.txt
+research/raw/2026.09.29_speed calibration_1h_troll.log
+```
+
+The EV-396 baseline remains an explicit active comparison fixture while broad native calibration continues.
 
 
 ## Rule for Future Moves
