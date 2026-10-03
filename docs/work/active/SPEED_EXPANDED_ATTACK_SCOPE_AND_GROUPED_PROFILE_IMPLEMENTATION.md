@@ -349,7 +349,7 @@ No ordinary Hero 2H Sprint fixture has been established and none is required/inv
 Remaining focused acceptance:
 
 ```text
-Rapier Separation -> raw 1H but resolved Rapier independence
+Rapier Separation -> raw 1H but resolved Rapier independence       PASS EV-408
 human Hero Fist Normal/Power
 representative configured creature + unconfigured/fail-closed control
 Zombie family profile independence
@@ -360,6 +360,16 @@ close Speed completely
 ```
 
 Evidence: EV-407.
+
+Additional production acceptance:
+
+```text
+Rapier single-hand separation independence                         PASS EV-408
+Rapier mixed-loadout non-leakage into dual-1H / Torch+1H          PASS EV-408
+```
+
+The generic profile parser remains data-driven over `AnimationFamily + LeftAnimationToken + RightAnimationToken`; future genuinely distinct resolved Rapier-combination animation sets can therefore be represented by additional profiles without mod-name C++ branching, after their routes are runtime-verified/calibrated.
+
 
 ## Protected boundaries
 
