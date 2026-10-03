@@ -835,3 +835,30 @@ Disposition:
 - **PASS — NO RAPIER PROFILE LEAKAGE INTO TESTED DUAL-1H OR TORCH+1H RESOLVED SETS.**
 - **NEXT — HUMAN FIST / CREATURE / UNCONFIGURED CONTROL, THEN ZOMBIE FAMILY + ZOMBIE/AXE COMPOSITION, THEN NEW BALANCE SANITY.**
 
+### EV-409 — Human Fist / creature profiles / unconfigured fail-closed acceptance PASS
+
+Fixture:
+- same production DLL accepted in EV-407/EV-408, exact SHA256 `D975BABFA8E5DCE3C4A49BC46D7A49D08379B7CE479C2DE143DE5458DDA5335E`;
+- temporary live-INI acceptance edits only; repository shipping INI unchanged.
+
+Observed:
+- `Hero + None + Fist` Normal and Power were configured to `BaseSpeed=0.40`; both human Fist routes visibly obeyed the slowdown;
+- `Sabertooth + None + Fist` Normal/Quick/Power were configured to `0.40`; the tested Sabertooth attacks obeyed the configured slowdown;
+- `Troll + Fist + Fist` was likewise tested at `0.40`; the tested Troll attacks obeyed the configured slowdown;
+- a Wolf was spawned as an intentionally unconfigured animation family/profile control; its attacks retained native timing and showed no visible G3AB Speed intervention.
+
+Interpretation:
+- configured human bare-Fist lookup works in the final production profile system;
+- configured nonhuman family profiles work for both Sabertooth and Troll;
+- absence of a matching profile fails closed to the live/native compatible result, as designed.
+
+Provenance:
+- diagnostics-free visual runtime observations reported by the User on 2026-10-03;
+- exact production binary identity established before launch under POP-03.
+
+Disposition:
+- **PASS — HUMAN FIST NORMAL/POWER PRODUCTION PROFILE.**
+- **PASS — REPRESENTATIVE CONFIGURED CREATURE PROFILES.**
+- **PASS — UNCONFIGURED WOLF FAIL-CLOSED/NATIVE CONTROL.**
+- **NEXT — ZOMBIE FAMILY INDEPENDENCE + ZOMBIE/AXE COMPOSITION, THEN NEW BALANCE COMPATIBILITY SANITY.**
+
