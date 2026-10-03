@@ -806,3 +806,32 @@ Disposition:
 - **PASS — INTEGRATED COLLISION MARKER REGRESSION CONTROL.**
 - **NEXT — RAPIER SEPARATION, HUMAN FIST/CREATURE/UNCONFIGURED CONTROLS, ZOMBIE FAMILY + ZOMBIE/AXE COMPOSITION, THEN INTENDED NEW BALANCE COMPATIBILITY SANITY.**
 
+### EV-408 — Rapier resolved-profile independence and non-leakage across other loadouts PASS
+
+Fixture:
+- same production DLL accepted in EV-407, exact SHA256 `D975BABFA8E5DCE3C4A49BC46D7A49D08379B7CE479C2DE143DE5458DDA5335E`;
+- temporary live INI edits only; repository shipping INI unchanged;
+- Rapier separation DLL toggled on/off between runs.
+
+Observed:
+- with Rapier separation absent and `Hero + None + 1H` set to `0.40`, both ordinary 1H and the Rapier weapon followed the shared 1H profile at `0.40`;
+- with Rapier separation active and `Hero + None + Rapier` set to `1.00`, Rapier followed `1.00` while ordinary 1H remained at `0.40`;
+- dual-1H was then exercised with all practical mixed combinations: ordinary 1H + ordinary 1H, Rapier + ordinary 1H, ordinary 1H + Rapier, and Rapier + Rapier. All continued to follow the `Hero + 1H + 1H` profile rather than leaking into the single-Rapier profile;
+- when `Hero + 1H + 1H` was changed to `0.40`, those dual-wield combinations followed `0.40` as assigned while single-Rapier remained independently governed by its `Hero + None + Rapier` profile;
+- Torch+1H was also checked with both an ordinary 1H weapon and a Rapier in the weapon hand. It followed the `Hero + Torch + 1H` profile exactly: first at `1.00`, then at `0.40`, regardless of whether the held weapon was the Rapier.
+- This matches the separation mod's authored scope: it supplies a distinct single-Rapier animation set, not distinct dual-wield or torch Rapier sets.
+
+Interpretation:
+- production profile selection follows the resolved animation-set tokens, not the raw weapon identity;
+- single-Rapier separation does not contaminate unrelated resolved dual-wield or torch animation sets;
+- the current generic profile parser/matcher is data-driven: it reads `AnimationFamily + LeftAnimationToken + RightAnimationToken` from each `[Profile.*]` section and compares them to fields 2/3 of the exact request-time animation name. Therefore, if a future mod actually resolves distinct tokens for combinations such as `Rapier+1H`, `1H+Rapier`, `Rapier+Rapier`, or `Torch+Rapier`, corresponding INI profiles should be representable without a new mod-specific C++ branch, subject to factual runtime verification/calibration of those new routes.
+
+Provenance:
+- diagnostics-free visual runtime observations reported by the User on 2026-10-03;
+- generic parser/matcher behavior confirmed from current `BehaviorProfiles.cpp`.
+
+Disposition:
+- **PASS — RAPIER SEPARATION RESOLVED-PROFILE INDEPENDENCE.**
+- **PASS — NO RAPIER PROFILE LEAKAGE INTO TESTED DUAL-1H OR TORCH+1H RESOLVED SETS.**
+- **NEXT — HUMAN FIST / CREATURE / UNCONFIGURED CONTROL, THEN ZOMBIE FAMILY + ZOMBIE/AXE COMPOSITION, THEN NEW BALANCE SANITY.**
+
