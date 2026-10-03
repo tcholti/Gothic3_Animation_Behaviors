@@ -760,3 +760,49 @@ Disposition:
 - **SUPERSEDE ADR-0010 WITH ADR-0011 RESOLVED ANIMATION-SET PROFILE IDENTITY.**
 - **NEXT — IMPLEMENT ADR-0011 + FULL ACTIVE INI, THEN INTENDED-STACK PRODUCTION RUNTIME ACCEPTANCE.**
 
+### EV-407 — ADR-0011 production Speed native/action routing + Axe separation acceptance PASS
+
+Fixture:
+- branch `development`, source candidate `ba3e76549eff5c7fdfc2d165ec976e640ef9c24c` carried by maintained branch state;
+- production `Script_G3AnimationBehaviors.dll` built locally and deployed under POP-03;
+- exact built/live DLL SHA256: `D975BABFA8E5DCE3C4A49BC46D7A49D08379B7CE479C2DE143DE5458DDA5335E`;
+- shipping/live INI identity before temporary acceptance edits: `41F52E182D5F873FE29BCC2B4F9E043B0DD38177D2295FC1013C6780105E0A4C`;
+- native-only initial fixture: `Script_NewBalance.dll` absent; `Script_AttackCollision.dll` absent;
+- POP-04 startup/load smoke reached the main menu and exited normally with no startup/load problem.
+
+Observed production Speed controls:
+- with shipped `BaseSpeed=1.00`, Hero Normal attacks were visibly faster than native timing for representative 1H, Torch+1H, dual-1H, 2H and Staff families, matching their calibrated native Normal bases;
+- temporary live-INI action-isolation controls then made selected Quick/Power/Pierce/Hack/Whirl/SimpleWhirl routes visibly slow while neighboring configured/unchanged routes retained their assigned speed;
+- current separated Hack and Finishing assets both obeyed the settings assigned to their own factual routes in the tested configuration, consistent with the already-proven factual-action separation and with Finishing remaining outside the production Speed profile surface unless separately reached through its native behavior.
+
+Axe resolved-profile identity control:
+- with Axe Separation absent, ordinary 2H sword and raw Axe both followed the `Hero + None + 2H` profile and both slowed when that profile was set to `0.40`;
+- after installing Axe Separation without changing the relevant profile identities, ordinary 2H remained on the slowed `Hero + None + 2H` profile while Axe switched to the independently configured `Hero + None + Axe` profile at `1.00`;
+- the User then inverted the configuration: all Axe attack settings were set to `0.40` while 2H settings were restored to `1.00`; with Axe Separation active, Axe and 2H again followed their independently assigned values;
+- after removing Axe Separation, both Axe and 2H again followed the `Hero + None + 2H` settings.
+- This is a bidirectional production acceptance of ADR-0011: shared resolved assets share a profile; separated resolved animation tokens select an independent profile without raw-weapon/mod-name branching.
+
+Integrated collision regression observation:
+- the User's authored 1H Normal attacks are only 0–8 frames long. At the new `1.00` playback they can be too short for Gothic's native collision timing to activate reliably, yet the attacks still connected at the authored contact point with current G3AB collision markers;
+- dual-wield attacks initially failed to connect at `1.00`; inspection found those files still contained obsolete test markers. Replacing them with the current marker scheme restored correct contact.
+- This is positive integrated regression evidence for marker-authored collision under faster Speed playback. It does not reopen collision design.
+
+Scope clarification:
+- no ordinary Hero 2H Sprint attack fixture has been established in prior runtime work; do not manufacture one for acceptance. Sprint/Power inheritance remains owned by the previously observed factual Sprint routes and ADR-0009 evidence.
+
+Interpretation:
+- production Speed action routing works across the representative tested Hero families;
+- ADR-0011 resolved animation-set identity works in production in both shared-Axe and separated-Axe directions;
+- Speed changes did not regress the marker collision system in the tested short/high-speed animations.
+
+Provenance:
+- diagnostics-free visual runtime observations reported by the User on 2026-10-03;
+- exact production binary identity above was established before launch under POP-03;
+- temporary runtime INI edits were acceptance controls only and did not modify the repository shipping INI.
+
+Disposition:
+- **PASS — REPRESENTATIVE NATIVE PRODUCTION SPEED ACTION ROUTING.**
+- **PASS — AXE SHARED/SEPARATED ADR-0011 PROFILE IDENTITY.**
+- **PASS — INTEGRATED COLLISION MARKER REGRESSION CONTROL.**
+- **NEXT — RAPIER SEPARATION, HUMAN FIST/CREATURE/UNCONFIGURED CONTROLS, ZOMBIE FAMILY + ZOMBIE/AXE COMPOSITION, THEN INTENDED NEW BALANCE COMPATIBILITY SANITY.**
+
