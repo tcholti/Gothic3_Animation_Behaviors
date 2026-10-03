@@ -350,8 +350,8 @@ Remaining focused acceptance:
 
 ```text
 Rapier Separation -> raw 1H but resolved Rapier independence       PASS EV-408
-human Hero Fist Normal/Power
-representative configured creature + unconfigured/fail-closed control
+human Hero Fist Normal/Power                                  PASS EV-409
+representative configured creature + unconfigured/fail-closed control PASS EV-409
 Zombie family profile independence
 Zombie+Axe composed family+token identity
 intended New Balance compatibility sanity
@@ -366,6 +366,7 @@ Additional production acceptance:
 ```text
 Rapier single-hand separation independence                         PASS EV-408
 Rapier mixed-loadout non-leakage into dual-1H / Torch+1H          PASS EV-408
+Human Fist + creature + unconfigured fail-closed                   PASS EV-409
 ```
 
 The generic profile parser remains data-driven over `AnimationFamily + LeftAnimationToken + RightAnimationToken`; future genuinely distinct resolved Rapier-combination animation sets can therefore be represented by additional profiles without mod-name C++ branching, after their routes are runtime-verified/calibrated.
