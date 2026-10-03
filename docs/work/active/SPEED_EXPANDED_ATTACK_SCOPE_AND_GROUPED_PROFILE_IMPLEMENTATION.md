@@ -327,6 +327,40 @@ malformed/unconfigured resolved identity fail-closed
 New Balance intended-stack compatibility sanity
 ```
 
+## Runtime acceptance progress — 2026-10-03
+
+Completed under exact production DLL SHA256 `D975BABFA8E5DCE3C4A49BC46D7A49D08379B7CE479C2DE143DE5458DDA5335E`:
+
+```text
+POP-03 built/live production identity                         PASS
+POP-04 startup/load smoke                                    PASS
+representative Hero Normal routing: 1H/Torch/dual/2H/Staff  PASS
+Quick/Power/Pierce/Hack/Whirl/SimpleWhirl action controls    PASS
+Axe native shared -> Hero+None+2H profile                    PASS
+Axe Separation -> independent Hero+None+Axe profile          PASS
+Axe profile inversion + return-to-shared control             PASS
+integrated high-speed collision-marker regression            PASS
+```
+
+The current Axe result is bidirectional: with separation absent, Axe follows the resolved 2H profile; with separation active, Axe follows its independent resolved Axe profile; reversing the two profile speeds reverses the observed behavior; removing separation returns Axe to the 2H profile.
+
+No ordinary Hero 2H Sprint fixture has been established and none is required/invented for this acceptance. ADR-0009 remains supported by the factual Sprint routes previously observed in runtime evidence.
+
+Remaining focused acceptance:
+
+```text
+Rapier Separation -> raw 1H but resolved Rapier independence
+human Hero Fist Normal/Power
+representative configured creature + unconfigured/fail-closed control
+Zombie family profile independence
+Zombie+Axe composed family+token identity
+intended New Balance compatibility sanity
+restore/finalize release-facing INI
+close Speed completely
+```
+
+Evidence: EV-407.
+
 ## Protected boundaries
 
 Do not:
