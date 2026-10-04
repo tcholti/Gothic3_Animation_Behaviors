@@ -105,6 +105,36 @@ The current grouped profile model already has per-attack Raise storage under the
 
 Adding a new weapon/animation set should remain a profile/INI operation when Gothic resolves a distinct animation family/token combination. It must not require a C++ branch such as "if 1H", "if 2H", "if Axe", "if Rapier", etc.
 
+## Historical engine-resolution proof
+
+The pre-profile Raise prototype already proved that G3AB does not need to construct animation filenames.
+
+Historical source at commit `18844a35379992def7c9b112b0e70fdaa5fe082e` called `sAICombatMoveInstr` with:
+- the actor/target;
+- factual `gEAction_Attack`;
+- phase name `"Raise"`;
+- animation speed scale `1.0f`.
+
+It supplied no animation filename.
+
+The historical design recorded the accepted runtime result:
+
+```text
+custom Raise -> original state -> original Hit -> native continuation
+the engine resolves the correct P0/P1 Raise animation automatically
+```
+
+Therefore the production/public authoring model is:
+
+```text
+G3AB requests factual action + Raise phase
+-> Gothic resolves the concrete Raise request from its normal animation state
+-> Gothic builds/looks up the corresponding serialized animation resource name
+-> if that correctly named asset exists, Gothic uses it
+```
+
+Do not replace this with manual filename construction in G3AB.
+
 ## Release README requirement
 
 When Raise ships, the public README must explain how to name matching Raise animation files.
@@ -129,7 +159,7 @@ Whirl:
 ..._WhirlAttack_Raise_...
 ```
 
-Do not instruct authors to blindly replace only `Hit` with `Raise`. Native evidence shows Raise often preserves the source pose while Hit performs the meaningful pose transition, and the destination-pose / movement suffix can therefore differ. The README should show matched real examples and explain that the authored Raise file must follow Gothic's expected Raise request for that exact animation route.
+Do not instruct authors to blindly replace only `Hit` with `Raise`. Gothic itself determines the requested Raise identity from its normal action/phase/pose/use-type/direction rules. Native evidence shows Raise often preserves the source pose while Hit performs the meaningful pose transition, and destination-pose / movement suffixes can therefore differ. The README should explain the engine naming fields/rules and show matched real examples so authors create the asset Gothic will actually request.
 
 Native inventory evidence currently includes:
 - 64 `_Attack_Raise_` names;
