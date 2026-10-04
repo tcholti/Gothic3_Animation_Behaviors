@@ -31,7 +31,8 @@ Canonical evidence uses one global monotonic EV namespace. Closed ledger volumes
 | EV-373–EV-379 | `archive/evidence/EVIDENCE_LEDGER_373_379.md` |
 | EV-380–EV-383 | `archive/evidence/EVIDENCE_LEDGER_380_383.md` |
 | EV-384–EV-388 | `archive/evidence/EVIDENCE_LEDGER_384_388.md` |
-| EV-389 onward | `EVIDENCE_LEDGER_389_ONWARD.md` |
+| EV-389–EV-416 | `archive/evidence/EVIDENCE_LEDGER_389_416.md` |
+| EV-417 onward | `EVIDENCE_LEDGER_417_ONWARD.md` |
 
 The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2026-09-19_PRE_COMPRESSION.md`.
 
@@ -148,13 +149,15 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | custom AddRaise final Hit-scale reuse transport | EV-415 |
 | native Power Raise +0x47D51 compatible composition | EV-415 |
 | Hack/Pierce protected already-coupled Raise controls | EV-414–EV-415 |
+| Raise phase-speed production correction source/static acceptance | EV-416 |
+| Raise correction simplicity / modularity / performance review | EV-416 |
 | Speed v2 deep independent static audit | `archive/investigations/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT_RESULT.md` |
 | Speed v2 S-01 finite-output correction | `archive/investigations/SPEED_V2_S01_FINITE_OUTPUT_GUARD.md` |
 | generic Speed profile calibration implementation closure | `archive/investigations/SPEED_GENERIC_PROFILE_CALIBRATION_IMPLEMENTATION_RESULT.md` |
 | native contact misses vs authored marker correctness | EV-381 |
 | sheath/draw contact observation | EV-380–EV-381; not a marker blocker |
 
-Raise is now **ACTIVE** after Speed CLOSED/PASS. AddRaise sequencing/source is implemented and accepted through EV-412. EV-413–EV-414 discovered the phase-speed inconsistency; EV-415 closes the static causal research and freezes the correction. Active source work is `docs/work/active/RAISE_SPEED_PHASE_CONSISTENCY_IMPLEMENTATION.md`; runtime acceptance remains recorded under `docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md` and resumes after the correction.
+Raise is **ACTIVE** after Speed CLOSED/PASS. AddRaise sequencing is accepted through EV-412; EV-413–EV-414 exposed the phase-speed inconsistency; EV-415 froze the correction; EV-416 independently accepts the implemented correction source at `aab0189f2067f00653f669792b7d267135c745f0`. The implementation contract is archived; focused User-local build/deploy/runtime acceptance remains active under `docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md`.
 
 ## 3. Current collision closure landmarks
 

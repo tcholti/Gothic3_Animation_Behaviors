@@ -1,11 +1,12 @@
-# Gothic 3 Animation Behaviors — Evidence Ledger EV-389 Onward
+# Gothic 3 Animation Behaviors — Evidence Ledger EV-389–EV-416
 
-**Status:** Active evidence/provenance ledger  
-**Opened:** 2026-09-27
+**Status:** Closed evidence/provenance ledger  
+**Opened:** 2026-09-27  
+**Closed:** 2026-10-04
 
 ## Purpose
 
-Record evidence after the closed EV-384–EV-388 diagnostic/final-candidate validation volume.
+Record the closed EV-389–EV-416 collision-production, Speed-v2, Raise acceptance and phase-consistency evidence volume.
 
 This ledger is proof history, not the normal knowledge interface. Current established collision facts belong in `COLLISION_REFERENCE.md` and owning architecture/reference documents.
 
@@ -1212,3 +1213,47 @@ Disposition:
 - **PASS — NO DIAGNOSTIC PROBE REQUIRED BEFORE PRODUCTION CORRECTION.**
 - **PRODUCTION CORRECTION FROZEN AS CUSTOM-ADDRAISE HIT-SCALE REUSE + NATIVE POWER RAISE CALLER COMPOSITION.**
 - **NEXT — BOUNDED WORK IMPLEMENTATION, THEN INDEPENDENT SOURCE REVIEW / LOCAL BUILD / FOCUSED RUNTIME ACCEPTANCE.**
+
+
+### EV-416 — Raise phase-speed production correction independent static review PASS
+
+Observed:
+- Production correction commit `aab0189f2067f00653f669792b7d267135c745f0` is exactly one commit beyond the reviewed base `1516ec9d5e56583c565c2349d6d4cc875fb5d6ff`.
+- Changed source is limited to four allowed production files: `AttackRaise.cpp`, `AttackRaise.h`, `AttackSpeed.cpp`, and `EngineBridge.cpp`.
+- The patch removes 115 lines and adds 56 lines (net -59), including removal of the two G3AB high-level `PS_Melee_Attack` / `PS_Melee_WhirlAttack` AddRaise hooks/wrappers.
+- Custom AddRaise is now generalized at the already-owned CombatMove boundary only for factual Hit Action1 / Action4 / Action5 / Action10. The inserted Raise copies the exact incoming Hit `AniSpeedScale`, stores the exact Hit request, services Raise to completion, then resumes the stored Hit.
+- Quick remains factual Action4/5 only; no Action3 chooser/inference was introduced.
+- Native Power Raise adds exactly the proven `Script_Game+0x47D51` caller to the existing caller-side compatible composition. `AttackSpeed` composes a non-Hit phase only for Action2/Power Raise and resolves the profile through Power Hit identity.
+- Power Raise therefore preserves the live Gothic/New Balance value and applies the same Power authoring ratio on top:
+  `configuredRaise = compatibleRaise * (Power_BaseSpeed / Power_ReferenceHitBaseSpeed)`.
+  For the established ordinary Hero example this preserves `1.5*M` Raise relative to `1.0*M` Hit rather than flattening Raise to Hit.
+- Hack, Pierce and SimpleWhirl receive no new Raise-specific speed composition.
+- The sole physical G3AB `sAICombatMoveInstr` hook remains unique. Every actual native CombatMove invoked by AddRaise continues through `InvokeCombatMove_FrameCollisionTest`, preserving Collision lifecycle/Raw8 invocation wrapping.
+- FullStop and AISetState still cancel the generalized Raise continuation fail-closed before destructive replacement.
+
+Engineering review:
+- **Simplicity PASS:** one existing continuation mechanism replaces three transports; two redundant high-level hooks are removed; no RaiseSpeed, ReferenceRaiseBaseSpeed, new state taxonomy, polling or copied modifier table is added.
+- **Modularity PASS:** `AttackRaise` owns AddRaise policy/continuation, `AttackSpeed` owns compatible phase-speed composition, and `EngineBridge` remains hook/transport-only.
+- **Performance PASS:** no broad `+0x42A0` entry hook, no extra synthetic compatible-owner call, no scanning/polling loop, and continuation allocation occurs only when AddRaise is enabled. The new Power work runs only at the specific native Raise caller.
+- Existing supported Hit requests with AddRaise Off retain only the bounded profile gate comparable to the prior per-attack AddRaise decision path.
+
+Static acceptance:
+- implementation-contract checklist reviewed independently in Normal Chat;
+- BLOCKER = 0;
+- MAJOR = 0;
+- MINOR = 0;
+- Work-reported `git diff --check`, exact scope audit and local knowledge-state validation are consistent with the published diff.
+
+Scope / limits:
+- This is source/static acceptance only. The corrected source has not yet been User-locally built, deployed or runtime-tested.
+- Prior EV-411–EV-412 sequencing evidence remains useful for unchanged semantics, but the changed final candidate requires focused phase-speed runtime acceptance before Raise closes.
+
+Provenance:
+- source commit `aab0189f2067f00653f669792b7d267135c745f0`;
+- frozen mechanism EV-415;
+- Normal Chat independent source/engineering review on 2026-10-04.
+
+Disposition:
+- **PASS — PHASE-SPEED PRODUCTION CORRECTION SOURCE REVIEW.**
+- **PASS — SIMPLICITY / MODULARITY / PERFORMANCE STATIC REVIEW.**
+- **NEXT — USER-LOCAL RELEASE BUILD + POP-03 DEPLOY/HASH, THEN FOCUSED RUNTIME ACCEPTANCE.**

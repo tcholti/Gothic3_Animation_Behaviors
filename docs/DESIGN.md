@@ -158,7 +158,7 @@ one <Attack>_BaseSpeed
 
 EV-414's extreme `BaseSpeed=0.1` matrix makes the inconsistency explicit: custom Normal/Quick/Whirl Raise and native Power Raise did not follow the authored speed, while native Hack and Pierce Raise did. The approximately 0–10-frame custom Raise assets were deliberately made longer than the earlier approximately 0–3-frame assets so the timing contrast was easier to observe.
 
-Current source explains two concrete gaps: AddRaise requests Normal/Quick/Whirl Raise with `AniSpeedScale=1.0f`, and production Speed composes only Hit-phase caller sites. Power additionally has a separate factual Raise speed consumer at `Script_Game+0x47D51` that is not in the current Hit-only hook set.
+Pre-correction source explained two concrete gaps: AddRaise requested Normal/Quick/Whirl Raise with `AniSpeedScale=1.0f`, and production Speed composed only Hit-phase caller sites. Power additionally had a separate factual Raise speed consumer at `Script_Game+0x47D51` outside the then-current Hit-only hook set.
 
 The desired correction must **not** flatten Raise to Hit. Where Gothic/New Balance has a distinct compatible Raise result, G3AB should preserve that relationship and apply the attack's authoring ratio on top of it. The candidate relationship is:
 
@@ -197,7 +197,7 @@ This preserves native/live phase relationships such as Hero Power Raise `1.5*M` 
 
 Hack and Pierce already propagate their configured attack speed through visible native Raise under EV-414; they receive no additional Raise-specific composition. SimpleWhirl receives no Raise work absent a factual Raise route.
 
-The high-level `PS_Melee_Attack` and `PS_Melee_WhirlAttack` AddRaise hooks are no longer part of the frozen final transport once the EV-415 correction is implemented; Normal/Quick/Whirl custom sequencing belongs at the one already-owned CombatMove boundary.
+EV-416 confirms the implemented final transport removes the high-level G3AB `PS_Melee_Attack` and `PS_Melee_WhirlAttack` AddRaise hooks. Normal/Quick/Whirl custom sequencing now belongs only at the already-owned CombatMove boundary.
 
 ### Speed
 
@@ -233,7 +233,7 @@ SimpleWhirl
 Whirl
 ```
 
-Power Raise at `Script_Game+0x47D51` is currently observation/research evidence only and is not a production Speed hook.
+Power Raise at `Script_Game+0x47D51` is now the one additional production non-Hit caller. EV-416 confirms it delegates through the same compatible-owner composition and applies the Power authoring ratio to the live Raise result, preserving native/New Balance phase relationships such as `1.5*M` Raise versus `1.0*M` Hit.
 
 Finishing / `gEAction_FinishingAttack` / Action15 is intentionally outside the current production Speed profile set. EV-398 establishes three distinct native Finishing Hit speed consumers and direct native Action15 observations on Hero 2H and Staff while Hack/Action14 remains separately transported, even though native Gothic may resolve both actions to the same animation asset. EV-399 then closes the practical playback question: configured Hack `BaseSpeed=0.40` slowed Hack while Finishing remained native-timed both when the actions shared the same animation asset and after their assets were separated. Speed authority therefore follows the factual action route, not animation-file identity. The distributed INI contains no Finishing speed entries and default execution timing remains native; any later advanced optional Finishing configuration is a separate product decision, not required for Hack isolation.
 
@@ -255,7 +255,7 @@ Speed v2 production source, resolved-profile identity, neutral shipping INI and 
 
 Recover follows the effective Hit speed; no separate user-facing `RecoverSpeed` key is planned.
 
-Raise AddRaise is now the single active feature responsibility. Preserve the closed Speed architecture unless contradictory evidence appears. Architecture/sequencing rationale: ADR-0004 + ADR-0005 + ADR-0006 + ADR-0008 + ADR-0011.
+Raise AddRaise remains the active feature responsibility. The EV-415 phase-speed correction is implemented at `aab0189f2067f00653f669792b7d267135c745f0` and independently source-reviewed PASS at EV-416; focused runtime acceptance is still required before Raise closes. Preserve the closed Speed architecture except for this accepted Power-Raise extension. Architecture/sequencing rationale: ADR-0004 + ADR-0005 + ADR-0006 + ADR-0008 + ADR-0011.
 
 ---
 

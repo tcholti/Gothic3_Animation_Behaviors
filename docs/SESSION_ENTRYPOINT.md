@@ -30,10 +30,11 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = Raise phase-speed correction READY FOR BOUNDED WORK IMPLEMENTATION under EV-415
+CURRENT = Raise phase-speed correction IMPLEMENTED at aab0189f2067f00653f669792b7d267135c745f0 / independent source review PASS EV-416 / local build+runtime pending
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise behavior = ACTIVE — additive Normal_AddRaise / Quick_AddRaise / Whirl_AddRaise; shipping defaults Off
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
+active evidence ledger = EV-417 onward
 main = FROZEN
 ```
 
@@ -53,7 +54,7 @@ The completed preservation-biased repository audit and Work result are archived 
 
 ## Immediate continuation — Raise
 
-Use `docs/work/active/RAISE_SPEED_PHASE_CONSISTENCY_IMPLEMENTATION.md` as the owning current contract. The closed static research is archived under `docs/archive/investigations/RAISE_SPEED_PHASE_CONSISTENCY_RESEARCH.md`. `RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md` remains active as the runtime acceptance record and resumes after the correction.
+Use `docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md` as the sole active Raise task. The closed phase-speed research and implementation contract are archived under `docs/archive/investigations/`.
 
 ```text
 Speed = CLOSED/PASS
@@ -71,12 +72,13 @@ known destructive Alternative AI block-skip interaction = separate AttackContinu
 Gate D first non-coupling observation = EV-413
 EV-414 = CONTRADICTION / EV-413 product-closure interpretation SUPERSEDED
 EV-415 = STATIC CAUSAL CLOSURE / smallest correction FROZEN
-runtime matrix: Hack/Pierce Raise follow BaseSpeed; Normal/Quick/Whirl/Power Raise did not
-custom AddRaise correction = factual Hit CombatMove scale reused for Normal/Quick/Whirl Raise
-native Power Raise correction = compose live +0x47D51 Raise result by Power authoring ratio
+EV-416 = production correction source review PASS; simplicity/modularity/performance PASS
+runtime matrix before correction: Hack/Pierce Raise followed BaseSpeed; Normal/Quick/Whirl/Power Raise did not
+implemented custom AddRaise = factual Hit CombatMove scale reused for Normal/Quick/Whirl Raise
+implemented native Power Raise = live +0x47D51 result * Power authoring ratio; native 1.5*M relationship preserved
 Hack/Pierce = protected already-coupled controls; no extra Raise scaling
-active task = docs/work/active/RAISE_SPEED_PHASE_CONSISTENCY_IMPLEMENTATION.md
-next = bounded Work source implementation; build prohibited
+active task = docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md
+next = sync -> local Release build -> POP-03 deploy/hash -> focused phase-speed runtime acceptance
 ```
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
@@ -126,7 +128,7 @@ NO +0x42A0 entry hook
 NO rewrite of live compatible-owner EAX
 NO New Balance result used as native ReferenceHitBaseSpeed
 NO Sprint-specific Speed keys absent contradictory evidence
-Raise sequencing baseline at bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd remains accepted evidence, but phase-speed correction source is not implemented yet; active task = docs/work/active/RAISE_SPEED_PHASE_CONSISTENCY_IMPLEMENTATION.md
+Raise sequencing baseline at bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd remains accepted evidence; phase-speed correction source aab0189f2067f00653f669792b7d267135c745f0 is independently reviewed PASS EV-416 and awaits local build/runtime acceptance
 NO collision redesign absent contradictory evidence
 NO attack-displacement/climbing implementation yet
 NO promotion to main before agreed integrated checkpoint

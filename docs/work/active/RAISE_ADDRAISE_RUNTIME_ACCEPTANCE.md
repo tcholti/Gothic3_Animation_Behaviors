@@ -2,8 +2,10 @@
 
 **Status:** ACTIVE — USER-LOCAL BUILD / DEPLOY / FOCUSED RUNTIME ACCEPTANCE  
 **Branch:** `development`  
-**Accepted source candidate:** `bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd`  
-**Scope:** first public AddRaise behavior only — Normal / Quick / Whirl
+**Current source candidate:** `aab0189f2067f00653f669792b7d267135c745f0`  
+**Prior sequencing baseline:** `bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd`  
+**Source review:** PASS — EV-416  
+**Scope:** first public AddRaise behavior plus EV-415 phase-speed consistency correction
 
 ## Purpose
 
@@ -20,7 +22,7 @@ QuickAttackL
 full Whirl
 ```
 
-## Gate 0 — build and deployment — PASS
+## Gate 0 — initial sequencing-baseline build and deployment — HISTORICAL PASS
 
 User-local release build succeeded.
 
@@ -40,7 +42,7 @@ length = 463360 bytes
 
 POP-03 selected-product/hash gate: **PASS**.
 
-This checkpoint proves exact artifact deployment only; it is not yet behavioral acceptance.
+This checkpoint proves exact deployment of the earlier `bc46dcf...` sequencing baseline only. It does **not** deploy the current `aab0189...` phase-speed correction candidate.
 
 Historical procedure text for this completed gate follows:
 
@@ -57,6 +59,25 @@ sync development
 Do not build a diagnostic prototype as a substitute for the release product.
 
 If build fails, stop at the build error. Do not begin runtime testing.
+
+## Gate 0B — phase-speed correction build and deployment — PENDING
+
+Current source candidate:
+
+`aab0189f2067f00653f669792b7d267135c745f0`
+
+Before any new runtime acceptance:
+
+```text
+sync development
+-> build Release Script_G3AnimationBehaviors
+-> deploy exact built Script_G3AnimationBehaviors.dll under POP-03
+-> verify built/live SHA256 match
+-> verify the intended project DLL set
+-> only then launch Gothic 3
+```
+
+The prior DLL/hash in Gate 0 is historical and must not be reused as proof for this candidate.
 
 ## Gate A — AddRaise Off control — PASS (EV-411)
 
@@ -221,7 +242,51 @@ Historical Gate-D question:
 
 > Does the inserted Raise naturally follow the configured attack BaseSpeed, or does only Hit change?
 
-Answer: **not consistently; smallest-correction research is required.**
+Answer: **not consistently; EV-415 established the correction and EV-416 accepts its production source.**
+
+### Gate D correction source — PASS (EV-416)
+
+Implemented candidate:
+
+`aab0189f2067f00653f669792b7d267135c745f0`
+
+Static result:
+
+```text
+custom Normal / factual Quick R/L / Whirl Raise
+-> exact incoming composed Hit AniSpeedScale
+
+native Power Raise
+-> compatible live Raise result
+   * (Power_BaseSpeed / Power_ReferenceHitBaseSpeed)
+
+Hack / Pierce
+-> no additional Raise-specific scaling
+```
+
+Power explicitly preserves the native/live phase relationship. For the established ordinary Hero route:
+
+```text
+compatible Raise = 1.5 * M
+compatible Hit   = 1.0 * M
+R                = configured Power BaseSpeed / native Power Hit reference
+
+configured Raise = (1.5 * M) * R
+configured Hit   = (1.0 * M) * R
+```
+
+### Gate D runtime correction acceptance — PENDING
+
+After Gate 0B:
+
+1. **Custom Normal / Quick R/L / Whirl:** use an obvious slow/contrast BaseSpeed and verify Raise now changes with Hit rather than remaining at the old fixed pace.
+2. **Native Power:** verify Raise changes with authored Power speed while retaining its native/live relative phase behavior; do not expect Raise to flatten to Hit.
+3. **Hack / Pierce positive controls:** verify they remain correct and are not double-scaled.
+4. Repeat the focused set without and with the intended New Balance stack.
+5. Stop on any wrong-side Quick, repeated/skipped Raise, stuck continuation, modifier loss, or collision contradiction.
+
+A broad assembled regression waits until this correction passes.
+
 
 ## Gate E — later cross-profile generalization
 
