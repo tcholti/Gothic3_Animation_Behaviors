@@ -133,6 +133,10 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | Sprint shared Power Raise observation for later Raise research | EV-396 |
 | Raise AddRaise-Off fail-closed runtime control | EV-411 |
 | Raise disabled-state broad 1H/dual/2H/staff regression control | EV-411 |
+| Raise AddRaise-On Hero None+2H Normal/Quick/Whirl runtime acceptance | EV-412 |
+| Raise intended New Balance coexistence | EV-412 |
+| Raise ordinary interruption/hit continuation robustness | EV-412 |
+| Raise vs known destructive Alternative AI block-skip ownership boundary | EV-412; DESIGN §9; SOURCE_HOOK_GUIDE §6 |
 | Speed v2 deep independent static audit | `archive/investigations/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT_RESULT.md` |
 | Speed v2 S-01 finite-output correction | `archive/investigations/SPEED_V2_S01_FINITE_OUTPUT_GUARD.md` |
 | generic Speed profile calibration implementation closure | `archive/investigations/SPEED_GENERIC_PROFILE_CALIBRATION_IMPLEMENTATION_RESULT.md` |

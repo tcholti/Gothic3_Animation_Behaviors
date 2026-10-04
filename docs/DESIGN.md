@@ -141,7 +141,9 @@ Whirl  -> PS_Melee_WhirlAttack + PREPEND_BREAK_BLOCK
 Quick  -> existing CombatMove transport after Gothic has selected factual Action4/5
 ```
 
-For Quick, `EngineBridge` remains the sole physical `sAICombatMoveInstr` hook owner and exposes only the smallest transport needed by the permanent Raise owner. The Raise feature may own only the minimal continuation state required to prepend one factual R/L Raise before the untouched factual R/L Hit; it may not add a new physical hook, infer direction, or alter Collision/Speed semantics. Normal has historical coexistence evidence; Quick/Whirl still require direct runtime coexistence proof.
+For Quick, `EngineBridge` remains the sole physical `sAICombatMoveInstr` hook owner and exposes only the smallest transport needed by the permanent Raise owner. The Raise feature may own only the minimal continuation state required to prepend one factual R/L Raise before the untouched factual R/L Hit; it may not add a new physical hook, infer direction, or alter Collision/Speed semantics. Normal has historical coexistence evidence; Quick/Whirl direct runtime coexistence is now PASS through EV-412, including the intended New Balance stack.
+
+EV-412 also confirms the ownership boundary for the known destructive Alternative AI block-skip route: if that external path FullStops and replaces the active attack state, an in-progress Raise continuation may be destroyed. Disabling that block-skip behavior removed the observed Whirl skip in repeated testing. Raise must not add resurrection/recovery logic for this known state-destruction class; prevention remains owned by `AttackContinuationProtection`.
 
 No separate Raise-speed control is authorized. First test whether the inserted Raise naturally reuses/inherits the attack's effective timing through CombatMove.
 

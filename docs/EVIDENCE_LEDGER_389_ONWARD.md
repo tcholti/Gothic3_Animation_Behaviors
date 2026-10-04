@@ -935,3 +935,48 @@ Disposition:
 - **PASS — GATE A ADDRAISE-OFF FAIL-CLOSED CONTROL.**
 - **PASS — BROAD 1H / DUAL-WIELD / 2H / STAFF DISABLED-STATE REGRESSION CONTROL.**
 - **NEXT — GATE B NATIVE-STACK HERO NONE+2H ADDRAISE-ON: NORMAL, QUICK R/L, FULL WHIRL.**
+
+
+### EV-412 — Raise AddRaise-On native + intended-stack runtime acceptance PASS
+
+Fixture:
+- accepted Raise production candidate `bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd`;
+- deployed production DLL SHA256 `921B840471450CFE9BE4970C8268228FE06F443958DB3899D4897985F952F705`;
+- Hero None+2H authored Raise assets available for Normal, factual Quick R/L and full Whirl;
+- `Normal_AddRaise=On`, `Quick_AddRaise=On`, `Whirl_AddRaise=On` used as temporary live-INI acceptance settings;
+- tested both without the intended New Balance stack and with the intended New Balance stack restored.
+
+Observed:
+- 2H Normal AddRaise worked as expected with and without New Balance;
+- 2H factual Quick variants worked as expected with and without New Balance, with Raise preserved through ordinary combat use;
+- full 2H Whirl AddRaise worked as expected with and without New Balance when the Alternative AI block-skip behavior was disabled;
+- repeated testing included in-combat and out-of-combat attacks, being hit/interrupted and resuming later attacks; no persistent Raise skip/leak was observed and later attacks continued to prepend Raise correctly;
+- no repeated Raise loop, skipped Hit, stuck continuation, wrong Quick-side behavior, or visible collision/damage regression was reported in the accepted fixtures.
+
+Known destructive block-skip interaction:
+- with the runtime Alternative AI block-skip behavior enabled, Whirl could occasionally appear to skip its added Raise;
+- disabling that block-skip behavior removed the Whirl symptom in repeated retesting;
+- this is consistent with the already-established held-Use2/~2500 ms destructive bad-skip class, where native FullStop followed by AISetState destroys the active continuation;
+- therefore this observation does not reopen Raise or Collision. The known bad-skip route remains owned by future `AttackContinuationProtection`.
+
+Design boundary:
+- Raise will not grow special recovery/resurrection logic for a continuation that another system deliberately destroys;
+- future bad-skip prevention remains evidence-driven and separate. Current architecture permits timer pausing only as a candidate; consumer-level suppression/defer may prove safer.
+- whether future AttackContinuationProtection also eliminates the observed Raise skip is not a Raise acceptance requirement.
+
+Interpretation:
+- AddRaise-On sequencing for the first public Normal/Quick/Whirl scope is runtime-proven on Hero None+2H;
+- factual Quick R/L continuation and New Balance coexistence are accepted;
+- interruption/hit testing gives positive evidence that ordinary combat disruption does not cause persistent Raise loss;
+- the remaining active Raise question is timing coupling: whether inserted Raise naturally follows configured attack `BaseSpeed`.
+
+Provenance:
+- diagnostics-free gameplay observations reported by the User on 2026-10-04;
+- prior destructive bad-skip causal evidence and future ownership are recorded in `DESIGN.md` and `SOURCE_HOOK_GUIDE.md`.
+
+Disposition:
+- **PASS — GATE B NATIVE-STACK HERO NONE+2H ADDRAISE-ON.**
+- **PASS — GATE C INTENDED NEW BALANCE COEXISTENCE.**
+- **PASS — NORMAL / FACTUAL QUICK R/L / FULL WHIRL FIRST-SCOPE RUNTIME SEQUENCING.**
+- **KNOWN BLOCK-SKIP STATE-DESTRUCTION REMAINS SEPARATE ATTACKCONTINUATIONPROTECTION WORK; NOT A RAISE DEFECT.**
+- **NEXT — GATE D RAISE TIMING-COUPLING OBSERVATION.**

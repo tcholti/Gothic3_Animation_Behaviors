@@ -96,7 +96,15 @@ still behave as before with no added Raise.
 
 This is the fail-closed control.
 
-## Gate B — native stack / AddRaise On
+## Gate B — native stack / AddRaise On — PASS (EV-412)
+
+The User tested Hero None+2H Normal, factual Quick R/L and full Whirl with AddRaise On and the intended compatibility stack absent.
+
+Observed sequence and continuation behavior: PASS.
+
+Interruption/hit/out-of-combat controls did not produce a persistent Raise skip or continuation leak.
+
+Historical fixture text follows:
 
 Physically remove New Balance / AttackCollision DLLs required to be absent by the fixture; renaming them in the scripts folder is not sufficient.
 
@@ -133,7 +141,15 @@ For Quick, perform enough attacks to observe both R and L factual variants. G3AB
 
 If any item fails, stop the sequence and report the exact attack/observation before broad testing.
 
-## Gate C — intended New Balance stack
+## Gate C — intended New Balance stack — PASS (EV-412)
+
+The same Hero None+2H AddRaise-On routes were repeated with the intended New Balance stack restored.
+
+Normal, factual Quick R/L and Whirl all passed the intended-stack acceptance.
+
+One Whirl skip class was isolated to the already-known Alternative AI destructive block-skip behavior: with that option enabled Whirl could occasionally lose the in-progress Raise continuation; disabling the block-skip behavior removed the symptom in repeated retesting. This remains owned by future `AttackContinuationProtection`, not Raise.
+
+Historical fixture text follows:
 
 Restore the intended compatibility DLL set, including the project's normal New Balance / AttackCollision components.
 

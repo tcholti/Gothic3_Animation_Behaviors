@@ -21,7 +21,9 @@ public scope = Normal / Quick / Whirl
 shipping AddRaise keys = 55 / all Off
 build/deploy identity = PASS
 Gate A AddRaise-Off = PASS EV-411
-runtime acceptance = Gate B pending
+Gate B native AddRaise-On = PASS EV-412
+Gate C intended New Balance coexistence = PASS EV-412
+runtime acceptance = Gate D timing-coupling observation pending
 ```
 
 ## Continue here
@@ -32,7 +34,7 @@ Read:
 2. `docs/SESSION_ENTRYPOINT.md`
 3. `docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md`
 
-Immediate next step is Gate B: native-stack Hero None+2H. Physically remove `Script_NewBalance.dll` and `Script_AttackCollision.dll` from Gothic 3 `scripts`, set only the Hero None+2H `Normal_AddRaise`, `Quick_AddRaise`, and `Whirl_AddRaise` values to `On` in the live INI, then test Normal, both factual Quick sides, and full Whirl.
+Immediate next step is Gate D: keep Hero None+2H AddRaise On and vary one attack `BaseSpeed` at a time enough to make timing contrast obvious. Observe whether the inserted Raise changes speed together with Hit or whether only Hit changes. Do not add a RaiseSpeed key.
 
 The first behavior fixture is Hero None+2H because matching Normal, Quick R/L and full Whirl Raise assets are already ready.
 

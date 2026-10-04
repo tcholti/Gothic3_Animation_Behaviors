@@ -63,7 +63,10 @@ Quick Action3 selector rule = PRESERVED; implementation consumes factual Action4
 active task = docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md
 build/deploy identity = PASS; built/live DLL + source/live INI hashes match
 Gate A AddRaise-Off broad runtime control = PASS EV-411
-next gate = Gate B native-stack Hero None+2H AddRaise-On
+Gate B native-stack Hero None+2H AddRaise-On = PASS EV-412
+Gate C intended New Balance coexistence = PASS EV-412
+known destructive Alternative AI block-skip interaction = separate AttackContinuationProtection ownership
+next gate = Gate D Raise timing-coupling observation
 ```
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
