@@ -30,8 +30,10 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = Raise AddRaise production source implemented at bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat source review PASS; local build/runtime acceptance pending
+CURRENT = Raise phase-speed correction READY FOR BOUNDED WORK IMPLEMENTATION under EV-415
+accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise behavior = ACTIVE — additive Normal_AddRaise / Quick_AddRaise / Whirl_AddRaise; shipping defaults Off
+phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
 main = FROZEN
 ```
 
@@ -124,7 +126,7 @@ NO +0x42A0 entry hook
 NO rewrite of live compatible-owner EAX
 NO New Balance result used as native ReferenceHitBaseSpeed
 NO Sprint-specific Speed keys absent contradictory evidence
-Raise source implementation is accepted for local build at bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd; runtime acceptance remains OPEN under docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md
+Raise sequencing baseline at bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd remains accepted evidence, but phase-speed correction source is not implemented yet; active task = docs/work/active/RAISE_SPEED_PHASE_CONSISTENCY_IMPLEMENTATION.md
 NO collision redesign absent contradictory evidence
 NO attack-displacement/climbing implementation yet
 NO promotion to main before agreed integrated checkpoint
