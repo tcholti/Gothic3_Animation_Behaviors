@@ -145,13 +145,31 @@ For Quick, `EngineBridge` remains the sole physical `sAICombatMoveInstr` hook ow
 
 EV-412 also confirms the ownership boundary for the known destructive Alternative AI block-skip route: if that external path FullStops and replaces the active attack state, an in-progress Raise continuation may be destroyed. Disabling that block-skip behavior removed the observed Whirl skip in repeated testing. Raise must not add resurrection/recovery logic for this known state-destruction class; prevention remains owned by `AttackContinuationProtection`.
 
-EV-413 closes the first Raise-speed question: configured attack `BaseSpeed` does **not** author the inserted Raise speed. Extreme `BaseSpeed=0.1` controls slowed Hit/visible Recover while custom Normal/Quick Raise remained at its prior pace; tested native Power Raise likewise remained independent. This matches source: Speed composition is Hit-phase-only and AddRaise currently requests Raise with `AniSpeedScale=1.0f`.
+EV-413 established that the current implementation does **not** consistently apply configured `BaseSpeed` to Raise. EV-414 supersedes the earlier product-closure interpretation of that result: this is an integration contradiction, not an accepted native-timing mode.
 
-The short custom Normal/Quick Raise assets visually suggest that factual actions may have different native/live Raise timing, but no exact Quick/Normal Raise reference values are established. Earlier calibrated Power Raise values already show that Raise may have its own route-specific live speed.
+The authoring requirement remains the ADR-0004 / ADR-0008 model:
 
-EV-399's Hack behavior is therefore route-specific and must not be generalized: native Hack's visible Raise/Recover followed configured Hack playback in that fixture, while custom AddRaise and tested native Power do not.
+```text
+one <Attack>_BaseSpeed
+-> coherent attack timing across Raise / Hit / Recover where those phases exist
+-> common nominal Blender timing/frame convention
+-> Gothic/New Balance phase-specific relative bases and contextual multipliers preserved
+```
 
-No separate Raise-speed control is authorized yet. A future product decision may keep native/live Raise timing or open a separate bounded Raise-speed authoring design; that design must preserve compatible/native/New Balance Raise modifiers rather than reuse Hit reference bases by assumption.
+EV-414's extreme `BaseSpeed=0.1` matrix makes the inconsistency explicit: custom Normal/Quick/Whirl Raise and native Power Raise did not follow the authored speed, while native Hack and Pierce Raise did. The approximately 0–10-frame custom Raise assets were deliberately made longer than the earlier approximately 0–3-frame assets so the timing contrast was easier to observe.
+
+Current source explains two concrete gaps: AddRaise requests Normal/Quick/Whirl Raise with `AniSpeedScale=1.0f`, and production Speed composes only Hit-phase caller sites. Power additionally has a separate factual Raise speed consumer at `Script_Game+0x47D51` that is not in the current Hit-only hook set.
+
+The desired correction must **not** flatten Raise to Hit. Where Gothic/New Balance has a distinct compatible Raise result, G3AB should preserve that relationship and apply the attack's authoring ratio on top of it. The candidate relationship is:
+
+```text
+R = BaseSpeed / ReferenceHitBaseSpeed
+configuredRaise = compatibleRaise * R
+```
+
+This relationship is active research, not yet a frozen transport for every route. Hack/Pierce already exhibit the intended whole-attack behavior and must not be double-scaled.
+
+No separate `RaiseSpeed` or `ReferenceRaiseBaseSpeed` key is authorized. The active bounded research owner is `docs/work/active/RAISE_SPEED_PHASE_CONSISTENCY_RESEARCH.md`; it must establish the exact route map and smallest correction before source implementation.
 
 ### Speed
 
