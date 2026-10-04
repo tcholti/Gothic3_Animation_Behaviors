@@ -1,12 +1,12 @@
 # Gothic 3 Animation Behaviors — Design
 
 **Status:** Canonical project architecture  
-**Updated:** 2026-09-30
+**Updated:** 2026-10-04
 **Project:** `Gothic3_Animation_Behaviors`
 
 ## Purpose
 
-`Script_G3AnimationBehaviors` is the general animation-behavior layer for Gothic 3. Production collision is integrated and closed; attack playback-speed control is the active implementation/validation domain; Raise-phase control remains deliberately paused until Speed closes. Future independent domains may include target acquisition, attack displacement control, and climbing.
+`Script_G3AnimationBehaviors` is the general animation-behavior layer for Gothic 3. Production collision and Speed v2 are CLOSED/PASS. Additive Raise control is the active feature responsibility, initially for Normal, Quick and Whirl. Future independent domains may include target acquisition, attack displacement control, and climbing.
 
 This file owns overall intended architecture and implementation order. Established collision facts are projected in `COLLISION_REFERENCE.md`; collision lifecycle authority is `COLLISION_LIFECYCLE.md`; validation authority is `COLLISION_TEST_PLAN.md`; diagnostics are owned by `COLLISION_DIAGNOSTICS.md`; permanent raw8 behavior is owned by `COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`; permanent raw55 behavior is owned by `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`; practical source/hook lookup is `SOURCE_HOOK_GUIDE.md`; exact proof routes through `EVIDENCE_INDEX.md`.
 
@@ -66,13 +66,22 @@ SimpleWhirl
 Whirl
 ```
 
-Each supported attack may contain:
+Speed-supported attacks may contain:
 
 ```text
 <Attack>_ReferenceHitBaseSpeed
 <Attack>_BaseSpeed
-<Attack>_AddRaise
 ```
+
+The initial public additive-Raise surface is deliberately narrower:
+
+```text
+Normal_AddRaise
+Quick_AddRaise
+Whirl_AddRaise
+```
+
+Do not infer public AddRaise support for the other Speed attack families merely from the generic internal profile structure.
 
 Quick runtime variants remain factual Action4/Action5 internally but share the user-facing `Quick` settings. Generic Action3 is a selector rather than the proven playback-speed action. Sprint remains factual Action9 in actor state, but its proven shared Power speed route supplies Action2 to the speed owner; under ADR-0009 Sprint therefore inherits the `Power` timing settings and has no separate Speed prefix. EV-401 clarifies that profile inheritance does **not** require equal live Power/Sprint results: in one same-run BlackGoblin control ordinary Power Hit was `1.0` while factual Sprint Hit was `1.5`, despite both passing Action2. The Power profile supplies the authoring base; the live compatible result may still contain Sprint-context effects that C/B composition must preserve.
 
@@ -178,11 +187,11 @@ Unknown/missing family/profile/calibration remains fail-closed to the live compa
 
 ADR-0009 freezes factual Sprint/Action9 as an intentional Power timing alias on the proven shared speed route. EV-401 establishes that this is a **profile/authoring alias**, not a promise that the live compatible value equals ordinary Power: Gothic may return a different Sprint-context result through the same passed Action2 route, and the accepted `compatible * (C/B)` composition preserves that difference. EV-402 generalizes this across nonhuman families: Sabertooth and Wolf showed Power Hit `1.0` versus Sprint live Hit `1.5`, while Troll remained `1.0` for both. Therefore G3AB must not copy a universal Sprint multiplier; it preserves the live result. Do not add `Sprint_BaseSpeed`, `Sprint_ReferenceHitBaseSpeed`, or rewrite Action2 to Action9 absent contradictory evidence.
 
-The expanded production Speed source is implemented and has passed static review/local Release build. Native calibration and separation-identity research are sufficient for finalization (EV-397–EV-406). Before final deployment, implement ADR-0011 resolved animation-set profile identity, populate the active shipping INI, then perform intended-stack runtime acceptance. Broad creature catalogue calibration is deferred rather than required for Speed closure.
+Speed v2 production source, resolved-profile identity, neutral shipping INI and intended-stack runtime acceptance are CLOSED/PASS through EV-410. Broad additional creature calibration remains optional future coverage rather than a Speed closure requirement.
 
 Recover follows the effective Hit speed; no separate user-facing `RecoverSpeed` key is planned.
 
-Speed remains the single active feature responsibility. Complete native calibration, useful New Balance comparison, and expanded runtime acceptance before beginning Raise. Architecture/sequencing rationale: ADR-0004 + ADR-0005 + ADR-0006 + ADR-0009.
+Raise AddRaise is now the single active feature responsibility. Preserve the closed Speed architecture unless contradictory evidence appears. Architecture/sequencing rationale: ADR-0004 + ADR-0005 + ADR-0006 + ADR-0008 + ADR-0011.
 
 ---
 
