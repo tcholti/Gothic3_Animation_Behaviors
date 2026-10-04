@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Index
 
 **Status:** Compact evidence-routing index  
-**Updated:** 2026-10-01
+**Updated:** 2026-10-04
 
 ## Purpose
 
@@ -154,7 +154,7 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | native contact misses vs authored marker correctness | EV-381 |
 | sheath/draw contact observation | EV-380–EV-381; not a marker blocker |
 
-Raise is now **ACTIVE** after Speed CLOSED/PASS. AddRaise production source is implemented and independently reviewed; EV-411 closes the broad disabled-state fail-closed control. AddRaise-On runtime acceptance remains active under `docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md`.
+Raise is now **ACTIVE** after Speed CLOSED/PASS. AddRaise sequencing/source is implemented and accepted through EV-412. EV-413–EV-414 discovered the phase-speed inconsistency; EV-415 closes the static causal research and freezes the correction. Active source work is `docs/work/active/RAISE_SPEED_PHASE_CONSISTENCY_IMPLEMENTATION.md`; runtime acceptance remains recorded under `docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md` and resumes after the correction.
 
 ## 3. Current collision closure landmarks
 
