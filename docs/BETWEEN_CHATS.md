@@ -23,7 +23,8 @@ build/deploy identity = PASS
 Gate A AddRaise-Off = PASS EV-411
 Gate B native AddRaise-On = PASS EV-412
 Gate C intended New Balance coexistence = PASS EV-412
-runtime acceptance = Gate D timing-coupling observation pending
+Gate D timing coupling = CLOSED EV-413; BaseSpeed does not affect inserted Raise timing
+first-scope AddRaise runtime behavior = accepted
 ```
 
 ## Continue here
@@ -34,7 +35,7 @@ Read:
 2. `docs/SESSION_ENTRYPOINT.md`
 3. `docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md`
 
-Immediate next step is Gate D: keep Hero None+2H AddRaise On and vary one attack `BaseSpeed` at a time enough to make timing contrast obvious. Observe whether the inserted Raise changes speed together with Hit or whether only Hit changes. Do not add a RaiseSpeed key.
+Immediate next step is a product decision, not another runtime test: retain native/live Raise timing as the first-scope behavior, or explicitly open separate bounded Raise-speed authoring research. No `RaiseSpeed` key is authorized yet.
 
 The first behavior fixture is Hero None+2H because matching Normal, Quick R/L and full Whirl Raise assets are already ready.
 
