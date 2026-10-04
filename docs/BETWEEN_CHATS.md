@@ -24,7 +24,7 @@ accepted production DLL SHA256 = D975BABFA8E5DCE3C4A49BC46D7A49D08379B7CE479C2DE
 runtime acceptance = PASS EV-407–EV-410
 neutral release-facing shipping INI = LOCKED / PASS
 Speed = CLOSED
-Raise = CURRENT NEXT FEATURE
+Raise = ACTIVE RESEARCH/DESIGN — Normal/Quick/Whirl first
 ```
 
 ## Continue here
@@ -39,7 +39,8 @@ Immediate sequence:
 
 ```text
 Fetch/Pull development before local repo work
--> begin Raise research/design from the closed Speed baseline
+-> read docs/work/active/RAISE_GENERIC_COMBATMOVE_RESEARCH.md
+-> research existing sAICombatMoveInstr boundary for Normal/Quick/Whirl
 -> do not reopen Speed absent contradictory evidence
 ```
 
@@ -85,3 +86,19 @@ installation alone does not intentionally change attack speed
 
 Completed Speed task:
 `docs/archive/investigations/SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md`
+
+
+Raise design lock:
+
+```text
+Raise key = <Attack>_Raise=On|Off
+semantics = additive only
+Off/missing = native behavior untouched
+first scope = Normal / Quick / Whirl
+no separate Raise speed control
+preferred research boundary = existing sAICombatMoveInstr hook
+old direct PS_Melee_* hooks are not yet accepted because New Balance hooks the same states
+```
+
+Current Raise owner:
+`docs/work/active/RAISE_GENERIC_COMBATMOVE_RESEARCH.md`
