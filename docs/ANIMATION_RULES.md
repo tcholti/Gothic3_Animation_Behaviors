@@ -222,6 +222,32 @@ End=6
 
 Authored collision markers belong to the exact Hit motion.
 
+### 5.1 Raise filename patterns
+
+Native inventory confirms these serialized phase/action patterns:
+
+```text
+Normal:
+..._Attack_Hit_...
+..._Attack_Raise_...
+
+Quick right:
+..._QuickAttackR_Hit_...
+..._QuickAttackR_Raise_...
+
+Quick left:
+..._QuickAttackL_Hit_...
+..._QuickAttackL_Raise_...
+
+Full Whirl:
+..._WhirlAttack_Hit_...
+..._WhirlAttack_Raise_...
+```
+
+Current inventory counts: 64 Normal `Attack_Raise`, 12 `QuickAttackR_Raise`, 16 `QuickAttackL_Raise`, and 6 `WhirlAttack_Raise` names. These counts demonstrate native naming patterns, not universal asset availability for every profile.
+
+Do not infer that a Raise asset can always be authored by changing only `Hit` to `Raise`. Native names show that destination pose and movement/reach suffixes may differ between the matching Raise and Hit. Release authoring guidance must use matched real examples and the exact animation route expected by Gothic.
+
 ---
 
 ## 6. Pose / Type / Direction / Distance
