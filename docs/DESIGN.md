@@ -122,7 +122,7 @@ Player-facing guidance: Normal and Quick do not normally execute Raise in Gothic
 
 Release documentation must show real matched Raise naming examples for `Attack`, `QuickAttackR`, `QuickAttackL`, and `WhirlAttack`. Do not tell authors to blindly rename only `Hit` to `Raise`, because native Raise/Hit suffixes can differ in destination pose and movement data.
 
-Direct production hooks on `PS_Melee_Attack`, `PS_Melee_QuickAttack` and `PS_Melee_WhirlAttack` are not yet frozen because pinned New Balance also hooks those state entries. Current research prefers the already-owned generic `sAICombatMoveInstr` boundary if it can provide action/phase/speed/continuation safely.
+Historical runtime testing established that the old `PS_Melee_Attack` Raise prepend coexisted successfully with New Balance. Therefore the preferred first production path is the high-level `PS_Melee_Attack` / `PS_Melee_QuickAttack` / `PS_Melee_WhirlAttack` prepend pattern using `PREPEND_BREAK_BLOCK`, generic profile lookup, and Gothic-resolved `Raise`. Normal has historical coexistence evidence; Quick/Whirl still require direct runtime coexistence proof. The existing generic `sAICombatMoveInstr` hook remains the fallback if a state route proves incompatible.
 
 No separate Raise-speed control is authorized. First test whether the inserted Raise naturally reuses/inherits the attack's effective timing through CombatMove.
 
