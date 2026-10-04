@@ -22,8 +22,9 @@ Normal Chat independent source review = PASS
 local Release build + POP-03 identity = PASS
 accepted production DLL SHA256 = D975BABFA8E5DCE3C4A49BC46D7A49D08379B7CE479C2DE143DE5458DDA5335E
 runtime acceptance = PASS EV-407–EV-410
-release-facing shipping INI cleanup/restoration = PENDING
-Raise = PAUSED until Speed closes
+neutral release-facing shipping INI = LOCKED / PASS
+Speed = CLOSED
+Raise = CURRENT NEXT FEATURE
 ```
 
 ## Continue here
@@ -38,11 +39,8 @@ Immediate sequence:
 
 ```text
 Fetch/Pull development before local repo work
--> clean the shipping INI for player-facing release language while preserving machine-readable profiles/calibration
--> bounded review of INI-only change
--> restore/deploy cleaned final INI
--> close Speed formally
--> Raise afterward
+-> begin Raise research/design from the closed Speed baseline
+-> do not reopen Speed absent contradictory evidence
 ```
 
 Do not launch Gothic for final acceptance until the deployment fixture and exact binary identity are established.
@@ -74,3 +72,16 @@ EV-406 resolved-request probe SHA256:
 ```
 
 Do not begin Raise, attack displacement, climbing, collision redesign, or `main` promotion before Speed acceptance closes.
+
+
+Final neutral Speed INI:
+
+```text
+27 active tested profiles
+97 tested attack settings
+BaseSpeed = ReferenceHitBaseSpeed for every shipped setting
+installation alone does not intentionally change attack speed
+```
+
+Completed Speed task:
+`docs/archive/investigations/SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md`
