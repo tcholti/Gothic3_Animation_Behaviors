@@ -104,8 +104,8 @@ The root CMake project currently exposes these relevant DLL targets:
 Script_G3AnimationBehaviors
 = production-direction behavior DLL
 = contains the accepted production collision integration
-= contains the current expanded Speed source under calibration/runtime acceptance
-= Raise behavior remains paused until Speed closes
+= contains production collision + Speed v2; both are CLOSED/PASS
+= Raise AddRaise is the active feature responsibility (Normal / Quick / Whirl first)
 
 Script_SpeedCalibrationProbe
 = standalone diagnostics-only speed calibration tool
