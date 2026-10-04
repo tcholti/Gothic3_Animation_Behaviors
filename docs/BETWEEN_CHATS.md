@@ -25,9 +25,11 @@ Gate B native AddRaise-On = PASS EV-412
 Gate C intended New Balance coexistence = PASS EV-412
 EV-413 = factual first non-coupling observation
 EV-414 = phase-speed consistency CONTRADICTION; EV-413 product-closure interpretation SUPERSEDED
-Hack/Pierce Raise follow authored BaseSpeed
-Normal/Quick/Whirl/Power Raise do not
-first-scope AddRaise sequencing = accepted; phase-speed integration = OPEN
+EV-415 = static causal closure / production correction frozen
+Hack/Pierce Raise already follow authored BaseSpeed and must not be double-scaled
+custom Normal/Quick/Whirl correction = inserted Raise copies exact incoming composed Hit AniSpeedScale
+native Power correction = live +0x47D51 Raise result composed by Power BaseSpeed/ReferenceHitBaseSpeed ratio
+first-scope AddRaise sequencing = accepted; phase-speed correction = READY FOR WORK IMPLEMENTATION
 ```
 
 ## Continue here
@@ -36,10 +38,10 @@ Read:
 
 1. root `README.md` -> Start Here
 2. `docs/SESSION_ENTRYPOINT.md`
-3. `docs/work/active/RAISE_SPEED_PHASE_CONSISTENCY_RESEARCH.md`
+3. `docs/work/active/RAISE_SPEED_PHASE_CONSISTENCY_IMPLEMENTATION.md`
 4. `docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md`
 
-Immediate next step is bounded static/causal research. Preserve the accepted one-BaseSpeed authoring model, map why Hack/Pierce already propagate authored speed while custom Normal/Quick/Whirl and native Power do not, and freeze only the smallest correction. No `RaiseSpeed` key or production implementation is authorized yet.
+Immediate next step is bounded Work implementation under `RAISE_SPEED_PHASE_CONSISTENCY_IMPLEMENTATION.md`. Build is prohibited in Work. After Work publishes, return to Normal Chat for independent source review before local build/deployment/runtime acceptance.
 
 The first behavior fixture is Hero None+2H because matching Normal, Quick R/L and full Whirl Raise assets are already ready.
 
