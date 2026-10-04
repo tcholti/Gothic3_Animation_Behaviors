@@ -165,36 +165,40 @@ C3 full Whirl
 
 Acceptance is the same as Gate B, plus no New Balance-specific hang, skipped attack, duplicated Raise, wrong Quick side, or obvious timing/continuation regression.
 
-## Gate D — Raise timing coupling question — CLOSED (EV-413)
+## Gate D — Raise timing coupling question — CONTRADICTION / ESCALATED (EV-413–EV-414)
 
-Result:
+The factual observation is closed, but the feature requirement is **not accepted**.
+
+Observed:
 
 ```text
-configured BaseSpeed -> Hit / visible Recover changes
-configured BaseSpeed -> inserted Raise does NOT change
-tested native Power Raise -> also remained independent
-same qualitative result with and without New Balance
+Normal custom AddRaise -> Raise does not follow BaseSpeed
+Quick custom AddRaise  -> Raise does not follow BaseSpeed
+Whirl custom AddRaise  -> Raise does not follow BaseSpeed
+Power native Raise     -> Raise does not follow BaseSpeed
+Hack native Raise      -> Raise follows BaseSpeed
+Pierce native Raise    -> Raise follows BaseSpeed
 ```
 
-Source correlation matches the observation: Speed composition is Hit-phase-only, while AddRaise requests use CombatMove with `AniSpeedScale=1.0f`.
+Extreme `BaseSpeed=0.1` controls made the split clear. Hit/visible Recover followed authored speed while the non-coupled Raise phases retained their prior timing.
 
-The short 0–10-frame Normal/Quick Raise assets suggest possible action-specific native Raise timing, but no exact Quick/Normal Raise numeric value is claimed.
+The approximately 0–10-frame custom Raise assets were intentionally made **longer** than the earlier approximately 0–3-frame Raise assets to make timing differences easier to observe.
 
-This factual gate does not authorize a `RaiseSpeed` setting. That is now a separate product/design decision.
+EV-413 remains the factual first non-coupling observation. EV-414 supersedes only its earlier product-closure interpretation.
 
-Historical fixture text follows:
+ADR-0004 and ADR-0008 require a coherent one-`BaseSpeed` authoring model. Therefore this result is an integration contradiction that must be corrected, not a reason to accept native Raise timing.
 
-Only after B and C pass.
+Active causal owner:
 
-Change one attack BaseSpeed at a time enough to create an obvious contrast while leaving its AddRaise On. Observe Raise and Hit separately.
+`docs/work/active/RAISE_SPEED_PHASE_CONSISTENCY_RESEARCH.md`
 
-Question:
+Do not add `RaiseSpeed`. First establish the exact route map and smallest correction that applies the attack's authoring ratio while preserving live/native/New Balance phase-specific Raise relationships and avoiding double-scaling Hack/Pierce.
+
+Historical Gate-D question:
 
 > Does the inserted Raise naturally follow the configured attack BaseSpeed, or does only Hit change?
 
-Do not implement or request a `RaiseSpeed` key during this test. Record the factual result first.
-
-Return BaseSpeed to the accepted shipping value after each contrast.
+Answer: **not consistently; smallest-correction research is required.**
 
 ## Gate E — later cross-profile generalization
 
