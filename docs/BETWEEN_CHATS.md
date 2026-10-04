@@ -35,7 +35,7 @@ Read in this order:
 1. root `README.md` -> Start Here
 2. `docs/SESSION_ENTRYPOINT.md`
 3. this file
-4. `docs/work/active/RAISE_GENERIC_COMBATMOVE_RESEARCH.md`
+4. `docs/work/active/RAISE_ADDRAISE_IMPLEMENTATION_PRECHECK.md`
 5. `docs/DESIGN.md` Raise section
 6. `docs/WORK_IMPLEMENTATION_PROTOCOL.md` and `docs/FEATURE_DEVELOPMENT_METHOD.md` before assigning implementation
 
