@@ -31,7 +31,7 @@ separation profile identity = PASS EV-406; resolved animation-set identity selec
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
 CURRENT = Raise research/design; Speed is closed
-Raise behavior = PAUSED until Speed closes
+Raise behavior = ACTIVE RESEARCH/DESIGN — Normal/Quick/Whirl first scope
 main = FROZEN
 ```
 
@@ -49,13 +49,14 @@ Canonical reusable engine lookup:
 
 The completed preservation-biased repository audit and Work result are archived under `docs/archive/investigations/`. Its accepted RH-01–RH-13 maintenance is represented in the durable owners; RH-14–RH-17 were KEEP/no-action. The three previously retained Sprint-probe logs were positively reconciled during EV-397/EV-398 maintenance and archived byte-identically; path migration is recorded in `EVIDENCE_PATH_MIGRATIONS.md`.
 
-## Immediate continuation — Speed finalization
+## Immediate continuation — Raise
 
-Use `docs/work/active/SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md` as the owning finalization contract.
+Use `docs/work/active/RAISE_GENERIC_COMBATMOVE_RESEARCH.md` as the owning current contract.
 
 ```text
 Speed source + runtime acceptance + neutral shipping INI = CLOSED/PASS
--> begin Raise research/design
+-> Raise Normal/Quick/Whirl research/design ACTIVE
+-> prefer generic CombatMove transport; do not assume old PS_Melee_* entry hooks are compatible with New Balance
 -> preserve Speed architecture and neutral default policy unless contradictory evidence appears
 ```
 
@@ -106,7 +107,7 @@ NO +0x42A0 entry hook
 NO rewrite of live compatible-owner EAX
 NO New Balance result used as native ReferenceHitBaseSpeed
 NO Sprint-specific Speed keys absent contradictory evidence
-NO Raise implementation until Speed closes
+Raise implementation requires a frozen bounded task after current CombatMove research
 NO collision redesign absent contradictory evidence
 NO attack-displacement/climbing implementation yet
 NO promotion to main before agreed integrated checkpoint
