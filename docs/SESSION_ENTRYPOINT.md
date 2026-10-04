@@ -31,7 +31,7 @@ separation profile identity = PASS EV-406; resolved animation-set identity selec
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
 CURRENT = Raise research/design; Speed is closed
-Raise behavior = ACTIVE RESEARCH/DESIGN — Normal/Quick/Whirl first scope
+Raise behavior = ACTIVE RESEARCH/DESIGN — additive Normal_AddRaise / Quick_AddRaise / Whirl_AddRaise first scope
 main = FROZEN
 ```
 
