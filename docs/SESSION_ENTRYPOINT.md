@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = Raise AddRaise design locked; one Quick factual-action static precheck remains before bounded implementation
+CURRENT = Raise AddRaise bounded production implementation frozen; Quick static precheck CLOSED (Action3 selector -> Gothic writes factual Action4/5 downstream)
 Raise behavior = ACTIVE — additive Normal_AddRaise / Quick_AddRaise / Whirl_AddRaise; shipping defaults Off
 main = FROZEN
 ```
@@ -56,12 +56,14 @@ Use `docs/work/active/RAISE_ADDRAISE_IMPLEMENTATION_PRECHECK.md` as the owning c
 ```text
 Speed = CLOSED/PASS
 Raise design = LOCKED
-preferred transport = high-level PS_Melee_* PREPEND_BREAK_BLOCK state prepend
-historical 2H Normal + New Balance coexistence = observed PASS
-only pre-implementation question = factual Quick R/L availability at PS_Melee_QuickAttack entry
--> close that static question
--> freeze bounded generic Normal/Quick/Whirl AddRaise implementation
--> first runtime fixture = Hero None+2H (assets already ready)
+Quick static precheck = CLOSED
+generic Quick / Action3 = selector/request identity
+Gothic writes factual QuickAttackR/Action4 or QuickAttackL/Action5 downstream
+Normal/Whirl transport = high-level PREPEND_BREAK_BLOCK state prepend
+Quick transport = existing CombatMove boundary after factual Action4/5 selection
+active task = docs/work/active/RAISE_ADDRAISE_PRODUCTION_IMPLEMENTATION.md
+Work build = PROHIBITED
+first runtime fixture after independent source review/build = Hero None+2H
 ```
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
@@ -111,7 +113,7 @@ NO +0x42A0 entry hook
 NO rewrite of live compatible-owner EAX
 NO New Balance result used as native ReferenceHitBaseSpeed
 NO Sprint-specific Speed keys absent contradictory evidence
-Raise implementation requires a frozen bounded task after the single Quick factual-action precheck
+Raise bounded production implementation is frozen in docs/work/active/RAISE_ADDRAISE_PRODUCTION_IMPLEMENTATION.md; Work build execution is prohibited
 NO collision redesign absent contradictory evidence
 NO attack-displacement/climbing implementation yet
 NO promotion to main before agreed integrated checkpoint

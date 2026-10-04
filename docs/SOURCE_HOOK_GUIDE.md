@@ -138,6 +138,8 @@ Production Speed uses exact caller-side interception after live `+0x42A0` policy
 | Quick carrier | `+0x3937D` | factual Action4/5 carrier / Hit |
 | Quick carrier | `+0x39402` | factual Action4/5 carrier / Hit |
 | Quick route | `+0x48677` | PropertyAction after Action3 selector resolves to Action4/5 / Hit |
+
+Raise implication: generic Quick / Action3 is still selector-level before this downstream boundary. For AddRaise, G3AB must consume Gothic's already-selected factual Action4/5 rather than inventing an R/L chooser.
 | Hack | `+0x42FF4` | Action14 / Hit |
 | Hack | `+0x431B4` | Action14 / Hit |
 | Hack | `+0x432EB` | Action14 / Hit |

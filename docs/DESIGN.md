@@ -131,7 +131,17 @@ Player-facing guidance: Normal and Quick do not normally execute Raise in Gothic
 
 Release documentation must show real matched Raise naming examples for `Attack`, `QuickAttackR`, `QuickAttackL`, and `WhirlAttack`. Do not tell authors to blindly rename only `Hit` to `Raise`, because native Raise/Hit suffixes can differ in destination pose and movement data.
 
-Historical runtime testing established that the old `PS_Melee_Attack` Raise prepend coexisted successfully with New Balance. Therefore the preferred first production path is the high-level `PS_Melee_Attack` / `PS_Melee_QuickAttack` / `PS_Melee_WhirlAttack` prepend pattern using `PREPEND_BREAK_BLOCK`, generic profile lookup, and Gothic-resolved `Raise`. Normal has historical coexistence evidence; Quick/Whirl still require direct runtime coexistence proof. The existing generic `sAICombatMoveInstr` hook remains the fallback if a state route proves incompatible.
+Historical runtime testing established that the old `PS_Melee_Attack` Raise prepend coexisted successfully with New Balance. The Quick static precheck is now closed: generic Quick / Action3 is the native selector/request identity, and Gothic selects then writes factual `PropertyAction` Action4/QuickAttackR or Action5/QuickAttackL downstream before the proven `Script_Game+0x48677` Quick Hit consumer. G3AB must therefore not choose R/L at `PS_Melee_QuickAttack` entry and must not reproduce Gothic's selector logic.
+
+The first production transport is deliberately split while preserving one generic AddRaise policy:
+
+```text
+Normal -> PS_Melee_Attack + PREPEND_BREAK_BLOCK
+Whirl  -> PS_Melee_WhirlAttack + PREPEND_BREAK_BLOCK
+Quick  -> existing CombatMove transport after Gothic has selected factual Action4/5
+```
+
+For Quick, `EngineBridge` remains the sole physical `sAICombatMoveInstr` hook owner and exposes only the smallest transport needed by the permanent Raise owner. The Raise feature may own only the minimal continuation state required to prepend one factual R/L Raise before the untouched factual R/L Hit; it may not add a new physical hook, infer direction, or alter Collision/Speed semantics. Normal has historical coexistence evidence; Quick/Whirl still require direct runtime coexistence proof.
 
 No separate Raise-speed control is authorized. First test whether the inserted Raise naturally reuses/inherits the attack's effective timing through CombatMove.
 

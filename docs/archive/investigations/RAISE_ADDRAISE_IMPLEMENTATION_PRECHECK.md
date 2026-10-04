@@ -1,9 +1,29 @@
 # Raise — Generic AddRaise Research and Implementation Freeze
 
-**Status:** ACTIVE — DESIGN LOCKED / ONE QUICK STATIC PRECHECK BEFORE BOUNDED IMPLEMENTATION  
+**Status:** CLOSED — QUICK STATIC PRECHECK RESOLVED / PRODUCTION IMPLEMENTATION FROZEN  
 **Date:** 2026-10-04  
 **Branch:** `development`  
 **Depends on:** Speed v2 CLOSED/PASS through EV-410; neutral Speed INI locked
+
+## Closure result
+
+Static precheck result:
+
+```text
+generic Quick / Action3
+-> GetPrimaryPoseExt(Action3, Hit)
+-> Gothic chooses/writes PropertyAction = Action4 or Action5
+-> downstream PropertyAction returns factual 4/5
+-> proven Script_Game+0x48677 Quick Hit consumer receives factual 4/5
+```
+
+Therefore `PS_Melee_QuickAttack` entry is not an authorized factual R/L selection point for AddRaise. G3AB must not invent or mirror Gothic's Quick R/L selector. The smallest existing proven factual boundary is downstream after Gothic writes `PropertyAction` Action4/5; the production task uses the already-owned CombatMove transport narrowly for Quick.
+
+Reusable architecture was promoted to `docs/DESIGN.md` and the source lookup consequence to `docs/SOURCE_HOOK_GUIDE.md`.
+
+Active implementation contract:
+
+`docs/work/active/RAISE_ADDRAISE_PRODUCTION_IMPLEMENTATION.md`
 
 ## Purpose
 
