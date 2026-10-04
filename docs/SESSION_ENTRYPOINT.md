@@ -51,7 +51,7 @@ The completed preservation-biased repository audit and Work result are archived 
 
 ## Immediate continuation — Raise
 
-Use `docs/work/active/RAISE_GENERIC_COMBATMOVE_RESEARCH.md` as the owning current contract.
+Use `docs/work/active/RAISE_ADDRAISE_IMPLEMENTATION_PRECHECK.md` as the owning current contract.
 
 ```text
 Speed = CLOSED/PASS
