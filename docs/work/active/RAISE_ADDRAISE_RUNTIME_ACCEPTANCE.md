@@ -58,7 +58,23 @@ Do not build a diagnostic prototype as a substitute for the release product.
 
 If build fails, stop at the build error. Do not begin runtime testing.
 
-## Gate A — AddRaise Off control
+## Gate A — AddRaise Off control — PASS (EV-411)
+
+The User exercised 1H, dual-wield, 2H and Staff routes with the shipping AddRaise values unchanged.
+
+Observed:
+
+```text
+Normal = PASS
+Quick  = PASS
+Whirl  = PASS on applicable tested routes
+added Raise while Off = NONE
+visible regression/stuck/skipped attack = NONE
+```
+
+This closes the disabled-state fail-closed control and exceeds the minimum Hero None+2H fixture.
+
+Historical fixture text follows:
 
 Start with the shipping INI unchanged:
 

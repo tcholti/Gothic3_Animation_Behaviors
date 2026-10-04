@@ -20,7 +20,8 @@ independent Normal Chat source review = PASS
 public scope = Normal / Quick / Whirl
 shipping AddRaise keys = 55 / all Off
 build/deploy identity = PASS
-runtime acceptance = Gate A pending
+Gate A AddRaise-Off = PASS EV-411
+runtime acceptance = Gate B pending
 ```
 
 ## Continue here
@@ -31,7 +32,7 @@ Read:
 2. `docs/SESSION_ENTRYPOINT.md`
 3. `docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md`
 
-Immediate next step is Gate A: Hero None+2H with the shipping INI unchanged (`Normal_AddRaise=Off`, `Quick_AddRaise=Off`, `Whirl_AddRaise=Off`). Verify Normal, Quick and full Whirl behave exactly as before with no added Raise.
+Immediate next step is Gate B: native-stack Hero None+2H. Physically remove `Script_NewBalance.dll` and `Script_AttackCollision.dll` from Gothic 3 `scripts`, set only the Hero None+2H `Normal_AddRaise`, `Quick_AddRaise`, and `Whirl_AddRaise` values to `On` in the live INI, then test Normal, both factual Quick sides, and full Whirl.
 
 The first behavior fixture is Hero None+2H because matching Normal, Quick R/L and full Whirl Raise assets are already ready.
 

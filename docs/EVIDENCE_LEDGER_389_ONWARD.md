@@ -904,3 +904,34 @@ Disposition:
 - **PASS — FINAL SPEED RUNTIME ACCEPTANCE COMPLETE.**
 - **NEXT — RESTORE/REFINE RELEASE-FACING SHIPPING INI, CLOSE SPEED FORMALLY, THEN BEGIN RAISE.**
 
+
+
+### EV-411 — Raise AddRaise-Off broad fail-closed runtime control PASS
+
+Fixture:
+- accepted Raise production candidate `bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd`;
+- release `Script_G3AnimationBehaviors.dll` deployed as the selected G3AB project product;
+- built/live DLL SHA256 matched `921B840471450CFE9BE4970C8268228FE06F443958DB3899D4897985F952F705`;
+- source/live shipping INI SHA256 matched `AE328120EE34EA4F016D7BBAA9A511EE518F14CCBA71EB84040AF5A644ECB6F2`;
+- shipping AddRaise settings remained `Off`.
+
+Observed:
+- User tested representative 1H, dual-wield, 2H and Staff combat;
+- Normal remained ordinary/native-compatible on all tested loadouts, with no added Raise;
+- Quick remained ordinary/native-compatible on all tested loadouts, with no added Raise, skipped attack, stuck continuation or other visible regression;
+- Whirl remained ordinary/native-compatible on tested routes where available, with no added Raise;
+- overall behavior matched the pre-AddRaise baseline.
+
+Interpretation:
+- missing/Off AddRaise behavior is fail-closed in the tested runtime routes;
+- introducing the permanent Raise source/hook transport did not itself cause visible Raise insertion or neighboring melee regression while disabled;
+- this does not yet prove AddRaise-On sequencing, factual Quick R/L Raise selection, native-only coexistence, or New Balance coexistence.
+
+Provenance:
+- deployment/hash checkpoint recorded under the active Raise acceptance contract;
+- diagnostics-free gameplay observations reported by the User on 2026-10-04.
+
+Disposition:
+- **PASS — GATE A ADDRAISE-OFF FAIL-CLOSED CONTROL.**
+- **PASS — BROAD 1H / DUAL-WIELD / 2H / STAFF DISABLED-STATE REGRESSION CONTROL.**
+- **NEXT — GATE B NATIVE-STACK HERO NONE+2H ADDRAISE-ON: NORMAL, QUICK R/L, FULL WHIRL.**

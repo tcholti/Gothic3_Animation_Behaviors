@@ -62,7 +62,8 @@ shipping AddRaise keys = 55 / all Off
 Quick Action3 selector rule = PRESERVED; implementation consumes factual Action4/5 only
 active task = docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md
 build/deploy identity = PASS; built/live DLL + source/live INI hashes match
-next gate = Gate A Hero None+2H AddRaise-Off control
+Gate A AddRaise-Off broad runtime control = PASS EV-411
+next gate = Gate B native-stack Hero None+2H AddRaise-On
 ```
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.

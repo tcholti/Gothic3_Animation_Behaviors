@@ -131,13 +131,15 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | Zombie AnimationFamily separation and Zombie+Axe composition | EV-406 |
 | initial full resolved-animation-set human + selected creature profile set | EV-406 |
 | Sprint shared Power Raise observation for later Raise research | EV-396 |
+| Raise AddRaise-Off fail-closed runtime control | EV-411 |
+| Raise disabled-state broad 1H/dual/2H/staff regression control | EV-411 |
 | Speed v2 deep independent static audit | `archive/investigations/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT_RESULT.md` |
 | Speed v2 S-01 finite-output correction | `archive/investigations/SPEED_V2_S01_FINITE_OUTPUT_GUARD.md` |
 | generic Speed profile calibration implementation closure | `archive/investigations/SPEED_GENERIC_PROFILE_CALIBRATION_IMPLEMENTATION_RESULT.md` |
 | native contact misses vs authored marker correctness | EV-381 |
 | sheath/draw contact observation | EV-380–EV-381; not a marker blocker |
 
-Raise remains **PAUSED**; the early route above and EV-396 Sprint/Power Raise observations are retrieval only and do not authorize implementation.
+Raise is now **ACTIVE** after Speed CLOSED/PASS. AddRaise production source is implemented and independently reviewed; EV-411 closes the broad disabled-state fail-closed control. AddRaise-On runtime acceptance remains active under `docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md`.
 
 ## 3. Current collision closure landmarks
 
