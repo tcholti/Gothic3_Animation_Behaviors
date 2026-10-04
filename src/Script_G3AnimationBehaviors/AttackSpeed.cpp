@@ -89,6 +89,28 @@ GEFloat ComposeCompatibleSpeed(
     if (!std::isfinite(composedSpeed))
         return compatibleSpeed;
 
+    if (compatibleSpeed > 0.0f && composedSpeed <= 0.0f)
+        return compatibleSpeed;
+
     return composedSpeed;
+}
+
+bool TryComposeHackCombatMoveSpeed(
+    gCScriptProcessingUnit::sAICombatMoveInstr_Args const &request,
+    GEFloat &composedSpeed)
+{
+    if (request.Action != gEAction_HackAttack
+        || (request.PhaseName != bCString("Raise")
+            && request.PhaseName != bCString("Hit")
+            && request.PhaseName != bCString("Recover")))
+    {
+        return false;
+    }
+
+    // Hack phases share Hit profile identity; preserve the supplied live scale.
+    composedSpeed = ComposeCompatibleSpeed(
+        Entity(request.SelfEntity), gEAction_HackAttack, gEPhase_Hit,
+        request.AniSpeedScale);
+    return true;
 }
 }

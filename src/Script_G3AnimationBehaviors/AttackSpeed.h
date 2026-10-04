@@ -9,4 +9,8 @@ GEFloat ComposeCompatibleSpeed(
     gEAction action,
     gEPhase phase,
     GEFloat compatibleSpeed);
+
+bool TryComposeHackCombatMoveSpeed(
+    gCScriptProcessingUnit::sAICombatMoveInstr_Args const &request,
+    GEFloat &composedSpeed);
 }

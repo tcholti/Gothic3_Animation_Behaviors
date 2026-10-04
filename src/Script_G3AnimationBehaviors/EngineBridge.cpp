@@ -58,9 +58,6 @@ static mCCallHook Hook_SpeedModifierCall_38F22;
 static mCCallHook Hook_SpeedModifierCall_3937D;
 static mCCallHook Hook_SpeedModifierCall_39402;
 static mCCallHook Hook_SpeedModifierCall_48677;
-static mCCallHook Hook_SpeedModifierCall_42FF4;
-static mCCallHook Hook_SpeedModifierCall_431B4;
-static mCCallHook Hook_SpeedModifierCall_432EB;
 static mCCallHook Hook_SpeedModifierCall_47328;
 static mCCallHook Hook_SpeedModifierCall_4770F;
 static mCCallHook Hook_SpeedModifierCall_4786F;
@@ -637,12 +634,29 @@ static GEBool GE_STDCALL InvokeCombatMove_FrameCollisionTest(
     return result;
 }
 
+static GEBool GE_STDCALL InvokeCombatMove_WithHackSpeed(
+    GELPVoid a_pArgs, gCScriptProcessingUnit *a_pSPU, GEBool a_bFullStop)
+{
+    if (a_bFullStop == GETrue || a_pArgs == nullptr || a_pSPU == nullptr)
+        return InvokeCombatMove_FrameCollisionTest(a_pArgs, a_pSPU, a_bFullStop);
+
+    using CombatMoveArgs = gCScriptProcessingUnit::sAICombatMoveInstr_Args;
+    CombatMoveArgs const &request = *static_cast<CombatMoveArgs const *>(a_pArgs);
+    GEFloat composedSpeed;
+    if (!G3AB::AttackSpeed::TryComposeHackCombatMoveSpeed(request, composedSpeed))
+        return InvokeCombatMove_FrameCollisionTest(a_pArgs, a_pSPU, a_bFullStop);
+
+    CombatMoveArgs adjusted(request);
+    adjusted.AniSpeedScale = composedSpeed;
+    return InvokeCombatMove_FrameCollisionTest(&adjusted, a_pSPU, a_bFullStop);
+}
+
 static GEBool GE_STDCALL AICombatMoveInstr_FrameCollisionTest(
     GELPVoid a_pArgs, gCScriptProcessingUnit *a_pSPU, GEBool a_bFullStop)
 {
     return G3AB::AttackRaise::RunCombatMove(
         a_pArgs, a_pSPU, a_bFullStop, GetCombatMoveFactualAction(a_pSPU),
-        &InvokeCombatMove_FrameCollisionTest);
+        &InvokeCombatMove_WithHackSpeed);
 }
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
@@ -1028,21 +1042,6 @@ void FrameCollision::EngineBridge::InstallHooks()
         .Hook();
     Hook_SpeedModifierCall_48677
         .Prepare(RVA_ScriptGame(0x48677),
-                 &GetAnimationSpeedModifier_Composed)
-        .AddRegArg(mERegisterType_Eax)
-        .Hook();
-    Hook_SpeedModifierCall_42FF4
-        .Prepare(RVA_ScriptGame(0x42FF4),
-                 &GetAnimationSpeedModifier_Composed)
-        .AddRegArg(mERegisterType_Eax)
-        .Hook();
-    Hook_SpeedModifierCall_431B4
-        .Prepare(RVA_ScriptGame(0x431B4),
-                 &GetAnimationSpeedModifier_Composed)
-        .AddRegArg(mERegisterType_Eax)
-        .Hook();
-    Hook_SpeedModifierCall_432EB
-        .Prepare(RVA_ScriptGame(0x432EB),
                  &GetAnimationSpeedModifier_Composed)
         .AddRegArg(mERegisterType_Eax)
         .Hook();
