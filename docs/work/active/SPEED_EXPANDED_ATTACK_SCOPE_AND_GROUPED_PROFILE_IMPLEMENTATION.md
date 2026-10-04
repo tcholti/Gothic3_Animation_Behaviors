@@ -1,6 +1,6 @@
 # Speed Expanded Attack Scope and Grouped Profile Implementation
 
-**Status:** ACTIVE — ADR-0011 SOURCE + FINAL RUNTIME ACCEPTANCE PASS; RELEASE INI CLEANUP / FORMAL CLOSURE PENDING
+**Status:** CLOSED/PASS — SPEED V2 / ADR-0011 PRODUCTION + NEUTRAL SHIPPING INI COMPLETE
 **Task class:** Bounded production source extension + runtime acceptance  
 **Branch:** `development`
 
@@ -389,7 +389,7 @@ intended New Balance stack broad 1.00 / 0.40 sanity              PASS EV-410
 No further broad Speed runtime testing or calibration is required absent contradictory evidence.
 
 The only remaining Speed responsibility is release-facing shipping INI cleanup/restoration:
-- restore final shipped gameplay defaults to the accepted `BaseSpeed=1.00` values;
+- ship neutral defaults: every `BaseSpeed` equals its tested `ReferenceHitBaseSpeed`, so installing G3AB alone does not change attack speed;
 - keep all evidence IDs, ADR names, engineering equations and internal mechanism language out of the player-facing explanatory comments;
 - explain settings in simple non-programmer English suitable for a broad international Gothic 3 audience;
 - retain the exact machine-readable section/key names required by the implemented parser;
@@ -416,3 +416,40 @@ promote to main
 ```
 
 Raise remains paused until expanded Speed closes.
+
+
+## Final shipping INI lock — 2026-10-04
+
+The User selected a universal neutral-default policy for release:
+
+```text
+ReferenceHitBaseSpeed = measured native/reference base for that exact tested route
+BaseSpeed             = the same value by default
+```
+
+Therefore installing G3AB alone does not intentionally retime attacks. Animation mods, balance mods, or users can change `BaseSpeed` while leaving the measured reference value intact.
+
+Final shipping INI:
+
+```text
+27 active tested profiles
+97 tested attack settings
+97/97 BaseSpeed values equal their matching ReferenceHitBaseSpeed
+no guessed attack references
+missing profile/attack remains fail-closed to the compatible live result
+```
+
+The final catalogue includes the tested Hero weapon/loadout profiles, human Fist, Sabertooth, Troll, Wolf, Boar, Minecrawler, Gargoyle, Golem, Bison, Goblin, Orc 2H/Staff/Fist, Demon 2H, Stalker 2H, separated Hero Axe/Rapier sets, and tested Zombie Shield+1H / 2H / Staff / Axe sets.
+
+Zombie Fist is intentionally not added as a release reference profile: the observed `1.4` Normal result is retained as contextual/live behavior rather than promoted to a clean native authoring reference base.
+
+Player-facing INI comments were simplified:
+- ordinary users are told to change `BaseSpeed`;
+- higher/lower values are explained with simple examples;
+- `ReferenceHitBaseSpeed` is explicitly marked as normally not to be changed;
+- a real Gothic 2H animation filename demonstrates how to construct a new profile;
+- internal ADR/evidence IDs, equations, zero-based-field language, and implementation terminology are removed from the shipping comments.
+
+Speed v2 runtime acceptance remains PASS through EV-410. No further Speed implementation or runtime testing is required absent contradictory evidence.
+
+**CLOSED — Speed is complete. Next feature responsibility: Raise research/design and implementation.**
