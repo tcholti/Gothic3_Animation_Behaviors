@@ -153,6 +153,9 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | Raise correction simplicity / modularity / performance review | EV-416 |
 | full Speed + Raise audit / AttackCollision Hack coverage gap | EV-417 |
 | Speed arithmetic underflow fail-closed edge | EV-417 |
+| route-neutral native + AttackCollision Hack Speed correction | EV-418 |
+| Hack CombatMove-boundary exactly-once composition | EV-418 |
+| Hack caller-hook retirement + New Balance preservation | EV-418 |
 | Speed v2 deep independent static audit | `archive/investigations/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT_RESULT.md` |
 | Speed v2 S-01 finite-output correction | `archive/investigations/SPEED_V2_S01_FINITE_OUTPUT_GUARD.md` |
 | generic Speed profile calibration implementation closure | `archive/investigations/SPEED_GENERIC_PROFILE_CALIBRATION_IMPLEMENTATION_RESULT.md` |

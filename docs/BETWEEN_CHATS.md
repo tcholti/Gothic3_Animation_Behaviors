@@ -7,63 +7,80 @@
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `development`  
-`main` frozen. Collision CLOSED/PASS and protected.
+Collision CLOSED/PASS and protected. `main` frozen.
 
 ## Current state
 
 ```text
-Speed v2 core = CLOSED/PASS through EV-410
-Raise correction source = aab0189f... / static PASS EV-416
-full Speed+Raise audit = EV-417
-MAJOR = pinned AttackCollision replacement Hack bypasses G3AB Hack caller patches
-MINOR = positive finite composition can underflow to zero
-build/runtime acceptance = BLOCKED pending M1 correction
+Speed core = CLOSED/PASS through EV-410
+Raise correction = source PASS EV-416 / runtime pending
+EV-417 = AttackCollision Hack coverage gap + minor underflow edge
+EV-418 = route-neutral Hack correction mechanism FROZEN
+build/runtime = BLOCKED until implementation/review
 ```
 
 External compatibility reference:
 `Jackydima/gothic3sdk@bbe769075bc896085a620a0ceb3491192c5beb61`
 
-## Assigned responsibility — AttackCollision Hack Speed causal design
+## Assigned responsibility — EV-418 Hack compatibility implementation
 
-**READ-ONLY BOUNDED RESEARCH/DESIGN.** No source/docs edits, build, runtime, probes, commits or pushes.
+**BOUNDED PRODUCTION SOURCE IMPLEMENTATION.** Build/runtime prohibited.
 
-Establish the smallest route-safe correction for EV-417 M1.
-
-Must inspect:
-- G3AB `AttackSpeed.cpp/.h`, `EngineBridge.cpp`, `BehaviorProfiles.cpp/.h`;
-- existing sole `sAICombatMoveInstr` bridge/AttackRaise path only as needed;
-- native tested-build Hack state / callers `+0x42FF4,+0x431B4,+0x432EB`;
-- pinned `scripts/Script_AttackCollision/Script_AttackCollision.cpp`;
-- pinned New Balance speed owner where compatibility matters.
-
-Primary candidate to prove or reject:
-
+Edit only:
 ```text
-remove Hack authoring from the three native +0x42A0 caller patches
--> compose factual Action14 Hack at the shared CombatMove request boundary
--> consume the already-computed request AniSpeedScale as compatible B*M
--> apply Hack C/B exactly once
--> cover native Gothic + AttackCollision replacement without hooking AttackCollision DLL
+src/Script_G3AnimationBehaviors/AttackSpeed.cpp
+src/Script_G3AnimationBehaviors/AttackSpeed.h
+src/Script_G3AnimationBehaviors/EngineBridge.cpp
 ```
 
-Research requirements:
-1. Map native Hack Raise/Hit/Recover speed calls through CombatMove and prove what `AniSpeedScale` contains if the three G3AB native caller hooks are absent.
-2. Map AttackCollision replacement Raise/Hit/Recover likewise.
-3. Prove whether one CombatMove-boundary rule can distinguish factual Hack from Finishing and avoid double composition.
-4. Preserve ADR-0011 Hit-profile identity, New Balance side effects/results exactly once, and unconfigured pass-through.
-5. Check interaction with `AttackRaise::RunCombatMove`: ordering, stored requests, FullStop, re-entry.
-6. Confirm Collision invocation/lifecycle wrappers remain untouched.
-7. Compare candidate against alternatives; strongly prefer no third-party-DLL RVA/function hook and no `+0x42A0` entry takeover.
-8. Include EV-417 minor underflow guard in the eventual correction only if it remains a trivial independent fail-closed change.
+Implement the frozen route:
 
-Output:
-- exact native/external data-flow;
-- candidate PASS/REJECT with reasons;
-- frozen smallest source/hook boundary if proven;
-- files/functions to change;
-- hooks to remove/add;
-- compatibility/double-scale proof;
-- focused later runtime fixture;
-- STOP if no safe Speed-owned correction exists.
+```text
+CombatMove hook
+-> AttackRaise::RunCombatMove
+-> stateless Hack Speed adapter
+-> unchanged InvokeCombatMove_FrameCollisionTest
+-> original CombatMove
+```
 
-No implementation. Then return to Normal Chat.
+Hack adapter requirements:
+- FullStop/null args/null SPU -> pass unchanged;
+- only request Action14 + physical phase `Raise`/`Hit`/`Recover`;
+- actor = request.SelfEntity;
+- profile identity = existing Hack/Hit identity;
+- incoming `AniSpeedScale` is compatible `B*M`;
+- compose via existing Hack Hit `C/B`;
+- forward a local request copy changing only `AniSpeedScale`;
+- caller request never mutated;
+- no extra `GetAnimationSpeedModifier` call/state/cache/marker.
+
+Remove together:
+```text
+Hook_SpeedModifierCall_42FF4
+Hook_SpeedModifierCall_431B4
+Hook_SpeedModifierCall_432EB
+```
+including declarations + InstallHooks registrations. Native call instructions remain untouched.
+
+Add EV-417 fail-closed arithmetic guard in `ComposeCompatibleSpeed`: after finite-result validation, when incoming compatible speed is positive and composed result is non-positive, return the original compatible value. No clamp/new config rule.
+
+Protected:
+- all other Speed hooks incl. Power Raise unchanged;
+- AttackRaise/BehaviorProfiles/INI unchanged;
+- Finishing Action15 excluded;
+- no new physical hook / no AttackCollision hook / no +0x42A0 entry hook;
+- Collision wrapper/modules/guard unchanged.
+
+Static acceptance:
+- exactly one physical CombatMove hook remains;
+- Hack caller hooks = 0;
+- Hack request composition covers Raise/Hit/Recover only;
+- unconfigured Hack preserves incoming scale;
+- no double composition path;
+- New Balance owner invoked only by original route;
+- `git diff --check`;
+- changed files exactly the 3 allowed files.
+
+Commit/push to `development`. Report changed files/checks.  
+Build: NOT ATTEMPTED — Work build execution was not authorized.  
+Then STOP for Normal Chat review.

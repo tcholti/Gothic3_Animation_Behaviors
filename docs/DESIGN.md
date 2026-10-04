@@ -195,7 +195,7 @@ live Power Raise caller +0x47D51
 
 This preserves native/live phase relationships such as Hero Power Raise `1.5*M` versus Hit `1.0*M`, while applying the same authored attack-speed change across the attack. ADR-0009 Sprint/Power profile inheritance remains unchanged on the proven shared Action2 route.
 
-Hack and Pierce already propagate their configured attack speed through visible native Raise under EV-414; they receive no additional Raise-specific composition. SimpleWhirl receives no Raise work absent a factual Raise route.
+Pierce already propagates its configured attack speed through visible native Raise under EV-414 and receives no additional Raise-specific composition. EV-417–EV-418 establish that Hack needs a route-neutral compatibility transport because pinned AttackCollision replaces the native Hack state and bypasses G3AB's native caller patches. The frozen Hack mechanism consumes factual Action14 Raise/Hit/Recover CombatMove requests after the live compatible speed has already been written to `AniSpeedScale`, then applies the existing Hack Hit-profile `C/B` ratio exactly once. SimpleWhirl receives no Raise work absent a factual Raise route.
 
 EV-416 confirms the implemented final transport removes the high-level G3AB `PS_Melee_Attack` and `PS_Melee_WhirlAttack` AddRaise hooks. Normal/Quick/Whirl custom sequencing now belongs only at the already-owned CombatMove boundary.
 
@@ -203,7 +203,7 @@ EV-416 confirms the implemented final transport removes the high-level G3AB `PS_
 
 A configured speed authors the **base speed term** for the matching profile/attack; it does not own the final effective playback speed.
 
-The accepted production mechanism is caller-side composition **after** the live `Script_Game+0x42A0 GetAnimationSpeedModifier` owner has calculated the compatible result for the caller, rather than taking over the `+0x42A0` entry.
+The accepted production mechanism leaves the live `Script_Game+0x42A0 GetAnimationSpeedModifier` owner untouched and composes only after that owner has produced the compatible result. Most routes use exact caller-side interception. EV-418 freezes one deliberate exception for Hack: compose factual Action14 Raise/Hit/Recover at the shared CombatMove request boundary, using the already-computed request `AniSpeedScale`, so native Gothic and pinned AttackCollision share one route-neutral correction.
 
 Reason about the route as:
 
@@ -221,19 +221,30 @@ configuredSpeed = compatibleSpeed * (C / B)
 
 This downstream algebra is intentionally the small price paid for the safer intervention boundary: Gothic/New Balance retain ownership of their internal speed policy, G3AB calls the live owner exactly once with the original caller action, then substitutes only the known base contribution while preserving compatible relative modifiers already present in the live result.
 
-The production caller-side set currently covers 15 proven Hit call sites across:
+The current pre-EV-418 implementation has 15 caller-side Hit hooks across:
 
 ```text
 Normal
 Quick
 Power / shared Sprint-Power
 Pierce
-Hack
+Hack (three hooks scheduled for retirement by EV-418)
 SimpleWhirl
 Whirl
 ```
 
 Power Raise at `Script_Game+0x47D51` is now the one additional production non-Hit caller. EV-416 confirms it delegates through the same compatible-owner composition and applies the Power authoring ratio to the live Raise result, preserving native/New Balance phase relationships such as `1.5*M` Raise versus `1.0*M` Hit.
+
+EV-418 freezes Hack's final compatibility transport:
+
+```text
+native or AttackCollision Hack computes live speed once
+-> factual Action14 CombatMove request carries compatible AniSpeedScale
+-> G3AB request adapter applies Hack C/B once for Raise / Hit / Recover
+-> unchanged Collision invocation wrapper
+```
+
+The three native Hack speed caller hooks `+0x42FF4`, `+0x431B4`, `+0x432EB` must be removed when this adapter lands; retaining any of them would double-compose native Hack. No AttackCollision-DLL hook, `+0x42A0` entry takeover, extra speed-owner call, or Speed state/cache is permitted. Factual Finishing / Action15 remains excluded by action identity.
 
 Finishing / `gEAction_FinishingAttack` / Action15 is intentionally outside the current production Speed profile set. EV-398 establishes three distinct native Finishing Hit speed consumers and direct native Action15 observations on Hero 2H and Staff while Hack/Action14 remains separately transported, even though native Gothic may resolve both actions to the same animation asset. EV-399 then closes the practical playback question: configured Hack `BaseSpeed=0.40` slowed Hack while Finishing remained native-timed both when the actions shared the same animation asset and after their assets were separated. Speed authority therefore follows the factual action route, not animation-file identity. The distributed INI contains no Finishing speed entries and default execution timing remains native; any later advanced optional Finishing configuration is a separate product decision, not required for Hack isolation.
 

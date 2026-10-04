@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = EV-417 full Speed+Raise audit found AttackCollision Hack coverage MAJOR; bounded causal design assigned before any build/runtime
+CURRENT = EV-418 route-neutral Hack compatibility mechanism FROZEN / bounded implementation assigned before build/runtime
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise behavior = ACTIVE — additive Normal_AddRaise / Quick_AddRaise / Whirl_AddRaise; shipping defaults Off
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
@@ -77,9 +77,9 @@ runtime matrix before correction: Hack/Pierce Raise followed BaseSpeed; Normal/Q
 implemented custom AddRaise = factual Hit CombatMove scale reused for Normal/Quick/Whirl Raise
 implemented native Power Raise = live +0x47D51 result * Power authoring ratio; native 1.5*M relationship preserved
 Hack/Pierce = protected already-coupled controls; no extra Raise scaling
-active task = AttackCollision Hack Speed coverage causal design frozen in docs/BETWEEN_CHATS.md
+active task = EV-418 Hack Speed compatibility implementation frozen in docs/BETWEEN_CHATS.md
 runtime acceptance record = docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md
-next = Work/Astra read-only causal design -> Normal Chat freezes smallest correction -> bounded implementation -> review -> local build/runtime
+next = Work/Astra bounded source implementation -> Normal Chat independent review -> local build/runtime
 ```
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.

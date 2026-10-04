@@ -128,7 +128,7 @@ Search around CombatMove reach/vector/movement calls, motion/root translation, a
 
 ### Speed v2 proven Hit consumers
 
-Production Speed uses exact caller-side interception after live `+0x42A0` policy rather than entry ownership.
+Production Speed leaves live `+0x42A0` ownership untouched. The current source still uses exact caller-side interception for the table below; EV-418 freezes retirement of the three Hack rows in favor of a route-neutral factual Hack CombatMove adapter.
 
 | Attack route | Script_Game caller RVA | Factual caller action / note |
 |---|---:|---|
@@ -138,9 +138,9 @@ Production Speed uses exact caller-side interception after live `+0x42A0` policy
 | Quick carrier | `+0x3937D` | factual Action4/5 carrier / Hit |
 | Quick carrier | `+0x39402` | factual Action4/5 carrier / Hit |
 | Quick route | `+0x48677` | PropertyAction after Action3 selector resolves to Action4/5 / Hit |
-| Hack | `+0x42FF4` | Action14 / Hit |
-| Hack | `+0x431B4` | Action14 / Hit |
-| Hack | `+0x432EB` | Action14 / Hit |
+| Hack (current; retire under EV-418) | `+0x42FF4` | Action14 / queried Hit; physical Raise request |
+| Hack (current; retire under EV-418) | `+0x431B4` | Action14 / queried Hit; physical Hit request |
+| Hack (current; retire under EV-418) | `+0x432EB` | Action14 / queried Hit; physical Recover request |
 | Pierce | `+0x47328` | Action11 / Hit |
 | Pierce | `+0x4770F` | Action11 / Hit |
 | Pierce | `+0x4786F` | Action11 / Hit |
@@ -239,7 +239,7 @@ caller prepares factual action/Hit request
 -> original caller receives the composed result
 ```
 
-This deliberately leaves `Script_Game+0x42A0` entry ownership to the live compatible stack and avoids copying New Balance policy.
+This deliberately leaves `Script_Game+0x42A0` entry ownership to the live compatible stack and avoids copying New Balance policy. EV-418 extends the same principle to pinned AttackCollision Hack without hooking the third-party DLL: both native and replacement states first compute the live speed normally, then factual Action14 Raise/Hit/Recover requests are composed once at the existing CombatMove boundary. The three native Hack caller hooks must be removed in the same implementation to avoid double composition.
 
 ### Native reference and algebra
 
