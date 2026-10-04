@@ -145,7 +145,13 @@ For Quick, `EngineBridge` remains the sole physical `sAICombatMoveInstr` hook ow
 
 EV-412 also confirms the ownership boundary for the known destructive Alternative AI block-skip route: if that external path FullStops and replaces the active attack state, an in-progress Raise continuation may be destroyed. Disabling that block-skip behavior removed the observed Whirl skip in repeated testing. Raise must not add resurrection/recovery logic for this known state-destruction class; prevention remains owned by `AttackContinuationProtection`.
 
-No separate Raise-speed control is authorized. First test whether the inserted Raise naturally reuses/inherits the attack's effective timing through CombatMove.
+EV-413 closes the first Raise-speed question: configured attack `BaseSpeed` does **not** author the inserted Raise speed. Extreme `BaseSpeed=0.1` controls slowed Hit/visible Recover while custom Normal/Quick Raise remained at its prior pace; tested native Power Raise likewise remained independent. This matches source: Speed composition is Hit-phase-only and AddRaise currently requests Raise with `AniSpeedScale=1.0f`.
+
+The short custom Normal/Quick Raise assets visually suggest that factual actions may have different native/live Raise timing, but no exact Quick/Normal Raise reference values are established. Earlier calibrated Power Raise values already show that Raise may have its own route-specific live speed.
+
+EV-399's Hack behavior is therefore route-specific and must not be generalized: native Hack's visible Raise/Recover followed configured Hack playback in that fixture, while custom AddRaise and tested native Power do not.
+
+No separate Raise-speed control is authorized yet. A future product decision may keep native/live Raise timing or open a separate bounded Raise-speed authoring design; that design must preserve compatible/native/New Balance Raise modifiers rather than reuse Hit reference bases by assumption.
 
 ### Speed
 
