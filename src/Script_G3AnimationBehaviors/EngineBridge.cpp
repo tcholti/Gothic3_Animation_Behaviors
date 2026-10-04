@@ -1,6 +1,7 @@
 #include "EngineBridge.h"
 
 #include "AttackMotionRouting.h"
+#include "AttackRaise.h"
 #include "AttackSpeed.h"
 #include "CollisionLifecycleGuard.h"
 #include "CollisionSources.h"
@@ -46,6 +47,8 @@ static mCFunctionHook Hook_OnAI_HackAttack;
 static mCCallHook Hook_CombatMoveMotionResourceQuery;
 static mCFunctionHook Hook_SetCollisionGroup;
 static mCFunctionHook Hook_AICombatMoveInstr;
+static mCFunctionHook Hook_PS_Melee_Attack;
+static mCFunctionHook Hook_PS_Melee_WhirlAttack;
 static mCFunctionHook Hook_AISetState;
 static mCFunctionHook Hook_RunScriptFunction;
 static mCCallHook Hook_Raw8FistTimingGateGetPlayTime;
@@ -560,7 +563,26 @@ static GEBool GE_STDCALL RunScriptFunction_FrameCollisionTest(
     return result;
 }
 
+DECLARE_SCRIPT_STATE(PS_Melee_Attack_AddRaise)
+{
+    return G3AB::AttackRaise::RunNormalState(
+        a_rRunTimeStack, a_pSPU,
+        Hook_PS_Melee_Attack.GetOriginalFunction(&PS_Melee_Attack_AddRaise));
+}
+
+DECLARE_SCRIPT_STATE(PS_Melee_WhirlAttack_AddRaise)
+{
+    return G3AB::AttackRaise::RunWhirlState(
+        a_rRunTimeStack, a_pSPU,
+        Hook_PS_Melee_WhirlAttack.GetOriginalFunction(
+            &PS_Melee_WhirlAttack_AddRaise));
+}
+
 static GEBool GE_STDCALL AICombatMoveInstr_FrameCollisionTest(
+    GELPVoid a_pArgs, gCScriptProcessingUnit *a_pSPU, GEBool a_bFullStop);
+
+// Keep Collision's invocation lifecycle around each actual native CombatMove.
+static GEBool GE_STDCALL InvokeCombatMove_FrameCollisionTest(
     GELPVoid a_pArgs, gCScriptProcessingUnit *a_pSPU, GEBool a_bFullStop)
 {
     CollisionLifecycleGuard::GenerationToken generation = {};
@@ -631,6 +653,14 @@ static GEBool GE_STDCALL AICombatMoveInstr_FrameCollisionTest(
     return result;
 }
 
+static GEBool GE_STDCALL AICombatMoveInstr_FrameCollisionTest(
+    GELPVoid a_pArgs, gCScriptProcessingUnit *a_pSPU, GEBool a_bFullStop)
+{
+    return G3AB::AttackRaise::RunCombatMove(
+        a_pArgs, a_pSPU, a_bFullStop, GetCombatMoveFactualAction(a_pSPU),
+        &InvokeCombatMove_FrameCollisionTest);
+}
+
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
 static void GE_STDCALL AIFullStop_FrameCollisionTest(
     gCScriptRoutine_PS *a_pThis)
@@ -674,6 +704,9 @@ static void GE_STDCALL AIFullStop_FrameCollisionTest(
 static void GE_STDCALL AISetState_FrameCollisionTest(
     gCScriptRoutine_PS *a_pThis, bCString const &a_State)
 {
+    if (a_pThis != nullptr)
+        G3AB::AttackRaise::CancelQuickContinuation(&a_pThis->GetSPU());
+
     eCEntity *ownerEntity =
         a_pThis != nullptr ? a_pThis->GetEntity() : nullptr;
     CollisionLifecycleGuard::GenerationToken const finalization =
@@ -979,6 +1012,15 @@ static GEInt GE_STDCALL OnTick_FrameCollisionTest(
 void FrameCollision::EngineBridge::InstallHooks()
 {
     GetScriptAdmin().LoadScriptDLL("Script_Game.dll");
+
+    Hook_PS_Melee_Attack.Hook(
+        GetScriptAdminExt().GetScriptAIState("PS_Melee_Attack")
+            ->m_funcScriptAIState,
+        &PS_Melee_Attack_AddRaise);
+    Hook_PS_Melee_WhirlAttack.Hook(
+        GetScriptAdminExt().GetScriptAIState("PS_Melee_WhirlAttack")
+            ->m_funcScriptAIState,
+        &PS_Melee_WhirlAttack_AddRaise);
 
     Call_GetAnimationSpeedModifier.Init(
         mCCaller::GetCallerParams(

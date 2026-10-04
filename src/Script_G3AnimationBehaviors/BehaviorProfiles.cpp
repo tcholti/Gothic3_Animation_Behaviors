@@ -161,7 +161,7 @@ AttackSettings ParseAttackSettings(
         }
     }
 
-    std::string const raiseName = prefixText + "_RaiseOverride";
+    std::string const raiseName = prefixText + "_AddRaise";
     bCString const raiseKey(raiseName.c_str());
     if (config.Contains(section, raiseKey))
     {

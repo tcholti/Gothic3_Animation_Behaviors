@@ -16,6 +16,8 @@ target_tree_sources(
         Script_G3AnimationBehaviors.cpp
         AttackMotionRouting.cpp
         AttackMotionRouting.h
+        AttackRaise.cpp
+        AttackRaise.h
         AttackSpeed.cpp
         AttackSpeed.h
         BehaviorProfiles.cpp
