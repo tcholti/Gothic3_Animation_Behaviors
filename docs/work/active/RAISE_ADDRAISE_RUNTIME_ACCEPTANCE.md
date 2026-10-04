@@ -395,3 +395,18 @@ Do not:
 - add RaiseSpeed yet;
 - broaden public AddRaise beyond Normal/Quick/Whirl;
 - promote to `main` before runtime acceptance and maintenance closure.
+
+
+## Next-session closure batch
+
+**Session stop:** 2026-10-04 after EV-421. No unrecorded runtime evidence remains from the completed batch.
+
+Current production DLL/source is unchanged. If the next session begins from this same source state, a rebuild is not required merely because documentation advanced; first synchronize `development`, verify the live production DLL remains the EV-420 hash, and keep the intended New Balance + AttackCollision fixture when running the remaining checks.
+
+Only these small sanity controls remain before final acceptance closure:
+
+1. **Configured Hack + New Balance contextual modifier:** with the intended stack active and a normal configured Hack base, compare an understood full/available-stamina case with the corresponding depleted-stamina/context case. The relative New Balance slowdown must remain visible.
+2. **Factual Finishing isolation:** use an obvious slow Hack control (for example `Hack_BaseSpeed=0.1`) and verify factual Action15 Finishing remains native-timed even if it shares an animation asset with Hack.
+3. **Interruption/transition sanity:** interrupt or leave a Hack, then perform another attack; if convenient also perform one AddRaise-enabled Normal/Quick/Whirl followed by Hack. No stale Raise, speed carry-over, stuck continuation, repeated phase, or collision contradiction may appear.
+
+These are sanity/closure checks, not a new design phase. No new diagnostic log or Work task is required unless a contradiction appears.

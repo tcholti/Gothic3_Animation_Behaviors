@@ -64,6 +64,7 @@ independent Normal Chat source review = PASS / no blocker, major or minor findin
 shipping AddRaise keys = 55 / all Off
 Quick Action3 selector rule = PRESERVED; implementation consumes factual Action4/5 only
 runtime acceptance record = docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md
+session stop 2026-10-04 = all EV-420/EV-421 evidence closed; no pending unrecorded batch; source unchanged
 build/deploy identity = PASS; built/live DLL + source/live INI hashes match
 Gate A AddRaise-Off broad runtime control = PASS EV-411
 Gate B native-stack Hero None+2H AddRaise-On = PASS EV-412
@@ -80,7 +81,7 @@ Pierce = protected already-coupled control; Hack = route-neutral Action14 Raise/
 active task = docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md
 EV-418 Hack compatibility source = 41ed80c6420e5236d13fc037cb5923b946cb8ccc / PASS EV-419
 runtime acceptance record = docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md
-next = small New Balance modifier-preservation + factual Finishing isolation + interruption sanity controls -> final acceptance closure
+next = NEXT SESSION: small New Balance modifier-preservation + factual Finishing isolation + interruption sanity controls -> final acceptance closure
 ```
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
