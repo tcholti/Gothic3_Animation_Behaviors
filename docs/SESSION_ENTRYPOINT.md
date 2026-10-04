@@ -51,7 +51,7 @@ The completed preservation-biased repository audit and Work result are archived 
 
 ## Immediate continuation — Raise
 
-Use `docs/work/active/RAISE_SPEED_PHASE_CONSISTENCY_RESEARCH.md` as the owning current contract. `RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md` remains active as the runtime acceptance record and resumes after the phase-speed correction.
+Use `docs/work/active/RAISE_SPEED_PHASE_CONSISTENCY_IMPLEMENTATION.md` as the owning current contract. The closed static research is archived under `docs/archive/investigations/RAISE_SPEED_PHASE_CONSISTENCY_RESEARCH.md`. `RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md` remains active as the runtime acceptance record and resumes after the correction.
 
 ```text
 Speed = CLOSED/PASS
@@ -68,10 +68,13 @@ Gate C intended New Balance coexistence = PASS EV-412
 known destructive Alternative AI block-skip interaction = separate AttackContinuationProtection ownership
 Gate D first non-coupling observation = EV-413
 EV-414 = CONTRADICTION / EV-413 product-closure interpretation SUPERSEDED
-runtime matrix: Hack/Pierce Raise follow BaseSpeed; Normal/Quick/Whirl/Power Raise do not
-accepted authoring invariant = one BaseSpeed must coherently author Raise/Hit/Recover while preserving live phase modifiers
-active task = docs/work/active/RAISE_SPEED_PHASE_CONSISTENCY_RESEARCH.md
-next = static causal route map + smallest correction freeze; no production implementation yet
+EV-415 = STATIC CAUSAL CLOSURE / smallest correction FROZEN
+runtime matrix: Hack/Pierce Raise follow BaseSpeed; Normal/Quick/Whirl/Power Raise did not
+custom AddRaise correction = factual Hit CombatMove scale reused for Normal/Quick/Whirl Raise
+native Power Raise correction = compose live +0x47D51 Raise result by Power authoring ratio
+Hack/Pierce = protected already-coupled controls; no extra Raise scaling
+active task = docs/work/active/RAISE_SPEED_PHASE_CONSISTENCY_IMPLEMENTATION.md
+next = bounded Work source implementation; build prohibited
 ```
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
