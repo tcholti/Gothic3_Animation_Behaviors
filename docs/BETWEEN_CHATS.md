@@ -19,7 +19,8 @@ implementation commit = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd
 independent Normal Chat source review = PASS
 public scope = Normal / Quick / Whirl
 shipping AddRaise keys = 55 / all Off
-runtime acceptance = PENDING
+build/deploy identity = PASS
+runtime acceptance = Gate A pending
 ```
 
 ## Continue here
@@ -30,7 +31,7 @@ Read:
 2. `docs/SESSION_ENTRYPOINT.md`
 3. `docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md`
 
-Immediate next step is User-local build of the release `Script_G3AnimationBehaviors` product, followed by POP-03 deployment/hash verification.
+Immediate next step is Gate A: Hero None+2H with the shipping INI unchanged (`Normal_AddRaise=Off`, `Quick_AddRaise=Off`, `Whirl_AddRaise=Off`). Verify Normal, Quick and full Whirl behave exactly as before with no added Raise.
 
 The first behavior fixture is Hero None+2H because matching Normal, Quick R/L and full Whirl Raise assets are already ready.
 

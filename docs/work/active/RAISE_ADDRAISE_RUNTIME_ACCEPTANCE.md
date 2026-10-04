@@ -20,7 +20,29 @@ QuickAttackL
 full Whirl
 ```
 
-## Gate 0 — build and deployment
+## Gate 0 — build and deployment — PASS
+
+User-local release build succeeded.
+
+Verified deployment identity:
+
+```text
+Built DLL SHA256 = 921B840471450CFE9BE4970C8268228FE06F443958DB3899D4897985F952F705
+Live  DLL SHA256 = 921B840471450CFE9BE4970C8268228FE06F443958DB3899D4897985F952F705
+
+Source INI SHA256 = AE328120EE34EA4F016D7BBAA9A511EE518F14CCBA71EB84040AF5A644ECB6F2
+Live   INI SHA256 = AE328120EE34EA4F016D7BBAA9A511EE518F14CCBA71EB84040AF5A644ECB6F2
+
+live selected project product:
+Script_G3AnimationBehaviors.dll
+length = 463360 bytes
+```
+
+POP-03 selected-product/hash gate: **PASS**.
+
+This checkpoint proves exact artifact deployment only; it is not yet behavioral acceptance.
+
+Historical procedure text for this completed gate follows:
 
 Use the normal User-local workflow:
 
