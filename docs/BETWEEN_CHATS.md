@@ -14,18 +14,12 @@ Branch: `development`
 ```text
 Collision = CLOSED/PASS through EV-390
 Speed v2 = CLOSED/PASS through EV-410
-neutral Speed INI = LOCKED
-
-Raise AddRaise = ACTIVE NEXT FEATURE
-public first scope:
-  Normal_AddRaise
-  Quick_AddRaise
-  Whirl_AddRaise
-shipping default = Off
-
-Quick static precheck = CLOSED
-Action3 = generic Quick selector/request identity
-Gothic selects and writes factual Action4/QuickAttackR or Action5/QuickAttackL downstream
+Raise AddRaise source = IMPLEMENTED
+implementation commit = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd
+independent Normal Chat source review = PASS
+public scope = Normal / Quick / Whirl
+shipping AddRaise keys = 55 / all Off
+runtime acceptance = PENDING
 ```
 
 ## Continue here
@@ -34,26 +28,10 @@ Read:
 
 1. root `README.md` -> Start Here
 2. `docs/SESSION_ENTRYPOINT.md`
-3. `docs/work/active/RAISE_ADDRAISE_PRODUCTION_IMPLEMENTATION.md`
-4. `docs/DESIGN.md` Raise section
-5. `docs/SOURCE_HOOK_GUIDE.md` Quick caller/source facts
-6. `docs/WORK_IMPLEMENTATION_PROTOCOL.md`
-7. `docs/FEATURE_DEVELOPMENT_METHOD.md`
+3. `docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md`
 
-## Frozen implementation direction
+Immediate next step is User-local build of the release `Script_G3AnimationBehaviors` product, followed by POP-03 deployment/hash verification.
 
-```text
-Normal -> PS_Melee_Attack + PREPEND_BREAK_BLOCK
-Whirl  -> PS_Melee_WhirlAttack + PREPEND_BREAK_BLOCK
-Quick  -> existing sAICombatMoveInstr transport only after Gothic selected Action4/5
-```
+The first behavior fixture is Hero None+2H because matching Normal, Quick R/L and full Whirl Raise assets are already ready.
 
-Do not use `PS_Melee_QuickAttack` entry to choose R/L. Do not invent Quick direction-selection logic.
-
-The implementation is generic/profile-driven from the start. Hero None+2H is only the first runtime fixture because matching Normal, Quick and full Whirl Raise assets already exist.
-
-Work build execution is prohibited unless a later explicit task authorizes it. After implementation publication, Normal Chat performs independent source review before the User builds/deploys/tests locally.
-
-## Protected
-
-Do not reopen Speed/collision, touch Finishing, broaden AddRaise scope, add weapon-specific policy, construct Raise filenames manually, add a RaiseSpeed key, or promote `main` absent a new explicit decision.
+Do not reopen Collision/Speed, broaden AddRaise scope, add RaiseSpeed, or begin 1H generalization before the focused 2H native + New Balance acceptance gates close.

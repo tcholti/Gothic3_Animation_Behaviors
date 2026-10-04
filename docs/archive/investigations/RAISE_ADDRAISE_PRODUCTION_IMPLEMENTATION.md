@@ -1,10 +1,45 @@
 # Raise — Normal / Quick / Whirl AddRaise Production Implementation
 
-**Status:** ACTIVE — FROZEN BOUNDED PRODUCTION IMPLEMENTATION  
+**Status:** CLOSED — IMPLEMENTED / INDEPENDENT NORMAL CHAT SOURCE REVIEW PASS  
 **Task class:** production source + shipping INI implementation  
 **Branch:** `development`  
 **Frozen from source baseline:** `3d24ffd7fc3e92f5afaabfc5055bcfca822ef54c`  
 **Build policy:** PROHIBITED in Work unless a later task explicitly authorizes build execution
+
+## Closure result
+
+Implementation commit:
+
+`bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd`
+
+Independent Normal Chat review against the frozen contract: **PASS**.
+
+```text
+BLOCKER = 0
+MAJOR   = 0
+MINOR   = 0
+```
+
+Verified statically:
+
+- exactly one implementation commit from the reviewed handoff;
+- only authorized production/config paths changed;
+- Normal and Whirl use the frozen high-level state prepend pattern;
+- Quick consumes factual incoming Action4/5 and contains no Action3 -> R/L chooser;
+- one physical `sAICombatMoveInstr` hook remains;
+- Collision invocation lifecycle still wraps each actual native CombatMove;
+- Quick continuation handles Raise pending, Hit pending, FullStop, AISetState and request replacement conservatively;
+- `BehaviorProfiles` public parser changed only `_RaiseOverride` -> `_AddRaise`;
+- no weapon/species/name policy, filename construction, unsupported AddRaise family, RaiseSpeed key, or Speed caller change was introduced;
+- `AttackRaise` is compiled by the production target;
+- obsolete `SharedConfig.*` is removed with no remaining production reference;
+- shipping INI contains 55 AddRaise keys and all are `Off`.
+
+Build was not part of the implementation/review gate. Runtime behavior remains unproven until the active acceptance contract is completed.
+
+Next owner:
+
+`docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md`
 
 ## Purpose
 

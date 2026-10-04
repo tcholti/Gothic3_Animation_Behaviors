@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = Raise AddRaise bounded production implementation frozen; Quick static precheck CLOSED (Action3 selector -> Gothic writes factual Action4/5 downstream)
+CURRENT = Raise AddRaise production source implemented at bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat source review PASS; local build/runtime acceptance pending
 Raise behavior = ACTIVE — additive Normal_AddRaise / Quick_AddRaise / Whirl_AddRaise; shipping defaults Off
 main = FROZEN
 ```
@@ -51,19 +51,17 @@ The completed preservation-biased repository audit and Work result are archived 
 
 ## Immediate continuation — Raise
 
-Use `docs/work/active/RAISE_ADDRAISE_PRODUCTION_IMPLEMENTATION.md` as the owning current contract.
+Use `docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md` as the owning current contract.
 
 ```text
 Speed = CLOSED/PASS
-Raise design = LOCKED
-Quick static precheck = CLOSED
-generic Quick / Action3 = selector/request identity
-Gothic writes factual QuickAttackR/Action4 or QuickAttackL/Action5 downstream
-Normal/Whirl transport = high-level PREPEND_BREAK_BLOCK state prepend
-Quick transport = existing CombatMove boundary after factual Action4/5 selection
-active task = docs/work/active/RAISE_ADDRAISE_PRODUCTION_IMPLEMENTATION.md
-Work build = PROHIBITED
-first runtime fixture after independent source review/build = Hero None+2H
+Raise production source = IMPLEMENTED
+implementation commit = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd
+independent Normal Chat source review = PASS / no blocker, major or minor finding
+shipping AddRaise keys = 55 / all Off
+Quick Action3 selector rule = PRESERVED; implementation consumes factual Action4/5 only
+active task = docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md
+next gate = User-local release build -> deploy/hash verify -> focused Hero None+2H acceptance
 ```
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
@@ -113,7 +111,7 @@ NO +0x42A0 entry hook
 NO rewrite of live compatible-owner EAX
 NO New Balance result used as native ReferenceHitBaseSpeed
 NO Sprint-specific Speed keys absent contradictory evidence
-Raise bounded production implementation is frozen in docs/work/active/RAISE_ADDRAISE_PRODUCTION_IMPLEMENTATION.md; Work build execution is prohibited
+Raise source implementation is accepted for local build at bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd; runtime acceptance remains OPEN under docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md
 NO collision redesign absent contradictory evidence
 NO attack-displacement/climbing implementation yet
 NO promotion to main before agreed integrated checkpoint
