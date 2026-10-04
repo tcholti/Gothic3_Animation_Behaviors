@@ -2,10 +2,10 @@
 
 **Status:** ACTIVE — USER-LOCAL BUILD / DEPLOY / FOCUSED RUNTIME ACCEPTANCE  
 **Branch:** `development`  
-**Current source candidate:** `aab0189f2067f00653f669792b7d267135c745f0`  
+**Current source candidate:** `41ed80c6420e5236d13fc037cb5923b946cb8ccc`  
 **Prior sequencing baseline:** `bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd`  
-**Source review:** PASS — EV-416  
-**Scope:** first public AddRaise behavior plus EV-415 phase-speed consistency correction
+**Source review:** PASS — EV-416 + EV-419  
+**Scope:** AddRaise + EV-415 phase-speed correction + EV-418 native/AttackCollision Hack Speed compatibility correction
 
 ## Purpose
 
@@ -42,7 +42,7 @@ length = 463360 bytes
 
 POP-03 selected-product/hash gate: **PASS**.
 
-This checkpoint proves exact deployment of the earlier `bc46dcf...` sequencing baseline only. It does **not** deploy the current `aab0189...` phase-speed correction candidate.
+This checkpoint proves exact deployment of the earlier `bc46dcf...` sequencing baseline only. It does **not** deploy the current `41ed80c...` candidate.
 
 Historical procedure text for this completed gate follows:
 
@@ -60,11 +60,13 @@ Do not build a diagnostic prototype as a substitute for the release product.
 
 If build fails, stop at the build error. Do not begin runtime testing.
 
-## Gate 0B — phase-speed correction build and deployment — PENDING
+## Gate 0B — current correction build and deployment — PENDING
 
 Current source candidate:
 
-`aab0189f2067f00653f669792b7d267135c745f0`
+`41ed80c6420e5236d13fc037cb5923b946cb8ccc`
+
+This candidate includes the accepted AddRaise phase-speed correction plus the EV-418 Hack compatibility transport and EV-417 arithmetic fail-closed guard.
 
 Before any new runtime acceptance:
 
@@ -77,7 +79,7 @@ sync development
 -> only then launch Gothic 3
 ```
 
-The prior DLL/hash in Gate 0 is historical and must not be reused as proof for this candidate.
+The prior DLL/hash in Gate 0 is historical and must not be reused as proof for this candidate. Source commit `aab0189...` is also superseded as the build target by `41ed80c...`.
 
 ## Gate A — AddRaise Off control — PASS (EV-411)
 
@@ -244,11 +246,11 @@ Historical Gate-D question:
 
 Answer: **not consistently; EV-415 established the correction and EV-416 accepts its production source.**
 
-### Gate D correction source — PASS (EV-416)
+### Gate D correction source — PASS (EV-416; integrated current source PASS EV-419)
 
-Implemented candidate:
+Raise correction originally implemented at `aab0189f...`; current integrated candidate:
 
-`aab0189f2067f00653f669792b7d267135c745f0`
+`41ed80c6420e5236d13fc037cb5923b946cb8ccc`
 
 Static result:
 
@@ -281,12 +283,55 @@ After Gate 0B:
 
 1. **Custom Normal / Quick R/L / Whirl:** use an obvious slow/contrast BaseSpeed and verify Raise now changes with Hit rather than remaining at the old fixed pace.
 2. **Native Power:** verify Raise changes with authored Power speed while retaining its native/live relative phase behavior; do not expect Raise to flatten to Hit.
-3. **Hack / Pierce positive controls:** verify they remain correct and are not double-scaled.
-4. Repeat the focused set without and with the intended New Balance stack.
-5. Stop on any wrong-side Quick, repeated/skipped Raise, stuck continuation, modifier loss, or collision contradiction.
+3. **Pierce positive control:** verify it remains correct and is not double-scaled.
+4. **Hack is now a dedicated EV-418 compatibility gate below; do not treat its old EV-414 observation as sufficient for the current transport.**
+5. Repeat the focused Raise set without and with the intended New Balance stack.
+6. Stop on any wrong-side Quick, repeated/skipped Raise, stuck continuation, modifier loss, or collision contradiction.
 
 A broad assembled regression waits until this correction passes.
 
+
+## Gate D2 — native + AttackCollision Hack compatibility — PENDING
+
+EV-417 found that pinned AttackCollision replaces `_AI_HackAttack` and bypassed the former three native Hack caller hooks. EV-418 froze, and EV-419 source-accepted, the route-neutral Action14 CombatMove adapter.
+
+Use an established Hero None+2H Hack profile with native `ReferenceHitBaseSpeed=1.0`. A strong visible control is:
+
+```ini
+Hack_BaseSpeed=0.40
+```
+
+Do not commit the test value.
+
+Run both exact routes:
+
+1. **Native route:** physically remove the third-party DLLs excluded by the fixture, then execute complete Hack Raise -> Hit -> Recover. Compare a neutral/unconfigured control against `0.40`; all three visible phases should follow the authored ratio once.
+2. **Intended compatibility route:** restore the normal New Balance + AttackCollision stack and repeat the same Hack control. AttackCollision's replacement Hack must now follow the same configured ratio rather than bypassing G3AB.
+3. Under the intended stack, exercise one already-understood New Balance slowdown/context condition and verify its relative effect still survives the configured Hack authoring.
+4. Verify factual Finishing remains native-timed, including a shared Hack/Finishing asset fixture if convenient.
+5. Include one interrupted Hack followed by another attack and one AddRaise-enabled Normal/Quick/Whirl -> Hack transition. No stale continuation or repeated scaling may appear.
+6. If the New Balance direct/static-block Hack Recover path is readily reproducible, verify its compatible Recover scale is authored once rather than ignored or squared.
+
+Expected algebra:
+
+```text
+incoming live compatible Hack scale = B*M
+configured request scale            = B*M * (C/B) = C*M
+```
+
+Failure indicators:
+
+```text
+configured Hack ignored under AttackCollision
+~0.16-style double scaling for C=0.40
+Finishing slowed by Hack profile
+New Balance relative slowdown disappears
+Raise/Hit/Recover disagree unexpectedly
+stuck/repeated continuation
+Collision contradiction
+```
+
+No diagnostic probe is required if the visible timing result is clear.
 
 ## Gate E — later cross-profile generalization
 

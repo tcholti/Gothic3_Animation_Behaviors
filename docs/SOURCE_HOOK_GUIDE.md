@@ -128,7 +128,7 @@ Search around CombatMove reach/vector/movement calls, motion/root translation, a
 
 ### Speed v2 proven Hit consumers
 
-Production Speed leaves live `+0x42A0` ownership untouched. The current source still uses exact caller-side interception for the table below; EV-418 freezes retirement of the three Hack rows in favor of a route-neutral factual Hack CombatMove adapter.
+Production Speed leaves live `+0x42A0` ownership untouched. The production caller-side Hit set is the table below. Hack is intentionally absent because EV-418/EV-419 move factual Action14 Raise/Hit/Recover composition to the shared CombatMove request boundary.
 
 | Attack route | Script_Game caller RVA | Factual caller action / note |
 |---|---:|---|
@@ -138,9 +138,6 @@ Production Speed leaves live `+0x42A0` ownership untouched. The current source s
 | Quick carrier | `+0x3937D` | factual Action4/5 carrier / Hit |
 | Quick carrier | `+0x39402` | factual Action4/5 carrier / Hit |
 | Quick route | `+0x48677` | PropertyAction after Action3 selector resolves to Action4/5 / Hit |
-| Hack (current; retire under EV-418) | `+0x42FF4` | Action14 / queried Hit; physical Raise request |
-| Hack (current; retire under EV-418) | `+0x431B4` | Action14 / queried Hit; physical Hit request |
-| Hack (current; retire under EV-418) | `+0x432EB` | Action14 / queried Hit; physical Recover request |
 | Pierce | `+0x47328` | Action11 / Hit |
 | Pierce | `+0x4770F` | Action11 / Hit |
 | Pierce | `+0x4786F` | Action11 / Hit |
@@ -156,7 +153,7 @@ Related Power route:
 Script_Game+0x47D51 = factual Power Raise speed consumer
 ```
 
-It is evidence for Raise work and is not part of the current Hit-only Speed composition set.
+It is the production Power Raise composition caller; it is separate from the 12 Hit callers above.
 
 ### Motion lifecycle
 
@@ -228,7 +225,7 @@ Held Use2 / ~2500 ms is a test trigger, not collision ownership.
 
 ### Caller-side compatibility boundary
 
-The accepted Speed architecture uses the proven Hit caller sites above.
+The accepted Speed architecture uses the proven Hit caller sites above plus the factual Hack request boundary below.
 
 ```text
 caller prepares factual action/Hit request
@@ -239,7 +236,22 @@ caller prepares factual action/Hit request
 -> original caller receives the composed result
 ```
 
-This deliberately leaves `Script_Game+0x42A0` entry ownership to the live compatible stack and avoids copying New Balance policy. EV-418 extends the same principle to pinned AttackCollision Hack without hooking the third-party DLL: both native and replacement states first compute the live speed normally, then factual Action14 Raise/Hit/Recover requests are composed once at the existing CombatMove boundary. The three native Hack caller hooks must be removed in the same implementation to avoid double composition.
+This deliberately leaves `Script_Game+0x42A0` entry ownership to the live compatible stack and avoids copying New Balance policy. EV-418/EV-419 extend the same principle to pinned AttackCollision Hack without hooking the third-party DLL: both native and replacement states first compute the live speed normally, then factual Action14 Raise/Hit/Recover requests are composed once at the existing CombatMove boundary. The former native Hack caller hooks `+0x42FF4/+0x431B4/+0x432EB` are not installed in production.
+
+### Hack route-neutral compatibility boundary
+
+Native Script_Game and pinned AttackCollision both produce factual Action14 CombatMove requests whose `AniSpeedScale` already contains the live compatible result. Production therefore uses:
+
+```text
+live native/New Balance Hack speed query
+-> factual Action14 Raise / Hit / Recover request
+-> AttackRaise pass-through
+-> stateless Hack Speed adapter applies existing Hit-profile C/B once
+-> unchanged Collision invocation wrapper
+-> original CombatMove
+```
+
+The adapter uses a local request copy, does not call the speed owner again, and excludes factual Finishing / Action15 before profile lookup. FullStop/null request/null-SPU and null resume paths pass unchanged. Proof: EV-417–EV-419.
 
 ### Native reference and algebra
 

@@ -13,74 +13,44 @@ Collision CLOSED/PASS and protected. `main` frozen.
 
 ```text
 Speed core = CLOSED/PASS through EV-410
-Raise correction = source PASS EV-416 / runtime pending
-EV-417 = AttackCollision Hack coverage gap + minor underflow edge
-EV-418 = route-neutral Hack correction mechanism FROZEN
-build/runtime = BLOCKED until implementation/review
+Raise phase-speed source = PASS EV-416
+AttackCollision Hack gap = EV-417
+route-neutral Hack design = PASS EV-418
+production source = 41ed80c6420e5236d13fc037cb5923b946cb8ccc
+independent integrated source review = PASS EV-419
+BLOCKER/MAJOR/MINOR = 0
+build/deploy/runtime = PENDING
 ```
 
-External compatibility reference:
-`Jackydima/gothic3sdk@bbe769075bc896085a620a0ceb3491192c5beb61`
-
-## Assigned responsibility — EV-418 Hack compatibility implementation
-
-**BOUNDED PRODUCTION SOURCE IMPLEMENTATION.** Build/runtime prohibited.
-
-Edit only:
+Current production architecture:
 ```text
-src/Script_G3AnimationBehaviors/AttackSpeed.cpp
-src/Script_G3AnimationBehaviors/AttackSpeed.h
-src/Script_G3AnimationBehaviors/EngineBridge.cpp
+most Speed routes -> caller-side live-result C/B composition
+Power Raise -> +0x47D51 live Raise result * Power C/B
+Hack Action14 Raise/Hit/Recover -> shared CombatMove request adapter
+custom Normal/Quick/Whirl Raise -> exact composed Hit AniSpeedScale
 ```
 
-Implement the frozen route:
+Hack's former `+0x42FF4/+0x431B4/+0x432EB` G3AB hooks are removed. Live Gothic/New Balance speed ownership remains untouched. Pinned AttackCollision and native Hack converge on the same request adapter. Factual Finishing remains excluded.
 
+Collision wrapper/modules/guard and AttackRaise are unchanged.
+
+## Immediate continuation
+
+Use:
+`docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md`
+
+Next:
 ```text
-CombatMove hook
--> AttackRaise::RunCombatMove
--> stateless Hack Speed adapter
--> unchanged InvokeCombatMove_FrameCollisionTest
--> original CombatMove
+sync development
+-> local Release build Script_G3AnimationBehaviors
+-> POP-03 deploy exact DLL + built/live SHA256
+-> verify intended DLL set
+-> focused Raise phase-speed runtime acceptance
+-> native Hack C=0.40 control
+-> intended New Balance + AttackCollision Hack C=0.40 control
+-> Finishing + modifier-preservation controls
 ```
 
-Hack adapter requirements:
-- FullStop/null args/null SPU -> pass unchanged;
-- only request Action14 + physical phase `Raise`/`Hit`/`Recover`;
-- actor = request.SelfEntity;
-- profile identity = existing Hack/Hit identity;
-- incoming `AniSpeedScale` is compatible `B*M`;
-- compose via existing Hack Hit `C/B`;
-- forward a local request copy changing only `AniSpeedScale`;
-- caller request never mutated;
-- no extra `GetAnimationSpeedModifier` call/state/cache/marker.
+Stop on build/hash/load-set uncertainty, crash, double-scaled Hack, ignored configured Hack under AttackCollision, Finishing timing change, Raise/Hit/Recover contradiction, continuation leak, or Collision contradiction.
 
-Remove together:
-```text
-Hook_SpeedModifierCall_42FF4
-Hook_SpeedModifierCall_431B4
-Hook_SpeedModifierCall_432EB
-```
-including declarations + InstallHooks registrations. Native call instructions remain untouched.
-
-Add EV-417 fail-closed arithmetic guard in `ComposeCompatibleSpeed`: after finite-result validation, when incoming compatible speed is positive and composed result is non-positive, return the original compatible value. No clamp/new config rule.
-
-Protected:
-- all other Speed hooks incl. Power Raise unchanged;
-- AttackRaise/BehaviorProfiles/INI unchanged;
-- Finishing Action15 excluded;
-- no new physical hook / no AttackCollision hook / no +0x42A0 entry hook;
-- Collision wrapper/modules/guard unchanged.
-
-Static acceptance:
-- exactly one physical CombatMove hook remains;
-- Hack caller hooks = 0;
-- Hack request composition covers Raise/Hit/Recover only;
-- unconfigured Hack preserves incoming scale;
-- no double composition path;
-- New Balance owner invoked only by original route;
-- `git diff --check`;
-- changed files exactly the 3 allowed files.
-
-Commit/push to `development`. Report changed files/checks.  
-Build: NOT ATTEMPTED — Work build execution was not authorized.  
-Then STOP for Normal Chat review.
+Do not reopen Collision, add a +0x42A0 entry hook, hook AttackCollision directly, or add further Speed state absent contradictory runtime evidence.

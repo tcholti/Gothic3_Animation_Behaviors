@@ -119,3 +119,52 @@ Disposition:
 - **PASS — PRODUCTION CORRECTION MECHANISM FROZEN.**
 - **NO NEW HOOK REQUIRED.**
 - **NEXT — bounded implementation, independent source review, then focused native + intended-stack runtime acceptance.**
+
+
+### EV-419 — EV-418 Hack compatibility implementation independent source review PASS
+
+Reviewed production source:
+- implementation commit `41ed80c6420e5236d13fc037cb5923b946cb8ccc`;
+- base `1d4f73dbf3a519fe97dd15d7bf5d6253b9059015`;
+- exactly one source commit; exactly three changed files: `AttackSpeed.cpp`, `AttackSpeed.h`, `EngineBridge.cpp`.
+
+Implementation result:
+- `AttackSpeed::TryComposeHackCombatMoveSpeed` accepts only factual Action14 with physical phase string `Raise`, `Hit` or `Recover`;
+- it delegates to existing `ComposeCompatibleSpeed(actor, Hack, Hit, request.AniSpeedScale)`, preserving the existing Hack Hit-profile identity and `C/B` algebra;
+- `EngineBridge::InvokeCombatMove_WithHackSpeed` passes FullStop/null args/null SPU unchanged, otherwise copies eligible requests locally and changes only `AniSpeedScale`;
+- the caller-owned request is not mutated;
+- the adapter delegates directly to the existing original-function Collision transport and cannot recurse through the public CombatMove hook;
+- no extra `GetAnimationSpeedModifier` call, Speed state, cache or already-composed marker exists.
+
+Hook/static checks:
+- the three old Hack speed hook declarations/installations `+0x42FF4`, `+0x431B4`, `+0x432EB` are absent;
+- remaining Speed registrations are exactly the previous set minus those three: 12 Hit callers plus Power Raise `+0x47D51` = 13 registrations;
+- exactly one physical G3AB `sAICombatMoveInstr` hook remains;
+- `AttackRaise.cpp` blob SHA is byte-identical before/after the implementation;
+- the complete `InvokeCombatMove_FrameCollisionTest` Collision wrapper body is text-identical before/after the implementation;
+- no Collision module or lifecycle owner changed.
+
+Exactly-once / compatibility result:
+- native Hack's original three speed calls now reach the live Gothic/New Balance owner normally and place the uncomposed live result into the CombatMove request;
+- pinned AttackCollision replacement Hack does the same through its own helper;
+- both routes converge on the one factual Action14 request adapter, which applies `C/B` once;
+- null resumes bypass the adapter;
+- factual Finishing / Action15 is rejected before profile composition;
+- New Balance remains the sole live `+0x42A0` policy owner and its contextual result/side effects are not reproduced or repeated.
+
+Arithmetic fail-closed:
+- after existing finite-result validation, positive incoming compatible speed that composes to a non-positive value now falls back to the original compatible value;
+- no clamp or configuration semantic change was introduced.
+
+Engineering review:
+- simplicity PASS: three route-specific Hack hooks removed; no new physical hook;
+- modularity PASS: AttackSpeed owns eligibility/composition; EngineBridge owns thin transport; AttackRaise/Collision ownership unchanged;
+- performance PASS: one bounded Action14 request check at the existing CombatMove boundary; no polling/scanning/additional speed-owner call.
+
+Independent disposition:
+- BLOCKER = 0;
+- MAJOR = 0;
+- MINOR = 0;
+- **PASS — SOURCE READY FOR USER-LOCAL BUILD / DEPLOY / FOCUSED RUNTIME ACCEPTANCE.**
+
+Runtime remains required for both the EV-415 Raise phase-speed correction and the EV-418 native + pinned AttackCollision Hack compatibility route.

@@ -156,13 +156,16 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | route-neutral native + AttackCollision Hack Speed correction | EV-418 |
 | Hack CombatMove-boundary exactly-once composition | EV-418 |
 | Hack caller-hook retirement + New Balance preservation | EV-418 |
+| Hack compatibility implementation / independent source acceptance | EV-419 |
+| production Hack 13-registration hook map / Collision non-interference | EV-419 |
+| Speed arithmetic underflow guard implementation | EV-419 |
 | Speed v2 deep independent static audit | `archive/investigations/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT_RESULT.md` |
 | Speed v2 S-01 finite-output correction | `archive/investigations/SPEED_V2_S01_FINITE_OUTPUT_GUARD.md` |
 | generic Speed profile calibration implementation closure | `archive/investigations/SPEED_GENERIC_PROFILE_CALIBRATION_IMPLEMENTATION_RESULT.md` |
 | native contact misses vs authored marker correctness | EV-381 |
 | sheath/draw contact observation | EV-380–EV-381; not a marker blocker |
 
-Raise is **ACTIVE** after Speed CLOSED/PASS. AddRaise sequencing is accepted through EV-412; EV-413–EV-414 exposed the phase-speed inconsistency; EV-415 froze the correction; EV-416 independently accepts the implemented correction source at `aab0189f2067f00653f669792b7d267135c745f0`. The implementation contract is archived; focused User-local build/deploy/runtime acceptance remains active under `docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md`.
+Raise is **ACTIVE** after Speed CLOSED/PASS. AddRaise sequencing is accepted through EV-412; EV-415/EV-416 freeze and source-accept the phase-speed correction. EV-417–EV-419 close the static AttackCollision Hack compatibility gap with the route-neutral Action14 CombatMove adapter. Current production source is `41ed80c6420e5236d13fc037cb5923b946cb8ccc`; focused User-local build/deploy/runtime acceptance remains active under `docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md`.
 
 ## 3. Current collision closure landmarks
 
