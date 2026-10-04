@@ -66,7 +66,8 @@ Gate A AddRaise-Off broad runtime control = PASS EV-411
 Gate B native-stack Hero None+2H AddRaise-On = PASS EV-412
 Gate C intended New Balance coexistence = PASS EV-412
 known destructive Alternative AI block-skip interaction = separate AttackContinuationProtection ownership
-next gate = Gate D Raise timing-coupling observation
+Gate D Raise timing coupling = CLOSED EV-413; BaseSpeed does not author inserted Raise speed
+next = product decision: retain native/live Raise timing or open separate bounded Raise-speed authoring research
 ```
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
