@@ -151,6 +151,8 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | Hack/Pierce protected already-coupled Raise controls | EV-414–EV-415 |
 | Raise phase-speed production correction source/static acceptance | EV-416 |
 | Raise correction simplicity / modularity / performance review | EV-416 |
+| full Speed + Raise audit / AttackCollision Hack coverage gap | EV-417 |
+| Speed arithmetic underflow fail-closed edge | EV-417 |
 | Speed v2 deep independent static audit | `archive/investigations/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT_RESULT.md` |
 | Speed v2 S-01 finite-output correction | `archive/investigations/SPEED_V2_S01_FINITE_OUTPUT_GUARD.md` |
 | generic Speed profile calibration implementation closure | `archive/investigations/SPEED_GENERIC_PROFILE_CALIBRATION_IMPLEMENTATION_RESULT.md` |
@@ -280,4 +282,4 @@ EV-389 and EV-390 are diagnostics-free observational evidence and therefore have
 
 Historical ledger rows may retain paths that were correct when written. Use `EVIDENCE_PATH_MIGRATIONS.md` when a later archive move makes an old path ambiguous.
 
-Closed ledger volumes are immutable historical proof records. EV-384–EV-388 is closed at `archive/evidence/EVIDENCE_LEDGER_384_388.md`; new evidence goes only to `EVIDENCE_LEDGER_389_ONWARD.md` until the next rotation.
+Closed ledger volumes are immutable historical proof records. EV-389–EV-416 is closed at `archive/evidence/EVIDENCE_LEDGER_389_416.md`; new evidence goes only to `EVIDENCE_LEDGER_417_ONWARD.md` until the next rotation.
