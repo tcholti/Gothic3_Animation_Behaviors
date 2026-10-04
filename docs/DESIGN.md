@@ -92,7 +92,7 @@ Architecture rationale: ADR-0005 + ADR-0006 + ADR-0009.
 
 A configured custom Raise is intended to prepend the appropriate preparatory CombatMove phase before the untouched original melee state while preserving native Raise where already correct. Keep Raise independent from collision lifecycle and continuation protection.
 
-Custom Raise does **not** hard-code an animation filename. The intended mechanism remains:
+Custom Raise does **not** hard-code an animation filename. Historical runtime proof also confirms that G3AB must not construct Raise filenames: the old 2H prototype supplied action + `Raise` phase only, and Gothic automatically resolved the correct P0/P1 Raise asset. The intended mechanism remains:
 
 ```text
 matching configured profile/attack
