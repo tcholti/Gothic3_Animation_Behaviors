@@ -1024,3 +1024,83 @@ Disposition:
 - **NO EXACT QUICK/NORMAL RAISE BASE CLAIM FROM VISUAL TESTING.**
 - **NO RAISESPEED IMPLEMENTATION AUTHORIZED BY THIS EVIDENCE ALONE.**
 - **NEXT — PRODUCT DECISION: RETAIN NATIVE/LIVE RAISE TIMING OR OPEN A SEPARATE BOUNDED RAISE-SPEED AUTHORING DESIGN.**
+
+
+**EV-413 disposition qualification (superseded by EV-414):** the observations above remain factual, but the earlier interpretation that native/live Raise timing could be accepted as a product choice was incorrect. ADR-0004 and ADR-0008 already require one authored attack BaseSpeed to provide consistent attack timing and explicitly require a smallest correction when Raise does not naturally follow. EV-414 is authoritative for the active disposition.
+
+
+### EV-414 — Raise/Speed phase-consistency contradiction; EV-413 disposition superseded
+
+Fixture:
+- same accepted production DLL / AddRaise lineage used by EV-411–EV-413;
+- deliberate extreme `BaseSpeed=0.1` controls used to make phase-speed differences unmistakable;
+- additional Raise animations authored at approximately 0–10 frames specifically to make relative Raise timing easier to perceive; this is **longer**, not shorter, than the User's earlier approximately 0–3-frame Raise assets;
+- repeated observations include native and intended New Balance stack where applicable.
+
+Observed attack matrix:
+- **Hack:** Raise followed the authored attack speed;
+- **Pierce (1H):** Raise followed the authored attack speed;
+- **Power (1H):** Raise stayed at its prior/native pace while Hit/Recover followed the authored speed;
+- **Whirl (2H AddRaise):** inserted Raise stayed at its prior pace while Hit/Recover followed the authored speed;
+- earlier EV-413 already established the same non-coupling for custom Normal and Quick AddRaise.
+
+Durable authoring requirement:
+- ADR-0004 defines G3AB speed as authoring authority intended to let Blender assets use a common nominal timing/frame convention instead of baking Gothic's historical speed constants into animation lengths;
+- ADR-0008 §6 already freezes one desired `<Attack>_BaseSpeed` per attack and states that if an inserted Raise does not naturally follow that speed, the factual cause must be established and the smallest correction implemented;
+- therefore EV-413's factual non-coupling is **not** an acceptable completion state. It is a discovered integration inconsistency.
+
+Static correlation already established:
+- production `AttackSpeed::ComposeCompatibleSpeed` currently composes only `gEPhase_Hit`;
+- custom Normal/Quick/Whirl AddRaise currently creates Raise CombatMoves with `AniSpeedScale=1.0f`;
+- Game `sAICombatMoveStart` copies the request `AniSpeedScale` into the active SPU at `Game+0x16B422..+0x16B42E`, and later timing logic uses that scale at `Game+0x16B57B`; the hard-coded `1.0` is therefore a real timing input, not inert metadata;
+- Power has a separate factual Raise-speed consumer at `Script_Game+0x47D51` (Action2 / Raise), while the current production Power Hit composition is at `+0x47F6C` (Action2 / Hit). The Raise caller is not in the current Hit-only hook set;
+- native/New Balance Power Raise has its own live phase value (e.g. Hero Power Raise `1.5*M` while Power Hit is `1.0*M`), so the desired correction must preserve the live Raise relationship rather than flatten Raise to the Hit base;
+- Hack/Pierce already exhibit the desired whole-attack authoring behavior in runtime and therefore must not receive a second blind scale application.
+
+Target invariant:
+```text
+one user-facing <Attack>_BaseSpeed
+-> authors the attack consistently across Raise / Hit / Recover where those phases exist
+-> preserves Gothic/New Balance phase-specific relative bases and contextual modifiers
+-> does not require a separate RaiseSpeed key
+```
+
+Candidate algebra for routes with an independently computed live Raise speed:
+```text
+B_hit = factual native Hit reference base
+C     = configured attack BaseSpeed
+R     = C / B_hit
+
+compatibleRaise = live/native/mod Raise result
+configuredRaise = compatibleRaise * R
+```
+
+Example only:
+```text
+Power native/live Raise = 1.5 * M
+Power Hit B            = 1.0
+configured C           = 0.1
+
+configured Raise = (1.5 * M) * (0.1 / 1.0)
+                 = 0.15 * M
+```
+
+This preserves the accepted native Raise-vs-Hit relationship while applying G3AB's authored attack-speed ratio on top of it.
+
+Scope / limits:
+- the algebra above is a **candidate invariant**, not yet a frozen implementation mechanism for every route;
+- the exact custom-AddRaise transport must still prove how to apply the authoring ratio without bypassing or double-applying live phase modifiers;
+- Hack/Pierce's already-coupled behavior must be explained/protected rather than normalized by assumption;
+- no `RaiseSpeed`, `ReferenceRaiseBaseSpeed`, new physical hook, or production source correction is authorized until the bounded phase-consistency research closes.
+
+Provenance:
+- runtime observations reported by the User on 2026-10-04;
+- ADR-0004 and ADR-0008;
+- current `AttackRaise.cpp`, `AttackSpeed.cpp`, `SOURCE_HOOK_GUIDE.md`;
+- tested-build Game/Script_Game disassembly and pinned New Balance source.
+
+Disposition:
+- **CONTRADICTION / OPEN — CURRENT PHASE SPEED BEHAVIOR IS INCONSISTENT WITH THE ACCEPTED AUTHORING MODEL.**
+- **EV-413 FACTUAL OBSERVATION RETAINED; EV-413 PRODUCT-CLOSURE INTERPRETATION SUPERSEDED.**
+- **DO NOT CLOSE RAISE OR MOVE TO ASSEMBLED REGRESSION YET.**
+- **NEXT — BOUNDED RAISE/SPEED PHASE-CONSISTENCY RESEARCH, THEN THE SMALLEST EVIDENCE-BACKED CORRECTION.**
