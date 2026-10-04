@@ -140,6 +140,10 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | Raise BaseSpeed non-coupling / native-live Raise timing | EV-413 |
 | custom Normal/Quick Raise timing remains independent from configured Hit BaseSpeed | EV-413 |
 | native Power Raise independence under extreme BaseSpeed control | EV-413 |
+| Raise/Speed phase consistency contradiction / EV-413 disposition supersession | EV-414 |
+| Hack/Pierce whole-attack speed positive controls | EV-414 |
+| Normal/Quick/Whirl/Power Raise non-coupling matrix | EV-414 |
+| one-BaseSpeed Raise/Hit/Recover authoring invariant | EV-414; ADR-0004; ADR-0008 |
 | Speed v2 deep independent static audit | `archive/investigations/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT_RESULT.md` |
 | Speed v2 S-01 finite-output correction | `archive/investigations/SPEED_V2_S01_FINITE_OUTPUT_GUARD.md` |
 | generic Speed profile calibration implementation closure | `archive/investigations/SPEED_GENERIC_PROFILE_CALIBRATION_IMPLEMENTATION_RESULT.md` |
