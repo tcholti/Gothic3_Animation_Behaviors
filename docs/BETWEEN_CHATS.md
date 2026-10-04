@@ -7,7 +7,8 @@
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `development`  
-Required review base HEAD: `a4b2e5bb5cb4e1780a0f79ff7ac867f0187d1346`  
+Source/authority checkpoint before audit handoff: `a4b2e5bb5cb4e1780a0f79ff7ac867f0187d1346`  
+The later audit-routing commits are documentation-only; production source remains unchanged from that checkpoint.  
 `main` remains frozen.
 
 ## Current state
