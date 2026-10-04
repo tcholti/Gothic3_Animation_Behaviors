@@ -224,6 +224,8 @@ Authored collision markers belong to the exact Hit motion.
 
 ### 5.1 Raise filename patterns
 
+**Historical 2H Raise runtime proof:** the early G3AB prototype requested only factual `gEAction_Attack` + phase `Raise` through Gothic's `sAICombatMoveInstr`; it did not construct a filename. Runtime acceptance recorded that Gothic automatically resolved the correct P0/P1 Raise animation. Thus Raise filenames are the serialized result of Gothic's normal animation-selection rules, not names G3AB should invent.
+
 Native inventory confirms these serialized phase/action patterns:
 
 ```text
@@ -246,7 +248,7 @@ Full Whirl:
 
 Current inventory counts: 64 Normal `Attack_Raise`, 12 `QuickAttackR_Raise`, 16 `QuickAttackL_Raise`, and 6 `WhirlAttack_Raise` names. These counts demonstrate native naming patterns, not universal asset availability for every profile.
 
-Do not infer that a Raise asset can always be authored by changing only `Hit` to `Raise`. Native names show that destination pose and movement/reach suffixes may differ between the matching Raise and Hit. Release authoring guidance must use matched real examples and the exact animation route expected by Gothic.
+Do not infer that a Raise asset can always be authored by changing only `Hit` to `Raise`. Native names show that destination pose and movement/reach suffixes may differ between the matching Raise and Hit. Release authoring guidance must explain the filename fields Gothic derives from its action/phase/pose/use-type/direction state and use matched real examples of the exact Raise resource Gothic requests.
 
 ---
 
