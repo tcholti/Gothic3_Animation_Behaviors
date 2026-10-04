@@ -255,3 +255,54 @@ Perform bounded static research for `PS_Melee_Attack`, `PS_Melee_QuickAttack`, a
 Runtime acceptance must include New Balance with the intended stack. Normal has historical coexistence evidence; Quick and Whirl still require direct coexistence proof.
 
 If Quick/Whirl state hooks conflict or cannot preserve the required factual action/profile semantics, fall back to the existing lower-level `sAICombatMoveInstr` boundary rather than redesigning the feature.
+
+
+## First runtime acceptance sequence
+
+The User already has authored Raise assets ready for Hero None+2H:
+- Normal;
+- Quick;
+- full Whirl.
+
+Implementation architecture must nevertheless be generic from the start. The 2H fixture is only the first acceptance surface, not a 2H-specific source gate.
+
+Shipping INI:
+- supported `Normal_AddRaise`, `Quick_AddRaise`, `Whirl_AddRaise` entries remain `Off` by default;
+- the User manually turns them On only for the profile currently under test.
+
+Initial runtime order:
+
+```text
+A. AddRaise Off control
+   -> 2H Normal / Quick / Whirl remain native
+
+B. Native stack, Hero None+2H
+   -> Normal_AddRaise=On
+   -> Quick_AddRaise=On
+   -> Whirl_AddRaise=On
+   -> verify Raise -> Hit -> native continuation
+   -> verify no duplicate/repeated Raise
+   -> for Quick, verify both factual QuickAttackR and QuickAttackL routes where gameplay reaches them
+
+C. Intended New Balance stack
+   -> repeat the same 2H Normal / Quick / Whirl fixture
+   -> verify historical Normal coexistence remains true
+   -> establish first direct Quick + New Balance and Whirl + New Balance coexistence evidence
+
+D. Speed-coupling contrast
+   -> after basic AddRaise transport passes at neutral BaseSpeed=ReferenceHitBaseSpeed,
+      deliberately change the tested BaseSpeed values
+   -> observe whether inserted Raise naturally follows the same relative timing change
+   -> only if it does not, design the smallest generic relative-scale solution;
+      do not add a user-facing Raise speed key
+
+E. Cross-profile generalization
+   -> create/provide matching 1H Raise assets
+   -> enable AddRaise for the relevant 1H profile(s)
+   -> verify no new C++ branch is needed
+```
+
+Quick-specific implementation caution:
+- user-facing `Quick_AddRaise` is one setting;
+- Gothic's factual playback/asset variants are QuickAttackR (Action4) and QuickAttackL (Action5);
+- the implementation must let Gothic select/use the correct factual R/L Raise route rather than inventing or collapsing it to generic Action3.
