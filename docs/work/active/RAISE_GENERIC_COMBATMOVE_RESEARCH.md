@@ -1,6 +1,6 @@
-# Raise — Generic CombatMove Research and Design
+# Raise — Generic AddRaise Research and Implementation Freeze
 
-**Status:** ACTIVE — RESEARCH/DESIGN ONLY  
+**Status:** ACTIVE — DESIGN LOCKED / ONE QUICK STATIC PRECHECK BEFORE BOUNDED IMPLEMENTATION  
 **Date:** 2026-10-04  
 **Branch:** `development`  
 **Depends on:** Speed v2 CLOSED/PASS through EV-410; neutral Speed INI locked
@@ -194,17 +194,9 @@ Each candidate should use the same generic profile lookup and `*_AddRaise` polic
 
 The existing lower-level `sAICombatMoveInstr` hook remains a fallback only if Quick/Whirl state-hook coexistence or profile/action transport fails in runtime.
 
-Before production implementation, establish for the three state-prepend candidates:
+Normal already has historical state-prepend runtime proof, including New Balance coexistence. Whirl has a direct high-level state candidate. The only unresolved pre-implementation transport fact is Quick: determine whether `PS_Melee_QuickAttack` entry already exposes factual Action4/Action5, or whether it still enters as generic Action3 before Gothic selects R/L.
 
-```text
-Action
-PhaseName
-AniSpeedScale
-actor/profile identity
-async completion/resume behavior
-```
-
-Desired shape:
+Desired production shape:
 
 ```text
 enter original melee state
@@ -246,15 +238,39 @@ Native Power Raise remains outside the first custom-Raise scope. Its already-obs
 - Do not require New Balance.
 - Do not copy New Balance policy.
 - Do not implement broader Raise families before Normal/Quick/Whirl acceptance.
-- No build/deploy/runtime changes until a bounded implementation/probe task is frozen.
+- No build/deploy/runtime changes until the Quick factual-action precheck is closed and a bounded implementation task is frozen.
 
 ## Immediate next step
 
-Perform bounded static research for `PS_Melee_Attack`, `PS_Melee_QuickAttack`, and `PS_Melee_WhirlAttack`, then freeze a minimal implementation/probe that restores the proven prepend pattern generically through profiles.
+Perform **one bounded static precheck** for `PS_Melee_QuickAttack`:
 
-Runtime acceptance must include New Balance with the intended stack. Normal has historical coexistence evidence; Quick and Whirl still require direct coexistence proof.
+```text
+At the state-entry boundary intended for PREPEND_BREAK_BLOCK,
+is the factual Quick action already Action4/QuickAttackR or Action5/QuickAttackL?
 
-If Quick/Whirl state hooks conflict or cannot preserve the required factual action/profile semantics, fall back to the existing lower-level `sAICombatMoveInstr` boundary rather than redesigning the feature.
+YES
+-> freeze the generic production implementation for Normal / Quick / Whirl
+-> use the selected factual R/L action when requesting Quick Raise
+
+NO / still Action3
+-> identify the smallest existing factual-selection boundary inside the same Quick route
+-> do not invent R/L selection logic in G3AB
+-> if necessary, use the existing lower-level CombatMove boundary only for Quick
+```
+
+Do not repeat broad Raise architecture research. Everything else needed for the first implementation is already decided.
+
+After the Quick precheck, freeze one bounded production task:
+- generic profile-driven Normal/Quick/Whirl AddRaise;
+- no 2H-specific source branch;
+- shipping AddRaise keys Off by default;
+- 2H is only the first runtime fixture;
+- Work build prohibited unless explicitly authorized;
+- independent Normal Chat source review before local build/runtime testing.
+
+Runtime acceptance must include both native and intended New Balance stacks. Normal has historical coexistence evidence; Quick and Whirl still require direct coexistence proof.
+
+If Quick/Whirl state hooks conflict or cannot preserve the required factual action/profile semantics, fall back narrowly rather than redesigning the feature.
 
 
 ## First runtime acceptance sequence
