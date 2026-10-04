@@ -91,9 +91,10 @@ Completed Speed task:
 Raise design lock:
 
 ```text
-Raise key = <Attack>_Raise=On|Off
+Raise public keys = Normal_AddRaise / Quick_AddRaise / Whirl_AddRaise
 semantics = additive only
-Off/missing = native behavior untouched
+Off/missing = G3AB adds nothing; native behavior untouched
+no public native-Raise disable/replace controls
 first scope = Normal / Quick / Whirl
 no separate Raise speed control
 preferred research boundary = existing sAICombatMoveInstr hook
