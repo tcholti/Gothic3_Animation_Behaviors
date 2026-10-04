@@ -1,6 +1,6 @@
 # Speed Expanded Attack Scope and Grouped Profile Implementation
 
-**Status:** ACTIVE — ADR-0011 SOURCE REVIEW PASS; LOCAL BUILD / DEPLOYMENT / RUNTIME ACCEPTANCE PENDING
+**Status:** ACTIVE — ADR-0011 SOURCE + FINAL RUNTIME ACCEPTANCE PASS; RELEASE INI CLEANUP / FORMAL CLOSURE PENDING
 **Task class:** Bounded production source extension + runtime acceptance  
 **Branch:** `development`
 
@@ -176,9 +176,9 @@ Current ADR-0011 candidate:
 source commit = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c
 Normal Chat independent source review = PASS
 Work build = NOT ATTEMPTED — prohibited by frozen task
-current local Release build = PENDING
-current deployed/live SHA = NOT YET ESTABLISHED
-runtime acceptance = PENDING
+current local Release build = PASS
+current deployed/live SHA = D975BABFA8E5DCE3C4A49BC46D7A49D08379B7CE479C2DE143DE5458DDA5335E
+runtime acceptance = PASS EV-407–EV-410
 ```
 
 Do not reuse an older `Script_G3AnimationBehaviors.dll` for final acceptance.
@@ -371,6 +371,33 @@ Human Fist + creature + unconfigured fail-closed                   PASS EV-409
 
 The generic profile parser remains data-driven over `AnimationFamily + LeftAnimationToken + RightAnimationToken`; future genuinely distinct resolved Rapier-combination animation sets can therefore be represented by additional profiles without mod-name C++ branching, after their routes are runtime-verified/calibrated.
 
+
+## Final runtime acceptance closure — EV-410
+
+Final production runtime acceptance is complete.
+
+```text
+representative native action routing                              PASS EV-407
+Axe shared/separated resolved-profile identity                    PASS EV-407
+Rapier separation + mixed-loadout non-leakage                    PASS EV-408
+human Fist / creature profiles / unconfigured fail-closed        PASS EV-409
+Zombie family independence                                       PASS EV-410
+Zombie+Axe family+token composition                              PASS EV-410
+intended New Balance stack broad 1.00 / 0.40 sanity              PASS EV-410
+```
+
+No further broad Speed runtime testing or calibration is required absent contradictory evidence.
+
+The only remaining Speed responsibility is release-facing shipping INI cleanup/restoration:
+- restore final shipped gameplay defaults to the accepted `BaseSpeed=1.00` values;
+- keep all evidence IDs, ADR names, engineering equations and internal mechanism language out of the player-facing explanatory comments;
+- explain settings in simple non-programmer English suitable for a broad international Gothic 3 audience;
+- retain the exact machine-readable section/key names required by the implemented parser;
+- preserve the accepted 11 active profiles and calibrated reference values;
+- keep Zombie examples concise/commented unless deliberately promoted;
+- do not alter Speed mechanism/source behavior during this cleanup.
+
+After the cleaned shipping INI receives a bounded source/config review and is deployed/restored, close Speed formally and proceed to Raise.
 
 ## Protected boundaries
 
