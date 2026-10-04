@@ -169,20 +169,32 @@ Native inventory evidence currently includes:
 
 These counts prove naming patterns, not universal asset availability for every profile.
 
-## Preferred transport research question
+## Preferred transport direction
 
-Do **not** immediately restore the old direct `PS_Melee_*` production hooks.
+Historical runtime testing by the User established that the old 2H Normal Raise prepend **coexisted successfully with New Balance**. Speed compatibility failed in that older version, but the Raise prepend itself did not.
+
+Therefore the preferred first implementation path is now the **high-level state prepend mechanism**, not the lower-level generic CombatMove interception.
 
 Pinned New Balance source also hooks:
 - `PS_Melee_Attack`
 - `PS_Melee_QuickAttack`
 - `PS_Melee_WhirlAttack`
 
-SDK `mCFunctionHook` patches the function entry; safe multi-mod chaining at those exact state entries is not established.
+That shared-hook fact remains relevant, but the historical runtime fixture is stronger than a purely static concern for `PS_Melee_Attack`: the old G3AB Normal Raise state hook and New Balance were observed working together in game.
 
-G3AB already owns a generic `sAICombatMoveInstr` transport hook for collision lifecycle. Research whether the incoming Hit CombatMove request is a sufficient generic Raise insertion boundary.
+Production direction:
 
-For factual Normal, QuickR, QuickL and Whirl, establish at the existing CombatMove boundary:
+```text
+Normal -> PS_Melee_Attack prepend candidate
+Quick  -> PS_Melee_QuickAttack prepend candidate
+Whirl  -> PS_Melee_WhirlAttack prepend candidate
+```
+
+Each candidate should use the same generic profile lookup and `*_AddRaise` policy, request the factual action + `Raise` phase through `sAICombatMoveInstr`, wait via the existing `PREPEND_BREAK_BLOCK` semantics, then continue the untouched original state.
+
+The existing lower-level `sAICombatMoveInstr` hook remains a fallback only if Quick/Whirl state-hook coexistence or profile/action transport fails in runtime.
+
+Before production implementation, establish for the three state-prepend candidates:
 
 ```text
 Action
@@ -195,16 +207,17 @@ async completion/resume behavior
 Desired shape:
 
 ```text
-incoming matching Hit
--> existing resolved profile lookup
--> <Attack>_Raise == On?
-   no  -> pass original Hit unchanged
-   yes -> execute same factual action / Raise
-          using Gothic's own animation resolution
-          then resume/pass the original Hit exactly once
+enter original melee state
+-> resolve factual attack/profile
+-> <Attack>_AddRaise == On?
+   no  -> call untouched original state
+   yes -> PREPEND_BREAK_BLOCK:
+          request same factual attack / Raise through sAICombatMoveInstr
+          wait until Raise completes
+          then call untouched original state
 ```
 
-Any per-actor/SPU latch/state must be Raise-owned and generation-safe enough to prevent recursive reinsertion or duplicate Raise for the same pending Hit.
+Prefer this because the asynchronous sequencing is already proven and needs no new recursion latch. Introduce lower-level per-actor/SPU state only if the state-prepend route proves insufficient.
 
 ## Raise speed rule
 
@@ -237,8 +250,8 @@ Native Power Raise remains outside the first custom-Raise scope. Its already-obs
 
 ## Immediate next step
 
-Perform bounded static/diagnostic research around the existing `sAICombatMoveInstr` boundary for Normal, QuickR/L and Whirl.
+Perform bounded static research for `PS_Melee_Attack`, `PS_Melee_QuickAttack`, and `PS_Melee_WhirlAttack`, then freeze a minimal implementation/probe that restores the proven prepend pattern generically through profiles.
 
-If the boundary exposes the required factual action, Hit phase, effective speed scale and safe asynchronous continuation, freeze a minimal diagnostic/implementation task around that mechanism.
+Runtime acceptance must include New Balance with the intended stack. Normal has historical coexistence evidence; Quick and Whirl still require direct coexistence proof.
 
-If it does not, identify the smallest alternative transport boundary while preserving New Balance coexistence and the generic profile architecture.
+If Quick/Whirl state hooks conflict or cannot preserve the required factual action/profile semantics, fall back to the existing lower-level `sAICombatMoveInstr` boundary rather than redesigning the feature.
