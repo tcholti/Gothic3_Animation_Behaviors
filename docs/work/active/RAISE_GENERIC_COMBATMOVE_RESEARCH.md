@@ -37,15 +37,15 @@ Raise is per attack inside that profile.
 User-facing syntax:
 
 ```ini
-Normal_Raise=On
-Quick_Raise=On
-Whirl_Raise=On
+Normal_AddRaise=On
+Quick_AddRaise=On
+Whirl_AddRaise=On
 ```
 
 General syntax if later expanded:
 
 ```text
-<Attack>_Raise=On|Off
+<Attack>_AddRaise=On|Off
 ```
 
 Semantics are additive only:
@@ -58,13 +58,13 @@ On
 = G3AB adds the matching Gothic Raise phase before that attack's Hit
 ```
 
-`_Raise=Off` must never mean "remove/suppress Gothic's native Raise".
+`_AddRaise=Off` means G3AB adds nothing. G3AB does not provide a player-facing control for disabling or replacing Raise phases that Gothic already uses natively.
 
-All shipped Raise settings default to `Off`.
+All shipped `*_AddRaise` settings default to `Off`.
 
 Player-facing explanation should be simple:
 
-> Normal and Quick attacks do not normally use a Raise phase in Gothic 3, and most original animations do not include one. Turn Raise on only if the matching Raise animation exists, for example because an animation mod adds it or you created it yourself. Otherwise leave it Off.
+> Normal and Quick attacks do not normally execute a Raise phase in Gothic 3. Matching Raise animation files exist for some native animation sets but not necessarily for every set you may use. Turn AddRaise on only when the correct Raise animation exists for that exact animation set, for example because an animation mod provides it or you created it yourself. Otherwise leave it Off.
 
 Whirl follows the same opt-in safety rule.
 
@@ -95,15 +95,49 @@ Rationale:
 - Finishing is execution-oriented and remains outside this precision-combat feature;
 - broader expansion is a later product decision after the generic mechanism is proven.
 
-The naming deliberately scales to future `Power_Raise`, `Hack_Raise`, etc. if later evidence and product decisions support them.
+Do not expose `Power_AddRaise`, `Hack_AddRaise`, `SimpleWhirl_AddRaise`, or similar native-Raise controls merely for symmetry. If keeping a generic internal per-attack flag makes the implementation simpler, that is acceptable, but the supported player-facing INI surface remains only the attacks for which G3AB deliberately adds a missing/unused Raise.
 
 ## Reuse the existing profile architecture
 
 Do not add weapon-specific policy branches.
 
-The current grouped profile model already has per-attack Raise storage under the dormant internal name `RaiseOverride`. During Raise implementation, migrate the player-facing key/parser naming to `<Attack>_Raise` while preserving the generic per-attack/profile structure.
+The current grouped profile model already has per-attack Raise storage under the dormant internal name `RaiseOverride`. During Raise implementation, migrate the player-facing key/parser naming to `<Attack>_AddRaise` while preserving the generic per-attack/profile structure. Internal storage may remain generic if that is cleaner, but no work is required to create a user-facing switch for attacks that already have native Raise.
 
 Adding a new weapon/animation set should remain a profile/INI operation when Gothic resolves a distinct animation family/token combination. It must not require a C++ branch such as "if 1H", "if 2H", "if Axe", "if Rapier", etc.
+
+## Release README requirement
+
+When Raise ships, the public README must explain how to name matching Raise animation files.
+
+Use real Gothic naming examples and distinguish the factual attack variant:
+
+```text
+Normal:
+..._Attack_Hit_...
+..._Attack_Raise_...
+
+Quick right:
+..._QuickAttackR_Hit_...
+..._QuickAttackR_Raise_...
+
+Quick left:
+..._QuickAttackL_Hit_...
+..._QuickAttackL_Raise_...
+
+Whirl:
+..._WhirlAttack_Hit_...
+..._WhirlAttack_Raise_...
+```
+
+Do not instruct authors to blindly replace only `Hit` with `Raise`. Native evidence shows Raise often preserves the source pose while Hit performs the meaningful pose transition, and the destination-pose / movement suffix can therefore differ. The README should show matched real examples and explain that the authored Raise file must follow Gothic's expected Raise request for that exact animation route.
+
+Native inventory evidence currently includes:
+- 64 `_Attack_Raise_` names;
+- 12 `_QuickAttackR_Raise_` names;
+- 16 `_QuickAttackL_Raise_` names;
+- 6 `_WhirlAttack_Raise_` names.
+
+These counts prove naming patterns, not universal asset availability for every profile.
 
 ## Preferred transport research question
 
