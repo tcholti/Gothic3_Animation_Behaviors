@@ -71,7 +71,7 @@ Each supported attack may contain:
 ```text
 <Attack>_ReferenceHitBaseSpeed
 <Attack>_BaseSpeed
-<Attack>_RaiseOverride
+<Attack>_Raise
 ```
 
 Quick runtime variants remain factual Action4/Action5 internally but share the user-facing `Quick` settings. Generic Action3 is a selector rather than the proven playback-speed action. Sprint remains factual Action9 in actor state, but its proven shared Power speed route supplies Action2 to the speed owner; under ADR-0009 Sprint therefore inherits the `Power` timing settings and has no separate Speed prefix. EV-401 clarifies that profile inheritance does **not** require equal live Power/Sprint results: in one same-run BlackGoblin control ordinary Power Hit was `1.0` while factual Sprint Hit was `1.5`, despite both passing Action2. The Power profile supplies the authoring base; the live compatible result may still contain Sprint-context effects that C/B composition must preserve.
@@ -80,7 +80,7 @@ No P0/P1/P2/P3 pose split belongs in the user-facing profile identity.
 
 Raise/speed feature policy must not grow weapon-specific C++ branches such as `if 1H`, `if 2H`, `if Axe`, or `if Staff` merely to select configured behavior. Weapon/use-type selection belongs to profile data plus normalized runtime facts. A modded item participates through the runtime UseType / animation category and animation family it exposes; adding another configured profile should not require a new C++ weapon branch.
 
-The generic INI schema is now implemented. `RaiseOverride` is parsed/stored across the grouped attack settings, but this is configuration readiness only: Raise behavior remains paused until Speed closes and later Raise research/acceptance determines exactly which attack families should use it in production.
+The generic INI schema is now implemented. `<Attack>_Raise` is the locked player-facing syntax. The current source still stores the dormant field internally as `RaiseOverride`; Raise implementation will migrate the parser/key name while preserving the generic per-attack profile model. Missing/Off means G3AB adds no Raise and native Gothic behavior is untouched.
 
 Architecture rationale: ADR-0005 + ADR-0006 + ADR-0009.
 
@@ -102,9 +102,27 @@ matching configured profile/attack
 -> after Raise completes, continue the untouched original attack path
 ```
 
-The existing 2H Normal prototype proves the basic “ask Gothic for Raise” mechanism; its player + None/2H gate is fixture scope, not final architecture. `RaiseOverride` fields already exist in the grouped configuration schema, but Raise behavior is deliberately **not** the current feature. Under ADR-0006 it remains paused until expanded Speed is calibrated, runtime-accepted and closed.
+The existing 2H Normal prototype proves the basic “ask Gothic for Raise” mechanism; its player + None/2H gate is fixture scope, not final architecture. Speed is now CLOSED/PASS, so Raise is the active feature. Initial production scope is Normal, Quick and Whirl only. `<Attack>_Raise=On` means add a Gothic-resolved Raise before Hit; missing/Off never removes native Raise.
 
 The first future Raise-speed question should remain evidence-driven: test whether an inserted Raise naturally follows the configured attack `BaseSpeed` before adding any separate Raise-speed setting or hook.
+
+### Initial Raise production scope
+
+The first implementation/acceptance scope is:
+
+```text
+Normal
+Quick
+Whirl
+```
+
+Power, Pierce, Hack, SimpleWhirl, Finishing and Sprint are not part of the first custom-Raise implementation. The generic key name is intentionally extensible if later evidence supports broader attack families.
+
+Player-facing guidance: Normal and Quick do not normally use Raise in Gothic 3 and most original assets do not contain those Raise animations. Enable Raise only when the matching animation exists; otherwise leave it Off.
+
+Direct production hooks on `PS_Melee_Attack`, `PS_Melee_QuickAttack` and `PS_Melee_WhirlAttack` are not yet frozen because pinned New Balance also hooks those state entries. Current research prefers the already-owned generic `sAICombatMoveInstr` boundary if it can provide action/phase/speed/continuation safely.
+
+No separate Raise-speed control is authorized. First test whether the inserted Raise naturally reuses/inherits the attack's effective timing through CombatMove.
 
 ### Speed
 
