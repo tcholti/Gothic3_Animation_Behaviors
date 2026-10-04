@@ -188,11 +188,34 @@ EV-413 remains the factual first non-coupling observation. EV-414 supersedes onl
 
 ADR-0004 and ADR-0008 require a coherent one-`BaseSpeed` authoring model. Therefore this result is an integration contradiction that must be corrected, not a reason to accept native Raise timing.
 
-Active causal owner:
+Static causal research is CLOSED/PASS at EV-415 and archived under `docs/archive/investigations/RAISE_SPEED_PHASE_CONSISTENCY_RESEARCH.md`.
 
-`docs/work/active/RAISE_SPEED_PHASE_CONSISTENCY_RESEARCH.md`
+Active correction owner:
 
-Do not add `RaiseSpeed`. First establish the exact route map and smallest correction that applies the attack's authoring ratio while preserving live/native/New Balance phase-specific Raise relationships and avoiding double-scaling Hack/Pierce.
+`docs/work/active/RAISE_SPEED_PHASE_CONSISTENCY_IMPLEMENTATION.md`
+
+Frozen correction:
+
+```text
+custom Normal / factual Quick R/L / Whirl AddRaise
+-> inserted Raise copies the exact already-composed incoming Hit AniSpeedScale
+
+native Power Raise
+-> preserve the live Gothic/New Balance Raise result
+-> apply the configured Power authoring ratio on top
+```
+
+For the established ordinary Hero Power example:
+
+```text
+native/live Raise = 1.5 * M
+Power ratio       = Power_BaseSpeed / Power_ReferenceHitBaseSpeed
+configured Raise  = (1.5 * M) * Power ratio
+```
+
+The `1.5` relationship is therefore preserved rather than replaced by Hit speed. The same rule preserves any other factual live Power Raise result (for example an Orc-specific compatible value) and its contextual modifier chain.
+
+Do not add `RaiseSpeed`, flatten native Power Raise to Hit, or double-scale Hack/Pierce.
 
 Historical Gate-D question:
 
