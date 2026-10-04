@@ -14,7 +14,7 @@
 ```text
 collision production integration = CLOSED/PASS through EV-390
 configured Speed + New Balance multiplier preservation = PASS EV-395
-expanded Speed source = ADR-0011 FINAL SOURCE CANDIDATE IMPLEMENTED / NORMAL CHAT SOURCE REVIEW PASS / LOCAL BUILD PENDING
+expanded Speed source = ADR-0011 FINAL SOURCE CANDIDATE IMPLEMENTED / SOURCE REVIEW PASS / FINAL RUNTIME ACCEPTANCE PASS EV-407–EV-410
 Sprint Speed authoring = inherits Power profile on proven shared route (ADR-0009)
 repository health/authority audit = CLOSED / NORMAL CHAT REVIEW PASS
 reviewed maintenance = commit 4090298a409172dcee2bc5e6dc1d267b1e22f75e / knowledge-state CI PASS
@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = local Release build -> POP-03 deployment identity -> final Speed runtime acceptance
+CURRENT = release-facing shipping INI cleanup/restoration -> formal Speed closure
 Raise behavior = PAUSED until Speed closes
 main = FROZEN
 ```
@@ -55,10 +55,11 @@ Use `docs/work/active/SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTA
 
 ```text
 candidate ba3e76549eff5c7fdfc2d165ec976e640ef9c24c source review = PASS
--> local Release build
--> POP-03 exact built/live deployment identity
--> focused native + human Fist + Axe/Rapier/Zombie/Zombie+Axe profile-selection acceptance
--> intended New Balance compatibility sanity
+-> local Release build PASS
+-> POP-03 exact built/live deployment identity PASS / SHA D975BABF...5335E
+-> native + human Fist + Axe/Rapier/Zombie/Zombie+Axe acceptance PASS EV-407–EV-410
+-> intended New Balance compatibility sanity PASS EV-410
+-> clean/restore player-facing shipping INI
 -> close Speed completely
 -> Raise afterward
 ```
