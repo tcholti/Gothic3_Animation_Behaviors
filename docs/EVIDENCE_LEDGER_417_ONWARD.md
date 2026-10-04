@@ -168,3 +168,46 @@ Independent disposition:
 - **PASS — SOURCE READY FOR USER-LOCAL BUILD / DEPLOY / FOCUSED RUNTIME ACCEPTANCE.**
 
 Runtime remains required for both the EV-415 Raise phase-speed correction and the EV-418 native + pinned AttackCollision Hack compatibility route.
+
+
+### EV-420 — Current production native build/deploy + Raise/Hack runtime PASS
+
+Fixture:
+- production source: `41ed80c6420e5236d13fc037cb5923b946cb8ccc`;
+- documentation/head at local synchronization: `467f5656b7dbaebb81b93c52ae0499da94b9dc41`;
+- User-local Release build of `Script_G3AnimationBehaviors`;
+- native-only runtime fixture: `Script_NewBalance.dll` and `Script_AttackCollision.dll` absent;
+- temporary user-facing speed contrast: tested authored attack speeds at `0.1` and `1.0`.
+
+Build/deployment:
+```text
+Built SHA256 = 3E7BCDBE1EBFC92B6E5FCFD7507A1E6A36C9DB8849847C29AD15288C01C2928D
+Live  SHA256 = 3E7BCDBE1EBFC92B6E5FCFD7507A1E6A36C9DB8849847C29AD15288C01C2928D
+live selected G3AB product = Script_G3AnimationBehaviors.dll
+length = 462336 bytes
+POP-03 production deployment = PASS
+```
+
+User visual/runtime observations:
+- 2H Normal: tested at 0.1 and 1.0; Raise followed authored speed together with Hit;
+- 2H Quick: tested at 0.1 and 1.0; Raise followed authored speed together with Hit;
+- 2H Power: tested at 0.1 and 1.0; Raise followed authored speed together with Hit;
+- 2H Whirl: tested at 0.1 and 1.0; Raise followed authored speed together with Hit;
+- 2H Hack: tested at 0.1 and 1.0; Raise followed authored speed together with Hit;
+- 1H Power: tested at 0.1 and 1.0; Raise followed authored speed together with Hit;
+- 1H Pierce: tested at 0.1 and 1.0; Raise followed authored speed together with Hit.
+
+Interpretation:
+- EV-415 custom AddRaise phase-speed correction is runtime-positive on tested 2H Normal/Quick/Whirl;
+- native Power phase-speed coupling is runtime-positive on tested 2H and 1H routes;
+- Pierce remains a positive whole-attack control;
+- EV-418 route-neutral Hack adapter is runtime-positive on the native 2H Hack route across a strong 0.1-versus-1.0 contrast;
+- no evidence of ignored Hack authoring or obvious double composition was reported on the native route.
+
+Limit:
+- the observation establishes that Power Raise changes with authored Power speed; this batch does not independently quantify whether the native/live Raise-vs-Hit relative phase ratio (for example the established 1.5*M vs 1.0*M relationship) remained numerically distinct;
+- pinned New Balance + AttackCollision Hack compatibility remains untested on this source and is the next required gate.
+
+Disposition:
+- **PASS — NATIVE BUILD/DEPLOY + FOCUSED PHASE-SPEED/HACK RUNTIME ACCEPTANCE.**
+- **NEXT — intended New Balance + AttackCollision Hack compatibility fixture, then remaining modifier/Finishing controls as needed.**

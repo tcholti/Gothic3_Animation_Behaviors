@@ -60,7 +60,7 @@ Do not build a diagnostic prototype as a substitute for the release product.
 
 If build fails, stop at the build error. Do not begin runtime testing.
 
-## Gate 0B — current correction build and deployment — PENDING
+## Gate 0B — current correction build and deployment — PASS (EV-420)
 
 Current source candidate:
 
@@ -77,6 +77,15 @@ sync development
 -> verify built/live SHA256 match
 -> verify the intended project DLL set
 -> only then launch Gothic 3
+```
+
+Verified current deployment:
+
+```text
+Built SHA256 = 3E7BCDBE1EBFC92B6E5FCFD7507A1E6A36C9DB8849847C29AD15288C01C2928D
+Live  SHA256 = 3E7BCDBE1EBFC92B6E5FCFD7507A1E6A36C9DB8849847C29AD15288C01C2928D
+selected project product = Script_G3AnimationBehaviors.dll
+length = 462336 bytes
 ```
 
 The prior DLL/hash in Gate 0 is historical and must not be reused as proof for this candidate. Source commit `aab0189...` is also superseded as the build target by `41ed80c...`.
@@ -277,21 +286,27 @@ configured Raise = (1.5 * M) * R
 configured Hit   = (1.0 * M) * R
 ```
 
-### Gate D runtime correction acceptance — PENDING
+### Gate D runtime correction acceptance — NATIVE PASS / INTENDED STACK PENDING (EV-420)
 
-After Gate 0B:
+EV-420 native-only runtime result:
 
-1. **Custom Normal / Quick R/L / Whirl:** use an obvious slow/contrast BaseSpeed and verify Raise now changes with Hit rather than remaining at the old fixed pace.
-2. **Native Power:** verify Raise changes with authored Power speed while retaining its native/live relative phase behavior; do not expect Raise to flatten to Hit.
-3. **Pierce positive control:** verify it remains correct and is not double-scaled.
-4. **Hack is now a dedicated EV-418 compatibility gate below; do not treat its old EV-414 observation as sufficient for the current transport.**
-5. Repeat the focused Raise set without and with the intended New Balance stack.
-6. Stop on any wrong-side Quick, repeated/skipped Raise, stuck continuation, modifier loss, or collision contradiction.
+```text
+2H Normal = PASS at BaseSpeed 0.1 and 1.0
+2H Quick  = PASS at BaseSpeed 0.1 and 1.0
+2H Whirl  = PASS at BaseSpeed 0.1 and 1.0
+2H Power  = phase-speed coupling PASS at 0.1 and 1.0
+1H Power  = phase-speed coupling PASS at 0.1 and 1.0
+1H Pierce = positive whole-attack control PASS at 0.1 and 1.0
+```
 
-A broad assembled regression waits until this correction passes.
+The User observed Raise following the authored speed together with Hit in every tested case. This closes the native coupling contradiction exposed by EV-413/EV-414 for the tested routes.
+
+Power caveat: this visual batch proves Raise responds to the authored Power speed; it does not independently quantify the established native/live Raise-vs-Hit relative ratio. Static architecture continues to preserve that ratio by composing the live Raise value rather than replacing it with Hit speed.
+
+The intended New Balance-stack repetition remains pending.
 
 
-## Gate D2 — native + AttackCollision Hack compatibility — PENDING
+## Gate D2 — native + AttackCollision Hack compatibility — NATIVE PASS / INTENDED STACK PENDING (EV-420)
 
 EV-417 found that pinned AttackCollision replaces `_AI_HackAttack` and bypassed the former three native Hack caller hooks. EV-418 froze, and EV-419 source-accepted, the route-neutral Action14 CombatMove adapter.
 
@@ -305,8 +320,8 @@ Do not commit the test value.
 
 Run both exact routes:
 
-1. **Native route:** physically remove the third-party DLLs excluded by the fixture, then execute complete Hack Raise -> Hit -> Recover. Compare a neutral/unconfigured control against `0.40`; all three visible phases should follow the authored ratio once.
-2. **Intended compatibility route:** restore the normal New Balance + AttackCollision stack and repeat the same Hack control. AttackCollision's replacement Hack must now follow the same configured ratio rather than bypassing G3AB.
+1. **Native route — PASS EV-420:** with compatibility DLLs absent, 2H Hack was tested at authored speeds 0.1 and 1.0; Raise followed authored speed together with Hit. No ignored authoring or obvious double-slowdown was reported.
+2. **Intended compatibility route — PENDING:** restore the normal New Balance + AttackCollision stack and repeat the same Hack control. AttackCollision's replacement Hack must now follow the same configured ratio rather than bypassing G3AB.
 3. Under the intended stack, exercise one already-understood New Balance slowdown/context condition and verify its relative effect still survives the configured Hack authoring.
 4. Verify factual Finishing remains native-timed, including a shared Hack/Finishing asset fixture if convenient.
 5. Include one interrupted Hack followed by another attack and one AddRaise-enabled Normal/Quick/Whirl -> Hack transition. No stale continuation or repeated scaling may appear.

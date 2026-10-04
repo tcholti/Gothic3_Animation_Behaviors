@@ -12,45 +12,45 @@ Collision CLOSED/PASS and protected. `main` frozen.
 ## Current state
 
 ```text
-Speed core = CLOSED/PASS through EV-410
-Raise phase-speed source = PASS EV-416
-AttackCollision Hack gap = EV-417
-route-neutral Hack design = PASS EV-418
 production source = 41ed80c6420e5236d13fc037cb5923b946cb8ccc
-independent integrated source review = PASS EV-419
-BLOCKER/MAJOR/MINOR = 0
-build/deploy/runtime = PENDING
+source review = PASS EV-419
+current Release built/live SHA256 =
+3E7BCDBE1EBFC92B6E5FCFD7507A1E6A36C9DB8849847C29AD15288C01C2928D
+native focused runtime = PASS EV-420
+intended New Balance + AttackCollision Hack route = PENDING
 ```
 
-Current production architecture:
+EV-420 native-only fixture had New Balance/AttackCollision absent. Tested authored speeds 0.1 and 1.0:
+
 ```text
-most Speed routes -> caller-side live-result C/B composition
-Power Raise -> +0x47D51 live Raise result * Power C/B
-Hack Action14 Raise/Hit/Recover -> shared CombatMove request adapter
-custom Normal/Quick/Whirl Raise -> exact composed Hit AniSpeedScale
+2H Normal Raise+Hit = PASS
+2H Quick Raise+Hit = PASS
+2H Power Raise follows authored speed = PASS
+2H Whirl Raise+Hit = PASS
+2H Hack Raise/Hit coupling = PASS
+1H Power Raise follows authored speed = PASS
+1H Pierce whole-attack control = PASS
 ```
 
-Hack's former `+0x42FF4/+0x431B4/+0x432EB` G3AB hooks are removed. Live Gothic/New Balance speed ownership remains untouched. Pinned AttackCollision and native Hack converge on the same request adapter. Factual Finishing remains excluded.
-
-Collision wrapper/modules/guard and AttackRaise are unchanged.
+Power note: this batch proves authored-speed coupling, not an independent numerical measurement of the preserved live Raise-vs-Hit phase ratio.
 
 ## Immediate continuation
 
 Use:
 `docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md`
 
-Next:
+Next fixture:
 ```text
-sync development
--> local Release build Script_G3AnimationBehaviors
--> POP-03 deploy exact DLL + built/live SHA256
--> verify intended DLL set
--> focused Raise phase-speed runtime acceptance
--> native Hack C=0.40 control
--> intended New Balance + AttackCollision Hack C=0.40 control
--> Finishing + modifier-preservation controls
+restore intended Script_NewBalance.dll + Script_AttackCollision.dll
+-> keep current G3AB production DLL/hash
+-> 2H Hack strong contrast (0.1 vs 1.0 is already convenient)
+-> verify AttackCollision Hack now follows configured BaseSpeed
+-> verify no obvious double scaling
+-> one New Balance modifier/slowdown control
+-> factual Finishing control
+-> one interrupted Hack / AddRaise-to-Hack transition if convenient
 ```
 
-Stop on build/hash/load-set uncertainty, crash, double-scaled Hack, ignored configured Hack under AttackCollision, Finishing timing change, Raise/Hit/Recover contradiction, continuation leak, or Collision contradiction.
+Stop on ignored Hack authoring, extreme double-slowdown, Finishing timing change, lost New Balance relative modifier, continuation leak, crash or Collision contradiction.
 
-Do not reopen Collision, add a +0x42A0 entry hook, hook AttackCollision directly, or add further Speed state absent contradictory runtime evidence.
+No new Work task is needed unless runtime produces contradictory evidence.
