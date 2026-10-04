@@ -1104,3 +1104,111 @@ Disposition:
 - **EV-413 FACTUAL OBSERVATION RETAINED; EV-413 PRODUCT-CLOSURE INTERPRETATION SUPERSEDED.**
 - **DO NOT CLOSE RAISE OR MOVE TO ASSEMBLED REGRESSION YET.**
 - **NEXT — BOUNDED RAISE/SPEED PHASE-CONSISTENCY RESEARCH, THEN THE SMALLEST EVIDENCE-BACKED CORRECTION.**
+
+
+### EV-415 — Raise/Speed phase-consistency static causal closure
+
+Question:
+- explain EV-414's split between already-coupled Hack/Pierce Raise and non-coupled custom Normal/Quick/Whirl + native Power Raise;
+- freeze the smallest production correction without adding a second user-facing Raise speed control or duplicating New Balance policy.
+
+Established native/data-flow facts:
+
+1. **CombatMove speed is the actual playback-scale transport.**
+   - `sAICombatMoveInstr_Args::AniSpeedScale` is stored into the active SPU by Game `sAICombatMoveStart` at `Game+0x16B422..+0x16B42E`.
+   - later motion timing uses that scale at `Game+0x16B57B`.
+   - therefore custom AddRaise's hard-coded `1.0f` is a factual timing input.
+
+2. **The original Hit CombatMove already carries the fully composed effective Hit speed.**
+   - representative Normal `Script_Game+0x383F0` calls the live `GetAnimationSpeedModifier(Action1, Hit)`, stores the returned float, then writes that exact value into the CombatMove request before `sAICombatMoveInstr`;
+   - the production caller-side G3AB Speed hook composes the live return before this request is built;
+   - therefore the request arriving at the sole G3AB CombatMove hook already contains the final configured/compatible Hit scale, including the preserved live multiplier context.
+
+3. **Configured-attack phase caller map explains the runtime split.**
+   - Normal: Hit caller only in the configured route; custom Raise is G3AB-added.
+   - Quick: factual Action4/5 Hit callers only; custom Raise is G3AB-added.
+   - Whirl: Action10 Hit caller `+0x4DF1F`; custom Raise is G3AB-added.
+   - Power: distinct Action2 Raise caller `+0x47D51` and Hit caller `+0x47F6C`.
+   - Pierce: configured Action11 callers are Hit-phase calls; no separate configured Raise speed caller was found.
+   - Hack: configured Action14 callers are Hit-phase calls; no separate configured Raise speed caller was found.
+   - SimpleWhirl: configured Action6 route is Hit-only; no factual Raise correction is established/required.
+   This matches EV-414: Hack/Pierce already carry the composed attack speed through their native state, while Power's independent Raise query bypasses the current Hit-only composition.
+
+4. **Pinned New Balance confirms Power's phase-specific live policy.**
+   - ordinary Hero Power Raise returns `1.5 * M`;
+   - Orc Power Raise can return `1.3 * M`;
+   - Hit follows the Power/loadout path (commonly `1.0 * M`, dual-1H `0.9 * M`, etc.).
+   - the Power Raise fix must therefore transform the live Raise result by the attack authoring ratio, not replace it with the Hit value.
+
+5. **Do not call the live speed owner an extra time for custom AddRaise.**
+   - New Balance's speed hook contains contextual policy and can have side effects (for example MonsterRage timestamp adjustment);
+   - a second synthetic call merely to obtain a Raise speed could double those effects;
+   - using the already-composed factual Hit request avoids duplicated compatible-owner execution.
+
+6. **The existing Quick continuation mechanism is the proven low-level sequencing model.**
+   - it stores the untouched factual Hit request;
+   - services the inserted Raise until complete;
+   - then starts exactly that stored Hit;
+   - fails closed on FullStop/state replacement/request-identity change.
+   - Normal and Whirl native states likewise build their factual Hit speed before issuing `sAICombatMoveInstr`, so the same boundary exposes both profile identity and the final Hit speed needed by custom Raise.
+
+Frozen production correction:
+
+### A. Custom AddRaise — Normal / Quick / Whirl
+
+Move all three supported custom AddRaise families to the already-owned `sAICombatMoveInstr` transport at factual Hit request time.
+
+For a matching profile with `<Attack>_AddRaise=On`:
+
+```text
+incoming factual Hit request
+-> preserve exact original Hit request
+-> request same factual action / phase Raise
+-> Raise.AniSpeedScale = incoming Hit.AniSpeedScale
+-> service Raise continuation
+-> service exact stored Hit request
+```
+
+This intentionally defines the **G3AB-added** phase under the same effective attack speed as its authored Hit. There is no separately executed native Raise base relationship to preserve for these opt-in phases.
+
+Remove the now-redundant high-level `PS_Melee_Attack` and `PS_Melee_WhirlAttack` AddRaise hooks/wrappers. Do not add another CombatMove hook; the existing sole hook remains authoritative.
+
+Quick remains factual Action4/5 only. No Action3 selection/inference.
+
+### B. Native Power Raise
+
+Add exactly the proven Power Raise speed caller `Script_Game+0x47D51` to the existing caller-side Speed composition transport.
+
+For factual Power/Action2 + Raise:
+
+```text
+compatibleRaise = live Gothic/New Balance Raise result
+R = configured Power_BaseSpeed / Power_ReferenceHitBaseSpeed
+configuredRaise = compatibleRaise * R
+```
+
+Use the same resolved Power profile/Hit reference calibration as the Power attack. Unconfigured/missing profile/settings remain pass-through.
+
+This preserves native/live phase relationships (e.g. `1.5*M` Raise vs `1.0*M` Hit) while applying the user's authored attack-speed change to the whole attack.
+
+The same proven Action2 transport may be reached by factual Sprint/Action9 on the shared Power route; preserve ADR-0009 Power-profile inheritance and the live contextual result. Do not add Sprint keys or rewrite action identity.
+
+### C. Already-coupled routes
+
+Do not add Raise-specific composition for Hack or Pierce. Their EV-414 behavior is the positive control and must not be double-scaled.
+
+Do not add SimpleWhirl Raise behavior absent a factual Raise route.
+
+Ownership:
+- `AttackRaise`: generic custom AddRaise continuation/policy for Normal/Quick/Whirl.
+- `AttackSpeed`: compatible speed composition, extended narrowly to factual Power Raise.
+- `EngineBridge`: existing sole CombatMove hook plus exactly one additional tested-build Speed call-site hook at `+0x47D51`; transport only.
+- `BehaviorProfiles`: unchanged profile/config authority.
+
+No new user-facing keys. No `RaiseSpeed`. No `ReferenceRaiseBaseSpeed`. No copied New Balance multiplier table. No new entry-point speed hook.
+
+Disposition:
+- **PASS — EV-414 CAUSAL SPLIT EXPLAINED.**
+- **PASS — NO DIAGNOSTIC PROBE REQUIRED BEFORE PRODUCTION CORRECTION.**
+- **PRODUCTION CORRECTION FROZEN AS CUSTOM-ADDRAISE HIT-SCALE REUSE + NATIVE POWER RAISE CALLER COMPOSITION.**
+- **NEXT — BOUNDED WORK IMPLEMENTATION, THEN INDEPENDENT SOURCE REVIEW / LOCAL BUILD / FOCUSED RUNTIME ACCEPTANCE.**
