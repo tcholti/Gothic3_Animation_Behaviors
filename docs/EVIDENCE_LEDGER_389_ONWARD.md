@@ -862,3 +862,45 @@ Disposition:
 - **PASS — UNCONFIGURED WOLF FAIL-CLOSED/NATIVE CONTROL.**
 - **NEXT — ZOMBIE FAMILY INDEPENDENCE + ZOMBIE/AXE COMPOSITION, THEN NEW BALANCE COMPATIBILITY SANITY.**
 
+### EV-410 — Final Speed intended-stack runtime acceptance PASS
+
+Fixture:
+- production `Script_G3AnimationBehaviors.dll` from the accepted ADR-0011 candidate, exact built/live SHA256 established earlier in this acceptance campaign as `D975BABFA8E5DCE3C4A49BC46D7A49D08379B7CE479C2DE143DE5458DDA5335E`;
+- New Balance runtime stack installed by the User together with its companion DLLs;
+- all current separation animation mods used by the acceptance campaign installed for the final intended-stack sweep;
+- temporary live-INI acceptance values used only for runtime controls; repository shipping INI remained the durable source copy.
+
+Zombie family + composed token controls:
+- Zombie Separation was tested with Staff and Axe at both `BaseSpeed=1.00` and `BaseSpeed=0.40`; the animations followed the assigned Zombie-family profiles;
+- Axe Separation was toggled in combination with Zombie Separation and Zombie Axe behavior continued to follow the profile selected by the actually resolved animation tokens;
+- this closes the family dimension and family+token composition required by ADR-0011.
+
+Final intended-stack sweep:
+- with all tested Speed profiles set to `BaseSpeed=1.00`, the User tested the weapon/loadout families, human Fist, Zombies, Sabertooth and Troll under the installed New Balance stack; all configured routes behaved according to the INI;
+- the User then set the tested Speed profiles to `BaseSpeed=0.40` and repeated the same broad sweep; all configured routes again followed the assigned slowdown;
+- Wolf remained unchanged/native in both the `1.00` and `0.40` sweeps because no Wolf profile is configured.
+- Separation animation sets remained independently governed by their resolved profiles in the intended stack.
+
+Interpretation:
+- the final production profile mechanism works under the intended New Balance runtime stack rather than only in native-only fixtures;
+- authored `BaseSpeed` changes continue to take effect while the compatible-owner stack remains present;
+- resolved animation family + left/right token identity continues to select the intended profile across shared and separated animation sets;
+- unconfigured identities continue to fail closed to the live compatible result;
+- no further broad Speed calibration or profile-identity runtime testing is justified absent contradictory evidence.
+
+Scope:
+- this closes the **runtime acceptance** of Speed v2 / ADR-0011.
+- release-facing INI wording/organization cleanup and restoration of the final shipping values remain packaging/configuration work, not a mechanism or runtime-acceptance gate.
+- Raise may begin only after that final Speed packaging/configuration closure is completed and the Speed task is formally closed.
+
+Provenance:
+- diagnostics-free visual runtime observations reported by the User on 2026-10-04;
+- earlier acceptance stages: EV-407 through EV-409.
+
+Disposition:
+- **PASS — ZOMBIE FAMILY PROFILE INDEPENDENCE.**
+- **PASS — ZOMBIE + AXE FAMILY/TOKEN COMPOSITION.**
+- **PASS — INTENDED NEW BALANCE STACK COMPATIBILITY SANITY.**
+- **PASS — FINAL SPEED RUNTIME ACCEPTANCE COMPLETE.**
+- **NEXT — RESTORE/REFINE RELEASE-FACING SHIPPING INI, CLOSE SPEED FORMALLY, THEN BEGIN RAISE.**
+
