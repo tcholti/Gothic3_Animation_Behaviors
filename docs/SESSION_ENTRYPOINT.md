@@ -3,7 +3,7 @@
 **Purpose:** minimal durable current-state pointer. Repository startup begins at root `README.md` **Start Here**.  
 **Active development branch:** `development`  
 **Stable integration branch:** `main`  
-**Updated:** 2026-10-01
+**Updated:** 2026-10-04
 
 > After abrupt/max-context recovery, return to root `README.md` and apply POP-11 before trusting this pointer.
 
@@ -30,8 +30,8 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = Raise research/design; Speed is closed
-Raise behavior = ACTIVE RESEARCH/DESIGN — additive Normal_AddRaise / Quick_AddRaise / Whirl_AddRaise first scope
+CURRENT = Raise AddRaise design locked; one Quick factual-action static precheck remains before bounded implementation
+Raise behavior = ACTIVE — additive Normal_AddRaise / Quick_AddRaise / Whirl_AddRaise; shipping defaults Off
 main = FROZEN
 ```
 
@@ -54,10 +54,14 @@ The completed preservation-biased repository audit and Work result are archived 
 Use `docs/work/active/RAISE_GENERIC_COMBATMOVE_RESEARCH.md` as the owning current contract.
 
 ```text
-Speed source + runtime acceptance + neutral shipping INI = CLOSED/PASS
--> Raise Normal/Quick/Whirl research/design ACTIVE
--> prefer generic CombatMove transport; do not assume old PS_Melee_* entry hooks are compatible with New Balance
--> preserve Speed architecture and neutral default policy unless contradictory evidence appears
+Speed = CLOSED/PASS
+Raise design = LOCKED
+preferred transport = high-level PS_Melee_* PREPEND_BREAK_BLOCK state prepend
+historical 2H Normal + New Balance coexistence = observed PASS
+only pre-implementation question = factual Quick R/L availability at PS_Melee_QuickAttack entry
+-> close that static question
+-> freeze bounded generic Normal/Quick/Whirl AddRaise implementation
+-> first runtime fixture = Hero None+2H (assets already ready)
 ```
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
@@ -107,7 +111,7 @@ NO +0x42A0 entry hook
 NO rewrite of live compatible-owner EAX
 NO New Balance result used as native ReferenceHitBaseSpeed
 NO Sprint-specific Speed keys absent contradictory evidence
-Raise implementation requires a frozen bounded task after current CombatMove research
+Raise implementation requires a frozen bounded task after the single Quick factual-action precheck
 NO collision redesign absent contradictory evidence
 NO attack-displacement/climbing implementation yet
 NO promotion to main before agreed integrated checkpoint
