@@ -169,7 +169,35 @@ configuredRaise = compatibleRaise * R
 
 This relationship is active research, not yet a frozen transport for every route. Hack/Pierce already exhibit the intended whole-attack behavior and must not be double-scaled.
 
-No separate `RaiseSpeed` or `ReferenceRaiseBaseSpeed` key is authorized. The active bounded research owner is `docs/work/active/RAISE_SPEED_PHASE_CONSISTENCY_RESEARCH.md`; it must establish the exact route map and smallest correction before source implementation.
+No separate `RaiseSpeed` or `ReferenceRaiseBaseSpeed` key is authorized.
+
+EV-415 closes the phase-consistency causal research and freezes two distinct production mechanisms:
+
+```text
+G3AB-added Normal / factual Quick R/L / Whirl Raise
+-> intercept at the already-owned factual Hit CombatMove boundary
+-> exact incoming Hit request already carries configured compatible AniSpeedScale
+-> inserted Raise uses that exact AniSpeedScale
+-> service Raise, then exact stored Hit
+```
+
+This defines a custom opt-in Raise as part of the same authored attack timing. Do not make an extra synthetic `GetAnimationSpeedModifier` call to obtain its speed; compatible owners may contain contextual side effects, and the incoming Hit request already contains the composed result.
+
+For native Power Raise:
+
+```text
+live Power Raise caller +0x47D51
+-> call the live Gothic/New Balance owner exactly once
+-> compatibleRaise = native/mod Raise result
+-> R = Power_BaseSpeed / Power_ReferenceHitBaseSpeed
+-> configuredRaise = compatibleRaise * R
+```
+
+This preserves native/live phase relationships such as Hero Power Raise `1.5*M` versus Hit `1.0*M`, while applying the same authored attack-speed change across the attack. ADR-0009 Sprint/Power profile inheritance remains unchanged on the proven shared Action2 route.
+
+Hack and Pierce already propagate their configured attack speed through visible native Raise under EV-414; they receive no additional Raise-specific composition. SimpleWhirl receives no Raise work absent a factual Raise route.
+
+The high-level `PS_Melee_Attack` and `PS_Melee_WhirlAttack` AddRaise hooks are no longer part of the frozen final transport once the EV-415 correction is implemented; Normal/Quick/Whirl custom sequencing belongs at the one already-owned CombatMove boundary.
 
 ### Speed
 
