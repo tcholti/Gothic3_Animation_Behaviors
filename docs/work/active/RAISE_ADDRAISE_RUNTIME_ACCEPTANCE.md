@@ -165,7 +165,24 @@ C3 full Whirl
 
 Acceptance is the same as Gate B, plus no New Balance-specific hang, skipped attack, duplicated Raise, wrong Quick side, or obvious timing/continuation regression.
 
-## Gate D — Raise timing coupling question
+## Gate D — Raise timing coupling question — CLOSED (EV-413)
+
+Result:
+
+```text
+configured BaseSpeed -> Hit / visible Recover changes
+configured BaseSpeed -> inserted Raise does NOT change
+tested native Power Raise -> also remained independent
+same qualitative result with and without New Balance
+```
+
+Source correlation matches the observation: Speed composition is Hit-phase-only, while AddRaise requests use CombatMove with `AniSpeedScale=1.0f`.
+
+The short 0–10-frame Normal/Quick Raise assets suggest possible action-specific native Raise timing, but no exact Quick/Normal Raise numeric value is claimed.
+
+This factual gate does not authorize a `RaiseSpeed` setting. That is now a separate product/design decision.
+
+Historical fixture text follows:
 
 Only after B and C pass.
 
