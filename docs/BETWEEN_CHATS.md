@@ -23,8 +23,11 @@ build/deploy identity = PASS
 Gate A AddRaise-Off = PASS EV-411
 Gate B native AddRaise-On = PASS EV-412
 Gate C intended New Balance coexistence = PASS EV-412
-Gate D timing coupling = CLOSED EV-413; BaseSpeed does not affect inserted Raise timing
-first-scope AddRaise runtime behavior = accepted
+EV-413 = factual first non-coupling observation
+EV-414 = phase-speed consistency CONTRADICTION; EV-413 product-closure interpretation SUPERSEDED
+Hack/Pierce Raise follow authored BaseSpeed
+Normal/Quick/Whirl/Power Raise do not
+first-scope AddRaise sequencing = accepted; phase-speed integration = OPEN
 ```
 
 ## Continue here
@@ -33,9 +36,10 @@ Read:
 
 1. root `README.md` -> Start Here
 2. `docs/SESSION_ENTRYPOINT.md`
-3. `docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md`
+3. `docs/work/active/RAISE_SPEED_PHASE_CONSISTENCY_RESEARCH.md`
+4. `docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md`
 
-Immediate next step is a product decision, not another runtime test: retain native/live Raise timing as the first-scope behavior, or explicitly open separate bounded Raise-speed authoring research. No `RaiseSpeed` key is authorized yet.
+Immediate next step is bounded static/causal research. Preserve the accepted one-BaseSpeed authoring model, map why Hack/Pierce already propagate authored speed while custom Normal/Quick/Whirl and native Power do not, and freeze only the smallest correction. No `RaiseSpeed` key or production implementation is authorized yet.
 
 The first behavior fixture is Hero None+2H because matching Normal, Quick R/L and full Whirl Raise assets are already ready.
 
