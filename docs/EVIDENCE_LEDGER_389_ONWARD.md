@@ -980,3 +980,47 @@ Disposition:
 - **PASS — NORMAL / FACTUAL QUICK R/L / FULL WHIRL FIRST-SCOPE RUNTIME SEQUENCING.**
 - **KNOWN BLOCK-SKIP STATE-DESTRUCTION REMAINS SEPARATE ATTACKCONTINUATIONPROTECTION WORK; NOT A RAISE DEFECT.**
 - **NEXT — GATE D RAISE TIMING-COUPLING OBSERVATION.**
+
+
+### EV-413 — Raise timing coupling result: configured BaseSpeed does not author Raise speed
+
+Fixture:
+- accepted AddRaise production candidate and runtime setup from EV-412;
+- repeated tests with and without the intended New Balance stack;
+- Hero None+2H custom Raise assets used for Normal/Quick/Whirl;
+- additional short custom Normal and Quick Raise assets authored at approximately 0–10 frames to make phase-speed differences easier to perceive;
+- deliberate extreme controls set Normal, Power and Quick attack `BaseSpeed` values to `0.1`.
+
+Observed:
+- changing configured attack `BaseSpeed` did not visibly change the inserted Raise timing for Normal or Quick;
+- with `BaseSpeed=0.1`, Hit and visible Recover playback became extremely slow as expected, while Raise remained at its prior pace;
+- native Power showed the same separation in the tested fixture: Power Hit/Recover followed the `0.1` control while Power Raise remained at its prior pace;
+- the short Normal/Quick Raise assets suggested Quick Raise may be somewhat faster than Normal Raise, but this remains visual-only and no exact numeric Quick/Normal Raise reference value is claimed;
+- the same qualitative result held with and without New Balance.
+
+Static/source correlation:
+- production `AttackSpeed::ComposeCompatibleSpeed` only composes configured Speed when `phase == gEPhase_Hit`; non-Hit phases return the live compatible result unchanged;
+- inserted Normal, Quick and Whirl Raise requests are issued through CombatMove with `AniSpeedScale=1.0f`;
+- therefore current AddRaise does not intentionally map attack `BaseSpeed` into Raise timing;
+- earlier EV-396/EV-397 calibration established that Raise can have its own action/family-specific live value, for example sampled Hero Power Raise `1.5` while Power Hit was `1.0`.
+
+Interpretation:
+- Gate D is closed: inserted Raise does **not** naturally inherit authored attack `BaseSpeed`;
+- current custom Raise timing remains governed by the live/native Raise path plus the authored animation itself;
+- Quick-vs-Normal Raise may have distinct native/live timing, but exact values require dedicated measurement if a future feature needs them;
+- EV-399's Hack observation remains route-specific evidence: Hack's visible native Raise/Recover followed configured Hack playback in that fixture, but that behavior must not be generalized to custom AddRaise or native Power.
+
+Scope / product consequence:
+- this evidence does not by itself authorize a new `RaiseSpeed` key or new hook;
+- a future product decision may either keep Raise on native/live timing or deliberately open separate Raise-speed authoring research;
+- if separate Raise-speed authoring is ever chosen, its mechanism must preserve live/native/New Balance Raise modifiers rather than assuming Hit reference bases apply to Raise.
+
+Provenance:
+- diagnostics-free gameplay observations reported by the User on 2026-10-04;
+- production source correlation inspected after EV-412.
+
+Disposition:
+- **PASS — GATE D FACTUAL QUESTION CLOSED: BASESPEED DOES NOT COUPLE TO ADDRAISE TIMING.**
+- **NO EXACT QUICK/NORMAL RAISE BASE CLAIM FROM VISUAL TESTING.**
+- **NO RAISESPEED IMPLEMENTATION AUTHORIZED BY THIS EVIDENCE ALONE.**
+- **NEXT — PRODUCT DECISION: RETAIN NATIVE/LIVE RAISE TIMING OR OPEN A SEPARATE BOUNDED RAISE-SPEED AUTHORING DESIGN.**
