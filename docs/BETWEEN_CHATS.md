@@ -19,9 +19,10 @@ separation profile identity = PASS EV-406 / ADR-0011
 human Fist Normal/Power B=1.0; native Quick absent by design
 ADR-0011 production candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c
 Normal Chat independent source review = PASS
-current local Release build = PENDING
-current deployed/live SHA = NOT ESTABLISHED
-runtime acceptance = PENDING
+local Release build + POP-03 identity = PASS
+accepted production DLL SHA256 = D975BABFA8E5DCE3C4A49BC46D7A49D08379B7CE479C2DE143DE5458DDA5335E
+runtime acceptance = PASS EV-407–EV-410
+release-facing shipping INI cleanup/restoration = PENDING
 Raise = PAUSED until Speed closes
 ```
 
@@ -36,17 +37,11 @@ Completed source/calibration tasks are archived under `docs/archive/investigatio
 Immediate sequence:
 
 ```text
-Fetch/Pull development
--> build Script_G3AnimationBehaviors Release
--> POP-03 exact built/live SHA identity
--> deploy finalized active INI
--> native/shared + human Fist acceptance
--> Axe Separation profile acceptance
--> Rapier Separation profile acceptance
--> Zombie family profile acceptance
--> Zombie+Axe composed-profile acceptance
--> intended New Balance compatibility sanity
--> close Speed
+Fetch/Pull development before local repo work
+-> clean the shipping INI for player-facing release language while preserving machine-readable profiles/calibration
+-> bounded review of INI-only change
+-> restore/deploy cleaned final INI
+-> close Speed formally
 -> Raise afterward
 ```
 
