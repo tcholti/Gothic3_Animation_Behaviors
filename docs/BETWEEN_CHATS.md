@@ -40,7 +40,7 @@ Immediate sequence:
 ```text
 Fetch/Pull development before local repo work
 -> read docs/work/active/RAISE_GENERIC_COMBATMOVE_RESEARCH.md
--> research existing sAICombatMoveInstr boundary for Normal/Quick/Whirl
+-> bounded static review of PS_Melee_Attack / PS_Melee_QuickAttack / PS_Melee_WhirlAttack prepend candidates
 -> do not reopen Speed absent contradictory evidence
 ```
 
@@ -97,8 +97,10 @@ Off/missing = G3AB adds nothing; native behavior untouched
 no public native-Raise disable/replace controls
 first scope = Normal / Quick / Whirl
 no separate Raise speed control
-preferred research boundary = existing sAICombatMoveInstr hook
-old direct PS_Melee_* hooks are not yet accepted because New Balance hooks the same states
+preferred implementation path = PS_Melee_Attack / QuickAttack / WhirlAttack PREPEND_BREAK_BLOCK state prepend
+historical 2H Normal Raise + New Balance coexistence = observed PASS
+Quick/Whirl state coexistence = still requires runtime proof
+sAICombatMoveInstr interception = fallback if a state route fails
 ```
 
 Current Raise owner:
