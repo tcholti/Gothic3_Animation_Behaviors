@@ -286,7 +286,7 @@ configured Raise = (1.5 * M) * R
 configured Hit   = (1.0 * M) * R
 ```
 
-### Gate D runtime correction acceptance — NATIVE PASS / INTENDED STACK PENDING (EV-420)
+### Gate D runtime correction acceptance — PASS NATIVE + INTENDED STACK (EV-420–EV-421)
 
 EV-420 native-only runtime result:
 
@@ -303,10 +303,10 @@ The User observed Raise following the authored speed together with Hit in every 
 
 Power caveat: this visual batch proves Raise responds to the authored Power speed; it does not independently quantify the established native/live Raise-vs-Hit relative ratio. Static architecture continues to preserve that ratio by composing the live Raise value rather than replacing it with Hit speed.
 
-The intended New Balance-stack repetition remains pending.
+EV-421 clarifies that the User already repeated the same 0.1-versus-1.0 matrix with New Balance + AttackCollision enabled and observed the same positive result. The tested Raise phase-speed correction therefore passes both native and intended-stack fixtures.
 
 
-## Gate D2 — native + AttackCollision Hack compatibility — NATIVE PASS / INTENDED STACK PENDING (EV-420)
+## Gate D2 — native + AttackCollision Hack compatibility — PASS (EV-420–EV-421)
 
 EV-417 found that pinned AttackCollision replaces `_AI_HackAttack` and bypassed the former three native Hack caller hooks. EV-418 froze, and EV-419 source-accepted, the route-neutral Action14 CombatMove adapter.
 
@@ -321,7 +321,7 @@ Do not commit the test value.
 Run both exact routes:
 
 1. **Native route — PASS EV-420:** with compatibility DLLs absent, 2H Hack was tested at authored speeds 0.1 and 1.0; Raise followed authored speed together with Hit. No ignored authoring or obvious double-slowdown was reported.
-2. **Intended compatibility route — PENDING:** restore the normal New Balance + AttackCollision stack and repeat the same Hack control. AttackCollision's replacement Hack must now follow the same configured ratio rather than bypassing G3AB.
+2. **Intended compatibility route — PASS EV-421:** the User ran the same 2H Hack 0.1-versus-1.0 control with New Balance + AttackCollision enabled and reported the same positive result as native. AttackCollision no longer bypasses configured Hack speed on the tested fixture, and no obvious double-slowdown was reported.
 3. Under the intended stack, exercise one already-understood New Balance slowdown/context condition and verify its relative effect still survives the configured Hack authoring.
 4. Verify factual Finishing remains native-timed, including a shared Hack/Finishing asset fixture if convenient.
 5. Include one interrupted Hack followed by another attack and one AddRaise-enabled Normal/Quick/Whirl -> Hack transition. No stale continuation or repeated scaling may appear.

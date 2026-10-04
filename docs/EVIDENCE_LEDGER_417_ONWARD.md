@@ -211,3 +211,38 @@ Limit:
 Disposition:
 - **PASS — NATIVE BUILD/DEPLOY + FOCUSED PHASE-SPEED/HACK RUNTIME ACCEPTANCE.**
 - **NEXT — intended New Balance + AttackCollision Hack compatibility fixture, then remaining modifier/Finishing controls as needed.**
+
+
+### EV-421 — Intended New Balance + AttackCollision runtime matrix PASS
+
+Clarification to the EV-420 runtime batch:
+- the User ran the same focused 0.1-versus-1.0 authored-speed matrix twice:
+  1. native fixture without New Balance / AttackCollision;
+  2. intended fixture with New Balance + AttackCollision enabled;
+- the User reported the **same positive result in both fixtures**.
+
+Intended-stack observations:
+- 2H Normal: Raise followed authored speed together with Hit at 0.1 and 1.0;
+- 2H Quick: Raise followed authored speed together with Hit at 0.1 and 1.0;
+- 2H Power: Raise followed authored speed together with Hit at 0.1 and 1.0;
+- 2H Whirl: Raise followed authored speed together with Hit at 0.1 and 1.0;
+- 2H Hack: Raise followed authored speed together with Hit at 0.1 and 1.0;
+- 1H Power: Raise followed authored speed together with Hit at 0.1 and 1.0;
+- 1H Pierce: Raise followed authored speed together with Hit at 0.1 and 1.0.
+
+Interpretation:
+- EV-415 Raise phase-speed correction is runtime-positive both native and with the intended New Balance + AttackCollision stack on the tested routes;
+- the EV-417 AttackCollision Hack bypass is runtime-corrected: configured 2H Hack remains responsive under AttackCollision rather than ignoring G3AB authoring;
+- the strong 0.1-versus-1.0 contrast produced no reported obvious double-scaling behavior;
+- 1H Pierce remains a positive control under the intended stack.
+
+Limits:
+- this visual batch does not independently quantify Power's preserved native/live Raise-vs-Hit numerical ratio;
+- it does not yet isolate one specific New Balance contextual modifier on configured Hack;
+- it does not yet re-run a factual Finishing isolation control on this exact production source;
+- no exact third-party DLL hash was captured in this user clarification, so the evidence establishes the User's intended installed New Balance + AttackCollision stack rather than a binary-hash identity claim.
+
+Disposition:
+- **PASS — INTENDED-STACK RAISE PHASE-SPEED + ATTACKCOLLISION HACK COMPATIBILITY.**
+- **EV-417 MAJOR RUNTIME REGRESSION CLOSED on the tested 2H Hack fixture.**
+- **NEXT — small modifier-preservation / Finishing-isolation / interruption sanity controls before final acceptance closure.**

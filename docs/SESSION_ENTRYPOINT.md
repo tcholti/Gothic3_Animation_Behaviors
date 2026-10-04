@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = production source 41ed80c6420e5236d13fc037cb5923b946cb8ccc / EV-420 native build+focused runtime PASS / intended-stack Hack compatibility pending
+CURRENT = production source 41ed80c6420e5236d13fc037cb5923b946cb8ccc / EV-420 native PASS + EV-421 intended New Balance/AttackCollision PASS
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise behavior = ACTIVE — additive Normal_AddRaise / Quick_AddRaise / Whirl_AddRaise; shipping defaults Off
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
@@ -80,7 +80,7 @@ Pierce = protected already-coupled control; Hack = route-neutral Action14 Raise/
 active task = docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md
 EV-418 Hack compatibility source = 41ed80c6420e5236d13fc037cb5923b946cb8ccc / PASS EV-419
 runtime acceptance record = docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md
-next = restore intended New Balance + AttackCollision DLLs -> focused Hack compatibility runtime acceptance -> modifier/Finishing controls
+next = small New Balance modifier-preservation + factual Finishing isolation + interruption sanity controls -> final acceptance closure
 ```
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.

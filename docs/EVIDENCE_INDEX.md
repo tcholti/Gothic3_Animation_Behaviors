@@ -161,7 +161,9 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | Speed arithmetic underflow guard implementation | EV-419 |
 | current production native build/deploy + Raise/Hack runtime acceptance | EV-420 |
 | native route-neutral Hack CombatMove runtime control | EV-420 |
-| 2H Normal/Quick/Whirl + 1H/2H Power phase-speed runtime correction | EV-420 |
+| 2H Normal/Quick/Whirl + 1H/2H Power phase-speed runtime correction | EV-420–EV-421 |
+| intended New Balance + AttackCollision Raise/Hack runtime acceptance | EV-421 |
+| EV-417 AttackCollision Hack bypass runtime closure | EV-421 |
 | Speed v2 deep independent static audit | `archive/investigations/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT_RESULT.md` |
 | Speed v2 S-01 finite-output correction | `archive/investigations/SPEED_V2_S01_FINITE_OUTPUT_GUARD.md` |
 | generic Speed profile calibration implementation closure | `archive/investigations/SPEED_GENERIC_PROFILE_CALIBRATION_IMPLEMENTATION_RESULT.md` |
