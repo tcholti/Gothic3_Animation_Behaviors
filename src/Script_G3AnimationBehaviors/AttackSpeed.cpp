@@ -48,7 +48,9 @@ GEFloat ComposeCompatibleSpeed(
     gEPhase phase,
     GEFloat compatibleSpeed)
 {
-    if (phase != gEPhase_Hit || entity == None)
+    bool const isPowerRaise =
+        phase == gEPhase_Raise && action == gEAction_PowerAttack;
+    if ((phase != gEPhase_Hit && !isPowerRaise) || entity == None)
         return compatibleSpeed;
 
     BehaviorProfiles::AttackType attackType;
@@ -56,7 +58,9 @@ GEFloat ComposeCompatibleSpeed(
         return compatibleSpeed;
 
     BehaviorProfiles::ProfileKey key;
-    if (!BehaviorProfiles::TryBuildRuntimeKey(entity, action, phase, key))
+    // Raise shares the Power Hit profile; its distinct live phase speed stays
+    // in compatibleSpeed and receives the same authoring ratio below.
+    if (!BehaviorProfiles::TryBuildRuntimeKey(entity, action, gEPhase_Hit, key))
         return compatibleSpeed;
 
     BehaviorProfiles::Profile const *profile = BehaviorProfiles::Find(key);

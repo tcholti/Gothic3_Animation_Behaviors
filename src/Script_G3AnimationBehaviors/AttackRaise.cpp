@@ -10,9 +10,25 @@ namespace
 {
 using CombatMoveArgs = gCScriptProcessingUnit::sAICombatMoveInstr_Args;
 
-bool ShouldAddRaise(Entity const &actor, gEAction action,
-                    BehaviorProfiles::AttackType attackType)
+bool ShouldAddRaise(Entity const &actor, gEAction action)
 {
+    BehaviorProfiles::AttackType attackType;
+    switch (action)
+    {
+        case gEAction_Attack:
+            attackType = BehaviorProfiles::AttackType::Normal;
+            break;
+        case gEAction_QuickAttackR:
+        case gEAction_QuickAttackL:
+            attackType = BehaviorProfiles::AttackType::Quick;
+            break;
+        case gEAction_WhirlAttack:
+            attackType = BehaviorProfiles::AttackType::Whirl;
+            break;
+        default:
+            return false;
+    }
+
     BehaviorProfiles::ProfileKey key;
     if (!BehaviorProfiles::TryBuildRuntimeKey(actor, action, gEPhase_Hit, key))
         return false;
@@ -27,17 +43,17 @@ bool ShouldAddRaise(Entity const &actor, gEAction action,
         && settings->raiseOverride == BehaviorProfiles::RaiseOverride::On;
 }
 
-struct QuickContinuation
+struct RaiseContinuation
 {
     CombatMoveArgs hit;
     bool raisePending = true;
 
-    explicit QuickContinuation(CombatMoveArgs const &request) : hit(request)
+    explicit RaiseContinuation(CombatMoveArgs const &request) : hit(request)
     {}
 };
 
-using QuickState = std::shared_ptr<QuickContinuation>;
-std::map<gCScriptProcessingUnit *, QuickState> g_QuickContinuations;
+using RaiseState = std::shared_ptr<RaiseContinuation>;
+std::map<gCScriptProcessingUnit *, RaiseState> g_RaiseContinuations;
 
 bool IsSameRequest(CombatMoveArgs const &left, CombatMoveArgs const &right)
 {
@@ -48,14 +64,14 @@ bool IsSameRequest(CombatMoveArgs const &left, CombatMoveArgs const &right)
         && left.AniSpeedScale == right.AniSpeedScale;
 }
 
-bool IsCurrent(gCScriptProcessingUnit *spu, QuickState const &state)
+bool IsCurrent(gCScriptProcessingUnit *spu, RaiseState const &state)
 {
-    auto const current = g_QuickContinuations.find(spu);
-    return current != g_QuickContinuations.end() && current->second == state;
+    auto const current = g_RaiseContinuations.find(spu);
+    return current != g_RaiseContinuations.end() && current->second == state;
 }
 
-GEBool CompleteQuickInvocation(
-    gCScriptProcessingUnit *spu, QuickState const &state,
+GEBool CompleteRaiseInvocation(
+    gCScriptProcessingUnit *spu, RaiseState const &state,
     GEBool result, CombatMoveTransport transport)
 {
     // Native callbacks may replace the state/FullStop inside transport.
@@ -71,57 +87,9 @@ GEBool CompleteQuickInvocation(
     }
 
     if (result != GEFalse && IsCurrent(spu, state))
-        g_QuickContinuations.erase(spu);
+        g_RaiseContinuations.erase(spu);
     return result;
 }
-}
-
-GEBool RunNormalState(
-    bTObjStack<gScriptRunTimeSingleState> &a_rRunTimeStack,
-    gCScriptProcessingUnit *a_pSPU, MeleeStateTransport original)
-{
-    INIT_SCRIPT_STATE();
-
-    if (ShouldAddRaise(SelfEntity, gEAction_Attack,
-                       BehaviorProfiles::AttackType::Normal))
-    {
-        PREPEND_BREAK_BLOCK_BEGIN
-        {
-            CombatMoveArgs raise(
-                SelfEntity.GetInstance(), TargetEntity.GetInstance(),
-                gEAction_Attack, bCString("Raise"), 1.0f);
-            if (!gCScriptProcessingUnit::sAICombatMoveInstr(
-                    &raise, a_pSPU, GEFalse))
-                return GEFalse;
-        }
-        PREPEND_BREAK_BLOCK_END
-    }
-
-    return original(a_rRunTimeStack, a_pSPU);
-}
-
-GEBool RunWhirlState(
-    bTObjStack<gScriptRunTimeSingleState> &a_rRunTimeStack,
-    gCScriptProcessingUnit *a_pSPU, MeleeStateTransport original)
-{
-    INIT_SCRIPT_STATE();
-
-    if (ShouldAddRaise(SelfEntity, gEAction_WhirlAttack,
-                       BehaviorProfiles::AttackType::Whirl))
-    {
-        PREPEND_BREAK_BLOCK_BEGIN
-        {
-            CombatMoveArgs raise(
-                SelfEntity.GetInstance(), TargetEntity.GetInstance(),
-                gEAction_WhirlAttack, bCString("Raise"), 1.0f);
-            if (!gCScriptProcessingUnit::sAICombatMoveInstr(
-                    &raise, a_pSPU, GEFalse))
-                return GEFalse;
-        }
-        PREPEND_BREAK_BLOCK_END
-    }
-
-    return original(a_rRunTimeStack, a_pSPU);
 }
 
 GEBool RunCombatMove(
@@ -130,27 +98,27 @@ GEBool RunCombatMove(
 {
     if (fullStop == GETrue || spu == nullptr)
     {
-        CancelQuickContinuation(spu);
+        CancelRaiseContinuation(spu);
         return transport(args, spu, fullStop);
     }
 
-    auto const pending = g_QuickContinuations.find(spu);
-    if (pending != g_QuickContinuations.end())
+    auto const pending = g_RaiseContinuations.find(spu);
+    if (pending != g_RaiseContinuations.end())
     {
-        QuickState const state = pending->second;
+        RaiseState const state = pending->second;
         if (spu->GetSelfEntity() != state->hit.SelfEntity
             || (args == nullptr && persistedAction != state->hit.Action)
             || (args != nullptr
                 && !IsSameRequest(*static_cast<CombatMoveArgs *>(args),
                                   state->hit)))
         {
-            CancelQuickContinuation(spu);
+            CancelRaiseContinuation(spu);
             return transport(args, spu, fullStop);
         }
 
         // A persisted instruction is resumed with null args. Even if the same
         // request is repeated, never restart Raise or an already-started Hit.
-        return CompleteQuickInvocation(
+        return CompleteRaiseInvocation(
             spu, state, transport(nullptr, spu, fullStop), transport);
     }
 
@@ -158,26 +126,23 @@ GEBool RunCombatMove(
         return transport(args, spu, fullStop);
 
     CombatMoveArgs const &request = *static_cast<CombatMoveArgs *>(args);
-    if ((request.Action != gEAction_QuickAttackR
-         && request.Action != gEAction_QuickAttackL)
-        || request.PhaseName != bCString("Hit")
-        || !ShouldAddRaise(Entity(request.SelfEntity), request.Action,
-                           BehaviorProfiles::AttackType::Quick))
+    if (request.PhaseName != bCString("Hit")
+        || !ShouldAddRaise(Entity(request.SelfEntity), request.Action))
     {
         return transport(args, spu, fullStop);
     }
 
-    QuickState const state = std::make_shared<QuickContinuation>(request);
-    g_QuickContinuations.emplace(spu, state);
+    RaiseState const state = std::make_shared<RaiseContinuation>(request);
+    g_RaiseContinuations.emplace(spu, state);
     CombatMoveArgs raise(
         request.SelfEntity, request.TargetEntity, request.Action,
-        bCString("Raise"), 1.0f);
-    return CompleteQuickInvocation(
+        bCString("Raise"), request.AniSpeedScale);
+    return CompleteRaiseInvocation(
         spu, state, transport(&raise, spu, GEFalse), transport);
 }
 
-void CancelQuickContinuation(gCScriptProcessingUnit *spu)
+void CancelRaiseContinuation(gCScriptProcessingUnit *spu)
 {
-    g_QuickContinuations.erase(spu);
+    g_RaiseContinuations.erase(spu);
 }
 }

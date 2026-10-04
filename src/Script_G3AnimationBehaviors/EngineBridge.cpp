@@ -47,8 +47,6 @@ static mCFunctionHook Hook_OnAI_HackAttack;
 static mCCallHook Hook_CombatMoveMotionResourceQuery;
 static mCFunctionHook Hook_SetCollisionGroup;
 static mCFunctionHook Hook_AICombatMoveInstr;
-static mCFunctionHook Hook_PS_Melee_Attack;
-static mCFunctionHook Hook_PS_Melee_WhirlAttack;
 static mCFunctionHook Hook_AISetState;
 static mCFunctionHook Hook_RunScriptFunction;
 static mCCallHook Hook_Raw8FistTimingGateGetPlayTime;
@@ -66,6 +64,7 @@ static mCCallHook Hook_SpeedModifierCall_432EB;
 static mCCallHook Hook_SpeedModifierCall_47328;
 static mCCallHook Hook_SpeedModifierCall_4770F;
 static mCCallHook Hook_SpeedModifierCall_4786F;
+static mCCallHook Hook_SpeedModifierCall_47D51;
 static mCCallHook Hook_SpeedModifierCall_47F6C;
 static mCCallHook Hook_SpeedModifierCall_4C6FA;
 static mCCallHook Hook_SpeedModifierCall_4DF1F;
@@ -563,21 +562,6 @@ static GEBool GE_STDCALL RunScriptFunction_FrameCollisionTest(
     return result;
 }
 
-DECLARE_SCRIPT_STATE(PS_Melee_Attack_AddRaise)
-{
-    return G3AB::AttackRaise::RunNormalState(
-        a_rRunTimeStack, a_pSPU,
-        Hook_PS_Melee_Attack.GetOriginalFunction(&PS_Melee_Attack_AddRaise));
-}
-
-DECLARE_SCRIPT_STATE(PS_Melee_WhirlAttack_AddRaise)
-{
-    return G3AB::AttackRaise::RunWhirlState(
-        a_rRunTimeStack, a_pSPU,
-        Hook_PS_Melee_WhirlAttack.GetOriginalFunction(
-            &PS_Melee_WhirlAttack_AddRaise));
-}
-
 static GEBool GE_STDCALL AICombatMoveInstr_FrameCollisionTest(
     GELPVoid a_pArgs, gCScriptProcessingUnit *a_pSPU, GEBool a_bFullStop);
 
@@ -705,7 +689,7 @@ static void GE_STDCALL AISetState_FrameCollisionTest(
     gCScriptRoutine_PS *a_pThis, bCString const &a_State)
 {
     if (a_pThis != nullptr)
-        G3AB::AttackRaise::CancelQuickContinuation(&a_pThis->GetSPU());
+        G3AB::AttackRaise::CancelRaiseContinuation(&a_pThis->GetSPU());
 
     eCEntity *ownerEntity =
         a_pThis != nullptr ? a_pThis->GetEntity() : nullptr;
@@ -1013,15 +997,6 @@ void FrameCollision::EngineBridge::InstallHooks()
 {
     GetScriptAdmin().LoadScriptDLL("Script_Game.dll");
 
-    Hook_PS_Melee_Attack.Hook(
-        GetScriptAdminExt().GetScriptAIState("PS_Melee_Attack")
-            ->m_funcScriptAIState,
-        &PS_Melee_Attack_AddRaise);
-    Hook_PS_Melee_WhirlAttack.Hook(
-        GetScriptAdminExt().GetScriptAIState("PS_Melee_WhirlAttack")
-            ->m_funcScriptAIState,
-        &PS_Melee_WhirlAttack_AddRaise);
-
     Call_GetAnimationSpeedModifier.Init(
         mCCaller::GetCallerParams(
             RVA_ScriptGame(0x42A0), mERegisterType_Eax));
@@ -1083,6 +1058,11 @@ void FrameCollision::EngineBridge::InstallHooks()
         .Hook();
     Hook_SpeedModifierCall_4786F
         .Prepare(RVA_ScriptGame(0x4786F),
+                 &GetAnimationSpeedModifier_Composed)
+        .AddRegArg(mERegisterType_Eax)
+        .Hook();
+    Hook_SpeedModifierCall_47D51
+        .Prepare(RVA_ScriptGame(0x47D51),
                  &GetAnimationSpeedModifier_Composed)
         .AddRegArg(mERegisterType_Eax)
         .Hook();
