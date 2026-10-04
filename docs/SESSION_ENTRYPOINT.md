@@ -14,7 +14,7 @@
 ```text
 collision production integration = CLOSED/PASS through EV-390
 configured Speed + New Balance multiplier preservation = PASS EV-395
-expanded Speed source = ADR-0011 FINAL SOURCE CANDIDATE IMPLEMENTED / SOURCE REVIEW PASS / FINAL RUNTIME ACCEPTANCE PASS EV-407–EV-410
+Speed v2 / ADR-0011 = CLOSED/PASS through EV-410; neutral shipping INI locked
 Sprint Speed authoring = inherits Power profile on proven shared route (ADR-0009)
 repository health/authority audit = CLOSED / NORMAL CHAT REVIEW PASS
 reviewed maintenance = commit 4090298a409172dcee2bc5e6dc1d267b1e22f75e / knowledge-state CI PASS
@@ -30,15 +30,15 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = release-facing shipping INI cleanup/restoration -> formal Speed closure
+CURRENT = Raise research/design; Speed is closed
 Raise behavior = PAUSED until Speed closes
 main = FROZEN
 ```
 
-Current Speed task:
+Completed Speed task is archived at:
 
 ```text
-docs/work/active/SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md
+docs/archive/investigations/SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md
 ```
 
 The completed ADR-0011 bounded source task is archived under `docs/archive/investigations/SPEED_RESOLVED_PROFILE_IMPLEMENTATION.md`. The completed native calibration probe task is archived under `docs/archive/investigations/SPEED_NATIVE_CALIBRATION_PROBE.md`; neither is a current blocking responsibility.
@@ -54,14 +54,9 @@ The completed preservation-biased repository audit and Work result are archived 
 Use `docs/work/active/SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md` as the owning finalization contract.
 
 ```text
-candidate ba3e76549eff5c7fdfc2d165ec976e640ef9c24c source review = PASS
--> local Release build PASS
--> POP-03 exact built/live deployment identity PASS / SHA D975BABF...5335E
--> native + human Fist + Axe/Rapier/Zombie/Zombie+Axe acceptance PASS EV-407–EV-410
--> intended New Balance compatibility sanity PASS EV-410
--> clean/restore player-facing shipping INI
--> close Speed completely
--> Raise afterward
+Speed source + runtime acceptance + neutral shipping INI = CLOSED/PASS
+-> begin Raise research/design
+-> preserve Speed architecture and neutral default policy unless contradictory evidence appears
 ```
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
