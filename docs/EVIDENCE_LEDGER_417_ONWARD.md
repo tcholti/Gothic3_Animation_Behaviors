@@ -970,3 +970,39 @@ Sprint behavior remains evidence-routed rather than gaining a new profile slot m
 Disposition:
 - **AUTHORING SEMANTICS FROZEN.**
 - remaining research = smallest safe transport/composition architecture, not user-facing meaning.
+
+
+### EV-437 — New Balance ordinary melee Hit ownership boundary
+
+Clarification of EV-434 action scope against the pinned New Balance action table and native animation inventory.
+
+For the complete ordinary melee attack surface currently represented by G3AB BehaviorProfiles, New Balance supplies its own Hit movement magnitude:
+
+```text
+Normal / Action1        covered
+Quick selector / Action3 covered
+QuickR / Action4        covered
+QuickL / Action5        covered
+SimpleWhirl / Action6   covered
+Sprint / Action9        covered
+Whirl / Action10        covered
+Pierce / Action11       covered
+Hack / Action14         covered
+Power / Action2         covered
+```
+
+Thus, for every current G3AB movement-profile attack type, New Balance's eligible Hit path normalizes away the native filename-derived magnitude and replaces it with its own action/skill distance policy.
+
+Special factual attack actions outside the current G3AB profile surface:
+- `JumpAttack / Action12`: not present in the pinned New Balance `GetCombatMoveLength` replacement switch; native inventory contains 6 Hit assets, so its filename-derived movement survives this New Balance replacement path.
+- `RamAttack / Action13`: not present in the switch; no native `RamAttack_Hit` assets are present in the project's 5,991-name inventory.
+- `FinishingAttack / Action15`: not present in the switch; native inventory contains 9 Hit assets, so its filename-derived movement survives this New Balance replacement path.
+- `GetUpAttack / Action30`: explicitly covered by New Balance with its own Hit movement distance.
+
+Interpretation:
+- colloquially, New Balance **does take ownership of all ordinary melee attack Hit movement relevant to the current G3AB attack-profile system**;
+- the exceptions are special attack actions outside that current profile surface, not gaps among Normal/Quick/Power/Pierce/Hack/SimpleWhirl/Whirl/Sprint;
+- future movement scope must still decide separately whether JumpAttack, FinishingAttack or other special actions should ever be exposed.
+
+Disposition:
+- **PASS — NEW BALANCE ORDINARY MELEE HIT MOVEMENT OWNERSHIP IS EFFECTIVELY COMPLETE FOR CURRENT G3AB PROFILE SCOPE.**
