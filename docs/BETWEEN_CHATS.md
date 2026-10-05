@@ -1,7 +1,7 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-10-05 — EV-430 final Raise sanity closure
+**Updated:** 2026-10-05 — final Speed + Raise source review handoff
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
@@ -9,63 +9,55 @@ Repository: `tcholti/Gothic3_Animation_Behaviors`
 Branch: `development`  
 `main` remains frozen.
 
-## Raise state
-
-Raise module validation is CLOSED/PASS through EV-430 and is considered well tested for the initial release.
-
-Accepted direction source:
-
-`1da12cead5acfb54c5520a34d07bccc4c32fd64f`
-
-Public AddRaise surface:
-```text
-Normal
-Quick
-Whirl
-```
-
-Representative structural coverage now includes:
-```text
-Normal Fwd
-Normal Left/Right continuation
-QuickAttackR
-QuickAttackL
-pose-changing Quick
-partial Quick Raise-resource coverage
-full Whirl
-human weapon / dual / bare Fist
-nonhuman None+Fist
-Troll Fist+Fist
-native Raise assets
-user-authored Raise assets
-native/configured timing including 0.1 controls
-in-combat and out-of-combat fixture coverage where applicable
-```
-
-`SimpleWhirl` is separate and is not part of the public AddRaise surface.
-
-EV-430 is **representative type/structure coverage plus partial-resource fallback validation**, not exhaustive proof for every animation asset, pose, actor family, weapon token combination or INI profile. In the tested Shield+1H Quick profile, matching authored Raises were used where present while Quick attacks without matching Raise resources remained functional.
-
-All runtime-proven user-authored Raise names, including Troll/Sabretooth and Shield pose-changing Quick Raises, are stored in:
-`data/animation_names/user_created_tested_animation_names.txt`
-
-Completed validation record:
-`docs/archive/investigations/RAISE_PRE_RELEASE_VALIDATION.md`
-
-## Protected state
+## Current state
 
 ```text
-EV-423/EV-424 Normal direction defect = CLOSED
-Raise sequencing = CLOSED/PASS
-Raise phase-speed composition = CLOSED/PASS
-representative AddRaise type matrix + partial-resource sanity = CLOSED/PASS EV-430
-Speed core = CLOSED/PASS
-Hack compatibility = CLOSED/PASS
 Collision = CLOSED/PASS
+Speed v2 = CLOSED/PASS
+Raise = CLOSED/PASS / well tested through EV-430
+production source checkpoint = d642f30bcb6b564deaaffed26fd11b763da88163
 ```
 
-## Next
+## Active responsibility
 
-No Raise implementation or validation task is active. Raise is CLOSED/PASS and well tested for the initial release.
+`docs/work/active/SPEED_RAISE_FINAL_SOURCE_REVIEW.md`
 
-Broader Raise testing should occur naturally as additional animation assets are authored/redesigned or when post-release contradictory evidence appears. Do not reopen Raise architecture merely because every individual Gothic 3 animation asset has not been tested.
+This is a **read-only independent final source review** before the repository release audit / main-promotion checkpoint.
+
+It is intentionally smaller than the prior large Astra Speed+Raise audit. Re-check the integrated Speed/Raise ownership boundary, but focus heavily on the production delta since the prior audit baseline `d5d829e07eb2bfe8de428aa2ad148ba1f2d3835c`:
+
+```text
+AttackSpeed:
+  Hack route-neutral CombatMove adapter
+  underflow/fail-closed guard
+
+EngineBridge:
+  retirement of three caller-specific Hack speed hooks
+  Hack CombatMove transport
+  Normal direction GetAniName hook at Game+0x16B056
+
+AttackRaise:
+  continuation-owned exact native direction carry
+```
+
+`BehaviorProfiles` is unchanged but remains a dependency boundary that must be checked for correct integration.
+
+Hard compatibility requirements:
+```text
+Jackydima New Balance
+Script_AttackCollision
+Collision non-interference
+```
+
+No source/docs edits, build, deploy, probes or runtime during this review.
+
+## After PASS
+
+Normal Chat + User:
+1. consume/review the report;
+2. perform a quick repository health/authority audit;
+3. if clean, promote the accepted checkpoint to `main`;
+4. return to `development`;
+5. begin research on attack forward displacement / how far attacks may move the character, including New Balance's existing Normal/Quick changes.
+
+Do not begin attack-displacement research before the release checkpoint is closed.
