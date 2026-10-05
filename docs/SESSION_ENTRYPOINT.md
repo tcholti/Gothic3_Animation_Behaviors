@@ -3,7 +3,7 @@
 **Purpose:** minimal durable current-state pointer. Repository startup begins at root `README.md` **Start Here**.  
 **Active development branch:** `development`  
 **Stable integration branch:** `main`  
-**Updated:** 2026-10-04
+**Updated:** 2026-10-05
 
 > After abrupt/max-context recovery, return to root `README.md` and apply POP-11 before trusting this pointer.
 
@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = EV-423 reopens ONLY Normal AddRaise directional continuation; accepted source 41ed80c6420e5236d13fc037cb5923b946cb8ccc remains baseline
+CURRENT = EV-424 statically closes EV-423 cause; Normal AddRaise directional continuation implementation pending
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise behavior = ACTIVE narrow correction — Normal Left/Right Raise plays, but following Hit incorrectly re-resolves Fwd; Quick/Whirl and prior phase-speed results remain accepted
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
@@ -54,7 +54,7 @@ The completed preservation-biased repository audit and Work result are archived 
 
 ## Immediate continuation — Raise
 
-Use `docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md` as the sole active Raise task. The closed phase-speed research and implementation contract are archived under `docs/archive/investigations/`.
+Use `docs/work/active/RAISE_NORMAL_DIRECTION_CONTINUATION_IMPLEMENTATION.md` as the sole active Raise task. The completed first-public runtime acceptance and the EV-424 direction research are archived under `docs/archive/investigations/`.
 
 ```text
 Speed = CLOSED/PASS
@@ -81,8 +81,9 @@ Pierce = protected already-coupled control; Hack = route-neutral Action14 Raise/
 completed runtime acceptance = docs/archive/investigations/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md
 EV-418 Hack compatibility source = 41ed80c6420e5236d13fc037cb5923b946cb8ccc / PASS EV-419
 runtime acceptance record = docs/archive/investigations/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md
-active task = docs/work/active/RAISE_NORMAL_DIRECTION_CONTINUATION_RESEARCH.md
-next = bounded static causal research; no production implementation until directional selection owner is proven
+completed research = docs/archive/investigations/RAISE_NORMAL_DIRECTION_CONTINUATION_RESEARCH.md
+active task = docs/work/active/RAISE_NORMAL_DIRECTION_CONTINUATION_IMPLEMENTATION.md
+next = bounded production implementation only from the frozen EV-424 mechanism
 ```
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
