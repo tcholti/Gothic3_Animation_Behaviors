@@ -1,7 +1,7 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-10-05 — EV-428 Raise coverage clarification
+**Updated:** 2026-10-05 — EV-429 representative Raise closure
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
@@ -9,77 +9,61 @@ Repository: `tcholti/Gothic3_Animation_Behaviors`
 Branch: `development`  
 `main` remains frozen.
 
-## Accepted Raise mechanism
+## Raise state
 
-Collision, Speed v2, Raise phase-speed/Hack compatibility and the Normal AddRaise direction correction remain CLOSED/PASS on their tested routes.
+Raise pre-release representative validation is CLOSED/PASS through EV-429.
 
 Accepted direction source:
 
 `1da12cead5acfb54c5520a34d07bccc4c32fd64f`
 
-Normal direction carry:
+Public AddRaise surface:
 ```text
-pending Normal synthetic Raise
--> Gothic selects native Fwd/Left/Right
--> capture exact direction bCString + current gEDirection at Game+0x16B056
--> stored Action1 Hit
--> restore same gEDirection + reuse same direction bCString
--> Gothic GetAniName resolves Hit normally
+Normal
+Quick
+Whirl
 ```
 
-EV-426 source review = PASS / blocker 0 / major 0 / minor 0.
-
-## EV-428 scope clarification
-
-"All works" for the latest local run means **all behavior actually exercised in that run worked**. It does not certify every possible Gothic 3 animation set.
-
-Latest exercised coverage:
+Representative structural coverage now includes:
 ```text
-dual 1H_1H:
-  Normal Fwd rule-derived Raise P0/P1
-  Normal Left/Right native directional Raises
-  ordinary P0/P1 QuickAttackR/L rule-derived Raises
-  native timing
-  BaseSpeed=0.1 timing inheritance
-
-2H controls:
-  Normal
-  Quick
-  Whirl
-
-ordinary combat:
-  Golem encounter using 2H and dual 1H_1H
+Normal Fwd
+Normal Left/Right continuation
+QuickAttackR
+QuickAttackL
+full Whirl
+human weapon / dual / bare Fist
+nonhuman None+Fist
+Troll Fist+Fist
+native Raise assets
+user-authored Raise assets
+native/configured timing including 0.1 controls
+in-combat and out-of-combat fixture coverage where applicable
 ```
 
-Exact dual authoring examples and the tested derivation recipe are durable in `ANIMATION_RULES.md §5.1`.
+`SimpleWhirl` is separate and is not part of the public AddRaise surface.
 
-Do not interpret EV-427/EV-428 as universal Raise coverage. Many Normal/Quick families need matching Raise assets authored before they can be exercised.
+EV-429 is **representative type/structure coverage**, not exhaustive proof for every animation asset, pose, actor family, weapon token combination or INI profile.
 
-## Active responsibility
+Newly runtime-proven authored Troll/Sabretooth Raise names are stored in:
+`data/animation_names/user_created_tested_animation_names.txt`
 
-`docs/work/active/RAISE_PRE_RELEASE_VALIDATION.md`
-
-Remaining representative pre-release Raise fixtures:
-```text
-1. human Fist Normal
-2. Sabretooth
-3. Troll
-```
-
-These three are the remaining Raise tests the User wants before considering the implementation sufficiently tested for the initial Animation Behaviors release.
-
-Exhaustively authoring/testing Raise for every Gothic 3 attack family is **not** a release gate. Broader coverage will continue later while the User redesigns the Gothic 3 Animations Redone combat animation mods and through focused post-release contradictory reports.
-
-Animation corpus/reference:
-`https://www.nexusmods.com/gothic3/mods/77`
+Completed validation record:
+`docs/archive/investigations/RAISE_PRE_RELEASE_VALIDATION.md`
 
 ## Protected state
 
 ```text
-EV-423/EV-424 direction defect remains closed
-Speed core remains closed
-phase-speed composition remains closed
-Hack compatibility remains closed
-Collision remains closed/protected
-no new production change unless one of the remaining fixtures produces contradictory evidence
+EV-423/EV-424 Normal direction defect = CLOSED
+Raise sequencing = CLOSED/PASS
+Raise phase-speed composition = CLOSED/PASS
+representative AddRaise type matrix = CLOSED/PASS EV-429
+Speed core = CLOSED/PASS
+Hack compatibility = CLOSED/PASS
+Collision = CLOSED/PASS
 ```
+
+## Next
+
+No Raise implementation or pre-release validation task is active.
+
+Broader Raise testing should occur naturally as additional animation assets are authored/redesigned or when post-release contradictory evidence appears. Do not reopen Raise architecture merely because every individual Gothic 3 animation asset has not been tested.
