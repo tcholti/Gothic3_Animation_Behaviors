@@ -1241,3 +1241,61 @@ Independent final result:
 
 Disposition:
 - **PASS — RESEARCH / ARCHITECTURE CLOSED; READY FOR BOUNDED PRODUCTION IMPLEMENTATION.**
+
+
+### EV-441 — Absolute attack movement production source review PASS
+
+Reviewed implementation:
+- production commit `7393f390f30d1981a5065b6342a684cd590fbac9`;
+- parent `8a9e91deb5c6fe13d2526b322c8e67f91bcb1a6a`;
+- exactly seven allowed production files changed.
+
+Findings:
+```text
+BLOCKER 0
+MAJOR   0
+MINOR   0
+NOTE    0
+```
+
+Source review confirms:
+- exactly one new physical hook, `Game+0x16B8B7`;
+- hook transport matches EV-440 exactly:
+  `.InsertCall().AddPtrStackArgEbp(0x8).AddPtrStackArgEbp(0xC).AddPtrStackArg(0x8).SaveReg(ECX)`;
+- RtPatch hook-builder semantics were independently checked: EBP arguments pass the current request/SPU pointers, the ESP-relative pointer argument passes the existing native movement vector reference, ECX is restored, and the relocated native CharacterMovement call remains intact;
+- `AttackMovement` is stateless and owns policy; `EngineBridge` owns transport only;
+- supported factual actions are exactly Normal, QuickR/L, Power, Pierce, Hack, SimpleWhirl and Whirl;
+- Sprint naturally inherits Power through its factual Action2 Hit request;
+- physical phase is exact `Hit`; Raise/Recover are untouched;
+- Movement missing/Off/invalid/negative/non-finite remains inactive;
+- Movement=0 is active and clears the vector directly;
+- positive movement consumes the already-composed request `AniSpeedScale`, obtains current primary max time, computes duration and replacement locally, validates all values, then writes once;
+- no animation filename parsing, New Balance detection, AttackCollision hook, Speed query/recomposition, state/cache or per-frame work exists;
+- all 27 shipping profiles were checked: 97 represented attack settings have exactly 97 `_Movement=Off` keys; no active shipping movement key exists;
+- CMake adds only `AttackMovement.cpp/.h`;
+- Collision, AttackSpeed and AttackRaise source are unchanged.
+
+Official SDK compile-surface cross-check:
+- required `PSAnimation` validity/property-set surfaces exist at the official Georgeto pin;
+- `eCVisualAnimation_PS::HasActor/GetActor`, actor `HasMotionInstance/GetMaxTime`, request `AniSpeedScale`, and `bCVector::Clear` exist;
+- implementation uses motion enum value 0 intentionally, avoiding dependency on Jackydima's named enum extension.
+
+Compatibility verdicts:
+```text
+hook/ABI safety               PASS
+native compatibility          PASS
+New Balance compatibility     PASS
+AttackCollision compatibility PASS
+Speed compatibility           PASS
+Raise compatibility           PASS
+profile architecture          PASS
+simplicity                    PASS
+modularity                    PASS
+performance                   PASS (static)
+source readiness              PASS
+```
+
+No build was performed in review.
+
+Disposition:
+- **PASS — SOURCE READY FOR USER-LOCAL BUILD / DEPLOY / RUNTIME ACCEPTANCE.**
