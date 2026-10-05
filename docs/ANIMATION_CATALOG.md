@@ -58,7 +58,7 @@ Dual Normal/Quick         production AddRaise proven on tested native + rule-der
 Power/Pierce families     native Raise generally preserved where already working
 ```
 
-EV-428 defines the coverage boundary: accepted production behavior on tested routes is not a claim that every Gothic 3 attack family has a Raise asset or has been individually exercised. Remaining representative pre-release Raise fixtures are human Fist Normal, Sabretooth and Troll. Broader weapon/family coverage is intentionally deferred to ongoing animation-authoring work and post-release contradictory evidence.
+EV-429 closes the representative pre-release Raise matrix. The tested set now covers Normal Fwd plus directional Left/Right continuation, both factual QuickAttackR/L forms, full Whirl, human weapon/dual/Fist routes, nonhuman None+Fist, Troll Fist+Fist, native and user-authored Raise assets, and repeated configured-speed inheritance including `0.1` controls. This is structural/type coverage, not exhaustive per-animation certification. Broader weapon/family coverage remains intentionally staged with ongoing animation-authoring work and post-release contradictory evidence.
 
 Raise remains separate from collision behavior.
 
