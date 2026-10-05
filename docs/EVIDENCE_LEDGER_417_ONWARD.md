@@ -893,3 +893,35 @@ Remaining causal questions:
 
 Disposition:
 - **STATIC RESEARCH PARTIALLY CLOSED — ONE BOUNDED RUNTIME EVIDENCE PASS REQUIRED BEFORE PRODUCTION ARCHITECTURE IS FROZEN.**
+
+
+### EV-435 — Displacement author/runtime constraints reconciled
+
+Context:
+- EV-434 statically proved the CombatMove vector path;
+- the User then identified that several practical movement facts predate EV-434 and had already been established through animation authoring/runtime work;
+- repository review showed only part of those facts had been preserved durably.
+
+Established author/runtime observations:
+- the numeric combat-movement field in the animation filename has long been used deliberately when authoring Gothic 3 attack animations;
+- attack animations are authored in place; Gothic supplies the gameplay entity translation through CombatMove movement;
+- in ordinary attack phase sets known to the User, Raise and Recover movement values are normally `0`, while Hit carries the nonzero combat movement value (for example `100`);
+- movement therefore occurs during the phase/resource carrying the nonzero value, normally Hit; separate Raise/Recover requests with zero movement do not add forward entity travel;
+- Gothic combat movement is constrained by navigation/world conditions: it can stop the actor near ledges or when blocked/colliding, unlike jump movement which can carry the actor off an edge;
+- these stopping rules mean a configured combat movement value is not an unconditional promised world-space endpoint.
+
+Distribution/resource constraint:
+- changing the serialized animation name is not a practical runtime authoring control for this feature;
+- Gothic resolves existing packed animation resources by archive/resource precedence; creating a differently named replacement does not transparently replace the packed original;
+- changing filename movement values therefore requires replacing/removing/injecting the resource in the compiled animation archive/package, increasing installation complexity;
+- a possible future archive-injection tool is outside the current task.
+
+Architecture consequence:
+- the displacement feature exists specifically to control CombatMove movement **without renaming/repacking animation resources**;
+- EV-434's runtime probe proposal to re-prove basic Hit-duration/entity-travel ownership is unnecessary for the current product decision;
+- unknown universal root-translation behavior remains outside the claim, but it does not block controlling the proven CombatMove movement mechanism;
+- native ledge/obstacle/target stopping behavior should remain preserved rather than converted into exact endpoint teleport/distance semantics.
+
+Disposition:
+- **PASS — BASIC COMBAT-MOVEMENT OWNERSHIP / PHASE PRACTICAL BEHAVIOR SUFFICIENT FOR ARCHITECTURE DISCUSSION.**
+- **CANCEL — ATTACK_FORWARD_DISPLACEMENT_RUNTIME_PROBE as currently scoped; do not spend a runtime probe to rediscover these established facts.**
