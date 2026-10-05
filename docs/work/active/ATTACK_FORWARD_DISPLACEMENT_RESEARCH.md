@@ -75,6 +75,12 @@ Speed algebra is closed: changing `AniSpeedScale` changes the commanded velocity
 
 The strongest compatible future seam is after native/New Balance vector policy at the CombatMove-specific `Game+0x16B8B7` call, with candidate scalar composition `v_configured = k * v_compatible`. This is not yet production-frozen.
 
+## Active runtime probe implementation
+
+`docs/work/active/ATTACK_FORWARD_DISPLACEMENT_RUNTIME_PROBE.md`
+
+The probe is observation-only and exists solely to close the remaining runtime question below.
+
 ## Remaining runtime question
 
 Only one causal gate remains before production architecture can freeze:
