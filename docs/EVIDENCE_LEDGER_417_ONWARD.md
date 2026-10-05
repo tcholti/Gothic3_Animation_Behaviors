@@ -443,3 +443,52 @@ Review disposition:
 - **PASS — CURRENT IMPLEMENTATION IS CLEAN ENOUGH TO EXTEND DIRECTLY.**
 - **BLOCKER 0 / MAJOR 0 / MINOR 0 requiring pre-implementation refactor.**
 - **EV-424 correction should remain one new call-site transport plus three continuation fields and a narrow AttackRaise semantic seam.**
+
+
+### EV-426 — Normal AddRaise direction continuation source review
+
+Scope:
+- fresh diff-against-contract review of the EV-424 direction correction;
+- reviewed source candidate `1da12cead5acfb54c5520a34d07bccc4c32fd64f`;
+- current `development` production blobs at review HEAD `cf9b8aa204be565844e719c1bebb66f03de7e58b` are byte-identical to that candidate;
+- frozen contract: `docs/work/active/RAISE_NORMAL_DIRECTION_CONTINUATION_IMPLEMENTATION.md`;
+- no build or runtime execution performed.
+
+Static scope:
+- only `AttackRaise.cpp`, `AttackRaise.h` and `EngineBridge.cpp` differ in production source from the pre-implementation baseline;
+- `RaiseContinuation` gained exactly the frozen three fields: `directionCaptured`, `capturedDirection`, `capturedDirectionName`;
+- no second map/cache/lifecycle owner was added;
+- one new `mCCallHook` exists at `Game+0x16B056`;
+- `EngineBridge` transports factual SPU/action/phase/direction arguments only; direction policy remains in `AttackRaise`;
+- no Speed, BehaviorProfiles, Collision or INI source changed.
+
+Semantic review:
+- unrelated GetAniName traffic passes through unchanged unless the same SPU has a pending Normal AddRaise continuation and factual Action1 phase matches;
+- synthetic Normal Raise captures Gothic's exact supplied direction string plus `Entity::GetCurrentAniDirection()` without modifying either before the native GetAniName call;
+- stored Normal Hit restores the captured enum with `SetCurrentAniDirection`, substitutes the exact captured direction string, consumes the capture one-shot, then invokes Gothic GetAniName exactly once;
+- direction state shares the existing `RaiseContinuation` lifetime;
+- FullStop, AISetState and request-mismatch cancellation continue to erase the same continuation state before an invalid stored Hit can proceed;
+- Quick, Whirl, Power, Hack and unrelated CombatMove actions fail the Action1 semantic gate and remain pass-through.
+
+ABI / hook review:
+- pinned SDK confirms `sAICombatMoveInstr_Args::SelfEntity` is the same `eCEntity *` type used by the GetAniName call;
+- pinned SDK `mCCallHook::AddThisArg()` transports ECX;
+- EV-425 established ECX at `Game+0x16B056` as the current `gCScriptProcessingUnit *`;
+- the wrapper calls the real `Game+0x16F840` GetAniName through an explicit Win32 `__thiscall` function type, restoring the SPU to ECX for the native member call;
+- the original native GetAniName is invoked once by the wrapper.
+
+Protected behavior:
+- no filename parsing/rewrite;
+- no copied Gothic direction classifier;
+- no target/facing/transform mutation;
+- no `m_DirectionVec` preservation;
+- no direct PlayAni replacement;
+- no Speed composition or Hit AniSpeedScale change;
+- no Quick/Whirl redesign;
+- no Power Raise, Hack, New Balance ownership or Collision change.
+
+Disposition:
+- **PASS — EV-424/EV-425 IMPLEMENTATION CONTRACT SATISFIED.**
+- **BLOCKER 0 / MAJOR 0 / MINOR 0.**
+- **NO SOURCE CORRECTION REQUIRED BEFORE BUILD.**
+- **NEXT — local synchronization, build/deploy verification, then the frozen focused runtime matrix.**
