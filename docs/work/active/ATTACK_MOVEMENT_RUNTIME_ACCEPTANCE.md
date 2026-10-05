@@ -8,13 +8,21 @@
 
 Validate the new absolute per-profile Hit movement feature in the User's authoritative local Gothic 3 runtime.
 
-## Build/deploy first
+## Build/deploy state
 
-User:
-1. Fetch/Pull `development`;
-2. build Release Win32 `Script_G3AnimationBehaviors.dll`;
-3. deploy using the normal project procedure;
-4. verify built/live DLL identity before testing.
+EV-442:
+- User Fetch/Pull completed for the build state;
+- Release Win32 `Script_G3AnimationBehaviors.dll` build succeeded;
+- deployment/hash verification is the next step;
+- runtime testing has not begun.
+
+Next:
+1. deploy with the previously accepted project PowerShell deployment/hash procedure;
+2. capture the complete output;
+3. require built/live DLL SHA256 match;
+4. require source/live INI SHA256 match;
+5. require exactly one live G3AB project DLL;
+6. only after `G3AB RELEASE DEPLOYMENT PASS`, begin runtime testing.
 
 Do not change source unless build/runtime evidence contradicts EV-441.
 
