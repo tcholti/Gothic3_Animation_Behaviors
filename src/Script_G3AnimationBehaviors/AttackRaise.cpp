@@ -47,9 +47,6 @@ struct RaiseContinuation
 {
     CombatMoveArgs hit;
     bool raisePending = true;
-    bool directionCaptured = false;
-    gEDirection capturedDirection = gEDirection_None;
-    bCString capturedDirectionName;
 
     explicit RaiseContinuation(CombatMoveArgs const &request) : hit(request)
     {}
@@ -142,41 +139,6 @@ GEBool RunCombatMove(
         bCString("Raise"), request.AniSpeedScale);
     return CompleteRaiseInvocation(
         spu, state, transport(&raise, spu, GEFalse), transport);
-}
-
-void PreserveNormalContinuationDirection(
-    gCScriptProcessingUnit *spu, eCEntity *actor, gEAction action,
-    bCString const &phaseName, bCString &directionName)
-{
-    if (spu == nullptr || actor == nullptr || action != gEAction_Attack)
-        return;
-
-    auto const pending = g_RaiseContinuations.find(spu);
-    if (pending == g_RaiseContinuations.end())
-        return;
-
-    RaiseState const state = pending->second;
-    if (state->hit.Action != gEAction_Attack
-        || state->hit.SelfEntity != actor)
-    {
-        return;
-    }
-
-    Entity actorEntity(actor);
-    if (phaseName == bCString("Raise"))
-    {
-        state->capturedDirectionName = directionName;
-        state->capturedDirection = actorEntity.GetCurrentAniDirection();
-        state->directionCaptured = true;
-        return;
-    }
-
-    if (phaseName != bCString("Hit") || !state->directionCaptured)
-        return;
-
-    actorEntity.SetCurrentAniDirection(state->capturedDirection);
-    directionName = state->capturedDirectionName;
-    state->directionCaptured = false;
 }
 
 void CancelRaiseContinuation(gCScriptProcessingUnit *spu)
