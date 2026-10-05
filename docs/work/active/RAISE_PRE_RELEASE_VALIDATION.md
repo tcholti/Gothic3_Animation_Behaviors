@@ -44,7 +44,7 @@ For each fixture:
 4. enable the appropriate existing AddRaise setting/profile;
 5. verify Raise selection, continuation into Hit, and timing behavior;
 6. include a simple combat/control pass sufficient to reveal obvious state or collision interaction;
-7. if it passes, record the tested scope precisely;
+7. if it passes, record the tested scope precisely and add every newly authored + runtime-proven exact animation name to `data/animation_names/user_created_tested_animation_names.txt`;
 8. if it contradicts current architecture, stop and research the smallest causal difference before changing production code.
 
 ## Authoring rule reference
