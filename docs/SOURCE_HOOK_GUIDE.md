@@ -122,7 +122,7 @@ Search around CombatMove reach/vector/movement calls, motion/root translation, a
 | GetUp later CombatMove | `Script_Game +0x41D5A` | same outer ScriptFunction reaches CombatMove |
 | GetUp ordinary cleanup | `Script_Game +0x41E10` | tested cleanup region |
 | `GetAniName` | `Game +0x16F840` | animation-name lookup; fifth argument is the direction bCString serialized into the resource name |
-| CombatMove `GetAniName` call | `Game +0x16B056` | exact `sAICombatMoveStart` call where the freshly selected direction is supplied; EV-424 frozen preservation boundary for Normal AddRaise |
+| CombatMove `GetAniName` call | `Game +0x16B056` | production Normal AddRaise direction-preservation boundary: capture Gothic-native direction on synthetic Raise, restore/reuse it for the stored Action1 Hit only; runtime accepted EV-427 |
 | CombatMove direction init | `Game +0x16AEDD` | local direction string initializes to exact `Fwd` |
 | CombatMove Normal direction dispatch | `Game +0x16AF3C` | Action1 enters Fwd/Left/Right classification |
 | CombatMove Right / Left selection | `Game +0x16AF61 / +0x16AF76` | exact `Right` / `Left` bCString selection |
