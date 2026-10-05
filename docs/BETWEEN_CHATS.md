@@ -48,13 +48,25 @@ Current Raise/Speed source is still byte-identical to production `41ed80c6420e52
 
 Implementation must extend the existing continuation only: three direction fields, one narrow AttackRaise semantic seam, and one `Game+0x16B056` call-site transport. No second state map or raw Navigation offsets.
 
-## Active responsibility
+## EV-426 source review
 
-Implementation candidate published:
+Reviewed direction source:
 
 `1da12cead5acfb54c5520a34d07bccc4c32fd64f`
 
-`docs/work/active/RAISE_NORMAL_DIRECTION_CONTINUATION_IMPLEMENTATION.md` remains the frozen review contract.
+Result:
+```text
+PASS
+blocker 0
+major 0
+minor 0
+```
+
+Current production blobs are byte-identical to the reviewed candidate. No source correction is required before build.
+
+## Active responsibility
+
+`docs/work/active/RAISE_NORMAL_DIRECTION_CONTINUATION_IMPLEMENTATION.md` remains active through focused runtime acceptance.
 
 Frozen correction:
 ```text
@@ -74,4 +86,4 @@ EngineBridge.cpp
 
 No filename parsing, copied geometry policy, target/facing mutation, Speed change, Quick/Whirl redesign, Hack change or Collision change.
 
-Independent source review is the immediate next gate. Focused runtime validation remains blocked until that review passes.
+Next gate: local synchronization -> build -> deploy/hash/load verification -> focused runtime matrix: Normal Fwd/Left/Right, one 1H-family directional route, EV-423 dual-wield route, Quick control, Whirl control, interruption/cancellation control.
