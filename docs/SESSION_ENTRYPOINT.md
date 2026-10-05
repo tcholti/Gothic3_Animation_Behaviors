@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = attack forward displacement research/design ACTIVE on development; stable main remains Collision + Speed + Raise through EV-433
+CURRENT = attack forward displacement static mechanism CLOSED EV-434; one bounded runtime displacement probe remains before architecture freeze
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise direction continuation = CLOSED/PASS EV-427; EV-430 completes representative Normal / Quick R+L / pose-changing Quick / full Whirl coverage including partial Raise-asset profiles
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
@@ -52,17 +52,25 @@ Canonical reusable engine lookup:
 
 The completed preservation-biased repository audit and Work result are archived under `docs/archive/investigations/`. Its accepted RH-01–RH-13 maintenance is represented in the durable owners; RH-14–RH-17 were KEEP/no-action. The three previously retained Sprint-probe logs were positively reconciled during EV-397/EV-398 maintenance and archived byte-identically; path migration is recorded in `EVIDENCE_PATH_MIGRATIONS.md`.
 
-## Immediate continuation — Attack forward displacement research
+## Immediate continuation — Attack displacement runtime closure
 
-Stable `main` remains the accepted Collision + Speed + Raise baseline through EV-433.
+EV-434 statically establishes:
 
-Active development task:
+```text
+native distance owner = selected animation filename numeric field
+native velocity = D_filename / (maxTime / AniSpeedScale)
+New Balance = replaces Hit vector magnitude at Game+0x16B8A9
+final CombatMove movement call = Game+0x16B8B7
+strongest compatible candidate = scalar over incoming final compatible velocity
+```
+
+Active task:
 
 `docs/work/active/ATTACK_FORWARD_DISPLACEMENT_RESEARCH.md`
 
-Research/design only. Start from the established CombatMove movement surfaces `Game+0x16B8A3/+0x16B8A9`, verify the pinned New Balance `CombatMoveScale` behavior, determine native `GetCombatMoveLength` ownership/action scope and separate total distance from speed-dependent movement velocity before designing configuration or production hooks.
+Remaining gate: one bounded runtime comparison of commanded velocity × actual enabled duration against observed horizontal entity travel on representative human/nonhuman Normal attacks. Root/bone instrumentation is deferred unless that comparison exposes a discrepancy.
 
-Protect Collision, Speed, Raise, New Balance and AttackCollision behavior.
+No production displacement implementation yet.
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
 
