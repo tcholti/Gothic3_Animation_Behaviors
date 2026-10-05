@@ -39,7 +39,11 @@ Strongest compatibility candidate, **not yet frozen**:
 
 ## Active responsibility
 
+Parent research:
 `docs/work/active/ATTACK_FORWARD_DISPLACEMENT_RESEARCH.md`
+
+Bounded implementation:
+`docs/work/active/ATTACK_FORWARD_DISPLACEMENT_RUNTIME_PROBE.md`
 
 One runtime gate remains:
 
@@ -61,4 +65,4 @@ on:
 
 Do not instrument root/bones unless the first comparison shows a meaningful discrepancy.
 
-No production implementation yet.
+No production displacement implementation yet. The current code task is diagnostics-only: implement the removable `Script_AttackDisplacementProbe.dll`, then stop for Normal Chat source review.
