@@ -371,15 +371,20 @@ Thus Speed changes commanded velocity required to cover a chosen nominal distanc
 
 The selected animation's numeric filename distance field is a **causal native movement input**, not descriptive metadata. Motion routing may therefore alter native movement by changing the resolved resource.
 
-Current strongest compatible future seam, not yet production-frozen:
+EV-438 selects an **absolute-distance** candidate rather than the earlier compatible-vector multiplier:
 
 ```text
 after New Balance/native compatible vector policy
--> narrow CombatMove call at Game+0x16B8B7
--> candidate v_configured = k * v_compatible
+-> narrow insert immediately before Game+0x16B8B7
+-> if Movement Off: leave vector untouched
+-> if Movement configured:
+     T = current primary max time / already-composed AniSpeedScale
+     preserve final direction
+     set magnitude = configuredMovement / T
+-> untouched native EnableCombatMovementFromSPU call
 ```
 
-Do not scale at `+0x16B8A3` if New Balance compatibility is required; New Balance may subsequently normalize and replace that magnitude.
+This requires no filename parsing and no New Balance detection. Do not scale at `+0x16B8A3` as the production override seam when New Balance compatibility is required; New Balance may subsequently replace that magnitude.
 
 Author/runtime reconciliation in EV-435 establishes the practical phase behavior needed for this feature: ordinary attack Hit resources carry the nonzero combat-movement value while Raise/Recover are normally zero, and CombatMove translation is applied during the value-carrying phase subject to native ledge/obstacle/target stopping rules. A separate runtime probe is therefore not required merely to re-prove that basic ownership.
 
