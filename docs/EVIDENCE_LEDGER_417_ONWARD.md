@@ -659,3 +659,96 @@ Disposition:
 - **PASS — PARTIAL QUICK RAISE ASSET COVERAGE ACCEPTED IN TESTED SHIELD+1H PROFILE.**
 - **PASS — SPEED 0.1 COMPOSITION RETAINED ACROSS BOTH RAISE-PRESENT AND RAISE-ABSENT QUICK ROUTES.**
 - **RAISE MODULE = CLOSED/PASS / WELL TESTED FOR INITIAL RELEASE.**
+
+
+### EV-431 — Final independent Speed + Raise source review
+
+Review mode:
+- bounded read-only independent source review;
+- remote review handoff HEAD `deee36c5af66e4ebc4da09729428f07c4f0f0c49`;
+- production source reviewed: `d642f30bcb6b564deaaffed26fd11b763da88163`;
+- comparison baseline for the prior large Astra audit: `d5d829e07eb2bfe8de428aa2ad148ba1f2d3835c`;
+- POP-10 preflight completed;
+- no source/docs/build/deploy/runtime/probe/commit changes made by the reviewer.
+
+Findings:
+```text
+BLOCKER 0
+MAJOR   0
+MINOR   0
+NOTE    1
+```
+
+The NOTE preserves the EV-430 evidence boundary: tested partial Raise-resource coverage is accepted behavior, but it does not prove universal asset coverage or a specific uninstrumented native fallback mechanism. No new C++ asset policy is warranted.
+
+Explicit verdicts:
+```text
+correctness                        PASS
+New Balance compatibility          PASS
+AttackCollision compatibility      PASS
+Collision non-interference         PASS
+simplicity                         PASS
+modularity                         PASS
+performance                        PASS (source assessment; no benchmark)
+configuration/profile architecture PASS
+hook architecture                  PASS
+release-checkpoint readiness       PASS
+```
+
+Decisive checks:
+- factual Action14 Hack Raise/Hit/Recover composition applies the configured ratio to the supplied live compatible scale without an additional speed-owner query;
+- null-argument resumes bypass recomposition; former caller-specific Hack hooks remain retired; Action15 remains excluded;
+- non-finite and positive-compatible-scale underflow fail closed to the compatible value;
+- Normal direction carry remains continuation-owned and one-shot through the exact `Game+0x16B056` GetAniName boundary;
+- Win32 ABI/original-function transport to `Game+0x16F840` is consistent with the pinned SDK;
+- FullStop/state cancellation and shared ownership preserve lifecycle without replay;
+- resolved request-time animation identity, Quick Action4/5 grouping, Sprint/Power inheritance, custom Raise Hit-scale reuse and native Power Raise phase-relative composition remain coherent;
+- shared Collision invocation lifecycle remains unchanged.
+
+External compatibility:
+- project-pinned Jackydima New Balance / AttackCollision boundary was checked;
+- reviewer additionally checked upstream Jackydima commit `bbe769075bc896085a620a0ceb3491192c5beb61`, one commit beyond the repository pin;
+- this additional observation does **not** change the repository's pinned external authority.
+
+Disposition:
+- **PASS — READY FOR REPOSITORY RELEASE AUDIT / MAIN PROMOTION CHECKPOINT.**
+
+### EV-432 — Quick repository release / authority health audit
+
+POP-10 hierarchy:
+```text
+CAM
+-> docs/README.md project charter
+-> specialist authorities / references
+-> procedures / temporary work
+-> evidence / archive provenance
+```
+
+Review scope:
+- release-checkpoint repository health only;
+- authority topology, current-state hygiene, active-work lifecycle, evidence/raw hygiene, mechanical size signals, branch promotion shape and validator readiness;
+- no broad technical re-review and no archive cleanup for cosmetic differences.
+
+Observed:
+- `main` at `b472e9fa4756d62c4eea986c30751e01311a3cfd` is the exact merge base / ancestor of `development`;
+- `development` is ahead with no commits behind `main`; no branch divergence exists;
+- the cycle matches the charter/pipeline's intended stable promotion point: Collision + Speed + Raise are all closed/accepted;
+- current authority ownership remains coherent with `KNOWLEDGE_REGISTRY.md`;
+- exactly one active evidence ledger remains in root docs;
+- active ledger size is about 40 KiB, below the 64 KiB mechanical warning boundary;
+- `SESSION_ENTRYPOINT.md` remains below its 8 KiB cap and `BETWEEN_CHATS.md` remains compact;
+- `research/raw/` contains only the repository placeholder `Keep.txt`; no open runtime artifact is stranded;
+- the only non-README temporary active file was the completed final Speed+Raise review task and is eligible for archive closure;
+- prior source review reported current-delta `git diff --check` PASS;
+- broader historical diff whitespace observations are confined to archived Markdown hard-break formatting and do not warrant archive mutation.
+
+Finding summary:
+```text
+BLOCKER 0
+MAJOR   0
+MINOR   0
+NOTE    archive-only Markdown hard-break whitespace; KEEP / no action
+```
+
+Disposition:
+- **PASS — REPOSITORY/KNOWLEDGE STATE IS SUITABLE FOR THE DELIBERATE DEVELOPMENT -> MAIN STABLE PROMOTION CHECKPOINT.**
