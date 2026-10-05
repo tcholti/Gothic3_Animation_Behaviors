@@ -30,9 +30,9 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = production source 41ed80c6420e5236d13fc037cb5923b946cb8ccc / EV-420 native PASS + EV-421 intended New Balance/AttackCollision PASS
+CURRENT = Raise/Speed/Hack compatibility CLOSED/PASS through EV-422 / accepted production source 41ed80c6420e5236d13fc037cb5923b946cb8ccc
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
-Raise behavior = ACTIVE — additive Normal_AddRaise / Quick_AddRaise / Whirl_AddRaise; shipping defaults Off
+Raise behavior = CLOSED/PASS first public scope — additive Normal_AddRaise / Quick_AddRaise / Whirl_AddRaise; shipping defaults Off
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
 active evidence ledger = EV-417 onward
 main = FROZEN
@@ -63,7 +63,7 @@ implementation commit = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd
 independent Normal Chat source review = PASS / no blocker, major or minor finding
 shipping AddRaise keys = 55 / all Off
 Quick Action3 selector rule = PRESERVED; implementation consumes factual Action4/5 only
-runtime acceptance record = docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md
+runtime acceptance record = docs/archive/investigations/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md
 session stop 2026-10-04 = all EV-420/EV-421 evidence closed; no pending unrecorded batch; source unchanged
 build/deploy identity = PASS; built/live DLL + source/live INI hashes match
 Gate A AddRaise-Off broad runtime control = PASS EV-411
@@ -78,10 +78,10 @@ runtime matrix before correction: Hack/Pierce Raise followed BaseSpeed; Normal/Q
 implemented custom AddRaise = factual Hit CombatMove scale reused for Normal/Quick/Whirl Raise
 implemented native Power Raise = live +0x47D51 result * Power authoring ratio; native 1.5*M relationship preserved
 Pierce = protected already-coupled control; Hack = route-neutral Action14 Raise/Hit/Recover adapter implemented EV-418–EV-419
-active task = docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md
+completed runtime acceptance = docs/archive/investigations/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md
 EV-418 Hack compatibility source = 41ed80c6420e5236d13fc037cb5923b946cb8ccc / PASS EV-419
 runtime acceptance record = docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md
-next = NEXT SESSION: small New Balance modifier-preservation + factual Finishing isolation + interruption sanity controls -> final acceptance closure
+next = no Raise/Speed task is active; choose the next project responsibility from current roadmap/priority in Normal Chat
 ```
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
@@ -131,7 +131,7 @@ NO +0x42A0 entry hook
 NO rewrite of live compatible-owner EAX
 NO New Balance result used as native ReferenceHitBaseSpeed
 NO Sprint-specific Speed keys absent contradictory evidence
-Raise sequencing baseline at bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd remains accepted evidence; phase-speed correction source aab0189f2067f00653f669792b7d267135c745f0 is independently reviewed PASS EV-416 and awaits local build/runtime acceptance
+Raise sequencing baseline and phase-speed correction are fully runtime-accepted through EV-422; accepted integrated production source is 41ed80c6420e5236d13fc037cb5923b946cb8ccc
 NO collision redesign absent contradictory evidence
 NO attack-displacement/climbing implementation yet
 NO promotion to main before agreed integrated checkpoint

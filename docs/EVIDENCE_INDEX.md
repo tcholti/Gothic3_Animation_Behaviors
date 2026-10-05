@@ -163,14 +163,19 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | native route-neutral Hack CombatMove runtime control | EV-420 |
 | 2H Normal/Quick/Whirl + 1H/2H Power phase-speed runtime correction | EV-420–EV-421 |
 | intended New Balance + AttackCollision Raise/Hack runtime acceptance | EV-421 |
-| EV-417 AttackCollision Hack bypass runtime closure | EV-421 |
+| EV-417 AttackCollision Hack bypass runtime closure | EV-421–EV-422 |
+| Hack standard zero-stamina native/compatible control | EV-422 |
+| New Balance alternative zero-stamina policy preservation on Hack | EV-422 |
+| final Hack/Finishing isolation with unique + shared animation assets | EV-422 |
+| final Hack interruption/transition robustness | EV-422 |
+| Raise/Speed/Hack final runtime acceptance closure | EV-422 |
 | Speed v2 deep independent static audit | `archive/investigations/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT_RESULT.md` |
 | Speed v2 S-01 finite-output correction | `archive/investigations/SPEED_V2_S01_FINITE_OUTPUT_GUARD.md` |
 | generic Speed profile calibration implementation closure | `archive/investigations/SPEED_GENERIC_PROFILE_CALIBRATION_IMPLEMENTATION_RESULT.md` |
 | native contact misses vs authored marker correctness | EV-381 |
 | sheath/draw contact observation | EV-380–EV-381; not a marker blocker |
 
-Raise is **ACTIVE** after Speed CLOSED/PASS. AddRaise sequencing is accepted through EV-412; EV-415/EV-416 freeze and source-accept the phase-speed correction. EV-417–EV-419 close the static AttackCollision Hack compatibility gap with the route-neutral Action14 CombatMove adapter. Current production source is `41ed80c6420e5236d13fc037cb5923b946cb8ccc`; focused User-local build/deploy/runtime acceptance remains active under `docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md`.
+Raise/Speed compatibility is **CLOSED/PASS through EV-422**. AddRaise sequencing passed EV-411–EV-412; phase-speed correction passed EV-415–EV-416 and runtime EV-420–EV-421; the AttackCollision Hack gap found at EV-417 is corrected through EV-418–EV-422. Current accepted production source is `41ed80c6420e5236d13fc037cb5923b946cb8ccc`; the completed runtime-acceptance record is archived under `docs/archive/investigations/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md`.
 
 ## 3. Current collision closure landmarks
 

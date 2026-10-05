@@ -167,7 +167,7 @@ R = BaseSpeed / ReferenceHitBaseSpeed
 configuredRaise = compatibleRaise * R
 ```
 
-This relationship is active research, not yet a frozen transport for every route. Hack/Pierce already exhibit the intended whole-attack behavior and must not be double-scaled.
+This relationship is accepted for the proven Power route: EV-415 froze it, EV-416 source-accepted it, and EV-420–EV-421 runtime-accepted authored-speed coupling on tested native and intended-stack routes. It is not generalized to unrelated unproven routes. Hack/Pierce must not be double-scaled.
 
 No separate `RaiseSpeed` or `ReferenceRaiseBaseSpeed` key is authorized.
 
@@ -251,7 +251,9 @@ Composition also fails closed against finite underflow: if a positive live compa
 
 Finishing / `gEAction_FinishingAttack` / Action15 is intentionally outside the current production Speed profile set. EV-398 establishes three distinct native Finishing Hit speed consumers and direct native Action15 observations on Hero 2H and Staff while Hack/Action14 remains separately transported, even though native Gothic may resolve both actions to the same animation asset. EV-399 then closes the practical playback question: configured Hack `BaseSpeed=0.40` slowed Hack while Finishing remained native-timed both when the actions shared the same animation asset and after their assets were separated. Speed authority therefore follows the factual action route, not animation-file identity. The distributed INI contains no Finishing speed entries and default execution timing remains native; any later advanced optional Finishing configuration is a separate product decision, not required for Hack isolation.
 
-EV-399 also observed the existing Hack Raise and Recover portions following the configured slow Hack playback. Preserve that as later Raise evidence only; it does not yet establish whether a future G3AB-inserted custom Raise phase naturally inherits the configured attack speed.
+EV-399 first observed Hack Raise/Recover following configured playback. EV-420–EV-422 now close the final production runtime picture: the route-neutral Action14 adapter works native and with New Balance + AttackCollision, factual Finishing / Action15 remains native-timed even when Hack and Finishing resolve to the same animation asset, and repeated Hack/other-attack interruptions show no stale Speed/Raise continuation state.
+
+The tested ordinary zero-stamina behavior does not materially slow Hack even without G3AB, both with and without New Balance. That absence is therefore not a G3AB modifier-loss defect. Under New Balance's alternative stamina mechanics, where zero stamina prevents attacks, configured Hack obeys the same restriction as other attacks with G3AB installed.
 
 
 Runtime identity is generic:

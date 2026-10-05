@@ -1,6 +1,6 @@
 # Raise — AddRaise Runtime Acceptance
 
-**Status:** ACTIVE — USER-LOCAL BUILD / DEPLOY / FOCUSED RUNTIME ACCEPTANCE  
+**Status:** CLOSED/PASS — archived after EV-422 final runtime acceptance  
 **Branch:** `development`  
 **Current source candidate:** `41ed80c6420e5236d13fc037cb5923b946cb8ccc`  
 **Prior sequencing baseline:** `bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd`  
@@ -410,3 +410,36 @@ Only these small sanity controls remain before final acceptance closure:
 3. **Interruption/transition sanity:** interrupt or leave a Hack, then perform another attack; if convenient also perform one AddRaise-enabled Normal/Quick/Whirl followed by Hack. No stale Raise, speed carry-over, stuck continuation, repeated phase, or collision contradiction may appear.
 
 These are sanity/closure checks, not a new design phase. No new diagnostic log or Work task is required unless a contradiction appears.
+
+
+## Final closure — EV-422
+
+Final sanity controls completed:
+
+```text
+ordinary zero-stamina Hack:
+  little/no visible slowdown
+  same result with G3AB removed
+  same conclusion with and without New Balance
+  -> not a G3AB modifier-loss defect
+
+New Balance alternative stamina mechanics:
+  zero stamina blocks attacks
+  Hack with G3AB installed obeyed the same restriction as other attacks
+  -> compatible gameplay policy preserved
+
+Hack/Finishing isolation:
+  unique Hack asset: Hack 0.1 slow / Finishing native-fast
+  shared Finishing asset: Hack 0.1 slow / Finishing native-fast
+  -> factual Action14/Action15 isolation PASS independent of asset sharing
+
+interruption stress:
+  repeated Hack and other-attack interruptions
+  no stuck attack / stale Raise / speed carry-over / continuation leak
+```
+
+Final disposition:
+
+**PASS — first public AddRaise, phase-speed consistency, Speed compatibility, route-neutral AttackCollision Hack correction, Finishing exclusion and focused interruption behavior are accepted on the tested production source.**
+
+No additional Raise/Speed implementation is authorized absent contradictory evidence.

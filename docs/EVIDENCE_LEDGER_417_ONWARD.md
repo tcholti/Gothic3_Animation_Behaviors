@@ -246,3 +246,44 @@ Disposition:
 - **PASS — INTENDED-STACK RAISE PHASE-SPEED + ATTACKCOLLISION HACK COMPATIBILITY.**
 - **EV-417 MAJOR RUNTIME REGRESSION CLOSED on the tested 2H Hack fixture.**
 - **NEXT — small modifier-preservation / Finishing-isolation / interruption sanity controls before final acceptance closure.**
+
+
+### EV-422 — Final Raise/Hack compatibility sanity closure PASS
+
+Fixture:
+- production source remains `41ed80c6420e5236d13fc037cb5923b946cb8ccc`;
+- current production DLL identity remains the EV-420 build unless otherwise noted;
+- final checks performed by the User across native and/or intended New Balance + AttackCollision conditions as described below;
+- visual/gameplay observation is the primary evidence surface; no diagnostic log was required.
+
+Observed — stamina/context behavior:
+- with ordinary stamina behavior, the User let stamina reach zero and performed Hack attacks but saw little/no meaningful Hack speed change;
+- removing G3AB produced the same Hack behavior;
+- this was repeated with and without New Balance;
+- therefore the absence of a visible ordinary zero-stamina Hack slowdown is not introduced by G3AB and is not evidence of modifier loss;
+- New Balance's alternative stamina mechanics were then enabled, where attacks cannot be performed at zero stamina;
+- with G3AB installed, Hack followed the same alternative zero-stamina restriction as the other attacks.
+
+Observed — Finishing isolation:
+- with unique Hack animation assets present and `Hack_BaseSpeed=0.1`, Hack was slow while factual Finishing remained fast/native-timed at approximately 1.0;
+- the User then removed the unique Hack animation assets so Gothic resolved Hack through the Finishing animation asset;
+- Hack remained slow at the configured 0.1 while factual Finishing remained fast/native-timed;
+- therefore Speed authority remains separated by factual action identity even when Action14 Hack and Action15 Finishing share the same resolved animation asset.
+
+Observed — interruption/transition robustness:
+- the User entered combat and experienced repeated interruptions from Hack attacks and other attacks;
+- all tested attacks continued to work normally;
+- no stuck attack, stale Raise, speed carry-over, repeated phase, or continuation leak was observed.
+
+Interpretation:
+- the planned ordinary-stamina Hack slowdown check is not a valid positive modifier fixture because the tested compatible/native behavior itself does not materially slow Hack at zero stamina;
+- the New Balance alternative-stamina control positively shows that the route-neutral Hack adapter does not bypass that compatible gameplay policy;
+- EV-398/EV-399 Hack-vs-Finishing factual-action isolation is reconfirmed on the final production source, including the strongest shared-asset condition;
+- EV-418/EV-419 stateless request design shows no runtime lifetime/continuation regression under repeated combat interruption.
+
+Disposition:
+- **PASS — FINAL RAISE / SPEED / HACK COMPATIBILITY RUNTIME ACCEPTANCE CLOSED.**
+- **PASS — EV-417 ATTACKCOLLISION HACK REGRESSION REMAINS CLOSED.**
+- **PASS — FACTUAL FINISHING / ACTION15 EXCLUSION CONFIRMED WITH UNIQUE AND SHARED ASSETS.**
+- **PASS — INTERRUPTION / TRANSITION SANITY.**
+- No further Raise/Speed implementation or Work task is justified absent contradictory evidence.

@@ -1,7 +1,7 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-10-04 — end-of-day handoff
+**Updated:** 2026-10-05 — Raise/Speed runtime closure
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
@@ -12,56 +12,44 @@ Collision CLOSED/PASS and protected. `main` frozen.
 ## Current state
 
 ```text
-production source = 41ed80c6420e5236d13fc037cb5923b946cb8ccc
+accepted production source = 41ed80c6420e5236d13fc037cb5923b946cb8ccc
 source review = PASS EV-419
-built/live production SHA256 =
+built/live production SHA256 at EV-420 =
 3E7BCDBE1EBFC92B6E5FCFD7507A1E6A36C9DB8849847C29AD15288C01C2928D
 native focused runtime = PASS EV-420
 New Balance + AttackCollision focused runtime = PASS EV-421
-EV-417 AttackCollision Hack bypass = runtime CLOSED on tested 2H fixture
+final stamina/Finishing/interruption sanity = PASS EV-422
+Raise/Speed/Hack compatibility = CLOSED/PASS
 ```
 
-EV-420/EV-421 tested `BaseSpeed 0.1 <-> 1.0` on:
+Final EV-422 facts:
 ```text
-2H Normal Raise+Hit = PASS
-2H Quick Raise+Hit = PASS
-2H Power Raise follows authored speed = PASS
-2H Whirl Raise+Hit = PASS
-2H Hack configured speed = PASS
-1H Power Raise follows authored speed = PASS
-1H Pierce whole-attack control = PASS
+ordinary zero-stamina Hack has little/no slowdown even without G3AB
+-> absence is native/compatible behavior, not modifier loss
+
+New Balance alternative zero-stamina attack restriction
+-> configured Hack obeys it with G3AB installed
+
+Hack_BaseSpeed=0.1 vs Finishing:
+unique Hack asset  -> Hack slow / Finishing native-fast
+shared Finishing asset -> Hack slow / Finishing native-fast
+
+repeated Hack/other-attack interruptions
+-> no stuck attack, stale Raise, speed carry-over or continuation leak
 ```
-Same positive matrix was observed native and with New Balance + AttackCollision.
 
-Power note: visual testing proves authored-speed coupling; exact preserved Raise-vs-Hit numerical ratio was not independently measured.
-
-## End-of-day closure
-
-All evidence reported today is recorded through EV-421. No runtime log/artifact is awaiting interpretation or archival. No source change is pending. No Work task is open.
-
-Tomorrow, synchronize `development`. Documentation-only commits do not require rebuilding the unchanged production source; verify the live DLL still matches the EV-420 SHA before continuing.
+The completed runtime-acceptance record is archived at:
+`docs/archive/investigations/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md`
 
 ## Immediate continuation
 
-Use:
-`docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md`
+No Raise/Speed Work task or runtime gate remains.
 
-Only three small closure checks remain:
+Next session:
 ```text
-1. configured Hack preserves one understood New Balance contextual slowdown/modifier
-2. factual Finishing / Action15 remains native-timed under an obvious slow Hack profile
-3. interrupted Hack -> later attack / AddRaise-to-Hack transition has no stale state
+start from README -> SESSION_ENTRYPOINT
+-> confirm development HEAD / knowledge-state PASS
+-> choose the next project responsibility from the current roadmap/priority
 ```
 
-If all three pass:
-```text
-record final runtime acceptance
--> close/archive the active Raise runtime-acceptance task as appropriate
--> update durable current-state/design references
--> run knowledge-state validation
--> decide the next project responsibility
-```
-
-Stop on lost relative modifier, Finishing timing change, continuation leak, crash or Collision contradiction.
-
-No Sol 6.1 Work task is needed unless runtime produces contradictory evidence.
+Do not reopen Raise, Speed, Hack compatibility, Finishing isolation, or Collision absent contradictory evidence.
