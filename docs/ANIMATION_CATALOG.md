@@ -14,6 +14,9 @@ Primary exact-name sources:
 data/animation_names/all_animation_names.txt
     5,991 unique native animation names
 
+data/animation_names/user_created_tested_animation_names.txt
+    exact user-authored animation names admitted only after runtime selection/playback is proven
+
 data/animation_names/author_grouped_attacks_and_stumbles.txt
     author-grouped human attacks/stumbles and notes
 ```
