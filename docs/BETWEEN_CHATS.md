@@ -42,6 +42,12 @@ Hit   = second classification after Raise, may now resolve Fwd
 
 The previous animation filename is not the direction authority on this path. Gothic's naming structure remains a real state/resource contract, but the Normal direction token is freshly supplied to `GetAniName`.
 
+## Pre-implementation review — EV-425
+
+Current Raise/Speed source is still byte-identical to production `41ed80c6420e5236d13fc037cb5923b946cb8ccc`. Sol review found no blocker/major/minor issue requiring refactor before the fix.
+
+Implementation must extend the existing continuation only: three direction fields, one narrow AttackRaise semantic seam, and one `Game+0x16B056` call-site transport. No second state map or raw Navigation offsets.
+
 ## Active responsibility
 
 `docs/work/active/RAISE_NORMAL_DIRECTION_CONTINUATION_IMPLEMENTATION.md`
