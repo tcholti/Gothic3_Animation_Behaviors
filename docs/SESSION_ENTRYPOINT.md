@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = absolute attack movement implementation 7393f390... source review PASS EV-441; User-local build/deploy/runtime acceptance active
+CURRENT = absolute attack movement source review PASS EV-441 + local Release Win32 build PASS EV-442; deployment/hash verification next
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise direction continuation = CLOSED/PASS EV-427; EV-430 completes representative Normal / Quick R+L / pose-changing Quick / full Whirl coverage including partial Raise-asset profiles
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
@@ -78,11 +78,18 @@ Movement=0 -> active zero CombatMove translation
 Active runtime task:
 `docs/work/active/ATTACK_MOVEMENT_RUNTIME_ACCEPTANCE.md`
 
+EV-442 update:
+- local Release Win32 build succeeded;
+- deployment not yet run;
+- built/live DLL hash identity pending;
+- source/live INI hash identity pending;
+- runtime not yet started.
+
 Next:
-1. User Fetch/Pull development;
-2. User-local Release Win32 build/deploy;
-3. built/live identity verification;
-4. staged runtime acceptance, starting with Off-path and strong numeric contrast.
+1. deploy with the accepted PowerShell deployment/hash script;
+2. require `G3AB RELEASE DEPLOYMENT PASS`;
+3. run Off-path compatibility control;
+4. then strong Movement=0 / short / long contrast.
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
 
