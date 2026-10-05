@@ -568,3 +568,51 @@ Disposition:
 - **EV-423/EV-424 direction defect remains CLOSED/PASS.**
 - **Raise production mechanism is accepted on the tested routes; universal animation-set coverage is NOT claimed.**
 - **NEXT PRE-RELEASE RAISE VALIDATION: human Fist Normal, Sabretooth, Troll.**
+
+
+### EV-429 — Representative AddRaise type coverage closure
+
+User runtime fixture:
+- authoritative local Gothic 3 runtime;
+- existing production Raise implementation unchanged;
+- existing INI profiles used for Hero Fist, Sabretooth, Troll and Staff;
+- newly authored Troll/Sabretooth Raise resources from the frozen pre-release asset plan;
+- Human Fist used native Raise resources;
+- Staff used an already-available Raise resource; exact Staff filename/action was not transcribed into Chat and is therefore not asserted here.
+
+Runtime observations:
+- Human Fist Normal AddRaise: PASS in and out of combat;
+- Sabretooth Normal + Quick R/L AddRaise: PASS in and out of combat;
+- Troll Normal + Quick R/L AddRaise: PASS in and out of combat;
+- Staff AddRaise control: PASS in combat;
+- after setting the tested attack speeds to `0.1`, all tested Raise phases followed the new configured speed;
+- no continuation, combat-state or obvious collision regression was observed.
+
+Newly runtime-proven authored names:
+```text
+Troll_Stand_Fist_Fist_P0_Attack_Raise_N_Fwd_00_%_00_P0_0
+Troll_Stand_Fist_Fist_P0_QuickAttackR_Raise_N_Fwd_00_%_00_P0_0
+Troll_Stand_Fist_Fist_P0_QuickAttackL_Raise_N_Fwd_00_%_00_P0_0
+Sabertooth_Stand_None_Fist_P0_Attack_Raise_N_Fwd_00_%_00_P0_0
+Sabertooth_Stand_None_Fist_P0_QuickAttackR_Raise_N_Fwd_00_%_00_P0_0_R
+Sabertooth_Stand_None_Fist_P0_QuickAttackL_Raise_N_Fwd_00_%_00_P0_0_L
+```
+
+Representative type-coverage conclusion:
+- the public additive-Raise surface contains only `Normal_AddRaise`, `Quick_AddRaise` and `Whirl_AddRaise`;
+- Normal has now been exercised as ordinary Fwd and native directional Left/Right continuation;
+- Quick has now been exercised in both factual `QuickAttackR` and `QuickAttackL` forms;
+- full Whirl has already been runtime-accepted on the supported route;
+- tested profiles now span human weapon, dual, human bare Fist, nonhuman `None+Fist`, and Troll `Fist+Fist` animation structures;
+- both native Raise assets and rule-derived/user-authored Raise assets are represented;
+- configured-speed inheritance has been repeatedly validated, including extreme `0.1` controls.
+
+Boundary:
+- this is **representative structural/type coverage**, not exhaustive testing of every individual animation asset, pose, actor family or INI profile;
+- `SimpleWhirl` is a separate Speed-supported action and is not part of the public AddRaise surface;
+- broader per-asset coverage remains naturally staged with future animation redesigns and post-release contradictory reports.
+
+Disposition:
+- **PASS — PRE-RELEASE REPRESENTATIVE RAISE VALIDATION COMPLETE.**
+- **PASS — NORMAL / QUICK R+L / FULL WHIRL ADDRAISE TYPE COVERAGE COMPLETE AT REPRESENTATIVE LEVEL.**
+- **RAISE_PRE_RELEASE_VALIDATION may close/archive.**
