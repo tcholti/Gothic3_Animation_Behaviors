@@ -30,9 +30,9 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = EV-429 representative AddRaise type coverage CLOSED/PASS; no active Raise validation task
+CURRENT = EV-430 Raise module CLOSED/PASS / well tested for initial release; no active Raise task
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
-Raise direction continuation = CLOSED/PASS EV-427; EV-429 completes representative Normal / Quick R+L / full Whirl AddRaise type coverage
+Raise direction continuation = CLOSED/PASS EV-427; EV-430 completes representative Normal / Quick R+L / pose-changing Quick / full Whirl coverage including partial Raise-asset profiles
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
 active evidence ledger = EV-417 onward
 main = FROZEN
@@ -54,7 +54,7 @@ The completed preservation-biased repository audit and Work result are archived 
 
 ## Immediate continuation — Raise
 
-Raise pre-release representative validation is CLOSED/PASS through EV-429.
+Raise pre-release validation and final sanity coverage are CLOSED/PASS through EV-430.
 
 ```text
 public AddRaise surface:
@@ -67,6 +67,8 @@ representative structural coverage:
   Normal Left/Right continuation
   QuickAttackR
   QuickAttackL
+  pose-changing Quick
+  partial Quick Raise-resource coverage
   full Whirl
   human weapon / dual / bare Fist
   nonhuman None+Fist
@@ -75,13 +77,13 @@ representative structural coverage:
   configured-speed inheritance including 0.1 controls
 ```
 
-This is type/structure coverage, not exhaustive testing of every animation asset or profile. `SimpleWhirl` is not part of the public AddRaise surface.
+This is type/structure coverage, not exhaustive testing of every animation asset or profile. EV-430 additionally proves that, in the tested Shield+1H Quick profile, attacks without matching Raise assets remain functional while matching authored Raises are used where present. `SimpleWhirl` is not part of the public AddRaise surface.
 
 Completed validation record:
 
 `docs/archive/investigations/RAISE_PRE_RELEASE_VALIDATION.md`
 
-Newly proven Troll/Sabretooth names are stored in:
+All proven user-authored Raise names, including Troll/Sabretooth and the two Shield pose-changing Quick Raises, are stored in:
 
 `data/animation_names/user_created_tested_animation_names.txt`
 
