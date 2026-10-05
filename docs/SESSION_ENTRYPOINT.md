@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = EV-424 statically closes EV-423 cause; Normal AddRaise directional continuation implementation pending
+CURRENT = EV-424 cause closed + EV-425 pre-implementation Sol review PASS; minimal Normal AddRaise direction implementation pending
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise behavior = ACTIVE narrow correction — Normal Left/Right Raise plays, but following Hit incorrectly re-resolves Fwd; Quick/Whirl and prior phase-speed results remain accepted
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
