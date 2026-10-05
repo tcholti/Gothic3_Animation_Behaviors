@@ -616,3 +616,46 @@ Disposition:
 - **PASS — PRE-RELEASE REPRESENTATIVE RAISE VALIDATION COMPLETE.**
 - **PASS — NORMAL / QUICK R+L / FULL WHIRL ADDRAISE TYPE COVERAGE COMPLETE AT REPRESENTATIVE LEVEL.**
 - **RAISE_PRE_RELEASE_VALIDATION may close/archive.**
+
+
+### EV-430 — Shield pose-changing Quick partial-Raise coverage acceptance
+
+Purpose:
+- final sanity check after EV-429 representative closure;
+- exercise pose-changing Quick attacks rather than only same-pose Quick routes;
+- verify a Quick profile can have `Quick_AddRaise=On` while only some factual Quick assets have matching Raise resources.
+
+Fixture:
+- profile: Hero Shield+1H Quick;
+- exact native pose-changing Hits:
+```text
+Hero_Stand_Shield_1H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P50_100_L
+Hero_Stand_Shield_1H_P3_QuickAttackL_Hit_N_Fwd_00_%_00_P70_100_L
+```
+- user-authored/tested Raises:
+```text
+Hero_Stand_Shield_1H_P1_QuickAttackL_Raise_N_Fwd_00_%_00_P1_0_L
+Hero_Stand_Shield_1H_P3_QuickAttackL_Raise_N_Fwd_00_%_00_P3_0_L
+```
+- other Shield+1H Quick routes intentionally remained without Raise resources;
+- User had previously authored matching Recover resources for the pose-changing Hit routes according to Gothic naming rules.
+
+Runtime observations:
+- both new pose-preserving Raises were selected and played correctly;
+- their following pose-changing Quick Hits executed correctly;
+- Shield+1H Quick attacks without matching Raise resources still executed normally with `Quick_AddRaise=On`;
+- behavior passed both in and out of combat;
+- after setting Shield+1H Quick speed to `0.1`, all Quick attacks continued to work and the two new Raise animations also ran at `0.1`;
+- no regression or contradiction was observed.
+
+Interpretation:
+- pose-changing Quick Hit destinations do not require the preceding Raise to target the Hit destination pose; the tested Raise remains pose-preserving at the source pose;
+- partial Raise-resource coverage inside one enabled Quick profile is runtime-tolerated in this tested Shield+1H fixture;
+- exact engine-internal reason for the missing-resource fallback was not instrumented in this run, so do not infer a specific native return code/path beyond the observed behavior;
+- a profile therefore does not need every factual Quick animation to have a Raise resource merely to enable AddRaise for the subset that does.
+
+Disposition:
+- **PASS — POSE-CHANGING QUICK RAISE ROUTE ACCEPTED.**
+- **PASS — PARTIAL QUICK RAISE ASSET COVERAGE ACCEPTED IN TESTED SHIELD+1H PROFILE.**
+- **PASS — SPEED 0.1 COMPOSITION RETAINED ACROSS BOTH RAISE-PRESENT AND RAISE-ABSENT QUICK ROUTES.**
+- **RAISE MODULE = CLOSED/PASS / WELL TESTED FOR INITIAL RELEASE.**
