@@ -22,6 +22,9 @@ Production implementation:
 Independent source review:
 `EV-441 PASS`
 
+User-local build:
+`EV-442 PASS — Release Win32 build succeeded`
+
 Reviewed implementation:
 ```text
 one physical hook: Game+0x16B8B7
@@ -49,12 +52,16 @@ No Collision, AttackSpeed or AttackRaise source change.
 
 `docs/work/active/ATTACK_MOVEMENT_RUNTIME_ACCEPTANCE.md`
 
-User must Fetch/Pull before local build because remote documentation advanced after the production source commit.
+Build is complete. Deployment/runtime were intentionally deferred at session end.
 
 Next:
-- Release Win32 build;
-- deploy;
-- built/live identity verification;
+- Fetch/Pull latest documentation state if needed before continuing repository work;
+- run the already accepted deployment/hash PowerShell script;
+- require exactly one live G3AB project DLL;
+- require built/live DLL SHA256 identity;
+- require source/live INI SHA256 identity;
+- require `G3AB RELEASE DEPLOYMENT PASS`;
+- then
 - Off-path compatibility;
 - strong 0/short/long numeric contrast;
 - New Balance On/Off override control;
