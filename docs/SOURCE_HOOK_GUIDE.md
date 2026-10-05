@@ -357,6 +357,8 @@ Project-pinned New Balance reference:
 
 Its `CombatMoveScale` runs after native filename scaling and before `Game+0x16B8B7`. For factual Hit requests with an eligible callback result it normalizes the existing direction and replaces magnitude using its action/skill distance policy plus `ATTACK_REACH_MULTIPLIER`. A `-1` callback result preserves the native vector; Raise/Recover therefore remain on native movement calculation in this reference.
 
+EV-437 scope clarification: New Balance's replacement covers **every ordinary melee attack action currently represented by G3AB BehaviorProfiles**: Normal, Quick/QuickR/QuickL, Power, SimpleWhirl, Whirl, Pierce and Hack; Sprint is also covered. Special JumpAttack/Action12 and FinishingAttack/Action15 are not in the pinned replacement table and remain separate future-scope questions.
+
 Speed relationship:
 
 ```text
