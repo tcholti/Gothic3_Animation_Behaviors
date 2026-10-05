@@ -3,6 +3,8 @@
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
 **Updated:** 2026-10-05 — EV-435 displacement architecture semantics
 
+> After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
+
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `development`
 
