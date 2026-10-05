@@ -325,3 +325,66 @@ Disposition:
 - **CONTRADICTION — RAISE NORMAL DIRECTIONAL CONTINUATION REOPENED.**
 - **NO PRODUCTION FIX YET.**
 - **NEXT — bounded causal research to identify Gothic's exact Fwd/Left/Right selection state and the smallest way to preserve the already-selected Hit across an inserted Raise.**
+
+
+### EV-424 — Normal AddRaise direction owner statically closed
+
+Research fixture:
+- repository `development` through EV-423;
+- production behavior source unchanged at `41ed80c6420e5236d13fc037cb5923b946cb8ccc`;
+- exact local Gothic `Game.dll` static inspection;
+- pinned SDK `Jackydima/gothic3sdk@bbe769075bc896085a620a0ceb3491192c5beb61`.
+
+Established native data flow:
+- `sAICombatMoveInstr` enters `sAICombatMoveStart` at `Game+0x16ABB0`;
+- the request action is copied to SPU `+0x154`, but `sAICombatMoveInstr_Args` contains no direction field;
+- `sAICombatMoveStart` reconstructs SPU `m_DirectionVec` around `+0x16AC23..+0x16ACF2` from current entity/target geometry or the native fallback path, then normalizes it at `+0x16AD5B`;
+- the animation-direction string is initialized to exact literal `Fwd` at `+0x16AEDD`;
+- Action1 / Normal dispatches to the normal directional classification at `+0x16AF3C`;
+- that path can replace the local string with exact `Right` at `+0x16AF61` or `Left` at `+0x16AF76`;
+- local enum values are Fwd=1, Left=3, Right=4, matching SDK `gEDirection`;
+- Gothic obtains the actor Navigation property set and writes the selected current-animation direction at `+0x16B00E`;
+- `+0x16B056` calls `GetAniName` at `+0x16F840`, passing the freshly selected direction bCString as its fifth argument;
+- `GetAniName` appends that fifth argument into the resource name at `+0x16FA61`.
+
+Imported-function resolution confirms this classification uses native geometry/vector APIs including `eCEntity::GetWorldPosition`, `GetWorldMatrix`, `GetAtVector`, `bCVector::GetInvTranslated`, `Normalize` and `SetCrossProduct`.
+
+Causal explanation:
+- G3AB intercepts the factual Action1 Hit before `sAICombatMoveStart`, so Gothic has not serialized Fwd/Left/Right into the request;
+- synthetic Raise starts first and receives one native direction classification, explaining EV-423's correct Left/Right Raise;
+- after Raise completes, G3AB replays the stored generic Action1 Hit request;
+- that second start recomputes direction from then-current state/geometry;
+- because the request carries no direction and the previous Raise filename is not the direction authority on this path, the Hit may now resolve Fwd.
+
+Animation-name consequence:
+- Gothic's strict filename structure remains a real engine contract for source/destination pose, action, phase, type, direction and resource identity;
+- the Normal direction token specifically is a fresh input to `GetAniName`, not recovered from the previous animation filename.
+
+Frozen correction design:
+```text
+pending Normal AddRaise
+-> synthetic Raise enters native sAICombatMoveStart
+-> at Game+0x16B056 GetAniName call:
+     capture Gothic's exact native Raise direction bCString
+     + matching current gEDirection
+-> let Raise resolve unchanged
+-> stored Action1 Hit begins
+-> at same GetAniName call for that exact continuation:
+     restore captured current-animation direction
+     substitute only the captured native direction bCString
+     call Gothic GetAniName once
+-> all unrelated CombatMoves pass unchanged
+```
+
+Rejected:
+- filename parsing/rewrite;
+- copied Gothic geometry classifier;
+- target/orientation mutation;
+- restoring `m_DirectionVec` before Hit, because native start rebuilds it;
+- direct PlayAni bypass;
+- late motion-resource rewrite after Gothic has already built the wrong name/current direction.
+
+Disposition:
+- **PASS — DIRECTION OWNER AND EV-423 CAUSE IDENTIFIED.**
+- **NO DIAGNOSTIC PROBE REQUIRED BEFORE IMPLEMENTATION.**
+- **NEXT — bounded production implementation of one-shot Gothic-native direction carry.**
