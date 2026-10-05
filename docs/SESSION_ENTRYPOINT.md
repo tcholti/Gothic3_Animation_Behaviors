@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = attack displacement semantics frozen EV-436; smallest authored-baseline capture/reapply architecture remains to close
+CURRENT = EV-438 absolute per-profile attack movement architecture statically feasible; independent hook/architecture review is next
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise direction continuation = CLOSED/PASS EV-427; EV-430 completes representative Normal / Quick R+L / pose-changing Quick / full Whirl coverage including partial Raise-asset profiles
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
@@ -52,42 +52,39 @@ Canonical reusable engine lookup:
 
 The completed preservation-biased repository audit and Work result are archived under `docs/archive/investigations/`. Its accepted RH-01–RH-13 maintenance is represented in the durable owners; RH-14–RH-17 were KEEP/no-action. The three previously retained Sprint-probe logs were positively reconciled during EV-397/EV-398 maintenance and archived byte-identically; path migration is recorded in `EVIDENCE_PATH_MIGRATIONS.md`.
 
-## Immediate continuation — Attack displacement architecture
+## Immediate continuation — Absolute attack movement architecture
 
-EV-434 closes the native/New Balance movement mechanism. EV-435 preserves author/runtime and archive constraints. EV-436 freezes the user-facing semantics:
-
-```text
-inactive / Off
-= preserve live compatible movement completely
-
-configured K
-= selected animation's authored filename movement × K
-
-K = 1.0
-= exactly the selected animation's authored movement
-```
-
-Desired configuration surface follows the existing BehaviorProfiles attack slots:
+EV-438 selects option 2:
 
 ```text
-Normal
-Quick
-Power
-Pierce
-Hack
-SimpleWhirl
-Whirl
+<Attack>_Movement=Off
+= preserve native/New Balance movement exactly
+
+<Attack>_Movement=100
+= absolute authored-style CombatMove distance 100 for that configured Hit
 ```
 
-Do not treat `1.0` as New Balance-neutral. With New Balance active, configured `1.0` deliberately restores authored movement magnitude while preserving final direction and Gothic downstream stopping behavior.
+Smallest candidate:
+- one insertion immediately before `Game+0x16B8B7`;
+- after New Balance `+0x16B8A9`;
+- use current final direction;
+- compute duration from current primary max time / already-composed request AniSpeedScale;
+- set magnitude = configured distance / duration;
+- let original CharacterMovement call execute unchanged.
 
-Because `1.0` is an active override, shipping movement settings must remain inactive/missing by default (or use an explicit inactive token if surfaced).
+Ownership:
+```text
+BehaviorProfiles = config
+AttackMovement = policy
+EngineBridge = physical hook transport
+```
+
+No state, filename parsing, third-party detection, per-frame logic, Collision change or Speed/Raise redesign.
 
 Active research:
-
 `docs/work/active/ATTACK_FORWARD_DISPLACEMENT_RESEARCH.md`
 
-Remaining work: identify the smallest safe way to retain the native authored magnitude before New Balance replaces it and reapply `authoredMagnitude * K` at the final CombatMove movement seam. No production implementation yet.
+Next gate: bounded independent static architecture/hook review. No implementation yet.
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
 
