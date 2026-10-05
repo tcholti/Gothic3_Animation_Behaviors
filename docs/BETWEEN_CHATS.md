@@ -1,7 +1,7 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-10-05 — EV-427 Normal direction closure
+**Updated:** 2026-10-05 — EV-428 Raise coverage clarification
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
@@ -9,12 +9,15 @@ Repository: `tcholti/Gothic3_Animation_Behaviors`
 Branch: `development`  
 `main` remains frozen.
 
-## Current closure
+## Accepted Raise mechanism
 
-Collision, Speed v2, Raise phase-speed/Hack compatibility and the Normal AddRaise direction correction are CLOSED/PASS through EV-427.
+Collision, Speed v2, Raise phase-speed/Hack compatibility and the Normal AddRaise direction correction remain CLOSED/PASS on their tested routes.
 
-Accepted Normal direction mechanism:
+Accepted direction source:
 
+`1da12cead5acfb54c5520a34d07bccc4c32fd64f`
+
+Normal direction carry:
 ```text
 pending Normal synthetic Raise
 -> Gothic selects native Fwd/Left/Right
@@ -24,44 +27,59 @@ pending Normal synthetic Raise
 -> Gothic GetAniName resolves Hit normally
 ```
 
-Production direction source:
+EV-426 source review = PASS / blocker 0 / major 0 / minor 0.
 
-`1da12cead5acfb54c5520a34d07bccc4c32fd64f`
+## EV-428 scope clarification
 
-EV-426 source review:
+"All works" for the latest local run means **all behavior actually exercised in that run worked**. It does not certify every possible Gothic 3 animation set.
+
+Latest exercised coverage:
 ```text
-PASS
-blocker 0
-major 0
-minor 0
+dual 1H_1H:
+  Normal Fwd rule-derived Raise P0/P1
+  Normal Left/Right native directional Raises
+  ordinary P0/P1 QuickAttackR/L rule-derived Raises
+  native timing
+  BaseSpeed=0.1 timing inheritance
+
+2H controls:
+  Normal
+  Quick
+  Whirl
+
+ordinary combat:
+  Golem encounter using 2H and dual 1H_1H
 ```
 
-EV-427 local result:
+Exact dual authoring examples and the tested derivation recipe are durable in `ANIMATION_RULES.md §5.1`.
+
+Do not interpret EV-427/EV-428 as universal Raise coverage. Many Normal/Quick families need matching Raise assets authored before they can be exercised.
+
+## Active responsibility
+
+`docs/work/active/RAISE_PRE_RELEASE_VALIDATION.md`
+
+Remaining representative pre-release Raise fixtures:
 ```text
-build PASS
-deployment PASS
-runtime PASS
-Normal Fwd   -> Fwd Raise   -> Fwd Hit
-Normal Left  -> Left Raise  -> Left Hit
-Normal Right -> Right Raise -> Right Hit
-frozen 1H / dual-wield / Quick / Whirl / interruption controls reported working
+1. human Fist Normal
+2. Sabretooth
+3. Troll
 ```
 
-Exact built/live SHA256 values were not transcribed into Chat and are not asserted as evidence.
+These three are the remaining Raise tests the User wants before considering the implementation sufficiently tested for the initial Animation Behaviors release.
 
-## Durable owners
+Exhaustively authoring/testing Raise for every Gothic 3 attack family is **not** a release gate. Broader coverage will continue later while the User redesigns the Gothic 3 Animations Redone combat animation mods and through focused post-release contradictory reports.
+
+Animation corpus/reference:
+`https://www.nexusmods.com/gothic3/mods/77`
+
+## Protected state
 
 ```text
-DESIGN.md
-SOURCE_HOOK_GUIDE.md
-EVIDENCE_INDEX.md
-EVIDENCE_LEDGER_417_ONWARD.md
-docs/archive/investigations/RAISE_NORMAL_DIRECTION_CONTINUATION_IMPLEMENTATION.md
-docs/archive/investigations/RAISE_NORMAL_DIRECTION_CONTINUATION_RESEARCH.md
+EV-423/EV-424 direction defect remains closed
+Speed core remains closed
+phase-speed composition remains closed
+Hack compatibility remains closed
+Collision remains closed/protected
+no new production change unless one of the remaining fixtures produces contradictory evidence
 ```
-
-## Next
-
-No Raise-direction implementation task remains active.
-
-User + Normal Chat should select/freeze the next engineering responsibility from the current project state. Do not reopen EV-423/EV-424 direction work absent contradictory evidence.
