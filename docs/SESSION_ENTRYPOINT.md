@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = attack forward displacement static mechanism CLOSED EV-434; one bounded runtime displacement probe remains before architecture freeze
+CURRENT = attack displacement static mechanism CLOSED EV-434; bounded diagnostics-only runtime probe implementation active before runtime closure
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise direction continuation = CLOSED/PASS EV-427; EV-430 completes representative Normal / Quick R+L / pose-changing Quick / full Whirl coverage including partial Raise-asset profiles
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
@@ -64,9 +64,13 @@ final CombatMove movement call = Game+0x16B8B7
 strongest compatible candidate = scalar over incoming final compatible velocity
 ```
 
-Active task:
+Active research:
 
 `docs/work/active/ATTACK_FORWARD_DISPLACEMENT_RESEARCH.md`
+
+Active bounded probe implementation:
+
+`docs/work/active/ATTACK_FORWARD_DISPLACEMENT_RUNTIME_PROBE.md`
 
 Remaining gate: one bounded runtime comparison of commanded velocity × actual enabled duration against observed horizontal entity travel on representative human/nonhuman Normal attacks. Root/bone instrumentation is deferred unless that comparison exposes a discrepancy.
 
