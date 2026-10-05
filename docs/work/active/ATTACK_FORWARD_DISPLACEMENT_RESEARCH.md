@@ -46,51 +46,74 @@ speed / animation-duration interaction
 
 Do not call the feature root-motion control unless root motion is actually proven to own the observed attack displacement.
 
-## New Balance compatibility lead — verify against project pin
+## Static research status — EV-434
 
-A preliminary lookup of current upstream `Jackydima/gothic3sdk` shows a `CombatMoveScale` hook installed at `Game+0x16B8A9`.
-
-Its current upstream shape is approximately:
+Principal static causality is now established:
 
 ```text
-GetCombatMoveLength(Self, current instruction action)
--> obtain current animation max time
--> divide max time by request AniSpeedScale to obtain animation duration
--> normalize SPU m_DirectionVec
--> scale direction vector by:
-   CombatMoveLength / animationDuration * ATTACK_REACH_MULTIPLIER
+native:
+selected resource filename word 13 = D_filename
+T = primary max time / AniSpeedScale
+m_DirectionVec = normalized direction * D_filename/T
+Game+0x16B8A3 = native vector scale
+Game+0x16B8A9 = CharacterMovement receiver load / New Balance insertion
+Game+0x16B8B7 = actual EnableCombatMovementFromSPU call
+
+New Balance project pin:
+references/jackydima-gothic3sdk
+@ 316d32406a133f8884e7e302752c35f66b4f54fc
+
+NB Hit behavior:
+action/skill GetCombatMoveLength policy
+-> normalize existing vector
+-> replace magnitude by L/T * ATTACK_REACH_MULTIPLIER
 ```
 
-Important:
-- treat this as a research lead, not yet canonical evidence;
-- reverify the exact code/hook against the repository-pinned Jackydima reference before drawing conclusions;
-- determine whether this applies generically to all actions with a valid CombatMove length or whether practical behavior is limited by Gothic's `GetCombatMoveLength` policy;
-- determine whether New Balance is preserving a Gothic distance while changing velocity/timing, changing total travel distance through `ATTACK_REACH_MULTIPLIER`, or both.
+Native `GetCombatMoveLength` is not the native movement-distance owner on the tested path; its native Hit caller discards the return. The selected resource filename supplies native distance.
 
-## First research questions
+Speed algebra is closed: changing `AniSpeedScale` changes the commanded velocity needed to cover the chosen nominal distance over the nominal animation duration; it does not inherently change that nominal distance.
 
-1. What native Gothic code produces / consumes `m_DirectionVec` for melee CombatMove Hit movement?
-2. What exactly happens at `Game+0x16B8A3` and `Game+0x16B8A9` in the tested executable?
-3. What does native `GetCombatMoveLength` return for:
-   - Normal;
-   - QuickAttackR / QuickAttackL;
-   - Power;
-   - full Whirl;
-   - SimpleWhirl;
-   - Pierce;
-   - Hack;
-   - Sprint-origin shared routes;
-   - representative nonhuman attacks?
-4. Is the numeric movement/reach field serialized in animation names related to this distance, merely correlated, or independent?
-5. How does `AniSpeedScale` affect total distance vs movement velocity?
-6. Does New Balance's hook execute before/after any G3AB Speed/Raise/Collision intervention in a way that creates double composition risk?
-7. Is a configurable feature best expressed as:
-   - absolute desired total attack travel distance;
-   - multiplier over compatible/native total distance;
-   - per-profile/per-attack authored value;
-   - another factual quantity?
-8. Can compatible New Balance behavior be preserved in a composition model rather than replaced?
-9. Which actions should be in initial public scope, based on actual native semantics rather than symmetry?
+The strongest compatible future seam is after native/New Balance vector policy at the CombatMove-specific `Game+0x16B8B7` call, with candidate scalar composition `v_configured = k * v_compatible`. This is not yet production-frozen.
+
+## Remaining runtime question
+
+Only one causal gate remains before production architecture can freeze:
+
+> For representative unobstructed attacks, does actual entity travel correspond to the commanded CombatMove velocity integrated over the interval for which combat movement is enabled?
+
+The first runtime pass should measure only what is necessary to answer that:
+
+```text
+factual action + phase
+selected animation resource
+request AniSpeedScale
+incoming final compatible movement vector at/just before Game+0x16B8B7
+entity world position when combat movement becomes enabled
+time movement becomes enabled
+entity world position when that CombatMove movement becomes disabled
+time movement becomes disabled
+reason/context for disable if readily available
+```
+
+Derived comparison:
+
+```text
+predicted commanded travel
+= |v_compatible| * actual enabled duration
+
+observed entity travel
+= horizontal entity-position delta over the same interval
+```
+
+Use:
+- one representative human Normal attack;
+- one representative nonhuman Normal attack;
+- flat/unobstructed conditions;
+- target/no-target setup chosen to avoid early target-stop where practical;
+- at least two playback-speed settings on one fixture;
+- New Balance active for the compatibility fixture.
+
+Do **not** add direct root/bone instrumentation initially. If commanded-vs-observed travel agrees within ordinary runtime tolerance, an independent material root contribution to entity translation is not indicated for those fixtures. Add root-relative instrumentation only if a meaningful discrepancy appears.
 
 ## Evidence order
 
@@ -118,12 +141,6 @@ Do not create a probe merely because one could provide more data. First exhaust 
 
 ## Closure target
 
-Research closes only when we can state:
-- native displacement owner/mechanism;
-- New Balance ownership/intervention and compatibility consequence;
-- exact interaction with animation speed;
-- safe composition quantity if one exists;
-- supported initial attack scope;
-- smallest production seam or a reason not to implement.
+Static ownership, New Balance intervention and speed algebra are already closed by EV-434. Research now closes when bounded runtime evidence establishes whether compatible commanded velocity accounts for representative realized entity travel closely enough to support scalar composition at the final CombatMove movement seam. If it does, return to Normal Chat to freeze initial public scope/config semantics and the smallest production implementation. If it does not, investigate only the measured discrepancy.
 
 Then freeze a separate production task if implementation is justified.
