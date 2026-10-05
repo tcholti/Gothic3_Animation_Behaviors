@@ -178,13 +178,16 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | Normal AddRaise directional continuation causal closure | EV-424 |
 | pre-implementation Sol review / no-refactor decision | EV-425 |
 | EV-424 minimal continuation-field + GetAniName transport shape | EV-425 |
+| Normal AddRaise direction implementation source review | EV-426 |
+| Normal AddRaise Fwd/Left/Right direction runtime acceptance | EV-427 |
+| EV-423 directional-continuation defect closure | EV-427 |
 | Speed v2 deep independent static audit | `archive/investigations/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT_RESULT.md` |
 | Speed v2 S-01 finite-output correction | `archive/investigations/SPEED_V2_S01_FINITE_OUTPUT_GUARD.md` |
 | generic Speed profile calibration implementation closure | `archive/investigations/SPEED_GENERIC_PROFILE_CALIBRATION_IMPLEMENTATION_RESULT.md` |
 | native contact misses vs authored marker correctness | EV-381 |
 | sheath/draw contact observation | EV-380–EV-381; not a marker blocker |
 
-Raise/Speed compatibility passed through EV-422 on the tested matrix, but EV-423 reopened one narrow Normal AddRaise directional-continuation defect. EV-424 statically closes the cause: `sAICombatMoveStart` freshly computes Fwd/Left/Right, writes Navigation current-animation direction, and passes that direction as the fifth `GetAniName` argument; replaying the stored generic Action1 Hit performs a second classification after Raise. Speed core, Hack compatibility, phase-speed composition and Collision remain CLOSED/PASS. Current accepted production source remains `41ed80c6420e5236d13fc037cb5923b946cb8ccc`; a bounded directional-continuation correction is active.
+Raise/Speed compatibility passed through EV-422. EV-423 then exposed one narrow Normal AddRaise directional-continuation defect; EV-424 closed its cause, EV-426 source-reviewed the minimal correction, and EV-427 runtime-accepted the Gothic-native direction carry. The accepted direction source is `1da12cead5acfb54c5520a34d07bccc4c32fd64f`; current production blobs remain that source state while later commits are documentation-only. Speed core, Hack compatibility, phase-speed composition and Collision remain CLOSED/PASS.
 
 ## 3. Current collision closure landmarks
 
