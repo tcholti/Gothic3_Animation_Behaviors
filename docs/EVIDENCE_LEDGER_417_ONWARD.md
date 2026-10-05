@@ -777,3 +777,119 @@ Boundary:
 
 Disposition:
 - **PASS — COLLISION + SPEED + RAISE STABLE PROMOTION COMPLETED.**
+
+
+### EV-434 — Attack displacement static mechanism closure
+
+Mode:
+- bounded read-only Astra static research;
+- development HEAD verified at `77b53975fc13d9850a9df4268bc5146201f9632b`;
+- no source/docs/build/deploy/runtime/probe/commit changes made by the researcher.
+
+Pinned references:
+```text
+official SDK: thirdparty/gothic3sdk @ 90bfd344de4510dda7ac9da7461cc7f1eac911f7
+New Balance / AttackCollision: references/jackydima-gothic3sdk @ 316d32406a133f8884e7e302752c35f66b4f54fc
+```
+
+Native CombatMove mechanism — PROVEN:
+- `Game+0x1696E0` owns the instruction lifecycle; fresh requests enter the start path at `Game+0x16ABB0`;
+- fresh start logic constructs and normalizes `SPU.m_DirectionVec`;
+- after selecting the actual motion, Gothic reads filename word 13 and parses it as the movement distance;
+- nominal animation duration is primary max time divided by request `AniSpeedScale`;
+- native commanded velocity is therefore:
+```text
+T = animationMaxTime / AniSpeedScale
+v_native = normalizedDirection * (D_filename / T)
+```
+- `Game+0x16B8A3` is the `bCVector::Scale(float)` call that applies `D_filename / T`;
+- `Game+0x16B8A9` loads the CharacterMovement receiver and is New Balance's insertion point, not the native movement call;
+- `Game+0x16B8B7` calls `gCCharacterMovement_PS::EnableCombatMovementFromSPU`;
+- the receiver copies the vector, enables combat movement and clears vertical contribution;
+- controlled translation later feeds the stored vector into velocity; target-stop/movement-validity/cleanup may shorten or suppress realized travel.
+
+Native `GetCombatMoveLength` distinction — PROVEN:
+- implementation is `Script_Game+0xAA270`;
+- native Hit-path invocation at `Game+0x16B4EC` discards its return value;
+- native movement distance is independently supplied by the selected animation filename;
+- therefore replacing only `GetCombatMoveLength` does not replace native movement distance in the tested build.
+
+New Balance mechanism at the project pin — PROVEN:
+- `CombatMoveScale` is inserted at `Game+0x16B8A9`, after native vector scaling and before CharacterMovement receives it;
+- for eligible factual Hit requests:
+```text
+L = New Balance GetCombatMoveLength(Self, current instruction action)
+if L == -1 -> preserve native vector
+T = animationMaxTime / request.AniSpeedScale
+normalize existing m_DirectionVec
+scale by L / T * ATTACK_REACH_MULTIPLIER
+```
+- the replacement callback gates on current animation phase Hit;
+- it uses an action table plus combat-skill factor and integer conversion before the global reach multiplier;
+- no human-only filter exists; nonhuman/NPC skill tiers are derived from level bands;
+- New Balance therefore replaces compatible Hit vector magnitude rather than multiplying the native filename distance;
+- Raise/Recover callback requests return `-1` and preserve native movement calculation.
+
+Speed interaction — PROVEN algebra:
+- increasing `AniSpeedScale` shortens nominal duration and proportionally increases commanded velocity;
+- under uninterrupted movement for that duration, nominal distance cancels back to the chosen distance;
+- actual world displacement remains conditional on the interval for which movement is permitted;
+- future displacement behavior must consume the already-composed request speed and must not re-query/recompose Speed.
+
+Animation/resource interaction:
+- **PROVEN:** the serialized numeric distance field in the selected animation resource is a causal native CombatMove movement input;
+- **PROVEN:** motion routing can therefore change native displacement by changing the selected resource;
+- **UNKNOWN:** whether animation/root data independently contributes additional entity translation across representative assets;
+- do not call this feature root-motion control.
+
+Action policy at the New Balance pin — PROVEN callback table:
+```text
+Normal Action1       native callback 120 (Zombie 150) -> NB int(180*f)
+QuickR Action4       native callback 60               -> NB int(70*f)
+QuickL Action5       native callback 60               -> NB int(70*f)
+Power Action2        native callback 180              -> NB int(240*f)
+Whirl Action10       native callback 180              -> NB int(220*f)
+SimpleWhirl Action6  native callback 120              -> NB int(180*f)
+Pierce Action11      native callback 120              -> NB int(150*f)
+Hack Action14        native callback 120              -> NB int(240*f)
+Sprint Action9       native callback 180              -> NB int(240*f)
+```
+Native commanded distance remains the selected resource's filename field, not this callback table.
+
+Current G3AB ordering — PROVEN:
+```text
+G3AB CombatMove boundary
+-> AttackRaise
+-> factual Hack Speed adapter
+-> Collision invocation lifecycle
+-> native CombatMove start
+-> direction/resource resolution
+-> native filename-distance scaling
+-> New Balance CombatMoveScale
+-> CharacterMovement receives final compatible velocity
+```
+
+Compatibility consequence:
+- Speed supplies the final request speed consumed by native/NB duration math;
+- Raise may create separate physical phase requests and must remain lifecycle-independent;
+- resource routing changes the native filename-distance input;
+- Collision requires no redesign;
+- AttackCollision factual Hack requests reach the same downstream movement path.
+
+Static architecture candidate — STRONGLY SUPPORTED, not frozen:
+- the narrowest compatible composition seam is the CombatMove-specific call at `Game+0x16B8B7`, after New Balance has finished its magnitude policy;
+- candidate composition:
+```text
+v_configured = k * v_compatible
+```
+- this preserves compatible direction/magnitude decisions, speed composition, resource selection and native stopping behavior;
+- scaling earlier at `+0x16B8A3` is rejected because New Balance can subsequently normalize away that magnitude change;
+- absolute final-world-distance control and Speed-style reference-distance replacement are not established contracts.
+
+Remaining causal questions:
+- exact realized displacement vs integrated commanded velocity on representative human/nonhuman attacks;
+- exact enabled movement interval relative to nominal animation duration;
+- whether an independent animation/root contribution materially moves the entity.
+
+Disposition:
+- **STATIC RESEARCH PARTIALLY CLOSED — ONE BOUNDED RUNTIME EVIDENCE PASS REQUIRED BEFORE PRODUCTION ARCHITECTURE IS FROZEN.**
