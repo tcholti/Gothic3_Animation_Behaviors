@@ -63,9 +63,7 @@ implementation commit = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd
 independent Normal Chat source review = PASS / no blocker, major or minor finding
 shipping AddRaise keys = 55 / all Off
 Quick Action3 selector rule = PRESERVED; implementation consumes factual Action4/5 only
-runtime acceptance record = docs/archive/investigations/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md
-session stop 2026-10-04 = all EV-420/EV-421 evidence closed; no pending unrecorded batch; source unchanged
-build/deploy identity = PASS; built/live DLL + source/live INI hashes match
+build/deploy + first-public runtime acceptance = PASS EV-420–EV-422; record archived under docs/archive/investigations/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md
 Gate A AddRaise-Off broad runtime control = PASS EV-411
 Gate B native-stack Hero None+2H AddRaise-On = PASS EV-412
 Gate C intended New Balance coexistence = PASS EV-412
@@ -78,9 +76,7 @@ runtime matrix before correction: Hack/Pierce Raise followed BaseSpeed; Normal/Q
 implemented custom AddRaise = factual Hit CombatMove scale reused for Normal/Quick/Whirl Raise
 implemented native Power Raise = live +0x47D51 result * Power authoring ratio; native 1.5*M relationship preserved
 Pierce = protected already-coupled control; Hack = route-neutral Action14 Raise/Hit/Recover adapter implemented EV-418–EV-419
-completed runtime acceptance = docs/archive/investigations/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md
-EV-418 Hack compatibility source = 41ed80c6420e5236d13fc037cb5923b946cb8ccc / PASS EV-419
-runtime acceptance record = docs/archive/investigations/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md
+EV-418 Hack compatibility source = 41ed80c6420e5236d13fc037cb5923b946cb8ccc / source PASS EV-419 / runtime PASS EV-420–EV-422
 completed research = docs/archive/investigations/RAISE_NORMAL_DIRECTION_CONTINUATION_RESEARCH.md
 active task = docs/work/active/RAISE_NORMAL_DIRECTION_CONTINUATION_IMPLEMENTATION.md
 next = bounded production implementation only from the frozen EV-424 mechanism
