@@ -45,6 +45,7 @@ static mCFunctionHook Hook_OnAI_WhirlAttack;
 static mCFunctionHook Hook_OnAI_PierceAttack;
 static mCFunctionHook Hook_OnAI_HackAttack;
 static mCCallHook Hook_CombatMoveMotionResourceQuery;
+static mCCallHook Hook_CombatMoveGetAniName;
 static mCFunctionHook Hook_SetCollisionGroup;
 static mCFunctionHook Hook_AICombatMoveInstr;
 static mCFunctionHook Hook_AISetState;
@@ -280,6 +281,22 @@ static gEAction GetCombatMoveFactualAction(
     // is stored directly at SPU + 0x154.
     GEU8 const *const bytes = reinterpret_cast<GEU8 const *>(a_pSPU);
     return *reinterpret_cast<gEAction const *>(bytes + 0x154);
+}
+
+using GetAniNameFunction = void (__thiscall *)(
+    gCScriptProcessingUnit *, bCString &, eCEntity *, gEAction,
+    bCString, bCString &, GEBool);
+
+static void GE_STDCALL GetAniName_FrameCollisionTest(
+    gCScriptProcessingUnit *a_pSPU, bCString &a_rAniName,
+    eCEntity *a_pEntity, gEAction a_Action, bCString a_PhaseName,
+    bCString &a_rDirectionName, GEBool a_bUnknown)
+{
+    G3AB::AttackRaise::PreserveNormalContinuationDirection(
+        a_pSPU, a_pEntity, a_Action, a_PhaseName, a_rDirectionName);
+    Hook_CombatMoveGetAniName.GetOriginalFunction<GetAniNameFunction>()(
+        a_pSPU, a_rAniName, a_pEntity, a_Action,
+        a_PhaseName, a_rDirectionName, a_bUnknown);
 }
 
 static eCResourceDataEntity *GE_STDCALL
@@ -1109,6 +1126,13 @@ void FrameCollision::EngineBridge::InstallHooks()
         GetScriptAdminExt().GetScriptAICallback("OnAI_HackAttack")
             ->m_funcScriptAICallback,
         &OnAI_HackAttack_FrameCollisionTest);
+
+    Hook_CombatMoveGetAniName
+        .Prepare(RVA_Game(0x16B056), &GetAniName_FrameCollisionTest)
+        .AddThisArg()
+        .OriginalFunction(
+            reinterpret_cast<GetAniNameFunction>(RVA_Game(0x16F840)))
+        .Hook();
 
     Hook_CombatMoveMotionResourceQuery
         .Prepare(RVA_Game(0x16B10C),
