@@ -173,13 +173,16 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | dual P3 Quick Raise/Hit route non-observation | EV-423 |
 | Normal AddRaise Left/Right -> Fwd Hit continuation contradiction | EV-423 |
 | CombatMove request lacks directional identity for Normal continuation | EV-423 |
+| Normal CombatMove Fwd/Left/Right native selection owner | EV-424 |
+| GetAniName fifth-argument direction contract | EV-424 |
+| Normal AddRaise directional continuation causal closure | EV-424 |
 | Speed v2 deep independent static audit | `archive/investigations/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT_RESULT.md` |
 | Speed v2 S-01 finite-output correction | `archive/investigations/SPEED_V2_S01_FINITE_OUTPUT_GUARD.md` |
 | generic Speed profile calibration implementation closure | `archive/investigations/SPEED_GENERIC_PROFILE_CALIBRATION_IMPLEMENTATION_RESULT.md` |
 | native contact misses vs authored marker correctness | EV-381 |
 | sheath/draw contact observation | EV-380–EV-381; not a marker blocker |
 
-Raise/Speed compatibility is **CLOSED/PASS through EV-422**. AddRaise sequencing passed EV-411–EV-412; phase-speed correction passed EV-415–EV-416 and runtime EV-420–EV-421; the AttackCollision Hack gap found at EV-417 is corrected through EV-418–EV-422. Current accepted production source is `41ed80c6420e5236d13fc037cb5923b946cb8ccc`; the completed runtime-acceptance record is archived under `docs/archive/investigations/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md`.
+Raise/Speed compatibility passed through EV-422 on the tested matrix, but EV-423 reopened one narrow Normal AddRaise directional-continuation defect. EV-424 statically closes the cause: `sAICombatMoveStart` freshly computes Fwd/Left/Right, writes Navigation current-animation direction, and passes that direction as the fifth `GetAniName` argument; replaying the stored generic Action1 Hit performs a second classification after Raise. Speed core, Hack compatibility, phase-speed composition and Collision remain CLOSED/PASS. Current accepted production source remains `41ed80c6420e5236d13fc037cb5923b946cb8ccc`; a bounded directional-continuation correction is active.
 
 ## 3. Current collision closure landmarks
 
