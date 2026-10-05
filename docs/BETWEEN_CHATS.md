@@ -1,9 +1,7 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-10-05 — EV-434 displacement static closure
-
-> After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
+**Updated:** 2026-10-05 — EV-435 displacement architecture semantics
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Active branch: `development`
@@ -12,57 +10,44 @@ Active branch: `development`
 
 `main` remains the promoted Collision + Speed + Raise baseline through EV-433.
 
-## Displacement static result — EV-434
+## Established displacement mechanism
 
+EV-434:
 ```text
-native selected-resource filename word 13 = movement distance
-T = maxTime / AniSpeedScale
-native m_DirectionVec magnitude = D_filename / T
-
-Game+0x16B8A3 = native vector Scale
-Game+0x16B8A9 = New Balance insertion after native scale
-Game+0x16B8B7 = final CombatMove EnableCombatMovementFromSPU call
+selected animation filename movement field -> native CombatMove velocity
+Game+0x16B8A3 = native magnitude scale
+Game+0x16B8A9 = project-pinned New Balance movement replacement
+Game+0x16B8B7 = final CombatMove movement call
+speed changes commanded velocity; nominal distance remains chosen movement value
 ```
 
-Project-pinned New Balance:
-`references/jackydima-gothic3sdk @ 316d32406a133f8884e7e302752c35f66b4f54fc`
+EV-435:
+```text
+ordinary attack Hit carries the nonzero movement value
+Raise/Recover are normally 0
+movement occurs during the value-carrying phase
+combat movement preserves native ledge/obstacle/target stopping
+renaming the animation is not a practical control because packed resource
+precedence makes replacement/repacking necessary
+```
 
-For eligible Hit actions New Balance normalizes the existing direction and replaces magnitude with its action/skill distance divided by nominal duration, multiplied by `ATTACK_REACH_MULTIPLIER`.
-
-Native `GetCombatMoveLength` is not the native movement-distance owner in the tested path.
-
-Speed changes commanded velocity but nominal uninterrupted travel cancels back to the selected distance.
-
-Strongest compatibility candidate, **not yet frozen**:
-
-`Game+0x16B8B7 -> v_configured = k * v_compatible`
+The proposed runtime re-proof probe was cancelled before implementation as redundant.
 
 ## Active responsibility
 
-Parent research:
 `docs/work/active/ATTACK_FORWARD_DISPLACEMENT_RESEARCH.md`
 
-Bounded implementation:
-`docs/work/active/ATTACK_FORWARD_DISPLACEMENT_RUNTIME_PROBE.md`
+Current architecture decision:
 
-One runtime gate remains:
+```text
+Off = preserve current live compatible stack unchanged
 
-compare
-```text
-|final compatible velocity| * actual combat-movement-enabled duration
-```
-against
-```text
-observed horizontal entity-position travel
+configured 1.0 semantics remain to freeze:
+- preserve final compatible (including New Balance), or
+- restore selected animation-authored filename movement, or
+- expose an explicit distinction
 ```
 
-on:
-- one human Normal;
-- one nonhuman Normal;
-- unobstructed/flat conditions;
-- at least two speeds on one fixture;
-- New Balance active for compatibility coverage.
+Do not implement until this authoring contract is decided.
 
-Do not instrument root/bones unless the first comparison shows a meaningful discrepancy.
-
-No production displacement implementation yet. The current code task is diagnostics-only: implement the removable `Script_AttackDisplacementProbe.dll`, then stop for Normal Chat source review.
+Protect Collision, Speed, Raise, New Balance and AttackCollision.
