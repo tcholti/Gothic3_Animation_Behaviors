@@ -248,7 +248,21 @@ Full Whirl:
 
 Current inventory counts: 64 Normal `Attack_Raise`, 12 `QuickAttackR_Raise`, 16 `QuickAttackL_Raise`, and 6 `WhirlAttack_Raise` names. These counts demonstrate native naming patterns, not universal asset availability for every profile.
 
-Do not infer that a Raise asset can always be authored by changing only `Hit` to `Raise`. Native names show that destination pose and movement/reach suffixes may differ between the matching Raise and Hit. Release authoring guidance must explain the filename fields Gothic derives from its action/phase/pose/use-type/direction state and use matched real examples of the exact Raise resource Gothic requests.
+Do not infer that a Raise asset can always be authored by changing only `Hit` to `Raise`. Native names show that destination pose and movement/reach suffixes may differ between the matching Raise and Hit.
+
+For a rule-derived Raise candidate, preserve the factual Hit request's serialized direction token exactly:
+
+```text
+Hit ..._Fwd_...   -> Raise ..._Fwd_...
+Hit ..._Left_...  -> Raise ..._Left_...
+Hit ..._Right_... -> Raise ..._Right_...
+```
+
+Do not substitute a different directional variant merely because an existing Raise file with that direction is present in the inventory. For example, Dual `Attack_Raise_N_Left/Right` assets do not authorize using those files for a factual `Attack_Hit_N_Fwd` route.
+
+Raise derivation is independent of Recover. Do **not** use a Recover filename, Recover destination pose, or Recover availability to construct or validate a Raise name. Runtime testing has established that Hit execution can continue when matching Recover animation assets are removed; Recover is therefore not an authoring dependency for Raise-name derivation.
+
+Release authoring guidance must explain the filename fields Gothic derives from its factual action/phase/source-pose/use-type/direction state and use matched real examples of the exact Raise resource Gothic requests whenever available.
 
 ---
 
