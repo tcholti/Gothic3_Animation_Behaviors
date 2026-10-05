@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Path Migrations
 
 **Status:** Canonical provenance-path lookup  
-**Updated:** 2026-10-01
+**Updated:** 2026-10-05
 
 ## Purpose
 
@@ -478,6 +478,28 @@ Disposition/provenance:
 - the closed temporary task moved to `docs/archive/investigations/SPEED_SEPARATION_PROFILE_IDENTITY_PROBE.md`;
 - intended raw intake after this transaction returns to `Keep.txt` plus the deliberately retained EV-396 calibration baseline.
 
+
+## 2026-10-05 — EV-396 calibration baseline archive after Speed closure
+
+The EV-396 native calibration control remained in active intake only while broad native calibration was an active comparison campaign. EV-403 deliberately stopped broad creature calibration as a current Speed blocker, and EV-404 confirmed broad native calibration was no longer a Speed-finalization blocker. The retention condition therefore expired.
+
+The processed artifact was moved byte-identically by reusing its existing Git blob identity:
+
+```text
+research/raw/2026.09.29_speed calibration_1h_troll.log
+ -> research/archive/2026.09.29_speed calibration_1h_troll.log
+ blob 048e6db37129e27e652b194e31c0e5503d4bd96d
+```
+
+Disposition/provenance:
+
+- EV-396 remains the canonical native-control evidence for the recorded Hero 1H and Troll PhysicalFist speed observations.
+- EV-403–EV-404 close the broad-calibration retention condition; this move changes storage only, not evidence meaning.
+- the archive move preserves exact Git blob identity; the runtime log is not rewritten, normalized, trimmed or regenerated.
+- historical references to the former raw path resolve to the archived basename through this migration entry.
+- intended raw intake after this transaction is `research/raw/Keep.txt` only.
+
+---
 
 ## Rule for Future Moves
 
