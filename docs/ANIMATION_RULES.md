@@ -310,6 +310,18 @@ This is a **runtime-validated dual P0/P1 authoring pattern**, not authority to b
 
 Once a user-authored animation name is actually selected and played correctly at runtime, add its exact name to `data/animation_names/user_created_tested_animation_names.txt`. Do not add merely planned, generated, inferred, or unobserved candidates. The native `all_animation_names.txt` remains unchanged as the original Gothic inventory.
 
+EV-430 adds a tested pose-changing Shield+1H Quick example. The Hit may change pose, while the preceding Raise remains pose-preserving at its factual source pose:
+
+```text
+Hit:   Hero_Stand_Shield_1H_P1_QuickAttackL_Hit_N_Fwd_00_%_00_P50_100_L
+Raise: Hero_Stand_Shield_1H_P1_QuickAttackL_Raise_N_Fwd_00_%_00_P1_0_L
+
+Hit:   Hero_Stand_Shield_1H_P3_QuickAttackL_Hit_N_Fwd_00_%_00_P70_100_L
+Raise: Hero_Stand_Shield_1H_P3_QuickAttackL_Raise_N_Fwd_00_%_00_P3_0_L
+```
+
+In the same runtime fixture, `Quick_AddRaise=On` remained safe for other Shield+1H Quick routes that had no matching Raise resource: those attacks still executed normally. Treat that as tested runtime behavior for partial asset coverage, not as evidence for a specific uninstrumented engine return code.
+
 Historical implementation warning from EV-423: native directional Normal Left/Right Raises played correctly, but the inserted continuation initially re-resolved the following Action1 Hit as Fwd. EV-424 identified the cause, EV-426 source-accepted the correction, and EV-427 runtime-accepted preserved Fwd/Left/Right continuation. Do not rename directional Raise assets to compensate for continuation behavior.
 
 ---
