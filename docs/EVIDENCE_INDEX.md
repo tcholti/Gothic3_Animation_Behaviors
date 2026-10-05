@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Index
 
 **Status:** Compact evidence-routing index  
-**Updated:** 2026-10-04
+**Updated:** 2026-10-05
 
 ## Purpose
 
@@ -295,15 +295,15 @@ Processed collision and earlier Speed identity evidence has been archived byte-i
 
 Explicit raw preservation state:
 
-| Artifact under `research/raw/` | Disposition |
-|---|---|
-| `2026.09.29_speed calibration_1h_troll.log` | **ACTIVE COMPARISON / KEEP RAW**, EV-396, while the calibration campaign remains active |
+```text
+research/raw/Keep.txt
+```
 
-The EV-396 native calibration control is the only active runtime comparison artifact in intake. The processed EV-400 representative-NPC log and EV-401 focused Goblin context log are archived byte-identically after the comparison closed. The three closed Sprint-probe logs were positively reconciled and moved byte-identically to `research/archive/`; their historical raw routes are mapped in `EVIDENCE_PATH_MIGRATIONS.md`. The three processed September 30 human/Finishing calibration logs are also archived after EV-397–EV-398 promotion.
+No active runtime comparison artifact remains in intake. The EV-396 native calibration control was archived byte-identically on 2026-10-05 after EV-403 stopped broad creature calibration as a current Speed blocker and EV-404 confirmed broad native calibration was no longer a Speed-finalization blocker. Historical references to its former raw path resolve through `EVIDENCE_PATH_MIGRATIONS.md`.
 
-The EV-396 native calibration control log remains intentionally in `research/raw/2026.09.29_speed calibration_1h_troll.log` during the active broad-calibration campaign because it is the baseline comparison fixture for the same reusable probe. Once the campaign no longer needs active comparison, close/archive it under the runtime-evidence lifecycle rather than deleting it.
+The processed EV-400 representative-NPC log and EV-401 focused Goblin context log are archived byte-identically after the comparison closed. The three closed Sprint-probe logs were positively reconciled and moved byte-identically to `research/archive/`; their historical raw routes are mapped in `EVIDENCE_PATH_MIGRATIONS.md`. The three processed September 30 human/Finishing calibration logs are also archived after EV-397–EV-398 promotion.
 
-EV-389 and EV-390 are diagnostics-free observational evidence and therefore have no diagnostic runtime artifact by design. EV-391 and EV-392 are static source/binary-reference evidence and have no runtime artifacts. EV-393 and EV-394 use archived identity-probe logs. EV-395 is diagnostics-free observational runtime evidence by design: no extra same-function logger was introduced because doing so would contaminate the `+0x42A0` compatibility architecture. EV-396 uses the reusable calibration probe and committed raw native-control log.
+EV-389 and EV-390 are diagnostics-free observational evidence and therefore have no diagnostic runtime artifact by design. EV-391 and EV-392 are static source/binary-reference evidence and have no runtime artifacts. EV-393 and EV-394 use archived identity-probe logs. EV-395 is diagnostics-free observational runtime evidence by design: no extra same-function logger was introduced because doing so would contaminate the `+0x42A0` compatibility architecture. EV-396 uses the reusable calibration probe and archived native-control log.
 
 Historical ledger rows may retain paths that were correct when written. Use `EVIDENCE_PATH_MIGRATIONS.md` when a later archive move makes an old path ambiguous.
 
