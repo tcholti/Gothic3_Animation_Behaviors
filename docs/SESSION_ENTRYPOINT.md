@@ -54,35 +54,29 @@ The completed preservation-biased repository audit and Work result are archived 
 
 ## Immediate continuation — Raise
 
-The Normal directional-continuation correction is CLOSED/PASS through EV-427. EV-428 narrows the acceptance claim to the routes actually exercised and freezes three remaining representative pre-release Raise fixtures. Use `docs/work/active/RAISE_PRE_RELEASE_VALIDATION.md` for that validation. The completed direction implementation/research records remain archived under `docs/archive/investigations/`.
+Raise production behavior is accepted on the routes tested through EV-428. The EV-423 Normal directional-continuation defect is closed by the accepted direction source `1da12cead5acfb54c5520a34d07bccc4c32fd64f` (EV-426 source PASS; EV-427 runtime PASS; EV-428 scope clarification).
+
+Active task:
+
+`docs/work/active/RAISE_PRE_RELEASE_VALIDATION.md`
+
+Remaining representative pre-release fixtures:
 
 ```text
-Speed = CLOSED/PASS
-Raise production source = IMPLEMENTED
-implementation commit = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd
-independent Normal Chat source review = PASS / no blocker, major or minor finding
-shipping AddRaise keys = 55 / all Off
-Quick Action3 selector rule = PRESERVED; implementation consumes factual Action4/5 only
-build/deploy + first-public runtime acceptance = PASS EV-420–EV-422; record archived under docs/archive/investigations/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md
-Gate A AddRaise-Off broad runtime control = PASS EV-411
-Gate B native-stack Hero None+2H AddRaise-On = PASS EV-412
-Gate C intended New Balance coexistence = PASS EV-412
-known destructive Alternative AI block-skip interaction = separate AttackContinuationProtection ownership
-Gate D first non-coupling observation = EV-413
-EV-414 = CONTRADICTION / EV-413 product-closure interpretation SUPERSEDED
-EV-415 = STATIC CAUSAL CLOSURE / smallest correction FROZEN
-EV-416 = production correction source review PASS; simplicity/modularity/performance PASS
-runtime matrix before correction: Hack/Pierce Raise followed BaseSpeed; Normal/Quick/Whirl/Power Raise did not
-implemented custom AddRaise = factual Hit CombatMove scale reused for Normal/Quick/Whirl Raise
-implemented native Power Raise = live +0x47D51 result * Power authoring ratio; native 1.5*M relationship preserved
-Pierce = protected already-coupled control; Hack = route-neutral Action14 Raise/Hit/Recover adapter implemented EV-418–EV-419
-EV-418 Hack compatibility source = 41ed80c6420e5236d13fc037cb5923b946cb8ccc / source PASS EV-419 / runtime PASS EV-420–EV-422
-completed research = docs/archive/investigations/RAISE_NORMAL_DIRECTION_CONTINUATION_RESEARCH.md
-direction implementation task = CLOSED / archived
-accepted direction source = 1da12cead5acfb54c5520a34d07bccc4c32fd64f / EV-426 source PASS / EV-427 tested-route runtime PASS / EV-428 scope clarification
-active Raise validation = docs/work/active/RAISE_PRE_RELEASE_VALIDATION.md
-next = representative pre-release fixtures only: human Fist Normal -> Sabretooth -> Troll; no further direction correction absent contradictory evidence
+1. human Fist Normal
+2. Sabretooth
+3. Troll
 ```
+
+Do not interpret this as exhaustive animation-set certification. Broader Raise coverage is intentionally staged with later animation-authoring work and focused contradictory reports.
+
+Durable Raise details:
+- architecture/current behavior -> `DESIGN.md`
+- naming/authoring -> `ANIMATION_RULES.md`
+- concrete family availability -> `ANIMATION_CATALOG.md`
+- hook facts -> `SOURCE_HOOK_GUIDE.md`
+- provenance -> `EVIDENCE_INDEX.md` / current Evidence Ledger
+- completed direction work -> `docs/archive/investigations/`
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
 
