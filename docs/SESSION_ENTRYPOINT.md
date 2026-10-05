@@ -30,9 +30,9 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = EV-426 direction implementation source review PASS; local build/deploy + focused runtime validation pending
+CURRENT = EV-427 Normal AddRaise direction correction CLOSED/PASS; no active Raise-direction blocker
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
-Raise behavior = ACTIVE narrow correction — Normal Left/Right Raise plays, but following Hit incorrectly re-resolves Fwd; Quick/Whirl and prior phase-speed results remain accepted
+Raise direction continuation = CLOSED/PASS EV-427 — Normal Fwd/Left/Right Raise -> Hit preserved; Quick/Whirl and prior phase-speed results remain accepted
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
 active evidence ledger = EV-417 onward
 main = FROZEN
@@ -54,7 +54,7 @@ The completed preservation-biased repository audit and Work result are archived 
 
 ## Immediate continuation — Raise
 
-Use `docs/work/active/RAISE_NORMAL_DIRECTION_CONTINUATION_IMPLEMENTATION.md` as the sole active Raise task. The completed first-public runtime acceptance and the EV-424 direction research are archived under `docs/archive/investigations/`.
+The Normal directional-continuation correction is CLOSED/PASS through EV-427. Its implementation contract is archived at `docs/archive/investigations/RAISE_NORMAL_DIRECTION_CONTINUATION_IMPLEMENTATION.md`; the completed first-public runtime acceptance and EV-424 direction research are also archived under `docs/archive/investigations/`.
 
 ```text
 Speed = CLOSED/PASS
@@ -78,9 +78,9 @@ implemented native Power Raise = live +0x47D51 result * Power authoring ratio; n
 Pierce = protected already-coupled control; Hack = route-neutral Action14 Raise/Hit/Recover adapter implemented EV-418–EV-419
 EV-418 Hack compatibility source = 41ed80c6420e5236d13fc037cb5923b946cb8ccc / source PASS EV-419 / runtime PASS EV-420–EV-422
 completed research = docs/archive/investigations/RAISE_NORMAL_DIRECTION_CONTINUATION_RESEARCH.md
-active task = docs/work/active/RAISE_NORMAL_DIRECTION_CONTINUATION_IMPLEMENTATION.md
-reviewed direction source = 1da12cead5acfb54c5520a34d07bccc4c32fd64f / EV-426 PASS / current production blobs preserved byte-identically
-next = User/local branch synchronization -> build -> deploy/hash/load verification -> frozen focused runtime matrix
+direction implementation task = CLOSED / archived
+accepted direction source = 1da12cead5acfb54c5520a34d07bccc4c32fd64f / EV-426 source PASS / EV-427 runtime PASS
+next = User + Normal Chat select the next bounded engineering responsibility; no further direction correction absent contradictory evidence
 ```
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
