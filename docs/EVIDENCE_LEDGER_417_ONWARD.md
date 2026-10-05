@@ -526,3 +526,45 @@ Disposition:
 - **PASS — EV-424 MINIMAL GOTHIC-NATIVE DIRECTION CARRY RUNTIME-ACCEPTED.**
 - **Quick/Whirl/Speed/Hack/Collision protected behavior remains accepted absent contrary evidence.**
 - **RAISE_NORMAL_DIRECTION_CONTINUATION_IMPLEMENTATION task may close/archive.**
+
+
+### EV-428 — EV-427 scope clarification and staged Raise validation
+
+User clarification:
+- the EV-427 phrase "all works" means **all behavior exercised in that local test worked**;
+- it does **not** mean every possible Gothic 3 animation set/attack route has a Raise asset or has been runtime-tested;
+- exhaustive Raise coverage is constrained by asset availability: many Normal/Quick routes need matching Raise animations authored before the engine path can be exercised.
+
+Exact latest tested coverage:
+- Hero dual-wield / `1H_1H`: AddRaise worked on every attack where it was enabled in the test;
+- rule-derived Normal Fwd Raise assets for ordinary P0/P1 were selected and played;
+- rule-derived ordinary P0/P1 `QuickAttackR` / `QuickAttackL` Raise assets were selected and played;
+- native dual Normal Left/Right Raise assets were enabled and now continue into the matching directional Hit after the EV-424 correction;
+- the same dual fixtures worked at their native timing;
+- with authored attack speed reduced to `0.1`, the added/generated Raise phases inherited the changed speed as intended;
+- 2H Normal, Quick and Whirl AddRaise controls were re-tested and continued to work as before;
+- ordinary combat against a Golem using both 2H and dual `1H_1H` completed without an observed Raise regression.
+
+EV-427 precision correction:
+- EV-427 remains valid for the direction defect closure and the tested local result;
+- its shorthand reference to the previously handed-off "frozen ... controls" must not be read as proof that every listed theoretical route or every Gothic animation family was individually exercised in that run;
+- this EV-428 entry is the authoritative scope statement for what the User actually exercised.
+
+Pre-release Raise validation still desired by the User:
+```text
+1. human Fist Normal
+2. Sabretooth
+3. Troll
+```
+
+Release-validation strategy:
+- these three fixtures are the remaining representative Raise tests before the User considers the Raise implementation sufficiently tested for the initial Animation Behaviors release;
+- do **not** block release on authoring and testing Raise assets for every possible attack/animation set in Gothic 3;
+- broader coverage is intentionally staged with the User's later redesign of the Gothic 3 Animations Redone combat animation mods;
+- as each Normal/Quick family receives authored Raise assets during that redesign, use it as additional real-world compatibility/coverage testing;
+- post-release user reports remain a valid source of contradictory fixtures and should trigger focused fixes rather than speculative pre-release expansion.
+
+Disposition:
+- **EV-423/EV-424 direction defect remains CLOSED/PASS.**
+- **Raise production mechanism is accepted on the tested routes; universal animation-set coverage is NOT claimed.**
+- **NEXT PRE-RELEASE RAISE VALIDATION: human Fist Normal, Sabretooth, Troll.**
