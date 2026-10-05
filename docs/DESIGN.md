@@ -271,9 +271,9 @@ Speed v2 production source, resolved-profile identity, neutral shipping INI and 
 
 Recover follows the effective Hit speed; no separate user-facing `RecoverSpeed` key is planned.
 
-Raise/Speed/Hack acceptance passed through EV-422 for the tested fixtures, but EV-423 reopens one narrow Raise responsibility: directional Normal AddRaise continuation. Native Left/Right Normal Raise can be inserted, yet the current post-Raise replay of a generic Action1 Hit re-resolves as Fwd. `sAICombatMoveInstr_Args` has no direction field, so the stored request is insufficient to preserve the factual directional Hit choice by itself.
+Raise/Speed/Hack acceptance passed through EV-422 for the tested fixtures, but EV-423 reopened one narrow Raise responsibility: directional Normal AddRaise continuation. EV-424 statically closes the cause. `sAICombatMoveStart` freshly classifies Fwd/Left/Right for each CombatMove, writes Navigation current-animation direction, and passes the exact direction bCString as the fifth argument to `GetAniName`. The stored `sAICombatMoveInstr_Args` has no direction field, so replaying the generic Action1 Hit after synthetic Raise triggers a second direction classification that can become Fwd.
 
-Current active question: identify Gothic's exact Fwd/Left/Right selection state and preserve the already-selected Hit without hard-coded filename policy, without undoing Hit-scale reuse, and without touching closed Speed/Hack/Collision behavior. Architecture/sequencing rationale remains ADR-0004 + ADR-0005 + ADR-0006 + ADR-0008 + ADR-0011; EV-423 owns the contradiction.
+The frozen correction preserves **Gothic's own first native selection** rather than recreating policy: during the pending Normal continuation, capture the exact direction string + matching `gEDirection` at the synthetic Raise's `Game+0x16B056` GetAniName call; on the immediately following stored Action1 Hit at the same call site, restore only that captured current-animation direction and substitute only the captured direction argument before invoking Gothic GetAniName once. No filename parsing, copied geometry classifier, target/facing mutation, late resource rewrite, Speed change, or Collision change is permitted. Architecture/sequencing rationale remains ADR-0004 + ADR-0005 + ADR-0006 + ADR-0008 + ADR-0011; EV-423–EV-424 own this narrow correction.
 
 ---
 
