@@ -379,12 +379,11 @@ after New Balance/native compatible vector policy
 
 Do not scale at `+0x16B8A3` if New Balance compatibility is required; New Balance may subsequently normalize and replace that magnitude.
 
-Still unresolved before production freeze:
-- realized displacement vs integrated commanded velocity;
-- actual enabled movement interval;
-- possible independent animation/root contribution to entity travel.
+Author/runtime reconciliation in EV-435 establishes the practical phase behavior needed for this feature: ordinary attack Hit resources carry the nonzero combat-movement value while Raise/Recover are normally zero, and CombatMove translation is applied during the value-carrying phase subject to native ledge/obstacle/target stopping rules. A separate runtime probe is therefore not required merely to re-prove that basic ownership.
 
-Do not label the feature root-motion control unless such ownership is separately proven.
+Still do **not** claim universal absence of independent animation/root translation for every asset/family. That negative claim is unnecessary for controlling the proven CombatMove movement mechanism, and this feature should not be labeled root-motion control.
+
+Distribution constraint: changing the filename field itself requires animation-resource replacement/repacking under Gothic's archive precedence. Runtime displacement control is intended to avoid that installation burden.
 
 ## 4. Production raw-8 Fist Lookup
 
