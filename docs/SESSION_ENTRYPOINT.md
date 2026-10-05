@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = final bounded Speed+Raise source review active before repository release audit/main promotion checkpoint
+CURRENT = EV-431 source review PASS + EV-432 repository release audit PASS; deliberate main promotion checkpoint approved
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise direction continuation = CLOSED/PASS EV-427; EV-430 completes representative Normal / Quick R+L / pose-changing Quick / full Whirl coverage including partial Raise-asset profiles
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
@@ -52,48 +52,36 @@ Canonical reusable engine lookup:
 
 The completed preservation-biased repository audit and Work result are archived under `docs/archive/investigations/`. Its accepted RH-01–RH-13 maintenance is represented in the durable owners; RH-14–RH-17 were KEEP/no-action. The three previously retained Sprint-probe logs were positively reconciled during EV-397/EV-398 maintenance and archived byte-identically; path migration is recorded in `EVIDENCE_PATH_MIGRATIONS.md`.
 
-## Immediate continuation — Final Speed + Raise source review
+## Immediate continuation — Stable promotion checkpoint
 
-Raise pre-release validation and final sanity coverage are CLOSED/PASS through EV-430.
+Final independent Speed+Raise source review: **PASS EV-431**.
 
-Active review task:
-
-`docs/work/active/SPEED_RAISE_FINAL_SOURCE_REVIEW.md`
-
-This is a read-only independent review of the current production Speed+Raise integration, intentionally smaller than the prior large Astra audit. Production source under review is `d642f30bcb6b564deaaffed26fd11b763da88163`. If it passes, next is a quick repository health/authority audit followed by an agreed `development` -> `main` promotion checkpoint before new attack-displacement research begins.
+Quick repository/authority release audit: **PASS EV-432**.
 
 ```text
-public AddRaise surface:
-  Normal
-  Quick
-  Whirl
-
-representative structural coverage:
-  Normal Fwd
-  Normal Left/Right continuation
-  QuickAttackR
-  QuickAttackL
-  pose-changing Quick
-  partial Quick Raise-resource coverage
-  full Whirl
-  human weapon / dual / bare Fist
-  nonhuman None+Fist
-  Troll Fist+Fist
-  native + user-authored Raise assets
-  configured-speed inheritance including 0.1 controls
+Collision = CLOSED/PASS
+Speed = CLOSED/PASS
+Raise = CLOSED/PASS / well tested for initial release
+New Balance compatibility = PASS
+AttackCollision compatibility = PASS
+Collision non-interference = PASS
+repository authority/knowledge health = PASS
 ```
 
-This is type/structure coverage, not exhaustive testing of every animation asset or profile. EV-430 additionally proves that, in the tested Shield+1H Quick profile, attacks without matching Raise assets remain functional while matching authored Raises are used where present. `SimpleWhirl` is not part of the public AddRaise surface.
+The current `development` history is a clean descendant of `main` with no divergence. The deliberate Collision + Speed + Raise stable promotion checkpoint is approved.
 
-Completed validation record:
+After promotion, return immediately to `development` and open the next research responsibility:
 
-`docs/archive/investigations/RAISE_PRE_RELEASE_VALIDATION.md`
+```text
+attack forward displacement / how far attacks may move the character
+-> start with native Gothic ownership/mechanism
+-> inspect New Balance Normal/Quick displacement changes
+-> preserve compatible composition where possible
+-> research/design before production implementation
+```
 
-All proven user-authored Raise names, including Troll/Sabretooth and the two Shield pose-changing Quick Raises, are stored in:
-
-`data/animation_names/user_created_tested_animation_names.txt`
-
-Broader per-asset Raise coverage is intentionally staged with future animation redesign work and focused post-release contradictory reports.
+Completed final source review:
+`docs/archive/investigations/SPEED_RAISE_FINAL_SOURCE_REVIEW.md`
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
 
