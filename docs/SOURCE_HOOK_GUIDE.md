@@ -121,7 +121,12 @@ Search around CombatMove reach/vector/movement calls, motion/root translation, a
 | GetUp pre-Combat offense | `Script_Game +0x41CA6` | legitimate offense can precede CombatMove |
 | GetUp later CombatMove | `Script_Game +0x41D5A` | same outer ScriptFunction reaches CombatMove |
 | GetUp ordinary cleanup | `Script_Game +0x41E10` | tested cleanup region |
-| `GetAniName` | `Game +0x16F840` | animation-name lookup |
+| `GetAniName` | `Game +0x16F840` | animation-name lookup; fifth argument is the direction bCString serialized into the resource name |
+| CombatMove `GetAniName` call | `Game +0x16B056` | exact `sAICombatMoveStart` call where the freshly selected direction is supplied; EV-424 frozen preservation boundary for Normal AddRaise |
+| CombatMove direction init | `Game +0x16AEDD` | local direction string initializes to exact `Fwd` |
+| CombatMove Normal direction dispatch | `Game +0x16AF3C` | Action1 enters Fwd/Left/Right classification |
+| CombatMove Right / Left selection | `Game +0x16AF61 / +0x16AF76` | exact `Right` / `Left` bCString selection |
+| CombatMove Navigation direction write | `Game +0x16B00E` | writes selected `gEDirection` to current-animation direction before GetAniName |
 | `GetAniEx` | `Script +0x15C10` | animation query |
 | motion data string | `Game +0xD97D5` | motion resource string |
 | cached motion actor | `Game +0xDA344` | animation actor |
