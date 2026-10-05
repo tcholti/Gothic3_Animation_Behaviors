@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = EV-424 cause closed + EV-425 pre-implementation Sol review PASS; minimal Normal AddRaise direction implementation pending
+CURRENT = EV-424 cause closed + EV-425 pre-implementation Sol review PASS; direction implementation candidate 1da12cead5acfb54c5520a34d07bccc4c32fd64f published / independent source review pending
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise behavior = ACTIVE narrow correction — Normal Left/Right Raise plays, but following Hit incorrectly re-resolves Fwd; Quick/Whirl and prior phase-speed results remain accepted
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
@@ -79,7 +79,8 @@ Pierce = protected already-coupled control; Hack = route-neutral Action14 Raise/
 EV-418 Hack compatibility source = 41ed80c6420e5236d13fc037cb5923b946cb8ccc / source PASS EV-419 / runtime PASS EV-420–EV-422
 completed research = docs/archive/investigations/RAISE_NORMAL_DIRECTION_CONTINUATION_RESEARCH.md
 active task = docs/work/active/RAISE_NORMAL_DIRECTION_CONTINUATION_IMPLEMENTATION.md
-next = bounded production implementation only from the frozen EV-424 mechanism
+implementation candidate = 1da12cead5acfb54c5520a34d07bccc4c32fd64f
+next = independent source review against the frozen EV-424/EV-425 contract; no runtime validation before review
 ```
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
