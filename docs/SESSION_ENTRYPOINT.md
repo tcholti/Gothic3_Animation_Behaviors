@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = EV-438/EV-439 absolute attack movement architecture frozen for independent hook/architecture review
+CURRENT = EV-440 absolute attack movement architecture review PASS; bounded production implementation active
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise direction continuation = CLOSED/PASS EV-427; EV-430 completes representative Normal / Quick R+L / pose-changing Quick / full Whirl coverage including partial Raise-asset profiles
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
@@ -52,42 +52,41 @@ Canonical reusable engine lookup:
 
 The completed preservation-biased repository audit and Work result are archived under `docs/archive/investigations/`. Its accepted RH-01–RH-13 maintenance is represented in the durable owners; RH-14–RH-17 were KEEP/no-action. The three previously retained Sprint-probe logs were positively reconciled during EV-397/EV-398 maintenance and archived byte-identically; path migration is recorded in `EVIDENCE_PATH_MIGRATIONS.md`.
 
-## Immediate continuation — Absolute attack movement architecture
+## Immediate continuation — Absolute attack movement production
 
-EV-438 selects option 2:
+EV-440 independently passed the one-hook architecture with no blocker/major/minor finding.
+
+Frozen semantics:
 
 ```text
 <Attack>_Movement=Off
-= preserve native/New Balance movement exactly
+= native/New Balance movement untouched
 
-<Attack>_Movement=100
-= absolute authored-style CombatMove distance 100 for that configured Hit
+<Attack>_Movement=<finite non-negative number>
+= absolute authored-style CombatMove Hit distance
+
+Movement=0
+= active zero CombatMove translation
 ```
 
-Smallest candidate:
-- one insertion immediately before `Game+0x16B8B7`;
-- after New Balance `+0x16B8A9`;
-- use current final direction;
-- compute duration from current primary max time / already-composed request AniSpeedScale;
-- set magnitude = configured distance / duration;
-- let original CharacterMovement call execute unchanged.
+Production architecture:
 
-Ownership:
 ```text
-BehaviorProfiles = config
-AttackMovement = policy
-EngineBridge = physical hook transport
+BehaviorProfiles = optional movement setting
+AttackMovement    = stateless movement policy
+EngineBridge      = one insert at Game+0x16B8B7
 ```
 
-No state, filename parsing, third-party detection, per-frame logic, Collision change or Speed/Raise redesign.
+Exact reviewed hook transport is frozen in:
 
-Active research:
-`docs/work/active/ATTACK_FORWARD_DISPLACEMENT_RESEARCH.md`
+`docs/work/active/ATTACK_MOVEMENT_PRODUCTION_IMPLEMENTATION.md`
 
-Active independent review:
-`docs/work/active/ATTACK_MOVEMENT_ARCHITECTURE_REVIEW.md`
+No Collision, Speed or Raise source edits are authorized.
 
-No implementation yet.
+Next:
+1. bounded source implementation;
+2. independent Normal Chat source review;
+3. User-local build/deploy/runtime.
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
 
