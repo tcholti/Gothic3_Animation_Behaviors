@@ -323,30 +323,68 @@ Evidence route: ADR-0004, ADR-0009, EV-391–EV-395, Sprint shared-Power causal 
 
 ---
 
-## 3B. Future movement / displacement research seed
+## 3B. Attack movement / displacement mechanism
 
-The project has already established two narrow CombatMove call surfaces that may matter when researching attack displacement:
+EV-434 statically closes the principal CombatMove movement path on the tested build.
 
-```text
-Game+0x16B8A3  CombatMove reach/vector call
-Game+0x16B8A9  CombatMove movement call
-```
-
-These are **starting surfaces, not yet ownership proof**. Before implementing attack forward-displacement control, determine factually:
+Native fresh-request path:
 
 ```text
-animation/root translation contribution
-vs CombatMove-requested displacement
-vs motion/pose descriptor values
-vs action-specific Script_Game policy
-vs New Balance intervention
+selected motion resource
+-> parse filename word 13 as D_filename
+-> T = primary animation max time / request AniSpeedScale
+-> normalize SPU.m_DirectionVec
+-> Game+0x16B8A3 scales vector by D_filename / T
+-> Game+0x16B8A9 loads CharacterMovement receiver
+-> Game+0x16B8B7 calls EnableCombatMovementFromSPU
+-> CharacterMovement copies the vector and enables combat movement
+-> controlled translation later adds the stored vector to current velocity
 ```
 
-Do not label the future feature “root-motion control” until root motion is actually proven to own the relevant displacement.
+Important address correction:
 
-This information is also potentially reusable for future traversal work such as climbing/vaulting because those systems will need a factual understanding of how Gothic requests, applies and bounds actor movement. Reuse the established CombatMove/state/motion lifecycle map above before creating new global movement hooks.
+| Address | Established meaning |
+|---|---|
+| `Game+0x16B8A3` | native `bCVector::Scale(float)` using filename distance / nominal animation duration |
+| `Game+0x16B8A9` | loads CharacterMovement receiver; project-pinned New Balance inserts `CombatMoveScale` here |
+| `Game+0x16B8B7` | actual CombatMove-specific `gCCharacterMovement_PS::EnableCombatMovementFromSPU` call |
 
----
+Native `Script_Game+0xAA270 GetCombatMoveLength` is **not** the native movement-distance owner on this tested path: the native Hit-side caller discards its return value, and the selected resource filename independently supplies movement distance.
+
+Project-pinned New Balance reference:
+
+`references/jackydima-gothic3sdk @ 316d32406a133f8884e7e302752c35f66b4f54fc`
+
+Its `CombatMoveScale` runs after native filename scaling and before `Game+0x16B8B7`. For factual Hit requests with an eligible callback result it normalizes the existing direction and replaces magnitude using its action/skill distance policy plus `ATTACK_REACH_MULTIPLIER`. A `-1` callback result preserves the native vector; Raise/Recover therefore remain on native movement calculation in this reference.
+
+Speed relationship:
+
+```text
+T = maxTime / AniSpeedScale
+velocity = chosenDistance / T
+nominal uninterrupted travel = velocity * T = chosenDistance
+```
+
+Thus Speed changes commanded velocity required to cover a chosen nominal distance over the animation duration; it does not inherently multiply nominal distance. Realized entity displacement may still be shortened by target stopping, interruptions, terrain/movement validity or phase timing.
+
+The selected animation's numeric filename distance field is a **causal native movement input**, not descriptive metadata. Motion routing may therefore alter native movement by changing the resolved resource.
+
+Current strongest compatible future seam, not yet production-frozen:
+
+```text
+after New Balance/native compatible vector policy
+-> narrow CombatMove call at Game+0x16B8B7
+-> candidate v_configured = k * v_compatible
+```
+
+Do not scale at `+0x16B8A3` if New Balance compatibility is required; New Balance may subsequently normalize and replace that magnitude.
+
+Still unresolved before production freeze:
+- realized displacement vs integrated commanded velocity;
+- actual enabled movement interval;
+- possible independent animation/root contribution to entity travel.
+
+Do not label the feature root-motion control unless such ownership is separately proven.
 
 ## 4. Production raw-8 Fist Lookup
 
