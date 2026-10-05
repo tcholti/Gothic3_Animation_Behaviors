@@ -1132,3 +1132,20 @@ New Balance option-3 note:
 Disposition:
 - **PASS — OPTION 2 IS STATICALLY FEASIBLE WITH A SIMPLE, MODULAR, NATIVE/NEW-BALANCE-COMPATIBLE ONE-HOOK ARCHITECTURE FOR THE CURRENT PROFILE SCOPE.**
 - next gate: independent architecture/source-hook review before production implementation freeze.
+
+
+### EV-439 — Troll None+Fist zero-distance route runtime non-use
+
+User runtime/authoring observation:
+- the native `Troll_Stand_None_Fist` attack set contains zero-distance Normal/Quick/Power Hit assets in the inventory;
+- the User specifically attempted to make Troll use this `None+Fist` route in game and could not make it occur;
+- the factual Troll combat route already used/tested by this project is `Troll_Fist_Fist`, not `Troll_None_Fist`.
+
+Consequence:
+- the known zero-distance `Troll_None_Fist` assets are not a practical blocker for the initial absolute-movement feature;
+- v1 should still fail closed on a degenerate final movement direction because that is the simple safe generic rule;
+- do **not** add an earlier direction-capture hook or state machine solely to support this unobserved route;
+- if a future real gameplay fixture proves a used zero-direction attack needs positive configured movement, reopen that case with evidence.
+
+Disposition:
+- **PASS — NO SECOND MOVEMENT HOOK / DIRECTION STATE JUSTIFIED FOR V1.**
