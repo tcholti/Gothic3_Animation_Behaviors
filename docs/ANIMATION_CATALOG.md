@@ -43,17 +43,19 @@ This remains a human-melee-first catalog, not a complete creature/monster invent
 Current authoring observations:
 
 ```text
-1H Normal                 Raise assets exist but do not work natively -> future custom Raise
-1H Quick                  Raise assets absent -> must be authored
+1H Normal                 Raise assets exist but do not work natively -> custom-Raise family still needs broader authored/runtime coverage
+1H Quick                  Raise assets absent -> must be authored before route-specific testing
 Torch+1H Normal/Quick     same broad custom-Raise need
 Shield+1H Normal/Quick    same broad custom-Raise need
-2H Normal                 custom insertion already proven
-2H Quick                  Raise exists but does not work natively -> custom target
-Staff Normal/Quick        same broad problem as 2H
-2H/Staff full Whirl       tested native path entered Hit without playing corresponding Raise
-Dual Normal/Quick         many Raises absent/nonfunctional -> future authored/custom Raise
+2H Normal                 production AddRaise proven
+2H Quick                  production AddRaise proven on tested assets
+Staff Normal/Quick        same broad problem as 2H; family-specific coverage remains staged
+2H/Staff full Whirl       native path can skip Raise; production Whirl AddRaise proven on tested 2H control
+Dual Normal/Quick         production AddRaise proven on tested native + rule-derived P0/P1 assets; broader asset coverage remains staged
 Power/Pierce families     native Raise generally preserved where already working
 ```
+
+EV-428 defines the coverage boundary: accepted production behavior on tested routes is not a claim that every Gothic 3 attack family has a Raise asset or has been individually exercised. Remaining representative pre-release Raise fixtures are human Fist Normal, Sabretooth and Troll. Broader weapon/family coverage is intentionally deferred to ongoing animation-authoring work and post-release contradictory evidence.
 
 Raise remains separate from collision behavior.
 
