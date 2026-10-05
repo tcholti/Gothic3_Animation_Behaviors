@@ -30,9 +30,9 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = EV-428 Raise mechanism accepted on tested routes; representative pre-release Raise validation remains: human Fist Normal, Sabretooth, Troll
+CURRENT = EV-429 representative AddRaise type coverage CLOSED/PASS; no active Raise validation task
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
-Raise direction continuation = CLOSED/PASS EV-427; EV-428 clarifies tested-route scope only, not universal animation-set coverage
+Raise direction continuation = CLOSED/PASS EV-427; EV-429 completes representative Normal / Quick R+L / full Whirl AddRaise type coverage
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
 active evidence ledger = EV-417 onward
 main = FROZEN
@@ -54,29 +54,38 @@ The completed preservation-biased repository audit and Work result are archived 
 
 ## Immediate continuation — Raise
 
-Raise production behavior is accepted on the routes tested through EV-428. The EV-423 Normal directional-continuation defect is closed by the accepted direction source `1da12cead5acfb54c5520a34d07bccc4c32fd64f` (EV-426 source PASS; EV-427 runtime PASS; EV-428 scope clarification).
-
-Active task:
-
-`docs/work/active/RAISE_PRE_RELEASE_VALIDATION.md`
-
-Remaining representative pre-release fixtures:
+Raise pre-release representative validation is CLOSED/PASS through EV-429.
 
 ```text
-1. human Fist Normal
-2. Sabretooth
-3. Troll
+public AddRaise surface:
+  Normal
+  Quick
+  Whirl
+
+representative structural coverage:
+  Normal Fwd
+  Normal Left/Right continuation
+  QuickAttackR
+  QuickAttackL
+  full Whirl
+  human weapon / dual / bare Fist
+  nonhuman None+Fist
+  Troll Fist+Fist
+  native + user-authored Raise assets
+  configured-speed inheritance including 0.1 controls
 ```
 
-Do not interpret this as exhaustive animation-set certification. Broader Raise coverage is intentionally staged with later animation-authoring work and focused contradictory reports.
+This is type/structure coverage, not exhaustive testing of every animation asset or profile. `SimpleWhirl` is not part of the public AddRaise surface.
 
-Durable Raise details:
-- architecture/current behavior -> `DESIGN.md`
-- naming/authoring -> `ANIMATION_RULES.md`
-- concrete family availability -> `ANIMATION_CATALOG.md`
-- hook facts -> `SOURCE_HOOK_GUIDE.md`
-- provenance -> `EVIDENCE_INDEX.md` / current Evidence Ledger
-- completed direction work -> `docs/archive/investigations/`
+Completed validation record:
+
+`docs/archive/investigations/RAISE_PRE_RELEASE_VALIDATION.md`
+
+Newly proven Troll/Sabretooth names are stored in:
+
+`data/animation_names/user_created_tested_animation_names.txt`
+
+Broader per-asset Raise coverage is intentionally staged with future animation redesign work and focused post-release contradictory reports.
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
 
