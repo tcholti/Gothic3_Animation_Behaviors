@@ -1,55 +1,39 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-10-05 — stable promotion checkpoint approved
+**Updated:** 2026-10-05 — EV-433 stable promotion completed
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
-Repository: `tcholti/Gothic3_Animation_Behaviors`  
-Branch: `development`
+Repository: `tcholti/Gothic3_Animation_Behaviors`
 
-## Closed release gates
+## Stable checkpoint
 
 ```text
 Collision = CLOSED/PASS
 Speed v2 = CLOSED/PASS
-Raise = CLOSED/PASS through EV-430
-final independent Speed+Raise source review = PASS EV-431
-quick repository/authority release audit = PASS EV-432
+Raise = CLOSED/PASS / well tested
+final source review = PASS EV-431
+repository release audit = PASS EV-432
+main promotion = PASS EV-433
 ```
 
-EV-431:
-- blocker 0 / major 0 / minor 0;
-- New Balance compatibility PASS;
-- AttackCollision compatibility PASS;
-- Collision non-interference PASS;
-- hook/profile/performance/source architecture PASS.
+`main` now owns the deliberately promoted stable Collision + Speed + Raise baseline.
 
-EV-432:
-- authority topology coherent;
-- no active temporary task remains after review closure;
-- evidence/current-state sizes healthy;
-- research/raw contains no open evidence;
-- `main` is an ancestor of `development` with no divergence;
-- repository is suitable for deliberate stable promotion.
+New engineering continues on `development`.
 
-## Immediate operation
-
-Promote the accepted `development` checkpoint to `main`.
-
-After promotion, continue new work only on `development`.
-
-## Next engineering responsibility after promotion
+## Next responsibility
 
 Research/design only:
 
-**Attack forward displacement / how far an attack may move the character.**
+**Attack forward displacement / how far attacks may move the character.**
 
-First questions:
-1. identify Gothic's native displacement owner/mechanism;
-2. identify exact New Balance changes for Normal and Quick attacks;
-3. determine whether displacement can preserve compatible/native modifiers rather than replacing a final result;
-4. determine configuration/profile shape only after mechanism ownership is understood;
-5. protect accepted Collision, Speed and Raise behavior.
+Start from:
+1. Gothic native displacement ownership/mechanism;
+2. exact New Balance changes for Normal and Quick attacks;
+3. compatibility/composition behavior;
+4. profile/config design only after ownership is known.
+
+Protect accepted Collision, Speed and Raise behavior.
 
 Do not implement displacement before research closes.
