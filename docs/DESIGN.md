@@ -111,6 +111,20 @@ matching configured profile/attack
 -> after Raise completes, continue the untouched original attack path
 ```
 
+Normal Action1 has one proven continuation-preservation rule inside that architecture. A synthetic AddRaise and the stored Hit are two separate `sAICombatMoveStart` executions, so Gothic would otherwise classify Fwd/Left/Right again after Raise. Production therefore carries only Gothic's already-selected native Raise direction across that one continuation:
+
+```text
+pending Normal Raise at Game+0x16B056
+-> capture native direction bCString + current gEDirection
+-> let Gothic GetAniName resolve Raise normally
+-> stored Normal Hit reaches the same call site
+-> restore the captured gEDirection + reuse the exact captured direction bCString
+-> let Gothic GetAniName resolve Hit normally
+-> retire the carry with the existing RaiseContinuation lifetime
+```
+
+This is not a general direction classifier or filename policy. G3AB does not parse animation names, reproduce Gothic geometry logic, or apply the carry to Quick/Whirl/Power/Hack. EV-424 established the native ownership/mechanism, EV-426 source-reviewed the implementation, and EV-427 runtime-accepted Fwd/Left/Right continuation plus the frozen controls.
+
 The existing 2H Normal prototype proves the basic “ask Gothic for Raise” mechanism; its player + None/2H gate is fixture scope, not final architecture. Speed is now CLOSED/PASS, so Raise is the active feature. Initial production scope is Normal, Quick and Whirl only. `<Attack>_AddRaise=On` means add a Gothic-resolved Raise before Hit; missing/Off adds nothing. G3AB does not expose a user-facing switch for disabling or replacing Raise phases Gothic already uses natively.
 
 The first future Raise-speed question should remain evidence-driven: test whether an inserted Raise naturally follows the configured attack `BaseSpeed` before adding any separate Raise-speed setting or hook.
