@@ -123,11 +123,11 @@ pending Normal Raise at Game+0x16B056
 -> retire the carry with the existing RaiseContinuation lifetime
 ```
 
-This is not a general direction classifier or filename policy. G3AB does not parse animation names, reproduce Gothic geometry logic, or apply the carry to Quick/Whirl/Power/Hack. EV-424 established the native ownership/mechanism, EV-426 source-reviewed the implementation, and EV-427 runtime-accepted Fwd/Left/Right continuation plus the frozen controls.
+This is not a general direction classifier or filename policy. G3AB does not parse animation names, reproduce Gothic geometry logic, or apply the carry to Quick/Whirl/Power/Hack. EV-424 established the native ownership/mechanism, EV-426 source-reviewed the implementation, and EV-427 runtime-accepted the directional correction on the exercised dual fixture. EV-428 is the authoritative scope clarification: this acceptance is representative/tested-route evidence, not universal proof for every Gothic animation set.
 
 The existing 2H Normal prototype proves the basic “ask Gothic for Raise” mechanism; its player + None/2H gate is fixture scope, not final architecture. Speed is now CLOSED/PASS, so Raise is the active feature. Initial production scope is Normal, Quick and Whirl only. `<Attack>_AddRaise=On` means add a Gothic-resolved Raise before Hit; missing/Off adds nothing. G3AB does not expose a user-facing switch for disabling or replacing Raise phases Gothic already uses natively.
 
-The first future Raise-speed question should remain evidence-driven: test whether an inserted Raise naturally follows the configured attack `BaseSpeed` before adding any separate Raise-speed setting or hook.
+Raise-speed ownership is now closed on the proven routes. Custom Normal/Quick/Whirl AddRaise reuses the composed factual Hit `AniSpeedScale`; native Power Raise preserves its live compatible phase result and applies the configured Power authoring ratio. EV-428 adds a practical authoring control: the newly created dual Normal/Quick Raise assets followed the configured `0.1` speed change as intended, while the 2H controls remained correct.
 
 ### Initial Raise production scope
 
@@ -140,6 +140,8 @@ Whirl
 ```
 
 Power, Pierce, Hack, SimpleWhirl, Finishing and Sprint are not part of the first custom-Raise implementation. Do not add public `*_AddRaise` keys for native-Raise attacks merely for symmetry. Broader exposure requires a separate product decision.
+
+Runtime acceptance is deliberately **staged by available authored assets**. A passing representative route proves the mechanism on that route; it does not imply that every animation family has a matching Raise resource or has been exercised. Before the initial Animation Behaviors release, the remaining representative Raise fixtures are human Fist Normal, Sabretooth and Troll. Exhaustively authoring/testing Raise for every Normal/Quick weapon route is not a release gate. Broader coverage will grow alongside later animation-mod redesigns and from focused post-release contradictory reports.
 
 Player-facing guidance: Normal and Quick do not normally execute Raise in Gothic 3. Matching Raise files exist for some native sets, but not necessarily every animation set. Enable `AddRaise` only when the correct Raise asset exists for that exact route; otherwise leave it Off.
 
