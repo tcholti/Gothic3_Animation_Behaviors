@@ -58,7 +58,7 @@ Dual Normal/Quick         production AddRaise proven on tested native + rule-der
 Power/Pierce families     native Raise generally preserved where already working
 ```
 
-EV-429 closes the representative pre-release Raise matrix. The tested set now covers Normal Fwd plus directional Left/Right continuation, both factual QuickAttackR/L forms, full Whirl, human weapon/dual/Fist routes, nonhuman None+Fist, Troll Fist+Fist, native and user-authored Raise assets, and repeated configured-speed inheritance including `0.1` controls. This is structural/type coverage, not exhaustive per-animation certification. Broader weapon/family coverage remains intentionally staged with ongoing animation-authoring work and post-release contradictory evidence.
+EV-429 closes the representative pre-release Raise matrix. EV-430 adds a final Shield+1H sanity fixture with pose-changing Quick Hits (`P1 -> P50`, `P3 -> P70`): user-authored source-pose-preserving Raises worked, other Quick routes in the same enabled profile without Raise assets still executed normally, and all Quick/Raise timing followed a `0.1` control. The tested set now covers Normal Fwd plus directional Left/Right continuation, both factual QuickAttackR/L forms, pose-changing Quick, full Whirl, human weapon/dual/Fist routes, nonhuman None+Fist, Troll Fist+Fist, native and user-authored Raise assets, partial Raise-resource coverage, and repeated configured-speed inheritance. This is structural/type coverage, not exhaustive per-animation certification. Broader weapon/family coverage remains intentionally staged with ongoing animation-authoring work and post-release contradictory evidence.
 
 Raise remains separate from collision behavior.
 
