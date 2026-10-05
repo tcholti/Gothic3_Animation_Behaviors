@@ -39,17 +39,27 @@ The proposed runtime re-proof probe was cancelled before implementation as redun
 
 `docs/work/active/ATTACK_FORWARD_DISPLACEMENT_RESEARCH.md`
 
-Current architecture decision:
+EV-436 authoring contract:
 
 ```text
-Off = preserve current live compatible stack unchanged
+inactive / Off
+= preserve current live compatible stack unchanged
 
-configured 1.0 semantics remain to freeze:
-- preserve final compatible (including New Balance), or
-- restore selected animation-authored filename movement, or
-- expose an explicit distinction
+configured K
+= selected animation filename movement × K
+
+K=1.0
+= selected animation's authored movement exactly
 ```
 
-Do not implement until this authoring contract is decided.
+Desired surface uses the existing profile attack groups:
+`Normal / Quick / Power / Pierce / Hack / SimpleWhirl / Whirl`.
+
+With New Balance active, configured movement deliberately takes magnitude ownership back from New Balance while preserving final direction and native stopping behavior. Missing/inactive configuration remains the compatibility escape hatch.
+
+Remaining architecture question:
+capture/retain the native authored magnitude before New Balance replaces it, then safely reapply `authoredMagnitude * K` at the final CombatMove movement call.
+
+Do not implement yet.
 
 Protect Collision, Speed, Raise, New Balance and AttackCollision.
