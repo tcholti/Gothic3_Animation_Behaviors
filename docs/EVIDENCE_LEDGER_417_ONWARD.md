@@ -1149,3 +1149,95 @@ Consequence:
 
 Disposition:
 - **PASS — NO SECOND MOVEMENT HOOK / DIRECTION STATE JUSTIFIED FOR V1.**
+
+
+### EV-440 — Absolute attack movement independent architecture review PASS
+
+Review mode:
+- bounded read-only independent Sol 6.1 Extra High architecture/source-hook review;
+- required remote development HEAD `39f39a28184c7ad14edde12a2f1a1108456c17f5`;
+- POP-10 preflight completed;
+- no source/docs/build/deploy/runtime/probe/commit changes made by the reviewer.
+
+Findings:
+```text
+BLOCKER 0
+MAJOR   0
+MINOR   0
+NOTE    3
+```
+
+Mandatory implementation details promoted from the review notes:
+1. freeze the exact `+0x16B8B7` register/stack transport;
+2. compute and validate the replacement velocity as finite before mutating the movement vector;
+3. retain the existing bounded profile lookup; no lookup redesign is justified.
+
+Exact tested call-site transport:
+```text
+ECX       = gCCharacterMovement_PS receiver from SPU+0x12C
+[ESP]     = native enable arg 1
+[ESP+4]   = native local target-proxy reference
+[ESP+8]   = vector reference -> SPU+0xFC
+[EBP+8]   = current CombatMove request
+[EBP+0xC] = current SPU
+```
+
+`Game+0x16B8B7` is the five-byte call to `Game+0xEA0C0`:
+```cpp
+EnableCombatMovementFromSPU(
+    GEBool, eCEntityProxy const &, bCVector &);
+```
+
+Frozen safest hook transport:
+```cpp
+.Prepare(RVA_Game(0x16B8B7), &<movement helper>)
+.InsertCall()
+.AddPtrStackArgEbp(0x8)
+.AddPtrStackArgEbp(0xC)
+.AddPtrStackArg(0x8)
+.SaveReg(mERegisterType_Ecx)
+.Hook();
+```
+
+The helper is `void GE_STDCALL` and receives the CombatMove request, SPU and existing native vector reference. The pinned SDK hook builder accounts for saved-register/added-argument offsets. ECX is restored before the relocated original call; the native arguments remain intact.
+
+Compatibility conclusions:
+- New Balance replaces the six-byte receiver load at `+0x16B8A9`; G3AB inserts at the separate five-byte call `+0x16B8B7`;
+- the ranges do not overlap, so either DLL installation order preserves New Balance first, G3AB second, native movement call last;
+- Off returns without normalizing, scaling or assigning the vector;
+- request `AniSpeedScale` is already the final composed Speed value;
+- `maxTime / AniSpeedScale` is the correct duration basis;
+- physical Hit gating excludes Raise/Recover and needs no continuation state;
+- Sprint's proven shared route constructs an Action2 Hit request at `Script_Game+0x47FA8`, so it inherits `Power_Movement`;
+- pinned AttackCollision has no movement-seam ownership; its reviewed Hack route reaches the same downstream native CombatMove seam.
+
+Fail-closed production requirements:
+- missing / Off / invalid / negative / non-finite Movement = inactive;
+- numeric zero = valid and clears the vector without normalization;
+- null/entity/action/physical-Hit/timing context is validated before mutation;
+- positive Movement requires finite positive duration, non-degenerate final direction and a finite computed replacement;
+- compute replacement locally and write only after all validation succeeds.
+
+Explicit verdicts:
+```text
+hook/ABI safety               PASS
+native compatibility          PASS
+New Balance compatibility     PASS
+AttackCollision compatibility PASS
+Speed compatibility           PASS
+Raise compatibility           PASS
+profile architecture          PASS
+simplicity                    PASS
+modularity                    PASS
+performance                   PASS (static)
+production-freeze readiness   PASS
+```
+
+Collision ownership/lifecycle requires no changes. Native stopping/navigation/interruption remain authoritative; the setting controls nominal CombatMove distance.
+
+Independent final result:
+- **PASS WITH NON-BLOCKING NOTES**
+- the notes above are mandatory production constraints, not open architecture questions.
+
+Disposition:
+- **PASS — RESEARCH / ARCHITECTURE CLOSED; READY FOR BOUNDED PRODUCTION IMPLEMENTATION.**
