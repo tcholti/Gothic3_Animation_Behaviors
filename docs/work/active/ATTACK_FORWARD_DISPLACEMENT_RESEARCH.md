@@ -75,51 +75,40 @@ Speed algebra is closed: changing `AniSpeedScale` changes the commanded velocity
 
 The strongest compatible future seam is after native/New Balance vector policy at the CombatMove-specific `Game+0x16B8B7` call, with candidate scalar composition `v_configured = k * v_compatible`. This is not yet production-frozen.
 
-## Active runtime probe implementation
+## Current architecture question
 
-`docs/work/active/ATTACK_FORWARD_DISPLACEMENT_RUNTIME_PROBE.md`
+EV-434 + EV-435 are sufficient to stop re-proving the basic movement mechanism.
 
-The probe is observation-only and exists solely to close the remaining runtime question below.
+The remaining question is semantic, not causal:
 
-## Remaining runtime question
+> When New Balance has already replaced the animation-authored Hit movement magnitude, what should a configured G3AB value mean?
 
-Only one causal gate remains before production architecture can freeze:
-
-> For representative unobstructed attacks, does actual entity travel correspond to the commanded CombatMove velocity integrated over the interval for which combat movement is enabled?
-
-The first runtime pass should measure only what is necessary to answer that:
+The design must distinguish at least these states conceptually before implementation is frozen:
 
 ```text
-factual action + phase
-selected animation resource
-request AniSpeedScale
-incoming final compatible movement vector at/just before Game+0x16B8B7
-entity world position when combat movement becomes enabled
-time movement becomes enabled
-entity world position when that CombatMove movement becomes disabled
-time movement becomes disabled
-reason/context for disable if readily available
+Off
+= preserve the complete live compatible stack unchanged
+  (native or New Balance/other compatible movement)
+
+authored-animation baseline
+= the movement Gothic would derive from the selected animation resource's
+  filename distance field at the already-composed request speed
+
+configured control
+= a deliberate author/user adjustment whose neutral meaning must be chosen
+  explicitly rather than inferred from New Balance's final vector
 ```
 
-Derived comparison:
+Important product constraint:
+- changing the animation filename itself is not an acceptable configuration mechanism because it requires resource replacement/repacking under Gothic archive precedence;
+- the runtime feature exists to provide this control without renaming/repacking animations.
 
-```text
-predicted commanded travel
-= |v_compatible| * actual enabled duration
+Potential implementation families may include:
+- scalar over the final compatible vector (`1.0` = preserve New Balance/native compatible behavior);
+- restoration/scaling of the animation-authored baseline after New Balance (`1.0` = selected animation's authored movement);
+- an explicit distinction between those semantics.
 
-observed entity travel
-= horizontal entity-position delta over the same interval
-```
-
-Use:
-- one representative human Normal attack;
-- one representative nonhuman Normal attack;
-- flat/unobstructed conditions;
-- target/no-target setup chosen to avoid early target-stop where practical;
-- at least two playback-speed settings on one fixture;
-- New Balance active for the compatibility fixture.
-
-Do **not** add direct root/bone instrumentation initially. If commanded-vs-observed travel agrees within ordinary runtime tolerance, an independent material root contribution to entity translation is not indicated for those fixtures. Add root-relative instrumentation only if a meaningful discrepancy appears.
+Do not freeze one merely because its hook is easiest. Resolve the intended authoring contract first.
 
 ## Evidence order
 
@@ -147,6 +136,6 @@ Do not create a probe merely because one could provide more data. First exhaust 
 
 ## Closure target
 
-Static ownership, New Balance intervention and speed algebra are already closed by EV-434. Research now closes when bounded runtime evidence establishes whether compatible commanded velocity accounts for representative realized entity travel closely enough to support scalar composition at the final CombatMove movement seam. If it does, return to Normal Chat to freeze initial public scope/config semantics and the smallest production implementation. If it does not, investigate only the measured discrepancy.
+Static ownership, New Balance intervention and speed algebra are closed by EV-434, and the practical author/runtime movement-phase and archive/distribution constraints are reconciled by EV-435. Research now closes when Normal Chat + User freeze the intended authoring/configuration semantics (especially the meaning of `1.0` and Off behavior), supported initial attack scope, and the smallest compatible seam that implements those semantics without animation renaming/repacking.
 
 Then freeze a separate production task if implementation is justified.
