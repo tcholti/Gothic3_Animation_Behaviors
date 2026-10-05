@@ -50,7 +50,11 @@ Implementation must extend the existing continuation only: three direction field
 
 ## Active responsibility
 
-`docs/work/active/RAISE_NORMAL_DIRECTION_CONTINUATION_IMPLEMENTATION.md`
+Implementation candidate published:
+
+`1da12cead5acfb54c5520a34d07bccc4c32fd64f`
+
+`docs/work/active/RAISE_NORMAL_DIRECTION_CONTINUATION_IMPLEMENTATION.md` remains the frozen review contract.
 
 Frozen correction:
 ```text
@@ -70,4 +74,4 @@ EngineBridge.cpp
 
 No filename parsing, copied geometry policy, target/facing mutation, Speed change, Quick/Whirl redesign, Hack change or Collision change.
 
-Independent source review + focused runtime validation are required after implementation.
+Independent source review is the immediate next gate. Focused runtime validation remains blocked until that review passes.
