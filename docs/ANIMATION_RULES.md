@@ -39,6 +39,19 @@ final side/hit-direction token when present
 
 Composite poses such as P10/P21/P30/P61 are meaningful and must not be simplified away.
 
+### 2.1 CombatMove movement field and distribution constraint
+
+The serialized combat-movement distance/length field is an authored gameplay input, not cosmetic metadata. EV-434 statically proves that native CombatMove parses this field from the **selected resource name** and uses it to construct the commanded movement velocity.
+
+Longstanding author/runtime practice further establishes:
+- ordinary attack Raise/Recover resources are normally authored with movement `0`;
+- the Hit resource normally carries the nonzero combat movement value;
+- the character's gameplay translation therefore occurs during the resource/phase carrying that value, normally Hit;
+- combat movement remains subject to native blocking/navigation rules, including stopping near ledges or physical obstruction; it is not an unconditional final-position command.
+
+Do not treat renaming the resource as the preferred runtime/configuration mechanism. Gothic's packed animation resource precedence means a differently named file does not transparently replace the already-packed original resource; changing the serialized movement field requires replacing/removing/injecting the corresponding compiled animation resource. The current displacement feature therefore aims to control the proven CombatMove movement mechanism **without requiring animation renaming/repacking**. A future archive-injection authoring tool is separate scope.
+
+
 ---
 
 ## 3. Animation Family / Actor
