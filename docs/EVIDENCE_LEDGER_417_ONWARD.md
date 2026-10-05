@@ -1006,3 +1006,129 @@ Interpretation:
 
 Disposition:
 - **PASS — NEW BALANCE ORDINARY MELEE HIT MOVEMENT OWNERSHIP IS EFFECTIVELY COMPLETE FOR CURRENT G3AB PROFILE SCOPE.**
+
+
+### EV-438 — Absolute attack movement architecture static closure
+
+Selected product direction supersedes EV-436's authored-baseline multiplier candidate.
+
+User-facing goal:
+- provide per-profile/per-attack **absolute CombatMove distance** in the same authored units used by Gothic animation filename movement fields;
+- avoid animation renaming/repacking;
+- preserve native/New Balance completely when the setting is inactive;
+- when active, G3AB deliberately owns Hit movement magnitude for that configured attack.
+
+Proposed INI semantics:
+```text
+Normal_Movement=Off
+Quick_Movement=Off
+Power_Movement=Off
+...
+
+Off / missing
+= no G3AB movement intervention
+
+Movement=100
+= command the Hit as an authored-style CombatMove distance of 100
+
+Movement=0
+= no CombatMove movement for that configured Hit
+```
+
+A numeric value is therefore absolute, not a multiplier and not a New Balance-relative value.
+
+Static implementation seam — PROVEN SUITABLE:
+- native CombatMove final movement call is `Game+0x16B8B7`;
+- immediately before it, `ECX` is the `gCCharacterMovement_PS` receiver;
+- the third stack argument is the same `SPU.m_DirectionVec` at `SPU+0xFC`;
+- project-pinned New Balance inserts `CombatMoveScale` earlier at `Game+0x16B8A9`;
+- pinned AttackCollision has no hook/ownership overlap at `+0x16B8A9/+0x16B8B7`.
+
+Therefore a G3AB `mCCallHook::InsertCall` at `+0x16B8B7` can run after New Balance policy and before the untouched native CharacterMovement call. It can receive the current CombatMove args/SPU through the same EBP-relative frame (`[EBP+8]` args, `[EBP+0xC]` SPU) and must preserve the already-loaded ECX CharacterMovement receiver.
+
+Configured algorithm:
+```text
+if null / non-Hit / unsupported action / no profile / Movement Off:
+    return without touching m_DirectionVec
+
+resolve existing BehaviorProfiles identity
+map action -> existing attack profile
+Sprint -> Power profile inheritance
+
+T = current primary motion max time / request.AniSpeedScale
+
+if configured distance == 0:
+    set movement vector magnitude to 0
+else if timing invalid or final direction vector is degenerate:
+    fail closed, preserve the compatible vector
+else:
+    normalize the already-final compatible direction
+    scale magnitude to configuredDistance / T
+
+return
+-> original Game+0x16B8B7 CharacterMovement call executes unchanged
+```
+
+Compatibility matrix:
+```text
+Native + Movement Off
+= native filename-derived movement untouched
+
+New Balance + Movement Off
+= New Balance action/skill/reach movement untouched
+
+Native + Movement numeric
+= G3AB absolute distance ownership
+
+New Balance + Movement numeric
+= New Balance runs first normally;
+  G3AB then overrides only final Hit magnitude with configured absolute distance
+
+AttackCollision
+= no direct movement hook overlap at the selected seam
+```
+
+The design requires no New Balance module detection and no hook into a third-party DLL.
+
+Speed compatibility:
+- use the request's already-composed `AniSpeedScale`;
+- do not call `GetAnimationSpeedModifier`;
+- do not recompose Speed;
+- compute the same duration relationship used by native/NB movement, so changing Speed changes velocity as required to target the configured nominal distance rather than changing the configured distance itself.
+
+Raise compatibility:
+- gate on physical Hit request;
+- Raise/Recover remain untouched;
+- AddRaise may create separate requests but does not create repeated movement ownership.
+
+Simplicity/modularity:
+- one narrow physical hook in `EngineBridge`;
+- proposed permanent policy owner `AttackMovement.cpp/.h`;
+- existing `BehaviorProfiles` gains optional movement value per `AttackSettings`;
+- no runtime state/cache/generation tracking;
+- no filename parsing;
+- no per-frame polling;
+- no Collision change;
+- no Speed/Raise policy change.
+
+Configuration parsing:
+- movement must support explicit `Off` plus a finite non-negative numeric distance;
+- this needs its own parser semantics because Speed intentionally accepts only positive values while movement value `0` is meaningful;
+- missing/invalid values fail closed to inactive/Off.
+
+Zero-direction boundary:
+- after native/New Balance scaling, a degenerate final vector has no direction to normalize;
+- configured positive movement should fail closed rather than invent a facing/target direction;
+- inventory review found the ordinary zero-distance Hit set concentrated in `Troll_Stand_None_Fist` Normal/Quick/Power assets, which are not part of the current shipping Troll `Fist_Fist` profile;
+- this does not block the current profile implementation;
+- future support for turning a genuinely zero-direction attack into a moving attack requires separate evidence rather than a second hook/state machine in v1.
+
+New Balance option-3 note:
+- pinned New Balance already exposes global `AttackReachMultiplier` (default 1.0);
+- individual action distances remain hardcoded;
+- source contains `// TODO Make config values for each reach!`;
+- exposing those values in New Balance remains a plausible future collaboration, but it would remain action-wide rather than G3AB's animation-family/loadout profile control.
+
+Disposition:
+- **PASS — OPTION 2 IS STATICALLY FEASIBLE WITH A SIMPLE, MODULAR, NATIVE/NEW-BALANCE-COMPATIBLE ONE-HOOK ARCHITECTURE FOR THE CURRENT PROFILE SCOPE.**
+- next gate: independent architecture/source-hook review before production implementation freeze.
