@@ -1,7 +1,7 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-10-05 — EV-435 displacement architecture semantics
+**Updated:** 2026-10-05 — EV-438 absolute attack movement architecture
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
@@ -10,56 +10,57 @@ Active branch: `development`
 
 ## Stable baseline
 
-`main` remains the promoted Collision + Speed + Raise baseline through EV-433.
+`main` remains Collision + Speed + Raise stable through EV-433.
 
-## Established displacement mechanism
+## Movement research
 
 EV-434:
-```text
-selected animation filename movement field -> native CombatMove velocity
-Game+0x16B8A3 = native magnitude scale
-Game+0x16B8A9 = project-pinned New Balance movement replacement
-Game+0x16B8B7 = final CombatMove movement call
-speed changes commanded velocity; nominal distance remains chosen movement value
-```
+- native filename movement mechanism and New Balance replacement path proven.
 
 EV-435:
+- practical Hit-phase movement / archive constraints reconciled.
+
+EV-437:
+- New Balance owns Hit movement across the complete ordinary melee attack surface relevant to current G3AB profiles.
+
+EV-438:
+- **option 2 selected and statically feasible.**
+
 ```text
-ordinary attack Hit carries the nonzero movement value
-Raise/Recover are normally 0
-movement occurs during the value-carrying phase
-combat movement preserves native ledge/obstacle/target stopping
-renaming the animation is not a practical control because packed resource
-precedence makes replacement/repacking necessary
+Movement=Off
+-> no G3AB mutation; native/New Balance untouched
+
+Movement=<number>
+-> absolute CombatMove Hit distance in Gothic authored movement units
 ```
 
-The proposed runtime re-proof probe was cancelled before implementation as redundant.
+Candidate seam:
+
+```text
+New Balance +0x16B8A9 (if present)
+-> final SPU.m_DirectionVec
+-> G3AB insert immediately before Game+0x16B8B7
+-> configured magnitude = Movement / (maxTime / AniSpeedScale)
+-> original EnableCombatMovementFromSPU unchanged
+```
+
+Architecture:
+```text
+BehaviorProfiles = config/profile identity
+AttackMovement = movement policy
+EngineBridge = one hook transport
+```
+
+Initial action surface:
+`Normal / Quick / Power / Pierce / Hack / SimpleWhirl / Whirl`
+with Sprint inheriting Power where factually routed.
+
+No state, no filename parsing, no New Balance detection, no per-frame work.
+
+Zero-direction positive override fails closed in v1 rather than inventing direction; current shipping profile inventory is not blocked by the known Troll_None_Fist zero-distance edge.
 
 ## Active responsibility
 
 `docs/work/active/ATTACK_FORWARD_DISPLACEMENT_RESEARCH.md`
 
-EV-436 authoring contract:
-
-```text
-inactive / Off
-= preserve current live compatible stack unchanged
-
-configured K
-= selected animation filename movement × K
-
-K=1.0
-= selected animation's authored movement exactly
-```
-
-Desired surface uses the existing profile attack groups:
-`Normal / Quick / Power / Pierce / Hack / SimpleWhirl / Whirl`.
-
-With New Balance active, configured movement deliberately takes magnitude ownership back from New Balance while preserving final direction and native stopping behavior. Missing/inactive configuration remains the compatibility escape hatch.
-
-Remaining architecture question:
-capture/retain the native authored magnitude before New Balance replaces it, then safely reapply `authoredMagnitude * K` at the final CombatMove movement call.
-
-Do not implement yet.
-
-Protect Collision, Speed, Raise, New Balance and AttackCollision.
+Next: independent bounded static architecture/hook review. If PASS, close research and freeze production implementation.
