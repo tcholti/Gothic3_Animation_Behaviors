@@ -492,3 +492,37 @@ Disposition:
 - **BLOCKER 0 / MAJOR 0 / MINOR 0.**
 - **NO SOURCE CORRECTION REQUIRED BEFORE BUILD.**
 - **NEXT — local synchronization, build/deploy verification, then the frozen focused runtime matrix.**
+
+
+### EV-427 — Normal AddRaise direction runtime acceptance
+
+Scope:
+- reviewed EV-426 source was synchronized, built and deployed by the User on the authoritative local Gothic 3 environment;
+- focused runtime validation followed the frozen EV-424 implementation matrix;
+- no new source change was introduced between EV-426 review and this runtime result.
+
+User runtime result:
+- local production build: **PASS**;
+- deployment: **PASS**;
+- Normal AddRaise direction continuation: **PASS**;
+- the previously failing Left/Right continuation now remains directionally correct through Raise -> Hit;
+- frozen Normal Fwd/Left/Right matrix and requested 1H/dual-wield/control/interruption coverage were reported working;
+- Quick and Whirl controls showed no reported regression;
+- no contradictory behavior was observed.
+
+Proven production behavior:
+```text
+Normal Fwd   -> Fwd Raise   -> Fwd Hit
+Normal Left  -> Left Raise  -> Left Hit
+Normal Right -> Right Raise -> Right Hit
+```
+
+Evidence precision:
+- the User reported successful build and deployment in compact form;
+- exact built/live SHA256 values were not transcribed into Chat for this EV and are therefore not asserted here.
+
+Disposition:
+- **PASS — EV-423 DIRECTIONAL CONTINUATION DEFECT CLOSED.**
+- **PASS — EV-424 MINIMAL GOTHIC-NATIVE DIRECTION CARRY RUNTIME-ACCEPTED.**
+- **Quick/Whirl/Speed/Hack/Collision protected behavior remains accepted absent contrary evidence.**
+- **RAISE_NORMAL_DIRECTION_CONTINUATION_IMPLEMENTATION task may close/archive.**
