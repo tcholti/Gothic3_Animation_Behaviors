@@ -75,69 +75,93 @@ Speed algebra is closed: changing `AniSpeedScale` changes the commanded velocity
 
 The strongest compatible future seam is after native/New Balance vector policy at the CombatMove-specific `Game+0x16B8B7` call, with candidate scalar composition `v_configured = k * v_compatible`. This is not yet production-frozen.
 
-## Current architecture question
+## Selected architecture candidate — EV-438
 
-EV-434 + EV-435 are sufficient to stop re-proving the basic movement mechanism.
-
-The remaining question is semantic, not causal:
-
-> When New Balance has already replaced the animation-authored Hit movement magnitude, what should a configured G3AB value mean?
-
-The design must distinguish at least these states conceptually before implementation is frozen:
+Option 2 is selected for research closure:
 
 ```text
-Off
+<Attack>_Movement=Off
 = preserve the complete live compatible stack unchanged
-  (native or New Balance/other compatible movement)
 
-authored-animation baseline
-= the movement Gothic would derive from the selected animation resource's
-  filename distance field at the already-composed request speed
+<Attack>_Movement=<non-negative number>
+= absolute authored-style CombatMove distance for that Hit
 
-configured control
-= a deliberate author/user adjustment whose neutral meaning must be chosen
-  explicitly rather than inferred from New Balance's final vector
+100
+= behave as a CombatMove distance of 100 regardless of the selected
+  animation's filename value or New Balance's action-wide reach value
 ```
 
-Important product constraint:
-- changing the animation filename itself is not an acceptable configuration mechanism because it requires resource replacement/repacking under Gothic archive precedence;
-- the runtime feature exists to provide this control without renaming/repacking animations.
+This removes the movement-specific need for future animation-name injection/repacking and allows one profile value to normalize multiple attacks in the same profile even when their current asset names carry different movement numbers.
 
-User-selected authoring contract:
+### Smallest compatible seam
+
+Use one G3AB insertion immediately before the existing native CharacterMovement call at `Game+0x16B8B7`.
+
+At that point:
+- Gothic has resolved/started the actual motion;
+- Speed's final request `AniSpeedScale` is already present;
+- native filename movement policy has run;
+- pinned New Balance at `+0x16B8A9` has already run if installed;
+- the final direction is present in `SPU.m_DirectionVec`;
+- the untouched native CharacterMovement call has not yet consumed it.
+
+Configured movement therefore computes:
 
 ```text
-inactive / Off
-= preserve the complete live compatible stack unchanged
-  (native, New Balance, AttackCollision-compatible downstream behavior)
-
-configured numeric multiplier K
-= take the selected animation resource's authored filename movement
-  as the baseline and apply K to that authored movement
-
-K = 1.0
-= exactly the selected animation's authored movement value
-
-K = 0.5
-= half the selected animation's authored movement
-
-K = 1.5
-= 150% of the selected animation's authored movement
+T = primary motion max time / request.AniSpeedScale
+velocityMagnitude = configuredMovement / T
 ```
 
-This is intentionally **not** `K * New Balance final magnitude`. When configured, G3AB is expected to own the movement magnitude for that attack while still preserving downstream direction and native obstacle/ledge/target stopping behavior. When inactive, G3AB must not alter New Balance/native movement at all.
+and replaces only the vector magnitude while preserving its final direction.
 
-EV-437 clarifies the New Balance ownership boundary: every ordinary melee Hit action represented by the current G3AB profile surface is covered by New Balance's replacement movement policy. The known special exceptions are outside that surface: JumpAttack/Action12 and FinishingAttack/Action15 are not in the pinned replacement table, while RamAttack/Action13 has no native Hit assets in the project inventory. GetUpAttack/Action30 is covered by New Balance.
+No movement setting -> no mutation.
 
-The same profile identity and attack-grouping model used by Speed is the desired configuration surface: Normal, Quick, Power, Pierce, Hack, SimpleWhirl and Whirl settings may each carry an optional movement multiplier. Sprint-origin behavior should be resolved from factual routing/evidence rather than given a new symmetric profile key by assumption.
+### Architecture ownership
 
-Important default-config consequence:
-- because `1.0` is an active authored-baseline override rather than "leave compatible movement unchanged", the shipping INI must not silently enable numeric `1.0` for every profile;
-- missing/inactive movement configuration must preserve the live compatible stack;
-- if movement keys are shown for discoverability, they need an explicit inactive representation rather than a live numeric default.
+```text
+BehaviorProfiles
+= configuration storage / profile identity
 
-Future archive-injection work may normalize authored filename distances across attacks/families. This runtime multiplier is deliberately relative to whatever value is authored in the selected animation resource, so normalized future assets will automatically make one profile multiplier produce correspondingly normalized results without changing the runtime architecture.
+AttackMovement
+= action eligibility + movement-distance policy + vector magnitude composition
 
-The remaining architecture work is to determine the smallest transport/state needed to retain the native authored magnitude across New Balance's downstream replacement and reapply `authoredMagnitude * K` at the final CombatMove movement seam.
+EngineBridge
+= one physical +0x16B8B7 transport hook only
+```
+
+Do not put movement policy in EngineBridge.
+
+No state/cache/generation tracking is required.
+
+### Supported initial action scope
+
+Use the existing profile attack surface:
+
+```text
+Normal
+Quick
+Power
+Pierce
+Hack
+SimpleWhirl
+Whirl
+```
+
+Sprint inherits Power where the factual Sprint route reaches this movement boundary. Do not add a new Sprint profile key.
+
+Finishing/JumpAttack/RamAttack are outside initial scope.
+
+### Fail-closed boundaries
+
+- null args/SPU/entity -> untouched;
+- physical phase other than Hit -> untouched;
+- unsupported action -> untouched;
+- missing/invalid/movement Off -> untouched;
+- invalid/non-positive duration -> untouched;
+- configured positive distance with degenerate final direction -> untouched;
+- configured zero distance -> zero movement vector is valid.
+
+Do not add a second hook merely to manufacture direction for zero-authored/zero-compatible attacks in v1.
 
 ## Evidence order
 
@@ -165,6 +189,6 @@ Do not create a probe merely because one could provide more data. First exhaust 
 
 ## Closure target
 
-Static ownership, New Balance intervention and speed algebra are closed by EV-434, and the practical author/runtime movement-phase and archive/distribution constraints are reconciled by EV-435. Research now closes when Normal Chat + User freeze the intended authoring/configuration semantics (especially the meaning of `1.0` and Off behavior), supported initial attack scope, and the smallest compatible seam that implements those semantics without animation renaming/repacking.
+Static ownership, New Balance intervention and speed algebra are closed by EV-434, and the practical author/runtime movement-phase and archive/distribution constraints are reconciled by EV-435. EV-438 now freezes the intended absolute authoring semantics, initial profile scope and smallest candidate seam. Research closes after one bounded independent static architecture/hook review confirms the +0x16B8B7 transport and fail-closed design. Then freeze a separate production implementation task.
 
 Then freeze a separate production task if implementation is justified.
