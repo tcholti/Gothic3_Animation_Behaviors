@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = EV-431 source review PASS + EV-432 repository release audit PASS; deliberate main promotion checkpoint approved
+CURRENT = EV-433 Collision + Speed + Raise stable promotion completed; development ready for next bounded research responsibility
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise direction continuation = CLOSED/PASS EV-427; EV-430 completes representative Normal / Quick R+L / pose-changing Quick / full Whirl coverage including partial Raise-asset profiles
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
@@ -52,36 +52,23 @@ Canonical reusable engine lookup:
 
 The completed preservation-biased repository audit and Work result are archived under `docs/archive/investigations/`. Its accepted RH-01–RH-13 maintenance is represented in the durable owners; RH-14–RH-17 were KEEP/no-action. The three previously retained Sprint-probe logs were positively reconciled during EV-397/EV-398 maintenance and archived byte-identically; path migration is recorded in `EVIDENCE_PATH_MIGRATIONS.md`.
 
-## Immediate continuation — Stable promotion checkpoint
+## Immediate continuation — Post-promotion state
 
-Final independent Speed+Raise source review: **PASS EV-431**.
-
-Quick repository/authority release audit: **PASS EV-432**.
+Stable Collision + Speed + Raise promotion is CLOSED/PASS through EV-433.
 
 ```text
+main = deliberately promoted stable Collision + Speed + Raise baseline
+development = active branch for later bounded systems
 Collision = CLOSED/PASS
 Speed = CLOSED/PASS
 Raise = CLOSED/PASS / well tested for initial release
-New Balance compatibility = PASS
-AttackCollision compatibility = PASS
-Collision non-interference = PASS
-repository authority/knowledge health = PASS
 ```
 
-The current `development` history is a clean descendant of `main` with no divergence. The deliberate Collision + Speed + Raise stable promotion checkpoint is approved.
+No Speed/Raise/Collision implementation task is active.
 
-After promotion, return immediately to `development` and open the next research responsibility:
+Next development responsibility after this stable checkpoint:
 
-```text
-attack forward displacement / how far attacks may move the character
--> start with native Gothic ownership/mechanism
--> inspect New Balance Normal/Quick displacement changes
--> preserve compatible composition where possible
--> research/design before production implementation
-```
-
-Completed final source review:
-`docs/archive/investigations/SPEED_RAISE_FINAL_SOURCE_REVIEW.md`
+**research/design attack forward displacement / how far attacks may move the character**, beginning with native Gothic ownership and New Balance Normal/Quick behavior. Do not implement before the mechanism is understood.
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
 
