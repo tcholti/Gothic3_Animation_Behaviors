@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = attack displacement static mechanism CLOSED EV-434; bounded diagnostics-only runtime probe implementation active before runtime closure
+CURRENT = attack displacement mechanism/authoring constraints CLOSED EV-434/EV-435; architecture semantics active, no runtime probe required
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise direction continuation = CLOSED/PASS EV-427; EV-430 completes representative Normal / Quick R+L / pose-changing Quick / full Whirl coverage including partial Raise-asset profiles
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
@@ -52,29 +52,28 @@ Canonical reusable engine lookup:
 
 The completed preservation-biased repository audit and Work result are archived under `docs/archive/investigations/`. Its accepted RH-01–RH-13 maintenance is represented in the durable owners; RH-14–RH-17 were KEEP/no-action. The three previously retained Sprint-probe logs were positively reconciled during EV-397/EV-398 maintenance and archived byte-identically; path migration is recorded in `EVIDENCE_PATH_MIGRATIONS.md`.
 
-## Immediate continuation — Attack displacement runtime closure
+## Immediate continuation — Attack displacement architecture semantics
 
-EV-434 statically establishes:
-
-```text
-native distance owner = selected animation filename numeric field
-native velocity = D_filename / (maxTime / AniSpeedScale)
-New Balance = replaces Hit vector magnitude at Game+0x16B8A9
-final CombatMove movement call = Game+0x16B8B7
-strongest compatible candidate = scalar over incoming final compatible velocity
-```
+EV-434 closes the native/New Balance movement mechanism. EV-435 reconciles longstanding author/runtime facts and the archive/resource distribution constraint.
 
 Active research:
 
 `docs/work/active/ATTACK_FORWARD_DISPLACEMENT_RESEARCH.md`
 
-Active bounded probe implementation:
+The diagnostics-only runtime probe was cancelled as redundant before implementation.
 
-`docs/work/active/ATTACK_FORWARD_DISPLACEMENT_RUNTIME_PROBE.md`
+Current decision to freeze with the User:
 
-Remaining gate: one bounded runtime comparison of commanded velocity × actual enabled duration against observed horizontal entity travel on representative human/nonhuman Normal attacks. Root/bone instrumentation is deferred unless that comparison exposes a discrepancy.
+```text
+Off = preserve live compatible behavior
 
-No production displacement implementation yet.
+What should configured 1.0 mean?
+A) final compatible movement unchanged (native/NB)
+B) restore the selected animation's authored filename movement
+C) explicit separate semantics/modes
+```
+
+The feature must avoid requiring animation renaming/repacking. Preserve native obstacle/ledge/target stopping behavior. Do not label it root-motion control.
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
 
