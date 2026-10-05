@@ -12,6 +12,7 @@ Main authorities:
 - `ANIMATION_RULES.md` — generalized engine-facing naming/authoring semantics;
 - `ANIMATION_CATALOG.md` — concrete families, exact assets, fixtures, author observations;
 - `data/animation_names/all_animation_names.txt` — complete native name inventory;
+- `data/animation_names/user_created_tested_animation_names.txt` — exact user-authored names admitted only after runtime selection/playback is proven;
 - `data/animation_names/author_grouped_attacks_and_stumbles.txt` — author-grouped exact names/notes.
 
 Runtime claims remain evidence-bounded; native action/phase/source semantics outrank filename inference.
@@ -33,7 +34,8 @@ Runtime claims remain evidence-bounded; native action/phase/source semantics out
 | human FIST marker authoring | `ANIMATION_RULES.md` §10 |
 | may I use FIST on raw55/PhysicalFist animations? | Yes, within the proven raw55 contract; `ANIMATION_RULES.md` §10; `COLLISION_REFERENCE.md`; `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md` |
 | supported family/native eligibility restrictions | `ANIMATION_RULES.md` §11; `EVIDENCE_INDEX.md` |
-| exact asset exists? | search `data/animation_names/all_animation_names.txt` |
+| exact native asset exists? | search `data/animation_names/all_animation_names.txt` |
+| exact user-authored + runtime-tested asset exists? | search `data/animation_names/user_created_tested_animation_names.txt` |
 | author-curated exact notes | `data/animation_names/author_grouped_attacks_and_stumbles.txt` |
 | Raise availability / concrete human families | `ANIMATION_CATALOG.md` |
 | exact historical Fist body-contact fixture | `ANIMATION_CATALOG.md` §10; production result is EV-240 |
@@ -143,7 +145,8 @@ Use `EVIDENCE_INDEX.md` for exact routing/provenance.
 - generalized animation semantics -> `ANIMATION_RULES.md`;
 - concrete asset/family observations -> `ANIMATION_CATALOG.md`;
 - controlled runtime/source facts -> Evidence Ledger;
-- bulk exact names -> data lists;
+- native bulk exact names -> `all_animation_names.txt`;
+- user-authored exact names -> `user_created_tested_animation_names.txt` only after runtime proof;
 - this index changes only when retrieval materially improves.
 
 Do not copy experiment chronology into animation authorities.
