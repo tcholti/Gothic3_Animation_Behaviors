@@ -925,3 +925,48 @@ Architecture consequence:
 Disposition:
 - **PASS — BASIC COMBAT-MOVEMENT OWNERSHIP / PHASE PRACTICAL BEHAVIOR SUFFICIENT FOR ARCHITECTURE DISCUSSION.**
 - **CANCEL — ATTACK_FORWARD_DISPLACEMENT_RUNTIME_PROBE as currently scoped; do not spend a runtime probe to rediscover these established facts.**
+
+
+### EV-436 — Displacement authoring semantics selected
+
+User authoring decision:
+- movement control should be available per existing BehaviorProfile / attack type, analogous to Speed's profile surface;
+- configured `1.0` means the movement value authored in the **selected animation resource name**, not New Balance's replacement distance;
+- a configured numeric value is a multiplier over that selected-resource authored baseline;
+- inactive/Off means preserve the entire live compatible movement stack unchanged.
+
+Examples:
+```text
+authored filename distance 100, K=1.0 -> authored 100 baseline
+authored filename distance 100, K=1.2 -> authored-equivalent 120
+authored filename distance 120, K=1.2 -> authored-equivalent 144
+```
+
+This intentionally preserves differences between differently authored attacks today. A future archive injector may normalize those authored filename values; if that happens, the same profile multiplier will then act uniformly without changing the runtime feature semantics.
+
+Compatibility consequence:
+- with New Balance active and movement configuration inactive, New Balance remains untouched;
+- with movement configuration active, G3AB deliberately replaces New Balance's **magnitude ownership** with selected-animation-authored magnitude × configured multiplier;
+- final compatible direction and Gothic's downstream obstacle/ledge/target stopping behavior should remain preserved;
+- this is not a claim that New Balance's action-table distance equals the filename-authored value; EV-434 proves it generally does not.
+
+Configuration consequence:
+- `1.0` is an active override, not a neutral install default under New Balance;
+- shipping configuration must therefore represent movement settings as inactive/missing by default, or use an explicit inactive token if keys are surfaced;
+- do not populate live `1.0` movement keys everywhere merely for symmetry.
+
+Desired attack-setting surface follows the existing `BehaviorProfiles::AttackType` set:
+```text
+Normal
+Quick
+Power
+Pierce
+Hack
+SimpleWhirl
+Whirl
+```
+Sprint behavior remains evidence-routed rather than gaining a new profile slot merely for symmetry.
+
+Disposition:
+- **AUTHORING SEMANTICS FROZEN.**
+- remaining research = smallest safe transport/composition architecture, not user-facing meaning.
