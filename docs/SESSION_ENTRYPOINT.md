@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = EV-438 absolute per-profile attack movement architecture statically feasible; independent hook/architecture review is next
+CURRENT = EV-438/EV-439 absolute attack movement architecture frozen for independent hook/architecture review
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise direction continuation = CLOSED/PASS EV-427; EV-430 completes representative Normal / Quick R+L / pose-changing Quick / full Whirl coverage including partial Raise-asset profiles
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
@@ -84,7 +84,10 @@ No state, filename parsing, third-party detection, per-frame logic, Collision ch
 Active research:
 `docs/work/active/ATTACK_FORWARD_DISPLACEMENT_RESEARCH.md`
 
-Next gate: bounded independent static architecture/hook review. No implementation yet.
+Active independent review:
+`docs/work/active/ATTACK_MOVEMENT_ARCHITECTURE_REVIEW.md`
+
+No implementation yet.
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
 
