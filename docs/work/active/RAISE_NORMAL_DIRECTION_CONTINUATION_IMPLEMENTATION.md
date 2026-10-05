@@ -1,9 +1,10 @@
 # Raise — Normal Direction Continuation Implementation
 
-**Status:** ACTIVE — BOUNDED PRODUCTION SOURCE IMPLEMENTATION CONTRACT  
+**Status:** ACTIVE — IMPLEMENTATION CANDIDATE PUBLISHED / INDEPENDENT SOURCE REVIEW PENDING  
 **Branch:** `development`  
 **Required documentation baseline:** EV-424 causal closure  
-**Production behavior baseline:** `41ed80c6420e5236d13fc037cb5923b946cb8ccc`
+**Production behavior baseline:** `41ed80c6420e5236d13fc037cb5923b946cb8ccc`  
+**Implementation candidate:** `1da12cead5acfb54c5520a34d07bccc4c32fd64f`
 
 ## Responsibility
 
