@@ -103,12 +103,39 @@ Important product constraint:
 - changing the animation filename itself is not an acceptable configuration mechanism because it requires resource replacement/repacking under Gothic archive precedence;
 - the runtime feature exists to provide this control without renaming/repacking animations.
 
-Potential implementation families may include:
-- scalar over the final compatible vector (`1.0` = preserve New Balance/native compatible behavior);
-- restoration/scaling of the animation-authored baseline after New Balance (`1.0` = selected animation's authored movement);
-- an explicit distinction between those semantics.
+User-selected authoring contract:
 
-Do not freeze one merely because its hook is easiest. Resolve the intended authoring contract first.
+```text
+inactive / Off
+= preserve the complete live compatible stack unchanged
+  (native, New Balance, AttackCollision-compatible downstream behavior)
+
+configured numeric multiplier K
+= take the selected animation resource's authored filename movement
+  as the baseline and apply K to that authored movement
+
+K = 1.0
+= exactly the selected animation's authored movement value
+
+K = 0.5
+= half the selected animation's authored movement
+
+K = 1.5
+= 150% of the selected animation's authored movement
+```
+
+This is intentionally **not** `K * New Balance final magnitude`. When configured, G3AB is expected to own the movement magnitude for that attack while still preserving downstream direction and native obstacle/ledge/target stopping behavior. When inactive, G3AB must not alter New Balance/native movement at all.
+
+The same profile identity and attack-grouping model used by Speed is the desired configuration surface: Normal, Quick, Power, Pierce, Hack, SimpleWhirl and Whirl settings may each carry an optional movement multiplier. Sprint-origin behavior should be resolved from factual routing/evidence rather than given a new symmetric profile key by assumption.
+
+Important default-config consequence:
+- because `1.0` is an active authored-baseline override rather than "leave compatible movement unchanged", the shipping INI must not silently enable numeric `1.0` for every profile;
+- missing/inactive movement configuration must preserve the live compatible stack;
+- if movement keys are shown for discoverability, they need an explicit inactive representation rather than a live numeric default.
+
+Future archive-injection work may normalize authored filename distances across attacks/families. This runtime multiplier is deliberately relative to whatever value is authored in the selected animation resource, so normalized future assets will automatically make one profile multiplier produce correspondingly normalized results without changing the runtime architecture.
+
+The remaining architecture work is to determine the smallest transport/state needed to retain the native authored magnitude across New Balance's downstream replacement and reapply `authoredMagnitude * K` at the final CombatMove movement seam.
 
 ## Evidence order
 
