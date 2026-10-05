@@ -1,60 +1,34 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-10-05 — EV-424 direction causal closure
+**Updated:** 2026-10-05 — EV-427 Normal direction closure
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `development`  
-Collision, Speed core and Hack compatibility remain CLOSED/PASS. `main` frozen.
+`main` remains frozen.
 
-## EV-423 runtime contradiction
+## Current closure
+
+Collision, Speed v2, Raise phase-speed/Hack compatibility and the Normal AddRaise direction correction are CLOSED/PASS through EV-427.
+
+Accepted Normal direction mechanism:
 
 ```text
-Normal Left  -> correct Left Raise  -> following Hit becomes Fwd
-Normal Right -> correct Right Raise -> following Hit becomes Fwd
+pending Normal synthetic Raise
+-> Gothic selects native Fwd/Left/Right
+-> capture exact direction bCString + current gEDirection at Game+0x16B056
+-> stored Action1 Hit
+-> restore same gEDirection + reuse same direction bCString
+-> Gothic GetAniName resolves Hit normally
 ```
 
-Generated dual Fwd Normal and ordinary P0/P1 Quick Raises are runtime-valid.
-
-## EV-424 static causal closure
-
-`sAICombatMoveInstr_Args` has no direction field.
-
-`sAICombatMoveStart`:
-```text
-Game+0x16ABB0
--> recomputes current direction
--> Fwd literal init +0x16AEDD
--> Action1 direction path +0x16AF3C
--> Right +0x16AF61 / Left +0x16AF76
--> write Navigation current gEDirection +0x16B00E
--> pass direction bCString to GetAniName at +0x16B056
--> GetAniName serializes that direction
-```
-
-Cause:
-```text
-Raise = first classification, correct Left/Right
-Hit   = second classification after Raise, may now resolve Fwd
-```
-
-The previous animation filename is not the direction authority on this path. Gothic's naming structure remains a real state/resource contract, but the Normal direction token is freshly supplied to `GetAniName`.
-
-## Pre-implementation review — EV-425
-
-Current Raise/Speed source is still byte-identical to production `41ed80c6420e5236d13fc037cb5923b946cb8ccc`. Sol review found no blocker/major/minor issue requiring refactor before the fix.
-
-Implementation must extend the existing continuation only: three direction fields, one narrow AttackRaise semantic seam, and one `Game+0x16B056` call-site transport. No second state map or raw Navigation offsets.
-
-## EV-426 source review
-
-Reviewed direction source:
+Production direction source:
 
 `1da12cead5acfb54c5520a34d07bccc4c32fd64f`
 
-Result:
+EV-426 source review:
 ```text
 PASS
 blocker 0
@@ -62,28 +36,32 @@ major 0
 minor 0
 ```
 
-Current production blobs are byte-identical to the reviewed candidate. No source correction is required before build.
-
-## Active responsibility
-
-`docs/work/active/RAISE_NORMAL_DIRECTION_CONTINUATION_IMPLEMENTATION.md` remains active through focused runtime acceptance.
-
-Frozen correction:
+EV-427 local result:
 ```text
-during pending Normal continuation:
-capture Gothic-native direction at Raise GetAniName
--> on stored Hit GetAniName, reuse exactly that direction
--> restore matching Navigation current direction
--> let Gothic build the name normally
+build PASS
+deployment PASS
+runtime PASS
+Normal Fwd   -> Fwd Raise   -> Fwd Hit
+Normal Left  -> Left Raise  -> Left Hit
+Normal Right -> Right Raise -> Right Hit
+frozen 1H / dual-wield / Quick / Whirl / interruption controls reported working
 ```
 
-Allowed production files only:
+Exact built/live SHA256 values were not transcribed into Chat and are not asserted as evidence.
+
+## Durable owners
+
 ```text
-AttackRaise.cpp
-AttackRaise.h
-EngineBridge.cpp
+DESIGN.md
+SOURCE_HOOK_GUIDE.md
+EVIDENCE_INDEX.md
+EVIDENCE_LEDGER_417_ONWARD.md
+docs/archive/investigations/RAISE_NORMAL_DIRECTION_CONTINUATION_IMPLEMENTATION.md
+docs/archive/investigations/RAISE_NORMAL_DIRECTION_CONTINUATION_RESEARCH.md
 ```
 
-No filename parsing, copied geometry policy, target/facing mutation, Speed change, Quick/Whirl redesign, Hack change or Collision change.
+## Next
 
-Next gate: local synchronization -> build -> deploy/hash/load verification -> focused runtime matrix: Normal Fwd/Left/Right, one 1H-family directional route, EV-423 dual-wield route, Quick control, Whirl control, interruption/cancellation control.
+No Raise-direction implementation task remains active.
+
+User + Normal Chat should select/freeze the next engineering responsibility from the current project state. Do not reopen EV-423/EV-424 direction work absent contradictory evidence.
