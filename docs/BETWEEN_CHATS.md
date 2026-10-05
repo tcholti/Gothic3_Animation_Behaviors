@@ -1,7 +1,7 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-10-05 — EV-423 directional Raise contradiction
+**Updated:** 2026-10-05 — EV-424 direction causal closure
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
@@ -9,46 +9,59 @@ Repository: `tcholti/Gothic3_Animation_Behaviors`
 Branch: `development`  
 Collision, Speed core and Hack compatibility remain CLOSED/PASS. `main` frozen.
 
-## New contradiction — EV-423
+## EV-423 runtime contradiction
 
-Rule-derived dual Raise assets worked:
 ```text
-P0/P1 Fwd Normal Raise = selected + plays correctly
-P0/P1 Quick R/L Raise = selected + plays correctly
-P3 QuickL Raise = not observed; corresponding P3->P61 Hit also not observed
+Normal Left  -> correct Left Raise  -> following Hit becomes Fwd
+Normal Right -> correct Right Raise -> following Hit becomes Fwd
 ```
 
-But directional Normal AddRaise is wrong:
+Generated dual Fwd Normal and ordinary P0/P1 Quick Raises are runtime-valid.
+
+## EV-424 static causal closure
+
+`sAICombatMoveInstr_Args` has no direction field.
+
+`sAICombatMoveStart`:
 ```text
-native Left Normal selected -> Left Raise plays -> following Hit becomes Fwd
-native Right Normal selected -> Right Raise plays -> following Hit becomes Fwd
+Game+0x16ABB0
+-> recomputes current direction
+-> Fwd literal init +0x16AEDD
+-> Action1 direction path +0x16AF3C
+-> Right +0x16AF61 / Left +0x16AF76
+-> write Navigation current gEDirection +0x16B00E
+-> pass direction bCString to GetAniName at +0x16B056
+-> GetAniName serializes that direction
 ```
 
-This is not an animation-name defect.
+Cause:
+```text
+Raise = first classification, correct Left/Right
+Hit   = second classification after Raise, may now resolve Fwd
+```
 
-Static fact:
-`sAICombatMoveInstr_Args` contains Self/Target/Action/Phase/AniSpeedScale only. No direction field exists. Current AttackRaise stores/replays that generic Action1 Hit after synthetic Raise, so the original Fwd/Left/Right selection identity is not carried by the stored request.
+The previous animation filename is not the direction authority on this path. Gothic's naming structure remains a real state/resource contract, but the Normal direction token is freshly supplied to `GetAniName`.
 
 ## Active responsibility
 
-`docs/work/active/RAISE_NORMAL_DIRECTION_CONTINUATION_RESEARCH.md`
+`docs/work/active/RAISE_NORMAL_DIRECTION_CONTINUATION_IMPLEMENTATION.md`
 
-Prove:
+Frozen correction:
 ```text
-where Gothic stores/derives the factual Normal Fwd/Left/Right selection
-what synthetic Raise changes/consumes
-smallest way to preserve already-selected Hit across Raise
+during pending Normal continuation:
+capture Gothic-native direction at Raise GetAniName
+-> on stored Hit GetAniName, reuse exactly that direction
+-> restore matching Navigation current direction
+-> let Gothic build the name normally
 ```
 
-Protect:
+Allowed production files only:
 ```text
-Hit-scale reuse / phase-speed correction
-Quick factual Action4/5
-Whirl AddRaise
-Power Raise composition
-Hack compatibility
-Collision
-New Balance ownership
+AttackRaise.cpp
+AttackRaise.h
+EngineBridge.cpp
 ```
 
-Do not hard-code Left/Right filenames or implement from hypothesis.
+No filename parsing, copied geometry policy, target/facing mutation, Speed change, Quick/Whirl redesign, Hack change or Collision change.
+
+Independent source review + focused runtime validation are required after implementation.
