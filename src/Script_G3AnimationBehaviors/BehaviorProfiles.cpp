@@ -4,6 +4,7 @@
 
 #include <windows.h>
 
+#include <cerrno>
 #include <cmath>
 #include <cstdlib>
 #include <map>
@@ -122,6 +123,27 @@ bool ParsePositiveFiniteFloat(char const *text, float &result)
     return true;
 }
 
+bool ParseNonNegativeFiniteFloat(char const *text, float &result)
+{
+    std::string const value = NormalizeIdentityString(text);
+    if (value.empty() || value == "off")
+        return false;
+
+    char *end = nullptr;
+    errno = 0;
+    float const parsed = std::strtof(value.c_str(), &end);
+    if (end == value.c_str() || *end != '\0')
+        return false;
+    // An underflowed number must not become an active numeric zero.
+    if (parsed == 0.0f && errno == ERANGE)
+        return false;
+    if (!(parsed >= 0.0f) || !std::isfinite(parsed))
+        return false;
+
+    result = parsed;
+    return true;
+}
+
 AttackSettings ParseAttackSettings(
     eCConfigFile const &config,
     bCString const &section,
@@ -130,7 +152,8 @@ AttackSettings ParseAttackSettings(
     AttackSettings settings = {
         false, 0.0f,
         false, 0.0f,
-        RaiseOverride::Off};
+        RaiseOverride::Off,
+        false, 0.0f};
 
     std::string const prefixText(prefix);
 
@@ -169,6 +192,19 @@ AttackSettings ParseAttackSettings(
             config.GetString(section, raiseKey).GetText());
         if (value == "on")
             settings.raiseOverride = RaiseOverride::On;
+    }
+
+    std::string const movementName = prefixText + "_Movement";
+    bCString const movementKey(movementName.c_str());
+    if (config.Contains(section, movementKey))
+    {
+        float value = 0.0f;
+        if (ParseNonNegativeFiniteFloat(
+                config.GetString(section, movementKey).GetText(), value))
+        {
+            settings.hasMovement = true;
+            settings.movement = value;
+        }
     }
 
     return settings;

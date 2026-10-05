@@ -37,6 +37,8 @@ struct AttackSettings
     bool hasBaseSpeed;
     float baseSpeed;
     RaiseOverride raiseOverride;
+    bool hasMovement;
+    float movement;
 };
 
 struct Profile

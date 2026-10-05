@@ -1,6 +1,7 @@
 #include "EngineBridge.h"
 
 #include "AttackMotionRouting.h"
+#include "AttackMovement.h"
 #include "AttackRaise.h"
 #include "AttackSpeed.h"
 #include "CollisionLifecycleGuard.h"
@@ -46,6 +47,7 @@ static mCFunctionHook Hook_OnAI_PierceAttack;
 static mCFunctionHook Hook_OnAI_HackAttack;
 static mCCallHook Hook_CombatMoveMotionResourceQuery;
 static mCCallHook Hook_CombatMoveGetAniName;
+static mCCallHook Hook_AttackMovement;
 static mCFunctionHook Hook_SetCollisionGroup;
 static mCFunctionHook Hook_AICombatMoveInstr;
 static mCFunctionHook Hook_AISetState;
@@ -120,6 +122,14 @@ static bool IsPlayerEntity(eCEntity *instance)
 #endif
 
 using mFGetAnimationSpeedModifier = GEFloat (GE_STDCALL *)(Entity, gEPhase);
+
+static void GE_STDCALL AttackMovement_Compose(
+    gCScriptProcessingUnit::sAICombatMoveInstr_Args const *request,
+    gCScriptProcessingUnit *spu,
+    bCVector &movement)
+{
+    G3AB::AttackMovement::Compose(request, spu, movement);
+}
 
 static GEFloat GE_STDCALL GetAnimationSpeedModifier_Composed(
     gEAction a_Action, Entity a_Entity, gEPhase a_Phase)
@@ -1140,6 +1150,16 @@ void FrameCollision::EngineBridge::InstallHooks()
         // sAICombatMoveInstr's EBP + 0x0C argument is its existing SPU.
         .AddPtrStackArgEbp(0xC)
         .AddThisArg()
+        .Hook();
+
+    // Insert before, and preserve, the native CharacterMovement call.
+    Hook_AttackMovement
+        .Prepare(RVA_Game(0x16B8B7), &AttackMovement_Compose)
+        .InsertCall()
+        .AddPtrStackArgEbp(0x8)
+        .AddPtrStackArgEbp(0xC)
+        .AddPtrStackArg(0x8)
+        .SaveReg(mERegisterType_Ecx)
         .Hook();
 
     Hook_StartEffect
