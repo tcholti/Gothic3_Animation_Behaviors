@@ -11,9 +11,15 @@ Opening this file does not reopen a subsystem or change the current validation g
 
 ---
 
-## 1. New Balance combat-move distance override
+## 1. New Balance combat-move distance override — ACTIVATED
 
-### Why it is parked
+**Current route:** `docs/work/active/ATTACK_FORWARD_DISPLACEMENT_RESEARCH.md`  
+**Static mechanism:** EV-434  
+**Author/runtime constraints:** EV-435
+
+This item is no longer parked. The historical text below is retained as the original reopening seed.
+
+### Why it was parked
 
 Native Gothic 3 attack travel can be influenced by the movement/distance number encoded in an animation filename. New Balance currently also controls combat-move travel in code, so animation-authored distance and New Balance behavior may disagree. There is no current plan to change this; it is recorded only so the mechanism does not need to be rediscovered if the question ever matters.
 
