@@ -61,6 +61,12 @@ Zero-direction positive override fails closed in v1 rather than inventing direct
 
 ## Active responsibility
 
+Parent research:
 `docs/work/active/ATTACK_FORWARD_DISPLACEMENT_RESEARCH.md`
 
-Next: independent bounded static architecture/hook review. If PASS, close research and freeze production implementation.
+Independent review:
+`docs/work/active/ATTACK_MOVEMENT_ARCHITECTURE_REVIEW.md`
+
+EV-439 additionally removes the unused `Troll_None_Fist` zero-distance route as a practical v1 blocker. Keep the simple fail-closed zero-direction rule; do not add a second movement hook/state machine for that unused route.
+
+If the independent review passes, close research and freeze the bounded production implementation.
