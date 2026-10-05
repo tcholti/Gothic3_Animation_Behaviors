@@ -200,6 +200,9 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | established Hit-phase combat movement / native stopping author-runtime constraints | EV-435 |
 | archive/resource replacement constraint for filename movement authoring | EV-435 |
 | displacement runtime re-proof probe cancelled as redundant | EV-435 |
+| displacement configured 1.0 = selected animation authored movement | EV-436 |
+| displacement inactive = preserve live compatible movement | EV-436 |
+| movement multiplier uses existing BehaviorProfile attack surface | EV-436 |
 | Speed v2 deep independent static audit | `archive/investigations/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT_RESULT.md` |
 | Speed v2 S-01 finite-output correction | `archive/investigations/SPEED_V2_S01_FINITE_OUTPUT_GUARD.md` |
 | generic Speed profile calibration implementation closure | `archive/investigations/SPEED_GENERIC_PROFILE_CALIBRATION_IMPLEMENTATION_RESULT.md` |
