@@ -126,6 +126,8 @@ K = 1.5
 
 This is intentionally **not** `K * New Balance final magnitude`. When configured, G3AB is expected to own the movement magnitude for that attack while still preserving downstream direction and native obstacle/ledge/target stopping behavior. When inactive, G3AB must not alter New Balance/native movement at all.
 
+EV-437 clarifies the New Balance ownership boundary: every ordinary melee Hit action represented by the current G3AB profile surface is covered by New Balance's replacement movement policy. The known special exceptions are outside that surface: JumpAttack/Action12 and FinishingAttack/Action15 are not in the pinned replacement table, while RamAttack/Action13 has no native Hit assets in the project inventory. GetUpAttack/Action30 is covered by New Balance.
+
 The same profile identity and attack-grouping model used by Speed is the desired configuration surface: Normal, Quick, Power, Pierce, Hack, SimpleWhirl and Whirl settings may each carry an optional movement multiplier. Sprint-origin behavior should be resolved from factual routing/evidence rather than given a new symmetric profile key by assumption.
 
 Important default-config consequence:
