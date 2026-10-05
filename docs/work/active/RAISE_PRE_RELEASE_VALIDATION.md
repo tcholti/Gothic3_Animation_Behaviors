@@ -37,6 +37,44 @@ Run only these three representative Raise fixtures unless one produces contradic
 3. Troll
 ```
 
+### Exact asset plan
+
+Human Fist Normal — **native Raise assets already exist**:
+
+```text
+Hit:
+Hero_Stand_None_Fist_P0_Attack_Hit_N_Fwd_00_%_00_P1_100_R
+Raise:
+Hero_Stand_None_Fist_P0_Attack_Raise_N_Fwd_00_%_00_P0_0_R
+
+Hit:
+Hero_Stand_None_Fist_P1_Attack_Hit_N_Fwd_00_%_00_P0_100_L
+Raise:
+Hero_Stand_None_Fist_P1_Attack_Raise_N_Fwd_00_%_00_P1_0_L
+```
+
+Troll — **no native Normal/Quick Raise assets found; create these candidates**:
+
+```text
+Troll_Stand_Fist_Fist_P0_Attack_Raise_N_Fwd_00_%_00_P0_0
+Troll_Stand_Fist_Fist_P0_QuickAttackR_Raise_N_Fwd_00_%_00_P0_0
+Troll_Stand_Fist_Fist_P0_QuickAttackL_Raise_N_Fwd_00_%_00_P0_0
+```
+
+The Troll candidates preserve the factual `Fist_Fist` route and its lack of a final R/L token. The family has a native pose-preserving zero-reach Power Raise, which supports this shape, but the Normal/Quick candidates remain unproven until runtime.
+
+Sabretooth — **no native Normal/Quick Raise assets found; create these candidates**:
+
+```text
+Sabertooth_Stand_None_Fist_P0_Attack_Raise_N_Fwd_00_%_00_P0_0
+Sabertooth_Stand_None_Fist_P0_QuickAttackR_Raise_N_Fwd_00_%_00_P0_0_R
+Sabertooth_Stand_None_Fist_P0_QuickAttackL_Raise_N_Fwd_00_%_00_P0_0_L
+```
+
+The Sabretooth family has a native pose-preserving zero-reach Power Raise. Snapper provides a close native `None_Fist/P0` Normal+Quick analogue with the same Raise transformation and preserved Quick R/L suffixes. The Sabretooth candidates nevertheless remain unproven until runtime.
+
+Do **not** add any Troll/Sabretooth candidate to `user_created_tested_animation_names.txt` until Gothic actually selects and plays it correctly.
+
 For each fixture:
 1. inspect the exact factual Hit route(s) and existing native Raise examples;
 2. author only the Raise asset(s) needed to exercise the intended route;
