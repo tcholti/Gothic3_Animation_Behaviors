@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = EV-430 Raise module CLOSED/PASS / well tested for initial release; no active Raise task
+CURRENT = final bounded Speed+Raise source review active before repository release audit/main promotion checkpoint
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise direction continuation = CLOSED/PASS EV-427; EV-430 completes representative Normal / Quick R+L / pose-changing Quick / full Whirl coverage including partial Raise-asset profiles
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
@@ -52,9 +52,15 @@ Canonical reusable engine lookup:
 
 The completed preservation-biased repository audit and Work result are archived under `docs/archive/investigations/`. Its accepted RH-01–RH-13 maintenance is represented in the durable owners; RH-14–RH-17 were KEEP/no-action. The three previously retained Sprint-probe logs were positively reconciled during EV-397/EV-398 maintenance and archived byte-identically; path migration is recorded in `EVIDENCE_PATH_MIGRATIONS.md`.
 
-## Immediate continuation — Raise
+## Immediate continuation — Final Speed + Raise source review
 
 Raise pre-release validation and final sanity coverage are CLOSED/PASS through EV-430.
+
+Active review task:
+
+`docs/work/active/SPEED_RAISE_FINAL_SOURCE_REVIEW.md`
+
+This is a read-only independent review of the current production Speed+Raise integration, intentionally smaller than the prior large Astra audit. Production source under review is `d642f30bcb6b564deaaffed26fd11b763da88163`. If it passes, next is a quick repository health/authority audit followed by an agreed `development` -> `main` promotion checkpoint before new attack-displacement research begins.
 
 ```text
 public AddRaise surface:
