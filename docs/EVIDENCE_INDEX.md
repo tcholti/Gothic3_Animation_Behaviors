@@ -187,6 +187,9 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | representative Normal / Quick R+L / full Whirl AddRaise type coverage closure | EV-429 |
 | Human Fist / Sabretooth / Troll / Staff Raise runtime validation | EV-429 |
 | Troll + Sabretooth authored Raise names runtime-proven | EV-429 |
+| Shield pose-changing Quick Raise runtime acceptance | EV-430 |
+| Quick_AddRaise partial asset coverage / missing Raise routes remain functional | EV-430 |
+| final Raise module initial-release closure | EV-430 |
 | Speed v2 deep independent static audit | `archive/investigations/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT_RESULT.md` |
 | Speed v2 S-01 finite-output correction | `archive/investigations/SPEED_V2_S01_FINITE_OUTPUT_GUARD.md` |
 | generic Speed profile calibration implementation closure | `archive/investigations/SPEED_GENERIC_PROFILE_CALIBRATION_IMPLEMENTATION_RESULT.md` |
