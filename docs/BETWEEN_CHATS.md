@@ -1,7 +1,7 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-10-05 — EV-440 attack movement production freeze
+**Updated:** 2026-10-05 — EV-441 attack movement source review
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
@@ -12,60 +12,52 @@ Active branch: `development`
 
 `main` remains Collision + Speed + Raise stable through EV-433.
 
-## Movement closure
+## Attack movement
 
-EV-434–EV-439 established native/New Balance ownership, practical phase/archive constraints, complete ordinary melee New Balance ownership, absolute-distance option 2 feasibility, and removal of the unused Troll_None_Fist zero-route as a v1 blocker.
+Research/architecture closed through EV-440.
 
-EV-440 independent Sol review:
+Production implementation:
+`7393f390f30d1981a5065b6342a684cd590fbac9`
 
+Independent source review:
+`EV-441 PASS`
+
+Reviewed implementation:
 ```text
-BLOCKER 0
-MAJOR   0
-MINOR   0
-NOTE    3
-PASS WITH NON-BLOCKING NOTES
+one physical hook: Game+0x16B8B7
+BehaviorProfiles: optional Movement
+AttackMovement: stateless policy
+EngineBridge: transport only
+97 shipping Movement keys: all Off
 ```
 
-The notes are mandatory implementation details:
-- exact +0x16B8B7 hook transport;
-- finite replacement validation before mutation;
-- reuse existing bounded profile lookup.
-
-## Frozen production semantics
-
+Semantics:
 ```text
-<Attack>_Movement=Off
-= no G3AB movement mutation
+Movement=Off
+-> preserve native/New Balance
 
-<Attack>_Movement=<finite non-negative number>
-= absolute authored-style CombatMove distance for factual Hit
+Movement=<finite non-negative number>
+-> absolute authored-style factual Hit distance
 
 Movement=0
-= valid active zero movement
+-> active zero CombatMove translation
 ```
 
-Compatibility:
-
-```text
-Native + Off -> native untouched
-NB + Off     -> New Balance untouched
-Native + numeric -> G3AB owns final Hit magnitude
-NB + numeric     -> NB runs first, G3AB then overrides magnitude
-```
+No Collision, AttackSpeed or AttackRaise source change.
 
 ## Active responsibility
 
-`docs/work/active/ATTACK_MOVEMENT_PRODUCTION_IMPLEMENTATION.md`
+`docs/work/active/ATTACK_MOVEMENT_RUNTIME_ACCEPTANCE.md`
 
-Allowed production ownership:
-```text
-BehaviorProfiles = configuration
-AttackMovement    = stateless policy
-EngineBridge      = one +0x16B8B7 hook transport
-INI               = Off-by-default user surface
-```
+User must Fetch/Pull before local build because remote documentation advanced after the production source commit.
 
-No Collision/Speed/Raise redesign.
-No build/deploy/runtime in implementation task.
+Next:
+- Release Win32 build;
+- deploy;
+- built/live identity verification;
+- Off-path compatibility;
+- strong 0/short/long numeric contrast;
+- New Balance On/Off override control;
+- representative action/nonhuman sanity coverage.
 
-After implementation: independent Normal Chat source review, then User-local build/deploy/runtime.
+No further source modification absent build/runtime contradiction.
