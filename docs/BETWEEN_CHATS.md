@@ -1,63 +1,55 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-10-05 — final Speed + Raise source review handoff
+**Updated:** 2026-10-05 — stable promotion checkpoint approved
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
-Branch: `development`  
-`main` remains frozen.
+Branch: `development`
 
-## Current state
+## Closed release gates
 
 ```text
 Collision = CLOSED/PASS
 Speed v2 = CLOSED/PASS
-Raise = CLOSED/PASS / well tested through EV-430
-production source checkpoint = d642f30bcb6b564deaaffed26fd11b763da88163
+Raise = CLOSED/PASS through EV-430
+final independent Speed+Raise source review = PASS EV-431
+quick repository/authority release audit = PASS EV-432
 ```
 
-## Active responsibility
+EV-431:
+- blocker 0 / major 0 / minor 0;
+- New Balance compatibility PASS;
+- AttackCollision compatibility PASS;
+- Collision non-interference PASS;
+- hook/profile/performance/source architecture PASS.
 
-`docs/work/active/SPEED_RAISE_FINAL_SOURCE_REVIEW.md`
+EV-432:
+- authority topology coherent;
+- no active temporary task remains after review closure;
+- evidence/current-state sizes healthy;
+- research/raw contains no open evidence;
+- `main` is an ancestor of `development` with no divergence;
+- repository is suitable for deliberate stable promotion.
 
-This is a **read-only independent final source review** before the repository release audit / main-promotion checkpoint.
+## Immediate operation
 
-It is intentionally smaller than the prior large Astra Speed+Raise audit. Re-check the integrated Speed/Raise ownership boundary, but focus heavily on the production delta since the prior audit baseline `d5d829e07eb2bfe8de428aa2ad148ba1f2d3835c`:
+Promote the accepted `development` checkpoint to `main`.
 
-```text
-AttackSpeed:
-  Hack route-neutral CombatMove adapter
-  underflow/fail-closed guard
+After promotion, continue new work only on `development`.
 
-EngineBridge:
-  retirement of three caller-specific Hack speed hooks
-  Hack CombatMove transport
-  Normal direction GetAniName hook at Game+0x16B056
+## Next engineering responsibility after promotion
 
-AttackRaise:
-  continuation-owned exact native direction carry
-```
+Research/design only:
 
-`BehaviorProfiles` is unchanged but remains a dependency boundary that must be checked for correct integration.
+**Attack forward displacement / how far an attack may move the character.**
 
-Hard compatibility requirements:
-```text
-Jackydima New Balance
-Script_AttackCollision
-Collision non-interference
-```
+First questions:
+1. identify Gothic's native displacement owner/mechanism;
+2. identify exact New Balance changes for Normal and Quick attacks;
+3. determine whether displacement can preserve compatible/native modifiers rather than replacing a final result;
+4. determine configuration/profile shape only after mechanism ownership is understood;
+5. protect accepted Collision, Speed and Raise behavior.
 
-No source/docs edits, build, deploy, probes or runtime during this review.
-
-## After PASS
-
-Normal Chat + User:
-1. consume/review the report;
-2. perform a quick repository health/authority audit;
-3. if clean, promote the accepted checkpoint to `main`;
-4. return to `development`;
-5. begin research on attack forward displacement / how far attacks may move the character, including New Balance's existing Normal/Quick changes.
-
-Do not begin attack-displacement research before the release checkpoint is closed.
+Do not implement displacement before research closes.
