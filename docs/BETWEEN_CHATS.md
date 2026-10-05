@@ -1,55 +1,54 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-10-05 — Raise/Speed runtime closure
+**Updated:** 2026-10-05 — EV-423 directional Raise contradiction
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`  
 Branch: `development`  
-Collision CLOSED/PASS and protected. `main` frozen.
+Collision, Speed core and Hack compatibility remain CLOSED/PASS. `main` frozen.
 
-## Current state
+## New contradiction — EV-423
 
+Rule-derived dual Raise assets worked:
 ```text
-accepted production source = 41ed80c6420e5236d13fc037cb5923b946cb8ccc
-source review = PASS EV-419
-built/live production SHA256 at EV-420 =
-3E7BCDBE1EBFC92B6E5FCFD7507A1E6A36C9DB8849847C29AD15288C01C2928D
-native focused runtime = PASS EV-420
-New Balance + AttackCollision focused runtime = PASS EV-421
-final stamina/Finishing/interruption sanity = PASS EV-422
-Raise/Speed/Hack compatibility = CLOSED/PASS
+P0/P1 Fwd Normal Raise = selected + plays correctly
+P0/P1 Quick R/L Raise = selected + plays correctly
+P3 QuickL Raise = not observed; corresponding P3->P61 Hit also not observed
 ```
 
-Final EV-422 facts:
+But directional Normal AddRaise is wrong:
 ```text
-ordinary zero-stamina Hack has little/no slowdown even without G3AB
--> absence is native/compatible behavior, not modifier loss
-
-New Balance alternative zero-stamina attack restriction
--> configured Hack obeys it with G3AB installed
-
-Hack_BaseSpeed=0.1 vs Finishing:
-unique Hack asset  -> Hack slow / Finishing native-fast
-shared Finishing asset -> Hack slow / Finishing native-fast
-
-repeated Hack/other-attack interruptions
--> no stuck attack, stale Raise, speed carry-over or continuation leak
+native Left Normal selected -> Left Raise plays -> following Hit becomes Fwd
+native Right Normal selected -> Right Raise plays -> following Hit becomes Fwd
 ```
 
-The completed runtime-acceptance record is archived at:
-`docs/archive/investigations/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md`
+This is not an animation-name defect.
 
-## Immediate continuation
+Static fact:
+`sAICombatMoveInstr_Args` contains Self/Target/Action/Phase/AniSpeedScale only. No direction field exists. Current AttackRaise stores/replays that generic Action1 Hit after synthetic Raise, so the original Fwd/Left/Right selection identity is not carried by the stored request.
 
-No Raise/Speed Work task or runtime gate remains.
+## Active responsibility
 
-Next session:
+`docs/work/active/RAISE_NORMAL_DIRECTION_CONTINUATION_RESEARCH.md`
+
+Prove:
 ```text
-start from README -> SESSION_ENTRYPOINT
--> confirm development HEAD / knowledge-state PASS
--> choose the next project responsibility from the current roadmap/priority
+where Gothic stores/derives the factual Normal Fwd/Left/Right selection
+what synthetic Raise changes/consumes
+smallest way to preserve already-selected Hit across Raise
 ```
 
-Do not reopen Raise, Speed, Hack compatibility, Finishing isolation, or Collision absent contradictory evidence.
+Protect:
+```text
+Hit-scale reuse / phase-speed correction
+Quick factual Action4/5
+Whirl AddRaise
+Power Raise composition
+Hack compatibility
+Collision
+New Balance ownership
+```
+
+Do not hard-code Left/Right filenames or implement from hypothesis.

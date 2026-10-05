@@ -271,7 +271,9 @@ Speed v2 production source, resolved-profile identity, neutral shipping INI and 
 
 Recover follows the effective Hit speed; no separate user-facing `RecoverSpeed` key is planned.
 
-Raise AddRaise remains the active feature responsibility. The EV-415 phase-speed correction is implemented at `aab0189f2067f00653f669792b7d267135c745f0` and independently source-reviewed PASS at EV-416; focused runtime acceptance is still required before Raise closes. Preserve the closed Speed architecture except for this accepted Power-Raise extension. Architecture/sequencing rationale: ADR-0004 + ADR-0005 + ADR-0006 + ADR-0008 + ADR-0011.
+Raise/Speed/Hack acceptance passed through EV-422 for the tested fixtures, but EV-423 reopens one narrow Raise responsibility: directional Normal AddRaise continuation. Native Left/Right Normal Raise can be inserted, yet the current post-Raise replay of a generic Action1 Hit re-resolves as Fwd. `sAICombatMoveInstr_Args` has no direction field, so the stored request is insufficient to preserve the factual directional Hit choice by itself.
+
+Current active question: identify Gothic's exact Fwd/Left/Right selection state and preserve the already-selected Hit without hard-coded filename policy, without undoing Hit-scale reuse, and without touching closed Speed/Hack/Collision behavior. Architecture/sequencing rationale remains ADR-0004 + ADR-0005 + ADR-0006 + ADR-0008 + ADR-0011; EV-423 owns the contradiction.
 
 ---
 

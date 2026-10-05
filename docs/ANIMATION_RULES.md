@@ -264,6 +264,22 @@ Raise derivation is independent of Recover. Do **not** use a Recover filename, R
 
 Release authoring guidance must explain the filename fields Gothic derives from its factual action/phase/source-pose/use-type/direction state and use matched real examples of the exact Raise resource Gothic requests whenever available.
 
+EV-423 runtime validation adds a tested dual-wield authoring example. The following rule-derived assets were selected and played correctly when AddRaise requested them:
+
+```text
+Hero_Stand_1H_1H_P0_Attack_Raise_N_Fwd_00_%_00_P0_0_R
+Hero_Stand_1H_1H_P1_Attack_Raise_N_Fwd_00_%_00_P1_0_L
+
+Hero_Stand_1H_1H_P0_QuickAttackR_Raise_N_Fwd_00_%_00_P0_0_R
+Hero_Stand_1H_1H_P0_QuickAttackL_Raise_N_Fwd_00_%_00_P0_0_L
+Hero_Stand_1H_1H_P1_QuickAttackR_Raise_N_Fwd_00_%_00_P1_0_R
+Hero_Stand_1H_1H_P1_QuickAttackL_Raise_N_Fwd_00_%_00_P1_0_L
+```
+
+The rule-derived P3 QuickAttackL Raise candidate was not observed, matching non-observation of its corresponding P3 -> P61 Hit route in ordinary runtime testing. Treat that route as unproven/unused in current testing rather than deleting the inventory fact.
+
+Separate implementation warning from EV-423: native directional Normal Left/Right Raises can play under AddRaise, but the current continuation then re-resolves the following Action1 Hit as Fwd. That is a Raise continuation defect, not a naming rule; do not rename directional Raise assets to work around it.
+
 ---
 
 ## 6. Pose / Type / Direction / Distance

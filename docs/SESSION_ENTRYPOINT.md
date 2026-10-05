@@ -30,9 +30,9 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = Raise/Speed/Hack compatibility CLOSED/PASS through EV-422 / accepted production source 41ed80c6420e5236d13fc037cb5923b946cb8ccc
+CURRENT = EV-423 reopens ONLY Normal AddRaise directional continuation; accepted source 41ed80c6420e5236d13fc037cb5923b946cb8ccc remains baseline
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
-Raise behavior = CLOSED/PASS first public scope — additive Normal_AddRaise / Quick_AddRaise / Whirl_AddRaise; shipping defaults Off
+Raise behavior = ACTIVE narrow correction — Normal Left/Right Raise plays, but following Hit incorrectly re-resolves Fwd; Quick/Whirl and prior phase-speed results remain accepted
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
 active evidence ledger = EV-417 onward
 main = FROZEN
@@ -80,8 +80,9 @@ implemented native Power Raise = live +0x47D51 result * Power authoring ratio; n
 Pierce = protected already-coupled control; Hack = route-neutral Action14 Raise/Hit/Recover adapter implemented EV-418–EV-419
 completed runtime acceptance = docs/archive/investigations/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md
 EV-418 Hack compatibility source = 41ed80c6420e5236d13fc037cb5923b946cb8ccc / PASS EV-419
-runtime acceptance record = docs/work/active/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md
-next = no Raise/Speed task is active; choose the next project responsibility from current roadmap/priority in Normal Chat
+runtime acceptance record = docs/archive/investigations/RAISE_ADDRAISE_RUNTIME_ACCEPTANCE.md
+active task = docs/work/active/RAISE_NORMAL_DIRECTION_CONTINUATION_RESEARCH.md
+next = bounded static causal research; no production implementation until directional selection owner is proven
 ```
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.

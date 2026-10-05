@@ -169,6 +169,10 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | final Hack/Finishing isolation with unique + shared animation assets | EV-422 |
 | final Hack interruption/transition robustness | EV-422 |
 | Raise/Speed/Hack final runtime acceptance closure | EV-422 |
+| dual Fwd Normal + P0/P1 Quick generated Raise asset runtime validation | EV-423 |
+| dual P3 Quick Raise/Hit route non-observation | EV-423 |
+| Normal AddRaise Left/Right -> Fwd Hit continuation contradiction | EV-423 |
+| CombatMove request lacks directional identity for Normal continuation | EV-423 |
 | Speed v2 deep independent static audit | `archive/investigations/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT_RESULT.md` |
 | Speed v2 S-01 finite-output correction | `archive/investigations/SPEED_V2_S01_FINITE_OUTPUT_GUARD.md` |
 | generic Speed profile calibration implementation closure | `archive/investigations/SPEED_GENERIC_PROFILE_CALIBRATION_IMPLEMENTATION_RESULT.md` |

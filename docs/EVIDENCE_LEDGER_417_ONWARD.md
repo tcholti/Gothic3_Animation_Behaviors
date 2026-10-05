@@ -287,3 +287,41 @@ Disposition:
 - **PASS — FACTUAL FINISHING / ACTION15 EXCLUSION CONFIRMED WITH UNIQUE AND SHARED ASSETS.**
 - **PASS — INTERRUPTION / TRANSITION SANITY.**
 - No further Raise/Speed implementation or Work task is justified absent contradictory evidence.
+
+
+### EV-423 — Dual Raise asset validation + Normal directional-Hit continuation contradiction
+
+Fixture:
+- accepted production source `41ed80c6420e5236d13fc037cb5923b946cb8ccc`;
+- development documentation state through `71e9b2dc5e354216462595403ec916911e2e029b`;
+- User authored rule-derived Hero dual-wield Raise assets from factual Hit names and tested with AddRaise enabled.
+
+Observed — generated Raise assets:
+- generated dual-wield Fwd Normal Raise assets for P0 and P1 were selected by Gothic and played correctly;
+- generated dual-wield QuickAttackR/QuickAttackL Raise assets for ordinary P0/P1 routes were selected and played correctly;
+- candidate `Hero_Stand_1H_1H_P3_QuickAttackL_Raise_N_Fwd_00_%_00_P3_0_L` never occurred;
+- the corresponding P3 -> P61 Quick Hit route likewise does not occur in the User's normal runtime testing; no claim is made beyond non-observation about why that native asset remains in the inventory.
+
+Observed — directional Normal contradiction:
+- dual/1H-family Normal Left and Right attack variants have native matching Raise assets;
+- with `Normal_AddRaise=On`, the appropriate directional Raise activates;
+- after that Raise completes, the Hit that follows resolves to the **Fwd Normal Hit**, not the originally selected Left or Right Hit;
+- without this inserted continuation, Gothic has distinct native Fwd/Left/Right Normal Hit assets/routes.
+
+Static correlation:
+- `sAICombatMoveInstr_Args` contains only SelfEntity, TargetEntity, Action, PhaseName and AniSpeedScale; it carries no direction field;
+- current `AttackRaise::RaiseContinuation` stores/replays exactly that request object;
+- therefore storing/replaying an Action1 Hit request cannot by itself preserve the hidden Gothic state that selected Fwd vs Left vs Right;
+- current source creates the synthetic Raise first and then replays the stored generic Action1 Hit, so Gothic performs a second Hit resolution after the Raise.
+
+Interpretation:
+- generated Raise filename rules are validated for the tested dual Fwd Normal and ordinary P0/P1 Quick routes;
+- the Left/Right failure is **not** a filename-authoring failure;
+- it is a production AddRaise continuation-selection defect: the post-Raise Hit loses factual directional identity that exists outside `sAICombatMoveInstr_Args`;
+- EV-422 remains valid for its tested fixtures, but the broader first-public-scope claim for Normal AddRaise is reopened by this new contradictory directional fixture;
+- Speed, Hack compatibility and Collision remain closed/protected.
+
+Disposition:
+- **CONTRADICTION — RAISE NORMAL DIRECTIONAL CONTINUATION REOPENED.**
+- **NO PRODUCTION FIX YET.**
+- **NEXT — bounded causal research to identify Gothic's exact Fwd/Left/Right selection state and the smallest way to preserve the already-selected Hit across an inserted Raise.**
