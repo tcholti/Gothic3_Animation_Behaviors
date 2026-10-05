@@ -44,6 +44,51 @@ For the existing pending Normal AddRaise continuation:
 
 Direction state must share the existing continuation's lifetime and cancellation semantics.
 
+## EV-425 pre-implementation review refinement
+
+Do **not** refactor the existing Raise state machine before this correction. The current implementation is accepted as the clean baseline.
+
+Keep the correction mechanically minimal:
+
+```text
+RaiseContinuation gains only:
+  bool directionCaptured
+  gEDirection capturedDirection
+  bCString capturedDirectionName
+```
+
+No second map/cache/lifecycle owner is allowed.
+
+The exact `GetAniName` signature is:
+
+```text
+void GetAniName(
+    bCString &,
+    eCEntity *,
+    gEAction,
+    bCString phaseName,
+    bCString &directionName,
+    GEBool);
+```
+
+At `Game+0x16B056`:
+- the phase argument is the factual CombatMove request `PhaseName`;
+- the direction argument is Gothic's freshly selected direction string;
+- ECX is already the current `gCScriptProcessingUnit *`.
+
+Therefore the semantic guard should use the exact pending continuation + `gEAction_Attack` + factual phase:
+
+```text
+pending Normal + Raise -> capture native directionName + Entity::GetCurrentAniDirection()
+pending Normal + Hit   -> substitute captured directionName
+                          + Entity::SetCurrentAniDirection(capturedDirection)
+otherwise              -> pass unchanged
+```
+
+Use the official SDK `Entity::GetCurrentAniDirection()` / `SetCurrentAniDirection()`; do not access Navigation by raw offset.
+
+The existing local `shared_ptr<RaiseContinuation>` pattern must remain. It is intentionally re-entrancy-safe when native callbacks cancel/replace the map entry while the current invocation still owns the stored request/state.
+
 ## Ownership
 
 ```text
