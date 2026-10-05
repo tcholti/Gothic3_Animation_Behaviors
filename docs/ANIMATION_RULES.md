@@ -278,7 +278,37 @@ Hero_Stand_1H_1H_P1_QuickAttackL_Raise_N_Fwd_00_%_00_P1_0_L
 
 The rule-derived P3 QuickAttackL Raise candidate was not observed, matching non-observation of its corresponding P3 -> P61 Hit route in ordinary runtime testing. Treat that route as unproven/unused in current testing rather than deleting the inventory fact.
 
-Separate implementation warning from EV-423: native directional Normal Left/Right Raises can play under AddRaise, but the current continuation then re-resolves the following Action1 Hit as Fwd. That is a Raise continuation defect, not a naming rule; do not rename directional Raise assets to work around it.
+For the **tested ordinary dual P0/P1 candidates above**, the successful authoring transformation was more specific than changing only the phase token:
+
+```text
+start from the factual Hit route
+-> preserve actor/state/use types
+-> preserve source pose before the action
+-> preserve factual action (Attack / QuickAttackR / QuickAttackL)
+-> Hit -> Raise
+-> preserve N/O/I type and factual direction token
+-> make Raise pose-preserving: destination pose = source pose
+-> movement/reach numeric suffix = 0
+-> preserve the final logical R/L token
+```
+
+Concrete tested Normal example:
+
+```text
+Hit:   Hero_Stand_1H_1H_P0_Attack_Hit_N_Fwd_00_%_00_P1_118_R
+Raise: Hero_Stand_1H_1H_P0_Attack_Raise_N_Fwd_00_%_00_P0_0_R
+```
+
+Concrete tested Quick example:
+
+```text
+Hit:   Hero_Stand_1H_1H_P0_QuickAttackR_Hit_N_Fwd_00_%_00_P0_100_R
+Raise: Hero_Stand_1H_1H_P0_QuickAttackR_Raise_N_Fwd_00_%_00_P0_0_R
+```
+
+This is a **runtime-validated dual P0/P1 authoring pattern**, not authority to blindly apply the same destination/reach fields to every animation family. For another family, prefer an exact native matched Raise example when one exists, then use the general filename-field rules plus runtime validation.
+
+Historical implementation warning from EV-423: native directional Normal Left/Right Raises played correctly, but the inserted continuation initially re-resolved the following Action1 Hit as Fwd. EV-424 identified the cause, EV-426 source-accepted the correction, and EV-427 runtime-accepted preserved Fwd/Left/Right continuation. Do not rename directional Raise assets to compensate for continuation behavior.
 
 ---
 
