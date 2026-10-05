@@ -752,3 +752,28 @@ NOTE    archive-only Markdown hard-break whitespace; KEEP / no action
 
 Disposition:
 - **PASS — REPOSITORY/KNOWLEDGE STATE IS SUITABLE FOR THE DELIBERATE DEVELOPMENT -> MAIN STABLE PROMOTION CHECKPOINT.**
+
+
+### EV-433 — Stable Collision + Speed + Raise main promotion
+
+Prerequisites:
+- Collision CLOSED/PASS;
+- Speed v2 CLOSED/PASS;
+- Raise CLOSED/PASS / well tested through EV-430;
+- final independent Speed+Raise source review PASS EV-431;
+- quick repository/authority release audit PASS EV-432;
+- knowledge-state validator PASS on the release-audit closure commit.
+
+Promotion:
+- `main` was fast-forwarded from `b472e9fa4756d62c4eea986c30751e01311a3cfd` to the accepted release-audit closure history;
+- no divergent main-only commits existed;
+- promotion therefore preserved development history without merge conflict or source rewrite;
+- stable branch now represents the accepted Collision + Speed + Raise integration cycle.
+
+Boundary:
+- ordinary new feature work continues only on `development`;
+- `main` remains the deliberately promoted stable baseline until another explicit checkpoint;
+- attack forward displacement is the next research responsibility and is not part of this stable checkpoint.
+
+Disposition:
+- **PASS — COLLISION + SPEED + RAISE STABLE PROMOTION COMPLETED.**
