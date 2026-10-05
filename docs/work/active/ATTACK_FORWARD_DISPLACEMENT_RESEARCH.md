@@ -161,7 +161,7 @@ Finishing/JumpAttack/RamAttack are outside initial scope.
 - configured positive distance with degenerate final direction -> untouched;
 - configured zero distance -> zero movement vector is valid.
 
-Do not add a second hook merely to manufacture direction for zero-authored/zero-compatible attacks in v1.
+Do not add a second hook merely to manufacture direction for zero-authored/zero-compatible attacks in v1. EV-439 further establishes that the known native `Troll_None_Fist` zero-distance Normal/Quick/Power route could not be made to occur in runtime; the project's factual Troll route is `Troll_Fist_Fist`.
 
 ## Evidence order
 
