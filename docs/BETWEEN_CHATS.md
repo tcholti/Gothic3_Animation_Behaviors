@@ -1,7 +1,7 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-10-05 — attack forward displacement research opened
+**Updated:** 2026-10-05 — EV-434 displacement static closure
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
@@ -10,45 +10,55 @@ Active branch: `development`
 
 ## Stable baseline
 
-`main` contains the deliberately promoted Collision + Speed + Raise checkpoint through EV-433.
+`main` remains the promoted Collision + Speed + Raise baseline through EV-433.
+
+## Displacement static result — EV-434
 
 ```text
-Collision = CLOSED/PASS
-Speed v2 = CLOSED/PASS
-Raise = CLOSED/PASS / well tested
-New Balance / AttackCollision compatibility = protected
+native selected-resource filename word 13 = movement distance
+T = maxTime / AniSpeedScale
+native m_DirectionVec magnitude = D_filename / T
+
+Game+0x16B8A3 = native vector Scale
+Game+0x16B8A9 = New Balance insertion after native scale
+Game+0x16B8B7 = final CombatMove EnableCombatMovementFromSPU call
 ```
+
+Project-pinned New Balance:
+`references/jackydima-gothic3sdk @ 316d32406a133f8884e7e302752c35f66b4f54fc`
+
+For eligible Hit actions New Balance normalizes the existing direction and replaces magnitude with its action/skill distance divided by nominal duration, multiplied by `ATTACK_REACH_MULTIPLIER`.
+
+Native `GetCombatMoveLength` is not the native movement-distance owner in the tested path.
+
+Speed changes commanded velocity but nominal uninterrupted travel cancels back to the selected distance.
+
+Strongest compatibility candidate, **not yet frozen**:
+
+`Game+0x16B8B7 -> v_configured = k * v_compatible`
 
 ## Active responsibility
 
 `docs/work/active/ATTACK_FORWARD_DISPLACEMENT_RESEARCH.md`
 
-Research/design only:
+One runtime gate remains:
 
-**How far may an attack move the acting character forward?**
-
-Established project starting surfaces:
+compare
 ```text
-Game+0x16B8A3  CombatMove reach/vector call
-Game+0x16B8A9  CombatMove movement call
+|final compatible velocity| * actual combat-movement-enabled duration
+```
+against
+```text
+observed horizontal entity-position travel
 ```
 
-Preliminary current-upstream New Balance lead:
-```text
-CombatMoveScale at Game+0x16B8A9
-GetCombatMoveLength(current action)
-+ animation max time / AniSpeedScale
-+ normalized m_DirectionVec
-+ ATTACK_REACH_MULTIPLIER
-```
+on:
+- one human Normal;
+- one nonhuman Normal;
+- unobstructed/flat conditions;
+- at least two speeds on one fixture;
+- New Balance active for compatibility coverage.
 
-This upstream observation must be reverified against the project-pinned Jackydima reference before becoming canonical evidence.
+Do not instrument root/bones unless the first comparison shows a meaningful discrepancy.
 
-First priority:
-1. prove native ownership of `m_DirectionVec`/CombatMove displacement;
-2. prove New Balance's exact intervention and action scope;
-3. separate total travel distance from velocity/timing;
-4. determine a compatibility composition model;
-5. only then discuss INI/profile/production architecture.
-
-Do not implement yet.
+No production implementation yet.
