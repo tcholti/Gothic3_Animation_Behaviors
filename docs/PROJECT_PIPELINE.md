@@ -52,8 +52,8 @@ main
 
 development
 = sole active general development / research / integration branch
-= current production collision integration, then Speed, then Raise
-= intended to remain subsystem-neutral for later targeting/climbing/etc.
+= continues from the promoted Collision + Speed + Raise stable baseline
+= intended to remain subsystem-neutral for later displacement/targeting/climbing/etc.
 
 docs/collision-source-evidence
 = historical collision-development branch
@@ -63,23 +63,15 @@ docs/collision-source-evidence
 Current branch lifecycle is deliberately:
 
 ```text
-main frozen at the last stable checkpoint
+Collision + Speed + Raise cycle CLOSED/PASS
         ↓
-development contains the reviewed production collision-core migration
+deliberate development -> main stable promotion completed
         ↓
-close focused production collision integration
+main = stable accepted Collision + Speed + Raise baseline
         ↓
-design/freeze one generic startup-loaded INI/profile schema usable by Speed + later Raise
+development continues from that baseline
         ↓
-research / implement / validate Speed v2 ONLY until completely closed
-        ↓
-research / implement / validate Raise ONLY after Speed closes
-        ↓
-assembled collision + Speed + Raise regression / compatibility validation
-        ↓
-deliberate promotion development -> main
-        ↓
-later adopted systems continue from the general development model
+later adopted systems proceed one bounded responsibility at a time
 ```
 
 Do not reinterpret `main` as the newest working state merely because it is the default branch. Do not promote intermediate Speed work to `main` simply to create a Raise branch.
