@@ -176,6 +176,8 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | Normal CombatMove Fwd/Left/Right native selection owner | EV-424 |
 | GetAniName fifth-argument direction contract | EV-424 |
 | Normal AddRaise directional continuation causal closure | EV-424 |
+| pre-implementation Sol review / no-refactor decision | EV-425 |
+| EV-424 minimal continuation-field + GetAniName transport shape | EV-425 |
 | Speed v2 deep independent static audit | `archive/investigations/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT_RESULT.md` |
 | Speed v2 S-01 finite-output correction | `archive/investigations/SPEED_V2_S01_FINITE_OUTPUT_GUARD.md` |
 | generic Speed profile calibration implementation closure | `archive/investigations/SPEED_GENERIC_PROFILE_CALIBRATION_IMPLEMENTATION_RESULT.md` |
