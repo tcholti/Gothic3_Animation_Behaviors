@@ -1299,3 +1299,34 @@ No build was performed in review.
 
 Disposition:
 - **PASS — SOURCE READY FOR USER-LOCAL BUILD / DEPLOY / RUNTIME ACCEPTANCE.**
+
+
+### EV-442 — Absolute attack movement local build PASS
+
+User-local build result:
+- production source under test: `7393f390f30d1981a5065b6342a684cd590fbac9`;
+- Release Win32 build completed successfully on the User's authoritative local environment;
+- no source correction was required after EV-441 source review.
+
+Deployment/runtime state at session end:
+- deployment had **not yet been executed**;
+- built/live DLL SHA256 identity had **not yet been verified**;
+- source/live INI SHA256 identity had **not yet been verified**;
+- runtime testing had **not yet begun**.
+
+The previously used deployment/hash-verification PowerShell procedure was reviewed against the new movement feature and remains suitable unchanged:
+- deploys `Script_G3AnimationBehaviors.dll`;
+- deploys the updated shipping `G3AnimationBehaviors.ini`;
+- removes old G3AB diagnostic/project DLLs only;
+- leaves New Balance / AttackCollision untouched;
+- verifies exactly one live G3AB project DLL;
+- verifies built/live DLL SHA256 equality;
+- verifies source/live INI SHA256 equality;
+- reports `G3AB RELEASE DEPLOYMENT PASS` only after all checks succeed.
+
+Next gate:
+- deploy and provide the full verification output;
+- then run the Off-path compatibility control before enabling any numeric Movement value.
+
+Disposition:
+- **BUILD PASS; DEPLOYMENT / HASH IDENTITY / RUNTIME PENDING.**
