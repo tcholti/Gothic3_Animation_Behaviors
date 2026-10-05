@@ -388,3 +388,58 @@ Disposition:
 - **PASS — DIRECTION OWNER AND EV-423 CAUSE IDENTIFIED.**
 - **NO DIAGNOSTIC PROBE REQUIRED BEFORE IMPLEMENTATION.**
 - **NEXT — bounded production implementation of one-shot Gothic-native direction carry.**
+
+
+### EV-425 — Pre-implementation Sol review of current Raise/Speed integration
+
+Scope:
+- read-only review before EV-424 implementation;
+- current production source remains byte-identical to `41ed80c6420e5236d13fc037cb5923b946cb8ccc`;
+- reviewed `AttackRaise.cpp/.h`, `AttackSpeed.cpp/.h`, `BehaviorProfiles.cpp/.h`, relevant `EngineBridge.cpp`, pinned SDK call-hook/API surfaces, and the EV-424 implementation contract;
+- no production source modified.
+
+Current implementation findings:
+- `AttackRaise` remains the correct semantic owner for AddRaise continuation policy/state;
+- the single `std::map<SPU*, shared_ptr<RaiseContinuation>>` is sufficient; a second direction-state map would duplicate lifetime authority;
+- the local `shared_ptr` retained across native transport calls is justified because FullStop/AISetState/native callbacks may erase/replace map state re-entrantly while the current invocation still needs its stored request alive;
+- `CompleteRaiseInvocation` already provides the exact Raise -> stored Hit transition point and cancellation-safe lifetime needed by direction carry;
+- FullStop, AISetState and request-mismatch cancellation already erase the continuation and can automatically retire added direction fields;
+- custom Raise still reuses the exact stored Hit `AniSpeedScale`; no Speed change is needed;
+- EngineBridge layering remains clean: AttackRaise sequencing -> Hack Speed adapter -> Collision transport -> native CombatMove;
+- BehaviorProfiles and AttackSpeed require no change for EV-424.
+
+SDK / call-site refinements:
+- official build SDK exposes `Entity::GetCurrentAniDirection()` and `Entity::SetCurrentAniDirection(gEDirection)`; use these instead of raw Navigation offsets/pointers;
+- `GetAniName` signature is `GetAniName(bCString &, eCEntity *, gEAction, bCString, bCString &, GEBool)`;
+- disassembly at `Game+0x16B056` shows the fourth semantic argument is the original request `PhaseName` and the fifth is the freshly selected direction bCString;
+- therefore the hook can distinguish the synthetic `Raise` and stored `Hit` directly from factual action + phase instead of inferring stage from animation names or unrelated engine state;
+- at this call site ECX is already the current `gCScriptProcessingUnit *`, so the call-hook transport can inject only the existing this pointer; no separate EBP-derived SPU argument is required.
+
+Frozen cleanliness constraints for implementation:
+```text
+extend existing RaiseContinuation only:
+  bool directionCaptured
+  gEDirection capturedDirection
+  bCString capturedDirectionName
+
+AttackRaise semantic seam:
+  pending Action1 + Phase Raise -> capture native direction string + Entity current direction
+  pending Action1 + Phase Hit   -> reuse captured string + SetCurrentAniDirection
+  otherwise                     -> no decision / pass through
+
+EngineBridge:
+  one mCCallHook at Game+0x16B056
+  transport factual GetAniName args into AttackRaise
+  invoke Gothic GetAniName exactly once
+```
+
+Do not:
+- add another map/cache/lifecycle owner;
+- refactor `RaiseContinuation`, `RunCombatMove`, Speed, profiles or Collision beyond the fields/seam required by direction carry;
+- change exact-float request identity, historical EngineBridge naming, or other unrelated code merely for cleanup;
+- parse animation names or map `gEDirection` back to strings.
+
+Review disposition:
+- **PASS — CURRENT IMPLEMENTATION IS CLEAN ENOUGH TO EXTEND DIRECTLY.**
+- **BLOCKER 0 / MAJOR 0 / MINOR 0 requiring pre-implementation refactor.**
+- **EV-424 correction should remain one new call-site transport plus three continuation fields and a narrow AttackRaise semantic seam.**
