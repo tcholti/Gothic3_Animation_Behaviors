@@ -1421,3 +1421,92 @@ Sprint uses the Power_MovementOverride setting.
 Disposition:
 - **PASS — PRE-RELEASE PUBLIC CONFIGURATION CLEANUP; NO ARCHITECTURE CHANGE.**
 - one rebuild/deploy + small previously-proven 2H sanity check is required before broader runtime acceptance continues.
+
+
+### EV-445 — Absolute attack movement broad runtime acceptance PASS
+
+Deployment after EV-444 public-key rename:
+
+```text
+Built DLL SHA256: 4F05583E74F0B2F49FBC3682DB244EDE86C277BA810DBFE0C985859D69A32B68
+Live  DLL SHA256: 4F05583E74F0B2F49FBC3682DB244EDE86C277BA810DBFE0C985859D69A32B68
+
+Source INI SHA256: AFD46B80BEAC942860B537030BA7AA89EECDFE1F5CD2F57F0621A1B32FB25548
+Live   INI SHA256: AFD46B80BEAC942860B537030BA7AA89EECDFE1F5CD2F57F0621A1B32FB25548
+
+G3AB RELEASE DEPLOYMENT PASS
+```
+
+Exactly one live G3AB project DLL was present:
+`Script_G3AnimationBehaviors.dll`, 466944 bytes.
+
+Broad user runtime acceptance:
+
+Human / standard animation families:
+- 1H;
+- Torch+1H;
+- Shield+1H;
+- dual 1H+1H;
+- 2H;
+- Staff;
+- Fist.
+
+Across every attack available to those families, the User tested:
+- Normal;
+- Quick;
+- Power;
+- Whirl;
+- SimpleWhirl;
+- Hack;
+- Pierce;
+using `MovementOverride=Off / 0 / 100 / 300`, both with and without New Balance.
+
+Separated/custom families:
+- Axe;
+- Rapier.
+
+Across every available attack for those families, the User tested:
+- Normal;
+- Quick;
+- Power;
+- Whirl;
+- SimpleWhirl;
+- Hack;
+- Pierce;
+using `MovementOverride=Off / 0 / 500`, both with and without New Balance.
+
+Nonhuman representative families:
+- Troll;
+- Sabertooth;
+- Demon.
+
+For applicable Normal / Quick / Power / Sprint routes, the User tested:
+- `MovementOverride=Off`;
+- `MovementOverride=500`;
+both with and without New Balance.
+
+All tests behaved as expected.
+
+Zero-authored-movement boundary — runtime confirmed:
+- Rapier Quick attacks are authored with movement field `0` in the animation name;
+- with that authored `0`, G3AB could not create forward movement, exactly as the late-hook fail-closed architecture predicts because no usable direction survives to the final seam;
+- after changing the Rapier Quick animation movement field from `0` to `100`, `MovementOverride` controlled the attack correctly;
+- this was verified both with and without New Balance, including Off / 0 / 500 controls.
+
+Interpretation:
+- EV-439's generic zero-direction fail-closed rule is now directly demonstrated on a real used attack family;
+- no second hook, direction cache or earlier capture is justified;
+- the limitation is user-visible and is documented in the shipping INI:
+  `MovementOverride cannot add movement to an attack whose animation name has movement value 0. Rapier Quick attacks are a known example.`
+
+Compatibility result:
+- Off restores/preserves native or New Balance ownership;
+- numeric zero removes CombatMove translation;
+- positive numeric values clearly control forward distance;
+- New Balance and native operation both remain compatible;
+- Sprint->Power inheritance works in representative nonhuman testing;
+- no reported Speed, Raise or Collision regression across the acceptance matrix.
+
+Disposition:
+- **PASS — ABSOLUTE ATTACK MOVEMENT RUNTIME ACCEPTED.**
+- feature architecture remains one-hook/stateless; no source redesign required.
