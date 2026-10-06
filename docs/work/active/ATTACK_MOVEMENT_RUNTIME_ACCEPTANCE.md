@@ -26,11 +26,35 @@ Next:
 
 Do not change source unless build/runtime evidence contradicts EV-441.
 
+## Public-key cleanup — EV-444
+
+After the first successful 2H runtime mechanism pass, the unreleased public key was renamed for clarity:
+
+```text
+<Attack>_Movement
+->
+<Attack>_MovementOverride
+```
+
+Reason: `Power_Movement=Off` can be misread as disabling movement itself. `Power_MovementOverride=Off` clearly means the override is disabled.
+
+This is a parser/INI naming cleanup only. Internal movement policy, hook ownership and runtime calculation are unchanged.
+
+Required before broader acceptance:
+1. Fetch/Pull the rename;
+2. rebuild Release Win32;
+3. redeploy DLL + INI and verify hashes;
+4. perform one quick sanity control on a previously proven 2H attack:
+   - `Power_MovementOverride=Off`
+   - `Power_MovementOverride=0`
+   - `Power_MovementOverride=300`
+5. if the three cases behave as before, do **not** repeat the full EV-443 2H matrix; continue representative broader validation.
+
 ## Minimum staged runtime acceptance
 
 ### A. Off-path compatibility
 
-With all shipping Movement keys left `Off`:
+With all shipping MovementOverride keys left `Off`:
 - run native-only fixture if convenient;
 - run intended New Balance + AttackCollision fixture;
 - verify ordinary attacks behave as before;
@@ -44,7 +68,7 @@ Choose one familiar human profile/attack with clear forward movement, preferably
 
 Test the same factual attack/profile with:
 ```text
-Movement=0
+MovementOverride=0
 Movement=50 or another visibly short value
 Movement=150 or another visibly long value
 ```
@@ -61,7 +85,7 @@ Keep New Balance active.
 
 For the same configured attack:
 - confirm numeric G3AB Movement visibly overrides New Balance reach;
-- restore `Movement=Off` and confirm New Balance reach returns without changing DLLs.
+- restore `MovementOverride=Off` and confirm New Balance reach returns without changing DLLs.
 
 This is the decisive compatibility contract.
 
@@ -69,7 +93,7 @@ This is the decisive compatibility contract.
 
 Where practical, use two attacks/resources inside the same profile/action whose native filename movement values differ (the known Staff Power case is a good candidate).
 
-With one numeric `Power_Movement` value:
+With one numeric `Power_MovementOverride` value:
 - both should target the same nominal configured distance despite different authored filename numbers;
 - do not require pixel-perfect measurement; clear convergence/normalization is enough for first acceptance.
 
