@@ -1591,3 +1591,54 @@ This is the pre-final-fix stable checkpoint for the first public release.
 Next work is intentionally isolated back on `development`:
 - investigate whether the existing bad-block-skip defer timer can be paused while an attack is active;
 - no other new feature work before first release.
+
+
+### EV-448 — Bad block skip exact-pause static research CLOSED / deferred from v1
+
+Mode:
+- bounded read-only static research;
+- Desktop Commander used only for read-only inspection/disassembly of the actual tested local binaries;
+- no source edits, builds, deployment, runtime execution, debugger attachment or binary patching.
+
+Verified authority:
+- research start `development @ 185989059519e09782755ec9faa4644517975567`;
+- stable fallback `main @ e899f37092706a9846312b93d6b52b34e715b53d`;
+- tested `Script_Game.dll` SHA256 `4D29189281EC26EAC7C704FA67ED323DF5C090D50B068626CF600AECF4262A24`.
+
+Player path recovered:
+```text
+Script_Game +0x633BF duration getter
++0x633C5 compare 2500
++0x633CA jbe +0x63586
+otherwise:
++0x633F1 FullStop
++0x63409 SetState PS_Melee_Loop
+```
+
+The exact call-site can support a stateless branch-local **deferral** adapter, but that does not preserve remaining block time because native held-input duration continues advancing.
+
+NPC timeout independently recovered:
+```text
+OnAI_Parade
+Alternative AI
+non-player
+StatePosition == 1
+StateTime > 2.0
+-> +0x46F39 StopAIGoto
+-> +0x46F51 SetState ZS_Attack_Loop
+```
+
+Player and NPC do not share one timer mechanism or one call-site fix.
+
+NPC timeout overlap with a factual active attack remains unproven. Smallest future probe, if reopened: observation-only wrapper at `Script_Game +0x46F39`.
+
+Exact remaining-time pause would require new stateful timer-episode/attack-interval ownership whose lifecycle is not yet proven.
+
+Disposition:
+- **NOT CLEAN ENOUGH FOR FIRST RELEASE for exact remaining-time pause.**
+- do not freeze the stateless deferral candidate as if it satisfied pause/resume;
+- leave first-release stable behavior unchanged;
+- park exact pause / NPC-overlap investigation for post-release work.
+
+Durable report:
+`docs/archive/investigations/bad_block_skip_static_research_2026-10-06.md`.
