@@ -1,58 +1,58 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-10-06 — EV-445 attack movement runtime closure
+**Updated:** 2026-10-06 — EV-447 stable promotion / final pre-release fix
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
-Repository: `tcholti/Gothic3_Animation_Behaviors`  
-Active branch: `development`
+Repository: `tcholti/Gothic3_Animation_Behaviors`
 
-## Stable baseline
+Stable branch:
+`main @ e899f37092706a9846312b93d6b52b34e715b53d`
 
-`main` remains Collision + Speed + Raise stable through EV-433.
+Active branch:
+`development`
 
-## Attack movement — CLOSED / PASS
+## First-release stable baseline
 
-Research/architecture:
-- EV-434–EV-440
+EV-446 release-integration review PASS.  
+EV-447 fast-forward promotion to `main` PASS.
 
-Source implementation/review:
-- production source lineage from `7393f390f30d1981a5065b6342a684cd590fbac9`
-- EV-441 source review PASS
-- EV-444 pre-release public key rename to `MovementOverride`
+Stable accepted features:
+- Collision;
+- Speed;
+- Raise;
+- absolute attack Movement through EV-445.
 
-Runtime:
-- EV-443 core 2H mechanism PASS
-- EV-445 broad acceptance PASS
+At the promotion moment, `main` and `development` were identical.
 
-Public semantics:
+## Current development responsibility
+
+Only one planned behavior fix remains before first public release:
+
+`docs/work/active/BAD_BLOCK_SKIP_ATTACK_DEFER_TIMER_RESEARCH.md`
+
+User goal:
 ```text
-<Attack>_MovementOverride=Off
--> preserve native/New Balance movement
+when bad-block-skip defer is counting down
++ the relevant actor attacks
+-> pause countdown
 
-<Attack>_MovementOverride=0
--> no forward movement
-
-<Attack>_MovementOverride=<positive number>
--> absolute configured attack movement distance
+when attack ends
+-> resume from remaining defer time
 ```
 
-Broad EV-445 coverage:
-- 1H, Torch+1H, Shield+1H, 1H+1H, 2H, Staff, Fist;
-- Axe and Rapier custom/separated sets;
-- Troll, Sabertooth and Demon representatives;
-- all available Normal/Quick/Power/Whirl/SimpleWhirl/Hack/Pierce routes;
-- representative Sprint routes;
-- native + New Balance;
-- Off and multiple strong numeric values.
+Current task is READ-ONLY research.
 
-Known boundary:
-- an attack authored with movement value `0` in its animation name has no usable direction at the late movement seam, so MovementOverride cannot create forward movement;
-- Rapier Quick is the confirmed example;
-- changing its authored movement field to `100` made MovementOverride work with and without New Balance;
-- this is documented in the shipping INI;
-- no second hook/state/cache is justified.
+Important:
+- exact source owner/timer variable has not been assumed from remembered terminology;
+- locate and prove the current lifecycle first;
+- prefer an already-existing attack-state signal;
+- no new hook unless evidence proves unavoidable;
+- no implementation/build/runtime in the research task;
+- Collision / Speed / Raise / Movement remain protected.
 
-No active attack-movement task remains.
-No source change is pending.
+Release rule:
+- if research yields a small clean fix, freeze a bounded implementation;
+- if not clean enough, `main @ e899f370...` is the stable release fallback;
+- no other new features before first release.
