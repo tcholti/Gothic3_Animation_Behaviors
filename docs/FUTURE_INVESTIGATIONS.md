@@ -117,6 +117,52 @@ Do not assume the no-input symptom and the known forced-recovery-cancel feature 
 
 ---
 
+
+## 3. Exact block-timeout pause during attacks
+
+### Why it is parked
+
+The final pre-release static research recovered both native timeout mechanisms but found that exact remaining-time pause is not a small, clean release fix.
+
+Player and NPC do **not** share one timer:
+
+```text
+Player:
+CharacterControl DurationPressedMSecs > 2500
+-> FullStop
+-> SetState PS_Melee_Loop
+
+NPC Alternative-AI parade:
+Routine StateTime > 2.0
+-> StopAIGoto
+-> SetState ZS_Attack_Loop
+```
+
+The player branch has one clean stateless **deferral** seam at `Script_Game +0x633BF`, but deferral is not exact pause because native held-input time continues to advance.
+
+True pause requires a new stateful virtual-clock lifecycle whose episode/reset and attack interval boundaries are not yet proven.
+
+### Proven starting point
+
+- EV-448.
+- `docs/SOURCE_HOOK_GUIDE.md §6`.
+- `docs/archive/investigations/bad_block_skip_static_research_2026-10-06.md`.
+- stable first-release fallback remains `main @ e899f37092706a9846312b93d6b52b34e715b53d`.
+
+### If ever reopened
+
+First decide the intended contract explicitly:
+
+1. exact remaining-time pause/resume; or
+2. simpler player-only destructive-branch deferral.
+
+Do not silently substitute (2) for (1).
+
+If NPC overlap matters, the smallest next evidence step is the already-specified observation-only `Script_Game +0x46F39` probe. It resolves NPC attack overlap only; it does not solve exact timer ownership.
+
+---
+
+
 ## Boundaries
 
-These two items are **optional future research only**. They are not part of the current New Balance collision compatibility gate, do not change `CollisionLifecycleGuard`/C1-R1, and do not reopen or redefine the separately paused `AttackContinuationProtection` responsibility.
+These items are **optional future research only**. They are not part of the current New Balance collision compatibility gate, do not change `CollisionLifecycleGuard`/C1-R1, and do not reopen or redefine the separately paused `AttackContinuationProtection` responsibility.
