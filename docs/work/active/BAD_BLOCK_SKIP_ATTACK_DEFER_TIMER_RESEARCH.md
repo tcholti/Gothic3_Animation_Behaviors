@@ -128,6 +128,40 @@ same fix can cover both: yes / no / unresolved
 
 If NPC scope cannot be established statically, identify the **smallest single runtime probe** that would resolve only that uncertainty.
 
+
+
+## Desktop Commander — authorized read-only static inspection
+
+Desktop Commander is available and online on the User's authorized Windows PC.
+
+It may be used in this research task to inspect the **actual local tested Gothic 3 installation/binaries and repository files** where that materially closes the remaining static uncertainty.
+
+Authorized use is **read-only static inspection only**.
+
+Allowed:
+- locate the User's actual Gothic 3 installation and `Script_Game.dll`;
+- inspect file metadata / hashes;
+- inspect the exact local `Script_Game.dll` instruction sequence around the proven bad-path region, especially approximately `+0x633BB .. +0x63409`;
+- use available local disassembly/static-analysis tools from the command line if present;
+- inspect the local repository/source/reference files;
+- compare the local binary against the already-documented RVA evidence;
+- establish the exact instruction/call producing or consuming the held-duration value and the exact conditional branch governing `FullStop -> SetState`.
+
+Not allowed:
+- modify local repository files;
+- patch or modify Gothic 3 binaries;
+- write into the Gothic 3 installation;
+- build;
+- deploy;
+- launch/run Gothic 3;
+- attach a debugger to a running game;
+- create a runtime probe;
+- change Desktop Commander configuration unless strictly required for read-only access and explicitly justified.
+
+If multiple Gothic 3 installations/binaries are present, identify the **actual tested installation** before drawing conclusions. Prefer hash/path evidence over assumptions.
+
+Desktop Commander should be used to close the exact static seam if possible. If the local binary can establish the instruction-level control flow, do not stop merely because the raw disassembly artifact is absent from the repository.
+
 ## Protected systems
 
 Do not redesign or modify:
