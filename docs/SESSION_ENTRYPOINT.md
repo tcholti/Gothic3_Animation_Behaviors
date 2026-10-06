@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = movement mechanism runtime PASS EV-443; public key renamed to MovementOverride EV-444; rebuild/deploy sanity check next
+CURRENT = absolute attack movement CLOSED/PASS through EV-445; broad native/New Balance runtime acceptance complete
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise direction continuation = CLOSED/PASS EV-427; EV-430 completes representative Normal / Quick R+L / pose-changing Quick / full Whirl coverage including partial Raise-asset profiles
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
@@ -52,49 +52,39 @@ Canonical reusable engine lookup:
 
 The completed preservation-biased repository audit and Work result are archived under `docs/archive/investigations/`. Its accepted RH-01–RH-13 maintenance is represented in the durable owners; RH-14–RH-17 were KEEP/no-action. The three previously retained Sprint-probe logs were positively reconciled during EV-397/EV-398 maintenance and archived byte-identically; path migration is recorded in `EVIDENCE_PATH_MIGRATIONS.md`.
 
-## Immediate continuation — Absolute attack movement runtime acceptance
+## Immediate continuation — Attack movement closed
 
-Production source:
-`7393f390f30d1981a5065b6342a684cd590fbac9`
+Absolute attack movement is now CLOSED/PASS through EV-445.
 
-Independent Normal Chat source review:
-`EV-441 PASS`
-
-Implementation result:
+Accepted public semantics:
 ```text
-BehaviorProfiles -> optional Movement setting
-AttackMovement    -> stateless absolute-distance policy
-EngineBridge      -> one Game+0x16B8B7 insertion
-INI               -> 97 shipping Movement keys, all Off
+<Attack>_MovementOverride=Off
+= preserve native/New Balance movement
+
+<Attack>_MovementOverride=0
+= no forward CombatMove translation
+
+<Attack>_MovementOverride=<positive number>
+= absolute forward movement distance in Gothic authored movement units
 ```
 
-Compatibility contract remains:
+Accepted architecture:
 ```text
-Movement=Off -> native/New Balance untouched
-Movement=numeric -> G3AB owns factual Hit magnitude
-Movement=0 -> active zero CombatMove translation
+BehaviorProfiles = config
+AttackMovement = stateless policy
+EngineBridge = one Game+0x16B8B7 hook
 ```
 
-Active runtime task:
-`docs/work/active/ATTACK_MOVEMENT_RUNTIME_ACCEPTANCE.md`
+Broad runtime acceptance covered all standard human weapon families, Axe/Rapier custom families, Troll/Sabertooth/Demon representatives, all available attack groups, multiple numeric values, and both native and New Balance stacks.
 
-EV-443 runtime:
-- deployment identity PASS;
-- 2H Normal/Quick/Power/Whirl/Hack all passed Off/0/100/300;
-- repeated with and without New Balance;
-- core movement ownership/compatibility mechanism PASS.
+Known boundary:
+- if the selected attack animation is authored with movement value 0 in its name, MovementOverride cannot create movement because no usable final direction reaches the one-hook seam;
+- Rapier Quick is the confirmed example;
+- changing the authored field to 100 made the override work;
+- shipping INI documents this limitation;
+- no second hook/state machine is justified.
 
-EV-444 public cleanup:
-- public key renamed from `<Attack>_Movement` to `<Attack>_MovementOverride`;
-- parser/INI naming only; runtime architecture unchanged;
-- 97 shipping MovementOverride keys remain Off.
-
-Next:
-1. Fetch/Pull;
-2. rebuild Release Win32;
-3. redeploy/hash-verify;
-4. quick proven 2H sanity: Power_MovementOverride Off / 0 / 300;
-5. if PASS, continue broader representative runtime acceptance without repeating EV-443 matrix.
+No movement source changes are pending.
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
 
