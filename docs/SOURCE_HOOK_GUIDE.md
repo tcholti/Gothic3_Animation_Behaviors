@@ -498,18 +498,67 @@ Evidence: EV-262–EV-298. Exact family causal history routes through `EVIDENCE_
 
 ## 6. AttackContinuationProtection Research Route
 
-Future bad-skip prevention should first locate the **factual native timeout/consumer decision**, not create a parallel timer.
+EV-448 closes the first-release exact-pause research with **NOT CLEAN ENOUGH FOR FIRST RELEASE**.
 
-New Balance compatibility requirement:
+There is no G3AB-owned block-skip countdown.
+
+### Player timeout — exact tested seam
+
+Tested Script_Game path:
 
 ```text
-New Balance prevents native destructive condition
--> our protection sees no condition / performs no intervention
++0x633BF  call PropertyDurationPressedMSecs getter
++0x633C5  cmp eax, 2500
++0x633CA  jbe +0x63586
++0x633F1  PSRoutine::FullStop
++0x63409  PSRoutine::SetState("PS_Melee_Loop")
 ```
 
-If the native destructive condition still becomes due during a real attack, investigate the narrowest point where only the destructive consequence can be suppressed/deferred. Preserve native behavior outside attacks and preserve legitimate reaction FullStop/AISetState paths.
+Historical EV-185–EV-191 prove that on vulnerable player attacks this branch can terminate the active CombatMove and discard the suspended attack continuation.
 
-Pausing the timer is only a candidate; consumer-level prevention may be safer.
+A future **deferral** contract could use one exact call-site adapter at `Script_Game +0x633BF`: call the native getter once, and while the same actor is factually attacking, clamp only this branch-local result to `2500` when it would otherwise exceed the threshold. The native `jbe` then bypasses the whole destructive branch.
+
+This is **not an exact pause**. Native held-input time continues to advance, so expiry may occur immediately after the attack.
+
+Do not:
+- hook the shared duration getter/IAT globally;
+- mutate generic CharacterControl `DurationPressedMSecs`;
+- suppress all `AIFullStop`;
+- suppress only `FullStop` or only `SetState`;
+- call stateless deferral “pause/resume”.
+
+### NPC parade timeout — separate mechanism
+
+Alternative-AI NPC parade uses a different native timer and branch:
+
+```text
+OnAI_Parade
++ non-player
++ StatePosition == 1
++ Routine StateTime > 2.0 s
+-> Script_Game +0x46F39 StopAIGoto
+-> +0x46F51 SetState("ZS_Attack_Loop")
+```
+
+This path does not read `DurationPressedMSecs` and does not share the player's `FullStop` branch. Whether this NPC timeout can overlap a factual active attack in the tested mod stack remains unproven.
+
+If reopened, the smallest justified NPC probe is an observation-only wrapper at `Script_Game +0x46F39`, preserving the original call once and recording actor/SPU, StateTime, factual Action/phase, state and live continuation context.
+
+### Exact pause status
+
+True remaining-time pause would require a new virtual elapsed-clock owner with timer-episode identity, reset detection, excluded attack duration and robust retirement across release/new press, cancellation, chains, death/removal and state changes. Those lifecycle boundaries are not proven.
+
+New Balance compatibility requirement remains:
+
+```text
+New Balance/live stack prevents native destructive condition
+-> G3AB sees no selected timeout seam
+-> G3AB performs no intervention
+```
+
+Exact pause is therefore parked for post-release research. Stable first-release behavior remains unchanged.
+
+Proof route: EV-448 and `docs/archive/investigations/bad_block_skip_static_research_2026-10-06.md`.
 
 ---
 
