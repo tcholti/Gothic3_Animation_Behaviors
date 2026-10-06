@@ -1368,3 +1368,56 @@ Post-test UX finding:
 Disposition:
 - **PASS — DEPLOYMENT IDENTITY + CORE 2H MOVEMENT MECHANISM / NEW BALANCE COMPATIBILITY.**
 - broader representative acceptance remains pending after the public-key rename/rebuild sanity check.
+
+
+### EV-444 — MovementOverride public INI rename
+
+Trigger:
+- EV-443 runtime mechanism testing passed across 2H Normal, Quick, Power, Whirl and Hack with Off/0/100/300, both with and without New Balance;
+- User identified a public-UX ambiguity: `Power_Movement=Off` can read as though Power attack movement itself is disabled.
+
+Accepted pre-release public rename:
+```text
+<Attack>_Movement
+->
+<Attack>_MovementOverride
+```
+
+Examples:
+```ini
+Normal_MovementOverride=Off
+Quick_MovementOverride=Off
+Power_MovementOverride=Off
+Power_MovementOverride=100
+```
+
+Semantics are unchanged:
+```text
+Off = preserve normal native/New Balance movement
+0 = no forward CombatMove translation
+positive number = absolute configured forward movement distance
+```
+
+Implementation scope:
+- `BehaviorProfiles.cpp`: parser suffix only, `_Movement` -> `_MovementOverride`;
+- internal `hasMovement/movement` storage remains unchanged;
+- `AttackMovement.cpp/.h` unchanged;
+- `EngineBridge.cpp` unchanged;
+- hook/ABI/runtime architecture unchanged;
+- shipping INI uses 97 `_MovementOverride=Off` keys and zero legacy `_Movement=` keys;
+- User's clearer INI section separators were preserved;
+- movement instructions were simplified to user-facing language and no longer expose CombatMove implementation terminology unnecessarily.
+
+Final public help:
+```text
+MovementOverride controls how far the character moves forward during an attack.
+Off = keep the normal Gothic / New Balance movement.
+0 = no forward movement.
+Higher number = move farther forward.
+Gothic can still stop the character at obstacles, ledges, or the target.
+Sprint uses the Power_MovementOverride setting.
+```
+
+Disposition:
+- **PASS — PRE-RELEASE PUBLIC CONFIGURATION CLEANUP; NO ARCHITECTURE CHANGE.**
+- one rebuild/deploy + small previously-proven 2H sanity check is required before broader runtime acceptance continues.
