@@ -150,3 +150,126 @@ Classify the result as:
 - NOT CLEAN ENOUGH FOR FIRST RELEASE.
 
 Stop after the research conclusion.
+
+
+## Research checkpoint — Normal Chat
+
+### Established facts
+
+The desired "defer timer" is **not a G3AB-owned timer**.
+
+EV-187 proves the tested bad held-Use2 path reads the player's held-input duration and compares it against `2500 ms` before entering the destructive branch.
+
+Official SDK surface:
+
+```text
+gCCharacterControl_PS / PSCharacterControl
+- PressedKey
+- IsPressed
+- IsPressedBefore
+- DurationPressedMSecs
+```
+
+The engine property is generic CharacterControl input state. No narrow public API exists to pause only the block/parade timeout. Directly rewriting `DurationPressedMSecs` would therefore take ownership of generic input timing and is not the preferred release fix.
+
+Tested destructive path:
+
+```text
+Use2 held
+-> DurationPressedMSecs > 2500
+-> Script_Game +0x633F1 PSRoutine::FullStop()
+-> active CombatMove fullStop=true
+-> Script_Game +0x63409 PSRoutine::SetState(...)
+-> suspended attack continuation discarded
+```
+
+EV-189 proves that the subsequent `SetState` clears the relevant SPU continuation. EV-185/EV-186 prove that FullStop itself is also real instruction termination and is shared with legitimate reaction paths.
+
+Therefore:
+
+```text
+suppress FullStop only = insufficient
+suppress SetState only = too late for uninterrupted attack
+global AIFullStop suppression = unsafe
+global CharacterControl timer mutation = too broad
+```
+
+A clean behavior fix should prevent/bypass the **whole exact bad timeout branch** while the protected attack is active.
+
+### Current production reuse
+
+Production already has:
+- factual Routine Action access;
+- factual animation phase access;
+- existing `AISetState` transport for collision finalization;
+- attack-family classification helpers.
+
+However, `FrameCollisionMarkers::TryGetCurrentAttackHitFamily()` is deliberately Hit-only and collision-oriented. Do not automatically make the release fix depend on marker/collision ownership.
+
+The attack-protection classifier should be factual routine/action based and independent from Collision configuration.
+
+### New Balance cross-check
+
+Pinned New Balance source:
+`Jackydima/gothic3sdk @ 316d32406a133f8884e7e302752c35f66b4f54fc`
+
+Its current `OnPlayerGameKeyPressed` handling does not own/read `DurationPressedMSecs` for this timeout and does not replace the proven CP/native 2500-ms destructive branch.
+
+Compatibility rule therefore remains:
+
+```text
+if New Balance / live stack never reaches the native destructive condition
+-> G3AB does nothing
+
+if the exact native destructive condition is reached during a protected attack
+-> only then may G3AB intervene
+```
+
+### Open static question
+
+The repository preserves the proven interpretation of Script_Game `+0x633BB..+0x63409`, but not the raw disassembly artifact itself.
+
+Before implementation, establish the exact instruction/call seam that supplies or consumes the held-duration value around the `2500 ms` comparison.
+
+Preferred order:
+
+1. if one exact call produces the duration/result immediately before the compare, intercept that call locally and alter only the branch-local effective duration;
+2. otherwise identify the exact conditional branch bypass covering both FullStop and SetState;
+3. avoid adding two broad function hooks merely to suppress FullStop and SetState separately.
+
+Do not invent an RVA from remembered evidence.
+
+### Current provisional verdict
+
+```text
+existing timer owner:
+  Gothic/CP CharacterControl DurationPressedMSecs
+
+existing lifecycle:
+  generic held-key duration; exact bad path compares >2500 ms
+
+attack-active signal:
+  factual player Routine Action / animation state; final phase semantics still to freeze
+
+pause mechanism candidate:
+  exact branch-local effective-duration/conditional bypass
+
+new hook required?:
+  likely one narrow Script_Game call-site/branch hook; exact seam not yet proven
+
+new persistent state required?:
+  unknown if exact "resume remaining time" is required;
+  branch suppression alone defers destruction but does not mathematically pause elapsed held time
+
+multi-actor safety:
+  bug path/evidence is player held-Use2; do not globalize to NPCs
+
+compatibility:
+  preserve New Balance/live stack; intervene only if exact native destructive condition remains reachable
+
+blocker:
+  exact static instruction seam around +0x633BB..+0x63409 must be re-established
+
+verdict:
+  RESEARCH OPEN — one bounded static disassembly step remains
+```
