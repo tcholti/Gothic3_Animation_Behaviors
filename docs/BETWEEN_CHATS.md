@@ -1,7 +1,7 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-10-06 — EV-444 MovementOverride public cleanup
+**Updated:** 2026-10-06 — EV-445 attack movement runtime closure
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
@@ -12,53 +12,47 @@ Active branch: `development`
 
 `main` remains Collision + Speed + Raise stable through EV-433.
 
-## Attack movement current state
+## Attack movement — CLOSED / PASS
 
-Research/architecture: closed through EV-440.  
-Production source review: EV-441 PASS.  
-Initial local build: EV-442 PASS.
+Research/architecture:
+- EV-434–EV-440
 
-EV-443 runtime mechanism PASS:
-- deployment DLL/INI hash identity PASS;
-- Hero 2H Normal, Quick, Power, Whirl and Hack;
-- Off / 0 / 100 / 300;
-- tested both with and without New Balance;
-- all cases behaved correctly and differences were clearly visible.
+Source implementation/review:
+- production source lineage from `7393f390f30d1981a5065b6342a684cd590fbac9`
+- EV-441 source review PASS
+- EV-444 pre-release public key rename to `MovementOverride`
 
-EV-444 pre-release UX cleanup:
+Runtime:
+- EV-443 core 2H mechanism PASS
+- EV-445 broad acceptance PASS
+
+Public semantics:
 ```text
-<Attack>_Movement
-->
-<Attack>_MovementOverride
+<Attack>_MovementOverride=Off
+-> preserve native/New Balance movement
+
+<Attack>_MovementOverride=0
+-> no forward movement
+
+<Attack>_MovementOverride=<positive number>
+-> absolute configured attack movement distance
 ```
 
-Reason: `Power_MovementOverride=Off` makes clear that the **override** is off, not attack movement itself.
+Broad EV-445 coverage:
+- 1H, Torch+1H, Shield+1H, 1H+1H, 2H, Staff, Fist;
+- Axe and Rapier custom/separated sets;
+- Troll, Sabertooth and Demon representatives;
+- all available Normal/Quick/Power/Whirl/SimpleWhirl/Hack/Pierce routes;
+- representative Sprint routes;
+- native + New Balance;
+- Off and multiple strong numeric values.
 
-Architecture is unchanged:
-```text
-BehaviorProfiles = config
-AttackMovement = stateless movement policy
-EngineBridge = one Game+0x16B8B7 hook
-```
+Known boundary:
+- an attack authored with movement value `0` in its animation name has no usable direction at the late movement seam, so MovementOverride cannot create forward movement;
+- Rapier Quick is the confirmed example;
+- changing its authored movement field to `100` made MovementOverride work with and without New Balance;
+- this is documented in the shipping INI;
+- no second hook/state/cache is justified.
 
-Shipping INI:
-- 97 `_MovementOverride=Off` keys;
-- zero legacy `_Movement=` keys;
-- simplified movement instructions;
-- User-added section separators preserved.
-
-## Active responsibility
-
-`docs/work/active/ATTACK_MOVEMENT_RUNTIME_ACCEPTANCE.md`
-
-Next:
-1. Fetch/Pull latest development;
-2. rebuild Release Win32 because parser key changed;
-3. deploy DLL + INI with accepted PowerShell hash procedure;
-4. quick previously-proven 2H sanity:
-   - `Power_MovementOverride=Off`
-   - `Power_MovementOverride=0`
-   - `Power_MovementOverride=300`
-5. if that passes, do not repeat EV-443 full matrix; continue broader representative validation.
-
-No source redesign is justified absent contradictory runtime evidence.
+No active attack-movement task remains.
+No source change is pending.
