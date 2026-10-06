@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = stable Collision + Speed + Raise + Movement baseline promoted to main EV-447; bad-block-skip attack defer-timer research active on development
+CURRENT = first-release stable baseline remains main EV-447; bad-block exact-pause research closed/deferred EV-448; release preparation next
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise direction continuation = CLOSED/PASS EV-427; EV-430 completes representative Normal / Quick R+L / pose-changing Quick / full Whirl coverage including partial Raise-asset profiles
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
@@ -52,13 +52,10 @@ Canonical reusable engine lookup:
 
 The completed preservation-biased repository audit and Work result are archived under `docs/archive/investigations/`. Its accepted RH-01–RH-13 maintenance is represented in the durable owners; RH-14–RH-17 were KEEP/no-action. The three previously retained Sprint-probe logs were positively reconciled during EV-397/EV-398 maintenance and archived byte-identically; path migration is recorded in `EVIDENCE_PATH_MIGRATIONS.md`.
 
-## Immediate continuation — Final pre-release timer fix research
+## Immediate continuation — First release preparation
 
-Stable baseline:
+Stable release baseline:
 `main @ e899f37092706a9846312b93d6b52b34e715b53d`
-
-Promotion:
-`EV-447 PASS`
 
 Accepted stable systems:
 ```text
@@ -68,23 +65,20 @@ Raise
 Movement
 ```
 
-Attack movement remains CLOSED/PASS through EV-445.
+Bad-block exact-pause research:
+- CLOSED / DEFERRED through EV-448;
+- exact player timeout seam recovered;
+- NPC timeout proven separate;
+- exact remaining-time pause is not clean enough for first release;
+- no production timer-fix implementation is authorized for v1.
 
-Active development responsibility:
-`docs/work/active/BAD_BLOCK_SKIP_ATTACK_DEFER_TIMER_RESEARCH.md`
+Durable research:
+- `docs/SOURCE_HOOK_GUIDE.md §6`
+- `docs/archive/investigations/bad_block_skip_static_research_2026-10-06.md`
+- `docs/FUTURE_INVESTIGATIONS.md §3`
 
-Question:
-can the existing bad-block-skip defer countdown pause while the relevant actor is actively attacking, then resume with the same remaining defer time?
-
-Current mode:
-**bounded read-only static research only**
-
-Do not implement until the current owner/lifecycle and attack-active signal are proven.
-
-Release policy:
-- this is the only planned behavior fix before the first public release;
-- no additional feature expansion before release;
-- if the fix is not clean/small, preserve `main` as the release fallback.
+Next:
+perform the final first-release preparation/release audit from the stable `main` baseline. Do not reopen timer work unless the User explicitly chooses a different post-release contract.
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
 
