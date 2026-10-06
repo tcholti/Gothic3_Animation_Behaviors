@@ -104,6 +104,30 @@ Explicitly check:
 - no dependency on Speed, Raise or Movement configuration;
 - static/per-frame cost.
 
+
+### E. Player vs NPC scope
+
+Do **not** assume this is player-only.
+
+Historical evidence proves the player held-Use2 / 2500 ms path, but that is only an evidence boundary. The User reports that NPC blocks may also be force-ended by a timeout.
+
+Research separately:
+1. whether NPC block/parade duration is capped;
+2. whether NPCs use the same `DurationPressedMSecs > 2500` mechanism;
+3. whether NPCs use a sibling Script_Game branch, state-time threshold, AI decision timer, or other mechanism;
+4. whether the same attack-interruption bug can occur while an NPC is attacking;
+5. whether one smallest fix can safely cover both player and NPC without broad global timer ownership.
+
+Classify conclusions explicitly as:
+```text
+player path: proven / not proven
+NPC path: proven / not proven
+same mechanism: yes / no / unresolved
+same fix can cover both: yes / no / unresolved
+```
+
+If NPC scope cannot be established statically, identify the **smallest single runtime probe** that would resolve only that uncertainty.
+
 ## Protected systems
 
 Do not redesign or modify:
@@ -262,7 +286,10 @@ new persistent state required?:
   branch suppression alone defers destruction but does not mathematically pause elapsed held time
 
 multi-actor safety:
-  bug path/evidence is player held-Use2; do not globalize to NPCs
+  proven historical evidence covers the player held-Use2 path only;
+  do NOT infer that NPCs are unaffected.
+  Research whether NPC block/parade timeout uses the same mechanism,
+  a sibling timeout path, or separate AI logic before recommending scope.
 
 compatibility:
   preserve New Balance/live stack; intervene only if exact native destructive condition remains reachable
