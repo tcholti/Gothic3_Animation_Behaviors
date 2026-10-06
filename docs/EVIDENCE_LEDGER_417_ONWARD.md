@@ -1510,3 +1510,54 @@ Compatibility result:
 Disposition:
 - **PASS — ABSOLUTE ATTACK MOVEMENT RUNTIME ACCEPTED.**
 - feature architecture remains one-hook/stateless; no source redesign required.
+
+
+### EV-446 — First-release baseline integration review PASS
+
+Reviewed branch state:
+- `development` at `dcbfd0389c6507f3a1d4168264f248b610ddde8b`;
+- stable `main` before promotion at `56565a73137c799fc625c2f0b4f17cb153554bdb`;
+- `development` was 85 commits ahead and 0 behind `main`;
+- comparison was a pure fast-forward lineage.
+
+Review scope:
+- quick release-integration sanity review, not a new feature redesign;
+- accepted Collision, Speed, Raise and Movement runtime evidence remains authoritative.
+
+Production delta from the previous stable `main`:
+```text
+AttackMovement.cpp/.h        new movement policy owner
+BehaviorProfiles.cpp/.h      MovementOverride configuration
+EngineBridge.cpp             one Game+0x16B8B7 movement insertion
+CMakeLists.txt               AttackMovement module inclusion
+G3AnimationBehaviors.ini     MovementOverride public configuration/help
+```
+
+Release-hygiene findings:
+- `docs/work/active/` contains only its README; no stale active investigation/task;
+- production target `Script_G3AnimationBehaviors` contains no probe/logger/test source;
+- exactly one movement insertion exists at `Game+0x16B8B7`;
+- no hook exists at New Balance's `Game+0x16B8A9` seam;
+- parser accepts only the final public `_MovementOverride` suffix;
+- shipping INI contains exactly 97 `_MovementOverride=Off` keys and zero legacy `_Movement=` keys;
+- Collision, Speed and Raise production ownership remain unchanged by the movement integration;
+- post-EV-445 delta to current HEAD is exactly one explanatory INI comment-line change;
+- EV-445 closure commit `b36804949a8b3af0ab145d16128234c313886d82` had knowledge-state validation PASS;
+- the one-commit delta to `dcbfd038...` changes no executable/config semantics.
+
+Non-blocking release-hygiene note:
+- root CMake retains long-standing `G3AB_BUILD_PROTOTYPES=ON` and `G3AB_BUILD_TOOLS=ON` defaults, so a full repository build may also build diagnostics;
+- the production target itself is clean and the accepted deployment procedure ships/verifies only `Script_G3AnimationBehaviors.dll` + INI and removes old G3AB diagnostic runtime products;
+- do not change this build-policy surface as part of the first-release baseline unless a packaging task later requires it.
+
+Accepted feature state:
+```text
+Collision = CLOSED/PASS
+Speed     = CLOSED/PASS
+Raise     = CLOSED/PASS
+Movement  = CLOSED/PASS through EV-445
+```
+
+Disposition:
+- **PASS — CURRENT DEVELOPMENT IS A CLEAN FIRST-RELEASE STABLE BASELINE CANDIDATE.**
+- safe to fast-forward `main` to the reviewed development lineage before beginning the final bad-block-skip timer fix.
