@@ -194,7 +194,7 @@ AttackSettings ParseAttackSettings(
             settings.raiseOverride = RaiseOverride::On;
     }
 
-    std::string const movementName = prefixText + "_Movement";
+    std::string const movementName = prefixText + "_MovementOverride";
     bCString const movementKey(movementName.c_str());
     if (config.Contains(section, movementKey))
     {
