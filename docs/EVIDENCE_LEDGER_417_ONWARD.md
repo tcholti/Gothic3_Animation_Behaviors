@@ -1561,3 +1561,33 @@ Movement  = CLOSED/PASS through EV-445
 Disposition:
 - **PASS — CURRENT DEVELOPMENT IS A CLEAN FIRST-RELEASE STABLE BASELINE CANDIDATE.**
 - safe to fast-forward `main` to the reviewed development lineage before beginning the final bad-block-skip timer fix.
+
+
+### EV-447 — Stable baseline promoted to main
+
+After EV-446 release-integration review PASS, `main` was fast-forwarded from:
+`56565a73137c799fc625c2f0b4f17cb153554bdb`
+
+to:
+`e899f37092706a9846312b93d6b52b34e715b53d`
+
+Promotion properties:
+- fast-forward only;
+- no merge commit;
+- no force update;
+- `development` was 0 behind `main`;
+- at the promotion moment, `main` and `development` pointed to the exact same commit.
+
+Stable baseline now on `main`:
+```text
+Collision = accepted
+Speed     = accepted
+Raise     = accepted
+Movement  = accepted through EV-445
+```
+
+This is the pre-final-fix stable checkpoint for the first public release.
+
+Next work is intentionally isolated back on `development`:
+- investigate whether the existing bad-block-skip defer timer can be paused while an attack is active;
+- no other new feature work before first release.
