@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = absolute attack movement CLOSED/PASS through EV-445; broad native/New Balance runtime acceptance complete
+CURRENT = stable Collision + Speed + Raise + Movement baseline promoted to main EV-447; bad-block-skip attack defer-timer research active on development
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise direction continuation = CLOSED/PASS EV-427; EV-430 completes representative Normal / Quick R+L / pose-changing Quick / full Whirl coverage including partial Raise-asset profiles
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
@@ -52,39 +52,39 @@ Canonical reusable engine lookup:
 
 The completed preservation-biased repository audit and Work result are archived under `docs/archive/investigations/`. Its accepted RH-01–RH-13 maintenance is represented in the durable owners; RH-14–RH-17 were KEEP/no-action. The three previously retained Sprint-probe logs were positively reconciled during EV-397/EV-398 maintenance and archived byte-identically; path migration is recorded in `EVIDENCE_PATH_MIGRATIONS.md`.
 
-## Immediate continuation — Attack movement closed
+## Immediate continuation — Final pre-release timer fix research
 
-Absolute attack movement is now CLOSED/PASS through EV-445.
+Stable baseline:
+`main @ e899f37092706a9846312b93d6b52b34e715b53d`
 
-Accepted public semantics:
+Promotion:
+`EV-447 PASS`
+
+Accepted stable systems:
 ```text
-<Attack>_MovementOverride=Off
-= preserve native/New Balance movement
-
-<Attack>_MovementOverride=0
-= no forward CombatMove translation
-
-<Attack>_MovementOverride=<positive number>
-= absolute forward movement distance in Gothic authored movement units
+Collision
+Speed
+Raise
+Movement
 ```
 
-Accepted architecture:
-```text
-BehaviorProfiles = config
-AttackMovement = stateless policy
-EngineBridge = one Game+0x16B8B7 hook
-```
+Attack movement remains CLOSED/PASS through EV-445.
 
-Broad runtime acceptance covered all standard human weapon families, Axe/Rapier custom families, Troll/Sabertooth/Demon representatives, all available attack groups, multiple numeric values, and both native and New Balance stacks.
+Active development responsibility:
+`docs/work/active/BAD_BLOCK_SKIP_ATTACK_DEFER_TIMER_RESEARCH.md`
 
-Known boundary:
-- if the selected attack animation is authored with movement value 0 in its name, MovementOverride cannot create movement because no usable final direction reaches the one-hook seam;
-- Rapier Quick is the confirmed example;
-- changing the authored field to 100 made the override work;
-- shipping INI documents this limitation;
-- no second hook/state machine is justified.
+Question:
+can the existing bad-block-skip defer countdown pause while the relevant actor is actively attacking, then resume with the same remaining defer time?
 
-No movement source changes are pending.
+Current mode:
+**bounded read-only static research only**
+
+Do not implement until the current owner/lifecycle and attack-active signal are proven.
+
+Release policy:
+- this is the only planned behavior fix before the first public release;
+- no additional feature expansion before release;
+- if the fix is not clean/small, preserve `main` as the release fallback.
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
 
