@@ -1,13 +1,13 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-10-06 — EV-447 stable promotion / final pre-release fix
+**Updated:** 2026-10-06 — EV-448 bad-block research deferred / first release next
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`
 
-Stable branch:
+Stable release branch:
 `main @ e899f37092706a9846312b93d6b52b34e715b53d`
 
 Active branch:
@@ -24,35 +24,47 @@ Stable accepted features:
 - Raise;
 - absolute attack Movement through EV-445.
 
-At the promotion moment, `main` and `development` were identical.
+## Final pre-release timer research — CLOSED / DEFERRED
 
-## Current development responsibility
+EV-448 result:
+**NOT CLEAN ENOUGH FOR FIRST RELEASE for exact remaining-time pause.**
 
-Only one planned behavior fix remains before first public release:
-
-`docs/work/active/BAD_BLOCK_SKIP_ATTACK_DEFER_TIMER_RESEARCH.md`
-
-User goal:
+Recovered player seam:
 ```text
-when bad-block-skip defer is counting down
-+ the relevant actor attacks
--> pause countdown
-
-when attack ends
--> resume from remaining defer time
+Script_Game +0x633BF DurationPressedMSecs getter
++0x633C5 compare 2500
++0x633CA jbe bypass
+otherwise:
++0x633F1 FullStop
++0x63409 SetState PS_Melee_Loop
 ```
 
-Current task is READ-ONLY research.
+A one-hook stateless player adapter could **defer** this destructive branch during a factual attack, but native held time would continue advancing. It is not exact pause/resume.
 
-Important:
-- exact source owner/timer variable has not been assumed from remembered terminology;
-- locate and prove the current lifecycle first;
-- prefer an already-existing attack-state signal;
-- no new hook unless evidence proves unavoidable;
-- no implementation/build/runtime in the research task;
-- Collision / Speed / Raise / Movement remain protected.
+Recovered NPC Alternative-AI timeout:
+```text
+non-player OnAI_Parade
+StatePosition == 1
+StateTime > 2.0
+-> +0x46F39 StopAIGoto
+-> +0x46F51 SetState ZS_Attack_Loop
+```
 
-Release rule:
-- if research yields a small clean fix, freeze a bounded implementation;
-- if not clean enough, `main @ e899f370...` is the stable release fallback;
-- no other new features before first release.
+Player and NPC use different clocks and different branches. NPC timeout overlapping a factual active attack remains unproven.
+
+Exact pause requires a new stateful virtual-clock lifecycle whose timer episode/reset and attack interval boundaries are not proven. It is parked for post-release work.
+
+Durable routes:
+- `docs/SOURCE_HOOK_GUIDE.md §6`
+- `docs/archive/investigations/bad_block_skip_static_research_2026-10-06.md`
+- `docs/archive/investigations/BAD_BLOCK_SKIP_ATTACK_DEFER_TIMER_RESEARCH.md`
+- `docs/FUTURE_INVESTIGATIONS.md §3`
+
+## Next
+
+Do **not** implement the timer fix for v1.
+
+Next session:
+**perform final first-release preparation / release audit from stable `main`.**
+
+No active behavior feature task remains before first release.
