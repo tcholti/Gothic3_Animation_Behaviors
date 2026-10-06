@@ -1,7 +1,7 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-10-05 — EV-441 attack movement source review
+**Updated:** 2026-10-06 — EV-444 MovementOverride public cleanup
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
@@ -12,59 +12,53 @@ Active branch: `development`
 
 `main` remains Collision + Speed + Raise stable through EV-433.
 
-## Attack movement
+## Attack movement current state
 
-Research/architecture closed through EV-440.
+Research/architecture: closed through EV-440.  
+Production source review: EV-441 PASS.  
+Initial local build: EV-442 PASS.
 
-Production implementation:
-`7393f390f30d1981a5065b6342a684cd590fbac9`
+EV-443 runtime mechanism PASS:
+- deployment DLL/INI hash identity PASS;
+- Hero 2H Normal, Quick, Power, Whirl and Hack;
+- Off / 0 / 100 / 300;
+- tested both with and without New Balance;
+- all cases behaved correctly and differences were clearly visible.
 
-Independent source review:
-`EV-441 PASS`
-
-User-local build:
-`EV-442 PASS — Release Win32 build succeeded`
-
-Reviewed implementation:
+EV-444 pre-release UX cleanup:
 ```text
-one physical hook: Game+0x16B8B7
-BehaviorProfiles: optional Movement
-AttackMovement: stateless policy
-EngineBridge: transport only
-97 shipping Movement keys: all Off
+<Attack>_Movement
+->
+<Attack>_MovementOverride
 ```
 
-Semantics:
+Reason: `Power_MovementOverride=Off` makes clear that the **override** is off, not attack movement itself.
+
+Architecture is unchanged:
 ```text
-Movement=Off
--> preserve native/New Balance
-
-Movement=<finite non-negative number>
--> absolute authored-style factual Hit distance
-
-Movement=0
--> active zero CombatMove translation
+BehaviorProfiles = config
+AttackMovement = stateless movement policy
+EngineBridge = one Game+0x16B8B7 hook
 ```
 
-No Collision, AttackSpeed or AttackRaise source change.
+Shipping INI:
+- 97 `_MovementOverride=Off` keys;
+- zero legacy `_Movement=` keys;
+- simplified movement instructions;
+- User-added section separators preserved.
 
 ## Active responsibility
 
 `docs/work/active/ATTACK_MOVEMENT_RUNTIME_ACCEPTANCE.md`
 
-Build is complete. Deployment/runtime were intentionally deferred at session end.
-
 Next:
-- Fetch/Pull latest documentation state if needed before continuing repository work;
-- run the already accepted deployment/hash PowerShell script;
-- require exactly one live G3AB project DLL;
-- require built/live DLL SHA256 identity;
-- require source/live INI SHA256 identity;
-- require `G3AB RELEASE DEPLOYMENT PASS`;
-- then
-- Off-path compatibility;
-- strong 0/short/long numeric contrast;
-- New Balance On/Off override control;
-- representative action/nonhuman sanity coverage.
+1. Fetch/Pull latest development;
+2. rebuild Release Win32 because parser key changed;
+3. deploy DLL + INI with accepted PowerShell hash procedure;
+4. quick previously-proven 2H sanity:
+   - `Power_MovementOverride=Off`
+   - `Power_MovementOverride=0`
+   - `Power_MovementOverride=300`
+5. if that passes, do not repeat EV-443 full matrix; continue broader representative validation.
 
-No further source modification absent build/runtime contradiction.
+No source redesign is justified absent contradictory runtime evidence.
