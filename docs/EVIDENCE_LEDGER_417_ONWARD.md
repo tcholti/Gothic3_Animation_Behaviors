@@ -1330,3 +1330,41 @@ Next gate:
 
 Disposition:
 - **BUILD PASS; DEPLOYMENT / HASH IDENTITY / RUNTIME PENDING.**
+
+
+### EV-443 — Absolute movement deployment and 2H runtime mechanism PASS
+
+Deployment identity:
+```text
+Built DLL SHA256: 3E0DFA5D4FF5DE9F3FADCABF27C7C50B887EF1E63318FF31A9B998D82714BF0D
+Live  DLL SHA256: 3E0DFA5D4FF5DE9F3FADCABF27C7C50B887EF1E63318FF31A9B998D82714BF0D
+
+Source INI SHA256: 93C9DA487DDBBA301F0D9AC7A751C0D2CC8DFE2415305E1C1BD89A37A3CC9632
+Live   INI SHA256: 93C9DA487DDBBA301F0D9AC7A751C0D2CC8DFE2415305E1C1BD89A37A3CC9632
+
+G3AB RELEASE DEPLOYMENT PASS
+```
+
+Exactly one live G3AB project DLL was present:
+`Script_G3AnimationBehaviors.dll`, 466944 bytes.
+
+User runtime test:
+- profile family: Hero 2H;
+- tested factual attack groups: Normal, Quick, Power, Whirl and Hack;
+- tested movement settings: Off, 0, 100 and 300;
+- repeated both with New Balance active and without New Balance;
+- all cases worked as intended;
+- every numeric step produced clearly visible movement changes;
+- Off preserved the underlying native/New Balance behavior;
+- no reported Speed, Raise or Collision regression.
+
+This is direct runtime confirmation of the core compatibility contract across all five available 2H attack groups.
+
+Post-test UX finding:
+- public key name `<Attack>_Movement=Off` can be misread as disabling attack movement rather than disabling the override;
+- before broader acceptance, rename the unreleased public key to `<Attack>_MovementOverride`;
+- internal movement architecture/policy remains unchanged.
+
+Disposition:
+- **PASS — DEPLOYMENT IDENTITY + CORE 2H MOVEMENT MECHANISM / NEW BALANCE COMPATIBILITY.**
+- broader representative acceptance remains pending after the public-key rename/rebuild sanity check.
