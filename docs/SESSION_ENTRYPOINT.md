@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = absolute attack movement source review PASS EV-441 + local Release Win32 build PASS EV-442; deployment/hash verification next
+CURRENT = movement mechanism runtime PASS EV-443; public key renamed to MovementOverride EV-444; rebuild/deploy sanity check next
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise direction continuation = CLOSED/PASS EV-427; EV-430 completes representative Normal / Quick R+L / pose-changing Quick / full Whirl coverage including partial Raise-asset profiles
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
@@ -78,18 +78,23 @@ Movement=0 -> active zero CombatMove translation
 Active runtime task:
 `docs/work/active/ATTACK_MOVEMENT_RUNTIME_ACCEPTANCE.md`
 
-EV-442 update:
-- local Release Win32 build succeeded;
-- deployment not yet run;
-- built/live DLL hash identity pending;
-- source/live INI hash identity pending;
-- runtime not yet started.
+EV-443 runtime:
+- deployment identity PASS;
+- 2H Normal/Quick/Power/Whirl/Hack all passed Off/0/100/300;
+- repeated with and without New Balance;
+- core movement ownership/compatibility mechanism PASS.
+
+EV-444 public cleanup:
+- public key renamed from `<Attack>_Movement` to `<Attack>_MovementOverride`;
+- parser/INI naming only; runtime architecture unchanged;
+- 97 shipping MovementOverride keys remain Off.
 
 Next:
-1. deploy with the accepted PowerShell deployment/hash script;
-2. require `G3AB RELEASE DEPLOYMENT PASS`;
-3. run Off-path compatibility control;
-4. then strong Movement=0 / short / long contrast.
+1. Fetch/Pull;
+2. rebuild Release Win32;
+3. redeploy/hash-verify;
+4. quick proven 2H sanity: Power_MovementOverride Off / 0 / 300;
+5. if PASS, continue broader representative runtime acceptance without repeating EV-443 matrix.
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
 
