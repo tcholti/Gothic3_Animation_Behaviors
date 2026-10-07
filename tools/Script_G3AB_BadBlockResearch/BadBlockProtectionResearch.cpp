@@ -121,7 +121,9 @@ namespace
 struct ExclusionDiagnosticEpisodeState
 {
     bool active = false;
+    bool overdueLogged = false;
     unsigned long ordinal = 0;
+    gEAction action = static_cast<gEAction>(0);
 };
 
 ExclusionDiagnosticEpisodeState g_ExclusionDiagnosticEpisode;
@@ -133,13 +135,13 @@ GEU32 ObservePierceFinishingHitTimeout(
     FILE *log)
 {
     constexpr GEU32 timeoutMSecs = 2500;
-    bool qualifies = false;
+    bool factualHit = false;
     gEAction action = static_cast<gEAction>(0);
     gEPhase phase = static_cast<gEPhase>(0);
     eCEntity *actorInstance = nullptr;
     eCEntity *playerInstance = nullptr;
 
-    if (rawDuration > timeoutMSecs && receiver != nullptr)
+    if (receiver != nullptr)
     {
         eCEntityPropertySet *propertySet =
             receiver->m_pEngineEntityPropertySet;
@@ -157,28 +159,52 @@ GEU32 ObservePierceFinishingHitTimeout(
                     || action == gEAction_FinishingAttack)
                 {
                     phase = player.GetCurrentAniPhase();
-                    qualifies = phase == gEPhase_Hit;
+                    factualHit = phase == gEPhase_Hit;
                 }
             }
         }
     }
 
-    if (!qualifies)
+    if (!factualHit)
     {
         g_ExclusionDiagnosticEpisode.active = false;
+        g_ExclusionDiagnosticEpisode.overdueLogged = false;
+        g_ExclusionDiagnosticEpisode.action = static_cast<gEAction>(0);
         return rawDuration;
     }
 
-    if (!g_ExclusionDiagnosticEpisode.active)
+    if (!g_ExclusionDiagnosticEpisode.active
+        || g_ExclusionDiagnosticEpisode.action != action)
     {
         g_ExclusionDiagnosticEpisode.active = true;
+        g_ExclusionDiagnosticEpisode.overdueLogged = false;
+        g_ExclusionDiagnosticEpisode.action = action;
         ++g_ExclusionDiagnosticEpisode.ordinal;
 
         if (log != nullptr)
         {
             std::fprintf(
                 log,
-                "Exclusion episode start id=%lu raw=%lu effective=%lu action=%d phase=%d actor=%p player=%p\n",
+                "Exclusion HIT-SEEN id=%lu raw=%lu action=%d phase=%d actor=%p player=%p\n",
+                g_ExclusionDiagnosticEpisode.ordinal,
+                static_cast<unsigned long>(rawDuration),
+                static_cast<int>(action),
+                static_cast<int>(phase),
+                static_cast<void *>(actorInstance),
+                static_cast<void *>(playerInstance));
+            std::fflush(log);
+        }
+    }
+
+    if (rawDuration > timeoutMSecs
+        && !g_ExclusionDiagnosticEpisode.overdueLogged)
+    {
+        g_ExclusionDiagnosticEpisode.overdueLogged = true;
+        if (log != nullptr)
+        {
+            std::fprintf(
+                log,
+                "Exclusion OVERDUE id=%lu raw=%lu effective=%lu action=%d phase=%d actor=%p player=%p\n",
                 g_ExclusionDiagnosticEpisode.ordinal,
                 static_cast<unsigned long>(rawDuration),
                 static_cast<unsigned long>(rawDuration),

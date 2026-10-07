@@ -28,22 +28,22 @@ native/current DurationPressedMSecs getter called exactly once
 Observation predicate:
 
 ```text
-raw > 2500
-AND receiver-owning actor == player
+receiver-owning actor == player
 AND factual Routine Action is:
     PierceAttack    = 11
     FinishingAttack = 15
 AND factual phase == Hit
 ```
 
-When the predicate matches:
-- emit one concise episode-start record per continuous qualifying window;
-- include raw duration, factual action, factual phase, actor/player identity;
-- return **native raw unchanged**.
+For each factual Hit episode:
+- emit one `HIT-SEEN` record at first observation, including current raw duration;
+- if that same Hit later reaches `raw > 2500`, emit one `OVERDUE` record;
+- include factual action, phase and actor/player identity;
+- always return **native raw unchanged**.
 
-When it does not match:
+Outside factual Action11/15 Hit:
 - return native raw unchanged;
-- rearm only the diagnostic episode latch.
+- rearm only diagnostic episode state.
 
 The probe must never return 2500 for Action11/15 and must never modify attack/block behavior.
 
@@ -90,3 +90,18 @@ Do not:
 - add persistent gameplay state;
 - modify the shared duration property/timer;
 - begin lean-protector cleanup or production integration until this runtime gate is interpreted and closed.
+
+
+## Preliminary runtime observation — 2026-10-07
+
+With production G3AB + New Balance + the first observe-only exclusion probe:
+- User first reproduced the known bad skip visually on Whirl and Quick across the tested weapon routes, confirming the fixture/probe did not suppress the established failure;
+- User then attempted Hack and Pierce and could not reproduce bad skip;
+- the probe log contained no Action11/15 overdue episode records.
+
+Interpretation:
+- Hack/Action14 was an extra visual control and was not part of the frozen Action11/15 logger;
+- Pierce produced useful negative evidence but the first logger could not distinguish "Action11 Hit seen below threshold" from "Action11 Hit never observed at this seam";
+- therefore observability is refined only: `HIT-SEEN` + optional `OVERDUE`, with raw behavior preserved unchanged.
+
+Finishing/Action15 remains to be exercised explicitly.
