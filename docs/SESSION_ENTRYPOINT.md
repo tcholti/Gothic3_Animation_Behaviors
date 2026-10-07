@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = stable main EV-447; EV-449–EV-450 player Hit deferral A/B = CLOSED/PASS; ACTIVE = Pierce/Finishing exclusion validation before lean-protector cleanup
+CURRENT = stable main EV-447; EV-449–EV-450 player Hit deferral A/B = CLOSED/PASS; ACTIVE = Pierce/Hack exclusion validation before lean-protector cleanup
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise direction continuation = CLOSED/PASS EV-427; EV-430 completes representative Normal / Quick R+L / pose-changing Quick / full Whirl coverage including partial Raise-asset profiles
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
@@ -52,7 +52,7 @@ Canonical reusable engine lookup:
 
 The completed preservation-biased repository audit and Work result are archived under `docs/archive/investigations/`. Its accepted RH-01–RH-13 maintenance is represented in the durable owners; RH-14–RH-17 were KEEP/no-action. The three previously retained Sprint-probe logs were positively reconciled during EV-397/EV-398 maintenance and archived byte-identically; path migration is recorded in `EVIDENCE_PATH_MIGRATIONS.md`.
 
-## Immediate continuation — Pierce / Finishing exclusion validation
+## Immediate continuation — Pierce / Hack exclusion validation
 
 Stable release fallback:
 `main @ e899f37092706a9846312b93d6b52b34e715b53d`
@@ -61,19 +61,19 @@ EV-449–EV-450 prove the minimum player protector for Action4/5/10 + factual Hi
 
 Before cleaning that protector for production, User + Normal Chat froze one final exclusion challenge:
 
-`docs/work/active/BAD_BLOCK_PIERCE_FINISHING_EXCLUSION_VALIDATION.md`
+`docs/work/active/BAD_BLOCK_PIERCE_HACK_EXCLUSION_VALIDATION.md`
 
 Observation-only rule at the already-proven `Script_Game +0x633BF` seam:
 
 ```text
 call native DurationPressedMSecs getter exactly once
 
-if raw > 2500
-AND actor == player
-AND factual Action in {PierceAttack(11), FinishingAttack(15)}
+if actor == player
+AND factual Action in {PierceAttack(11), HackAttack(14)}
 AND phase == Hit
--> log one episode-start record
--> return native raw unchanged
+-> first observation: log HIT-SEEN with current raw
+-> if same Hit later reaches raw > 2500: log OVERDUE
+-> always return native raw unchanged
 
 otherwise
 -> return native raw unchanged
@@ -86,13 +86,13 @@ Frozen intended runtime stack:
 - unrelated research/control G3AB products OFF.
 
 Purpose:
-attempt to reproduce destructive bad skip on Pierce and Finishing without protecting either action. This is a scope challenge only; it does not reopen the proven Action4/5/10 mechanism.
+attempt to reproduce destructive bad skip on Pierce and Hack without protecting either action. This is a scope challenge only; it does not reopen the proven Action4/5/10 mechanism.
 
 Frozen raw filename:
-`research/raw/2026-10-07_bad_block_pierce_finishing_exclusion_probe.log`
+`research/raw/2026-10-07_bad_block_pierce_hack_exclusion_probe.log`
 
 If this gate does not contradict the exclusions, next sequence is:
-lean diagnostics-free standalone protector -> visual acceptance -> production G3AB integration -> final visual smoke.
+small true Finishing/Action15 execution check -> lean diagnostics-free standalone protector -> visual acceptance -> production G3AB integration -> final visual smoke.
 
 NPC overlap remains separate and is not part of this task.
 

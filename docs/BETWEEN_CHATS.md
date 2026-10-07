@@ -1,7 +1,7 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-10-07 — Pierce / Finishing exclusion validation ACTIVE
+**Updated:** 2026-10-07 — Pierce / Hack exclusion validation ACTIVE
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
@@ -30,10 +30,10 @@ No gameplay token, timer map, global duration mutation, or collision-guardian co
 
 ## Active gate
 
-`docs/work/active/BAD_BLOCK_PIERCE_FINISHING_EXCLUSION_VALIDATION.md`
+`docs/work/active/BAD_BLOCK_PIERCE_HACK_EXCLUSION_VALIDATION.md`
 
 Purpose:
-challenge the current exclusion of Pierce/Action11 and Finishing/Action15 before lean-protector cleanup and production integration.
+challenge the current exclusion of Pierce/Action11 and Hack/Action14 before lean-protector cleanup and production integration.
 
 Probe:
 `Script_G3AB_BadBlockExclusionProbe.dll`
@@ -45,18 +45,18 @@ Probe rule:
 ```text
 native getter called exactly once
 
-if raw > 2500
-AND actor == player
-AND factual Action in {PierceAttack(11), FinishingAttack(15)}
+if actor == player
+AND factual Action in {PierceAttack(11), HackAttack(14)}
 AND phase == Hit
--> log one compact episode start
--> return native raw unchanged
+-> first observation logs HIT-SEEN with current raw
+-> if same Hit later reaches raw > 2500, log OVERDUE
+-> always return native raw unchanged
 
 otherwise
 -> return native raw unchanged
 ```
 
-This probe never protects Action11/15.
+This probe never protects Action11/14.
 
 Frozen runtime stack:
 - production `Script_G3AnimationBehaviors.dll` ON;
@@ -66,7 +66,7 @@ Frozen runtime stack:
 - existing third-party stack otherwise unchanged.
 
 Frozen raw filename:
-`research/raw/2026-10-07_bad_block_pierce_finishing_exclusion_probe.log`
+`research/raw/2026-10-07_bad_block_pierce_hack_exclusion_probe.log`
 
 Interpretation:
 - qualifying episode + visible bad skip = current exclusion contradicted;
@@ -74,9 +74,10 @@ Interpretation:
 - no qualifying episode after deliberate attempts = negative evidence only, not proof of impossibility.
 
 After this gate, if no contradiction:
-1. build the leanest diagnostics-free standalone protector;
-2. User performs visual bad-skip acceptance;
-3. integrate the same minimum into production G3AB;
-4. run one final visual release-candidate smoke.
+1. perform one separate small true Finishing/Action15 execution check with knocked-down NPCs;
+2. build the leanest diagnostics-free standalone protector;
+3. User performs visual bad-skip acceptance;
+4. integrate the same minimum into production G3AB;
+5. run one final visual release-candidate smoke.
 
 NPC overlap remains separate and is not part of this gate.

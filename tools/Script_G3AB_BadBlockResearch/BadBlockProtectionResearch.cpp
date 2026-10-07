@@ -129,7 +129,7 @@ struct ExclusionDiagnosticEpisodeState
 ExclusionDiagnosticEpisodeState g_ExclusionDiagnosticEpisode;
 }
 
-GEU32 ObservePierceFinishingHitTimeout(
+GEU32 ObservePierceHackHitTimeout(
     GEU32 rawDuration,
     PSCharacterControl const *receiver,
     FILE *log)
@@ -156,7 +156,7 @@ GEU32 ObservePierceFinishingHitTimeout(
             {
                 action = player.Routine.Action;
                 if (action == gEAction_PierceAttack
-                    || action == gEAction_FinishingAttack)
+                    || action == gEAction_HackAttack)
                 {
                     phase = player.GetCurrentAniPhase();
                     factualHit = phase == gEPhase_Hit;

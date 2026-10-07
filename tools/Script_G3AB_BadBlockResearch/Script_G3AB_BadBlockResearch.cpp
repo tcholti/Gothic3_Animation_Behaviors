@@ -40,7 +40,7 @@ GEU32 GE_STDCALL PlayerDurationAdapter(PSCharacterControl const *receiver)
     GEU32 const rawDuration = nativeGetter(receiver);
     if (ExclusionProbeEnabled)
     {
-        return BadBlockResearch::ObservePierceFinishingHitTimeout(
+        return BadBlockResearch::ObservePierceHackHitTimeout(
             rawDuration, receiver, g_pLog);
     }
 
@@ -109,8 +109,8 @@ void OpenLog()
         std::fprintf(
             g_pLog,
             "Script_G3AB_BadBlockResearch loaded.\n"
-            "Mode: EXCLUSION PROBE (Pierce/Finishing observe-only; native raw preserved).\n"
-            "Research only: overdue player Action11/Action15 factual Hit seam.\n"
+            "Mode: EXCLUSION PROBE (Pierce/Hack observe-only; native raw preserved).\n"
+            "Research only: overdue player Action11/Action14 factual Hit seam.\n"
             "Production Script_G3AnimationBehaviors.dll may coexist in this frozen fixture.\n");
     }
     else

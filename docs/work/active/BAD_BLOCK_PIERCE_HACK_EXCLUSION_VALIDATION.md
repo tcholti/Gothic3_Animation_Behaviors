@@ -1,4 +1,4 @@
-# Bad Block Skip — Pierce / Finishing Exclusion Validation
+# Bad Block Skip — Pierce / Hack Exclusion Validation
 
 **Status:** ACTIVE
 **Mode:** bounded observation-only research-DLL implementation + runtime validation
@@ -10,7 +10,7 @@
 
 Challenge the current first-release exclusion of:
 - `gEAction_PierceAttack = 11`;
-- `gEAction_FinishingAttack = 15`;
+- `gEAction_HackAttack = 14`;
 
 before the proven Action4/5/10 player protector is cleaned for production.
 
@@ -30,8 +30,8 @@ Observation predicate:
 ```text
 receiver-owning actor == player
 AND factual Routine Action is:
-    PierceAttack    = 11
-    FinishingAttack = 15
+    PierceAttack = 11
+    HackAttack   = 14
 AND factual phase == Hit
 ```
 
@@ -41,11 +41,11 @@ For each factual Hit episode:
 - include factual action, phase and actor/player identity;
 - always return **native raw unchanged**.
 
-Outside factual Action11/15 Hit:
+Outside factual Action11/14 Hit:
 - return native raw unchanged;
 - rearm only diagnostic episode state.
 
-The probe must never return 2500 for Action11/15 and must never modify attack/block behavior.
+The probe must never return 2500 for Action11/14 and must never modify attack/block behavior.
 
 ## Runtime fixture
 
@@ -64,11 +64,11 @@ Coexistence is explicitly authorized because production G3AB does not own `Scrip
 
 ## Runtime test
 
-For Pierce and Finishing separately, deliberately try to reproduce bad skip during Hit, with the held-block timeout already overdue whenever the input route allows it.
+For Pierce and Hack separately, deliberately try to reproduce bad skip during Hit, with the held-block timeout already overdue whenever the input route allows it.
 
 Observe:
 1. whether the visual attack/movement continuation is abruptly destroyed during Hit;
-2. whether a qualifying Action11/15 + Hit + raw>2500 episode is logged.
+2. whether a qualifying Action11/14 + Hit + raw>2500 episode is logged.
 
 Interpretation:
 - qualifying episode + visible bad skip => exclusion contradicted; stop before lean protector.
@@ -77,12 +77,12 @@ Interpretation:
 - any probe-caused behavior change => invalid test; stop.
 
 Frozen raw filename:
-`research/raw/2026-10-07_bad_block_pierce_finishing_exclusion_probe.log`
+`research/raw/2026-10-07_bad_block_pierce_hack_exclusion_probe.log`
 
 ## Exclusions
 
 Do not:
-- protect Action11 or Action15;
+- protect Action11 or Action14;
 - broaden protection scope;
 - edit production G3AB behavior;
 - add NPC intervention;
@@ -97,11 +97,16 @@ Do not:
 With production G3AB + New Balance + the first observe-only exclusion probe:
 - User first reproduced the known bad skip visually on Whirl and Quick across the tested weapon routes, confirming the fixture/probe did not suppress the established failure;
 - User then attempted Hack and Pierce and could not reproduce bad skip;
-- the probe log contained no Action11/15 overdue episode records.
+- the probe log contained no Action11/14 overdue episode records.
 
 Interpretation:
-- Hack/Action14 was an extra visual control and was not part of the frozen Action11/15 logger;
+- in the preliminary build, Hack/Action14 was an extra visual control because that first logger still watched Action11/15; the corrected/refined probe now watches factual Action11/14;
 - Pierce produced useful negative evidence but the first logger could not distinguish "Action11 Hit seen below threshold" from "Action11 Hit never observed at this seam";
 - therefore observability is refined only: `HIT-SEEN` + optional `OVERDUE`, with raw behavior preserved unchanged.
 
-Finishing/Action15 remains to be exercised explicitly.
+Correction after the preliminary run:
+- the originally remembered Finishing concern came from Hack/Action14 using Finishing-named animation assets;
+- factual Hack/Action14 is therefore the correct second exclusion target for this gate;
+- true Finishing/Action15 is a rare execution action over knocked-down NPCs and is deferred to a separate small follow-up check after Pierce/Hack.
+
+This correction changes only diagnostic scope; no behavior is modified.
