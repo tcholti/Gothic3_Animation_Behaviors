@@ -2,8 +2,8 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active project-specific collaboration authority  
-**Version:** 2.4  
-**Updated:** 2026-09-18
+**Version:** 2.5  
+**Updated:** 2026-10-07
 
 <!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
 
@@ -169,6 +169,56 @@ Treat materially constrained Work usage as a project resource: do not spend it o
 
 Detailed Work execution and stop conditions are owned by `WORK_IMPLEMENTATION_PROTOCOL.md`.
 
+
+#### Work research / recommendation authority
+
+Work may also be used for a **bounded research / static-analysis / option-generation responsibility** when its tools, compute, repository access or local-machine access materially improve that task.
+
+For those responsibilities, Work is **advisory by default** unless the task explicitly delegates decision closure.
+
+Work may:
+- establish facts and contradictions;
+- identify safety/compatibility risks;
+- rank candidate solutions;
+- recommend a preferred option;
+- explain why an ideal solution is expensive, incomplete or uncertain;
+- identify the smallest additional evidence needed.
+
+Work must not, merely because one option is imperfect:
+- convert `risky / dirty / approximate / incomplete` into `do not do it`;
+- silently redefine the User's acceptance criterion;
+- discard viable lower-cost alternatives;
+- decide that a feature should be abandoned, deferred or excluded from release when that product/architecture decision was not explicitly delegated.
+
+When the requested ideal cannot be met cleanly, preserve the option space:
+
+```text
+ideal contract
+-> why it is blocked / costly
+-> smallest viable approximation(s)
+-> exact semantic difference
+-> risks / compatibility cost
+-> evidence still missing
+-> recommendation, if useful
+-> RETURN DECISION to User + Normal Chat
+```
+
+Distinguish carefully:
+
+```text
+IMPOSSIBLE / CONTRADICTED
+from
+POSSIBLE BUT RISKY
+from
+POSSIBLE BUT IMPERFECT
+from
+POSSIBLE WITH A DIFFERENT CONTRACT
+```
+
+A recommendation is not decision authority.
+
+User + Normal Chat retain final authority over gameplay/product trade-offs, architecture choices and whether an imperfect but bounded solution is acceptable.
+
 ### Authoritative home PC
 
 The User's local Windows/Gothic 3 environment is authoritative for operations that require the real toolchain/game installation, including as applicable:
@@ -258,6 +308,24 @@ Agreement given **before** a new responsibility was exposed is agreement with th
 ---
 
 ## 6. Bounded Work Handoff
+
+Before delegating a non-trivial Work research/recommendation task, freeze these fields when relevant:
+
+```text
+User-visible problem / goal:
+Hard acceptance criterion:
+Acceptable approximation(s):
+What may be imperfect:
+Optimization priority:
+Decision authority:
+Options required if ideal fails:
+Protected behavior:
+Stop / escalation condition:
+```
+
+Especially for open research, write `Decision authority: advisory only` unless Work is deliberately authorized to close the decision.
+
+A task that says `find a solution`, `suggest solutions`, `research options`, or equivalent should normally require Work to return viable candidates even when it recommends against one of them.
 
 When User + Normal Chat decide that Work is the appropriate executor:
 
