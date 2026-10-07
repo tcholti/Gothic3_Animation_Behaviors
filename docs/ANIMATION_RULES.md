@@ -1,7 +1,7 @@
 # Gothic 3 Animation Rules
 
 **Status:** Canonical engine-facing animation/authoring reference  
-**Updated:** 2026-09-13
+**Updated:** 2026-10-07
 
 ## 1. Purpose
 
@@ -234,6 +234,27 @@ End=6
 ```
 
 Authored collision markers belong to the exact Hit motion.
+
+### Player input -> combat-action family
+
+The project also preserves the animation author's established **player input mapping**. `Action1` / `Action2` in this subsection mean the game's input bindings (normally mouse buttons), **not** the `gEAction` enum values listed above.
+
+```text
+input Action1 = normally LMB
+input Action2 = normally RMB
+```
+
+| Player input | Human melee result |
+|---|---|
+| press LMB | Normal attack |
+| hold LMB | Power attack |
+| press RMB | Quick attack |
+| hold RMB | Block / Parade |
+| hold RMB + hold LMB | Hack attack for 2H / Staff; Pierce attack for 1H families |
+| hold RMB + press LMB | full Whirl attack for 2H / Staff; Quick attack for 1H families |
+| hold LMB for less time than required for Power | SimpleWhirl for 1H+1H only |
+
+Weapon/animation family disambiguates the shared input chords. Preserve the factual runtime `gEAction` after selection; this input mapping explains how the player requests the family and must not replace runtime action identity in behavior code.
 
 ### 5.1 Raise filename patterns
 
