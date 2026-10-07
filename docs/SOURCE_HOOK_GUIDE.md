@@ -556,7 +556,11 @@ New Balance/live stack prevents native destructive condition
 -> G3AB performs no intervention
 ```
 
-Exact pause is therefore parked for post-release research. Stable first-release behavior remains unchanged.
+Exact pause remains parked for post-release research.
+
+ADR-0012 changes the **first-release acceptance contract**: exact remaining-time preservation is not required. A bounded stateless deferral that prevents this destructive branch while the bound actor is factually attacking is again a valid v1 candidate. Once the attack is no longer protected, an already-due timeout may fire immediately.
+
+Do not confuse this revised gameplay contract with mathematical pause/resume.
 
 Proof route: EV-448 and `docs/archive/investigations/bad_block_skip_static_research_2026-10-06.md`.
 
