@@ -2,8 +2,8 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active bounded-implementation protocol  
-**Version:** 1.6  
-**Updated:** 2026-09-12
+**Version:** 1.7  
+**Updated:** 2026-10-07
 
 <!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
 
@@ -110,6 +110,11 @@ Before a non-trivial edit, the task should make sufficiently clear when relevant
 ```text
 Target change:
 Question the code is supposed to answer:
+Hard acceptance criterion:
+Acceptable approximation(s), if any:
+Optimization priority:
+Decision authority:
+Options required if the ideal cannot be implemented faithfully:
 Protected behavior:
 Allowed files/modules/hooks/interfaces:
 Authoritative facts/events:
@@ -122,6 +127,27 @@ Stop conditions:
 This is a semantic check, not mandatory paperwork. Tiny tasks do not need a long template when the boundary is obvious.
 
 If missing information would materially decide intended behavior, classification, ownership, lifecycle, fallback, architecture, or another protected semantic rule, stop and return that issue rather than inventing it.
+
+### 4.1 Advisory / option-preservation boundary
+
+When Work is asked to research, compare, recommend, or investigate options as part of a bounded task, its role is advisory unless decision closure was explicitly delegated.
+
+If the ideal contract is blocked but one or more bounded alternatives remain technically viable, Work should report those alternatives rather than treating the ideal's failure as authority to abandon the feature.
+
+For each viable alternative, preserve:
+- what user-visible problem it solves;
+- what part of the ideal contract it does not satisfy;
+- implementation/hook/state cost;
+- compatibility and lifecycle risks;
+- evidence still missing;
+- whether it is reversible/removable;
+- a recommendation if useful.
+
+`Stop and return the issue` means **stop unassigned implementation**, not **decide that the project must stop pursuing the goal**.
+
+Work may conclude `no faithful implementation under the frozen contract`; it should still surface viable contract variants when the task requests options and those variants are supported by evidence.
+
+Final acceptance of a compromise, workaround, optional module, release trade-off or changed contract belongs to User + Normal Chat unless explicitly delegated.
 
 ---
 
