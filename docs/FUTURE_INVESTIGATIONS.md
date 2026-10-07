@@ -138,9 +138,7 @@ Routine StateTime > 2.0
 -> SetState ZS_Attack_Loop
 ```
 
-The player branch has one clean stateless **deferral** seam at `Script_Game +0x633BF`, but deferral is not exact pause because native held-input time continues to advance.
-
-True pause requires a new stateful virtual-clock lifecycle whose episode/reset and attack interval boundaries are not yet proven.
+The player branch has one clean stateless **deferral** seam at `Script_Game +0x633BF`. ADR-0012 accepts that exact remaining-time preservation is not required for v1, so this deferral seam has been reopened as a first-release candidate. Exact mathematical pause remains future work because it requires a new stateful virtual-clock lifecycle whose episode/reset and attack interval boundaries are not yet proven.
 
 ### Proven starting point
 
