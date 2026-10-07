@@ -136,17 +136,26 @@ Also prohibited:
 
 ## Diagnostic surface
 
-Keep diagnostics minimal.
+Keep diagnostics minimal and A/B-comparable.
 
-When and only when the adapter actually clamps `raw > 2500` to `2500`, write one concise record containing enough to prove the intervention:
+Normal Chat runtime refinement authorized by the User on 2026-10-07:
+- build CONTROL and PROTECTION from the same hook/classifier/logger source;
+- CONTROL preserves native `raw`;
+- PROTECTION returns `2500` only for the frozen qualifying predicate;
+- use diagnostic-only episode suppression so one continuous qualifying window emits one concise `Episode start` record instead of one line per getter call;
+- the diagnostic episode latch/ordinal must not decide protection, extend protection, mutate timing, or become gameplay lifecycle state;
+- any non-matching call rearms the diagnostic latch.
+
+Each episode-start record must include:
+- mode (CONTROL / PROTECTION);
 - raw duration;
+- effective duration;
 - factual action;
 - factual phase;
-- actor/player identity if cheaply available from the same established facts.
+- actor/player identity;
+- diagnostic episode ordinal.
 
-Do not log every getter call and do not create a high-volume trace.
-
-Startup/unload logging may remain.
+Startup/unload logging may remain. Do not restore the previous high-volume per-call clamp trace.
 
 ## Question this experiment must answer
 
@@ -225,6 +234,45 @@ while still holding RMB, press LMB
 ```
 
 Control behavior outside the frozen classifier remains native.
+
+### Frozen A/B causal comparison — 2026-10-07
+
+Use the same initial causal fixture for both runs:
+
+```text
+Gothic 3 / CP + Alternative AI
+- Script_G3AnimationBehaviors.dll
+- Script_NewBalance.dll
+```
+
+The two products are built from the same research source:
+
+```text
+A / CONTROL:
++ Script_G3AB_BadBlockResearch_Control.dll
+qualifying call -> log episode start -> return native raw unchanged
+
+B / PROTECTION:
++ Script_G3AB_BadBlockResearch.dll
+qualifying call -> log episode start -> return 2500
+```
+
+The intended first A/B case is the historically repeatable 2H/staff full-Whirl failure:
+1. hold RMB long enough that the timeout is overdue;
+2. trigger full Whirl with press-LMB while still holding RMB;
+3. target the timing where bad skip historically occurs after weapon collision has armed;
+4. let the visible attack finish;
+5. before any new attack, stumble, weapon change, or other cleanup action, run the still-drawn weapon into an NPC.
+
+Causal outcome:
+- CONTROL should preserve the native destructive behavior when the historical failure is reproduced; stale armed collision afterward is a strong visible signature.
+- PROTECTION should record the same qualifying Action10/Hit overdue condition but prevent the destructive timeout; native attack continuation/cleanup should survive and running into the NPC afterward should not cause stale-collision damage.
+
+Freeze raw filenames:
+- `research/raw/2026-10-07_bad_block_player_whirl_control.log`
+- `research/raw/2026-10-07_bad_block_player_whirl_protection.log`
+
+Do not broaden the classifier or add NPC intervention between A and B.
 
 NPC overlap remains a separate later evidence question. The already-designed `+0x46F39` observer is not authorized by this task.
 

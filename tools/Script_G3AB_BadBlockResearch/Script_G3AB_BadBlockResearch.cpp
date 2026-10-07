@@ -8,12 +8,17 @@
 
 #include <windows.h>
 
+#ifndef G3AB_BADBLOCK_PROTECTION_MODE
+#define G3AB_BADBLOCK_PROTECTION_MODE 1
+#endif
+
 namespace
 {
 FILE *g_pLog = nullptr;
 
 constexpr GEU32 DurationCallRva = 0x633BF;
 constexpr GEU32 DurationGetterSlotRva = 0xE4990;
+constexpr bool ProtectionEnabled = G3AB_BADBLOCK_PROTECTION_MODE != 0;
 
 // Win32 getter: original CharacterControl/property wrapper in ECX, result in EAX.
 using DurationGetter = GEU32 (__thiscall *)(PSCharacterControl const *);
@@ -28,7 +33,8 @@ GEU32 GE_STDCALL PlayerDurationAdapter(PSCharacterControl const *receiver)
     // Preserve the original indirect call's current target and receiver once.
     DurationGetter const nativeGetter = *g_pDurationGetterSlot;
     GEU32 const rawDuration = nativeGetter(receiver);
-    return BadBlockResearch::DeferPlayerHitTimeout(rawDuration, receiver, g_pLog);
+    return BadBlockResearch::EvaluatePlayerHitTimeout(
+        rawDuration, receiver, g_pLog, ProtectionEnabled);
 }
 
 void InstallPlayerDurationHook()
@@ -41,7 +47,7 @@ void InstallPlayerDurationHook()
     if (scriptGame == nullptr)
     {
         if (g_pLog != nullptr)
-            std::fprintf(g_pLog, "Player deferral inactive: Script_Game unavailable.\n");
+            std::fprintf(g_pLog, "Player timeout seam inactive: Script_Game unavailable.\n");
         return;
     }
 
@@ -62,7 +68,7 @@ void InstallPlayerDurationHook()
     if (std::memcmp(callSite, expected, sizeof(expected)) != 0 || *slot == nullptr)
     {
         if (g_pLog != nullptr)
-            std::fprintf(g_pLog, "Player deferral inactive: unsupported/conflicting timeout seam.\n");
+            std::fprintf(g_pLog, "Player timeout seam inactive: unsupported/conflicting timeout seam.\n");
         return;
     }
 
@@ -75,7 +81,10 @@ void InstallPlayerDurationHook()
         .AddThisArg()
         .Hook();
     if (g_pLog != nullptr)
-        std::fprintf(g_pLog, "Player Hit deferral +0x633BF: %s.\n", installed ? "installed" : "inactive");
+        std::fprintf(
+            g_pLog,
+            "Player timeout seam +0x633BF: %s.\n",
+            installed ? "installed" : "inactive");
 }
 
 void OpenLog()
@@ -87,8 +96,12 @@ void OpenLog()
     std::fprintf(
         g_pLog,
         "Script_G3AB_BadBlockResearch loaded.\n"
-        "Research only: overdue player Quick R/L and full Whirl Hit deferral.\n"
-        "Production Script_G3AnimationBehaviors.dll is intentionally independent.\n");
+        "Mode: %s.\n"
+        "Research only: overdue player Quick R/L and full Whirl Hit seam.\n"
+        "Production Script_G3AnimationBehaviors.dll is intentionally independent.\n",
+        ProtectionEnabled
+            ? "PROTECTION (qualifying raw >2500 returns 2500)"
+            : "CONTROL (observe only; native raw preserved)");
     std::fflush(g_pLog);
 }
 
