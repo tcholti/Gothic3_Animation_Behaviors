@@ -102,7 +102,7 @@ Script_G3AB_BadBlockResearch.dll
 
 Final integrated-vs-optional packaging remains open.
 
-No implementation is frozen yet.
+Work advisory option research is complete. No implementation is frozen yet; User + Normal Chat are at the next-experiment decision gate. P1 player stateless deferral is the recommended first mechanism experiment; NPC overlap remains a separate observer question.
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
 
