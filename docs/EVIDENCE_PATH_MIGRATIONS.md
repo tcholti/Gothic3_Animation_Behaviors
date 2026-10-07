@@ -523,6 +523,18 @@ Disposition/provenance:
 - historical references to the CONTROL raw path resolve through this migration entry;
 - intended active raw intake returns to `research/raw/Keep.txt` only.
 
+
+## 2026-10-07 — Pierce / Hack exclusion-probe closure
+
+```text
+research/raw/2026-10-07_bad_block_pierce_hack_exclusion_probe.log
+ -> research/archive/2026-10-07_bad_block_pierce_hack_exclusion_probe.log
+ SHA256 4E52117CEBA51D7CA8AC035F8318E850BE5341988FC8617FC3717017EFC8F0DF
+ blob 353a877c0c3f0e41e8e361f057947b0b3639f19f
+```
+
+EV-451 owns interpretation. The file moved unchanged after the Pierce/Hack scope question closed.
+
 ---
 
 ## Rule for Future Moves

@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = stable main EV-447; EV-449–EV-450 player Hit deferral A/B = CLOSED/PASS; ACTIVE = Pierce/Hack exclusion validation before lean-protector cleanup
+CURRENT = stable main EV-447; EV-449–EV-450 player protector = CLOSED/PASS; EV-451 Pierce/Hack exclusion = PASS; NEXT = small true Finishing/Action15 execution check
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise direction continuation = CLOSED/PASS EV-427; EV-430 completes representative Normal / Quick R+L / pose-changing Quick / full Whirl coverage including partial Raise-asset profiles
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
@@ -52,49 +52,25 @@ Canonical reusable engine lookup:
 
 The completed preservation-biased repository audit and Work result are archived under `docs/archive/investigations/`. Its accepted RH-01–RH-13 maintenance is represented in the durable owners; RH-14–RH-17 were KEEP/no-action. The three previously retained Sprint-probe logs were positively reconciled during EV-397/EV-398 maintenance and archived byte-identically; path migration is recorded in `EVIDENCE_PATH_MIGRATIONS.md`.
 
-## Immediate continuation — Pierce / Hack exclusion validation
+## Immediate continuation — true Finishing / Action15 check
 
 Stable release fallback:
 `main @ e899f37092706a9846312b93d6b52b34e715b53d`
 
-EV-449–EV-450 prove the minimum player protector for Action4/5/10 + factual Hit.
+Closed bad-block scope:
+- EV-449–EV-450: Quick R / Quick L / full Whirl factual Hit protection is runtime-proven.
+- EV-451: repeated Pierce/Action11 and Hack/Action14 attempts did not reproduce bad skip; the observe-only timeout probe did not see factual Action11/14 Hit at `+0x633BF`. Keep both excluded from v1.
 
-Before cleaning that protector for production, User + Normal Chat froze one final exclusion challenge:
+Next gate is deliberately small:
+true `FinishingAttack / Action15` only, because it is a rare execution action over knocked-down NPCs and was previously conflated with Hack due shared Finishing-named assets.
 
-`docs/work/active/BAD_BLOCK_PIERCE_HACK_EXCLUSION_VALIDATION.md`
+Planned fixture:
+production G3AB ON + New Balance ON + one observe-only Action15 timeout probe.
 
-Observation-only rule at the already-proven `Script_Game +0x633BF` seam:
+After that check, absent contradiction:
+lean diagnostics-free standalone protector -> visual acceptance -> production G3AB integration -> final visual smoke.
 
-```text
-call native DurationPressedMSecs getter exactly once
-
-if actor == player
-AND factual Action in {PierceAttack(11), HackAttack(14)}
-AND phase == Hit
--> first observation: log HIT-SEEN with current raw
--> if same Hit later reaches raw > 2500: log OVERDUE
--> always return native raw unchanged
-
-otherwise
--> return native raw unchanged
-```
-
-Frozen intended runtime stack:
-- production G3AB ON;
-- New Balance ON;
-- `Script_G3AB_BadBlockExclusionProbe.dll` ON;
-- unrelated research/control G3AB products OFF.
-
-Purpose:
-attempt to reproduce destructive bad skip on Pierce and Hack without protecting either action. This is a scope challenge only; it does not reopen the proven Action4/5/10 mechanism.
-
-Frozen raw filename:
-`research/raw/2026-10-07_bad_block_pierce_hack_exclusion_probe.log`
-
-If this gate does not contradict the exclusions, next sequence is:
-small true Finishing/Action15 execution check -> lean diagnostics-free standalone protector -> visual acceptance -> production G3AB integration -> final visual smoke.
-
-NPC overlap remains separate and is not part of this task.
+NPC overlap remains separate and is not a first-release blocker.
 
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.

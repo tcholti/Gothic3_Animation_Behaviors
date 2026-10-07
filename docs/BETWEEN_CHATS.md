@@ -1,83 +1,58 @@
+[Reading 20 lines from start (total: 48 lines, 28 remaining)]
+
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-10-07 — Pierce / Hack exclusion validation ACTIVE
+**Updated:** 2026-10-07 — EV-451 Pierce/Hack exclusion closed
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`
+Stable main: `e899f37092706a9846312b93d6b52b34e715b53d`
+Active branch: `development`
 
-Stable release branch:
-`main @ e899f37092706a9846312b93d6b52b34e715b53d`
+## Bad-block first-release state
 
-Active branch:
-`development`
+EV-449–EV-450:
+- proven protected set = QuickAttackR(4), QuickAttackL(5), WhirlAttack(10), factual Hit, player, raw>2500;
+- stateless branch-local return 2500 is causally sufficient.
 
-## Proven baseline
+EV-451:
+- production G3AB + New Balance + observe-only timeout probe;
+- repeated Pierce/Action11 and Hack/Action14 attempts;
+- no visual bad skip;
+- zero factual Action11/14 `HIT-SEEN` and zero `OVERDUE` at `Script_Game +0x633BF`;
 
-EV-449–EV-450 closed the player bad-block A/B mechanism with runtime causal PASS.
+[executed on device: DESKTOP-1HB54C3 (ee009201-9ef7-41b1-ae5c-82d3de3789be)]
+[Reading 28 lines from line 20 (total: 48 lines, 0 remaining)]
 
-Proven protected set:
-```text
-raw > 2500
-+ player
-+ factual Action in {QuickAttackR(4), QuickAttackL(5), WhirlAttack(10)}
-+ factual Hit
--> branch-local return 2500
-```
+- keep Action11 and Action14 excluded from v1 protector.
 
-No gameplay token, timer map, global duration mutation, or collision-guardian coupling is justified.
+Archived task:
+`docs/archive/investigations/BAD_BLOCK_PIERCE_HACK_EXCLUSION_VALIDATION.md`
 
-## Active gate
+Archived artifact:
+`research/archive/2026-10-07_bad_block_pierce_hack_exclusion_probe.log`
 
-`docs/work/active/BAD_BLOCK_PIERCE_HACK_EXCLUSION_VALIDATION.md`
+## Next gate
 
-Purpose:
-challenge the current exclusion of Pierce/Action11 and Hack/Action14 before lean-protector cleanup and production integration.
+Run one separate, small true Finishing/Action15 check.
 
-Probe:
-`Script_G3AB_BadBlockExclusionProbe.dll`
+Reason:
+Hack/Action14 can use Finishing-named animation assets, which caused the earlier memory conflation. True Finishing/Action15 is a rare execution action performed over knocked-down NPCs.
 
-Exact seam:
-`Script_Game +0x633BF`
+Use:
+- production G3AB ON;
+- New Balance ON;
+- observation-only Action15 logger at the same timeout seam;
+- no Action15 protection.
 
-Probe rule:
-```text
-native getter called exactly once
+User can use god mode, knock down NPCs, hold RMB close to the bad-skip threshold, then execute true finishing attacks.
 
-if actor == player
-AND factual Action in {PierceAttack(11), HackAttack(14)}
-AND phase == Hit
--> first observation logs HIT-SEEN with current raw
--> if same Hit later reaches raw > 2500, log OVERDUE
--> always return native raw unchanged
+If no contradiction:
+-> lean diagnostics-free standalone protector
+-> visual acceptance
+-> production G3AB integration
+-> final visual release-candidate smoke.
 
-otherwise
--> return native raw unchanged
-```
-
-This probe never protects Action11/14.
-
-Frozen runtime stack:
-- production `Script_G3AnimationBehaviors.dll` ON;
-- `Script_NewBalance.dll` ON;
-- exclusion probe ON;
-- old bad-block research/control DLLs OFF;
-- existing third-party stack otherwise unchanged.
-
-Frozen raw filename:
-`research/raw/2026-10-07_bad_block_pierce_hack_exclusion_probe.log`
-
-Interpretation:
-- qualifying episode + visible bad skip = current exclusion contradicted;
-- qualifying episode + no bad skip = evidence supporting exclusion;
-- no qualifying episode after deliberate attempts = negative evidence only, not proof of impossibility.
-
-After this gate, if no contradiction:
-1. perform one separate small true Finishing/Action15 execution check with knocked-down NPCs;
-2. build the leanest diagnostics-free standalone protector;
-3. User performs visual bad-skip acceptance;
-4. integrate the same minimum into production G3AB;
-5. run one final visual release-candidate smoke.
-
-NPC overlap remains separate and is not part of this gate.
+[executed on device: DESKTOP-1HB54C3 (ee009201-9ef7-41b1-ae5c-82d3de3789be)]

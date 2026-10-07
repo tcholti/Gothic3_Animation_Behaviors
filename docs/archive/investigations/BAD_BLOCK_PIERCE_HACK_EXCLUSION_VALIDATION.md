@@ -1,6 +1,6 @@
 # Bad Block Skip — Pierce / Hack Exclusion Validation
 
-**Status:** ACTIVE
+**Status:** CLOSED — exclusion supported / EV-451
 **Mode:** bounded observation-only research-DLL implementation + runtime validation
 **Frozen by:** User + Normal Chat, 2026-10-07
 **Launch base:** `development @ a4ab052f0150980384af094d706ceca822a0b645`
@@ -110,3 +110,28 @@ Correction after the preliminary run:
 - true Finishing/Action15 is a rare execution action over knocked-down NPCs and is deferred to a separate small follow-up check after Pierce/Hack.
 
 This correction changes only diagnostic scope; no behavior is modified.
+
+
+## Final result — EV-451
+
+Refined observe-only run:
+- production G3AB ON;
+- New Balance ON;
+- exclusion probe ON;
+- user attempted Pierce and Hack many times near/through the bad-skip timing;
+- no visible bad skip could be reproduced for either action;
+- probe loaded and installed the exact `Script_Game +0x633BF` seam cleanly;
+- zero `HIT-SEEN` records for factual Action11/Action14;
+- zero `OVERDUE` records.
+
+The probe always returned native raw duration unchanged.
+
+Interpretation:
+- within this tested stack, the timeout seam did not observe factual Pierce/Action11 or Hack/Action14 during Hit despite deliberate attempts;
+- this is strong first-release exclusion evidence, especially because the preceding same-fixture run reproduced the known Quick/Whirl failure while the observe-only probe was active;
+- do not claim Pierce/Hack can never fail in every possible stack, but no evidence justifies adding either to the first-release protection set.
+
+Disposition:
+**CLOSED — KEEP ACTION11/14 EXCLUDED FROM THE V1 PROTECTOR.**
+
+True Finishing/Action15 remains a separate, low-frequency execution-action check.

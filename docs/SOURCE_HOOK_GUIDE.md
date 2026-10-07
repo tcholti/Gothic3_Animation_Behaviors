@@ -539,6 +539,8 @@ Paired A/B result:
 - CONTROL preserved native raw and repeatedly reproduced destructive bad skip plus stale armed collision;
 - PROTECTION encountered the same overdue Action4/5/10 + Hit condition repeatedly, returned `2500`, prevented the reproduced skip and allowed native collision cleanup to complete.
 
+EV-451 then challenged two excluded factual actions with production G3AB + New Balance active. Repeated Pierce/Action11 and Hack/Action14 attempts produced no visible bad skip, and the observe-only `+0x633BF` probe saw neither factual action during Hit at this seam. Keep Action11/14 excluded from the first-release protector absent contradictory evidence.
+
 This is **not an exact pause**. Native held-input time continues to advance, so expiry may occur immediately after the protected Hit. The proven mechanism needs no actor timer map, gameplay lifecycle token or collision-guardian coupling.
 
 Do not:

@@ -1741,3 +1741,40 @@ Disposition:
 - final product placement remains a separate User + Normal Chat decision: integrate the proven minimum into production G3AB, retain a cleaned optional standalone DLL, or decline shipment.
 - the temporary experiment task is archived under `docs/archive/investigations/BAD_BLOCK_SKIP_ATTACK_PROTECTION_OPTIONS.md`.
 
+### EV-451 — Pierce / Hack bad-block exclusion validation supports current scope
+
+Fixture:
+- production `Script_G3AnimationBehaviors.dll` ON;
+- `Script_NewBalance.dll` ON;
+- `Script_G3AB_BadBlockExclusionProbe.dll` ON;
+- old bad-block protection/control DLLs absent;
+- exclusion observer returned native raw duration unchanged on every call.
+
+Source checkpoint:
+`development @ 38556772a8766d6ebf69640d60597db0e8f109ac`
+
+Probe binary:
+`SHA256 8B77C71E2D277FF803E0425EDB5BD53FCEF7E38799E56DD94E502157AF0AF83E`
+
+Canonical archived artifact:
+`research/archive/2026-10-07_bad_block_pierce_hack_exclusion_probe.log`
+`SHA256 4E52117CEBA51D7CA8AC035F8318E850BE5341988FC8617FC3717017EFC8F0DF`
+`Git blob 353a877c0c3f0e41e8e361f057947b0b3639f19f`
+
+Runtime observations:
+- User deliberately attempted bad skip many times with Pierce and Hack and observed no destructive skip.
+- In the immediately preceding same-fixture probe run, known Quick/Whirl bad skip was reproduced, confirming the observation fixture had not generally suppressed the defect.
+- The refined Pierce/Hack observer produced zero `HIT-SEEN` records and zero `OVERDUE` records while installed cleanly at `Script_Game +0x633BF`.
+
+Interpretation:
+- the tested timeout seam did not observe factual Pierce/Action11 or Hack/Action14 during Hit in these deliberate attempts;
+- no positive evidence supports adding either action to the first-release protection set;
+- this supports retaining the proven EV-450 protected set only: Quick R / Quick L / full Whirl during factual Hit.
+
+Limit:
+- this is first-release exclusion evidence, not a universal proof that Pierce/Hack can never fail in every possible mod/runtime stack.
+
+Disposition:
+- **PASS — KEEP ACTION11/14 EXCLUDED FROM V1 PROTECTOR.**
+- true Finishing/Action15 remains a separate low-frequency execution-action follow-up.
+
