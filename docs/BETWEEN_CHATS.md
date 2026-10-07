@@ -1,9 +1,7 @@
-[Reading 20 lines from start (total: 48 lines, 28 remaining)]
-
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-10-07 — EV-451 Pierce/Hack exclusion closed
+**Updated:** 2026-10-07 — true Finishing/Action15 exclusion check ACTIVE
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
@@ -11,48 +9,51 @@ Repository: `tcholti/Gothic3_Animation_Behaviors`
 Stable main: `e899f37092706a9846312b93d6b52b34e715b53d`
 Active branch: `development`
 
-## Bad-block first-release state
+## Closed bad-block state
 
 EV-449–EV-450:
-- proven protected set = QuickAttackR(4), QuickAttackL(5), WhirlAttack(10), factual Hit, player, raw>2500;
-- stateless branch-local return 2500 is causally sufficient.
+- protect player QuickAttackR(4), QuickAttackL(5), WhirlAttack(10), factual Hit, raw>2500;
+- branch-local return 2500 is causally sufficient.
 
 EV-451:
-- production G3AB + New Balance + observe-only timeout probe;
-- repeated Pierce/Action11 and Hack/Action14 attempts;
+- repeated Pierce/Action11 and Hack/Action14 attempts under production G3AB + New Balance;
 - no visual bad skip;
-- zero factual Action11/14 `HIT-SEEN` and zero `OVERDUE` at `Script_Game +0x633BF`;
+- timeout observer saw zero factual Action11/14 Hit records;
+- keep Action11/14 excluded from v1.
 
-[executed on device: DESKTOP-1HB54C3 (ee009201-9ef7-41b1-ae5c-82d3de3789be)]
-[Reading 28 lines from line 20 (total: 48 lines, 0 remaining)]
+## Active gate
 
-- keep Action11 and Action14 excluded from v1 protector.
+`docs/work/active/BAD_BLOCK_FINISHING_EXCLUSION_VALIDATION.md`
 
-Archived task:
-`docs/archive/investigations/BAD_BLOCK_PIERCE_HACK_EXCLUSION_VALIDATION.md`
+True Finishing/Action15 only.
 
-Archived artifact:
-`research/archive/2026-10-07_bad_block_pierce_hack_exclusion_probe.log`
+Probe:
+`Script_G3AB_BadBlockExclusionProbe.dll`
 
-## Next gate
+At `Script_Game +0x633BF`:
+```text
+if player
+AND factual Action == FinishingAttack(15)
+AND phase == Hit
+-> first observation logs HIT-SEEN with raw
+-> same Hit crossing raw > 2500 logs OVERDUE
+-> always return native raw unchanged
+```
 
-Run one separate, small true Finishing/Action15 check.
-
-Reason:
-Hack/Action14 can use Finishing-named animation assets, which caused the earlier memory conflation. True Finishing/Action15 is a rare execution action performed over knocked-down NPCs.
-
-Use:
+Runtime fixture:
 - production G3AB ON;
 - New Balance ON;
-- observation-only Action15 logger at the same timeout seam;
-- no Action15 protection.
+- observe-only probe ON;
+- old protection/control research DLLs OFF.
 
-User can use god mode, knock down NPCs, hold RMB close to the bad-skip threshold, then execute true finishing attacks.
+User test:
+use god mode if useful, knock down NPCs, hold RMB near timeout, then perform true executions by holding LMB over the downed target. Repeat at aggressive timing and watch for visible bad skip.
 
-If no contradiction:
+Frozen raw:
+`research/raw/2026-10-07_bad_block_finishing_exclusion_probe.log`
+
+If clean:
 -> lean diagnostics-free standalone protector
 -> visual acceptance
 -> production G3AB integration
 -> final visual release-candidate smoke.
-
-[executed on device: DESKTOP-1HB54C3 (ee009201-9ef7-41b1-ae5c-82d3de3789be)]

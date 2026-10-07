@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = stable main EV-447; EV-449–EV-450 player protector = CLOSED/PASS; EV-451 Pierce/Hack exclusion = PASS; NEXT = small true Finishing/Action15 execution check
+CURRENT = stable main EV-447; EV-449–EV-450 player protector = CLOSED/PASS; EV-451 Pierce/Hack exclusion = PASS; ACTIVE = true Finishing/Action15 exclusion check
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise direction continuation = CLOSED/PASS EV-427; EV-430 completes representative Normal / Quick R+L / pose-changing Quick / full Whirl coverage including partial Raise-asset profiles
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
@@ -52,25 +52,29 @@ Canonical reusable engine lookup:
 
 The completed preservation-biased repository audit and Work result are archived under `docs/archive/investigations/`. Its accepted RH-01–RH-13 maintenance is represented in the durable owners; RH-14–RH-17 were KEEP/no-action. The three previously retained Sprint-probe logs were positively reconciled during EV-397/EV-398 maintenance and archived byte-identically; path migration is recorded in `EVIDENCE_PATH_MIGRATIONS.md`.
 
-## Immediate continuation — true Finishing / Action15 check
+## Immediate continuation — true Finishing / Action15 exclusion validation
 
-Stable release fallback:
-`main @ e899f37092706a9846312b93d6b52b34e715b53d`
+Active task:
+`docs/work/active/BAD_BLOCK_FINISHING_EXCLUSION_VALIDATION.md`
 
-Closed bad-block scope:
-- EV-449–EV-450: Quick R / Quick L / full Whirl factual Hit protection is runtime-proven.
-- EV-451: repeated Pierce/Action11 and Hack/Action14 attempts did not reproduce bad skip; the observe-only timeout probe did not see factual Action11/14 Hit at `+0x633BF`. Keep both excluded from v1.
+Closed scope:
+- EV-449–EV-450: Quick R / Quick L / full Whirl protection runtime-proven.
+- EV-451: Pierce/Action11 and Hack/Action14 exclusion supported; keep both out of v1.
 
-Next gate is deliberately small:
-true `FinishingAttack / Action15` only, because it is a rare execution action over knocked-down NPCs and was previously conflated with Hack due shared Finishing-named assets.
+Current probe:
+- exact timeout seam `Script_Game +0x633BF`;
+- factual player FinishingAttack/Action15 + Hit only;
+- logs `HIT-SEEN`, then `OVERDUE` if raw crosses 2500 during the same Hit;
+- always returns native raw unchanged.
 
-Planned fixture:
-production G3AB ON + New Balance ON + one observe-only Action15 timeout probe.
+Runtime fixture:
+production G3AB ON + New Balance ON + Action15 observe-only probe.
 
-After that check, absent contradiction:
+Frozen raw:
+`research/raw/2026-10-07_bad_block_finishing_exclusion_probe.log`
+
+After this check, absent contradiction:
 lean diagnostics-free standalone protector -> visual acceptance -> production G3AB integration -> final visual smoke.
-
-NPC overlap remains separate and is not a first-release blocker.
 
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
