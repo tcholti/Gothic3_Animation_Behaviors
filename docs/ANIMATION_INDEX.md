@@ -1,7 +1,7 @@
 # Gothic 3 Animation Knowledge Index
 
 **Status:** Cold/reference routing index  
-**Updated:** 2026-09-08
+**Updated:** 2026-10-07
 
 ## Purpose
 
@@ -28,6 +28,7 @@ Runtime claims remain evidence-bounded; native action/phase/source semantics out
 | raw UseType -> animation category | `ANIMATION_RULES.md` §4 |
 | Fist vs PhysicalFist normalization | `ANIMATION_RULES.md` §4; collision mechanism distinction §§10–11 |
 | combat action / phase values | `ANIMATION_RULES.md` §5 |
+| player LMB/RMB input -> attack family | `ANIMATION_RULES.md` §5 |
 | Dual SimpleWhirl filename/action mismatch | `ANIMATION_RULES.md` §§5, 7; `ANIMATION_CATALOG.md` §6 |
 | frame 0–N sampled-frame convention | `ANIMATION_RULES.md` §8 |
 | equipped collision marker authoring | `ANIMATION_RULES.md` §9 |
