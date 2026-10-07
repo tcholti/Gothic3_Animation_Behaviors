@@ -1,7 +1,7 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-10-07 — lean standalone protector acceptance ACTIVE
+**Updated:** 2026-10-07 — lean standalone protector DEPLOYED / runtime acceptance pending
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
@@ -55,11 +55,21 @@ The standalone candidate must contain no:
 - FullStop/SetState suppression;
 - collision-guardian coupling.
 
-Runtime acceptance fixture:
-- production G3AB ON;
-- New Balance ON;
-- lean protector ON;
+Implementation checkpoint:
+`development @ bc7d341abd71dc064e6be6faf88d51dff6d62eb4`
+
+Built/live lean protector:
+`SHA256 6A04B4AB4529EF2C7FD6BEB6450572BD504AF188FB3BD45FBCFD116E5AB5A03A`
+
+Runtime acceptance fixture is already deployed and left in place:
+- production G3AB ON — `4F05583E74F0B2F49FBC3682DB244EDE86C277BA810DBFE0C985859D69A32B68`;
+- New Balance ON — `0C06C35F294F2FDF3011AC82FF506CA422947B6908CE2530AA1B057A243A6F88`;
+- lean protector ON — `6A04B4AB4529EF2C7FD6BEB6450572BD504AF188FB3BD45FBCFD116E5AB5A03A`;
 - all old bad-block research/control/exclusion products OFF.
 
-Acceptance is visual only:
-repeatedly try to reproduce known Quick/Whirl bad skip. If clean, integrate the same minimum into production G3AB and run final release-candidate smoke.
+Runtime acceptance has not started yet.
+
+Exact next step:
+1. launch Gothic 3 to main menu and exit normally; no log is expected;
+2. if startup is clean, repeatedly try to reproduce known Quick/Whirl bad skip;
+3. if clean, integrate the same minimum into production G3AB and run final release-candidate smoke.

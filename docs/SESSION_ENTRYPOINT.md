@@ -68,7 +68,7 @@ Active task:
 Candidate product:
 `Script_G3AB_BadBlockProtector.dll`
 
-The proven EV-450 mechanism is now being cleaned into the leanest diagnostics-free standalone protector for visual acceptance before production integration.
+The proven EV-450 mechanism is now implemented as the lean diagnostics-free standalone protector at `development @ bc7d341abd71dc064e6be6faf88d51dff6d62eb4`. Built/live SHA256: `6A04B4AB4529EF2C7FD6BEB6450572BD504AF188FB3BD45FBCFD116E5AB5A03A`. The acceptance fixture is deployed, but runtime acceptance has not started yet.
 
 The lean protector must retain only:
 ```text

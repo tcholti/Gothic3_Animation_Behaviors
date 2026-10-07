@@ -92,3 +92,32 @@ Acceptance:
 
 If this passes:
 integrate the same minimum into production `Script_G3AnimationBehaviors.dll`, then remove the standalone protector and run the final release-candidate visual smoke.
+
+
+## End-of-day checkpoint — 2026-10-07
+
+Implementation checkpoint:
+`development @ bc7d341abd71dc064e6be6faf88d51dff6d62eb4`
+
+Source review:
+- diagnostics-free standalone source PASS;
+- no logger/A-B/episode/exclusion-observer code;
+- only factual Action4/5/10 + Hit can return `2500`;
+- native/current getter is called exactly once.
+
+Built/deployed protector:
+`Script_G3AB_BadBlockProtector.dll`
+`SHA256 6A04B4AB4529EF2C7FD6BEB6450572BD504AF188FB3BD45FBCFD116E5AB5A03A`
+
+Live acceptance fixture left deployed for next session:
+- `Script_G3AB_BadBlockProtector.dll` = `6A04B4AB4529EF2C7FD6BEB6450572BD504AF188FB3BD45FBCFD116E5AB5A03A`;
+- production `Script_G3AnimationBehaviors.dll` = `4F05583E74F0B2F49FBC3682DB244EDE86C277BA810DBFE0C985859D69A32B68`;
+- `Script_NewBalance.dll` = `0C06C35F294F2FDF3011AC82FF506CA422947B6908CE2530AA1B057A243A6F88`;
+- old bad-block research/control/exclusion products absent.
+
+Runtime acceptance has **not started yet**.
+
+Exact next step next session:
+1. launch Gothic 3 to the main menu and exit normally; no log is expected, so successful startup/exit is the diagnostics-free startup gate;
+2. if startup is clean, repeatedly try to reproduce known bad skip with Quick attacks and full Whirl;
+3. if visual acceptance passes, integrate this same minimum into production G3AB; do not redesign.
