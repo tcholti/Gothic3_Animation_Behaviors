@@ -100,3 +100,22 @@ Final product placement remains undecided:
 - integrate proven minimum into G3AB;
 - ship a cleaned optional bad-block DLL;
 - discard research DLL.
+
+
+## Work option research result
+
+Archived:
+`docs/archive/investigations/bad_block_attack_protection_options_2026-10-07.md`
+
+Result:
+- player P1 stateless deferral is technically viable under ADR-0012;
+- exact receiver/ABI route is established, including actor resolution through the CharacterControl engine property set;
+- P1/P2/P3 classifier alternatives are preserved;
+- NPC attack overlap remains unresolved;
+- exact +0x46F39 NPC observer is designed;
+- no implementation/build/runtime work occurred.
+
+Current decision gate:
+User + Normal Chat choose whether to freeze P1 as the first isolated research-DLL experiment or select another evidence step.
+
+Work recommends P1 first.
