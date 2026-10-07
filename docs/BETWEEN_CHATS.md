@@ -1,7 +1,7 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-10-07 — ADR-0012 bad-block attack protection / Work delegation rule
+**Updated:** 2026-10-07 — frozen bad-block player Hit deferral experiment
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
@@ -18,104 +18,91 @@ Active branch:
 Collision + Speed + Raise + Movement remain accepted.  
 EV-447 stable promotion remains the release fallback.
 
-## EV-448 remains valid, but its contract was too strong for the gameplay need
-
-EV-448 proved:
-- exact mathematical remaining-time pause is stateful and not clean enough for first release;
-- player timeout seam is `Script_Game +0x633BF`;
-- NPC Alternative-AI timeout is a separate `StateTime > 2.0` branch at `+0x46F39`.
-
-Today the User clarified the actual gameplay requirement.
-
-ADR-0012 accepted:
-
-```text
-Do not let block-timeout teardown destroy a live attack.
-
-Exact remaining-time preservation is NOT required.
-
-The native timer may continue advancing.
-If it is already due, block skip may fire immediately after the attack has safely ended.
-```
-
-Reason:
-the visible attack animation can continue after destructive bad skip while engine-side continuation has been lost. Collision guard correctly repairs stale collision, but the result can be a visually connected weapon with no normal hit/damage outcome.
+EV-448 exact mathematical pause research remains valid but is not the first-release contract. ADR-0012 requires only that block-timeout teardown not destroy a protected live attack; native held-input time may continue and an already-due timeout may fire after protection ends.
 
 ## Active responsibility
 
 `docs/work/active/BAD_BLOCK_SKIP_ATTACK_PROTECTION_OPTIONS.md`
 
-Compare:
-1. integrated player stateless deferral;
-2. separate optional bad-block-skip patch DLL;
-3. NPC-specific protection only if overlap is proven;
-4. no-change fallback.
+The previous option-comparison gate is closed for the **first experiment only**. User + Normal Chat accepted the smallest evidence-backed player classifier.
 
-No implementation is frozen yet.
+Frozen research-DLL experiment:
 
-## Work delegation improvement
+```text
+Script_G3AB_BadBlockResearch.dll only
+Script_Game +0x633BF
 
-Project collaboration procedures were strengthened on 2026-10-07:
+call native DurationPressedMSecs getter exactly once
 
-- bounded Work research is advisory unless decision closure is explicitly delegated;
-- Work must distinguish impossible/contradicted from risky/imperfect;
-- if the ideal contract fails but viable alternatives exist, preserve and compare them;
-- a recommendation is not authority to abandon/defer a feature;
-- task preflight should state acceptance criteria, acceptable approximations, optimization priority, decision authority and options required if the ideal fails.
+if raw > 2500
+AND owning actor == player
+AND factual Action is:
+    QuickAttackR = 4
+    QuickAttackL = 5
+    WhirlAttack  = 10
+AND phase == Hit
 
-This project-local lesson is a candidate for later promotion into CAM so other projects, including General-Animation-Helpers, can inherit it through a dedicated CAM maintenance pass.
+-> return 2500 for this call only
 
+otherwise
+-> return raw
+```
 
-## Research vehicle
+Explicit exclusions:
+```text
+Normal
+Power
+SimpleWhirl
+Sprint
+Pierce
+Hack
+Raise
+Recover
+NPCs
+persistent timer/actor state
+production G3AB changes
+```
 
-User + Normal Chat selected a separate experimental DLL for all bad-block research:
+Minimal diagnostics:
+log only actual clamp events with raw duration + factual action + phase (+ player identity if cheaply available from the same established facts). Do not create a getter-call trace.
+
+## Why this classifier is intentionally narrow
+
+Positive destructive bad-skip evidence exists for Quick R/L and full Whirl while still in Hit. Pierce was specifically tested without reproducing destructive abandonment. Working Raise has not reproduced this specific defect. No corresponding positive evidence currently exists for the other excluded attack families/phases.
+
+Player input mapping is now durable in `ANIMATION_RULES.md §5`:
+- press LMB -> Normal;
+- hold LMB -> Power;
+- press RMB -> Quick;
+- hold RMB -> Block/Parade;
+- hold RMB + hold LMB -> Hack for 2H/Staff, Pierce for 1H;
+- hold RMB + press LMB -> full Whirl for 2H/Staff, Quick for 1H;
+- short hold LMB below Power threshold -> SimpleWhirl for 1H+1H.
+
+This strengthens the causal hypothesis because the demonstrated vulnerable positive families are the held-RMB/block + **press-LMB** continuation routes. Keep input Action1/Action2 separate from `gEAction` enum values.
+
+## Research vehicle / implementation boundary
 
 ```text
 Script_G3AnimationBehaviors.dll
 = protected production candidate
-= no bad-block experimental hooks/state
 
 Script_G3AB_BadBlockResearch.dll
-= isolated research target
+= isolated temporary research target
 = tools/Script_G3AB_BadBlockResearch/
 ```
 
-Current research DLL behavior:
-- startup/unload log only;
-- no hooks yet;
-- removable without changing production behavior.
+For the bounded Work implementation:
+- source edit + static audit + publication to `development` are authorized;
+- BUILD is prohibited;
+- DEPLOYMENT is prohibited;
+- Gothic runtime is prohibited.
 
-Initial runtime fixture when User returns to the authoritative build PC:
-
-```text
-Gothic 3 / CP + Alternative AI
-+ Script_G3AB_BadBlockResearch.dll
-- Script_G3AnimationBehaviors.dll
-- Script_NewBalance.dll
-```
-
-Later compatibility fixtures add G3AB first, then New Balance.
+After Work publishes, Normal Chat performs an independent diff-against-contract review before local build/runtime.
 
 Final product placement remains undecided:
 - integrate proven minimum into G3AB;
-- ship a cleaned optional bad-block DLL;
-- discard research DLL.
+- clean into separate optional DLL;
+- discard experiment.
 
-
-## Work option research result
-
-Archived:
-`docs/archive/investigations/bad_block_attack_protection_options_2026-10-07.md`
-
-Result:
-- player P1 stateless deferral is technically viable under ADR-0012;
-- exact receiver/ABI route is established, including actor resolution through the CharacterControl engine property set;
-- P1/P2/P3 classifier alternatives are preserved;
-- NPC attack overlap remains unresolved;
-- exact +0x46F39 NPC observer is designed;
-- no implementation/build/runtime work occurred.
-
-Current decision gate:
-User + Normal Chat choose whether to freeze P1 as the first isolated research-DLL experiment or select another evidence step.
-
-Work recommends P1 first.
+NPC overlap remains unresolved and separate. The designed `+0x46F39` observer is not part of this task.
