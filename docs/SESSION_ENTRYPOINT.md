@@ -89,6 +89,19 @@ Work/research delegation rule:
 - distinguish impossible from risky/approximate;
 - User + Normal Chat choose the product/architecture trade-off.
 
+Research vehicle is now frozen separately:
+
+```text
+Script_G3AnimationBehaviors.dll
+= protected production candidate; do not modify for this research
+
+Script_G3AB_BadBlockResearch.dll
+= isolated experimental target under tools/
+= currently bootstrap/logging only; no hooks installed yet
+```
+
+Final integrated-vs-optional packaging remains open.
+
 No implementation is frozen yet.
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
