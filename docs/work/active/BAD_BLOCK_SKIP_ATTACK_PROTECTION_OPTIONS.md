@@ -1,175 +1,182 @@
-# Bad Block Skip — Attack Protection Options
+# Bad Block Skip — Player Hit Deferral Experiment
 
 **Status:** ACTIVE  
-**Mode:** bounded read-only architecture / option comparison  
-**Decision authority:** advisory only for any delegated Work task; User + Normal Chat retain final choice  
-**Stable fallback:** `main @ e899f37092706a9846312b93d6b52b34e715b53d`
+**Mode:** bounded research-DLL source implementation  
+**Decision authority:** implementation only; User + Normal Chat retain experiment interpretation and final product placement  
+**Stable fallback:** `main @ e899f37092706a9846312b93d6b52b34e715b53d`  
+**Frozen development base for this task:** `ff346e2684abe29fb6d5b3ea60345fdbade3196f`
 
-## User-visible problem
+## Purpose
 
-A bad block skip can destroy the engine-side attack continuation while the visible attack animation keeps playing.
-
-After collision repair, stale collision is correctly cleaned, but the surviving animation can visibly connect without a normal hit/damage outcome.
-
-The first-release goal is therefore:
+Test the smallest evidence-backed intervention for the demonstrated player bad-block skip defect:
 
 ```text
-do not let block-timeout teardown destroy a live attack
+do not let the player block-timeout teardown destroy a demonstrated vulnerable attack Hit
 ```
 
-Exact remaining-time pause/resume is **not required**.
+This is a **temporary mechanism experiment**, not production architecture.
 
-It is acceptable if the native timer continues internally and the block skip fires immediately after the attack has safely completed.
+Exact remaining-time pause/resume is not required. The native held-input timer may keep advancing and an already-due timeout may fire immediately after the protected Hit ends.
 
-Prefer, if practical:
+The completed option research is archived at:
 
-```text
-defer until the ordinary native attack/cleanup path has had its opportunity
-```
+`docs/archive/investigations/bad_block_attack_protection_options_2026-10-07.md`
 
-If exact cleanup completion cannot be observed cheaply, protect the smallest factual attack lifetime that reliably prevents the visible missed-hit problem.
+Reusable source/hook facts are owned by `docs/SOURCE_HOOK_GUIDE.md §6`.  
+Player input -> attack-family mapping is owned by `docs/ANIMATION_RULES.md §5`.
 
-## Proven static facts
+## Protected production boundary
 
-Player:
-```text
-+0x633BF DurationPressedMSecs getter
-+0x633C5 compare 2500
-+0x633CA jbe bypass
-else:
-+0x633F1 FullStop
-+0x63409 SetState PS_Melee_Loop
-```
-
-NPC Alternative AI:
-```text
-OnAI_Parade
-non-player
-StatePosition == 1
-StateTime > 2.0
--> +0x46F39 StopAIGoto
--> +0x46F51 SetState ZS_Attack_Loop
-```
-
-These are separate mechanisms.
-
-## Required option space
-
-Do not decide that an imperfect option is unacceptable. Return evidence, costs and options to User + Normal Chat.
-
-Compare at minimum:
-
-### Option A — Integrated player deferral in main G3AB DLL
-
-One narrow call-site adapter at the proven player duration getter seam.
-
-Questions:
-- exact actor resolution/ABI;
-- smallest factual attack-active classifier;
-- which phases/actions must be protected;
-- whether allowing timeout immediately after protected state ends is mechanically safe;
-- compatibility with New Balance and existing hooks;
-- runtime cost and regression surface.
-
-### Option B — Separate optional bad-block-skip patch DLL
-
-Same or equivalent narrow player intervention, packaged independently.
-
-Questions:
-- hook/load-order interaction with G3AB/New Balance;
-- whether it can remain truly optional and removable;
-- installation/config clarity;
-- whether duplicate/shared hook ownership creates avoidable risk;
-- maintenance burden versus compatibility benefit.
-
-### Option C — NPC-specific protection
-
-Do not implement or recommend automatically.
-
-First decide whether current evidence is enough to show the NPC 2-second parade timeout can overlap a factual attack. If not, preserve the already-defined smallest observation-only probe at `Script_Game +0x46F39`.
-
-If overlap is proven later, compare:
-- integrated NPC branch deferral;
-- optional patch ownership;
-- whether player/NPC can share policy while keeping separate physical seams.
-
-### Option D — No change for v1
-
-Keep as a real fallback and state the gameplay consequence clearly.
-
-## Acceptance / approximation boundary
-
-Hard requirement:
-- do not silently break legitimate reaction interruption paths;
-- do not globally mutate CharacterControl timing;
-- do not globally suppress FullStop/SetState;
-- preserve Collision, Speed, Raise and Movement.
-
-Accepted imperfection:
-- native block timer may continue to advance during the attack;
-- once attack protection ends, an already-due bad skip may fire immediately;
-- exact remaining-time preservation is unnecessary.
-
-Open preference:
-- ideally allow ordinary native attack cleanup before the skip becomes eligible again.
-
-## Deliverable
-
-Return:
-- strongest viable integrated option;
-- strongest viable optional-DLL option;
-- NPC evidence status and smallest next step;
-- exact differences/trade-offs;
-- recommendation if useful;
-- **do not close the product decision**.
-
-No implementation until User + Normal Chat choose an option.
-
-
-## Research vehicle decision — separate experimental DLL
-
-Accepted by User + Normal Chat before probe/intervention implementation.
-
-During all bad-block research:
+During this experiment:
 
 ```text
 Script_G3AnimationBehaviors.dll
-= protected production candidate
+= PROTECTED
 = no bad-block research hooks/state/experiments
 
 Script_G3AB_BadBlockResearch.dll
-= isolated research vehicle
-= probes/interventions may change freely
-= removable without changing production behavior
+= ONLY implementation target
+= tools/Script_G3AB_BadBlockResearch/
 ```
 
-Repository target:
-`tools/Script_G3AB_BadBlockResearch/`
+Do not modify production Collision, Speed, Raise, Movement, BehaviorProfiles, EngineBridge, or production INI behavior.
 
-The research DLL begins as an intentionally empty bootstrap target with startup logging and **no hooks**.
+Final disposition remains deliberately open:
+1. integrate a proven minimum into G3AB;
+2. clean it into a separate optional production DLL;
+3. discard the experiment.
 
-Allowed future contents are limited to the bad-block responsibility:
-- player timeout observation/deferral;
-- NPC timeout observation/deferral;
-- factual attack-active classification needed by those experiments;
-- diagnostics required to validate those mechanisms.
+This task does not decide among them.
 
-Do not copy into it:
-- Collision guardian behavior;
-- Speed;
-- Raise;
-- Movement;
-- production BehaviorProfiles;
-- unrelated diagnostics.
+## Exact proven player seam
 
-Final product placement remains open:
-1. prove behavior in research DLL, then integrate the minimum proven policy into G3AB;
-2. clean the research mechanism into a separate optional production DLL;
-3. discard the experiment with no production impact.
+Tested `Script_Game` path:
 
-### Isolation test fixtures
+```text
++0x633BF  call PropertyDurationPressedMSecs getter
++0x633C5  cmp eax, 2500
++0x633CA  jbe bypass
+else:
++0x633F1  PSRoutine::FullStop
++0x63409  PSRoutine::SetState("PS_Melee_Loop")
+```
 
-Initial causal fixture:
+Historical EV-185/187/190 establish destructive bad-skip cases for:
+- factual `QuickAttackR = 4`;
+- factual `QuickAttackL = 5`;
+- factual `WhirlAttack = 10`;
+- critical timeout selection while the vulnerable attack is still in `Hit`.
+
+EV-191 did not reproduce the destructive abandonment for Pierce. EV-198 preserves the observation that the specific failure has not been successfully reproduced when the attack has a working Raise.
+
+No corresponding positive bad-skip evidence currently exists for Normal, Power, SimpleWhirl, Sprint, Hack, Raise, or Recover.
+
+## Frozen experiment classifier
+
+At the exact `Script_Game +0x633BF` call site:
+
+1. call the native/current `DurationPressedMSecs` getter **exactly once**;
+2. preserve that raw return value unless every condition below matches;
+3. when every condition matches, return `2500` for this call only.
+
+```text
+raw > 2500
+AND receiver-owning actor == player
+AND factual Routine Action is one of:
+    QuickAttackR = 4
+    QuickAttackL = 5
+    WhirlAttack  = 10
+AND factual phase == Hit
+
+-> return 2500
+
+otherwise
+-> return raw
+```
+
+This is stateless branch-local deferral, not timer mutation and not pause/resume.
+
+### ABI / actor-resolution requirement
+
+The duration-getter receiver is the CharacterControl wrapper.
+
+Its stored pointer is an engine property set. Resolve the owning actor through:
+
+`eCEntityPropertySet::GetEntity()`
+
+Do **not** cast that stored pointer directly to `eCEntity*`.
+
+If the required ABI/receiver/actor/action/phase transport cannot be implemented faithfully from established source/API facts, STOP and report the contradiction. Do not invent another ownership route.
+
+## Explicit exclusions
+
+The first experiment must not protect:
+
+```text
+Normal
+Power
+SimpleWhirl
+Sprint
+Pierce
+Hack
+Raise
+Recover
+NPCs
+```
+
+Also prohibited:
+- persistent actor or timer state;
+- global hook/override of the shared duration getter/IAT;
+- mutation of generic CharacterControl timing;
+- global suppression of FullStop or SetState;
+- NPC `+0x46F39` observer/intervention;
+- new attack-family inference from filenames;
+- production G3AB changes;
+- unrelated cleanup/refactor.
+
+## Diagnostic surface
+
+Keep diagnostics minimal.
+
+When and only when the adapter actually clamps `raw > 2500` to `2500`, write one concise record containing enough to prove the intervention:
+- raw duration;
+- factual action;
+- factual phase;
+- actor/player identity if cheaply available from the same established facts.
+
+Do not log every getter call and do not create a high-volume trace.
+
+Startup/unload logging may remain.
+
+## Question this experiment must answer
+
+```text
+Is suppressing only the demonstrated player's overdue block-timeout selection
+during Quick R / Quick L / full Whirl Hit sufficient to preserve the native
+attack continuation and normal hit/damage opportunity, while leaving all other
+block timing and attack lifecycle behavior native?
+```
+
+## Build / runtime authorization
+
+For the bounded Work/source implementation:
+
+```text
+BUILD = PROHIBITED
+DEPLOYMENT = PROHIBITED
+GOTHIC RUNTIME = PROHIBITED
+```
+
+Work may perform source/static audit only and publish the bounded source edit to:
+- repository: `tcholti/Gothic3_Animation_Behaviors`;
+- branch: `development`.
+
+After Work publishes, Normal Chat must independently review the diff against this contract before any local build/runtime validation.
+
+## Future runtime fixture — not part of this task
+
+Initial causal fixture when the User is back at the authoritative Gothic build PC:
+
 ```text
 Gothic 3 / CP + Alternative AI
 + Script_G3AB_BadBlockResearch.dll
@@ -177,77 +184,37 @@ Gothic 3 / CP + Alternative AI
 - Script_NewBalance.dll
 ```
 
-This fixture intentionally lacks the production collision guardian. Native stale-collision consequences in control cases are therefore expected evidence, not a G3AB regression.
-
-Later integration fixtures:
-```text
-Research DLL + G3AB, New Balance OFF
-Research DLL + G3AB + New Balance
-```
-
-Do not choose final integrated-vs-optional packaging from the research target alone.
-
-
-## Work advisory research result — 2026-10-07
-
-Durable report:
-`docs/archive/investigations/bad_block_attack_protection_options_2026-10-07.md`
-
-Research completed read-only. No implementation/build/deployment/runtime work was performed.
-
-### Player
-
-Strongest minimal candidate is **P1 stateless player deferral**:
+Minimum intended player cases:
 
 ```text
-Script_Game +0x633BF
-call current native DurationPressedMSecs getter exactly once
+1H:
+hold RMB > 2.5 s
+while still holding RMB, press LMB
+-> Quick
+-> normal attack continuation/hit should survive
 
-if raw > 2500
-+ receiver-owning actor is player
-+ factual Routine Action is ordinary protected melee
-+ phase is Raise / Hit / Recover
--> return 2500 for this call only
-
-otherwise
--> return raw
+2H / Staff:
+hold RMB > 2.5 s
+while still holding RMB, press LMB
+-> full Whirl
+-> normal attack continuation/hit should survive
 ```
 
-Important ABI correction:
-- receiver is the CharacterControl wrapper;
-- its stored pointer is an engine property set;
-- resolve the owning actor through `eCEntityPropertySet::GetEntity()`;
-- do not cast that stored pointer directly to `eCEntity*`.
+Control behavior outside the frozen classifier remains native.
 
-One call-site hook; no persistent actor/timer state; O(1).
+NPC overlap remains a separate later evidence question. The already-designed `+0x46F39` observer is not authorized by this task.
 
-Three viable classifier variants remain:
-- P1: action + Raise/Hit/Recover;
-- P2: action regardless of phase;
-- P3: P1 plus proven live outer attack ScriptFunction context.
+## Work deliverable
 
-P1 is the recommended **first mechanism experiment**, not automatically the final classifier.
+Implement only the frozen research-DLL experiment, audit the exact diff, commit/publish to `development`, and report:
+- files changed;
+- exact hook/transport used;
+- exact classifier implemented;
+- diagnostic line shape;
+- protected production files confirmed unchanged;
+- source/static checks performed;
+- any source/API contradiction;
+- final remote commit SHA;
+- `Build: NOT ATTEMPTED — Work build execution was not authorized for this task.`
 
-### NPC
-
-NPC timeout overlap remains unresolved statically.
-
-Smallest later observer:
-`Script_Game +0x46F39` immediately before `StopAIGoto`.
-
-One positive record showing the same actor at this exact selected timeout branch with a factual live attack instruction or evidenced live attack continuation is sufficient to prove existential overlap.
-
-No positive record in a finite run does not prove impossibility.
-
-A future NPC intervention, only if overlap is proven, has a plausible sibling seam at the `StateTime` getter before the native 2.0-second comparison; this is not authorized yet.
-
-### Current decision gate
-
-User + Normal Chat must choose the next experiment.
-
-Work recommendation:
-1. first run isolated player P1 deferral;
-2. if P1 cleanup-exit behavior is insufficient, evaluate P3;
-3. investigate NPC overlap with the designed observer as a separate experiment.
-
-No production placement decision is made.
+Then STOP. Do not archive this document; Normal Chat owns review, runtime freeze, evidence promotion, and eventual closure.
