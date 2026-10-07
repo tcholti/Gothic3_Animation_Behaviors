@@ -14,4 +14,6 @@ target_tree_sources(
     Script_G3AB_BadBlockResearch
     PRIVATE
         Script_G3AB_BadBlockResearch.cpp
+        BadBlockProtectionResearch.cpp
+        BadBlockProtectionResearch.h
 )
