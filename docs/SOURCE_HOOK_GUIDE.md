@@ -516,9 +516,30 @@ Tested Script_Game path:
 
 Historical EV-185–EV-191 prove that on vulnerable player attacks this branch can terminate the active CombatMove and discard the suspended attack continuation.
 
-A future **deferral** contract could use one exact call-site adapter at `Script_Game +0x633BF`: call the native getter once, and while the same actor is factually attacking, clamp only this branch-local result to `2500` when it would otherwise exceed the threshold. The native `jbe` then bypasses the whole destructive branch.
+EV-449–EV-450 runtime-prove the first-release stateless deferral mechanism at this exact call site for the demonstrated player failure:
 
-This is **not an exact pause**. Native held-input time continues to advance, so expiry may occur immediately after the attack.
+```text
+call native/current DurationPressedMSecs getter exactly once
+
+if raw > 2500
+AND receiver-owning actor == player
+AND factual Routine Action in:
+    QuickAttackR = 4
+    QuickAttackL = 5
+    WhirlAttack  = 10
+AND factual phase == Hit
+
+-> return 2500 for this call only
+
+otherwise
+-> return raw
+```
+
+Paired A/B result:
+- CONTROL preserved native raw and repeatedly reproduced destructive bad skip plus stale armed collision;
+- PROTECTION encountered the same overdue Action4/5/10 + Hit condition repeatedly, returned `2500`, prevented the reproduced skip and allowed native collision cleanup to complete.
+
+This is **not an exact pause**. Native held-input time continues to advance, so expiry may occur immediately after the protected Hit. The proven mechanism needs no actor timer map, gameplay lifecycle token or collision-guardian coupling.
 
 Do not:
 - hook the shared duration getter/IAT globally;
@@ -562,7 +583,7 @@ ADR-0012 changes the **first-release acceptance contract**: exact remaining-time
 
 Do not confuse this revised gameplay contract with mathematical pause/resume.
 
-Proof route: EV-448 and `docs/archive/investigations/bad_block_skip_static_research_2026-10-06.md`.
+Proof route: EV-448–EV-450, `docs/archive/investigations/bad_block_skip_static_research_2026-10-06.md`, and `docs/archive/investigations/BAD_BLOCK_SKIP_ATTACK_PROTECTION_OPTIONS.md`.
 
 ---
 

@@ -1685,6 +1685,59 @@ Interpretation:
 - stale armed collision after the visible attack provides a strong external signature that native attack continuation/cleanup was abandoned.
 
 Disposition:
-- **ACTIVE COMPARISON — KEEP RAW** until the paired PROTECTION run is completed.
-- Do not broaden the classifier or change the fixture between A and B.
+- **PAIRED/CLOSED by EV-450.**
+- Historical raw-path reference is preserved through `EVIDENCE_PATH_MIGRATIONS.md`; the byte-identical artifact is archived under `research/archive/`.
+- Do not reinterpret this CONTROL run without the paired PROTECTION result.
+
+### EV-450 — Bad-block player A/B PROTECTION causal PASS
+
+Fixture:
+- same Gothic 3 / CP + Alternative AI fixture as EV-449;
+- `Script_G3AB_BadBlockResearch.dll` PROTECTION product active;
+- production `Script_G3AnimationBehaviors.dll` excluded;
+- `Script_NewBalance.dll` excluded;
+- `Script_AttackCollision.dll` left unchanged exactly as in CONTROL.
+
+Exact A/B source checkpoint:
+`development @ cc151aeeac8b92e360c636c58d077c06a420b218`
+
+PROTECTION binary:
+`SHA256 34DEF702472C3DCDF786CB7161AF533B9F923CE08B6654069F7C5382CF724CE5`
+
+Canonical archived artifact:
+`research/archive/2026-10-07_bad_block_player_whirl_protection.log`
+`SHA256 F173C80B3F57E0336A149C459F3566047F099A0380F94FEE9AD61DEB50E711B2`
+`Git blob 2c1c86824dd98103f771dc78a45f9be0080e3ec3`
+
+Logger/transport facts:
+- startup reports `PROTECTION (qualifying raw >2500 returns 2500)`;
+- exact timeout seam `Script_Game +0x633BF` installed successfully;
+- 20 qualifying factual-Hit episodes were recorded:
+  - `WhirlAttack=10`: 10;
+  - `QuickAttackL=5`: 8;
+  - `QuickAttackR=4`: 2;
+- every episode had native `raw > 2500` and `effective=2500`;
+- clean unload recorded.
+
+User runtime observation:
+- repeated attempts were made to reproduce bad skip across the weapon cases used for the vulnerable routes;
+- no bad skip could be reproduced;
+- after the final attempted failure, running the still-drawn weapon into an NPC caused no damage.
+
+Paired A/B comparison:
+- EV-449 CONTROL: 17 qualifying overdue factual-Hit episodes with `effective == raw`; native bad skip reproduced repeatedly; final stale armed collision damaged NPCs on body contact.
+- EV-450 PROTECTION: 20 qualifying overdue factual-Hit episodes with `effective=2500`; no bad skip reproduced; final stale-collision contact test was negative.
+- the hook, native getter transport, factual classifier, logger source and runtime fixture were held constant between the two products; the behavioral variable was native raw return versus branch-local `2500` deferral.
+
+Causal conclusion:
+- **PASS — the stateless branch-local player Hit deferral is sufficient for the demonstrated Quick R / Quick L / full-Whirl bad-block failure in this fixture.**
+- the result preserves the ADR-0012 contract: native held-input time continues advancing; this is deferral, not exact pause/resume.
+- no gameplay-lifecycle token, actor timer map, global duration mutation, global FullStop/SetState suppression, or collision-guardian coupling is justified by this result.
+- the compact diagnostic episode latch is diagnostic-only and did not define protection lifetime.
+- NPC overlap remains a separate unresolved question and was not modified or tested by this experiment.
+
+Disposition:
+- **MECHANISM EXPERIMENT CLOSED / RUNTIME CAUSAL PASS.**
+- final product placement remains a separate User + Normal Chat decision: integrate the proven minimum into production G3AB, retain a cleaned optional standalone DLL, or decline shipment.
+- the temporary experiment task is archived under `docs/archive/investigations/BAD_BLOCK_SKIP_ATTACK_PROTECTION_OPTIONS.md`.
 

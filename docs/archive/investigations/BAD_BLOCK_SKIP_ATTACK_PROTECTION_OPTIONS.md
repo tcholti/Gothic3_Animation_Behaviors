@@ -1,10 +1,16 @@
+[Reading 8 lines from start (total: 337 lines, 329 remaining)]
+
 # Bad Block Skip — Player Hit Deferral Experiment
 
-**Status:** ACTIVE  
+**Status:** CLOSED — runtime causal PASS EV-449–EV-450
 **Mode:** bounded research-DLL source implementation  
 **Decision authority:** implementation only; User + Normal Chat retain experiment interpretation and final product placement  
 **Stable fallback:** `main @ e899f37092706a9846312b93d6b52b34e715b53d`  
 **Implementation launch base:** `8e277379e14cd94bbb9113f85ffe01fe8e2c4b48`
+
+
+[executed on device: DESKTOP-1HB54C3 (ee009201-9ef7-41b1-ae5c-82d3de3789be)]
+[Reading 329 lines from line 8 (total: 337 lines, 0 remaining)]
 
 ## Purpose
 
@@ -204,7 +210,7 @@ Review confirmed:
 
 No source/API contradiction was found.
 
-Build/runtime acceptance remains open. Keep this task ACTIVE until runtime evidence closes the causal question.
+Build/runtime acceptance is CLOSED/PASS through EV-450. The causal question is answered; final product placement is intentionally outside this archived experiment.
 
 ## Future runtime fixture — not part of this task
 
@@ -288,12 +294,38 @@ CONTROL completed on 2026-10-07 and reproduced the native destructive failure.
 - canonical artifact:
   `research/raw/2026-10-07_bad_block_player_whirl_control.log`
 - disposition:
-  **ACTIVE COMPARISON — KEEP RAW** until paired B / PROTECTION closes.
+  paired and closed by EV-450; artifact moved byte-identically to `research/archive/`.
 
-Next frozen step:
-deploy the already-built PROTECTION product from the same source checkpoint and repeat the same practical failure attempt without changing classifier or fixture.
+### B / PROTECTION result — EV-450
 
-NPC overlap remains a separate later evidence question. The already-designed `+0x46F39` observer is not authorized by this task.
+PROTECTION completed on 2026-10-07 and closed the causal comparison.
+
+- 20 qualifying episode starts were captured with native `raw > 2500` and `effective=2500`:
+  - Action10 Whirl: 10;
+  - Action5 QuickAttackL: 8;
+  - Action4 QuickAttackR: 2.
+- all recorded episodes were factual Hit;
+- the User repeatedly attempted to reproduce the bad skip across the vulnerable weapon routes and could not;
+- after the final attempt, running the still-drawn weapon into an NPC caused no damage;
+- canonical artifact:
+  `research/archive/2026-10-07_bad_block_player_whirl_protection.log`.
+
+### Closed A/B conclusion
+
+The same hook, native getter transport, factual classifier, logger source and fixture were used for both products. The controlled behavioral difference was:
+- CONTROL -> return native `raw`;
+- PROTECTION -> return `2500` only for the frozen qualifying call.
+
+Observed result:
+- CONTROL reproduced the destructive skip and stale armed collision;
+- PROTECTION encountered the same overdue factual-Hit condition repeatedly but prevented the failure and allowed native cleanup to complete.
+
+Therefore:
+**the stateless Action4/Action5/Action10 + Hit branch-local deferral is runtime-proven sufficient for the demonstrated player defect.**
+
+No persistent gameplay token, timer map, global duration mutation, or guardian coupling is justified by this experiment.
+
+NPC overlap remains a separate later evidence question. The designed `+0x46F39` observer remains outside this closed task.
 
 ## Work deliverable
 
@@ -309,3 +341,5 @@ Implement only the frozen research-DLL experiment, audit the exact diff, commit/
 - `Build: NOT ATTEMPTED — Work build execution was not authorized for this task.`
 
 Then STOP. Do not archive this document; Normal Chat owns review, runtime freeze, evidence promotion, and eventual closure.
+
+[executed on device: DESKTOP-1HB54C3 (ee009201-9ef7-41b1-ae5c-82d3de3789be)]

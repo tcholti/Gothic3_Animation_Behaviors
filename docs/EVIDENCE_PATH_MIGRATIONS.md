@@ -499,6 +499,30 @@ Disposition/provenance:
 - historical references to the former raw path resolve to the archived basename through this migration entry.
 - intended raw intake after this transaction is `research/raw/Keep.txt` only.
 
+
+## 2026-10-07 — Bad-block player A/B causal comparison closure
+
+EV-449–EV-450 closed the isolated player bad-block A/B mechanism experiment. Both runtime logs were moved byte-identically out of active intake after the comparison was fully interpreted.
+
+```text
+research/raw/2026-10-07_bad_block_player_whirl_control.log
+ -> research/archive/2026-10-07_bad_block_player_whirl_control.log
+ SHA256 71F75C30D4CF8A5BC3125CA581FE63B0E0F36C1A599E6A36CC15F2E855B6F96C
+ blob f8e7e1107f22d6c2928a1ef3badb231eaff4e657
+
+research/raw/2026-10-07_bad_block_player_whirl_protection.log
+ -> research/archive/2026-10-07_bad_block_player_whirl_protection.log
+ SHA256 F173C80B3F57E0336A149C459F3566047F099A0380F94FEE9AD61DEB50E711B2
+ blob 2c1c86824dd98103f771dc78a45f9be0080e3ec3
+```
+
+Disposition/provenance:
+- EV-449 owns the CONTROL baseline;
+- EV-450 owns the paired PROTECTION result and causal conclusion;
+- neither file was rewritten, normalized, trimmed or regenerated during archival;
+- historical references to the CONTROL raw path resolve through this migration entry;
+- intended active raw intake returns to `research/raw/Keep.txt` only.
+
 ---
 
 ## Rule for Future Moves

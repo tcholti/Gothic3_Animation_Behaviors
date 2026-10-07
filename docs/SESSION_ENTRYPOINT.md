@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = stable main EV-447; EV-448 exact-pause research retained; ADR-0012 narrow player Hit deferral experiment is frozen for isolated research-DLL implementation
+CURRENT = stable main EV-447; EV-448 exact-pause research retained; EV-449–EV-450 stateless player Hit deferral A/B = CLOSED/RUNTIME CAUSAL PASS; final product placement is the next decision gate
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise direction continuation = CLOSED/PASS EV-427; EV-430 completes representative Normal / Quick R+L / pose-changing Quick / full Whirl coverage including partial Raise-asset profiles
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
@@ -52,20 +52,20 @@ Canonical reusable engine lookup:
 
 The completed preservation-biased repository audit and Work result are archived under `docs/archive/investigations/`. Its accepted RH-01–RH-13 maintenance is represented in the durable owners; RH-14–RH-17 were KEEP/no-action. The three previously retained Sprint-probe logs were positively reconciled during EV-397/EV-398 maintenance and archived byte-identically; path migration is recorded in `EVIDENCE_PATH_MIGRATIONS.md`.
 
-## Immediate continuation — Frozen bad-block player Hit experiment
+## Immediate continuation — Bad-block production-placement decision
 
 Stable release fallback:
 `main @ e899f37092706a9846312b93d6b52b34e715b53d`
 
-Active responsibility:
-`docs/work/active/BAD_BLOCK_SKIP_ATTACK_PROTECTION_OPTIONS.md`
+The isolated mechanism experiment is **CLOSED/PASS through EV-450**.
 
-User + Normal Chat have frozen the **first isolated mechanism experiment**.
+Archived experiment:
+`docs/archive/investigations/BAD_BLOCK_SKIP_ATTACK_PROTECTION_OPTIONS.md`
+
+Runtime-proven player rule at `Script_Game +0x633BF`:
 
 ```text
-target = Script_G3AB_BadBlockResearch.dll only
-hook = Script_Game +0x633BF
-native DurationPressedMSecs getter called exactly once
+call native DurationPressedMSecs getter exactly once
 
 if raw > 2500
 AND actor == player
@@ -77,26 +77,24 @@ otherwise
 -> return raw
 ```
 
-Explicitly excluded from experiment 1:
-Normal, Power, SimpleWhirl, Sprint, Pierce, Hack, Raise, Recover, NPCs, persistent timer/actor state, production G3AB edits.
+A/B proof:
+- EV-449 CONTROL preserved native raw and reproduced repeated bad skip plus stale armed collision that damaged NPCs on body contact.
+- EV-450 PROTECTION logged 20 genuine overdue factual-Hit episodes across Action10/5/4, returned `2500`, produced no reproducible bad skip, and the final stale-contact test caused no NPC damage.
 
-The classifier is evidence-minimal: positive destructive bad-skip evidence exists for Quick R/L and full Whirl while still in Hit; Pierce did not reproduce the defect, working Raise has not reproduced it, and no corresponding positive evidence currently exists for the other excluded families/phases.
+Architecture consequence:
+- mechanism is stateless branch-local deferral, not pause/resume;
+- native held-input timer continues advancing;
+- no actor timer map, gameplay token, global getter hook, global FullStop/SetState suppression or collision-guardian coupling is justified.
 
-Player input mapping is now durable in `ANIMATION_RULES.md §5`: the vulnerable positive families are the held-RMB/block + press-LMB routes (1H -> Quick; 2H/Staff -> full Whirl). Keep input Action1/Action2 distinct from `gEAction` enum numbers.
+Next decision is intentionally **product placement**, not more mechanism research:
+1. integrate the proven minimum into production `Script_G3AnimationBehaviors.dll`;
+2. clean it into a separate optional production DLL;
+3. decline shipment and retain stable main behavior.
 
-Research vehicle:
-```text
-Script_G3AnimationBehaviors.dll
-= protected production candidate
+User + Normal Chat own that decision before any production implementation task is frozen.
 
-Script_G3AB_BadBlockResearch.dll
-= isolated experimental target under tools/
-```
+NPC overlap remains separate and unresolved; no NPC intervention is authorized by EV-450.
 
-Work/source implementation candidate = `6ab5bd8e3e7ee75a1707d412f00d9f35dcbbdae2` / independent Normal Chat source review PASS.
-The research source is accepted for the next local build/runtime step; no production placement decision is made.
-
-Final integrated-vs-optional packaging remains open. NPC overlap remains a separate later observer question.
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
 
