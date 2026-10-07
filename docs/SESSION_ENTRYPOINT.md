@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = stable main EV-447; EV-449–EV-450 player protector = CLOSED/PASS; EV-451 Pierce/Hack exclusion = PASS; EV-452 Finishing/Action15 exclusion = PASS; NEXT = lean diagnostics-free standalone protector
+CURRENT = stable main EV-447; EV-449–EV-450 player protector = CLOSED/PASS; EV-451 Pierce/Hack exclusion = PASS; EV-452 Finishing/Action15 exclusion = PASS; ACTIVE = lean diagnostics-free standalone protector acceptance
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise direction continuation = CLOSED/PASS EV-427; EV-430 completes representative Normal / Quick R+L / pose-changing Quick / full Whirl coverage including partial Raise-asset profiles
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
@@ -62,8 +62,13 @@ Closed first-release scope:
 Important EV-452 limit:
 true Action15 was repeatedly exercised and did not reproduce bad skip, but the timeout observer never saw factual Action15 Hit at `Script_Game +0x633BF`. This supports exclusion but does not prove a native Finishing guard.
 
-Next gate:
-clean the proven EV-450 mechanism into the leanest diagnostics-free standalone protector for visual acceptance before production integration.
+Active task:
+`docs/work/active/BAD_BLOCK_LEAN_STANDALONE_ACCEPTANCE.md`
+
+Candidate product:
+`Script_G3AB_BadBlockProtector.dll`
+
+The proven EV-450 mechanism is now being cleaned into the leanest diagnostics-free standalone protector for visual acceptance before production integration.
 
 The lean protector must retain only:
 ```text
