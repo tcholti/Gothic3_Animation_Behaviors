@@ -4,7 +4,7 @@
 **Mode:** bounded research-DLL source implementation  
 **Decision authority:** implementation only; User + Normal Chat retain experiment interpretation and final product placement  
 **Stable fallback:** `main @ e899f37092706a9846312b93d6b52b34e715b53d`  
-**Frozen development base for this task:** `ff346e2684abe29fb6d5b3ea60345fdbade3196f`
+**Implementation launch base:** `8e277379e14cd94bbb9113f85ffe01fe8e2c4b48`
 
 ## Purpose
 
@@ -172,6 +172,30 @@ Work may perform source/static audit only and publish the bounded source edit to
 - branch: `development`.
 
 After Work publishes, Normal Chat must independently review the diff against this contract before any local build/runtime validation.
+
+## Source implementation / independent review
+
+Work implementation candidate:
+`6ab5bd8e3e7ee75a1707d412f00d9f35dcbbdae2`
+
+Independent Normal Chat source review: **PASS**.
+
+Review confirmed:
+- commit is exactly one commit ahead of launch base `8e277379e14cd94bbb9113f85ffe01fe8e2c4b48`;
+- only the four files under `tools/Script_G3AB_BadBlockResearch/` changed;
+- one `mCCallHook` owns only `Script_Game +0x633BF`;
+- SDK default hook mode is `OnlyStack`; `.AddThisArg()` passes original ECX without shared receiver storage;
+- the six-byte indirect call is replaced as a whole and native `cmp eax,2500` / `jbe` remain intact;
+- the adapter reads the current `+0xE4990` IAT target and invokes that getter exactly once with the original receiver;
+- actor ownership resolves through `m_pEngineEntityPropertySet->GetEntity()`;
+- only player factual Action4 / Action5 / Action10 + factual Hit can clamp;
+- every other condition returns the native raw value;
+- diagnostics occur only on actual clamps;
+- no persistent actor/timer state, NPC handling, production G3AB change, global duration mutation, or global FullStop/SetState suppression was added.
+
+No source/API contradiction was found.
+
+Build/runtime acceptance remains open. Keep this task ACTIVE until runtime evidence closes the causal question.
 
 ## Future runtime fixture — not part of this task
 
