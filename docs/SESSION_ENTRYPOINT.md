@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = first-release stable baseline remains main EV-447; bad-block exact-pause research closed/deferred EV-448; release preparation next
+CURRENT = stable main EV-447; EV-448 exact-pause research retained; ADR-0012 reopens smaller bad-block attack-protection/deferral option review for v1
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise direction continuation = CLOSED/PASS EV-427; EV-430 completes representative Normal / Quick R+L / pose-changing Quick / full Whirl coverage including partial Raise-asset profiles
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
@@ -52,33 +52,44 @@ Canonical reusable engine lookup:
 
 The completed preservation-biased repository audit and Work result are archived under `docs/archive/investigations/`. Its accepted RH-01–RH-13 maintenance is represented in the durable owners; RH-14–RH-17 were KEEP/no-action. The three previously retained Sprint-probe logs were positively reconciled during EV-397/EV-398 maintenance and archived byte-identically; path migration is recorded in `EVIDENCE_PATH_MIGRATIONS.md`.
 
-## Immediate continuation — First release preparation
+## Immediate continuation — Bad block skip attack-protection options
 
-Stable release baseline:
+Stable release fallback:
 `main @ e899f37092706a9846312b93d6b52b34e715b53d`
 
-Accepted stable systems:
+EV-448 remains valid for the **exact remaining-time pause** question.
+
+ADR-0012 changes the v1 requirement:
 ```text
-Collision
-Speed
-Raise
-Movement
+exact pause/resume NOT required
+
+required:
+do not let the block-timeout teardown destroy a live factual attack
+
+acceptable:
+native timeout keeps advancing
++ already-due timeout may fire immediately after attack protection ends
 ```
 
-Bad-block exact-pause research:
-- CLOSED / DEFERRED through EV-448;
-- exact player timeout seam recovered;
-- NPC timeout proven separate;
-- exact remaining-time pause is not clean enough for first release;
-- no production timer-fix implementation is authorized for v1.
+Gameplay reason:
+after collision safety repair, a bad skip can otherwise leave the visible attack animation playing while the engine-side attack continuation is already gone, producing visually connected attacks with no normal hit/damage outcome.
 
-Durable research:
-- `docs/SOURCE_HOOK_GUIDE.md §6`
-- `docs/archive/investigations/bad_block_skip_static_research_2026-10-06.md`
-- `docs/FUTURE_INVESTIGATIONS.md §3`
+Active responsibility:
+`docs/work/active/BAD_BLOCK_SKIP_ATTACK_PROTECTION_OPTIONS.md`
 
-Next:
-perform the final first-release preparation/release audit from the stable `main` baseline. Do not reopen timer work unless the User explicitly chooses a different post-release contract.
+Current decision questions:
+1. integrated player deferral in the main G3AB DLL;
+2. separate optional bad-block-skip patch DLL;
+3. NPC-specific protection only if attack overlap is proven;
+4. no-change fallback.
+
+Work/research delegation rule:
+- decision authority is advisory by default;
+- return viable options even when imperfect;
+- distinguish impossible from risky/approximate;
+- User + Normal Chat choose the product/architecture trade-off.
+
+No implementation is frozen yet.
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
 
