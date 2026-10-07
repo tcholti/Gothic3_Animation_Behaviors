@@ -1,7 +1,7 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-10-06 — EV-448 bad-block research deferred / first release next
+**Updated:** 2026-10-07 — ADR-0012 bad-block attack protection / Work delegation rule
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
@@ -13,58 +13,54 @@ Stable release branch:
 Active branch:
 `development`
 
-## First-release stable baseline
+## Stable baseline
 
-EV-446 release-integration review PASS.  
-EV-447 fast-forward promotion to `main` PASS.
+Collision + Speed + Raise + Movement remain accepted.  
+EV-447 stable promotion remains the release fallback.
 
-Stable accepted features:
-- Collision;
-- Speed;
-- Raise;
-- absolute attack Movement through EV-445.
+## EV-448 remains valid, but its contract was too strong for the gameplay need
 
-## Final pre-release timer research — CLOSED / DEFERRED
+EV-448 proved:
+- exact mathematical remaining-time pause is stateful and not clean enough for first release;
+- player timeout seam is `Script_Game +0x633BF`;
+- NPC Alternative-AI timeout is a separate `StateTime > 2.0` branch at `+0x46F39`.
 
-EV-448 result:
-**NOT CLEAN ENOUGH FOR FIRST RELEASE for exact remaining-time pause.**
+Today the User clarified the actual gameplay requirement.
 
-Recovered player seam:
+ADR-0012 accepted:
+
 ```text
-Script_Game +0x633BF DurationPressedMSecs getter
-+0x633C5 compare 2500
-+0x633CA jbe bypass
-otherwise:
-+0x633F1 FullStop
-+0x63409 SetState PS_Melee_Loop
+Do not let block-timeout teardown destroy a live attack.
+
+Exact remaining-time preservation is NOT required.
+
+The native timer may continue advancing.
+If it is already due, block skip may fire immediately after the attack has safely ended.
 ```
 
-A one-hook stateless player adapter could **defer** this destructive branch during a factual attack, but native held time would continue advancing. It is not exact pause/resume.
+Reason:
+the visible attack animation can continue after destructive bad skip while engine-side continuation has been lost. Collision guard correctly repairs stale collision, but the result can be a visually connected weapon with no normal hit/damage outcome.
 
-Recovered NPC Alternative-AI timeout:
-```text
-non-player OnAI_Parade
-StatePosition == 1
-StateTime > 2.0
--> +0x46F39 StopAIGoto
--> +0x46F51 SetState ZS_Attack_Loop
-```
+## Active responsibility
 
-Player and NPC use different clocks and different branches. NPC timeout overlapping a factual active attack remains unproven.
+`docs/work/active/BAD_BLOCK_SKIP_ATTACK_PROTECTION_OPTIONS.md`
 
-Exact pause requires a new stateful virtual-clock lifecycle whose timer episode/reset and attack interval boundaries are not proven. It is parked for post-release work.
+Compare:
+1. integrated player stateless deferral;
+2. separate optional bad-block-skip patch DLL;
+3. NPC-specific protection only if overlap is proven;
+4. no-change fallback.
 
-Durable routes:
-- `docs/SOURCE_HOOK_GUIDE.md §6`
-- `docs/archive/investigations/bad_block_skip_static_research_2026-10-06.md`
-- `docs/archive/investigations/BAD_BLOCK_SKIP_ATTACK_DEFER_TIMER_RESEARCH.md`
-- `docs/FUTURE_INVESTIGATIONS.md §3`
+No implementation is frozen yet.
 
-## Next
+## Work delegation improvement
 
-Do **not** implement the timer fix for v1.
+Project collaboration procedures were strengthened on 2026-10-07:
 
-Next session:
-**perform final first-release preparation / release audit from stable `main`.**
+- bounded Work research is advisory unless decision closure is explicitly delegated;
+- Work must distinguish impossible/contradicted from risky/imperfect;
+- if the ideal contract fails but viable alternatives exist, preserve and compare them;
+- a recommendation is not authority to abandon/defer a feature;
+- task preflight should state acceptance criteria, acceptable approximations, optimization priority, decision authority and options required if the ideal fails.
 
-No active behavior feature task remains before first release.
+This project-local lesson is a candidate for later promotion into CAM so other projects, including General-Animation-Helpers, can inherit it through a dedicated CAM maintenance pass.
