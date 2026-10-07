@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = stable main EV-447; EV-449–EV-450 player protector = CLOSED/PASS; EV-451 Pierce/Hack exclusion = PASS; ACTIVE = true Finishing/Action15 exclusion check
+CURRENT = stable main EV-447; EV-449–EV-450 player protector = CLOSED/PASS; EV-451 Pierce/Hack exclusion = PASS; EV-452 Finishing/Action15 exclusion = PASS; NEXT = lean diagnostics-free standalone protector
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise direction continuation = CLOSED/PASS EV-427; EV-430 completes representative Normal / Quick R+L / pose-changing Quick / full Whirl coverage including partial Raise-asset profiles
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
@@ -52,29 +52,34 @@ Canonical reusable engine lookup:
 
 The completed preservation-biased repository audit and Work result are archived under `docs/archive/investigations/`. Its accepted RH-01–RH-13 maintenance is represented in the durable owners; RH-14–RH-17 were KEEP/no-action. The three previously retained Sprint-probe logs were positively reconciled during EV-397/EV-398 maintenance and archived byte-identically; path migration is recorded in `EVIDENCE_PATH_MIGRATIONS.md`.
 
-## Immediate continuation — true Finishing / Action15 exclusion validation
+## Immediate continuation — lean diagnostics-free bad-block protector
 
-Active task:
-`docs/work/active/BAD_BLOCK_FINISHING_EXCLUSION_VALIDATION.md`
+Closed first-release scope:
+- EV-449–EV-450: protect player QuickAttackR(4), QuickAttackL(5), WhirlAttack(10), factual Hit, raw>2500 with branch-local return 2500.
+- EV-451: keep Pierce/Action11 and Hack/Action14 excluded.
+- EV-452: keep true Finishing/Action15 excluded.
 
-Closed scope:
-- EV-449–EV-450: Quick R / Quick L / full Whirl protection runtime-proven.
-- EV-451: Pierce/Action11 and Hack/Action14 exclusion supported; keep both out of v1.
+Important EV-452 limit:
+true Action15 was repeatedly exercised and did not reproduce bad skip, but the timeout observer never saw factual Action15 Hit at `Script_Game +0x633BF`. This supports exclusion but does not prove a native Finishing guard.
 
-Current probe:
-- exact timeout seam `Script_Game +0x633BF`;
-- factual player FinishingAttack/Action15 + Hit only;
-- logs `HIT-SEEN`, then `OVERDUE` if raw crosses 2500 during the same Hit;
-- always returns native raw unchanged.
+Next gate:
+clean the proven EV-450 mechanism into the leanest diagnostics-free standalone protector for visual acceptance before production integration.
 
-Runtime fixture:
-production G3AB ON + New Balance ON + Action15 observe-only probe.
+The lean protector must retain only:
+```text
+native/current DurationPressedMSecs getter called exactly once
 
-Frozen raw:
-`research/raw/2026-10-07_bad_block_finishing_exclusion_probe.log`
+if raw > 2500
+AND actor == player
+AND factual Action in {QuickAttackR(4), QuickAttackL(5), WhirlAttack(10)}
+AND phase == Hit
+-> return 2500
 
-After this check, absent contradiction:
-lean diagnostics-free standalone protector -> visual acceptance -> production G3AB integration -> final visual smoke.
+otherwise
+-> return raw
+```
+
+Remove all research loggers, A/B mode, diagnostic episode state and exclusion-observer code. No NPC work. No persistent gameplay state. No production G3AB edit until the standalone lean acceptance passes.
 
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.

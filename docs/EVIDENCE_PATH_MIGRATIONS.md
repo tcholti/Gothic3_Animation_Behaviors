@@ -535,6 +535,17 @@ research/raw/2026-10-07_bad_block_pierce_hack_exclusion_probe.log
 
 EV-451 owns interpretation. The file moved unchanged after the Pierce/Hack scope question closed.
 
+## 2026-10-07 — True Finishing / Action15 exclusion-probe closure
+
+```text
+research/raw/2026-10-07_bad_block_finishing_exclusion_probe.log
+ -> research/archive/2026-10-07_bad_block_finishing_exclusion_probe.log
+ SHA256 900BF76BC89A8B8157EFE8E7C6554FD3232C8FB9E3701FB69E6347AD45F23DE0
+ blob c9e17ed44b2de01fb5083959dbd69ab3ecc90d8d
+```
+
+EV-452 owns interpretation. The artifact moved unchanged after the Action15 exclusion question closed.
+
 ---
 
 ## Rule for Future Moves

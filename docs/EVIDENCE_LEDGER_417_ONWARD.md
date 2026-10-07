@@ -1778,3 +1778,40 @@ Disposition:
 - **PASS — KEEP ACTION11/14 EXCLUDED FROM V1 PROTECTOR.**
 - true Finishing/Action15 remains a separate low-frequency execution-action follow-up.
 
+
+
+### EV-452 — True Finishing / Action15 exclusion validation supports current scope
+
+Fixture:
+- production `Script_G3AnimationBehaviors.dll` ON;
+- `Script_NewBalance.dll` ON;
+- observe-only `Script_G3AB_BadBlockExclusionProbe.dll` ON;
+- old bad-block protection/control DLLs absent;
+- probe always returned native raw duration unchanged.
+
+Source checkpoint:
+`development @ 5df175ca2d34266ff13ec92f3d170c64a89ef56e`
+
+Probe binary:
+`SHA256 5361BB2FAF9449E28AD25EB63978A80A08C2F51BD47EA22B78887B5B1FEAA948`
+
+Canonical archived artifact:
+`research/archive/2026-10-07_bad_block_finishing_exclusion_probe.log`
+`SHA256 900BF76BC89A8B8157EFE8E7C6554FD3232C8FB9E3701FB69E6347AD45F23DE0`
+`Git blob c9e17ed44b2de01fb5083959dbd69ab3ecc90d8d`
+
+Runtime observations:
+- User attempted about five true 2H finishing executions and more 1H finishing executions;
+- no visible bad skip was reproduced;
+- 1H finishing attacks have no Raise animation and unusually long Hit animations, yet still did not reproduce the failure;
+- probe loaded and installed `Script_Game +0x633BF` cleanly;
+- zero factual Action15 `HIT-SEEN` records and zero `OVERDUE` records were produced.
+
+Interpretation:
+- factual Action15 was repeatedly exercised but was not observed at the vulnerable timeout seam during Hit in this tested stack;
+- no positive evidence supports adding Action15 to the first-release protector;
+- do not infer a proven native "Finishing guard"; the exact reason for Action15's apparent immunity/bypass remains unresolved and is not required for first release.
+
+Disposition:
+- **PASS — KEEP ACTION15 EXCLUDED FROM V1 PROTECTOR.**
+- first-release protected set remains only player Quick R / Quick L / full Whirl during factual Hit.

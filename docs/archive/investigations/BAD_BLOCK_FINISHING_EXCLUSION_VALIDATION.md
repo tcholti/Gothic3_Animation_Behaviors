@@ -1,6 +1,6 @@
 # Bad Block Skip — True Finishing / Action15 Exclusion Validation
 
-**Status:** ACTIVE
+**Status:** CLOSED — exclusion supported / EV-452
 **Mode:** bounded observation-only runtime validation
 **Frozen by:** User + Normal Chat, 2026-10-07
 **Launch base:** `development @ 79a5c9e6b5bd2864c55c78a7e631579c42794a54`
@@ -62,3 +62,34 @@ Frozen raw filename:
 
 After this gate, absent contradiction:
 lean diagnostics-free standalone protector -> visual acceptance -> production G3AB integration -> final visual release-candidate smoke.
+
+
+## Final result — EV-452
+
+Runtime fixture:
+- production G3AB ON;
+- New Balance ON;
+- observe-only Action15 timeout probe ON;
+- probe returned native raw duration unchanged on every call.
+
+User runtime observations:
+- approximately five true 2H finishing executions were attempted;
+- more true 1H finishing executions were attempted;
+- no visible bad skip was reproduced;
+- 1H finishing families were noted to have no Raise animation and unusually long Hit animations compared with ordinary Hit attacks, yet still did not reproduce the failure.
+
+Probe result:
+- zero factual Action15 `HIT-SEEN` records at `Script_Game +0x633BF`;
+- zero `OVERDUE` records;
+- clean probe load/hook-install/unload.
+
+Interpretation:
+- true Finishing/Action15 was repeatedly exercised but did not appear on the vulnerable timeout seam during factual Hit in this tested stack;
+- this supports keeping Action15 outside the first-release protector;
+- do not claim a proven native "Finishing protection" mechanism from this result alone;
+- a distinct native route or lifecycle is more consistent with the observed absence from the seam, but its exact cause remains unresearched.
+
+Disposition:
+**PASS — KEEP ACTION15 EXCLUDED FROM THE V1 PROTECTOR.**
+
+Any research into why Action15 is naturally immune/bypasses the seam is post-release curiosity and not a first-release blocker.
