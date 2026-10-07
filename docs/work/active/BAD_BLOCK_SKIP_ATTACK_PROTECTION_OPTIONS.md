@@ -274,6 +274,25 @@ Freeze raw filenames:
 
 Do not broaden the classifier or add NPC intervention between A and B.
 
+### A / CONTROL result — EV-449
+
+CONTROL completed on 2026-10-07 and reproduced the native destructive failure.
+
+- 17 qualifying episode starts were captured with `effective == raw`:
+  - Action10 Whirl: 3;
+  - Action5 QuickAttackL: 11;
+  - Action4 QuickAttackR: 3.
+- all recorded episodes were factual Hit;
+- the User reproduced bad skip repeatedly;
+- the final stale-collision check was positive: after the visible attack and before another cleanup action, merely running into NPCs with the still-drawn armed weapon caused damage.
+- canonical artifact:
+  `research/raw/2026-10-07_bad_block_player_whirl_control.log`
+- disposition:
+  **ACTIVE COMPARISON — KEEP RAW** until paired B / PROTECTION closes.
+
+Next frozen step:
+deploy the already-built PROTECTION product from the same source checkpoint and repeat the same practical failure attempt without changing classifier or fixture.
+
 NPC overlap remains a separate later evidence question. The already-designed `+0x46F39` observer is not authorized by this task.
 
 ## Work deliverable

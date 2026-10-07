@@ -1642,3 +1642,49 @@ Disposition:
 
 Durable report:
 `docs/archive/investigations/bad_block_skip_static_research_2026-10-06.md`.
+
+### EV-449 — Bad-block player A/B CONTROL baseline reproduces native destructive failure
+
+Fixture:
+- Gothic 3 / CP + Alternative AI;
+- `Script_G3AB_BadBlockResearch_Control.dll` active;
+- production `Script_G3AnimationBehaviors.dll` excluded;
+- `Script_NewBalance.dll` excluded;
+- `Script_AttackCollision.dll` left unchanged because the frozen fixture did not exclude it.
+
+Exact source checkpoint:
+`development @ cc151aeeac8b92e360c636c58d077c06a420b218`
+
+CONTROL binary:
+`SHA256 1039BED304CE6A79374440C869AAA2C6E86D425758325F6A3EE7B7D8812501D4`
+
+Canonical active-comparison artifact:
+`research/raw/2026-10-07_bad_block_player_whirl_control.log`
+`SHA256 71F75C30D4CF8A5BC3125CA581FE63B0E0F36C1A599E6A36CC15F2E855B6F96C`
+
+Logger/transport facts:
+- startup reports `CONTROL (observe only; native raw preserved)`;
+- exact timeout seam `Script_Game +0x633BF` installed successfully;
+- every recorded qualifying episode preserves `effective == raw`;
+- all records are factual `phase=1 (Hit)`;
+- 17 qualifying episodes were recorded:
+  - `WhirlAttack=10`: 3;
+  - `QuickAttackL=5`: 11;
+  - `QuickAttackR=4`: 3;
+- clean unload recorded.
+
+User runtime observation:
+- native bad skip was reproduced repeatedly across the vulnerable weapon cases exercised;
+- additional bad-skip attempts were made immediately after an already-produced bad skip;
+- at run end, the weapon remained offensively armed after the visible attack;
+- without performing a cleanup action first, running into NPCs caused damage.
+
+Interpretation:
+- CONTROL proves the A/B logger/hook does not itself suppress the native failure;
+- the exact overdue Action4/Action5/Action10 + Hit classifier is reached during the reproduced destructive behavior;
+- stale armed collision after the visible attack provides a strong external signature that native attack continuation/cleanup was abandoned.
+
+Disposition:
+- **ACTIVE COMPARISON — KEEP RAW** until the paired PROTECTION run is completed.
+- Do not broaden the classifier or change the fixture between A and B.
+
