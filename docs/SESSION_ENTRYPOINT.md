@@ -93,8 +93,8 @@ Script_G3AB_BadBlockResearch.dll
 = isolated experimental target under tools/
 ```
 
-Work/source implementation is authorized to publish the bounded research-DLL edit to `development`.
-Build, deployment and Gothic runtime remain prohibited for that task.
+Work/source implementation candidate = `6ab5bd8e3e7ee75a1707d412f00d9f35dcbbdae2` / independent Normal Chat source review PASS.
+The research source is accepted for the next local build/runtime step; no production placement decision is made.
 
 Final integrated-vs-optional packaging remains open. NPC overlap remains a separate later observer question.
 
