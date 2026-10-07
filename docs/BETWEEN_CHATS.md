@@ -1,7 +1,7 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-10-07 — bad-block player A/B mechanism CLOSED/PASS
+**Updated:** 2026-10-07 — Pierce / Finishing exclusion validation ACTIVE
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
@@ -13,82 +13,70 @@ Stable release branch:
 Active branch:
 `development`
 
-## Stable baseline
+## Proven baseline
 
-Collision + Speed + Raise + Movement remain accepted through the pre-final-fix stable baseline on main (EV-447).
+EV-449–EV-450 closed the player bad-block A/B mechanism with runtime causal PASS.
 
-EV-448 exact remaining-time pause research remains parked. ADR-0012 requires only that block-timeout teardown not destroy the demonstrated protected live attack; native held-input time may continue advancing.
-
-## Closed player mechanism experiment
-
-Archived task:
-`docs/archive/investigations/BAD_BLOCK_SKIP_ATTACK_PROTECTION_OPTIONS.md`
-
-Exact proven seam:
-`Script_Game +0x633BF`
-
-Runtime-proven rule:
-
+Proven protected set:
 ```text
-native/current DurationPressedMSecs getter called exactly once
-
-if raw > 2500
-AND receiver-owning actor == player
-AND factual Routine Action in:
-    QuickAttackR = 4
-    QuickAttackL = 5
-    WhirlAttack  = 10
-AND factual phase == Hit
--> return 2500 for this call only
-
-otherwise
--> return raw
+raw > 2500
++ player
++ factual Action in {QuickAttackR(4), QuickAttackL(5), WhirlAttack(10)}
++ factual Hit
+-> branch-local return 2500
 ```
 
-This is stateless branch-local deferral, not timer mutation and not pause/resume.
+No gameplay token, timer map, global duration mutation, or collision-guardian coupling is justified.
 
-### EV-449 — A / CONTROL
+## Active gate
 
-Same hook/classifier/logger source, but qualifying calls returned native raw.
+`docs/work/active/BAD_BLOCK_PIERCE_FINISHING_EXCLUSION_VALIDATION.md`
 
-Observed:
-- 17 qualifying factual-Hit episodes;
-- Action10=3, Action5=11, Action4=3;
-- every episode had `effective == raw`;
-- User reproduced bad skip repeatedly;
-- final stale armed weapon damaged NPCs merely by running into them.
+Purpose:
+challenge the current exclusion of Pierce/Action11 and Finishing/Action15 before lean-protector cleanup and production integration.
 
-Archived artifact:
-`research/archive/2026-10-07_bad_block_player_whirl_control.log`
+Probe:
+`Script_G3AB_BadBlockExclusionProbe.dll`
 
-### EV-450 — B / PROTECTION
+Exact seam:
+`Script_Game +0x633BF`
 
-Same source and fixture; only qualifying return policy changed to `2500`.
+Probe rule:
+```text
+native getter called exactly once
 
-Observed:
-- 20 qualifying factual-Hit episodes;
-- Action10=10, Action5=8, Action4=2;
-- every episode had native `raw > 2500` and `effective=2500`;
-- User could not reproduce bad skip across the vulnerable weapon routes;
-- final run-into-NPC stale-collision test caused no damage.
+if raw > 2500
+AND actor == player
+AND factual Action in {PierceAttack(11), FinishingAttack(15)}
+AND phase == Hit
+-> log one compact episode start
+-> return native raw unchanged
 
-Archived artifact:
-`research/archive/2026-10-07_bad_block_player_whirl_protection.log`
+otherwise
+-> return native raw unchanged
+```
 
-Conclusion:
-**MECHANISM CLOSED / RUNTIME CAUSAL PASS.**
+This probe never protects Action11/15.
 
-The A/B evidence supports the minimum stateless player Hit deferral and does not justify a stateful gameplay token, timer map, global timing mutation, or collision-guardian coupling.
+Frozen runtime stack:
+- production `Script_G3AnimationBehaviors.dll` ON;
+- `Script_NewBalance.dll` ON;
+- exclusion probe ON;
+- old bad-block research/control DLLs OFF;
+- existing third-party stack otherwise unchanged.
 
-## Next decision gate
+Frozen raw filename:
+`research/raw/2026-10-07_bad_block_pierce_finishing_exclusion_probe.log`
 
-Do not reopen mechanism research before choosing product placement.
+Interpretation:
+- qualifying episode + visible bad skip = current exclusion contradicted;
+- qualifying episode + no bad skip = evidence supporting exclusion;
+- no qualifying episode after deliberate attempts = negative evidence only, not proof of impossibility.
 
-User + Normal Chat must choose one:
-1. integrate the proven minimum into production `Script_G3AnimationBehaviors.dll`;
-2. clean the proven minimum into a separate optional production DLL;
-3. decline shipment.
+After this gate, if no contradiction:
+1. build the leanest diagnostics-free standalone protector;
+2. User performs visual bad-skip acceptance;
+3. integrate the same minimum into production G3AB;
+4. run one final visual release-candidate smoke.
 
-After that decision, freeze a new bounded production implementation task. Do not modify production source before that task exists.
-
-NPC overlap remains a separate unresolved question. The designed `Script_Game +0x46F39` observer is not authorized by EV-450 and is not a blocker for the proven player fix.
+NPC overlap remains separate and is not part of this gate.

@@ -115,4 +115,83 @@ GEU32 EvaluatePlayerHitTimeout(
     // advancing. Control mode returns the native value unchanged.
     return effectiveDuration;
 }
+
+namespace
+{
+struct ExclusionDiagnosticEpisodeState
+{
+    bool active = false;
+    unsigned long ordinal = 0;
+};
+
+ExclusionDiagnosticEpisodeState g_ExclusionDiagnosticEpisode;
+}
+
+GEU32 ObservePierceFinishingHitTimeout(
+    GEU32 rawDuration,
+    PSCharacterControl const *receiver,
+    FILE *log)
+{
+    constexpr GEU32 timeoutMSecs = 2500;
+    bool qualifies = false;
+    gEAction action = static_cast<gEAction>(0);
+    gEPhase phase = static_cast<gEPhase>(0);
+    eCEntity *actorInstance = nullptr;
+    eCEntity *playerInstance = nullptr;
+
+    if (rawDuration > timeoutMSecs && receiver != nullptr)
+    {
+        eCEntityPropertySet *propertySet =
+            receiver->m_pEngineEntityPropertySet;
+        if (propertySet != nullptr)
+        {
+            actorInstance = propertySet->GetEntity();
+            Entity const player = Entity::GetPlayer();
+            playerInstance = player.GetInstance();
+            if (actorInstance != nullptr
+                && actorInstance == playerInstance
+                && player.Routine.IsValid())
+            {
+                action = player.Routine.Action;
+                if (action == gEAction_PierceAttack
+                    || action == gEAction_FinishingAttack)
+                {
+                    phase = player.GetCurrentAniPhase();
+                    qualifies = phase == gEPhase_Hit;
+                }
+            }
+        }
+    }
+
+    if (!qualifies)
+    {
+        g_ExclusionDiagnosticEpisode.active = false;
+        return rawDuration;
+    }
+
+    if (!g_ExclusionDiagnosticEpisode.active)
+    {
+        g_ExclusionDiagnosticEpisode.active = true;
+        ++g_ExclusionDiagnosticEpisode.ordinal;
+
+        if (log != nullptr)
+        {
+            std::fprintf(
+                log,
+                "Exclusion episode start id=%lu raw=%lu effective=%lu action=%d phase=%d actor=%p player=%p\n",
+                g_ExclusionDiagnosticEpisode.ordinal,
+                static_cast<unsigned long>(rawDuration),
+                static_cast<unsigned long>(rawDuration),
+                static_cast<int>(action),
+                static_cast<int>(phase),
+                static_cast<void *>(actorInstance),
+                static_cast<void *>(playerInstance));
+            std::fflush(log);
+        }
+    }
+
+    // Observation only: never alter the branch-local duration result.
+    return rawDuration;
+}
+
 }

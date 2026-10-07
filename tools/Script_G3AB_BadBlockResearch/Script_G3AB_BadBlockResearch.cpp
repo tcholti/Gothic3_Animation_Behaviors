@@ -12,6 +12,10 @@
 #define G3AB_BADBLOCK_PROTECTION_MODE 1
 #endif
 
+#ifndef G3AB_BADBLOCK_EXCLUSION_PROBE
+#define G3AB_BADBLOCK_EXCLUSION_PROBE 0
+#endif
+
 namespace
 {
 FILE *g_pLog = nullptr;
@@ -19,6 +23,7 @@ FILE *g_pLog = nullptr;
 constexpr GEU32 DurationCallRva = 0x633BF;
 constexpr GEU32 DurationGetterSlotRva = 0xE4990;
 constexpr bool ProtectionEnabled = G3AB_BADBLOCK_PROTECTION_MODE != 0;
+constexpr bool ExclusionProbeEnabled = G3AB_BADBLOCK_EXCLUSION_PROBE != 0;
 
 // Win32 getter: original CharacterControl/property wrapper in ECX, result in EAX.
 using DurationGetter = GEU32 (__thiscall *)(PSCharacterControl const *);
@@ -33,6 +38,12 @@ GEU32 GE_STDCALL PlayerDurationAdapter(PSCharacterControl const *receiver)
     // Preserve the original indirect call's current target and receiver once.
     DurationGetter const nativeGetter = *g_pDurationGetterSlot;
     GEU32 const rawDuration = nativeGetter(receiver);
+    if (ExclusionProbeEnabled)
+    {
+        return BadBlockResearch::ObservePierceFinishingHitTimeout(
+            rawDuration, receiver, g_pLog);
+    }
+
     return BadBlockResearch::EvaluatePlayerHitTimeout(
         rawDuration, receiver, g_pLog, ProtectionEnabled);
 }
@@ -93,18 +104,29 @@ void OpenLog()
     if (g_pLog == nullptr)
         return;
 
-    std::fprintf(
-        g_pLog,
-        "Script_G3AB_BadBlockResearch loaded.\n"
-        "Mode: %s.\n"
-        "Research only: overdue player Quick R/L and full Whirl Hit seam.\n"
-        "Production Script_G3AnimationBehaviors.dll is intentionally independent.\n",
-        ProtectionEnabled
-            ? "PROTECTION (qualifying raw >2500 returns 2500)"
-            : "CONTROL (observe only; native raw preserved)");
+    if (ExclusionProbeEnabled)
+    {
+        std::fprintf(
+            g_pLog,
+            "Script_G3AB_BadBlockResearch loaded.\n"
+            "Mode: EXCLUSION PROBE (Pierce/Finishing observe-only; native raw preserved).\n"
+            "Research only: overdue player Action11/Action15 factual Hit seam.\n"
+            "Production Script_G3AnimationBehaviors.dll may coexist in this frozen fixture.\n");
+    }
+    else
+    {
+        std::fprintf(
+            g_pLog,
+            "Script_G3AB_BadBlockResearch loaded.\n"
+            "Mode: %s.\n"
+            "Research only: overdue player Quick R/L and full Whirl Hit seam.\n"
+            "Production Script_G3AnimationBehaviors.dll is intentionally independent.\n",
+            ProtectionEnabled
+                ? "PROTECTION (qualifying raw >2500 returns 2500)"
+                : "CONTROL (observe only; native raw preserved)");
+    }
     std::fflush(g_pLog);
 }
-
 void CloseLog()
 {
     if (g_pLog == nullptr)

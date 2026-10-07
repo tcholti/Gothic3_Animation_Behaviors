@@ -13,4 +13,10 @@ GEU32 EvaluatePlayerHitTimeout(
     PSCharacterControl const *receiver,
     FILE *log,
     bool protectionEnabled);
+
+// Observation-only exclusion probe. Always returns native raw unchanged.
+GEU32 ObservePierceFinishingHitTimeout(
+    GEU32 rawDuration,
+    PSCharacterControl const *receiver,
+    FILE *log);
 }
