@@ -64,3 +64,39 @@ Project collaboration procedures were strengthened on 2026-10-07:
 - task preflight should state acceptance criteria, acceptable approximations, optimization priority, decision authority and options required if the ideal fails.
 
 This project-local lesson is a candidate for later promotion into CAM so other projects, including General-Animation-Helpers, can inherit it through a dedicated CAM maintenance pass.
+
+
+## Research vehicle
+
+User + Normal Chat selected a separate experimental DLL for all bad-block research:
+
+```text
+Script_G3AnimationBehaviors.dll
+= protected production candidate
+= no bad-block experimental hooks/state
+
+Script_G3AB_BadBlockResearch.dll
+= isolated research target
+= tools/Script_G3AB_BadBlockResearch/
+```
+
+Current research DLL behavior:
+- startup/unload log only;
+- no hooks yet;
+- removable without changing production behavior.
+
+Initial runtime fixture when User returns to the authoritative build PC:
+
+```text
+Gothic 3 / CP + Alternative AI
++ Script_G3AB_BadBlockResearch.dll
+- Script_G3AnimationBehaviors.dll
+- Script_NewBalance.dll
+```
+
+Later compatibility fixtures add G3AB first, then New Balance.
+
+Final product placement remains undecided:
+- integrate proven minimum into G3AB;
+- ship a cleaned optional bad-block DLL;
+- discard research DLL.
