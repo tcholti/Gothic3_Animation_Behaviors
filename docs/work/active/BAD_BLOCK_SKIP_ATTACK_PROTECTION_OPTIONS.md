@@ -124,3 +124,65 @@ Return:
 - **do not close the product decision**.
 
 No implementation until User + Normal Chat choose an option.
+
+
+## Research vehicle decision — separate experimental DLL
+
+Accepted by User + Normal Chat before probe/intervention implementation.
+
+During all bad-block research:
+
+```text
+Script_G3AnimationBehaviors.dll
+= protected production candidate
+= no bad-block research hooks/state/experiments
+
+Script_G3AB_BadBlockResearch.dll
+= isolated research vehicle
+= probes/interventions may change freely
+= removable without changing production behavior
+```
+
+Repository target:
+`tools/Script_G3AB_BadBlockResearch/`
+
+The research DLL begins as an intentionally empty bootstrap target with startup logging and **no hooks**.
+
+Allowed future contents are limited to the bad-block responsibility:
+- player timeout observation/deferral;
+- NPC timeout observation/deferral;
+- factual attack-active classification needed by those experiments;
+- diagnostics required to validate those mechanisms.
+
+Do not copy into it:
+- Collision guardian behavior;
+- Speed;
+- Raise;
+- Movement;
+- production BehaviorProfiles;
+- unrelated diagnostics.
+
+Final product placement remains open:
+1. prove behavior in research DLL, then integrate the minimum proven policy into G3AB;
+2. clean the research mechanism into a separate optional production DLL;
+3. discard the experiment with no production impact.
+
+### Isolation test fixtures
+
+Initial causal fixture:
+```text
+Gothic 3 / CP + Alternative AI
++ Script_G3AB_BadBlockResearch.dll
+- Script_G3AnimationBehaviors.dll
+- Script_NewBalance.dll
+```
+
+This fixture intentionally lacks the production collision guardian. Native stale-collision consequences in control cases are therefore expected evidence, not a G3AB regression.
+
+Later integration fixtures:
+```text
+Research DLL + G3AB, New Balance OFF
+Research DLL + G3AB + New Balance
+```
+
+Do not choose final integrated-vs-optional packaging from the research target alone.
