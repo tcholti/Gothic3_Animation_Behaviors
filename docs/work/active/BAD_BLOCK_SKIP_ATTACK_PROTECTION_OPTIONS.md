@@ -186,3 +186,68 @@ Research DLL + G3AB + New Balance
 ```
 
 Do not choose final integrated-vs-optional packaging from the research target alone.
+
+
+## Work advisory research result — 2026-10-07
+
+Durable report:
+`docs/archive/investigations/bad_block_attack_protection_options_2026-10-07.md`
+
+Research completed read-only. No implementation/build/deployment/runtime work was performed.
+
+### Player
+
+Strongest minimal candidate is **P1 stateless player deferral**:
+
+```text
+Script_Game +0x633BF
+call current native DurationPressedMSecs getter exactly once
+
+if raw > 2500
++ receiver-owning actor is player
++ factual Routine Action is ordinary protected melee
++ phase is Raise / Hit / Recover
+-> return 2500 for this call only
+
+otherwise
+-> return raw
+```
+
+Important ABI correction:
+- receiver is the CharacterControl wrapper;
+- its stored pointer is an engine property set;
+- resolve the owning actor through `eCEntityPropertySet::GetEntity()`;
+- do not cast that stored pointer directly to `eCEntity*`.
+
+One call-site hook; no persistent actor/timer state; O(1).
+
+Three viable classifier variants remain:
+- P1: action + Raise/Hit/Recover;
+- P2: action regardless of phase;
+- P3: P1 plus proven live outer attack ScriptFunction context.
+
+P1 is the recommended **first mechanism experiment**, not automatically the final classifier.
+
+### NPC
+
+NPC timeout overlap remains unresolved statically.
+
+Smallest later observer:
+`Script_Game +0x46F39` immediately before `StopAIGoto`.
+
+One positive record showing the same actor at this exact selected timeout branch with a factual live attack instruction or evidenced live attack continuation is sufficient to prove existential overlap.
+
+No positive record in a finite run does not prove impossibility.
+
+A future NPC intervention, only if overlap is proven, has a plausible sibling seam at the `StateTime` getter before the native 2.0-second comparison; this is not authorized yet.
+
+### Current decision gate
+
+User + Normal Chat must choose the next experiment.
+
+Work recommendation:
+1. first run isolated player P1 deferral;
+2. if P1 cleanup-exit behavior is insufficient, evaluate P3;
+3. investigate NPC overlap with the designed observer as a separate experiment.
+
+No production placement decision is made.
