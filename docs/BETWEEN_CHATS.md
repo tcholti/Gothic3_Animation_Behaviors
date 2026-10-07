@@ -92,13 +92,18 @@ Script_G3AB_BadBlockResearch.dll
 = tools/Script_G3AB_BadBlockResearch/
 ```
 
-For the bounded Work implementation:
-- source edit + static audit + publication to `development` are authorized;
-- BUILD is prohibited;
-- DEPLOYMENT is prohibited;
-- Gothic runtime is prohibited.
+Work implementation candidate:
+`6ab5bd8e3e7ee75a1707d412f00d9f35dcbbdae2`
 
-After Work publishes, Normal Chat performs an independent diff-against-contract review before local build/runtime.
+Independent Normal Chat diff-against-contract review: **PASS**.
+
+Review confirmed exact research-only scope, correct six-byte call-site ownership, SDK `OnlyStack + AddThisArg` transport, one current IAT getter call with original receiver, exact player Action4/5/10 + Hit classifier, clamp-only diagnostics, and no persistent state/NPC/production G3AB changes.
+
+Next gate:
+- build/deploy the research DLL only when back at the authoritative Gothic PC;
+- run the minimum 1H Quick and 2H/Staff full-Whirl held-RMB >2.5 s causal fixtures;
+- compare visible continuation/hit outcome with clamp records;
+- do not broaden classifier or add NPC intervention before interpreting that evidence.
 
 Final product placement remains undecided:
 - integrate proven minimum into G3AB;
