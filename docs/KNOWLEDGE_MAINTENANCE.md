@@ -1,8 +1,8 @@
 # Gothic 3 Knowledge Maintenance Protocol
 
 **Status:** Active project knowledge-maintenance authority  
-**Version:** 2.0  
-**Updated:** 2026-09-19
+**Version:** 2.1  
+**Updated:** 2026-10-08
 
 <!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
 
@@ -126,6 +126,38 @@ If current reference and evidence disagree, evidence wins the factual dispute an
 
 ---
 
+## 3A. Feature-work sufficiency test — what do I actually need?
+
+For an accepted feature, maintain the **smallest current knowledge surface** from which a fresh Chat or Work context can safely use, diagnose, extend, or deliberately reopen it **without reconstructing the history of its discovery**.
+
+The current owner(s), with targeted source lookup, should answer:
+
+1. **What works now?** Accepted behavior, supported cases, configuration and known exclusions.
+2. **Where does it live?** Production module(s), integration boundaries and the relevant entry points.
+3. **What must remain true?** Non-obvious invariants, native fallback, compatibility constraints and evidence limitations.
+4. **How do I work on it?** The smallest safe next inspection/change/validation path, routed to existing development and test procedures rather than copied into every feature document.
+5. **Why the unusual decisions?** Only rationale needed to avoid repeating a known mistake, with an ADR or archived explanation when depth is necessary.
+6. **Where is the proof?** A specific index/EV/archive route for unresolved questions or contradiction checks, not a mandatory history-reading sequence.
+
+Use **progressive retrieval**:
+
+```text
+concise accepted contract + source owner
+-> relevant code and existing work/validation procedure
+-> specific rationale or EV when needed
+-> archived investigation / raw or derived evidence only when needed
+```
+
+Different implementation mechanisms do **not** automatically require separate current documents. Prefer one coherent current reference when it answers the work questions clearly; retain separate owners only where distinct responsibilities or retrieval needs justify them. Do not create a new summary if an existing owner can serve the purpose. Nor should one oversized document absorb unrelated responsibilities simply to reduce file count.
+
+The full causal search, competing hypotheses, failed probes, interim implementations and long acceptance chronology belong in retrievable cold provenance **after** their reusable conclusions, important boundaries and proof routes are promoted. Archiving means preservation and recovery, not deletion.
+
+This test applies to **settled features**. A genuinely open investigation still needs its bounded active task, controls and evidence until the question is closed.
+
+**Closure/re-entry acceptance:** Could a fresh Chat resume safe feature work using current knowledge and source, and locate deeper explanations or original evidence only if necessary? If not, the current projection or retrieval route is incomplete.
+
+---
+
 ## 4. Maintenance transaction
 
 After every meaningful project event, Normal Chat asks:
@@ -195,7 +227,7 @@ Hard closure question:
 
 > **If this temporary document disappeared from ordinary retrieval tomorrow, has every reusable conclusion already been promoted to its durable owner?**
 
-If no, closure is incomplete.
+If no, closure is incomplete. Also apply the feature-work sufficiency test in §3A before treating the current projection as ready for ordinary future use.
 
 Archive preserves history; it is not a deletion step.
 
