@@ -1,7 +1,7 @@
 # Gothic 3 Script Release Architecture
 
 **Status:** Canonical project-wide release/build rule  
-**Updated:** 2026-09-29  
+**Updated:** 2026-10-08
 **Scope:** All present and future Gothic 3 script/DLL systems in this project
 
 ## 1. Governing Rule
@@ -93,6 +93,11 @@ research-only state needed to correlate observations
 ```
 
 Diagnostic instrumentation must remain observational. Disabling/removing it must not change intended behavior.
+
+
+General observation policy: known healthy behavior uses compact CORE; unknown/unsupported, contradictory, repair or invariant events retain richer facts. DEEP is opt-in for the concrete question; temporary causal intervention belongs to an isolated probe under FEATURE_DEVELOPMENT_METHOD. This transfers the established policy without making instrumentation production authority. Collision-specific interpretation and reopening belong to [COLLISION_REFERENCE §§6–7](COLLISION_REFERENCE.md#6-diagnose-with-the-smallest-sufficient-facts).
+
+Current retained prototype twins are historical **collision-only** reproduction products. They omit the present Speed/Raise/Movement/integrated bad-block assembly and are not an instrumented twin of the full current production DLL. Preserve them; additional coverage must be deliberately bounded if later needed. Observational production proof with exact source/binary provenance and a frozen User matrix is valid where instrumentation is absent (EV-389/390).
 
 ---
 

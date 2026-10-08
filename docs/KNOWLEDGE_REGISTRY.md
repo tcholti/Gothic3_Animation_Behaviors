@@ -1,7 +1,7 @@
 # Gothic 3 Knowledge Authority Registry
 
 **Status:** Active authority/update-trigger registry  
-**Updated:** 2026-09-26
+**Updated:** 2026-10-08
 
 <!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
 
@@ -52,15 +52,9 @@ The repository root `/README.md` owns the discoverable startup front door. It is
 | workstation-specific paths | `LOCAL_WORKSTATION_PATHS.md` | actual local path changes |
 | overall behavior architecture / subsystem responsibilities, including Raise/speed semantics | `DESIGN.md` | current intended architecture changes |
 | deliberately deferred / optional future investigation ideas that are not active architecture or Work | `FUTURE_INVESTIGATIONS.md` | User parks, reopens, qualifies, or retires a future research candidate |
-| release vs diagnostic product separation | `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md` | product/build separation changes |
-| concise established collision facts | `COLLISION_REFERENCE.md` | reusable collision fact is established/qualified/contradicted |
-| collision lifecycle / cleanup / terminal repair architecture | `COLLISION_LIFECYCLE.md` | lifecycle invariant/ownership changes |
-| collision diagnostics architecture | `COLLISION_DIAGNOSTICS.md` | diagnostic ownership/event model changes |
-| current/future collision validation gates | `COLLISION_TEST_PLAN.md` | test gate/matrix/acceptance changes |
-| permanent Fist/raw8 behavior architecture | `COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md` | accepted raw8 production contract changes |
-| permanent PhysicalFist/raw55 behavior architecture | `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md` | accepted raw55 production contract changes |
-| exact source/hook/API facts | `SOURCE_HOOK_GUIDE.md` | reusable hook/source fact changes |
-| exact collision cleanup callsite facts | `COLLISION_CLEANUP_CALLSITE_MAP.md` | cleanup callsite/stack fact changes |
+| release vs diagnostic product separation / generic diagnostic policy and release gates | `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md` | product/build separation changes |
+| accepted collision behavior / raw8 / raw55 / equipped Sprint / C1 invariants / diagnostic interpretation / collision validation and reopening | `COLLISION_REFERENCE.md` | accepted collision contract, evidence limit or re-entry criterion changes |
+| exact source/hook/API and tested-build native cleanup facts | `SOURCE_HOOK_GUIDE.md` | reusable hook/source fact changes |
 | generalized animation semantics / authoring rules | `ANIMATION_RULES.md` | generalized authoring/runtime semantic changes |
 | concrete animation families/assets/fixtures | `ANIMATION_CATALOG.md` | reusable asset-level fact changes |
 | animation question routing | `ANIMATION_INDEX.md` | route/category changes |
@@ -90,7 +84,7 @@ It is **not** current architecture/reference. Every temporary document must decl
 docs/archive/investigations/
 ```
 
-Preserves completed probes, implementation contracts, audits and superseded work plans after reusable conclusions are promoted.
+Preserves completed probes, implementation contracts, audits and superseded work plans/authority snapshots after reusable conclusions are promoted. The six retired collision documents and old reference are byte-identical dated snapshots; `EVIDENCE_PATH_MIGRATIONS.md` owns their recovery routes, not current semantics.
 
 ### Closed evidence ledgers
 

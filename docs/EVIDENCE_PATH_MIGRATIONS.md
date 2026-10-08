@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Path Migrations
 
 **Status:** Canonical provenance-path lookup  
-**Updated:** 2026-10-05
+**Updated:** 2026-10-08
 
 ## Purpose
 
@@ -11,7 +11,7 @@ Primary ownership:
 
 ```text
 this file
-= evidence storage-path migration lookup only
+= evidence and preserved historical-document storage-path migration lookup only
 ```
 
 It is **not** an Evidence Ledger, technical authority, processing chronology, or current-state document.
@@ -571,3 +571,27 @@ move unchanged
 ```
 
 Do not rewrite historical EV rows merely to keep paths cosmetically current. Do not add an entry for every ordinary archive move when no historical/current path ambiguity exists.
+
+
+## 2026-10-08 — Collision documentation consolidation
+
+Source checkpoint: `fb61c6bedf84bae239610b2c37c205580a7fc63f` on `development`. The seven collision snapshots below preserve complete original bytes, including historical relative links and stale CURRENT/NEXT wording. Six old paths retire; `COLLISION_REFERENCE.md` remains the maintained owner. The DESIGN snapshot additionally preserves the unique pre-shortening architecture narrative. No EV, ADR, source, configuration, prototype or runtime artifact changes.
+
+All destinations are under `docs/archive/investigations/`; append `_PRE_CONSOLIDATION_2026-10-08.md` to the original stem.
+
+| Original path | Archived stem | Original and archived Git blob | SHA256 (original = archive) | Bytes |
+|---|---|---|---|---:|
+| `docs/COLLISION_REFERENCE.md` | [COLLISION_REFERENCE](archive/investigations/COLLISION_REFERENCE_PRE_CONSOLIDATION_2026-10-08.md) | `40056e857553e1daf6532c20c8918ad064b3eec5` | `1a13fb346275188a165db644f7e0c852833f9a23f2126dc94999e7f713c6b421` | 18034 |
+| `docs/COLLISION_LIFECYCLE.md` | [COLLISION_LIFECYCLE](archive/investigations/COLLISION_LIFECYCLE_PRE_CONSOLIDATION_2026-10-08.md) | `53f44f77d19b115e5f7864f4ed1d84a10c32e88d` | `bb95ad8bdf497629116071eccf0b3c539bbaa5291d7d655c3c4e251433491f5e` | 11592 |
+| `docs/COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md` | [COLLISION_RAW8_PRODUCTION_ARCHITECTURE](archive/investigations/COLLISION_RAW8_PRODUCTION_ARCHITECTURE_PRE_CONSOLIDATION_2026-10-08.md) | `c2eebec7f8d94ee907fb87f36f33ee7c7601c329` | `f65cd8a1dd47d94d3e6c8481d98fbfed14f227e89730de267b007a8da985caf9` | 13003 |
+| `docs/COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md` | [COLLISION_RAW55_PRODUCTION_ARCHITECTURE](archive/investigations/COLLISION_RAW55_PRODUCTION_ARCHITECTURE_PRE_CONSOLIDATION_2026-10-08.md) | `8d758c96ea1a08d1632fb9ae3377c11fb2e2d436` | `895b187612a343886e374464a449a8f2f72937fa47bfcb2bb8ee78c5cf684a06` | 13836 |
+| `docs/COLLISION_DIAGNOSTICS.md` | [COLLISION_DIAGNOSTICS](archive/investigations/COLLISION_DIAGNOSTICS_PRE_CONSOLIDATION_2026-10-08.md) | `c2c5e3243957b1a2917d8a3297bdf90cb9449e1b` | `5c4af6e46998ec1b6a879b35d5a972fa0f78c53a667e8502f2973e6bfc252039` | 17628 |
+| `docs/COLLISION_CLEANUP_CALLSITE_MAP.md` | [COLLISION_CLEANUP_CALLSITE_MAP](archive/investigations/COLLISION_CLEANUP_CALLSITE_MAP_PRE_CONSOLIDATION_2026-10-08.md) | `50a49685c592f070bf12d8609f51d726101c7750` | `4a244decb9d91335343cccd88b58c0e0824d04fac6e210a843f672fda1304577` | 12924 |
+| `docs/COLLISION_TEST_PLAN.md` | [COLLISION_TEST_PLAN](archive/investigations/COLLISION_TEST_PLAN_PRE_CONSOLIDATION_2026-10-08.md) | `8c8d016d1092e4d4f6cb65e9b1afee5292cb4b48` | `6f4a11733aa1e88e38f1d5bf66eb36398ec96b79243e410fd99e63951f922718` | 8036 |
+| `docs/DESIGN.md` | [DESIGN](archive/investigations/DESIGN_PRE_CONSOLIDATION_2026-10-08.md) | `46b8d8e3ea0d3348165c4d4504d79ee8a21e2570` | `da7d54827fcada6940bc83220deb40564527b29479d6743f809621f8eeaa98e7` | 40937 |
+
+Current collision semantics, lifecycle, diagnostics interpretation and reopening criteria now belong to `COLLISION_REFERENCE.md` §§1–8. Tested-build native cleanup facts belong to `SOURCE_HOOK_GUIDE.md` §3; generic release gates remain in `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md` §8.
+
+For a historical relative link, resolve it against the original `docs/` location at the source checkpoint, then apply this table to a retired collision path. Other original targets remain available at that checkpoint or their existing migration routes. Archive content was not repaired; direct navigation inside these frozen copies may retain obsolete paths. Current maintained inbound links use surviving owners or explicit snapshot paths.
+
+Other current corrections preserve their full pre-change bytes in Git at this same checkpoint. No extra snapshots of the hook guide or evidence index are needed: their targeted edits preserve the engine facts, EV ranges and closure routes, while superseded wording remains recoverable through Git and the collision/DESIGN snapshots. Session/handoff history likewise stays in Git; those files are current pointers.

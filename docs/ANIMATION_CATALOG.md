@@ -234,5 +234,5 @@ Current exclusions include LEFT raw55 generalization, mixed equipped-source + FI
 
 Current authoring rules: `ANIMATION_RULES.md` §10.  
 Current collision facts: `COLLISION_REFERENCE.md`.  
-Permanent architecture: `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`.  
+Permanent contract: [COLLISION_REFERENCE §4.2](COLLISION_REFERENCE.md#42-raw55--exact-first-opening-second-clear-only).
 Evidence: EV-262–EV-298.

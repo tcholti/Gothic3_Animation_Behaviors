@@ -482,7 +482,7 @@ marked exact supported raw8 Fist Hit
 -> native contact geometry/target/damage remains Gothic's responsibility
 ```
 
-There is **no authored `G3AB_COL_FIST_OFF`** in the production vocabulary. Timing permission itself is not consumption and never mutates the real animation clock. Timing retirement (including timing identity changes) does not consume the logical opportunity. The exact contact dispatch consumes it even if Gothic subsequently blocks damage; the next `FIST` can reopen the next intended contact. Permanent owner: [COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md](COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md), §§3–9; evidence EV-346–EV-364.
+There is **no authored `G3AB_COL_FIST_OFF`** in the production vocabulary. Timing permission itself is not consumption and never mutates the real animation clock. Timing retirement (including timing identity changes) does not consume the logical opportunity. The exact contact dispatch consumes it even if Gothic subsequently blocks damage; the next `FIST` can reopen the next intended contact. Permanent contract: [COLLISION_REFERENCE §4.1](COLLISION_REFERENCE.md#41-raw8--persistent-opportunity-separate-timing); evidence EV-346–EV-364.
 
 EV-305 directly confirms the multi-contact authoring meaning on human raw8 Fist: two authored `FIST` markers in one supported Hit are accepted in the same C1, and on contacting executions they produce two native damage contacts. EV-307 independently confirms the same mechanism on Sabretooth/transformed Sabretooth: marker1 uses the early-permission path, marker2 is accepted later as `NATIVE_TIMING`, and contacting executions can damage twice. Therefore repeat `FIST` only when the animation genuinely intends another body-contact hit; the rule is factual-source/mechanism based, not human-species specific.
 
@@ -497,7 +497,7 @@ NO weapon C1 cleanup obligation
 
 Frame 0 is a valid raw8 FIST frame in the tested Sabretooth Quick mechanism, but it rearms the opportunity immediately. EV-271 observed more frame-0 misses than frame 1 despite correct marker acceptance/timing-permission use. For practical authoring, place FIST near the intended physical contact rather than at frame 0 merely because frame 0 is legal.
 
-Current proven raw8 family scope is Normal/Power/Quick/Sprint and is summarized in `COLLISION_REFERENCE.md`. Raw55/PhysicalFist is a separate permanent mechanism under `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`; it must not inherit raw8 latch semantics merely because both serialize as `Fist`.
+Current proven raw8 family scope is Normal/Power/Quick/Sprint and is summarized in `COLLISION_REFERENCE.md`. Raw55/PhysicalFist is a separate permanent mechanism under [COLLISION_REFERENCE §4.2](COLLISION_REFERENCE.md#42-raw55--exact-first-opening-second-clear-only); it must not inherit raw8 latch semantics merely because both serialize as `Fist`.
 
 ### Raw55 / PhysicalFist FIST authoring
 

@@ -48,8 +48,7 @@ Examples:
 
 - `COLLISION_REFERENCE.md`;
 - `ANIMATION_RULES.md`;
-- `SOURCE_HOOK_GUIDE.md`;
-- `COLLISION_CLEANUP_CALLSITE_MAP.md`.
+- `SOURCE_HOOK_GUIDE.md` (including tested native cleanup facts).
 
 Reference statements should be short, current, qualified where necessary, and point to supporting EVs rather than reproduce full evidence reasoning.
 
@@ -60,9 +59,7 @@ Owns current responsibilities, invariants, module boundaries and intended behavi
 Examples:
 
 - `DESIGN.md`;
-- `COLLISION_LIFECYCLE.md`;
-- `COLLISION_DIAGNOSTICS.md`;
-- `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`;
+- `COLLISION_REFERENCE.md` (accepted collision contract and safety invariants);
 - `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`.
 
 Architecture is not experiment chronology.

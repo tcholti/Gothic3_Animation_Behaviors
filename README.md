@@ -43,7 +43,7 @@ Do **not** blindly follow the old `NEXT` pointer. Start here and enter **Recover
 Only broaden when the current responsibility requires it:
 
 - [Project charter and knowledge map](docs/README.md) — highest Gothic-specific authority beneath CAM; use for project purpose, long-term direction, authority topology, formal-audit preflight, or one-time subsystem orientation.
-- [Collision reference](docs/COLLISION_REFERENCE.md) — compact current collision facts; use before evidence for already-settled questions.
+- [Collision reference](docs/COLLISION_REFERENCE.md) — single accepted collision working contract, source map, diagnosis and reopening; use before evidence for settled questions.
 - [Evidence index](docs/EVIDENCE_INDEX.md) — route proof-sensitive questions to exact EV ranges and provenance only when needed.
 - [Animation knowledge index](docs/ANIMATION_INDEX.md) — route filename/UseType/action/pose/asset questions to exact sections/data.
 - [Source and hook guide](docs/SOURCE_HOOK_GUIDE.md) — reusable engine/API/RVA/hook facts, including current Speed, Raise, Movement and bad-block protection surfaces.
@@ -126,7 +126,7 @@ Script_CombatMoveLogger
 = independent generic CombatMove / animation-speed diagnostic tool
 
 Script_FrameCollisionBehaviorTest / Script_FrameCollisionTest
-= historical/research collision twins retained for controlled reproduction; collision production behavior has already migrated into Script_G3AnimationBehaviors
+= historical collision-only twins retained for controlled reproduction; omit current Speed/Raise/Movement/integrated bad-block and cannot certify the full assembled production DLL
 ```
 
 Runtime diagnostic/release products that hook the same Gothic surfaces must be treated as mutually exclusive unless a task explicitly proves coexistence safe. Renaming a script DLL while leaving it inside Gothic's `scripts` directory is **not** a reliable disable method; excluded DLLs must be physically moved or removed from that folder.

@@ -36,6 +36,6 @@ Feature policy/state belongs in the permanent feature module that owns the mecha
 - `DESIGN.md`
 - `FEATURE_DEVELOPMENT_METHOD.md`
 - `WORK_IMPLEMENTATION_PROTOCOL.md`
-- `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`
+- [Current raw55 contract](../COLLISION_REFERENCE.md#42-raw55--exact-first-opening-second-clear-only) (original architecture preserved through EVIDENCE_PATH_MIGRATIONS)
 
 This ADR preserves the rationale. Current architecture/reference documents remain authoritative for what applies now.

@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Project Charter and Knowledge Map
 
 **Purpose:** Highest project-specific authority beneath CAM for the Gothic 3 project's **purpose, long-term direction, scope, authority topology, and retrieval model**. Route Chat, Work, contributors, and Gothic 3 modders to the **smallest useful authoritative material** while preserving deep technical knowledge for targeted recovery.  
-**Updated:** 2026-09-27
+**Updated:** 2026-10-08
 
 <!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
 
@@ -255,13 +255,9 @@ After state/orientation/reconstruction are known, retrieve only the exact EV, so
 
 ### WARM — current reference / architecture / active plans
 
-- `COLLISION_REFERENCE.md` — compact established collision facts; ordinary collision lookup starts here.
-- `DESIGN.md` — overall intended architecture and implementation order.
-- `COLLISION_LIFECYCLE.md` — collision lifecycle/cleanup architecture.
-- `COLLISION_DIAGNOSTICS.md` — diagnostic architecture.
-- `COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md` — permanent Fist/raw8 opportunity behavior architecture.
-- `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md` — permanent PhysicalFist/raw55 behavior architecture.
-- `COLLISION_TEST_PLAN.md` — active validation posture and remaining collision gates.
+- `COLLISION_REFERENCE.md` — single accepted collision working contract: equipped/Sprint/raw8/raw55, C1 safety, diagnosis, validation/reopening and source/proof routes.
+- `DESIGN.md` — overall integration plus current profiles/Speed/Raise/Movement/player-protection contracts.
+- `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md` — product separation, general diagnostic policy and release gates.
 - `PROJECT_SCOPE_CONTEXT.md` — short factual engine-facing scope context.
 
 ### COLD — routing indexes
@@ -273,14 +269,13 @@ After state/orientation/reconstruction are known, retrieve only the exact EV, so
 
 Closed evidence ledgers live under `archive/evidence/`; exactly one `EVIDENCE_LEDGER_<start>_ONWARD.md` remains active in `docs/`. `EVIDENCE_INDEX.md` maps every EV range to its current or archived volume. Do not load ledger volumes for ordinary settled questions.
 
-Closed probes, implementation contracts, audits and superseded work plans live under `archive/investigations/`. Active temporary work lives only under `work/active/`.
+Closed probes, implementation contracts, audits and superseded work plans/authority snapshots live under `archive/investigations/`. Six former collision documents and the old reference are preserved byte-identically there; `EVIDENCE_PATH_MIGRATIONS.md` records original identities and historical-link recovery. Current collision work starts from the surviving reference. Active temporary work lives only under `work/active/`.
 
 Other deep references:
 
-- `COLLISION_CLEANUP_CALLSITE_MAP.md` — tested cleanup RVAs/stacks.
 - `ANIMATION_RULES.md` — generalized animation/state/UseType/authoring semantics.
 - `ANIMATION_CATALOG.md` — concrete families/assets/fixtures.
-- `SOURCE_HOOK_GUIDE.md` — targeted source/API/symbol/RVA/hook lookup.
+- `SOURCE_HOOK_GUIDE.md` — targeted source/API/symbol/RVA/hook lookup, including tested-build native cleanup facts.
 - `ENGINEERING_GUIDE.md` — project-wide engineering principles.
 
 ### COLD — searchable data / provenance
@@ -317,13 +312,13 @@ Ordinary documentation history belongs in Git; historical Git content never over
 | How is knowledge maintained? | `KNOWLEDGE_MAINTENANCE.md` | Registry for exact owner/update trigger |
 | Who owns this knowledge? | `KNOWLEDGE_REGISTRY.md` | owning authority named there |
 | Overall architecture? | `DESIGN.md` | evidence index if premise must be checked |
-| Current collision lifecycle? | `COLLISION_LIFECYCLE.md` | cleanup map / EV |
-| Current raw8 production architecture? | `COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md` | `COLLISION_REFERENCE.md`; `EVIDENCE_INDEX.md` for proof |
-| Diagnostics? | `COLLISION_DIAGNOSTICS.md` | source + exact EV |
-| Collision validation posture? | `SESSION_ENTRYPOINT.md` → `COLLISION_TEST_PLAN.md` | transient handoff only when active |
+| Current collision lifecycle? | `COLLISION_REFERENCE.md` §5 | source; hook guide §3 for native facts; EV for proof |
+| Current raw8 / raw55 contract? | `COLLISION_REFERENCE.md` §4 | corresponding source; hook guide §§4–5; EV for proof |
+| Collision symptom / diagnostics? | `COLLISION_REFERENCE.md` §6 | release architecture for general policy; source + specific EV |
+| Collision validation / reopening? | `COLLISION_REFERENCE.md` §7 | release architecture §8 and exact POP; SESSION for active gate |
 | Is engine claim proven? | `EVIDENCE_INDEX.md` | exact ledger → raw/source |
 | Where did an archived evidence file move? | `EVIDENCE_PATH_MIGRATIONS.md` | exact historical EV/commit when needed |
-| Native cleanup callsite? | `COLLISION_CLEANUP_CALLSITE_MAP.md` | relevant EV/raw |
+| Native cleanup callsite? | `SOURCE_HOOK_GUIDE.md` §3 | relevant EV; archived cleanup map only for exact historical stacks |
 | Animation token/UseType/action/pose? | `ANIMATION_INDEX.md` | exact Rules section |
 | Exact animation exists? | animation-name data | catalog/rules for interpretation |
 | Family/fixture/source note? | `ANIMATION_INDEX.md` | Catalog |
@@ -335,9 +330,9 @@ Ordinary documentation history belongs in Git; historical Git content never over
 
 | Subsystem | Orientation route |
 |---|---|
-| frame collision / lifecycle | `COLLISION_REFERENCE.md` → `DESIGN.md` / `COLLISION_LIFECYCLE.md`; `EVIDENCE_INDEX.md` only when proof or unresolved causal reconstruction is needed |
-| Raise | `DESIGN.md` Raise section → Raise route in `EVIDENCE_INDEX.md` → `ANIMATION_INDEX.md` for asset/selection questions |
-| playback speed | `DESIGN.md` speed section → speed evidence route → Source Guide when implementation/hook context matters |
+| frame collision / lifecycle | `COLLISION_REFERENCE.md` §§1–7 → targeted source / existing procedures; `EVIDENCE_INDEX.md` only for proof or unresolved causal reconstruction |
+| Raise | `DESIGN.md` §3 Raise → targeted source; animation rules §5.1 for assets; EV only for proof |
+| playback speed / Movement / player protection | `DESIGN.md` §§2–3,9 → targeted source; Source Guide for exact hook facts; EV only for proof |
 | animation semantics / selection | `ANIMATION_INDEX.md` → exact Rules/Catalog/data → relevant evidence only when behavioral interpretation matters |
 | source/API/hook investigation | `SOURCE_HOOK_GUIDE.md` → exact evidence/callsite authority named there → SDK/reference source for concrete symbol/API question |
 
@@ -416,11 +411,8 @@ Work should not reconstruct the whole project by default.
 | knowledge-maintenance process | `KNOWLEDGE_MAINTENANCE.md` |
 | knowledge ownership/update triggers | `KNOWLEDGE_REGISTRY.md` |
 | overall intended system architecture | `DESIGN.md` |
-| collision lifecycle architecture | `COLLISION_LIFECYCLE.md` |
-| diagnostic architecture | `COLLISION_DIAGNOSTICS.md` |
-| collision validation boundaries | `COLLISION_TEST_PLAN.md` |
+| accepted collision behavior / lifecycle / diagnostic interpretation / validation and reopening | `COLLISION_REFERENCE.md` |
 | release/diagnostic product architecture | `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md` |
-| current established collision facts | `COLLISION_REFERENCE.md` |
 | exact evidence status/provenance | current ledger + archived ledger volumes routed by `EVIDENCE_INDEX.md` |
 | evidence/history lookup | `EVIDENCE_INDEX.md` |
 | evidence storage migration lookup | `EVIDENCE_PATH_MIGRATIONS.md` |
@@ -428,7 +420,7 @@ Work should not reconstruct the whole project by default.
 | concrete assets/fixtures | `ANIMATION_CATALOG.md` / data files |
 | animation lookup | `ANIMATION_INDEX.md` |
 | source/API/hook lookup | `SOURCE_HOOK_GUIDE.md` |
-| build-specific cleanup reverse engineering | `COLLISION_CLEANUP_CALLSITE_MAP.md` |
+| current tested-build native cleanup facts | `SOURCE_HOOK_GUIDE.md` §3; full historical stacks remain archived |
 | actual implementation truth | current branch source + commits |
 
 A historical “current/next” statement never overrides the maintained authority for that responsibility.

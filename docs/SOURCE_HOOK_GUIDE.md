@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Source & Hook Guide
 
 **Status:** Canonical practical source/hook lookup guide  
-**Updated:** 2026-09-29
+**Updated:** 2026-10-08
 
 ## Purpose
 
@@ -9,7 +9,7 @@ Use this file for targeted source/API/RVA/hook questions. It is a lookup guide, 
 
 Current task: `SESSION_ENTRYPOINT.md`.  
 Evidence: `EVIDENCE_INDEX.md`.  
-Cleanup RVAs/stacks: `COLLISION_CLEANUP_CALLSITE_MAP.md`.
+Tested native cleanup facts: §3 below; full historical stacks: [archived cleanup map](archive/investigations/COLLISION_CLEANUP_CALLSITE_MAP_PRE_CONSOLIDATION_2026-10-08.md). Collision mechanism rules: [COLLISION_REFERENCE.md](COLLISION_REFERENCE.md).
 
 ---
 
@@ -225,6 +225,29 @@ attack ScriptFunction suspended at CombatMove break block
 
 Held Use2 / ~2500 ms is a test trigger, not collision ownership.
 
+
+### Native equipped cleanup lookup — tested build only
+
+Promoted facts from EV-163–172, native/unmarked **player** B4/B4b/B5 matrix. These Script_Game RVAs are **return addresses immediately after the imported collision-group setter**, not function entries or a production hook matrix. The observed transition was exact equipped `7 → 5`.
+
+| Factual action | RIGHT cleanup return | LEFT cleanup return | Scope |
+|---|---|---|---|
+| Normal1 | `+0x3851A` | `+0x3854E` | Tested 2H/Staff/1H/Shield+1H/Dual. |
+| Power2 | `+0x4809D` | `+0x480E4` | Includes tested Dual. |
+| QuickR/L4/5 | `+0x48794` | `+0x487CC` | Generic Quick3 not established by this matrix. |
+| SimpleWhirl6 | `+0x4C828` | `+0x4C858` | Separate Dual source branches. |
+| full Whirl10 | `+0x4E03C` | not observed | Tested 2H/Staff RIGHT. |
+| Pierce11 | `+0x477E3` | `+0x4781C` | Branch follows tested damaging source. |
+| Hack14 | `+0x432BC` | not observed | Standing/block-breaking use of Finishing-named asset. |
+| Finishing15 | `+0x4178A` | `+0x417C2` | Native true finishing, not marker support. |
+| GetUpAttack30 | `+0x41E10` | not observed | Native get-up cleanup. |
+
+Tested Staff/1H/2H reaction cleanup returned at `Script_Game+0x24AFF`, sometimes before routine identity changed from attack Hit. This does not prove every interruption uses that site. Same serialized Finishing asset can select Hack14 versus Finishing15 cleanup; filenames alone do not establish lifecycle identity (EV-164).
+
+Ordinary cleanup parent: `Game+0x1604E0 RunScriptFunction` entry → indirect Script_Game call → `+0x1605EB` return. Reaction parent: `Game+0x1603D0 RunScriptState` entry → indirect state call → `+0x1604D3` return. These adjacent generic runners are not central combat-cleanup helpers. Both converge in `Game+0x16F120 ProcessScript`, a generic dispatcher whose main script dispatch precedes local/task callbacks. CombatMove instruction completion and StartRecover are too early for the demonstrated action-specific cleanup; callback return is not cleanup authority.
+
+No universal cleanup coverage is inferred for Quick3, Sprint, Jump, Ram, body/monster, raw8 or ranged/magic from this original matrix. Later source-specific evidence has its own routes in the collision reference. Accepted post-native AISetState consequences belong to [reference §5](COLLISION_REFERENCE.md#5-c1-lifecycle-and-must-preserve-safety); captured stacks, symbol list and superseded B6 candidates remain in the archived cleanup map linked above. Reverify addresses for another binary build.
+
 ---
 
 ## 3A. Speed v2 reusable engine facts
@@ -295,7 +318,7 @@ If a future mod changes the speed path structurally rather than as a compatible 
 | Troll / PhysicalFist+PhysicalFist | Power Hit | 1.0 |
 | Troll / PhysicalFist+PhysicalFist | factual Sprint, shared-Power Raise / Hit | 1.0 / 1.0 |
 
-These are evidence-bounded native-only controls, not a complete native catalogue. Do not generalize them to untested families/loadouts. PhysicalFist here is factual raw55, not a source classification inferred from the serialized `Fist` token. `ReferenceHitBaseSpeed` is native Hit base **B**; New Balance/compatible modified live values are not native B. Raise observations are retained for later research, not as `ReferenceHitBaseSpeed` or current Hit-hook scope; Raise remains PAUSED.
+These are evidence-bounded native-only controls, not a complete native catalogue. Do not generalize them to untested families/loadouts. PhysicalFist here is factual raw55, not a source classification inferred from the serialized `Fist` token. `ReferenceHitBaseSpeed` is native Hit base **B**; New Balance/compatible modified live values are not native B. Raise values here are distinct phase observations, not Hit calibration B. AddRaise now inherits composed Hit speed; native Power Raise is composed separately at `+0x47D51` (EV-415–422). Raise sequencing/direction/assets are CLOSED/PASS through EV-430; DESIGN §3 owns that contract.
 
 Proof: EV-396, retrieved through [EVIDENCE_INDEX.md](EVIDENCE_INDEX.md).
 
@@ -460,13 +483,13 @@ Timing permission is not consumption. Reaching the forced time or changing timin
 
 Marked-execution start closes `SPU+0x164 = 1`; each accepted FIST rearms `=0`. EV-347 proves the tested native attempt leaves the latch at `1` after the instruction returns whether or not the `Game+0x16E348` boundary is entered, so do not describe `+0x16E1A3` as success-only consumption. EV-349 further shows that entering `+0x16E348` does not imply visible HP damage: Parade/block can still prevent the gameplay damage result. The persistent-opportunity implementation uses only the exact native contact-resolution dispatch at caller-return `+0x16E348` as consumption, not as a damage-success oracle; Gothic original runs once with unchanged arguments.
 
-Permanent owner: [COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md](COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md), §§3–9. Evidence route: EV-221–EV-240 for human production, with later raw8 actor/family controls through EV-263; EV-346–EV-364 for persistent-opportunity evidence, implementation and focused acceptance. Raw8 production semantics must not be generalized to raw55 merely because both serialize through a `Fist` animation category.
+Permanent contract: [COLLISION_REFERENCE §4.1](COLLISION_REFERENCE.md#41-raw8--persistent-opportunity-separate-timing), with generation safety in §5. Evidence route: EV-221–EV-240 for human production, with later raw8 actor/family controls through EV-263; EV-346–EV-364 for persistent-opportunity evidence, implementation and focused acceptance. Raw8 production semantics must not be generalized to raw55 merely because both serialize through a `Fist` animation category.
 
 ---
 
 ## 5. PhysicalFist/raw55 Status
 
-`gEUseType_PhysicalFist` / raw55 is now a permanent, distinct collision mechanism. Ordinary semantic lookup starts in `COLLISION_REFERENCE.md`; exact production ownership is `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`.
+`gEUseType_PhysicalFist` / raw55 is now a permanent, distinct collision mechanism. Ordinary semantic lookup starts in `COLLISION_REFERENCE.md`; exact production contract is [reference §4.2](COLLISION_REFERENCE.md#42-raw55--exact-first-opening-second-clear-only).
 
 Stable source/hook facts:
 
@@ -493,7 +516,7 @@ turn the historical probe policy into bridge policy
 reconstruct current raw55 semantics from archived probe chronology by default
 ```
 
-Evidence: EV-262–EV-298. Exact family causal history routes through `EVIDENCE_INDEX.md` only when proof detail is needed.
+Evidence: EV-262–EV-298, EV-382, EV-385–EV-390. Exact family causal history routes through `EVIDENCE_INDEX.md` only when proof detail is needed.
 
 ---
 

@@ -1,0 +1,614 @@
+# Gothic 3 Animation Behaviors — Design
+
+**Status:** Canonical project architecture  
+**Updated:** 2026-10-08
+**Project:** `Gothic3_Animation_Behaviors`
+
+## Purpose
+
+`Script_G3AnimationBehaviors` is the general animation-behavior layer for Gothic 3. The first-release production set — authored-frame Collision, Speed v2, additive Raise, configurable attack Movement, and the narrow player bad-block protection — is CLOSED/PASS through EV-454 and promoted to stable `main @ 08a0bd8fcf42173088e233e09b706a80da882070` after EV-455/EV-456 review. No feature responsibility is currently active. Future independent domains may include target acquisition, climbing, and other deliberately adopted animation/gameplay behavior modules.
+
+This file owns overall intended architecture and implementation order. Established collision facts are projected in `COLLISION_REFERENCE.md`; collision lifecycle authority is `COLLISION_LIFECYCLE.md`; validation authority is `COLLISION_TEST_PLAN.md`; diagnostics are owned by `COLLISION_DIAGNOSTICS.md`; permanent raw8 behavior is owned by `COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`; permanent raw55 behavior is owned by `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`; practical source/hook lookup is `SOURCE_HOOK_GUIDE.md`; exact proof routes through `EVIDENCE_INDEX.md`.
+
+---
+
+## 1. Governing Principles
+
+1. Prefer Gothic native action/phase/UseType/current-motion semantics over filename heuristics when available.
+2. Preserve Gothic's own animation resolution whenever possible.
+3. Custom behavior is explicit opt-in: config for Raise/speed/movement, exact reserved markers for collision; the narrow bad-block protection is automatic only on its proven player Action4/5/10 Hit condition.
+4. Separate attack family/phase from the physical damage source.
+5. Keep responsibilities separate: physical hook transport in `EngineBridge`, behavior in feature modules, factual source identity in `CollisionSources`, source mutations in `CollisionSourceOperations`, diagnostics in diagnostic-only code.
+6. Preserve proven paths while expanding one meaningful responsibility at a time.
+7. Unconfigured/unmarked cases fall back to native behavior.
+8. Load configuration once into normalized in-memory rules.
+9. Require evidence before generalizing actor/family/source-mechanism behavior.
+10. One DLL owns each physical Gothic hook; feature modules consume shared bridge facts rather than installing competing hooks.
+11. Public release behavior contains no research diagnostics.
+12. Known successful runtime behavior should log compactly in CORE; unknown, unsupported, contradictory, repair, or invariant behavior should become richer automatically. Detailed historical probes belong in opt-in DEEP diagnostics.
+13. A feature family is defined by factual Gothic action semantics, not by whatever animation filename happens to be playing.
+14. Unknown feature behavior is researched in a dedicated temporary probe/research module, not accumulated in `EngineBridge` or another stable owner. When the mechanism is proven, re-express only the proven responsibilities in their proper permanent modules and remove the research scaffolding.
+15. Collision markers author **collision/contact opportunity**, not gameplay damage policy. Marker systems may open, rearm and close native collision opportunities, but Gothic and other behavior systems remain authoritative for target validity, block/parry, immunity, knockdown/get-up vulnerability, reactions, damage amount and whether HP damage occurs at all. A native hit/contact can therefore consume an authored opportunity even when the resulting gameplay damage is zero.
+
+---
+
+## 2. Configuration Identity
+
+The shared Raise/speed profile identity is:
+
+```text
+AnimationFamily
++ LeftAnimationUseType
++ RightAnimationUseType
+```
+
+Under ADR-0011, Speed/Raise profile identity follows the **resolved animation set actually requested by Gothic**:
+
+```text
+AnimationFamily
++ ResolvedLeftAnimationToken
++ ResolvedRightAnimationToken
+```
+
+At the factual Speed request boundary, production resolves `Entity.GetAni(action, phase)` and extracts the left/right animation tokens from Gothic's canonical animation-name structure. This is deliberately different from using raw equipped `gEUseType`. Native Axe that resolves `..._None_2H_...` shares the 2H profile; Axe Separation resolving `..._None_Axe_...` gets an Axe profile; Rapier remains raw 1H but resolves `..._None_Rapier_...` and therefore gets a Rapier profile; Zombie Separation changes `AnimationFamily` to `Zombie`. Shared animations share Speed settings automatically, while genuinely separated animation sets are independently configurable without mod-specific C++ branches.
+
+`G3AnimationBehaviors.ini` is loaded once during DLL startup into a normalized in-memory profile table. Runtime handling performs only an in-memory profile lookup; it does not reread or reparse the INI on each attack. Missing/unconfigured profiles and missing/invalid per-attack settings preserve the live compatible behavior.
+
+Each profile contains independent optional settings for the factual attack families currently supported by Speed:
+
+```text
+Normal
+Quick
+Power
+Pierce
+Hack
+SimpleWhirl
+Whirl
+```
+
+Speed-supported attacks may contain:
+
+```text
+<Attack>_ReferenceHitBaseSpeed
+<Attack>_BaseSpeed
+```
+
+The initial public additive-Raise surface is deliberately narrower:
+
+```text
+Normal_AddRaise
+Quick_AddRaise
+Whirl_AddRaise
+```
+
+Do not infer public AddRaise support for the other Speed attack families merely from the generic internal profile structure.
+
+Quick runtime variants remain factual Action4/Action5 internally but share the user-facing `Quick` settings. Generic Action3 is a selector rather than the proven playback-speed action. Sprint remains factual Action9 in actor state, but its proven shared Power speed route supplies Action2 to the speed owner; under ADR-0009 Sprint therefore inherits the `Power` timing settings and has no separate Speed prefix. EV-401 clarifies that profile inheritance does **not** require equal live Power/Sprint results: in one same-run BlackGoblin control ordinary Power Hit was `1.0` while factual Sprint Hit was `1.5`, despite both passing Action2. The Power profile supplies the authoring base; the live compatible result may still contain Sprint-context effects that C/B composition must preserve.
+
+No P0/P1/P2/P3 pose split belongs in the user-facing profile identity.
+
+Raise/speed feature policy must not grow weapon-specific C++ branches such as `if 1H`, `if 2H`, `if Axe`, or `if Staff` merely to select configured behavior. Weapon/use-type selection belongs to profile data plus normalized runtime facts. A modded item participates through the runtime UseType / animation category and animation family it exposes; adding another configured profile should not require a new C++ weapon branch.
+
+The generic INI schema is now implemented. `<Attack>_AddRaise` is the locked player-facing syntax for attacks where G3AB deliberately adds a missing/unused Raise. The current source still stores the dormant field internally as `RaiseOverride`; implementation may keep generic internal storage if that is cleaner. Missing/Off means G3AB adds nothing and native Gothic behavior is untouched.
+
+Architecture rationale: ADR-0005 + ADR-0006 + ADR-0009.
+
+---
+
+## 3. Raise, Speed, and Movement
+
+### Raise
+
+A configured custom Raise is intended to prepend the appropriate preparatory CombatMove phase before the untouched original melee state while preserving native Raise where already correct. Keep Raise independent from collision lifecycle and continuation protection.
+
+Custom Raise does **not** hard-code an animation filename. Historical runtime proof also confirms that G3AB must not construct Raise filenames: the old 2H prototype supplied action + `Raise` phase only, and Gothic automatically resolved the correct P0/P1 Raise asset. The intended mechanism remains:
+
+```text
+matching configured profile/attack
+-> request the corresponding Raise CombatMove phase
+-> let Gothic resolve the actual animation from its normal request facts
+   (animation family/state/use types/pose/action/phase/direction/etc.)
+-> after Raise completes, continue the untouched original attack path
+```
+
+Normal Action1 has one proven continuation-preservation rule inside that architecture. A synthetic AddRaise and the stored Hit are two separate `sAICombatMoveStart` executions, so Gothic would otherwise classify Fwd/Left/Right again after Raise. Production therefore carries only Gothic's already-selected native Raise direction across that one continuation:
+
+```text
+pending Normal Raise at Game+0x16B056
+-> capture native direction bCString + current gEDirection
+-> let Gothic GetAniName resolve Raise normally
+-> stored Normal Hit reaches the same call site
+-> restore the captured gEDirection + reuse the exact captured direction bCString
+-> let Gothic GetAniName resolve Hit normally
+-> retire the carry with the existing RaiseContinuation lifetime
+```
+
+This is not a general direction classifier or filename policy. G3AB does not parse animation names, reproduce Gothic geometry logic, or apply the carry to Quick/Whirl/Power/Hack. EV-424 established the native ownership/mechanism, EV-426 source-reviewed the implementation, and EV-427 runtime-accepted the directional correction on the exercised dual fixture. EV-428 is the authoritative scope clarification: this acceptance is representative/tested-route evidence, not universal proof for every Gothic animation set.
+
+The existing 2H Normal prototype proved the basic “ask Gothic for Raise” mechanism; its player + None/2H gate was fixture scope, not final architecture. The first-release Raise feature is now CLOSED/PASS. Its public additive scope remains Normal, Quick and Whirl only. `<Attack>_AddRaise=On` means add a Gothic-resolved Raise before Hit; missing/Off adds nothing. G3AB does not expose a user-facing switch for disabling or replacing Raise phases Gothic already uses natively.
+
+Raise-speed ownership is now closed on the proven routes. Custom Normal/Quick/Whirl AddRaise reuses the composed factual Hit `AniSpeedScale`; native Power Raise preserves its live compatible phase result and applies the configured Power authoring ratio. EV-428 adds a practical authoring control: the newly created dual Normal/Quick Raise assets followed the configured `0.1` speed change as intended, while the 2H controls remained correct.
+
+### Initial Raise production scope
+
+The first implementation/acceptance scope is:
+
+```text
+Normal
+Quick
+Whirl
+```
+
+Power, Pierce, Hack, SimpleWhirl, Finishing and Sprint are not part of the first custom-Raise implementation. Do not add public `*_AddRaise` keys for native-Raise attacks merely for symmetry. Broader exposure requires a separate product decision.
+
+Runtime acceptance is deliberately **staged by available authored assets**. EV-429 completes the representative pre-release matrix across the full public AddRaise surface: Normal, Quick and full Whirl. The tested structure includes Normal Fwd and Left/Right continuation, both factual QuickAttackR/L variants, multiple human weapon/dual/Fist routes, nonhuman None+Fist and Troll Fist+Fist, native and user-authored Raise assets, and repeated configured-speed inheritance controls. This does not imply that every animation family has a matching Raise resource or has been exercised. EV-430 additionally proves, on Shield+1H Quick, that an enabled Quick profile may contain only a subset of matching Raise assets: authored pose-changing Quick Raises are used where present, while factual Quick attacks without matching Raise resources still execute normally. The exact native fallback mechanism was not instrumented, so this is a runtime behavior contract rather than an inferred return-code rule. Exhaustively authoring/testing Raise for every Normal/Quick weapon route is not a release gate. Broader coverage will grow alongside later animation-mod redesigns and from focused post-release contradictory reports. `SimpleWhirl` is not part of the public AddRaise surface.
+
+Player-facing guidance: Normal and Quick do not normally execute Raise in Gothic 3. Matching Raise files exist for some native sets, but not necessarily every animation set. Enable `AddRaise` only when the correct Raise asset exists for that exact route; otherwise leave it Off.
+
+Release documentation must show real matched Raise naming examples for `Attack`, `QuickAttackR`, `QuickAttackL`, and `WhirlAttack`. Do not tell authors to blindly rename only `Hit` to `Raise`, because native Raise/Hit suffixes can differ in destination pose and movement data.
+
+Historical runtime testing established that the old `PS_Melee_Attack` Raise prepend coexisted successfully with New Balance. The Quick static precheck is now closed: generic Quick / Action3 is the native selector/request identity, and Gothic selects then writes factual `PropertyAction` Action4/QuickAttackR or Action5/QuickAttackL downstream before the proven `Script_Game+0x48677` Quick Hit consumer. G3AB must therefore not choose R/L at `PS_Melee_QuickAttack` entry and must not reproduce Gothic's selector logic.
+
+The first production transport is deliberately split while preserving one generic AddRaise policy:
+
+```text
+Normal -> PS_Melee_Attack + PREPEND_BREAK_BLOCK
+Whirl  -> PS_Melee_WhirlAttack + PREPEND_BREAK_BLOCK
+Quick  -> existing CombatMove transport after Gothic has selected factual Action4/5
+```
+
+For Quick, `EngineBridge` remains the sole physical `sAICombatMoveInstr` hook owner and exposes only the smallest transport needed by the permanent Raise owner. The Raise feature may own only the minimal continuation state required to prepend one factual R/L Raise before the untouched factual R/L Hit; it may not add a new physical hook, infer direction, or alter Collision/Speed semantics. Normal has historical coexistence evidence; Quick/Whirl direct runtime coexistence is now PASS through EV-412, including the intended New Balance stack.
+
+EV-412 also confirms the ownership boundary for the known destructive block-skip route: if that path FullStops and replaces the active attack state, an in-progress Raise continuation may be destroyed. Raise must not add resurrection/recovery logic for this state-destruction class; prevention belongs to the separate production bad-block mechanism defined in §9.
+
+EV-413 established that the current implementation does **not** consistently apply configured `BaseSpeed` to Raise. EV-414 supersedes the earlier product-closure interpretation of that result: this is an integration contradiction, not an accepted native-timing mode.
+
+The authoring requirement remains the ADR-0004 / ADR-0008 model:
+
+```text
+one <Attack>_BaseSpeed
+-> coherent attack timing across Raise / Hit / Recover where those phases exist
+-> common nominal Blender timing/frame convention
+-> Gothic/New Balance phase-specific relative bases and contextual multipliers preserved
+```
+
+EV-414's extreme `BaseSpeed=0.1` matrix makes the inconsistency explicit: custom Normal/Quick/Whirl Raise and native Power Raise did not follow the authored speed, while native Hack and Pierce Raise did. The approximately 0–10-frame custom Raise assets were deliberately made longer than the earlier approximately 0–3-frame assets so the timing contrast was easier to observe.
+
+Pre-correction source explained two concrete gaps: AddRaise requested Normal/Quick/Whirl Raise with `AniSpeedScale=1.0f`, and production Speed composed only Hit-phase caller sites. Power additionally had a separate factual Raise speed consumer at `Script_Game+0x47D51` outside the then-current Hit-only hook set.
+
+The desired correction must **not** flatten Raise to Hit. Where Gothic/New Balance has a distinct compatible Raise result, G3AB should preserve that relationship and apply the attack's authoring ratio on top of it. The candidate relationship is:
+
+```text
+R = BaseSpeed / ReferenceHitBaseSpeed
+configuredRaise = compatibleRaise * R
+```
+
+This relationship is accepted for the proven Power route: EV-415 froze it, EV-416 source-accepted it, and EV-420–EV-421 runtime-accepted authored-speed coupling on tested native and intended-stack routes. It is not generalized to unrelated unproven routes. Hack/Pierce must not be double-scaled.
+
+No separate `RaiseSpeed` or `ReferenceRaiseBaseSpeed` key is authorized.
+
+EV-415 closes the phase-consistency causal research and freezes two distinct production mechanisms:
+
+```text
+G3AB-added Normal / factual Quick R/L / Whirl Raise
+-> intercept at the already-owned factual Hit CombatMove boundary
+-> exact incoming Hit request already carries configured compatible AniSpeedScale
+-> inserted Raise uses that exact AniSpeedScale
+-> service Raise, then exact stored Hit
+```
+
+This defines a custom opt-in Raise as part of the same authored attack timing. Do not make an extra synthetic `GetAnimationSpeedModifier` call to obtain its speed; compatible owners may contain contextual side effects, and the incoming Hit request already contains the composed result.
+
+For native Power Raise:
+
+```text
+live Power Raise caller +0x47D51
+-> call the live Gothic/New Balance owner exactly once
+-> compatibleRaise = native/mod Raise result
+-> R = Power_BaseSpeed / Power_ReferenceHitBaseSpeed
+-> configuredRaise = compatibleRaise * R
+```
+
+This preserves native/live phase relationships such as Hero Power Raise `1.5*M` versus Hit `1.0*M`, while applying the same authored attack-speed change across the attack. ADR-0009 Sprint/Power profile inheritance remains unchanged on the proven shared Action2 route.
+
+Pierce already propagates its configured attack speed through visible native Raise under EV-414 and receives no additional Raise-specific composition. EV-417–EV-419 establish and implement Hack's route-neutral compatibility transport because pinned AttackCollision replaces the native Hack state and bypasses G3AB's former native caller patches. Production now consumes factual Action14 Raise/Hit/Recover CombatMove requests after the live compatible speed has already been written to `AniSpeedScale`, then applies the existing Hack Hit-profile `C/B` ratio exactly once. SimpleWhirl receives no Raise work absent a factual Raise route.
+
+EV-416 confirms the implemented final transport removes the high-level G3AB `PS_Melee_Attack` and `PS_Melee_WhirlAttack` AddRaise hooks. Normal/Quick/Whirl custom sequencing now belongs only at the already-owned CombatMove boundary.
+
+### Speed
+
+A configured speed authors the **base speed term** for the matching profile/attack; it does not own the final effective playback speed.
+
+The accepted production mechanism leaves the live `Script_Game+0x42A0 GetAnimationSpeedModifier` owner untouched and composes only after that owner has produced the compatible result. Most routes use exact caller-side interception. Hack is the deliberate route-neutral exception: EV-418 freezes and EV-419 source-accepts factual Action14 Raise/Hit/Recover composition at the shared CombatMove request boundary, using the already-computed request `AniSpeedScale`, so native Gothic and pinned AttackCollision share one correction.
+
+Reason about the route as:
+
+```text
+B = native Gothic reference base for the exact route
+C = configured G3AB BaseSpeed
+M = combined compatible/contextual multiplier effect already present in the live result
+
+compatibleSpeed = B * M
+configuredSpeed = compatibleSpeed * (C / B)
+                = C * M
+```
+
+`ReferenceHitBaseSpeed` is therefore a **native Gothic calibration fact** for the exact family/loadout/attack route. It is not a New Balance value and normally is not an author-tuning control. `BaseSpeed` is the author-facing speed value.
+
+This downstream algebra is intentionally the small price paid for the safer intervention boundary: Gothic/New Balance retain ownership of their internal speed policy, G3AB calls the live owner exactly once with the original caller action, then substitutes only the known base contribution while preserving compatible relative modifiers already present in the live result.
+
+The current production implementation has 12 caller-side Hit hooks across:
+
+```text
+Normal
+Quick
+Power / shared Sprint-Power
+Pierce
+SimpleWhirl
+Whirl
+```
+
+Hack is no longer in that caller-hook set; its factual Action14 Raise/Hit/Recover requests compose at the shared CombatMove boundary.
+
+Power Raise at `Script_Game+0x47D51` is now the one additional production non-Hit caller. EV-416 confirms it delegates through the same compatible-owner composition and applies the Power authoring ratio to the live Raise result, preserving native/New Balance phase relationships such as `1.5*M` Raise versus `1.0*M` Hit.
+
+EV-418 freezes Hack's final compatibility transport:
+
+```text
+native or AttackCollision Hack computes live speed once
+-> factual Action14 CombatMove request carries compatible AniSpeedScale
+-> G3AB request adapter applies Hack C/B once for Raise / Hit / Recover
+-> unchanged Collision invocation wrapper
+```
+
+EV-419 confirms the three native Hack speed caller hooks `+0x42FF4`, `+0x431B4`, `+0x432EB` are removed in production; retaining any of them would double-compose native Hack. No AttackCollision-DLL hook, `+0x42A0` entry takeover, extra speed-owner call, or Speed state/cache is permitted. Factual Finishing / Action15 remains excluded by action identity.
+
+Composition also fails closed against finite underflow: if a positive live compatible speed would produce a non-positive composed result, production returns the original live compatible value rather than forwarding zero.
+
+Finishing / `gEAction_FinishingAttack` / Action15 is intentionally outside the current production Speed profile set. EV-398 establishes three distinct native Finishing Hit speed consumers and direct native Action15 observations on Hero 2H and Staff while Hack/Action14 remains separately transported, even though native Gothic may resolve both actions to the same animation asset. EV-399 then closes the practical playback question: configured Hack `BaseSpeed=0.40` slowed Hack while Finishing remained native-timed both when the actions shared the same animation asset and after their assets were separated. Speed authority therefore follows the factual action route, not animation-file identity. The distributed INI contains no Finishing speed entries and default execution timing remains native; any later advanced optional Finishing configuration is a separate product decision, not required for Hack isolation.
+
+EV-399 first observed Hack Raise/Recover following configured playback. EV-420–EV-422 now close the final production runtime picture: the route-neutral Action14 adapter works native and with New Balance + AttackCollision, factual Finishing / Action15 remains native-timed even when Hack and Finishing resolve to the same animation asset, and repeated Hack/other-attack interruptions show no stale Speed/Raise continuation state.
+
+The tested ordinary zero-stamina behavior does not materially slow Hack even without G3AB, both with and without New Balance. That absence is therefore not a G3AB modifier-loss defect. Under New Balance's alternative stamina mechanics, where zero stamina prevents attacks, configured Hack obeys the same restriction as other attacks with G3AB installed.
+
+
+Runtime identity is generic:
+
+```text
+AnimationFamily = Animation.GetSkeletonName(...)
++ normalized left/right animation UseType
+```
+
+Unknown/missing family/profile/calibration remains fail-closed to the live compatible value.
+
+ADR-0009 freezes factual Sprint/Action9 as an intentional Power timing alias on the proven shared speed route. EV-401 establishes that this is a **profile/authoring alias**, not a promise that the live compatible value equals ordinary Power: Gothic may return a different Sprint-context result through the same passed Action2 route, and the accepted `compatible * (C/B)` composition preserves that difference. EV-402 generalizes this across nonhuman families: Sabertooth and Wolf showed Power Hit `1.0` versus Sprint live Hit `1.5`, while Troll remained `1.0` for both. Therefore G3AB must not copy a universal Sprint multiplier; it preserves the live result. Do not add `Sprint_BaseSpeed`, `Sprint_ReferenceHitBaseSpeed`, or rewrite Action2 to Action9 absent contradictory evidence.
+
+Speed v2 production source, resolved-profile identity, neutral shipping INI and intended-stack runtime acceptance are CLOSED/PASS through EV-410. Broad additional creature calibration remains optional future coverage rather than a Speed closure requirement.
+
+Recover follows the effective Hit speed; no separate user-facing `RecoverSpeed` key is planned.
+
+Raise/Speed/Hack acceptance passed through EV-422 for the tested fixtures, but EV-423 reopened one narrow Raise responsibility: directional Normal AddRaise continuation. EV-424 statically closes the cause. `sAICombatMoveStart` freshly classifies Fwd/Left/Right for each CombatMove, writes Navigation current-animation direction, and passes the exact direction bCString as the fifth argument to `GetAniName`. The stored `sAICombatMoveInstr_Args` has no direction field, so replaying the generic Action1 Hit after synthetic Raise triggers a second direction classification that can become Fwd.
+
+The frozen correction preserves **Gothic's own first native selection** rather than recreating policy: during the pending Normal continuation, capture the exact direction string + matching `gEDirection` at the synthetic Raise's `Game+0x16B056` GetAniName call; on the immediately following stored Action1 Hit at the same call site, restore only that captured current-animation direction and substitute only the captured direction argument before invoking Gothic GetAniName once. No filename parsing, copied geometry classifier, target/facing mutation, late resource rewrite, Speed change, or Collision change is permitted. Architecture/sequencing rationale remains ADR-0004 + ADR-0005 + ADR-0006 + ADR-0008 + ADR-0011; EV-423–EV-424 own this narrow correction.
+
+### Movement
+
+`MovementOverride` authors an **absolute CombatMove travel distance** for supported factual Hit requests. `Off` leaves the compatible native/New Balance movement vector untouched. Numeric `0` is an active setting and clears the movement vector.
+
+For a positive configured value, production intervenes only after the live compatible movement policy has run and immediately before the native `Game+0x16B8B7 EnableCombatMovementFromSPU` call:
+
+```text
+compatible native / New Balance movement vector
+-> preserve its final direction
+-> current duration = primary motion max time / already-composed AniSpeedScale
+-> replacement magnitude = configured MovementOverride / current duration
+-> unchanged native EnableCombatMovementFromSPU call
+```
+
+The implementation reuses the resolved BehaviorProfile identity and factual attack-family mapping. Missing profiles, unsupported/non-Hit actions, invalid timing, or a zero/invalid incoming direction fail closed to the compatible movement. This last condition is the reason an animation whose authored movement field is exactly zero cannot be given travel by `MovementOverride` alone; the known Rapier Quick fixture is the accepted example.
+
+The production seam requires no New Balance detection and does not edit animation assets or filename distance fields. Native obstacle, ledge and target stopping behavior remains authoritative. Movement research, production integration and broad runtime acceptance are CLOSED/PASS through EV-445.
+
+---
+
+## 4. Authored-Frame Collision
+
+### 4.1 Generic ownership
+
+At Hit execution, inspect the exact resolved motion and frame effects. No relevant marker means no custom collision ownership. Relevant markers plus valid native/action/phase/source context opt that exact execution into authored timing.
+
+Shared marker infrastructure is limited to:
+
+```text
+exact motion/frame-effect scan
+reserved marker recognition
+occurrence/dedupe bookkeeping
+C1 generation as factual execution identity
+exact action/phase/animation context
+marked-execution opt-in
+```
+
+After that, equipped weapons, raw-8 Fist, and PhysicalFist/raw55 use three distinct proven production mechanisms. Permanent raw55 behavior is owned by `PhysicalFistCollision` under `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`; it must not be folded into equipped or raw8 behavior merely because the serialized animation token is also `Fist`.
+
+### 4.2 Equipped weapon vocabulary
+
+```text
+G3AB_COL_RIGHT -> {RIGHT}
+G3AB_COL_LEFT  -> {LEFT}
+G3AB_COL_BOTH  -> {RIGHT, LEFT}
+G3AB_COL_OFF   -> {}
+```
+
+RIGHT/LEFT identify equipped Gothic slots, not filename side metadata.
+
+Equipped semantics:
+
+```text
+marker
+-> desired equipped source set
+-> Item_Attack / Item_Equipped transitions
+-> ClearTriggeredList rearm on each authored contact
+```
+
+Repeated source markers later in the same Hit author new contacts. OFF is an intra-Hit physical-source gap, not terminal cleanup.
+
+Equipped source activation is not itself proof of native damage eligibility for every UseType. EV-308 shows that a factual LEFT shield/raw9 can be selected by `LEFT`, transition `5 -> 7`, rearm, and cleanly return `7 -> 5`, while Gothic dispatches no damage in the tested Quick shield-bash fixture. Shield-bash damage is therefore outside the current supported collision feature set and is deferred to a separate future research responsibility.
+
+### 4.3 Production raw-8 Fist
+
+`gEUseType_Fist` / raw8 uses a native target-directed body-contact opportunity mechanism. The permanent owner is `Raw8FistCollision`.
+
+Current production architecture after EV-353:
+
+```text
+unmarked raw8
+-> completely native
+
+marked raw8 C1
+-> initial native opportunity CLOSED
+
+accepted FIST
+-> one pending authored opportunity OPEN
+
+native miss while pending
+-> restore native one-shot eligibility
+-> keep authored opportunity pending
+
+first exact native Game+0x16E348 raw8 contact dispatch
+-> consume opportunity before gameplay outcome interpretation
+
+later FIST in same C1
+-> reopen one opportunity, never stack
+
+same-C1 Action/family/phase transport
+-> preserve opportunity
+
+exact C1 finalization/replacement
+-> close unused opportunity
+```
+
+Gothic remains authoritative for target selection, contact geometry, block/parry, immunity, reactions and HP damage. The API transport happens to be `gCEntity::OnDamage`, but production raw8 uses only exact dispatch entry as the contact-resolution fact and never interprets the result as “damage succeeded.”
+
+The opportunity lifetime is actor/C1/source/SPU scoped. Timing persistence is a separate animation/timing substate and may retire without consuming the logical opportunity. EV-354 directly protects Sprint-origin Action9 -> Action2 continuation inside one C1; in the tested Sabretooth route both action states use the same PowerAttack-named motion rather than separate Sprint/Power animation assets.
+
+Production exclusions remain: no FIST_OFF, no `ClearTriggeredList`, no target/visited list, no collision-group window, no custom/direct damage, no species rules, no polling/timers, and no raw55/equipped mechanism sharing.
+
+Full authority: `COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`.
+
+### 4.4 Current supported family boundary
+
+```text
+Normal / Quick / Whirl foundation                 CLOSED/PASS
+PowerAttack                                       CLOSED/PASS — EV-241
+PierceAttack                                      CLOSED/PASS — EV-242
+SimpleWhirl                                      CLOSED/PASS — EV-217–EV-220, EV-243
+HackAttack tested 2H/Staff scope                  CLOSED/PASS — EV-216, EV-244
+raw8 FIST Normal + Power + Quick + Sprint         CLOSED/PASS — EV-221–EV-251, EV-297, EV-304–EV-305
+SprintAttack                                      CLOSED/PASS — EV-251
+```
+
+SimpleWhirl final StatePosition remains `1`; StatePosition `2` was tested and rejected as sufficient normalization. Native character-hit eligibility remains action-specific.
+
+Hack optional asset routing remains narrow: only factual `HackAttack(14)` may substitute `_FinishingAttack_` with `_HackAttack_` at the CombatMove motion-resource query when the candidate asset exists. True `FinishingAttack(15)` remains native.
+
+### 4.5 SprintAttack — first-class supported family, Power callback transport
+
+EV-249 established that factual Sprint is `gEAction_SprintAttack = 9` even when the current motion filename contains `_PowerAttack_Hit_`. EV-251 then closed the production transport/mechanism question.
+
+Current rule:
+
+```text
+semantic family = Sprint / Action9
+callback transport = existing OnAI_PowerAttack hook
+raw8 FIST uses the same proven latch/timing-permission mechanism
+StatePosition/timing follows the evidence-backed Sprint contract
+NO filename-based Power alias
+NO Sabretooth-specific branch
+```
+
+For equipped markers, permanent `EquippedSprintCollision` support is CLOSED/PASS through EV-329 under ADR-0003. The rule preserves immutable Sprint origin across only the exact same-C1 Action9 -> Action2 continuation; a new true-Power execution never becomes Sprint. Complete-motion required-source validation remains fail-closed and generic RIGHT/LEFT/BOTH/OFF semantics remain owned by `FrameCollisionMarkers`.
+
+---
+
+## 5. PhysicalFist/raw55 — Permanent Separate Production Mechanism
+
+`gEUseType_PhysicalFist` / raw55 maps to the serialized animation token `Fist`, but the token does not identify the runtime source mechanism. Factual Troll/BlackTroll evidence EV-262 onward established a distinct exact RIGHT `TrollFist` source with resting group5/offensive group7 semantics. Family-specific causal work closed through EV-294; focused permanent acceptance closed/PASS at EV-298.
+
+Permanent owner:
+
+```text
+PhysicalFistCollision
+=
+supported raw55 family policy: Normal / Quick / Power / Sprint
+C1-scoped immutable origin/source identity
+premature native-opening suppression
+family-specific first-FIST activation
+Normal native between-contact clear suppression
+repeated authored FIST rearm
+Sprint-origin Action9 -> Action2 continuity
+```
+
+Boundaries:
+
+```text
+EngineBridge = shared hook transport/delegation only
+FrameCollisionMarkers = generic marker scan/current-motion ownership
+CollisionSources / CollisionSourceOperations = generic factual source/mutation helpers
+PhysicalFistCollision = permanent raw55 policy/state
+Raw8FistCollision = raw8 latch/timing policy only
+```
+
+Permanent raw55 does **not** own direct damage, target selection, raw8 behavior, equipped RIGHT/LEFT/BOTH/OFF semantics, or custom terminal cleanup.
+
+Accepted behavior:
+
+```text
+marked eligible raw55:
+  family-specific authored FIST behavior for Normal / Quick / Power / Sprint
+  up to the frozen supported one/two-FIST contract
+  native Gothic damage/contact remains authoritative
+
+unmarked raw55:
+  completely native fallback — EV-296
+
+cleanup:
+  Gothic native exact RIGHT 7 -> 5 first
+  C1-R1 remains backup-only for an exact outstanding live/equipped group7 source
+  no raw55 OFF / forced deactivation / polling / direct damage
+```
+
+Full authority: `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`.
+
+---
+
+## 6. Collision Lifetime and Cleanup
+
+For equipped weapons, a successful exact-source `Item_Attack` request creates/refreshes an obligation on the current C1 generation. Successful transition away fulfills it. Native cleanup always gets first opportunity. After native AISetState returns, C1-R1 may repair only an exact outstanding current-equipped live source still at group 7:
+
+```text
+Item_Attack(7)
+-> CollisionSourceOperations::DeactivateOwnedAttackSource
+-> Item_Equipped(5)
+-> verify Item_Equipped(5)
+```
+
+`CollisionLifecycleGuard` decides whether exact terminal repair is justified; `CollisionSourceOperations` performs the physical mutation. No `ClearTriggeredList()` is part of terminal cleanup. Raw-8 Fist does not acquire weapon obligations. Permanent raw55 owns its frozen family-specific marker/contact policy, while Gothic retains native exact RIGHT `7 -> 5` cleanup. `CollisionLifecycleGuard`/C1-R1 remains backup-only for an exact outstanding live/equipped raw55 source still at group7; no custom raw55 terminal cleanup is added.
+
+C1-R1 remains closed through EV-206–EV-207.
+
+---
+
+## 7. Collision Architecture — Production Integrated
+
+The collision architecture was first boundary-refactored in Stage A and later migrated into the production target. Production integration closed/PASS at EV-390.
+
+Governing rule:
+
+```text
+EngineBridge
+=
+sole physical Gothic hook owner
+hook/call-site transport
+translation of native facts
+delegation
+
+EngineBridge
+!=
+feature behavior owner
+feature state-machine owner
+collision policy owner
+research/probe policy owner
+```
+
+Current production ownership:
+
+```text
+Raw8FistCollision
+  raw8 Normal+Power+Quick+Sprint FIST family policy
+  marked-execution state
+  initial latch close + accepted-marker rearm
+  threshold/timing permission and exact one-shot decision
+
+PhysicalFistCollision
+  raw55 Normal/Quick/Power/Sprint family policy and lifecycle-specific source behavior
+
+AttackMotionRouting
+  proven factual Hack optional motion-substitution policy
+
+CollisionLifecycleGuard
+  C1 policy/repair decision and result classification
+
+CollisionSourceOperations
+  physical equipped source mutations, including terminal 7 -> 5 repair
+```
+
+`RunScriptFunctionScope` remains in `EngineBridge` because its lifetime is hook-invocation transport, not feature policy. Current action/phase family resolution remains in `FrameCollisionMarkers` because it is part of marker ownership; no separate family module is planned.
+
+Unknown/new mechanisms follow `FEATURE_DEVELOPMENT_METHOD.md`: dedicated temporary probe first, then the smallest proven permanent owner after research closure.
+
+Current architecture is owned by this file plus `COLLISION_REFERENCE.md`, `COLLISION_LIFECYCLE.md`, `COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`, `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`, and `COLLISION_DIAGNOSTICS.md`; completed redesign/migration plans are archived provenance.
+
+---
+
+## 8. Diagnostic Architecture
+
+Production remains mechanically diagnostics-free.
+
+Default research/testing should use a compact CORE profile; opt-in DEEP retains detailed reverse-engineering probes.
+
+Governing rule:
+
+> **Known successful behavior logs compactly. Unknown, unsupported, contradictory, repair, or invariant behavior logs richly.**
+
+Target:
+
+```text
+PRODUCTION
+  diagnostics not compiled
+
+CORE
+  compact known-path regression facts
+  enough information to prove marker/source/damage/lifecycle outcomes
+  automatically richer records for unknown actions/families/source UseTypes and anomalies
+
+DEEP
+  detailed hook/SPU/timing/AISetState/C1/caller/stack instrumentation for a concrete research question
+```
+
+Temporary behavior probes such as `PhysicalFistProbe` are separate from both stable behavior modules and generic diagnostics: they may intervene for a bounded causal experiment, compile only into the research target, and must be removable when the mechanism is promoted or rejected.
+
+CORE must remain capable of discovering SprintAttack and other future unexpected traffic without requiring full research-era verbosity for every healthy execution.
+
+Detailed authority: `COLLISION_DIAGNOSTICS.md` and `FEATURE_DEVELOPMENT_METHOD.md`. The completed redesign/refactor plan is archived historical provenance.
+
+---
+
+## 9. AttackContinuationProtection
+
+The first-release player bad-block protection is **production-integrated and closed**. It remains architecturally separate from collision cleanup and does not use a separate gameplay module or persistent timer state.
+
+Production ownership is the exact player timeout call seam in `EngineBridge`:
+
+```text
+Script_Game +0x633BF
+-> call the native/current DurationPressedMSecs getter exactly once
+
+if raw > 2500
+AND receiver-owning actor == player
+AND factual action in {QuickAttackR(4), QuickAttackL(5), WhirlAttack(10)}
+AND factual phase == Hit
+-> return 2500 for this call only
+
+otherwise
+-> return raw unchanged
+```
+
+This is **stateless branch-local deferral**, not exact pause/resume. Native held-input time continues advancing, so the native timeout may become effective immediately after the protected Hit ends.
+
+The accepted first-release scope deliberately excludes generic selector Action3, Pierce/Action11, Hack/Action14, Finishing/Action15, Normal, Power, SimpleWhirl, Sprint, and the separate NPC parade timeout. No actor/timer map, gameplay token, global getter/IAT mutation, broad `FullStop`/`SetState` suppression, or collision-guardian coupling is permitted by the accepted design.
+
+EV-449–EV-450 provide the causal A/B proof; EV-451–EV-452 support the exclusions; EV-453 accepts the diagnostics-free standalone minimum; EV-454 accepts the same mechanism integrated into production after final release-candidate smoke.
+
+Exact remaining-time pause and the separate NPC timeout remain optional future research only. `CollisionLifecycleGuard`/C1-R1 remains an independent collision fail-safe, not part of this protection mechanism.
+
+---

@@ -1,35 +1,33 @@
 # Post-Release Repository Audit Preparation
 
-**Status:** ACTIVE — preparation only; large audit not yet launched  
-**Mode:** Normal Chat planning / User-priority capture  
+**Status:** ACTIVE — first documentation maintenance implemented; Normal Chat review / later stages pending
+**Mode:** Normal Chat review / staged post-release maintenance
 **Stable comparison baseline:** `main @ 08a0bd8fcf42173088e233e09b706a80da882070`  
 **Working branch:** `development`
 
 ## Purpose
 
-Prepare the larger post-release repository/documentation review without allowing the audit itself to start before the User identifies documentation and knowledge areas that deserve special attention or protection.
-
-The first-release `main` checkpoint is now the protected comparison baseline rather than the working branch.
+Track the deliberately staged post-release repository/knowledge-maintenance sequence. User priorities, two read-only audits and Normal Chat/User review have completed the pre-implementation gates for the first bounded documentation-consolidation task. The first-release main checkpoint remains the protected baseline.
 
 ## Immediate responsibility
 
-The User first identifies documentation/knowledge areas that should receive special attention.
+Normal Chat reviews the current development documentation-consolidation commit and Work handoff. The approved stage entered at `fb61c6bedf84bae239610b2c37c205580a7fc63f`: one maintained COLLISION_REFERENCE, six archived former authorities, full old reference/pre-change DESIGN snapshots, bounded stale-description/ownership/navigation corrections and static checks. No source/configuration/build/runtime change or new EV.
 
-Normal Chat then incorporates those concerns into the bounded Work audit brief.
+The old “User priorities before initial audit” gate is complete. This document remains ACTIVE because review, remaining separately approved maintenance and the independent comparison/reconciliation sequence remain open. Work stops after publishing this stage; Normal Chat owns eventual closure/archive of this active document.
 
-Do **not** launch the large audit before this User-priority step is complete.
+Deferred: KA-08/09 derived/manual evidence moves, KA-10 build defaults, KA-11 historical config/Movement seed and optional KA-12 automation. None belongs to this stage. Original Git/blob/SHA256 and historical-path recovery for the collision archives are in EVIDENCE_PATH_MIGRATIONS.
 
 ## Frozen audit sequence
 
 ### Phase 1 — User priorities
 
-Collect the specific documentation/knowledge concerns from the User.
+Completed for the frozen audits and first maintenance task; later scope decisions still require deliberate User review.
 
 These priorities are inputs to the audit contract, not merely optional suggestions. They exist to protect contextual material that a static repository review could misunderstand.
 
 ### Phase 2 — Work read-only large review/audit
 
-Launch Work with a large but bounded **read-only** responsibility.
+Completed: initial bounded read-only audit and targeted §3A follow-up. Their findings are advisory; they did not authorize unrelated maintenance.
 
 Work must:
 - start repository-first;
@@ -42,7 +40,7 @@ Work must **not** freely restructure, delete, archive, compact, or rewrite repos
 
 ### Phase 3 — Normal Chat + User findings review
 
-Review Work's findings together.
+Completed for the first consolidation contract; unapproved carry-forward proposals remain pending.
 
 For proposed changes, explicitly decide:
 
@@ -57,7 +55,7 @@ This phase protects useful context and historical/operational material that a st
 
 ### Phase 4 — Work approved maintenance implementation
 
-Only after Normal Chat/User decisions are closed, launch Work again.
+The first approved stage is implemented for review. Any additional Work stage needs its own frozen scope after Normal Chat/User decisions.
 
 That task may implement **only the approved audit maintenance** on `development`.
 

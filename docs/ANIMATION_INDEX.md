@@ -32,8 +32,8 @@ Runtime claims remain evidence-bounded; native action/phase/source semantics out
 | Dual SimpleWhirl filename/action mismatch | `ANIMATION_RULES.md` §§5, 7; `ANIMATION_CATALOG.md` §6 |
 | frame 0–N sampled-frame convention | `ANIMATION_RULES.md` §8 |
 | equipped collision marker authoring | `ANIMATION_RULES.md` §9 |
-| human FIST marker authoring | `ANIMATION_RULES.md` §10 |
-| may I use FIST on raw55/PhysicalFist animations? | Yes, within the proven raw55 contract; `ANIMATION_RULES.md` §10; `COLLISION_REFERENCE.md`; `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md` |
+| raw8 FIST marker authoring | `ANIMATION_RULES.md` §10 |
+| may I use FIST on raw55/PhysicalFist animations? | Yes, within the proven raw55 contract; `ANIMATION_RULES.md` §10; `COLLISION_REFERENCE.md` §4.2 |
 | supported family/native eligibility restrictions | `ANIMATION_RULES.md` §11; `EVIDENCE_INDEX.md` |
 | exact native asset exists? | search `data/animation_names/all_animation_names.txt` |
 | exact user-authored + runtime-tested asset exists? | search `data/animation_names/user_created_tested_animation_names.txt` |
@@ -75,7 +75,7 @@ Use catalog/evidence for exact physical source map, Power, SimpleWhirl and repea
 
 ### Human Fist
 
-Use `ANIMATION_RULES.md` §10 for current authoring. Production raw-8 mechanism/proof routes through `DESIGN.md` and EV-221–EV-240.
+Use `ANIMATION_RULES.md` §10 for current authoring. Current raw8 mechanism is `COLLISION_REFERENCE.md` §4.1; foundations EV-221–EV-251 and persistent-opportunity acceptance EV-346–EV-364.
 
 ### PhysicalFist / raw55
 
@@ -102,10 +102,10 @@ BOTH  -> {RIGHT, LEFT}
 OFF   -> {}
 ```
 
-### Human raw-8 Fist
+### Raw8 Fist
 
 ```text
-FIST -> rearm one native human body-damage opportunity
+FIST -> open/refresh one pending native raw8 contact opportunity; exact contact consumes, not visible damage
 ```
 
 There is no production `FIST_OFF`.
@@ -134,8 +134,8 @@ Detailed rules: `ANIMATION_RULES.md` §§9–11.
 | Hack callback identity | EV-216 |
 | Hack tested 2H/Staff marker/source closure | EV-244 |
 | production human raw-8 Fist | EV-221–EV-240 |
-| final production raw8 Fist acceptance | EV-240 |
-| permanent raw55 PhysicalFist acceptance | EV-262–EV-298 |
+| persistent-opportunity raw8 acceptance | EV-346–EV-364, EV-377, EV-389–EV-390 |
+| permanent raw55 PhysicalFist acceptance / final explicit Sprint gates | EV-262–EV-298, EV-382, EV-385–EV-390 |
 
 Use `EVIDENCE_INDEX.md` for exact routing/provenance.
 

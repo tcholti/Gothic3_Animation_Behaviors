@@ -1,350 +1,152 @@
 # Collision Reference
 
-**Status:** Current factual reference  
-**Updated:** 2026-09-27  
-**Purpose:** Compact projection of established Gothic 3 collision facts. Read this before opening evidence ledgers for an already-researched collision question.
+**Status:** Current accepted collision working contract
+**Updated:** 2026-10-08
+**Purpose:** One maintained collision-specific owner for supported behavior, module boundaries, invariants, diagnosis and safe re-entry. Collision is CLOSED/PASS through EV-390; later integrated features do not reopen its causal research by themselves.
 
-> This file states **what is currently established**. It is not the proof record. Each claim routes to EV evidence; open the ledger/raw source only when exact provenance, qualification, contradiction, or re-interpretation matters.
+Start here plus targeted production source. Retrieve [animation rules](ANIMATION_RULES.md) for authoring, [hook guide](SOURCE_HOOK_GUIDE.md) for engine/RVA facts, and existing [development method](FEATURE_DEVELOPMENT_METHOD.md), [POPs](PROJECT_OPERATING_PROCEDURES.md) and [Work protocol](WORK_IMPLEMENTATION_PROTOCOL.md) for operations. [DESIGN](DESIGN.md) owns cross-feature integration; [release architecture](GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md) owns product separation. Proof-sensitive questions use [EVIDENCE_INDEX](EVIDENCE_INDEX.md) → exact EV → original evidence only when needed. Archives are recovery material, not prerequisite reading.
 
-## Retrieval rule
+## 1. Accepted scope and exclusions
 
-```text
-ordinary collision question
--> COLLISION_REFERENCE.md
--> owning architecture/reference only when needed
--> EVIDENCE_INDEX.md
--> exact EV ledger entry
--> archived raw/derived source only for verification or contradiction
-```
+Factual action, phase, current motion and source UseType govern eligibility. Filename R/L does not select equipped sides; a serialized `Fist` token does not distinguish raw8 from raw55. Collision authors native contact opportunities; Gothic retains target selection, contact geometry, block/parry, immunity, reactions and HP damage.
 
-Do not reconstruct settled behavior from chronological evidence by default.
-
-## 1. Core identities
-
-| Fact | Current established meaning | Evidence |
+| Mechanism | Supported contract | Boundaries / fallback |
 |---|---|---|
-| Attack execution identity | Collision marker occurrence/dedupe and equipped-source obligations use monotonic C1 generation as durable plugin execution identity. | EV-167, EV-206–EV-207, EV-213–EV-215 |
-| Native action identity | Factual runtime action identity outranks animation filename naming. A PowerAttack-named motion may be factual SprintAttack. | EV-250–EV-251 |
-| Equipped source sides | RIGHT/LEFT mean Gothic equipped slots, not filename R/L metadata. | EV-090–EV-094, EV-143–EV-144 |
-| Collision groups | Proven equipped/raw55 offensive transition is Item_Equipped(5) -> Item_Attack(7); ordinary cleanup returns exact source to 5. | EV-019–EV-023, EV-206–EV-207 |
-| Damage ownership | Authored collision owns physical/native opportunity timing; target selection/contact/damage remain Gothic-owned unless separately proven. | EV-241–EV-244, EV-304–EV-308, EV-381–EV-382 |
+| Equipped | `G3AB_COL_RIGHT`, `LEFT`, `BOTH`, `OFF`; Normal, Quick, Power, Pierce, SimpleWhirl, full Whirl, tested 2H/Staff Hack, equipped Sprint | Complete factual required sources; LEFT shield/raw9 physical activation does not prove shield-bash damage (EV-308). Missing sources fail closed, never partial BOTH. |
+| raw8 `gEUseType_Fist` | `G3AB_COL_FIST`; Normal, Quick, true Power, Sprint; one pending target-directed opportunity | Exact actor/C1/source/SPU; no equipped window, triggered-list rearm, custom damage or FIST_OFF. No species gate. |
+| raw55 `gEUseType_PhysicalFist` | FIST only, one or two markers; Normal, Quick, true Power, Sprint origin | Exact current RIGHT source; no concurrent resolved raw8 source, LEFT generalization, mixed equipped/FIST markers, more than two FISTs or FIST_OFF. Tested Troll/BlackTroll domain; no species gate. |
 
-## 2. Equipped marker model
+Generic marker family recognition requires Hit: Normal Action1 additionally requires current `_Attack_Hit_`; Quick recognizes Actions3/4/5; Power2, Sprint9, SimpleWhirl6, Whirl10, Pierce11 and Hack14 have distinct factual identities. This does not widen each mechanism's own preflight. Finishing15, unsupported ranged/magic families and unproven source/native arms remain outside the accepted marker contract. Normal/Quick/full-Whirl AddRaise is a separate feature; collision recognition of Quick3 does not authorize selector-level Raise or Speed policy.
 
-Current equipped vocabulary:
+Unmarked and unsupported ownership paths preserve native behavior. Reserved marker effects are consumed as commands even when rejected/malformed; they are not effect-resource names. Separation/renaming mods can use markers on valid resolved assets, but unmarked replacements inherit no ownership from old assets (EV-369–375).
 
-```text
-G3AB_COL_RIGHT -> exact desired active set {RIGHT}; RIGHT rearmed
-G3AB_COL_LEFT  -> exact desired active set {LEFT}; LEFT rearmed
-G3AB_COL_BOTH  -> exact desired active set {RIGHT, LEFT}; both rearmed
-G3AB_COL_OFF   -> exact desired active set {}
-```
+Validation is representative, not universal engine/actor coverage: equipped/body regression EV-299–374, intended New Balance stack EV-376–384/388, behavior-only controls EV-389 and production integration EV-390. Unmarked raw55 four-family standalone fallback is proven EV-387; EV-388's unmarked New Balance artifact contains Power/Normal/Quick, not Sprint. Special raw8 `SPU+0x154 == 0x39` has a separate native arm outside the generic-human timing model.
 
-Repeated RIGHT/LEFT/BOTH later in the same Hit can author another contact by rearming the selected source through `ClearTriggeredList()`. OFF creates an intra-Hit inactive gap; it is not terminal cleanup.
+## 2. Production owners and native-event order
 
-Supported/proven equipped scope includes Normal, Quick, full Whirl, Power, Pierce, SimpleWhirl, tested 2H/Staff Hack, and factual equipped Sprint under permanent `EquippedSprintCollision` policy. EV-383 proves a four-marker `BOTH -> single side -> OFF -> BOTH` pattern forming three independently controlled offensive windows in representative dual-1H Normal/Quick/SimpleWhirl/Pierce executions.
+All source links below are the current production modules under `src/Script_G3AnimationBehaviors/`; use headers for public transport structures and the named functions for local inspection.
 
-EV-389 diagnostics-free release-purity testing reconfirms this behavior without diagnostic support: authored Hack collision works; 2H `ON -> OFF -> ON` produces distinct offensive openings; opponents entering the weapon during authored OFF do not get hit; and 1H1H/dual multi-window authoring produces intended extra contacts across attack types. These positive and negative controls cannot be explained by native Gothic attack timers alone.
-
-Evidence: EV-106–EV-116, EV-143–EV-147, EV-217–EV-220, EV-241–EV-244, EV-299–EV-306, EV-309–EV-314, EV-318, EV-370–EV-375, EV-377, EV-383, EV-389.
-
-## 3. Equipped lifecycle / terminal repair
-
-Gothic receives its ordinary cleanup opportunity first. `CollisionLifecycleGuard` tracks only exact source obligations created by the current C1 generation.
-
-Terminal repair is fail-safe, not ordinary attack semantics:
-
-```text
-exact outstanding equipped source
-+ exact current equipped-side identity proves liveness
-+ actual group remains Item_Attack(7)
--> SetCollisionGroup(Item_Equipped) once
--> no ClearTriggeredList()
--> verify group5
-```
-
-If native cleanup already fulfilled the obligation, repair does nothing. LEFT/RIGHT obligations remain independent. EV-384 broad New Balance stress evidence includes single- and dual-source bounded repairs converging exact outstanding group7 sources to group5 without sampled repair divergence. EV-389 adds behavior-only one-on-one/group-combat observation with no stuck collision, persistent touch-damage, or obvious cleanup regression.
-
-Evidence: EV-180–EV-215, EV-299–EV-306, EV-367, EV-373–EV-374, EV-384, EV-389.  
-Architecture: `COLLISION_LIFECYCLE.md`.
-
-## 4. Raw8 Fist
-
-Factual `gEUseType_Fist` / raw8 is a native body-contact mechanism, separate from equipped weapon and raw55 behavior.
-
-Supported marked families:
-
-```text
-Normal + Power + Quick + Sprint
-```
-
-Permanent behavior:
-
-```text
-unmarked raw8
--> completely native
-
-marked execution
--> native permission closed for exact C1
-
-accepted FIST
--> one target-directed authored opportunity OPEN
--> bounded timing permission when required
-
-native miss
--> opportunity stays OPEN
--> native one-shot latch rearmed
-
-first exact native contact dispatch
--> opportunity CONSUMED
-
-later accepted FIST same C1
--> may open a new opportunity; opportunities do not stack
-
-C1 finalization/replacement
--> unused opportunity CLOSED
-```
-
-Gothic remains authoritative for target selection, block/parry, immunity, reactions and HP damage. No production `FIST_OFF`, no raw8 equipped-source window, no raw8 `ClearTriggeredList()` route and no custom raw8 damage.
-
-EV-377 reconfirms this model under New Balance, including legitimate same-C1 Sprint Action9 -> Action2 continuation. EV-389 behavior-only testing confirms double-marker body-contact animations can produce two authored contacts in live gameplay, including Sabretooth and human Fist cases, without diagnostic dependency.
-
-Evidence: EV-221–EV-251, EV-257, EV-263, EV-297, EV-304–EV-305, EV-307, EV-309, EV-316, EV-337–EV-364, EV-377, EV-389.
-
-## 5. PhysicalFist / raw55
-
-Factual `gEUseType_PhysicalFist` / raw55 is separate from raw8 Fist and equipped weapon collision.
-
-Supported marked families:
-
-```text
-Normal + Quick + true Power + Sprint-origin
-```
-
-Permanent mechanism:
-
-```text
-unmarked raw55
--> completely native Gothic behavior
-
-eligible marked execution
--> selectively suppress evidence-backed premature native RIGHT 5 -> 7 opening
-
-first accepted FIST
--> exact current RIGHT raw55 5 -> 7
--> Gothic owns target/contact/damage
-
-later accepted FIST same C1
--> ClearTriggeredList/rearm only
--> no second physical opening
-
-end
--> Gothic native exact RIGHT 7 -> 5 cleanup first
-```
-
-Scope remains exact current RIGHT PhysicalFist/raw55, marker-owned, 1 or 2 FIST markers, no LEFT raw55 generalization, no mixed equipped+FIST authoring, no species/name/file inference and no custom damage.
-
-EV-387 final-candidate standalone evidence directly confirms unmarked raw55 fallback: BlackTroll Quick, Normal, factual true Power and Sprint execute with `MarkerPresent=0`, `FistMarkers=0`, `SuppressNative=0`; there are no raw55 marker-owner/suppression records; Gothic performs native 5->7 and 7->5 with healthy finalization. EV-388 additionally confirms observed unmarked New Balance Power/Normal/Quick remain native on the final candidate; its no-marker artifact did not contain Sprint/Action9, so that artifact adds no separate unmarked-New-Balance Sprint claim.
-
-### Current final-candidate family state gates
-
-```text
-QUICK
-  first: evidence-backed factual Quick states
-  second: current QUICK; established repeated-contact route
-
-NORMAL
-  first: current NORMAL, evidence-backed SP0/SP1 first-marker route
-  second: current NORMAL + explicit SP0 OR SP1
-
-TRUE POWER
-  first: current POWER + explicit SP1 OR SP2 + earlyOpeningSuppressed
-  second: current POWER + explicit SP1 OR SP2
-
-SPRINT ORIGIN
-  first: current SPRINT + explicit SP1 OR SP2 + earlyOpeningSuppressed
-  second:
-    current POWER  + explicit SP1 OR SP2
-    OR current SPRINT + explicit SP1 OR SP2
-```
-
-No generic StatePosition range such as `>=1` is authorized.
-
-### Normal repeated-contact semantics — EV-382
-
-Normal has a proven exact native between-contact clear caller:
-
-`Script_Game.dll +0x386C6`
-
-For marked Normal, that native clear is suppressed so authored marker2 owns the second-contact rearm.
-
-EV-382 runtime-validates explicit `{SP0,SP1}` second-FIST acceptance. The decisive route is:
-
-```text
-marker1 NORMAL/SP0 -> accepted / 5 -> 7 / initial clear
-native hit1 occurs
-marker2 still NORMAL/SP0 -> ACCEPTED
-marker2 ClearTriggeredList=1
-marker2 GroupRequested=0
-RIGHT remains group7
-later native hit2 may occur
-native cleanup 7 -> 5 / Outstanding=0
-```
-
-Very-early marker2 before hit1 is also accepted. It may clear an empty visited list and does not guarantee two damage events. This requires no hit1 flag, visited-target check, delay, queue or timer.
-
-Evidence: EV-277–EV-279, EV-286–EV-292, EV-380, EV-382.
-
-### Sprint-origin compatibility state — EV-381, EV-385, EV-386, EV-388
-
-New Balance compatibility evidence established:
-
-```text
-Sprint-origin first current SPRINT/SP2 is legitimate
-Sprint-origin second current SPRINT/SP2 is legitimate
-Sprint-origin second after same-C1 transition current POWER/SP1/SP2 is legitimate
-```
-
-EV-385 added the previously missing standalone factual state:
-
-```text
-Sprint-origin marker1 current SPRINT/SP1 -> accepted/open
-Sprint-origin marker2 may still be current SPRINT/SP1 in the same C1/source/origin
-```
-
-The pre-correction source rejected that marker2 as `REJECTED_UNSUPPORTED_HIT`, while cleanup stayed safe. This froze the explicit correction:
-
-```text
-Sprint-origin second FIST:
-  current POWER  -> SP1 OR SP2
-  current SPRINT -> SP1 OR SP2
-```
-
-Source `1c45e5ec3de1194e43b2f2200a28fe7846bd5ce0` implements exactly that one-predicate change. Independent source review confirms the second-FIST branch remains clear-only and cannot request a second physical opening.
-
-EV-386 runtime-validates the correction on the final candidate. Repeated standalone `1+3` Sprint-origin executions accept marker1 at `SPRINT/SP1`, then accept marker2 in the same C1 while still `SPRINT/SP1` with `GroupRequested=0` and `ClearTriggeredList=1`; ordinary cleanup returns raw55 RIGHT group7 -> group5 with `Outstanding=0`. The same batch preserves `SPRINT/SP1 -> POWER/SP1` continuation behavior and runtime-validates factual true-Power single and double marked controls.
-
-EV-388 then reconfirms the compatibility-sensitive New Balance states on the same corrected final candidate: `1+3` preserves same-C1 current `SPRINT/SP2` marker2 acceptance; `1+8`/`1+15` preserve same-C1 `Action9/SPRINT -> Action2/POWER/SP2` marker2 acceptance; the single-marker run preserves current `SPRINT/SP2` first-FIST acceptance. In every second-FIST sample the source is already group7 and marker2 is clear-only (`GroupRequested=0`, `ClearTriggeredList=1`).
-
-Evidence: EV-280–EV-285, EV-294, EV-376–EV-381, EV-385–EV-386, EV-388.
-
-### Native misses are not marker failure
-
-EV-381 proves correct raw55 open/rearm/cleanup can coexist with zero `ONDAMAGE`; unmarked native raw55 windows can also miss completely. Therefore a visual miss does not by itself identify a G3AB collision defect.
-
-The User's sheath/draw-associated miss observation is not a collision-marker blocker on current evidence. Do not add custom contact/damage policy for it without a new causal need.
-
-### Current raw55 disposition
-
-Focused New Balance raw55 compatibility remains CLOSED/PASS through EV-382, and broad intended-stack New Balance compatibility is CLOSED/PASS through EV-384.
-
-The EV-385 standalone current-SPRINT/SP1 eligibility defect is **CLOSED by EV-386**. The corrected marked standalone final-candidate matrix, including factual true-Power single/double controls, is PASS. EV-387 confirms unmarked raw55 native fallback across Quick, Normal, true Power and Sprint, closing the standalone/no-New-Balance final-candidate sentinel. EV-388 reconfirms the New Balance-specific Sprint SP2 and Action9->Action2/POWER-SP2 routes plus true-Power SP1->SP2 on the same final candidate. Across all five EV-388 artifacts there are no `REJECTED_*`, `ANOMALY`, or `C1 INVARIANT WARNING` matches, and cleanup/finalization remains healthy.
-
-EV-389 then confirms the same mature behavior in the diagnostics-free twin: Troll/raw55 double-marker animations can hit twice from two authored opportunities, while the broader behavior-only run shows marker-controlled active/inactive windows and no observed persistent collision regression.
-
-Therefore the **final-candidate diagnostic phase is CLOSED/PASS through EV-386–EV-388 and behavior-only release-purity is CLOSED/PASS EV-389**. Production `Script_G3AnimationBehaviors` collision integration is **CLOSED/PASS EV-390**; collision migration is **COMPLETE**.
-
-Architecture: `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`.  
-Evidence: EV-262–EV-298, EV-317, EV-341, EV-366, EV-376–EV-390.
-
-## 6. Sprint transport
-
-SprintAttack is factual `gEAction_SprintAttack = 9`.
-
-For raw8, Sprint may use a Power-named physical transport while factual actor action is already Sprint. Filename/transport does not redefine factual family.
-
-For raw55, immutable Sprint-origin identity survives the legitimate same-C1 Action9 -> Action2 continuation. EV-380–EV-381 establish that authored marker2 may occur before or after that transition under New Balance at SP2; EV-385–EV-386 prove standalone marker2 may legitimately remain Action9/SPRINT at SP1 and is accepted by the corrected final candidate; EV-388 reconfirms both the current-SPRINT/SP2 and transitioned POWER/SP2 compatibility paths after the final correction.
-
-Equipped Sprint RIGHT/LEFT/BOTH/OFF is permanent supported behavior through `EquippedSprintCollision`. Its bound continuation is exact-identity-only; a new ordinary true Power execution cannot inherit Sprint authorization.
-
-Evidence: raw8 EV-250–EV-251, EV-316, EV-354, EV-377; raw55 EV-280–EV-285, EV-294, EV-298, EV-317, EV-376–EV-389; equipped Sprint EV-311, EV-315, EV-320–EV-329, EV-368, EV-377, EV-389.
-
-## 7. Shield / raw9 boundary
-
-A factual LEFT shield/raw9 can be selected by `G3AB_COL_LEFT`, transition 5 -> 7, rearm, and later cleanly return 7 -> 5.
-
-Physical activation does **not** itself prove a native shield-bash damage route. The tested Quick shield-bash fixture produced accepted LEFT activations with zero ONDAMAGE.
-
-Current collision authoring therefore does not claim shield-bash damage support.
-
-Evidence: EV-306, EV-308.
-
-## 8. Animation-family separation compatibility
-
-Authored markers are not tied to original Gothic animation-family tokens.
-
-Established rule:
-
-```text
-marker present on separated animation
--> marker detected on that animation
--> factual actor/action/source/UseType remains authoritative
--> supported ownership accepted
--> ordinary cleanup remains native
-
-replacement animation unmarked
--> no authored ownership inferred from old/native counterpart
--> native behavior remains in control
-```
-
-Proven environments: Zombie Separation, Axe Separation, Rapier Separation, plus EV-375 Zombie+Axe copied/renamed asset-gap remedy.
-
-Evidence: EV-369–EV-375.
-
-## 9. Key engine / hook facts
-
-| Surface | Established role |
+| Owner | Relevant entry points / responsibility |
 |---|---|
-| `EngineBridge` | Sole physical owner of shared Gothic hooks/call-site transports; semantic decisions delegated to feature owners. |
-| `Game +0x16E180` motion-0 GetPlayTime call site | Exact bounded raw8 timing-permission transport; not global GetPlayTime policy. |
-| `Game +0x16E348` | Observed native raw8 damage-dispatch caller return. |
-| `SPU+0x164` | Native raw8 contact-opportunity latch used by proven marker mechanism. |
-| `SetCollisionGroup` transport | Physical mutation surface used by equipped/raw55 mechanisms; semantic ownership remains in feature/lifecycle modules. |
-| `eCTrigger_PS::ClearTriggeredList()` | Contact-bookkeeping rearm primitive used under family/feature-specific ownership rules. |
-| `Script_Game.dll +0x386C6` | Exact Normal raw55 native between-contact clear caller selectively suppressed for marked Normal ownership. |
+| [FrameCollisionMarkers](../src/Script_G3AnimationBehaviors/FrameCollisionMarkers.cpp) | `TryGetCurrentAttackHitFamily`, `GetCurrentMarkerDecision`, `EvaluateAttackCallbackOwnership`, `ProcessMarker`; current-motion scan, occurrence/dedupe/budgets, exact equipped sets; `RetireMarkerOwnedSource`, `RetireFinalizedGeneration` retire bookkeeping. |
+| [CollisionSources](../src/Script_G3AnimationBehaviors/CollisionSources.cpp) / [CollisionSourceOperations](../src/Script_G3AnimationBehaviors/CollisionSourceOperations.cpp) | `GetEquippedCollisionSources`, `ResolveFistCollisionSource`, `GetCollisionSourceUseType`; factual identity. `ActivateAttackSource`, `RearmTriggeredContacts`, `DeactivateOwnedAttackSource`; physical mutation, not feature policy. |
+| [EquippedSprintCollision](../src/Script_G3AnimationBehaviors/EquippedSprintCollision.cpp) | `ShouldSuppressNativeCallback`, `AuthorizeGenericEquippedMarker`, `RetireFinalizedGeneration`; immutable Sprint-origin authorization. |
+| [Raw8FistCollision](../src/Script_G3AnimationBehaviors/Raw8FistCollision.cpp) | `UpdateMarkerOwnership`, `ApplyAcceptedMarkerLatch`, `UpdateTimingPermissionFromMarker`, `ApplyTimingPermission`; `Begin/CompleteCombatMoveInvocation`, `ObserveContactResolutionDispatch`, `CloseForFinalization`; §4.1 policy. |
+| [PhysicalFistCollision](../src/Script_G3AnimationBehaviors/PhysicalFistCollision.cpp) | `TryResolveEligibility`, `ResolveExecution`, `IsFirstFistAllowed`, `IsSecondFistAllowed`, `TryProcessMarker`, `ShouldSuppressCollisionGroupRequest`, `ShouldSuppressNormalNativeTriggerClear`; §4.2 policy. |
+| [CollisionLifecycleGuard](../src/Script_G3AnimationBehaviors/CollisionLifecycleGuard.cpp) | `BeginCombatMove`, `ObserveCollisionGroupResult`, `CompleteCombatMoveCandidate`, `RetirePreCombatBridgeAfterDispatch`, `CaptureFinalizationToken`, `FinalizeAfterAISetState`; C1 identity/obligations/backup. |
+| [EngineBridge](../src/Script_G3AnimationBehaviors/EngineBridge.cpp) | Sole physical hook owner. Attack callbacks, `StartEffect_FrameCollisionTest`, `RunScriptFunction_FrameCollisionTest`, `InvokeCombatMove_FrameCollisionTest`, `AISetState_FrameCollisionTest`, setter/clear/timing/contact transports capture facts and delegate. Historic function suffixes do not imply diagnostic-only behavior. |
+| [RuntimeClock](../src/Script_G3AnimationBehaviors/RuntimeClock.cpp) | Monotonic elapsed-time input for marker duplicate acceptance; behavior-required, never diagnostic-gated. |
 
-Exact RVAs/call stacks/signatures: `SOURCE_HOOK_GUIDE.md` and `COLLISION_CLEANUP_CALLSITE_MAP.md`.
+Startup initializes RuntimeClock, loads profiles once, then installs Bridge hooks. At StartEffect, raw55 gets first refusal; otherwise Sprint authorization/generic marker processing runs, then accepted raw8 timing is updated. Each actual native CombatMove is surrounded by C1 begin/completion and raw8 invocation scope. Shared request order is Raise sequencing → stateless Hack Speed composition → collision invocation wrapper → native original once. AISetState cancels Raise, captures C1, calls native once, closes captured raw8/marker/Sprint/raw55 state, then finalizes C1. Exact-generation checks protect any replacement created reentrantly during native execution.
 
-## 10. Validation status
+## 3. Equipped markers and Sprint
 
-```text
-focused raw55 standalone acceptance          CLOSED/PASS EV-298
-human/equipped regression                    CLOSED/PASS EV-299–EV-336
-permanent raw8 focused acceptance            CLOSED/PASS EV-355–EV-364
-final-source standalone campaign             CLOSED/PASS EV-365–EV-374
-Zombie+Axe asset-gap remedy                  PASS EV-375
-New Balance equipped/raw8 controls           PASS EV-377
-raw55 Power/Sprint compatibility             PASS EV-378–EV-381
-raw55 Normal SP0 compatibility               PASS EV-382
-focused raw55 New Balance compatibility      CLOSED/PASS EV-382
-dual-1H multi-window authoring               PASS EV-383
-broader New Balance full-stack gate          CLOSED/PASS EV-384
-standalone Sprint/SP1 defect                 FOUND EV-385 / CLOSED EV-386
-corrected marked standalone raw55 matrix     PASS EV-386
-unmarked raw55 final-candidate fallback      PASS EV-387
-final-candidate standalone diagnostic gate   CLOSED/PASS EV-386–EV-387
-final-candidate New Balance regression       PASS EV-388
-diagnostic phase                             CLOSED/PASS EV-386–EV-388
-behavior-only release-purity validation      CLOSED/PASS EV-389
-production collision migration               COMPLETE EV-390
-production integration validation            CLOSED/PASS EV-390
-```
+| Marker | Exact desired offensive set | Operation |
+|---|---|---|
+| RIGHT | `{RIGHT}` | Close omitted owned side; activate/rearm RIGHT. |
+| LEFT | `{LEFT}` | Close omitted owned side; activate/rearm LEFT. |
+| BOTH | `{RIGHT, LEFT}` | Require both factual sources; activate/rearm both. |
+| OFF | `{}` | Close owned equipped windows inside Hit; no terminal finalization. |
 
-Final-candidate hashes:
+Repeated source markers can author later contacts through `ClearTriggeredList()`. Eligibility requires the complete motion's required source set, valid matching current motion and C1, supported action/phase/source facts, authored per-opcode occurrence budgets and same-update duplicate/replay suppression. Cache only valid resolved motion scans. Reject late/dead/unsupported ownership; do not infer a new execution from filename, callback rollback, phase, action or state-time changes. Natural source retirement clears only its exact marker-owned bit/window; OFF/set switching does not erase the whole execution.
 
-```text
-Behavior   D5BECB2C32A9766B1B444CB5864C0C30C9AC251A1679F605127F4D7318900B78
-Diagnostic AEF0E18205BAA9258D50B2E934173C48B845E0F1B9A9F425D622F4E4598EE773
-```
+`EquippedSprintCollision` binds factual Action9 origin to exact C1, motion and required sources and excludes FIST mixtures. Only that bound execution may retain authorization through same-C1 Action9 → Action2/Power continuation. New ordinary Power cannot inherit it. Missing sources preserve native fallback. Generic equipped operations stay in FrameCollisionMarkers (ADR-0003; EV-320–329/377).
 
-Validation posture/sequence: `COLLISION_TEST_PLAN.md`. Immediate project gate: `SESSION_ENTRYPOINT.md`.
+These windows do not normalize Gothic character-hit policy. SimpleWhirl remains target-centered at SP1 rather than a strict marker-only character-damage window; tested SP2 did not provide sufficient normalization. Power/Pierce retain native action-specific targeting/reactions. Hack14 optional `_FinishingAttack_` → `_HackAttack_` asset routing belongs to `AttackMotionRouting`, only when the candidate exists; Finishing15 remains native.
 
-## 11. Evidence escalation rule
+## 4. Two distinct FIST contracts
 
-1. `COLLISION_REFERENCE.md` for current fact.
-2. Owning architecture/reference for exact current semantics.
-3. `EVIDENCE_INDEX.md` for relevant EV range.
-4. Exact archived/current ledger entry for proof wording/provenance.
-5. Raw/derived source only for disputed or missing details.
+### 4.1 Raw8 — persistent opportunity, separate timing
 
-A settled fact should not require chronological evidence reconstruction during ordinary work.
+The execution record binds exact actor instance, monotonic C1, factual raw8 source and SPU. First marked ownership closes native permission (`SPU+0x164 = 1`). Accepted FIST confirms latch `0`, opens or refreshes **one** pending opportunity and retires prior timing state; opportunities never stack.
+
+After the untouched native CombatMove, a matching pending opportunity/ordinal still present without exact contact can rearm latch `1 → 0`, with readback. A native miss leaves it pending. FullStop itself is not terminal authority.
+
+Consumption occurs **before** Gothic's original OnDamage, only for caller-return `Game+0x16E348`, active raw8 invocation scope, exact Arg1 source/Arg2 actor, matching C1/source/SPU/opportunity ordinal and current raw8 identity. Native original runs once with unchanged arguments. Keep the execution record so later FIST can reopen. Contact dispatch is not HP success: Parade/block may produce zero visible damage (EV-349). Never inspect damage result, visited targets or gameplay outcome to decide consumption.
+
+Timing permission at exact `Game+0x16E180` can repeatedly return the proven threshold+epsilon while the opportunity is pending, matching timing actor/motion and real time below that value. It never changes the real animation clock. Reaching the value, timing-identity change, refresh or contact retires timing; timing retirement alone **does not consume** the opportunity. Logical lifetime survives proven same-C1 Sprint9 → Power2 transport (EV-354/377); animation identity governs timing, not logical lifetime.
+
+After native AISetState, close the captured generation only: revalidate actor/SPU/source and close latch to1 when current generation still matches. If generation changed/invalid, retire stale stored state without writing the replacement latch. That no-write branch is source-reviewed, not naturally executed in EV-353. A later CombatMove also retires already-stale raw8 state and closes the exact live latch under strict liveness checks; replacement → later unmarked native fallback was accepted EV-364. No polling, per-target list, triggered-list mutation, collision-group cleanup or custom contact/damage policy.
+
+### 4.2 Raw55 — exact first opening, second clear only
+
+Eligibility precedes these tables: exact current RIGHT/raw55, valid actor/C1 and matching marked Hit motion, immutable origin and source, one/two authored FIST markers, no equipped-marker mixture or resolved raw8 source. Same-origin continuation is required, except bound Sprint may continue as Power. Duplicate/budget/identity contradictions cannot authorize intervention.
+
+Within the exact supported native callback scope, suppress only a premature RIGHT `5 → 7` request before any accepted FIST; retain callback/state progression. Never suppress the whole callback or normalize arbitrary states.
+
+| Immutable origin | FIRST family/SP gate | SECOND family/SP gate |
+|---|---|---|
+| Quick | Current Quick AND (SP0 OR (SP1 AND `earlyOpeningSuppressed`)) | Current Quick; no additional SP predicate here. |
+| Normal | Current Normal AND (SP0 OR (SP1 AND `earlyOpeningSuppressed`)) | Current Normal AND (SP0 OR SP1). |
+| True Power | Current Power AND (SP1 OR SP2) AND `earlyOpeningSuppressed` | Current Power AND (SP1 OR SP2). |
+| Sprint | Current Sprint AND (SP1 OR SP2) AND `earlyOpeningSuppressed` | Current Power at SP1/SP2 OR current Sprint at SP1/SP2, within the bound execution. |
+
+The table is not a standalone acceptance predicate: FIRST additionally needs exact source group5; SECOND needs authored count2, accepted count1 and source group7. Power/Sprint first-marker suppression is mandatory at **both** SP1 and SP2. Current-Sprint/SP1 marker2 is accepted, not the superseded SP2-only rule (EV-385–388).
+
+| Event | Physical operation |
+|---|---|
+| FIRST | Request exact RIGHT `Item_Equipped(5) → Item_Attack(7)` and verify group7. Clear contacts for Quick, or Normal at SP0; no universal first clear for Power/Sprint or Normal/SP1. |
+| SECOND | `ClearTriggeredList()` only; no second physical opening. |
+| Marked Normal native between-contact clear | Within the exact Normal callback scope, after first accepted FIST at SP0, suppress the exact current owned trigger/`Script_Game+0x386C6` clear once; marker2 owns replacement rearm. |
+| End | Gothic exact native `7 → 5` first; C1 backup only for an outstanding live/equipped source. No independent raw55 terminal system. |
+
+Normal marker2 may be SP0 before or after hit1 (EV-382). An early clear can clear an empty list and guarantees no second damage event. No hit1 flag, visited-target gate, delay, queue, version detection or `SP >= 1` generalization is accepted. Correct raw55 open/rearm/cleanup and zero native contact can coexist; unmarked native windows can also miss (EV-381).
+
+## 5. C1 lifecycle and must-preserve safety
+
+C1 monotonic generation is durable execution identity, shared with marker occurrence/dedupe. Each exact equipped source has its own cleanup obligation; successful offense requests count even `7 → 7`, and a successful transition away fulfills that source's obligation. Dual sources stay independent. Marker bookkeeping, physical obligation and contact visited-list bookkeeping are distinct.
+
+CombatMove acquires ordinary generations. Proven pre-Combat offense can lazily acquire through a validated live ScriptFunction/SPU/state-stack/frame/source correlator; matching CombatMove consumes/retires that temporary binding before dispatch return/suspension. Raw frame/argument pointers are not durable identities. Preserve GetUpAttack pre-Combat offense, GetUpParade/defensive and pre-activation no-offense, ordinary completion, reaction cleanup and reentrant replacement behavior.
+
+After native AISetState returns, finalize only the captured generation. Establish exact current equipped RIGHT/LEFT liveness **before dereferencing** remembered source pointers:
+
+| Captured exact-source condition | C1-R1 result |
+|---|---|
+| No outstanding obligation | `NO_OP_NO_OUTSTANDING` |
+| Outstanding, not current equipped source | `UNRESOLVED_NOT_EQUIPPED`; no dereference/mutation. |
+| Live, actual group already not7 | `NO_OP_PHYSICALLY_CLEAN_RECONCILED` |
+| Live, outstanding, actual group7 | `DeactivateOwnedAttackSource` once to5; verify `REPAIRED_TO_ITEM_EQUIPPED`, otherwise divergence with no retry/fallback mutation. |
+
+No `ClearTriggeredList()` terminal cleanup. Do not substitute Recover, FullStop, motion replacement, callback return, generic ProcessScript dispatch, held-Use2 time, world scan or wall-clock timer for exact ownership/finalization. Mutate fixed sources first, report diagnostics afterwards. Raw8 retires its own generation-safe latch/opportunity (§4.1), never an equipped obligation. Raw55 retains native cleanup plus this backup.
+
+C1-R1 acceptance includes EV-206–207/367/384; no positive outstanding unresolved-not-equipped repair case or NPC destructive-abandonment physical-repair claim exists. These remain evidence limits, not open gates. Stateless player bad-block deferral in [DESIGN §9](DESIGN.md#9-attackcontinuationprotection) is accepted independently; successful prevention never removes C1 safety.
+
+## 6. Diagnose with the smallest sufficient facts
+
+**Marker recognized ≠ accepted occurrence ≠ source opened/rearmed ≠ native contact ≠ visible damage.** First classify which boundary failed. Observe actor, factual action/family/phase/SP, current motion, C1 generation, source identity/UseType/side, opcode/authored/accepted ordinal and rejection reason; then before/requested/after group, clear operation or raw8 opportunity/timing/contact state. Repair claims additionally need outstanding obligation, current-source liveness and verified result. Missing visible damage alone proves none of these failed.
+
+Known successful paths use compact CORE; unexpected rejection, source/family, overlap, repair/divergence or identity contradiction needs richer factual observation. Add only the DEEP signal or isolated probe that resolves the concrete unknown. Exact historical CORE field schemas remain recoverable in the archived diagnostics snapshot. Do not restore broad stacks, repeated address/threshold dumps or polling as routine logging. RuntimeClock and raw8 timing/contact hooks remain behavior-required without diagnostics.
+
+Retained `Script_FrameCollisionBehaviorTest` / `Script_FrameCollisionTest` are **historical collision-only twins**: they omit the full current Speed/Raise/Movement/integrated bad-block assembly. They cannot certify that assembly. Product dependency/purity and hook exclusivity are owned by release architecture §§2–7; never load competing products together or disable a DLL merely by renaming it inside `scripts`. Observational production validation with exact source/binary identity and frozen User matrix is legitimate when instrumentation is absent (EV-389/390).
+
+## 7. Safe modification and deliberate reopening
+
+1. Classify existing regression, asset/setup mismatch, or deliberate new mechanism/scope. Read the relevant section, named source owner and only the conditional hook/authoring facts.
+2. Compare the strongest exact facts: source/C1/motion/ordinal, eligibility gate, requested operation, native contact and cleanup. Preserve fallback and all relevant exclusions. Do not invent damage policy from a miss.
+3. Freeze the smallest bounded change and independent review under Work protocol. Truly unknown mechanisms use FEATURE_DEVELOPMENT_METHOD's isolated probe first, not experimental policy in Bridge or a stable feature.
+4. For later authorized runtime validation, use POP-02–05 exact setup/fixtures, POP-06 evidence handling and POP-07 for large logs; include the directly changed route plus relevant fallback, replacement/cleanup and shared-hook sentinels. Release architecture §8 owns generic purity/integration gates. Work does not build/run unless explicitly authorized.
+
+Collision validation may reopen for exactly these triggers:
+
+1. New runtime observation directly contradicts an accepted collision invariant.
+2. Future feature integration appears to regress accepted collision behavior.
+3. A new supported source/family/marker semantic is deliberately added.
+4. The engine/mod compatibility scope materially expands beyond accepted evidence.
+5. Production build architecture changes in a way that could alter collision execution.
+
+A routine assembled-system safety regression is not itself reopening closed collision causal research. If integration fails, isolate its smallest factual route first. Do not repeat complete closed campaigns without a new need. Promote changed reusable conclusions to this owner and proof to EV routing under knowledge-maintenance §3A/§5.
+
+## 8. Rationale and deeper recovery
+
+Use these only for the specific disputed detail. All EVs route through EVIDENCE_INDEX; archived snapshots preserve full causal reasoning and original claims.
+
+| Topic / reason | Current exact facts / proof | Conditional archived depth |
+|---|---|---|
+| Native action/source outranks filename; exact-set authoring | Animation rules §§9–11; EV-143–147/241–244/306–308/383 | [Old reference](archive/investigations/COLLISION_REFERENCE_PRE_CONSOLIDATION_2026-10-08.md) |
+| Native-first, exact-source liveness avoids stale-pointer repair | Hook guide §3; ADR-0002; EV-163–172/180–215/367/384 | [Lifecycle](archive/investigations/COLLISION_LIFECYCLE_PRE_CONSOLIDATION_2026-10-08.md), [cleanup map](archive/investigations/COLLISION_CLEANUP_CALLSITE_MAP_PRE_CONSOLIDATION_2026-10-08.md) |
+| Raw8 must survive misses; contact is not damage; generation safety | Hook guide §4; EV-346–364, especially349/353/354/364; EV-377 | [Raw8 architecture](archive/investigations/COLLISION_RAW8_PRODUCTION_ARCHITECTURE_PRE_CONSOLIDATION_2026-10-08.md) |
+| Raw55 gates retain native callback/contact progression | Hook guide §§3,5; EV-262–298/381–382/385–388 | [Raw55 architecture](archive/investigations/COLLISION_RAW55_PRODUCTION_ARCHITECTURE_PRE_CONSOLIDATION_2026-10-08.md) |
+| Bound Sprint continuity is not ordinary Power ownership | ADR-0003; EV-320–329/354/377/385–388 | Corresponding mechanism snapshots above |
+| Diagnostics observe; release cannot depend on them | Release architecture §§5–8; ADR-0001; EV-215/389–390 | [Diagnostics schema](archive/investigations/COLLISION_DIAGNOSTICS_PRE_CONSOLIDATION_2026-10-08.md), [closed test plan](archive/investigations/COLLISION_TEST_PLAN_PRE_CONSOLIDATION_2026-10-08.md) |
+
+[Path migrations](EVIDENCE_PATH_MIGRATIONS.md#2026-10-08--collision-documentation-consolidation) records exact original checkpoint/blob/SHA256, seven snapshot paths and recovery of historical internal links. Current source and this contract remain the ordinary working interface.

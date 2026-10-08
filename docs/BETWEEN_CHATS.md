@@ -1,97 +1,20 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-10-08 — first-release main frozen / post-release audit plan recorded / User priorities next
+**Updated:** 2026-10-08 — documentation consolidation implemented; Normal Chat review next
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`
-Stable main: `08a0bd8fcf42173088e233e09b706a80da882070`
 Active branch: `development`
+Protected stable main: `08a0bd8fcf42173088e233e09b706a80da882070`
 
-## Stable release baseline
+The bounded documentation-consolidation stage starts from `fb61c6bedf84bae239610b2c37c205580a7fc63f`. Review the current development consolidation commit / Work handoff in Normal Chat. One maintained COLLISION_REFERENCE owns accepted collision behavior, invariants, diagnosis and reopening. Six former authorities are preserved in dated archives; the old reference and pre-change DESIGN are preserved too. EVIDENCE_PATH_MIGRATIONS records all original identities and historical-link recovery.
 
-`main @ 08a0bd8fcf42173088e233e09b706a80da882070`
-= accepted first-release baseline before the large audit.
+Production code, shipping INI, CMake, research packages/provenance, prototypes, submodules, accepted DLL and main remain protected. Build/game/runtime validation was not performed. Editorial changes establish no new EV or runtime acceptance.
 
-It is the protected comparison baseline, not the working branch.
+No feature/research task is active. The prior User-priorities-before-initial-audit gate is complete; the two read-only audits informed the approved first maintenance stage. [POST_RELEASE_AUDIT_PREPARATION.md](work/active/POST_RELEASE_AUDIT_PREPARATION.md) remains ACTIVE as the open sequence/review responsibility.
 
-Accepted production DLL from final smoke:
-`SHA256 9FD6962146DD8BC7A723B57C0DE9DF4F550BF18E236F71FC79791B1A0ECCCEE9`
+**Next:** Normal Chat reviews the resulting documentation, ownership, seven byte-identical collision snapshots, static checks and five fresh-context routes before accepting this stage.
 
-Release closure:
-- Collision = CLOSED/PASS;
-- Speed = CLOSED/PASS;
-- Raise = CLOSED/PASS;
-- Movement = CLOSED/PASS;
-- bad-block protection = CLOSED/PASS;
-- EV-455 release checkpoint review = PASS;
-- EV-456 quick documentation/current-route review = PASS;
-- EV-457 first-release promotion to `main` = PASS.
-
-## Current branch
-
-Continue on `development`.
-
-Pre-audit development is the first-release lineage plus post-promotion/audit-preparation documentation. It need not remain byte-identical to `main`; `main` is the frozen semantic/reference snapshot.
-
-No feature/research task is active.
-
-## Required next step — User priorities first
-
-Do **not** launch the large audit yet.
-
-The User will first point out documentation/knowledge areas that deserve special attention or protection. Normal Chat must incorporate those concerns into the audit brief before Work is tasked.
-
-## Frozen audit sequence
-
-1. **User priorities**
-   - collect the specific documentation/knowledge concerns from the User.
-
-2. **Work — read-only large review/audit**
-   - start repository-first and apply the formal authority/review procedures;
-   - inspect architecture/document authority/current-state/release remnants/tooling/evidence routing/bloat/stale material plus the User-named areas;
-   - produce findings and proposed actions;
-   - do not freely restructure, delete, archive or compact material.
-
-3. **Normal Chat + User decision review**
-   - review Work's findings together;
-   - explicitly decide `KEEP / CHANGE / ARCHIVE / REMOVE`;
-   - protect contextual material a static audit might misunderstand.
-
-4. **Work — approved maintenance implementation**
-   - implement only the changes approved in Normal Chat;
-   - remain on `development`;
-   - do not modify stable `main`.
-
-5. **Normal Chat post-audit review**
-   - review the resulting `development` state before treating the audit as accepted.
-
-6. **Work — independent main-vs-development loss-detection comparison**
-   - use stable `main @ 08a0bd8fcf42173088e233e09b706a80da882070` as the trusted pre-audit first-release knowledge snapshot;
-   - compare it against reviewed post-audit `development`;
-   - identify anything materially useful, authoritative, operationally important or historically necessary that existed on `main` but is missing, weakened, ambiguously relocated or semantically altered on `development`;
-   - do not report deletion/compression as loss when the same responsibility is still represented correctly by an appropriate owner.
-
-7. **Normal Chat final reconciliation**
-   - review the loss-detection findings;
-   - repair any genuine loss before accepting the audited development state.
-
-## Comparison model
-
-```text
-MAIN
-= accepted first-release baseline before large audit
-= 08a0bd8fcf42173088e233e09b706a80da882070
-
-DEVELOPMENT pre-audit
-= first-release lineage
-+ post-promotion / audit-preparation documentation
-= audit starting state
-
-DEVELOPMENT post-audit
-= reviewed/refactored repository state
-after approved audit maintenance
-```
-
-Do not modify or re-promote `main` during this audit/comparison cycle unless the User explicitly authorizes it.
+**Still pending, separately authorized:** derived-package/manual-checkpoint archival (KA-08/09), optional research build defaults/tool classification (KA-10), historical INI/Movement seed (KA-11), optional KA-12 automation. The independent main-versus-reviewed-development loss-detection comparison and final reconciliation remain later distinct tasks. Do not start them or promote main from this handoff.

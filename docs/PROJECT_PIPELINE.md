@@ -53,7 +53,7 @@ main
 development
 = sole active general development / research / integration branch
 = continues from the promoted Collision + Speed + Raise + Movement stable baseline
-= currently holds the accepted first-release bad-block extension and EV-455 release-review maintenance pending deliberate promotion
+= continues beyond the accepted first-release promotion (EV-457); documentation consolidation is pending Normal Chat review on development
 = intended to remain subsystem-neutral for later targeting/climbing/other adopted systems
 
 docs/collision-source-evidence

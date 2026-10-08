@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Index
 
 **Status:** Compact evidence-routing index  
-**Updated:** 2026-10-05
+**Updated:** 2026-10-08
 
 ## Purpose
 
@@ -239,7 +239,7 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | native contact misses vs authored marker correctness | EV-381 |
 | sheath/draw contact observation | EV-380–EV-381; not a marker blocker |
 
-Raise/Speed compatibility passed through EV-422. EV-423 then exposed one narrow Normal AddRaise directional-continuation defect; EV-424 closed its cause, EV-426 source-reviewed the minimal correction, and EV-427 runtime-accepted the Gothic-native direction carry on the exercised dual route. EV-428 clarifies that this is tested-route acceptance rather than universal animation-set coverage and freezes the remaining representative pre-release Raise fixtures as human Fist Normal, Sabretooth and Troll. The accepted direction source is `1da12cead5acfb54c5520a34d07bccc4c32fd64f`; current production blobs remain that source state while later commits are documentation-only. Speed core, Hack compatibility, phase-speed composition and Collision remain CLOSED/PASS.
+Raise/Speed/Hack acceptance passed EV-422; Normal direction correction was source-reviewed EV-426 and runtime-accepted EV-427, with representative-scope qualification EV-428. Direction implementation source `1da12cead5acfb54c5520a34d07bccc4c32fd64f` is a historical correction checkpoint, not the whole current production state. EV-429–430 close remaining representative Raise type/asset coverage; Movement EV-445 and integrated player protection EV-454 complete the later production set. Current contracts are DESIGN §§2–3,9 and COLLISION_REFERENCE; source identity comes from the current branch, exact historical candidate identity from its EV.
 
 ## 3. Current collision closure landmarks
 
@@ -285,46 +285,20 @@ EV-389         diagnostics-free behavior-only release-purity PASS; collision rea
 EV-390         final Script_G3AnimationBehaviors.dll production collision integration PASS; migration CLOSED
 ```
 
-## 4. Established disposition / durable continuation
+## 4. Established disposition / current-owner routing
 
-```text
-Collision project phase:
-  CLOSED / stable production foundation through EV-390
+| Accepted responsibility | Closure / qualification | Current owner |
+|---|---|---|
+| Collision | CLOSED/PASS production integration EV-390; detailed landmarks §3 | COLLISION_REFERENCE §§1–8; source/hook facts in SOURCE_HOOK_GUIDE |
+| Profiles / Speed v2 | ADR-0011 resolved animation-set identity and neutral shipping INI CLOSED/PASS EV-406–410; Sprint inherits Power, Finishing excluded; Hack/phase corrections EV-417–422 | DESIGN §§2–3 Speed; hook guide §§3,3A |
+| Raise | Sequencing EV-411–412; phase consistency EV-414–422; direction/representative assets EV-423–430, CLOSED/PASS | DESIGN §3 Raise; animation rules §5.1 |
+| Movement | Mechanism/seam EV-434–440; production/name/runtime acceptance EV-441–445, CLOSED/PASS | DESIGN §3 Movement; hook guide §3B |
+| Player bad-block protection | Exact pause deferred EV-448; narrow stateless scope/integration CLOSED/PASS EV-449–454 | DESIGN §9; hook guide §6; ADR-0012 |
+| First release | Checkpoint review EV-455, quick documentation review EV-456, deliberate stable main promotion EV-457, PASS | SESSION_ENTRYPOINT for immediate responsibility; PROJECT_PIPELINE for stable conventions |
 
-Speed v2 / expanded Speed:
-  generic family+left+right profile schema = IMPLEMENTED
-  caller-side compatible composition architecture = ACCEPTED
-  runtime AnimationFamily source = CLOSED EV-393–EV-394
-  generic configured Normal/Quick behavior + New Balance multiplier preservation = PASS EV-395
-  expanded user-facing attack scope = Normal, Quick, Power, Pierce, Hack, SimpleWhirl, Whirl
-  Sprint speed authoring = inherits Power profile on proven shared route (ADR-0009)
-  expanded production source = static-review PASS / local Release build PASS / deployment deferred
-  reusable Speed calibration probe = native control PASS EV-396
-  broad Hero/loadout calibration = PASS EV-397
-  Finishing/Action15 native observation = PASS EV-398
-  Hack/Finishing shared+separated asset Speed isolation = PASS EV-399
-  extended 18-Hit calibration probe identity/startup = PASS EV-400
-  representative NPC checkpoint = PASS EV-400
-  Goblin same-run Power/Sprint context comparison = PASS EV-401
-  representative nonhuman native Batch 1 = PASS EV-402
-  initial release native calibration sufficiency = PASS EV-403–EV-404
-  raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
-  resolved animation-set profile identity = PASS EV-406
-  human Fist Normal/Power calibration = PASS EV-406
-  Finishing = not a shipped/default Speed profile; Speed isolation closed
+Speed→Raise implementation sequencing and deferred Speed deployment are historical, not pending instructions. Broad creature calibration remains optional (EV-403–404). The immediate responsibility is owned by [SESSION_ENTRYPOINT.md](SESSION_ENTRYPOINT.md); this index routes proof and does not assign the next task.
 
-Durable post-audit Speed continuation:
-  implement ADR-0011 resolved animation-set identity
-  -> full active calibrated INI
-  -> native + Axe/Rapier/Zombie/Zombie+Axe runtime acceptance
-  -> intended New Balance sanity
-  -> close Speed completely
-  -> Raise only afterward
-```
-
-The immediate project gate is owned by [SESSION_ENTRYPOINT.md](SESSION_ENTRYPOINT.md), not this sequence.
-
-Do not rerun the full standalone, New Balance, behavior-only, or production-collision campaigns unless later integration produces contradictory evidence.
+Do not rerun closed standalone, New Balance, behavior-only or production-collision campaigns without a new need under COLLISION_REFERENCE §7. Historical collision authority snapshots are routed by its §8 and [the migration map](EVIDENCE_PATH_MIGRATIONS.md#2026-10-08--collision-documentation-consolidation).
 
 ## 5. Escalation order
 
