@@ -1,7 +1,7 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-10-08 — EV-455 first-release checkpoint review PASS / promotion decision pending
+**Updated:** 2026-10-08 — EV-456 quick documentation review PASS / promotion decision pending
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
@@ -25,8 +25,16 @@ EV-455:
 - no tracked binary/archive delta;
 - raw intake clean;
 - knowledge-state validation PASS;
-- root README routing corrected;
 - evidence ledger rotated: EV-417–454 archived, EV-455 onward active.
+
+EV-456:
+- quick pre-promotion documentation review PASS;
+- reviewed/fixed documentation checkpoint `development @ 8d42e9fc9de1e6c07bc6dbbf6972d921804474c2`;
+- corrected stale Raise/Movement/bad-block current-state architecture;
+- corrected stale branch-lifecycle/promotion wording;
+- corrected two broken historical task routes;
+- no production code or INI changes;
+- no live active-task references remain outside the active-folder README placeholder.
 
 Accepted production DLL from final smoke:
 `SHA256 9FD6962146DD8BC7A723B57C0DE9DF4F550BF18E236F71FC79791B1A0ECCCEE9`

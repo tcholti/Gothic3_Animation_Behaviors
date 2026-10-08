@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = first-release checkpoint READY through EV-455; development reviewed; main remains FROZEN pending explicit User + Normal Chat promotion decision
+CURRENT = first-release checkpoint READY through EV-456; quick documentation review PASS; main remains FROZEN pending explicit User + Normal Chat promotion decision
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise direction continuation = CLOSED/PASS EV-427; EV-430 completes representative Normal / Quick R+L / pose-changing Quick / full Whirl coverage including partial Raise-asset profiles
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
@@ -55,9 +55,13 @@ The completed preservation-biased repository audit and Work result are archived 
 ## Immediate continuation — first-release promotion decision
 
 EV-455 first-release checkpoint review is CLOSED/PASS.
+EV-456 quick pre-promotion documentation review is CLOSED/PASS.
 
-Reviewed checkpoint:
+Release-review checkpoint:
 `development @ 99ed4ac0b4883a082340c3eee41ae67ec69cb92a`
+
+Quick-documentation-review checkpoint:
+`development @ 8d42e9fc9de1e6c07bc6dbbf6972d921804474c2`
 
 Review result:
 **READY FOR MAIN PROMOTION / FIRST RELEASE CHECKPOINT.**
@@ -72,7 +76,8 @@ Key release state:
 - accepted final-smoke production SHA256 = `9FD6962146DD8BC7A723B57C0DE9DF4F550BF18E236F71FC79791B1A0ECCCEE9`;
 - stable `main @ e899f37092706a9846312b93d6b52b34e715b53d` is an exact ancestor of the reviewed development checkpoint;
 - raw evidence intake is clean;
-- knowledge-state validation PASS.
+- knowledge-state validation PASS;
+- EV-456 corrected stale current-state/architecture wording and broken active-task routes without changing production code or INI.
 
 No feature/research work is active.
 

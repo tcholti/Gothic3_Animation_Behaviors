@@ -35,3 +35,41 @@ Limits:
 
 Disposition:
 - **READY FOR MAIN PROMOTION / FIRST RELEASE CHECKPOINT.**
+
+
+### EV-456 — Quick pre-promotion documentation review PASS
+
+Reviewed documentation checkpoint:
+`development @ 8d42e9fc9de1e6c07bc6dbbf6972d921804474c2`
+
+Scope:
+- deliberately shallow pre-promotion review only;
+- current-state/release wording;
+- stale active-task/current-feature claims;
+- broken active/archive routes;
+- contradictions with EV-454/EV-455;
+- no broad authority, duplication, compression or repository-structure audit.
+
+Corrections made:
+- root README now routes the current decision to first-release main promotion and includes Movement/bad-block surfaces;
+- canonical `DESIGN.md` no longer says Raise is active or attack displacement/bad-block protection are future-only;
+- accepted Movement architecture is represented in `DESIGN.md`;
+- accepted EV-449–EV-454 stateless player bad-block architecture replaces the obsolete future-module concept;
+- `PROJECT_PIPELINE.md` now reflects the promoted EV-447 Collision/Speed/Raise/Movement baseline and the current first-release promotion gate;
+- `FUTURE_INVESTIGATIONS.md` marks Movement resolved/production-integrated and keeps only exact-pause/NPC bad-block questions as optional future research;
+- top-level `SOURCE_HOOK_GUIDE.md` movement rows now agree with the closed §3B mechanism;
+- stale current-qualification text in ADR-0006/ADR-0008 was refreshed without rewriting their preserved historical decision bodies;
+- two old `docs/work/active/` ADR links were repointed to their archived task locations;
+- `SESSION_ENTRYPOINT.md` date/frozen-state wording now matches the release checkpoint.
+
+Verification:
+- no live non-archive `docs/work/active/<task>.md` references remain;
+- `docs/work/active/` contains only its README placeholder;
+- remaining historical "Speed active / Raise follows" wording is inside the explicitly preserved historical ADR-0006 decision body;
+- `git diff --check` PASS on the review changes;
+- knowledge-state validation PASS;
+- no release/product code or INI change was made.
+
+Disposition:
+- **PASS — DOCUMENTATION IS CLEAN ENOUGH FOR FIRST-RELEASE MAIN PROMOTION.**
+- larger documentation/repository review remains intentionally deferred until after the stable main checkpoint is created.

@@ -105,7 +105,7 @@ Script_G3AnimationBehaviors
 = production behavior DLL / public integration product
 = Collision + Speed + Raise + Movement are CLOSED/PASS
 = lean player bad-block protection is production-integrated and CLOSED/PASS through EV-454
-= EV-455 release review is PASS; current decision is deliberate first-release promotion to main
+= EV-455 release review + EV-456 quick documentation review are PASS; current decision is deliberate first-release promotion to main
 
 Script_G3AB_BadBlockProtector / Script_G3AB_BadBlockResearch*
 = non-shipping research/acceptance tools retained for provenance and controlled reproduction
