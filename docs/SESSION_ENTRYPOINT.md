@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = first-release candidate; EV-454 production bad-block integration + final smoke = CLOSED/PASS; ACTIVE = first-release checkpoint review; main remains FROZEN
+CURRENT = first-release checkpoint READY through EV-455; development reviewed; main remains FROZEN pending explicit User + Normal Chat promotion decision
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise direction continuation = CLOSED/PASS EV-427; EV-430 completes representative Normal / Quick R+L / pose-changing Quick / full Whirl coverage including partial Raise-asset profiles
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
@@ -52,27 +52,34 @@ Canonical reusable engine lookup:
 
 The completed preservation-biased repository audit and Work result are archived under `docs/archive/investigations/`. Its accepted RH-01–RH-13 maintenance is represented in the durable owners; RH-14–RH-17 were KEEP/no-action. The three previously retained Sprint-probe logs were positively reconciled during EV-397/EV-398 maintenance and archived byte-identically; path migration is recorded in `EVIDENCE_PATH_MIGRATIONS.md`.
 
-## Immediate continuation — first-release checkpoint review
+## Immediate continuation — first-release promotion decision
 
-Active task:
-`docs/work/active/FIRST_RELEASE_CHECKPOINT_REVIEW.md`
+EV-455 first-release checkpoint review is CLOSED/PASS.
 
-Bad-block closure:
-- EV-449–EV-450: player Action4/5/10 factual-Hit branch-local deferral causally proven.
-- EV-451–EV-452: Pierce/Hack/true Finishing remain excluded.
-- EV-453: diagnostics-free standalone accepted after >30 deliberate reproduction attempts.
-- EV-454: same minimum integrated into production G3AB; final release-candidate smoke PASS.
+Reviewed checkpoint:
+`development @ 99ed4ac0b4883a082340c3eee41ae67ec69cb92a`
 
-Current production bad-block source:
-`development @ 65a87e4e792e3da631856ae341df713742aac0db`
+Review result:
+**READY FOR MAIN PROMOTION / FIRST RELEASE CHECKPOINT.**
 
-Accepted production DLL from final smoke:
-`SHA256 9FD6962146DD8BC7A723B57C0DE9DF4F550BF18E236F71FC79791B1A0ECCCEE9`
+Key release state:
+- Collision = CLOSED/PASS;
+- Speed = CLOSED/PASS;
+- Raise = CLOSED/PASS;
+- Movement = CLOSED/PASS;
+- bad-block protection = CLOSED/PASS through EV-454;
+- production public/integration product = `Script_G3AnimationBehaviors.dll`;
+- accepted final-smoke production SHA256 = `9FD6962146DD8BC7A723B57C0DE9DF4F550BF18E236F71FC79791B1A0ECCCEE9`;
+- stable `main @ e899f37092706a9846312b93d6b52b34e715b53d` is an exact ancestor of the reviewed development checkpoint;
+- raw evidence intake is clean;
+- knowledge-state validation PASS.
 
-Bad-block work is CLOSED for first release. Do not reopen it without contradictory reproducible evidence.
+No feature/research work is active.
 
-Next responsibility is read-only release checkpoint review:
-reconcile current `development` against frozen `main`, verify shipping/release purity and current documentation, then return READY or the smallest concrete blocker. Promotion to `main` requires explicit User + Normal Chat decision.
+Next action requires explicit User + Normal Chat decision:
+promote the current reviewed `development` state to `main` as the first-release stable checkpoint, or deliberately hold it on `development`.
+
+Do not begin new feature work before that decision.
 
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.

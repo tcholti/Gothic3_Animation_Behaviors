@@ -230,6 +230,7 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | Pierce/Hack + true Finishing exclusion validation | EV-451–EV-452 |
 | diagnostics-free standalone bad-block protector acceptance PASS | EV-453 |
 | production bad-block integration + final release-candidate smoke PASS | EV-454 |
+| first-release checkpoint review / ready for main promotion | EV-455 |
 | Speed v2 deep independent static audit | `archive/investigations/SPEED_V2_DEEP_INDEPENDENT_STATIC_AUDIT_RESULT.md` |
 | Speed v2 S-01 finite-output correction | `archive/investigations/SPEED_V2_S01_FINITE_OUTPUT_GUARD.md` |
 | generic Speed profile calibration implementation closure | `archive/investigations/SPEED_GENERIC_PROFILE_CALIBRATION_IMPLEMENTATION_RESULT.md` |
