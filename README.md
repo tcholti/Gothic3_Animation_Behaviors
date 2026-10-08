@@ -102,10 +102,14 @@ The root CMake project currently exposes these relevant DLL targets:
 
 ```text
 Script_G3AnimationBehaviors
-= production-direction behavior DLL
-= contains the accepted production collision integration
-= contains production collision + Speed v2; both are CLOSED/PASS
-= Raise AddRaise is the active feature responsibility (Normal / Quick / Whirl first)
+= production behavior DLL / public integration product
+= Collision + Speed + Raise + Movement are CLOSED/PASS
+= lean player bad-block protection is production-integrated and CLOSED/PASS through EV-454
+= current responsibility is first-release checkpoint review before deliberate promotion to main
+
+Script_G3AB_BadBlockProtector / Script_G3AB_BadBlockResearch*
+= non-shipping research/acceptance tools retained for provenance and controlled reproduction
+= not required alongside the production DLL after EV-454
 
 Script_SpeedCalibrationProbe
 = standalone diagnostics-only speed calibration tool

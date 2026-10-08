@@ -32,7 +32,8 @@ Canonical evidence uses one global monotonic EV namespace. Closed ledger volumes
 | EV-380–EV-383 | `archive/evidence/EVIDENCE_LEDGER_380_383.md` |
 | EV-384–EV-388 | `archive/evidence/EVIDENCE_LEDGER_384_388.md` |
 | EV-389–EV-416 | `archive/evidence/EVIDENCE_LEDGER_389_416.md` |
-| EV-417 onward | `EVIDENCE_LEDGER_417_ONWARD.md` |
+| EV-417–EV-454 | `archive/evidence/EVIDENCE_LEDGER_417_454.md` |
+| EV-455 onward | `EVIDENCE_LEDGER_455_ONWARD.md` |
 
 The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2026-09-19_PRE_COMPRESSION.md`.
 
@@ -358,4 +359,4 @@ EV-389 and EV-390 are diagnostics-free observational evidence and therefore have
 
 Historical ledger rows may retain paths that were correct when written. Use `EVIDENCE_PATH_MIGRATIONS.md` when a later archive move makes an old path ambiguous.
 
-Closed ledger volumes are immutable historical proof records. EV-389–EV-416 is closed at `archive/evidence/EVIDENCE_LEDGER_389_416.md`; new evidence goes only to `EVIDENCE_LEDGER_417_ONWARD.md` until the next rotation.
+Closed ledger volumes are immutable historical proof records. EV-389–EV-416 is closed at `archive/evidence/EVIDENCE_LEDGER_389_416.md`; EV-417–EV-454 is closed at `archive/evidence/EVIDENCE_LEDGER_417_454.md`; new evidence goes only to `EVIDENCE_LEDGER_455_ONWARD.md` until the next rotation.
