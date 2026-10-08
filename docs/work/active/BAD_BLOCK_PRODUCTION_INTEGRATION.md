@@ -79,3 +79,34 @@ Then final release-candidate visual smoke:
 - normal non-protected combat/block behavior sanity.
 
 No further bad-skip research is planned unless contradictory runtime evidence appears.
+
+
+## Production implementation checkpoint — 2026-10-08
+
+Production source checkpoint:
+`development @ 65a87e4e792e3da631856ae341df713742aac0db`
+
+Production integration review:
+- `EngineBridge` remains sole production hook owner;
+- one new `mCCallHook` at `Script_Game +0x633BF`;
+- exact accepted call-site byte guard retained;
+- live/current DurationPressedMSecs getter called exactly once;
+- player ownership required;
+- only factual Action4/5/10 accepted;
+- factual Hit required;
+- only qualifying raw>2500 returns 2500;
+- no logger, no persistent state, no INI option, no NPC scope, no collision-guardian coupling.
+
+Build:
+`Script_G3AnimationBehaviors.dll`
+`SHA256 9FD6962146DD8BC7A723B57C0DE9DF4F550BF18E236F71FC79791B1A0ECCCEE9`
+
+Deployment:
+- production built/live hash match PASS;
+- standalone `Script_G3AB_BadBlockProtector.dll` removed;
+- all bad-block research/control/exclusion DLLs absent;
+- New Balance unchanged at `0C06C35F294F2FDF3011AC82FF506CA422947B6908CE2530AA1B057A243A6F88`;
+- AttackCollision left unchanged and present.
+
+Runtime status:
+**FINAL RELEASE-CANDIDATE SMOKE PENDING.**

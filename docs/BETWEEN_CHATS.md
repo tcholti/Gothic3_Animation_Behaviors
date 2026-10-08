@@ -1,7 +1,7 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-10-08 — EV-453 lean standalone acceptance PASS / production integration ACTIVE
+**Updated:** 2026-10-08 — production bad-block integration deployed / final smoke pending
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
@@ -12,30 +12,44 @@ Active branch: `development`
 ## Closed bad-block evidence
 
 EV-449–EV-450:
-- player QuickAttackR(4), QuickAttackL(5), WhirlAttack(10), factual Hit, raw>2500;
-- branch-local return 2500 causally prevents the reproduced destructive failure.
+- branch-local player Action4/5/10 + factual Hit return-2500 mechanism causally prevents reproduced bad skip.
 
-EV-451:
-- keep Pierce/Action11 and Hack/Action14 excluded.
-
-EV-452:
-- keep true Finishing/Action15 excluded.
+EV-451–EV-452:
+- Pierce/Hack/true Finishing remain excluded.
 
 EV-453:
-- accepted diagnostics-free standalone protector;
-- SHA256 `6A04B4AB4529EF2C7FD6BEB6450572BD504AF188FB3BD45FBCFD116E5AB5A03A`;
-- startup/exit PASS;
-- more than 30 deliberate reproduction attempts total;
-- full Whirl + Quick across all weapon types;
+- diagnostics-free standalone accepted;
+- >30 deliberate Quick/full-Whirl attempts across all weapon types;
 - zero bad-skip reproductions.
 
-## Active gate
+## Production integration
 
+Active task:
 `docs/work/active/BAD_BLOCK_PRODUCTION_INTEGRATION.md`
 
-Integrate the exact EV-453 minimum into production `EngineBridge.cpp`.
+Source:
+`development @ 65a87e4e792e3da631856ae341df713742aac0db`
 
-No redesign. No new scope. No INI setting. No state.
+Production DLL built/live:
+`SHA256 9FD6962146DD8BC7A723B57C0DE9DF4F550BF18E236F71FC79791B1A0ECCCEE9`
 
-After source/build/deployment review:
-remove standalone protector and run final release-candidate visual smoke.
+Live runtime:
+- production G3AB ON with integrated protection;
+- New Balance ON / unchanged at `0C06C35F294F2FDF3011AC82FF506CA422947B6908CE2530AA1B057A243A6F88`;
+- AttackCollision unchanged/present;
+- standalone bad-block protector OFF/removed;
+- all research/control/exclusion bad-block DLLs OFF/absent.
+
+## Exact next gate
+
+Final release-candidate visual smoke:
+1. clean startup;
+2. several aggressive Quick + full Whirl bad-skip attempts;
+3. brief representative collision sanity;
+4. brief Speed sanity;
+5. brief Raise sanity;
+6. brief Movement sanity;
+7. ordinary non-protected combat/block behavior sanity.
+
+If clean:
+close production integration evidence/task, do final repository maintenance, and prepare first-release checkpoint.
