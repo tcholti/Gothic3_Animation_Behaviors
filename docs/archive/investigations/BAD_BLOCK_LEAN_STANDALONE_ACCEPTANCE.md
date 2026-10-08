@@ -1,6 +1,6 @@
 # Bad Block Skip — Lean Standalone Acceptance
 
-**Status:** ACTIVE  
+**Status:** CLOSED — runtime visual acceptance PASS / EV-453  
 **Mode:** bounded diagnostics-free standalone implementation + visual runtime acceptance  
 **Frozen by:** User + Normal Chat, 2026-10-07  
 **Launch base:** `development @ ef6635470325f670ab24721c095d28c397d84836`  
@@ -121,3 +121,33 @@ Exact next step next session:
 1. launch Gothic 3 to the main menu and exit normally; no log is expected, so successful startup/exit is the diagnostics-free startup gate;
 2. if startup is clean, repeatedly try to reproduce known bad skip with Quick attacks and full Whirl;
 3. if visual acceptance passes, integrate this same minimum into production G3AB; do not redesign.
+
+
+## Final result — EV-453
+
+Accepted standalone source checkpoint:
+`development @ bc7d341abd71dc064e6be6faf88d51dff6d62eb4`
+
+Accepted standalone binary:
+`Script_G3AB_BadBlockProtector.dll`
+`SHA256 6A04B4AB4529EF2C7FD6BEB6450572BD504AF188FB3BD45FBCFD116E5AB5A03A`
+
+Runtime fixture:
+- production G3AB ON;
+- New Balance ON;
+- lean standalone protector ON;
+- old bad-block research/control/exclusion DLLs OFF.
+
+Startup acceptance:
+- Gothic 3 launched and exited normally with the diagnostics-free protector active.
+
+User runtime acceptance:
+- more than 30 deliberate bad-skip reproduction attempts in total;
+- full Whirl exercised;
+- Quick attacks exercised across all weapon types;
+- no bad skip could be reproduced.
+
+Result:
+**PASS — LEAN DIAGNOSTICS-FREE STANDALONE PROTECTOR ACCEPTED.**
+
+Production integration is authorized only as the same proven minimum. Do not redesign or broaden scope.

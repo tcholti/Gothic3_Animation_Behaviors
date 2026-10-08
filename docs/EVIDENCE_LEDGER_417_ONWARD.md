@@ -1815,3 +1815,40 @@ Interpretation:
 Disposition:
 - **PASS — KEEP ACTION15 EXCLUDED FROM V1 PROTECTOR.**
 - first-release protected set remains only player Quick R / Quick L / full Whirl during factual Hit.
+
+
+### EV-453 — Lean standalone bad-block protector visual acceptance PASS
+
+Source checkpoint:
+`development @ bc7d341abd71dc064e6be6faf88d51dff6d62eb4`
+
+Standalone product:
+`Script_G3AB_BadBlockProtector.dll`
+`SHA256 6A04B4AB4529EF2C7FD6BEB6450572BD504AF188FB3BD45FBCFD116E5AB5A03A`
+
+Implementation facts:
+- diagnostics-free;
+- no A/B mode;
+- no diagnostic episode state;
+- no exclusion observers;
+- no persistent timer/actor state;
+- native/current DurationPressedMSecs getter called once;
+- only player factual Action4/5/10 + Hit with raw>2500 returns 2500;
+- all other calls return native raw unchanged.
+
+Runtime fixture:
+- production G3AB ON;
+- New Balance ON;
+- standalone protector ON;
+- old bad-block research/control/exclusion products OFF.
+
+Runtime result:
+- diagnostics-free startup/exit PASS;
+- user performed more than 30 deliberate reproduction attempts total;
+- full Whirl tested;
+- Quick attacks tested across all weapon types;
+- zero visible bad-skip reproductions.
+
+Disposition:
+- **PASS — standalone acceptance gate CLOSED.**
+- production G3AB integration may copy this exact minimum only.
