@@ -6,7 +6,7 @@
 
 ## Purpose
 
-`Script_G3AnimationBehaviors` is the general animation-behavior layer for Gothic 3. The first-release production set — authored-frame Collision, Speed v2, additive Raise, configurable attack Movement, and the narrow player bad-block protection — is CLOSED/PASS through EV-454. No feature responsibility is currently active; the repository is at the EV-455 first-release promotion decision. Future independent domains may include target acquisition, climbing, and other deliberately adopted animation/gameplay behavior modules.
+`Script_G3AnimationBehaviors` is the general animation-behavior layer for Gothic 3. The first-release production set — authored-frame Collision, Speed v2, additive Raise, configurable attack Movement, and the narrow player bad-block protection — is CLOSED/PASS through EV-454 and promoted to stable `main @ 08a0bd8fcf42173088e233e09b706a80da882070` after EV-455/EV-456 review. No feature responsibility is currently active. Future independent domains may include target acquisition, climbing, and other deliberately adopted animation/gameplay behavior modules.
 
 This file owns overall intended architecture and implementation order. Established collision facts are projected in `COLLISION_REFERENCE.md`; collision lifecycle authority is `COLLISION_LIFECYCLE.md`; validation authority is `COLLISION_TEST_PLAN.md`; diagnostics are owned by `COLLISION_DIAGNOSTICS.md`; permanent raw8 behavior is owned by `COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`; permanent raw55 behavior is owned by `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`; practical source/hook lookup is `SOURCE_HOOK_GUIDE.md`; exact proof routes through `EVIDENCE_INDEX.md`.
 

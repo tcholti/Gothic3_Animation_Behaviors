@@ -73,3 +73,27 @@ Verification:
 Disposition:
 - **PASS — DOCUMENTATION IS CLEAN ENOUGH FOR FIRST-RELEASE MAIN PROMOTION.**
 - larger documentation/repository review remains intentionally deferred until after the stable main checkpoint is created.
+
+
+### EV-457 — First-release stable promotion PASS
+
+Observed:
+- preflight verified clean local `development`, remote `development` and reviewed EV-456 checkpoint all matched `08a0bd8fcf42173088e233e09b706a80da882070`;
+- previous `main @ e899f37092706a9846312b93d6b52b34e715b53d` was an ancestor of the reviewed development checkpoint;
+- promotion used a normal fast-forward push from `development` to `main`;
+- post-push verification showed remote `main` and remote `development` both exactly at `08a0bd8fcf42173088e233e09b706a80da882070`.
+
+Scope / limits:
+- this EV records branch promotion only;
+- no product source, INI, runtime binary or release behavior changed during promotion;
+- later audit work must not mutate `main`.
+
+Provenance:
+- EV-455 = first-release checkpoint review PASS;
+- EV-456 = quick pre-promotion documentation review PASS;
+- promoted SHA = `08a0bd8fcf42173088e233e09b706a80da882070`.
+
+Disposition:
+- **PASS — FIRST-RELEASE STABLE CHECKPOINT PROMOTED TO MAIN.**
+- `main @ 08a0bd8fcf42173088e233e09b706a80da882070` is the trusted pre-audit baseline.
+- future review/audit work continues on `development` only.

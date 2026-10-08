@@ -145,7 +145,7 @@ The player branch has one clean stateless **deferral** seam at `Script_Game +0x6
 - EV-448.
 - `docs/SOURCE_HOOK_GUIDE.md §6`.
 - `docs/archive/investigations/bad_block_skip_static_research_2026-10-06.md`.
-- stable first-release fallback remains `main @ e899f37092706a9846312b93d6b52b34e715b53d`.
+- stable first-release fallback is `main @ 08a0bd8fcf42173088e233e09b706a80da882070`.
 
 ### If ever reopened
 

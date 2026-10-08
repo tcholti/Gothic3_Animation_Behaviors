@@ -7,7 +7,7 @@ General Gothic 3 animation-behavior research and implementation for configurable
 ## Branches
 
 - **`development`** — current active development/research/integration branch. It contains the newest implementation, current project state, and latest evidence.
-- **`main`** — stable integration and reusable Gothic 3 knowledge baseline. Promotion from `development` is deliberate rather than automatic.
+- **`main`** — stable integration and reusable Gothic 3 knowledge baseline. It now holds the accepted first-release checkpoint at `08a0bd8fcf42173088e233e09b706a80da882070`; future promotions from `development` remain deliberate rather than automatic.
 - **`docs/collision-source-evidence`** — historical collision-development provenance. Ordinary new work no longer continues there.
 
 Do not assume `main` contains the newest working implementation merely because it is the default branch.
@@ -105,7 +105,7 @@ Script_G3AnimationBehaviors
 = production behavior DLL / public integration product
 = Collision + Speed + Raise + Movement are CLOSED/PASS
 = lean player bad-block protection is production-integrated and CLOSED/PASS through EV-454
-= EV-455 release review + EV-456 quick documentation review are PASS; current decision is deliberate first-release promotion to main
+= EV-455 release review + EV-456 quick documentation review are PASS; first-release promotion to main is complete
 
 Script_G3AB_BadBlockProtector / Script_G3AB_BadBlockResearch*
 = non-shipping research/acceptance tools retained for provenance and controlled reproduction

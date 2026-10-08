@@ -74,7 +74,7 @@ narrow first-release bad-block protection CLOSED/PASS through EV-454
         ↓
 EV-455 release checkpoint review PASS
         ↓
-current decision = deliberate development -> main first-release promotion
+first-release promotion completed: main = accepted first-release stable checkpoint
         ↓
 future adopted systems return to development one bounded responsibility at a time
 ```
@@ -85,7 +85,7 @@ The public/integration DLL keeps the name `Script_G3AnimationBehaviors.dll` thro
 
 Do not create `feature/raise-attack-speed` for the current cycle. The earlier collision-specific branch progression was superseded on 2026-09-27 by ADR-0006 after the collision core was migrated into the production target. Historical branch names remain valid provenance and are not retroactively renamed.
 
-Stable promotion is deliberate. The current first-release promotion gate has been reached: Collision, Speed, Raise, Movement, the narrow bad-block protection, assembled runtime smoke, and EV-455 checkpoint review are CLOSED/PASS. Promotion still requires an explicit User + Normal Chat decision.
+Stable promotion is deliberate. The first-release promotion gate was reached after Collision, Speed, Raise, Movement, the narrow bad-block protection, assembled runtime smoke, EV-455 checkpoint review and EV-456 quick documentation review all closed/PASS. The accepted first-release checkpoint is now `main @ 08a0bd8fcf42173088e233e09b706a80da882070`.
 
 ---
 
@@ -264,7 +264,7 @@ From the C1-era research onward:
 - do not create a new decimal prototype version merely because another Chat edited the code;
 - do not let prototype/research numbering or temporary target names silently define the eventual public `Script_G3AnimationBehaviors` release version.
 
-The production integration target is `Script_G3AnimationBehaviors`. The first-release feature cycle on `development` is CLOSED/PASS through EV-455 and is awaiting deliberate promotion to `main`; after that checkpoint, later adopted systems continue on `development` one bounded responsibility at a time.
+The production integration target is `Script_G3AnimationBehaviors`. The first-release feature cycle is CLOSED/PASS and promoted to stable `main @ 08a0bd8fcf42173088e233e09b706a80da882070`; later adopted systems continue on `development` one bounded responsibility at a time.
 
 Public/stable release versioning should be decided deliberately at the stable-integration/release stage.
 

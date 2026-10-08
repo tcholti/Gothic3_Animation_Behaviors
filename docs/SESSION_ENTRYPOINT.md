@@ -30,12 +30,12 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = first-release checkpoint READY through EV-456; quick documentation review PASS; main remains FROZEN pending explicit User + Normal Chat promotion decision
+CURRENT = first-release stable checkpoint promoted to main through EV-457; development is open only for the planned post-release documentation/repository audit after User priorities are supplied
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise direction continuation = CLOSED/PASS EV-427; EV-430 completes representative Normal / Quick R+L / pose-changing Quick / full Whirl coverage including partial Raise-asset profiles
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
 active evidence ledger = EV-455 onward
-main = FROZEN
+main = FIRST-RELEASE STABLE @ 08a0bd8fcf42173088e233e09b706a80da882070
 ```
 
 Completed Speed task is archived at:
@@ -52,19 +52,17 @@ Canonical reusable engine lookup:
 
 The completed preservation-biased repository audit and Work result are archived under `docs/archive/investigations/`. Its accepted RH-01–RH-13 maintenance is represented in the durable owners; RH-14–RH-17 were KEEP/no-action. The three previously retained Sprint-probe logs were positively reconciled during EV-397/EV-398 maintenance and archived byte-identically; path migration is recorded in `EVIDENCE_PATH_MIGRATIONS.md`.
 
-## Immediate continuation — first-release promotion decision
+## Immediate continuation — post-release audit preparation
 
-EV-455 first-release checkpoint review is CLOSED/PASS.
-EV-456 quick pre-promotion documentation review is CLOSED/PASS.
+EV-455 first-release checkpoint review = CLOSED/PASS.
+EV-456 quick pre-promotion documentation review = CLOSED/PASS.
+EV-457 first-release promotion = CLOSED/PASS.
 
-Release-review checkpoint:
-`development @ 99ed4ac0b4883a082340c3eee41ae67ec69cb92a`
+Stable first-release checkpoint:
+`main @ 08a0bd8fcf42173088e233e09b706a80da882070`
 
-Quick-documentation-review checkpoint:
-`development @ 8d42e9fc9de1e6c07bc6dbbf6972d921804474c2`
-
-Review result:
-**READY FOR MAIN PROMOTION / FIRST RELEASE CHECKPOINT.**
+Accepted production DLL from final smoke:
+`SHA256 9FD6962146DD8BC7A723B57C0DE9DF4F550BF18E236F71FC79791B1A0ECCCEE9`
 
 Key release state:
 - Collision = CLOSED/PASS;
@@ -73,18 +71,15 @@ Key release state:
 - Movement = CLOSED/PASS;
 - bad-block protection = CLOSED/PASS through EV-454;
 - production public/integration product = `Script_G3AnimationBehaviors.dll`;
-- accepted final-smoke production SHA256 = `9FD6962146DD8BC7A723B57C0DE9DF4F550BF18E236F71FC79791B1A0ECCCEE9`;
-- stable `main @ e899f37092706a9846312b93d6b52b34e715b53d` is an exact ancestor of the reviewed development checkpoint;
-- raw evidence intake is clean;
-- knowledge-state validation PASS;
-- EV-456 corrected stale current-state/architecture wording and broken active-task routes without changing production code or INI.
+- first-release documentation/current-route review = PASS EV-456;
+- first-release stable promotion = PASS EV-457.
 
 No feature/research work is active.
 
-Next action requires explicit User + Normal Chat decision:
-promote the current reviewed `development` state to `main` as the first-release stable checkpoint, or deliberately hold it on `development`.
+Next responsibility is **not yet frozen**.
+The User will first identify documentation that must receive special attention in the planned larger post-release review/audit. After those priorities are captured, freeze the larger review/audit task on `development`.
 
-Do not begin new feature work before that decision.
+Treat `main @ 08a0bd8fcf42173088e233e09b706a80da882070` as the trusted pre-audit comparison baseline. Do not modify `main` during the audit.
 
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
@@ -137,5 +132,5 @@ NO Sprint-specific Speed keys absent contradictory evidence
 Raise sequencing baseline and phase-speed correction are fully runtime-accepted through EV-422; accepted integrated production source is 41ed80c6420e5236d13fc037cb5923b946cb8ccc
 NO collision redesign absent contradictory evidence
 NO climbing implementation yet; configurable attack Movement is production-integrated and CLOSED/PASS through EV-445
-NO promotion to main without explicit User + Normal Chat approval
+NO modification or re-promotion of stable main during the planned audit without explicit User + Normal Chat approval
 ```

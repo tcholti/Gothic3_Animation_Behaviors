@@ -4,7 +4,7 @@
 **Date:** 2026-09-27  
 **Related:** ADR-0004, ADR-0005, `docs/DESIGN.md`, `docs/PROJECT_PIPELINE.md`
 
-**Current qualification — partial supersession:** The development-branch model and the historical Speed-before-Raise sequencing remain valid. The first-release Collision/Speed/Raise/Movement/bad-block cycle is now CLOSED/PASS through EV-455 and no feature is currently active; `development` is awaiting the deliberate first-release promotion decision. Historical Normal/Quick/profile-scope wording is qualified by the grouped/expanded schema in [ADR-0008](ADR-0008-grouped-loadout-profiles-expanded-attack-scope.md) and resolved profile identity in [ADR-0011](ADR-0011-resolved-animation-set-speed-profile-identity.md).
+**Current qualification — partial supersession:** The development-branch model and the historical Speed-before-Raise sequencing remain valid. The first-release Collision/Speed/Raise/Movement/bad-block cycle is CLOSED/PASS and promoted to stable `main @ 08a0bd8fcf42173088e233e09b706a80da882070`; no feature is currently active on `development`. Historical Normal/Quick/profile-scope wording is qualified by the grouped/expanded schema in [ADR-0008](ADR-0008-grouped-loadout-profiles-expanded-attack-scope.md) and resolved profile identity in [ADR-0011](ADR-0011-resolved-animation-set-speed-profile-identity.md).
 
 The historical decision body below is preserved.
 
