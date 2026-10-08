@@ -9,7 +9,7 @@
 
 <!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
 
-## Current gate — Normal Chat review of completed derived-evidence archival
+## Current gate — two preservation-first maintenance stages reviewed; next scope awaits User approval
 
 Collision, Speed, Raise, Movement and narrow player bad-block protection remain CLOSED/PASS. First-release checkpoint review EV-455, quick documentation review EV-456 and stable promotion EV-457 are complete. No feature/research task is active.
 
@@ -18,11 +18,11 @@ Protected stable baseline: `main @ 08a0bd8fcf42173088e233e09b706a80da882070`.
 Accepted production DLL from EV-454 final smoke (recorded provenance, not remeasured here):
 `SHA256 9FD6962146DD8BC7A723B57C0DE9DF4F550BF18E236F71FC79791B1A0ECCCEE9`.
 
-The first documentation-consolidation stage was reviewed at `development @ 2149a21e827c27a741d5291a4f5b1159b685c68b`. The second approved stage starts there and moves exactly 27 completed derived packages plus three manual checkpoints unchanged, with minimal retrieval-route maintenance. Its published commit is the current development archival checkpoint; BETWEEN_CHATS and the Work handoff identify review details. Production source/configuration/build/runtime behavior is unchanged.
+The first documentation-consolidation stage was reviewed and accepted at `development @ 2149a21e827c27a741d5291a4f5b1159b685c68b`. The second, archival-only stage was published at `975c7e2a1b17b47133a19f8091f158956a7de6b1` and independently reviewed in Normal Chat on 2026-10-08: all 27 moved package subtrees have matching original Git tree identities; all three manual checkpoint blobs match; all 462 pre-existing canonical archive entries are unchanged. Work reported manifest/retrieval/static validation PASS, with a historical mirror-index byte-count discrepancy preserved rather than silently corrected. This review does not assert independently recomputed raw-source SHA256 or runtime validation. Both maintenance stages are accepted as reviewed checkpoints. Production source/configuration/build/runtime behavior is unchanged.
 
-**Immediate responsibility:** Normal Chat reviews the complete archival diff, every-file blob preservation and retrieval/static checks against the frozen contract before accepting this stage. Do not launch further maintenance, the independent main comparison, new runtime tests or main promotion from this pointer.
+**Immediate responsibility:** Pause here. At the next User-authorized continuation, review the remaining proposed maintenance as separate choices: KA-10 optional research build defaults/tool classification; KA-11 historical configuration/Movement seed; optional KA-12 automation. Do not infer approval to implement them. After approved maintenance is complete and reviewed, the separate independent `main`→`development` semantic loss-detection task and Normal Chat reconciliation are still mandatory. Do not start Work, build, test, or promote `main` from this pointer alone.
 
-The open sequence remains owned by [POST_RELEASE_AUDIT_PREPARATION.md](work/active/POST_RELEASE_AUDIT_PREPARATION.md). It stays active pending review and later decisions; the whole post-release audit cycle is not closed.
+The open sequence remains owned by [POST_RELEASE_AUDIT_PREPARATION.md](work/active/POST_RELEASE_AUDIT_PREPARATION.md). It stays active for remaining User decisions, eventual maintenance review and the independent comparison/reconciliation; the whole post-release audit cycle is not closed.
 
 ## Smallest technical routes
 

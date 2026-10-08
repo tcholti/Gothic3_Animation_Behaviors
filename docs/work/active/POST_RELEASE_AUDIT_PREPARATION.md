@@ -1,6 +1,6 @@
 # Post-Release Repository Audit Preparation
 
-**Status:** ACTIVE — first documentation maintenance implemented; Normal Chat review / later stages pending
+**Status:** ACTIVE — two approved maintenance stages implemented and reviewed; remaining decisions/comparison pending
 **Mode:** Normal Chat review / staged post-release maintenance
 **Stable comparison baseline:** `main @ 08a0bd8fcf42173088e233e09b706a80da882070`  
 **Working branch:** `development`
@@ -11,11 +11,14 @@ Track the deliberately staged post-release repository/knowledge-maintenance sequ
 
 ## Immediate responsibility
 
-Normal Chat reviews the current development documentation-consolidation commit and Work handoff. The approved stage entered at `fb61c6bedf84bae239610b2c37c205580a7fc63f`: one maintained COLLISION_REFERENCE, six archived former authorities, full old reference/pre-change DESIGN snapshots, bounded stale-description/ownership/navigation corrections and static checks. No source/configuration/build/runtime change or new EV.
+Two approved preservation-first stages are implemented and independently reviewed in Normal Chat:
 
-The old “User priorities before initial audit” gate is complete. This document remains ACTIVE because review, remaining separately approved maintenance and the independent comparison/reconciliation sequence remain open. Work stops after publishing this stage; Normal Chat owns eventual closure/archive of this active document.
+- Documentation consolidation: `development @ 2149a21e827c27a741d5291a4f5b1159b685c68b` — one maintained COLLISION_REFERENCE, complete archived former-authority/pre-change DESIGN snapshots, and corrected ownership/navigation. The original archive identities are recorded in EVIDENCE_PATH_MIGRATIONS.
+- Completed derived-evidence archival: `development @ 975c7e2a1b17b47133a19f8091f158956a7de6b1` — 27 unchanged package subtrees and three unchanged manual checkpoints moved to preserved archives. Independent Git subtree/blob comparison confirms the complete frozen moved set and 462 unchanged pre-existing canonical archive entries; Work reports manifest, retrieval and structural checks passing. The historical mirror-index byte-count discrepancy remains a known limitation, not permission to rewrite provenance.
 
-Deferred: KA-08/09 derived/manual evidence moves, KA-10 build defaults, KA-11 historical config/Movement seed and optional KA-12 automation. None belongs to this stage. Original Git/blob/SHA256 and historical-path recovery for the collision archives are in EVIDENCE_PATH_MIGRATIONS.
+**Current gate: PAUSED / User decision needed.** KA-10 research build defaults/tool classification, KA-11 historical INI/Movement seed, and optional KA-12 automation are not yet authorized. They may be chosen, bounded or deferred separately at next continuation. Do not begin new implementation, feature work or runtime tests from this pointer. `main` remains protected at `08a0bd8fcf42173088e233e09b706a80da882070`; no production source/configuration/build behavior or new EV was changed in these stages.
+
+This document remains ACTIVE because later authorized maintenance decisions and the mandatory independent `main` versus post-maintenance `development` loss-detection/reconciliation are unfinished. Normal Chat owns final closure/archive of this document only after that sequence has concluded.
 
 ## Frozen audit sequence
 
@@ -55,7 +58,7 @@ This phase protects useful context and historical/operational material that a st
 
 ### Phase 4 — Work approved maintenance implementation
 
-The first approved stage is implemented for review. Any additional Work stage needs its own frozen scope after Normal Chat/User decisions.
+The first documentation-consolidation and second derived-evidence archival stages are completed/reviewed. Any additional Work stage needs its own frozen scope after Normal Chat/User decisions.
 
 That task may implement **only the approved audit maintenance** on `development`.
 
@@ -63,9 +66,9 @@ Do not modify stable `main`.
 
 ### Phase 5 — Normal Chat post-audit review
 
-Review the resulting post-audit `development` state before accepting the maintenance.
+Both completed stages have been independently reviewed at the checkpoints recorded above. Review any later approved stages before advancing.
 
-The post-audit development checkpoint must be explicit before the next comparison task.
+The final post-maintenance development checkpoint must be explicit before the independent comparison task.
 
 ### Phase 6 — Work independent main-vs-development loss detection
 
