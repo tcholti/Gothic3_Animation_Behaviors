@@ -27,6 +27,7 @@
 #include <g3sdk/util/Memory.h>
 #include <g3sdk/util/ScriptUtil.h>
 
+#include <cstring>
 #include <intrin.h>
 #pragma intrinsic(_ReturnAddress)
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
@@ -68,7 +69,21 @@ static mCCallHook Hook_SpeedModifierCall_47D51;
 static mCCallHook Hook_SpeedModifierCall_47F6C;
 static mCCallHook Hook_SpeedModifierCall_4C6FA;
 static mCCallHook Hook_SpeedModifierCall_4DF1F;
+static mCCallHook Hook_PlayerBadBlockDuration;
 static mCCaller Call_GetAnimationSpeedModifier;
+
+static GEU32 const PlayerBadBlockDurationCallRva = 0x633BF;
+static GEU32 const PlayerBadBlockDurationGetterSlotRva = 0xE4990;
+static GEU32 const PlayerBadBlockTimeoutMSecs = 2500;
+
+using PlayerBadBlockDurationGetter =
+    GEU32 (__thiscall *)(PSCharacterControl const *);
+static_assert(
+    sizeof(PlayerBadBlockDurationGetter) == 4,
+    "Bad-block protection requires the Win32 ABI.");
+
+static PlayerBadBlockDurationGetter const volatile *
+    g_pPlayerBadBlockDurationGetterSlot = nullptr;
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS
 static GEU32 const EntityOnDamageEntryLogCap = 64;
@@ -142,6 +157,51 @@ static GEFloat GE_STDCALL GetAnimationSpeedModifier_Composed(
 
     return G3AB::AttackSpeed::ComposeCompatibleSpeed(
         a_Entity, a_Action, a_Phase, compatibleSpeed);
+}
+
+static GEU32 EvaluatePlayerBadBlockDuration(
+    GEU32 rawDuration,
+    PSCharacterControl const *receiver)
+{
+    if (rawDuration <= PlayerBadBlockTimeoutMSecs || receiver == nullptr)
+        return rawDuration;
+
+    eCEntityPropertySet *propertySet =
+        receiver->m_pEngineEntityPropertySet;
+    if (propertySet == nullptr)
+        return rawDuration;
+
+    eCEntity *actorInstance = propertySet->GetEntity();
+    if (actorInstance == nullptr)
+        return rawDuration;
+
+    Entity const player = Entity::GetPlayer();
+    if (actorInstance != player.GetInstance() || !player.Routine.IsValid())
+        return rawDuration;
+
+    switch (player.Routine.Action)
+    {
+        case gEAction_QuickAttackR:
+        case gEAction_QuickAttackL:
+        case gEAction_WhirlAttack:
+            break;
+        default:
+            return rawDuration;
+    }
+
+    if (player.GetCurrentAniPhase() != gEPhase_Hit)
+        return rawDuration;
+
+    return PlayerBadBlockTimeoutMSecs;
+}
+
+static GEU32 GE_STDCALL PlayerBadBlockDurationAdapter(
+    PSCharacterControl const *receiver)
+{
+    PlayerBadBlockDurationGetter const nativeGetter =
+        *g_pPlayerBadBlockDurationGetterSlot;
+    GEU32 const rawDuration = nativeGetter(receiver);
+    return EvaluatePlayerBadBlockDuration(rawDuration, receiver);
 }
 
 static GEDouble GE_STDCALL Raw8FistTimingGateGetPlayTime_FrameCollisionTest(
@@ -1037,6 +1097,40 @@ static GEInt GE_STDCALL OnTick_FrameCollisionTest(
 void FrameCollision::EngineBridge::InstallHooks()
 {
     GetScriptAdmin().LoadScriptDLL("Script_Game.dll");
+
+    GEU32 const badBlockDurationSlotAddress =
+        RVA_ScriptGame(PlayerBadBlockDurationGetterSlotRva);
+    unsigned char const *badBlockDurationCallSite =
+        reinterpret_cast<unsigned char const *>(
+            RVA_ScriptGame(PlayerBadBlockDurationCallRva));
+
+    unsigned char expectedBadBlockDurationCall[] = {
+        0xFF, 0x15, 0, 0, 0, 0,
+        0x3D, 0xC4, 0x09, 0x00, 0x00,
+        0x0F, 0x86, 0xB6, 0x01, 0x00, 0x00};
+    std::memcpy(
+        expectedBadBlockDurationCall + 2,
+        &badBlockDurationSlotAddress,
+        sizeof(badBlockDurationSlotAddress));
+
+    PlayerBadBlockDurationGetter const volatile *badBlockDurationSlot =
+        reinterpret_cast<PlayerBadBlockDurationGetter const volatile *>(
+            badBlockDurationSlotAddress);
+
+    if (std::memcmp(
+            badBlockDurationCallSite,
+            expectedBadBlockDurationCall,
+            sizeof(expectedBadBlockDurationCall)) == 0
+        && *badBlockDurationSlot != nullptr)
+    {
+        g_pPlayerBadBlockDurationGetterSlot = badBlockDurationSlot;
+        Hook_PlayerBadBlockDuration
+            .Prepare(
+                RVA_ScriptGame(PlayerBadBlockDurationCallRva),
+                &PlayerBadBlockDurationAdapter)
+            .AddThisArg()
+            .Hook();
+    }
 
     Call_GetAnimationSpeedModifier.Init(
         mCCaller::GetCallerParams(
