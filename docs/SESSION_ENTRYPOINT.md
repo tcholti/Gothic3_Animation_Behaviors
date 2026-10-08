@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = first-release stable checkpoint promoted to main through EV-457; development is open only for the planned post-release documentation/repository audit after User priorities are supplied
+CURRENT = first-release stable main through EV-457; ACTIVE = post-release audit preparation on development; User documentation priorities must be captured before Work audit launch
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise direction continuation = CLOSED/PASS EV-427; EV-430 completes representative Normal / Quick R+L / pose-changing Quick / full Whirl coverage including partial Raise-asset profiles
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
@@ -76,10 +76,16 @@ Key release state:
 
 No feature/research work is active.
 
-Next responsibility is **not yet frozen**.
-The User will first identify documentation that must receive special attention in the planned larger post-release review/audit. After those priorities are captured, freeze the larger review/audit task on `development`.
+Active preparation task:
+`docs/work/active/POST_RELEASE_AUDIT_PREPARATION.md`
 
-Treat `main @ 08a0bd8fcf42173088e233e09b706a80da882070` as the trusted pre-audit comparison baseline. Do not modify `main` during the audit.
+Immediate next step:
+the User identifies documentation/knowledge areas that deserve special attention or protection **before** the large Work audit is frozen or launched.
+
+The active preparation document owns the complete staged sequence:
+User priorities -> Work read-only audit/findings -> Normal Chat/User `KEEP / CHANGE / ARCHIVE / REMOVE` decisions -> Work approved maintenance -> Normal Chat post-audit review -> independent Work loss-detection comparison against stable `main` -> final reconciliation.
+
+Treat `main @ 08a0bd8fcf42173088e233e09b706a80da882070` as the trusted immutable pre-audit comparison baseline throughout that cycle.
 
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
