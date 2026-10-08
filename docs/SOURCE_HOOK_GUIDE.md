@@ -114,8 +114,9 @@ Search around CombatMove reach/vector/movement calls, motion/root translation, a
 |---|---:|---|
 | `GetAnimationSpeedModifier` | `Script_Game +0x42A0` | live native/compatible speed-policy owner; production Speed deliberately does **not** own this entry |
 | CombatMove animation-string call | `Game +0x16B065` | narrow substitution point used by New Balance |
-| CombatMove reach/vector call | `Game +0x16B8A3` | factual reference surface for future movement/displacement research; exact semantic ownership still open |
-| CombatMove movement call | `Game +0x16B8A9` | factual reference surface for future movement/displacement research; exact semantic ownership still open |
+| CombatMove vector-scale call | `Game +0x16B8A3` | native filename-distance / duration vector scaling; not the production override seam when New Balance compatibility is required |
+| CombatMove movement receiver load | `Game +0x16B8A9` | loads CharacterMovement receiver; project-pinned New Balance inserts its compatible `CombatMoveScale` policy here |
+| CombatMove movement call | `Game +0x16B8B7` | actual `EnableCombatMovementFromSPU` call; production `MovementOverride` inserts immediately before this call and preserves the compatible direction |
 | full-Whirl break-block call/test | `Script_Game +0x4DF8C / +0x4DF92` | incomplete CombatMove suspends ScriptFunction |
 | full-Whirl ordinary cleanup continuation | `Script_Game +0x4E03C` | resumed path reaches native cleanup |
 | GetUp pre-Combat offense | `Script_Game +0x41CA6` | legitimate offense can precede CombatMove |

@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Deferred Future Investigations
 
 **Status:** PARKED / NON-ACTIVE  
-**Updated:** 2026-09-26
+**Updated:** 2026-10-08
 
 ## Purpose
 
@@ -11,13 +11,13 @@ Opening this file does not reopen a subsystem or change the current validation g
 
 ---
 
-## 1. New Balance combat-move distance override — ACTIVATED
+## 1. New Balance combat-move distance override — RESOLVED / PRODUCTION-INTEGRATED
 
-**Current route:** `docs/work/active/ATTACK_FORWARD_DISPLACEMENT_RESEARCH.md`  
-**Static mechanism:** EV-434  
-**Author/runtime constraints:** EV-435
+**Closure:** EV-440–EV-445
+**Current architecture:** `docs/DESIGN.md §3 Movement`
+**Hook/mechanism lookup:** `docs/SOURCE_HOOK_GUIDE.md §3B`
 
-This item is no longer parked. The historical text below is retained as the original reopening seed.
+This item is no longer a future investigation. The historical text below is retained as the original research seed and should not be read as current state.
 
 ### Why it was parked
 
@@ -138,7 +138,7 @@ Routine StateTime > 2.0
 -> SetState ZS_Attack_Loop
 ```
 
-The player branch has one clean stateless **deferral** seam at `Script_Game +0x633BF`. ADR-0012 accepts that exact remaining-time preservation is not required for v1, so this deferral seam has been reopened as a first-release candidate. Exact mathematical pause remains future work because it requires a new stateful virtual-clock lifecycle whose episode/reset and attack interval boundaries are not yet proven.
+The player branch has one clean stateless **deferral** seam at `Script_Game +0x633BF`. ADR-0012 accepts that exact remaining-time preservation is not required for v1; EV-449–EV-454 subsequently proved and production-integrated that narrow player-only deferral for factual Quick R/L and full Whirl during Hit. Exact mathematical pause remains future work because it would require a new stateful virtual-clock lifecycle whose episode/reset and attack interval boundaries are not proven or needed for the first release.
 
 ### Proven starting point
 
@@ -163,4 +163,4 @@ If NPC overlap matters, the smallest next evidence step is the already-specified
 
 ## Boundaries
 
-These items are **optional future research only**. They are not part of the current New Balance collision compatibility gate, do not change `CollisionLifecycleGuard`/C1-R1, and do not reopen or redefine the separately paused `AttackContinuationProtection` responsibility.
+The unresolved items in this file are **optional future research only**. They do not change `CollisionLifecycleGuard`/C1-R1 and do not reopen or redefine the production-closed first-release bad-block protection. The Movement item above is retained only as a historical seed because that investigation is already resolved and production-integrated.

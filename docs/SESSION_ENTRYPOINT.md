@@ -3,7 +3,7 @@
 **Purpose:** minimal durable current-state pointer. Repository startup begins at root `README.md` **Start Here**.  
 **Active development branch:** `development`  
 **Stable integration branch:** `main`  
-**Updated:** 2026-10-07
+**Updated:** 2026-10-08
 
 > After abrupt/max-context recovery, return to root `README.md` and apply POP-11 before trusting this pointer.
 
@@ -131,6 +131,6 @@ NO New Balance result used as native ReferenceHitBaseSpeed
 NO Sprint-specific Speed keys absent contradictory evidence
 Raise sequencing baseline and phase-speed correction are fully runtime-accepted through EV-422; accepted integrated production source is 41ed80c6420e5236d13fc037cb5923b946cb8ccc
 NO collision redesign absent contradictory evidence
-NO attack-displacement/climbing implementation yet
-NO promotion to main before agreed integrated checkpoint
+NO climbing implementation yet; configurable attack Movement is production-integrated and CLOSED/PASS through EV-445
+NO promotion to main without explicit User + Normal Chat approval
 ```

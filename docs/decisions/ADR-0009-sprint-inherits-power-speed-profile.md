@@ -2,7 +2,7 @@
 
 **Status:** Accepted  
 **Date:** 2026-09-29  
-**Related:** ADR-0004, ADR-0008, `docs/work/active/SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md`
+**Related:** ADR-0004, ADR-0008, `docs/archive/investigations/SPEED_EXPANDED_ATTACK_SCOPE_AND_GROUPED_PROFILE_IMPLEMENTATION.md`
 
 ## Context
 

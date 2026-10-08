@@ -2,7 +2,7 @@
 
 <!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
 
-General Gothic 3 animation-behavior research and implementation for configurable Raise behavior, attack playback speed, animation-authored frame collision, and reusable Gothic 3 modding knowledge.
+General Gothic 3 animation-behavior research and implementation for configurable Raise behavior, attack playback speed, attack movement, animation-authored frame collision, narrow attack-continuation protection, and reusable Gothic 3 modding knowledge.
 
 ## Branches
 
@@ -46,7 +46,7 @@ Only broaden when the current responsibility requires it:
 - [Collision reference](docs/COLLISION_REFERENCE.md) — compact current collision facts; use before evidence for already-settled questions.
 - [Evidence index](docs/EVIDENCE_INDEX.md) — route proof-sensitive questions to exact EV ranges and provenance only when needed.
 - [Animation knowledge index](docs/ANIMATION_INDEX.md) — route filename/UseType/action/pose/asset questions to exact sections/data.
-- [Source and hook guide](docs/SOURCE_HOOK_GUIDE.md) — reusable engine/API/RVA/hook facts, including current Speed and movement-research surfaces.
+- [Source and hook guide](docs/SOURCE_HOOK_GUIDE.md) — reusable engine/API/RVA/hook facts, including current Speed, Raise, Movement and bad-block protection surfaces.
 - [Project operating procedures](docs/PROJECT_OPERATING_PROCEDURES.md) — retrieve the exact recurring Git/build/deploy/test/evidence/review/continuity procedure when that operation is active.
 - [Work implementation protocol](docs/WORK_IMPLEMENTATION_PROTOCOL.md) — retrieve for bounded Work/coding sessions.
 - [Knowledge maintenance protocol](docs/KNOWLEDGE_MAINTENANCE.md) and [authority registry](docs/KNOWLEDGE_REGISTRY.md) — maintenance/update routing tools, applied when meaningful project events or ownership questions require them.
@@ -105,7 +105,7 @@ Script_G3AnimationBehaviors
 = production behavior DLL / public integration product
 = Collision + Speed + Raise + Movement are CLOSED/PASS
 = lean player bad-block protection is production-integrated and CLOSED/PASS through EV-454
-= current responsibility is first-release checkpoint review before deliberate promotion to main
+= EV-455 release review is PASS; current decision is deliberate first-release promotion to main
 
 Script_G3AB_BadBlockProtector / Script_G3AB_BadBlockResearch*
 = non-shipping research/acceptance tools retained for provenance and controlled reproduction
@@ -114,7 +114,7 @@ Script_G3AB_BadBlockProtector / Script_G3AB_BadBlockResearch*
 Script_SpeedCalibrationProbe
 = standalone diagnostics-only speed calibration tool
 = observes proven Speed caller sites and returns live values unchanged
-= current broad native-calibration tool
+= retained reusable native-calibration tool
 
 Script_SpeedSprintProbe
 = diagnostics-only causal probe retained for provenance/reproduction of the closed Sprint/Power transport question

@@ -2,8 +2,8 @@
 
 **Project:** Gothic3_Animation_Behaviors  
 **Status:** Active operating-convention authority  
-**Version:** 1.5  
-**Updated:** 2026-09-27
+**Version:** 1.6
+**Updated:** 2026-10-08
 
 <!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
 
@@ -52,8 +52,9 @@ main
 
 development
 = sole active general development / research / integration branch
-= continues from the promoted Collision + Speed + Raise stable baseline
-= intended to remain subsystem-neutral for later displacement/targeting/climbing/etc.
+= continues from the promoted Collision + Speed + Raise + Movement stable baseline
+= currently holds the accepted first-release bad-block extension and EV-455 release-review maintenance pending deliberate promotion
+= intended to remain subsystem-neutral for later targeting/climbing/other adopted systems
 
 docs/collision-source-evidence
 = historical collision-development branch
@@ -63,15 +64,19 @@ docs/collision-source-evidence
 Current branch lifecycle is deliberately:
 
 ```text
-Collision + Speed + Raise cycle CLOSED/PASS
+Collision + Speed + Raise + Movement cycle CLOSED/PASS
         ↓
-deliberate development -> main stable promotion completed
+deliberate development -> main stable promotion completed (EV-447 baseline)
         ↓
-main = stable accepted Collision + Speed + Raise baseline
+development continued from that stable baseline
         ↓
-development continues from that baseline
+narrow first-release bad-block protection CLOSED/PASS through EV-454
         ↓
-later adopted systems proceed one bounded responsibility at a time
+EV-455 release checkpoint review PASS
+        ↓
+current decision = deliberate development -> main first-release promotion
+        ↓
+future adopted systems return to development one bounded responsibility at a time
 ```
 
 Do not reinterpret `main` as the newest working state merely because it is the default branch. Do not promote intermediate Speed work to `main` simply to create a Raise branch.
@@ -80,7 +85,7 @@ The public/integration DLL keeps the name `Script_G3AnimationBehaviors.dll` thro
 
 Do not create `feature/raise-attack-speed` for the current cycle. The earlier collision-specific branch progression was superseded on 2026-09-27 by ADR-0006 after the collision core was migrated into the production target. Historical branch names remain valid provenance and are not retroactively renamed.
 
-Stable promotion is deliberate. During this cycle the intended stable promotion point is after collision production integration + Speed + Raise + assembled regression have all closed, unless the User explicitly chooses an earlier stable checkpoint.
+Stable promotion is deliberate. The current first-release promotion gate has been reached: Collision, Speed, Raise, Movement, the narrow bad-block protection, assembled runtime smoke, and EV-455 checkpoint review are CLOSED/PASS. Promotion still requires an explicit User + Normal Chat decision.
 
 ---
 
@@ -259,7 +264,7 @@ From the C1-era research onward:
 - do not create a new decimal prototype version merely because another Chat edited the code;
 - do not let prototype/research numbering or temporary target names silently define the eventual public `Script_G3AnimationBehaviors` release version.
 
-The production integration target is `Script_G3AnimationBehaviors`. Current feature work proceeds on `development`: collision production integration first, then Speed to closure, then Raise to closure, then assembled regression before deliberate promotion to `main` under ADR-0006.
+The production integration target is `Script_G3AnimationBehaviors`. The first-release feature cycle on `development` is CLOSED/PASS through EV-455 and is awaiting deliberate promotion to `main`; after that checkpoint, later adopted systems continue on `development` one bounded responsibility at a time.
 
 Public/stable release versioning should be decided deliberately at the stable-integration/release stage.
 

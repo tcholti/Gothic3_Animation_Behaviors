@@ -48,6 +48,6 @@ Behavior-only and diagnostic twins must compile the same permanent Sprint behavi
 - `DESIGN.md`
 - `GOTHIC_SCRIPT_RELEASE_ARCHITECTURE.md`
 - `COLLISION_REFERENCE.md`
-- `docs/work/active/COLLISION_EQUIPPED_SPRINT_PRODUCTION_PROMOTION.md`
+- `docs/archive/investigations/COLLISION_EQUIPPED_SPRINT_PRODUCTION_PROMOTION.md`
 
 This ADR records why promotion uses a permanent behavior owner rather than retaining the successful diagnostic probe.

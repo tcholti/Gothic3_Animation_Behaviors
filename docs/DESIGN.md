@@ -1,12 +1,12 @@
 # Gothic 3 Animation Behaviors — Design
 
 **Status:** Canonical project architecture  
-**Updated:** 2026-10-04
+**Updated:** 2026-10-08
 **Project:** `Gothic3_Animation_Behaviors`
 
 ## Purpose
 
-`Script_G3AnimationBehaviors` is the general animation-behavior layer for Gothic 3. Production collision and Speed v2 are CLOSED/PASS. Additive Raise control is the active feature responsibility, initially for Normal, Quick and Whirl. Future independent domains may include target acquisition, attack displacement control, and climbing.
+`Script_G3AnimationBehaviors` is the general animation-behavior layer for Gothic 3. The first-release production set — authored-frame Collision, Speed v2, additive Raise, configurable attack Movement, and the narrow player bad-block protection — is CLOSED/PASS through EV-454. No feature responsibility is currently active; the repository is at the EV-455 first-release promotion decision. Future independent domains may include target acquisition, climbing, and other deliberately adopted animation/gameplay behavior modules.
 
 This file owns overall intended architecture and implementation order. Established collision facts are projected in `COLLISION_REFERENCE.md`; collision lifecycle authority is `COLLISION_LIFECYCLE.md`; validation authority is `COLLISION_TEST_PLAN.md`; diagnostics are owned by `COLLISION_DIAGNOSTICS.md`; permanent raw8 behavior is owned by `COLLISION_RAW8_PRODUCTION_ARCHITECTURE.md`; permanent raw55 behavior is owned by `COLLISION_RAW55_PRODUCTION_ARCHITECTURE.md`; practical source/hook lookup is `SOURCE_HOOK_GUIDE.md`; exact proof routes through `EVIDENCE_INDEX.md`.
 
@@ -16,7 +16,7 @@ This file owns overall intended architecture and implementation order. Establish
 
 1. Prefer Gothic native action/phase/UseType/current-motion semantics over filename heuristics when available.
 2. Preserve Gothic's own animation resolution whenever possible.
-3. Custom behavior is explicit opt-in: config for Raise/speed, exact reserved markers for collision.
+3. Custom behavior is explicit opt-in: config for Raise/speed/movement, exact reserved markers for collision; the narrow bad-block protection is automatic only on its proven player Action4/5/10 Hit condition.
 4. Separate attack family/phase from the physical damage source.
 5. Keep responsibilities separate: physical hook transport in `EngineBridge`, behavior in feature modules, factual source identity in `CollisionSources`, source mutations in `CollisionSourceOperations`, diagnostics in diagnostic-only code.
 6. Preserve proven paths while expanding one meaningful responsibility at a time.
@@ -95,7 +95,7 @@ Architecture rationale: ADR-0005 + ADR-0006 + ADR-0009.
 
 ---
 
-## 3. Raise and Speed
+## 3. Raise, Speed, and Movement
 
 ### Raise
 
@@ -125,7 +125,7 @@ pending Normal Raise at Game+0x16B056
 
 This is not a general direction classifier or filename policy. G3AB does not parse animation names, reproduce Gothic geometry logic, or apply the carry to Quick/Whirl/Power/Hack. EV-424 established the native ownership/mechanism, EV-426 source-reviewed the implementation, and EV-427 runtime-accepted the directional correction on the exercised dual fixture. EV-428 is the authoritative scope clarification: this acceptance is representative/tested-route evidence, not universal proof for every Gothic animation set.
 
-The existing 2H Normal prototype proves the basic “ask Gothic for Raise” mechanism; its player + None/2H gate is fixture scope, not final architecture. Speed is now CLOSED/PASS, so Raise is the active feature. Initial production scope is Normal, Quick and Whirl only. `<Attack>_AddRaise=On` means add a Gothic-resolved Raise before Hit; missing/Off adds nothing. G3AB does not expose a user-facing switch for disabling or replacing Raise phases Gothic already uses natively.
+The existing 2H Normal prototype proved the basic “ask Gothic for Raise” mechanism; its player + None/2H gate was fixture scope, not final architecture. The first-release Raise feature is now CLOSED/PASS. Its public additive scope remains Normal, Quick and Whirl only. `<Attack>_AddRaise=On` means add a Gothic-resolved Raise before Hit; missing/Off adds nothing. G3AB does not expose a user-facing switch for disabling or replacing Raise phases Gothic already uses natively.
 
 Raise-speed ownership is now closed on the proven routes. Custom Normal/Quick/Whirl AddRaise reuses the composed factual Hit `AniSpeedScale`; native Power Raise preserves its live compatible phase result and applies the configured Power authoring ratio. EV-428 adds a practical authoring control: the newly created dual Normal/Quick Raise assets followed the configured `0.1` speed change as intended, while the 2H controls remained correct.
 
@@ -159,7 +159,7 @@ Quick  -> existing CombatMove transport after Gothic has selected factual Action
 
 For Quick, `EngineBridge` remains the sole physical `sAICombatMoveInstr` hook owner and exposes only the smallest transport needed by the permanent Raise owner. The Raise feature may own only the minimal continuation state required to prepend one factual R/L Raise before the untouched factual R/L Hit; it may not add a new physical hook, infer direction, or alter Collision/Speed semantics. Normal has historical coexistence evidence; Quick/Whirl direct runtime coexistence is now PASS through EV-412, including the intended New Balance stack.
 
-EV-412 also confirms the ownership boundary for the known destructive Alternative AI block-skip route: if that external path FullStops and replaces the active attack state, an in-progress Raise continuation may be destroyed. Disabling that block-skip behavior removed the observed Whirl skip in repeated testing. Raise must not add resurrection/recovery logic for this known state-destruction class; prevention remains owned by `AttackContinuationProtection`.
+EV-412 also confirms the ownership boundary for the known destructive block-skip route: if that path FullStops and replaces the active attack state, an in-progress Raise continuation may be destroyed. Raise must not add resurrection/recovery logic for this state-destruction class; prevention belongs to the separate production bad-block mechanism defined in §9.
 
 EV-413 established that the current implementation does **not** consistently apply configured `BaseSpeed` to Raise. EV-414 supersedes the earlier product-closure interpretation of that result: this is an integration contradiction, not an accepted native-timing mode.
 
@@ -290,6 +290,24 @@ Recover follows the effective Hit speed; no separate user-facing `RecoverSpeed` 
 Raise/Speed/Hack acceptance passed through EV-422 for the tested fixtures, but EV-423 reopened one narrow Raise responsibility: directional Normal AddRaise continuation. EV-424 statically closes the cause. `sAICombatMoveStart` freshly classifies Fwd/Left/Right for each CombatMove, writes Navigation current-animation direction, and passes the exact direction bCString as the fifth argument to `GetAniName`. The stored `sAICombatMoveInstr_Args` has no direction field, so replaying the generic Action1 Hit after synthetic Raise triggers a second direction classification that can become Fwd.
 
 The frozen correction preserves **Gothic's own first native selection** rather than recreating policy: during the pending Normal continuation, capture the exact direction string + matching `gEDirection` at the synthetic Raise's `Game+0x16B056` GetAniName call; on the immediately following stored Action1 Hit at the same call site, restore only that captured current-animation direction and substitute only the captured direction argument before invoking Gothic GetAniName once. No filename parsing, copied geometry classifier, target/facing mutation, late resource rewrite, Speed change, or Collision change is permitted. Architecture/sequencing rationale remains ADR-0004 + ADR-0005 + ADR-0006 + ADR-0008 + ADR-0011; EV-423–EV-424 own this narrow correction.
+
+### Movement
+
+`MovementOverride` authors an **absolute CombatMove travel distance** for supported factual Hit requests. `Off` leaves the compatible native/New Balance movement vector untouched. Numeric `0` is an active setting and clears the movement vector.
+
+For a positive configured value, production intervenes only after the live compatible movement policy has run and immediately before the native `Game+0x16B8B7 EnableCombatMovementFromSPU` call:
+
+```text
+compatible native / New Balance movement vector
+-> preserve its final direction
+-> current duration = primary motion max time / already-composed AniSpeedScale
+-> replacement magnitude = configured MovementOverride / current duration
+-> unchanged native EnableCombatMovementFromSPU call
+```
+
+The implementation reuses the resolved BehaviorProfile identity and factual attack-family mapping. Missing profiles, unsupported/non-Hit actions, invalid timing, or a zero/invalid incoming direction fail closed to the compatible movement. This last condition is the reason an animation whose authored movement field is exactly zero cannot be given travel by `MovementOverride` alone; the known Rapier Quick fixture is the accepted example.
+
+The production seam requires no New Balance detection and does not edit animation assets or filename distance fields. Native obstacle, ledge and target stopping behavior remains authoritative. Movement research, production integration and broad runtime acceptance are CLOSED/PASS through EV-445.
 
 ---
 
@@ -567,33 +585,30 @@ Detailed authority: `COLLISION_DIAGNOSTICS.md` and `FEATURE_DEVELOPMENT_METHOD.m
 
 ## 9. AttackContinuationProtection
 
-The known held-Use2 destructive bad-skip route remains a **separate prevention module** from collision cleanup.
+The first-release player bad-block protection is **production-integrated and closed**. It remains architecturally separate from collision cleanup and does not use a separate gameplay module or persistent timer state.
 
-Intended future module:
-
-```text
-AttackContinuationProtection.cpp
-```
-
-Responsibility:
+Production ownership is the exact player timeout call seam in `EngineBridge`:
 
 ```text
-native bad-skip timeout/consumer does not become due
--> do nothing
+Script_Game +0x633BF
+-> call the native/current DurationPressedMSecs getter exactly once
 
-native destructive timeout/consumer becomes due
-+ no genuine attack CombatMove would be destroyed
--> native behavior unchanged
+if raw > 2500
+AND receiver-owning actor == player
+AND factual action in {QuickAttackR(4), QuickAttackL(5), WhirlAttack(10)}
+AND factual phase == Hit
+-> return 2500 for this call only
 
-native destructive timeout/consumer becomes due
-+ genuine attack CombatMove would be destroyed
--> suppress/defer only that destructive consequence
+otherwise
+-> return raw unchanged
 ```
 
-New Balance compatibility is a hard constraint. New Balance already prevents the bad skip on most melee blocks; where it prevents the native destructive condition, our module should naturally never intervene. Known coverage concern is left-held Staff; hand-to-hand/other forms remain unproven.
+This is **stateless branch-local deferral**, not exact pause/resume. Native held-input time continues advancing, so the native timeout may become effective immediately after the protected Hit ends.
 
-Do not begin with an independent timer, polling loop, permanent watchdog, unconditional attack-state override, or resurrection after teardown. Evidence decides the exact native boundary.
+The accepted first-release scope deliberately excludes generic selector Action3, Pierce/Action11, Hack/Action14, Finishing/Action15, Normal, Power, SimpleWhirl, Sprint, and the separate NPC parade timeout. No actor/timer map, gameplay token, global getter/IAT mutation, broad `FullStop`/`SetState` suppression, or collision-guardian coupling is permitted by the accepted design.
 
-`CollisionLifecycleGuard`/C1-R1 remains the independent fail-safe underneath.
+EV-449–EV-450 provide the causal A/B proof; EV-451–EV-452 support the exclusions; EV-453 accepts the diagnostics-free standalone minimum; EV-454 accepts the same mechanism integrated into production after final release-candidate smoke.
+
+Exact remaining-time pause and the separate NPC timeout remain optional future research only. `CollisionLifecycleGuard`/C1-R1 remains an independent collision fail-safe, not part of this protection mechanism.
 
 ---
