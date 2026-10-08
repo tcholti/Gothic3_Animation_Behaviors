@@ -316,11 +316,12 @@ Do not scan all ledgers or `research/archive/` for an ordinary settled question.
 
 ```text
 research/raw/      active unprocessed intake / explicit live-comparison evidence only
-research/derived/  deterministic retrieval aids
+research/derived/  new/open deterministic retrieval packages
 research/archive/  processed canonical runtime provenance
+research/archive/derived/  completed derived packages for targeted retrieval
 ```
 
-Processed collision and earlier Speed identity evidence has been archived byte-identically under `research/archive/`; large deterministic retrieval aids remain under `research/derived/` when still useful.
+Processed collision and earlier Speed identity originals remain byte-identically under `research/archive/`. The 27 completed derived packages are preserved unchanged under `research/archive/derived/<same-package-name>/`; three closed manual checkpoints are under `docs/archive/investigations/`. Recover the exact frozen set and historical paths through [EVIDENCE_PATH_MIGRATIONS](EVIDENCE_PATH_MIGRATIONS.md#2026-10-08--completed-derived-evidence-archival). POP-07 still creates new/open packages in `research/derived/`.
 
 Explicit raw preservation state:
 

@@ -595,3 +595,71 @@ Current collision semantics, lifecycle, diagnostics interpretation and reopening
 For a historical relative link, resolve it against the original `docs/` location at the source checkpoint, then apply this table to a retired collision path. Other original targets remain available at that checkpoint or their existing migration routes. Archive content was not repaired; direct navigation inside these frozen copies may retain obsolete paths. Current maintained inbound links use surviving owners or explicit snapshot paths.
 
 Other current corrections preserve their full pre-change bytes in Git at this same checkpoint. No extra snapshots of the hook guide or evidence index are needed: their targeted edits preserve the engine facts, EV ranges and closure routes, while superseded wording remains recoverable through Git and the collision/DESIGN snapshots. Session/handoff history likewise stays in Git; those files are current pointers.
+
+
+## 2026-10-08 — Completed derived-evidence archival
+
+Source checkpoint: `2149a21e827c27a741d5291a4f5b1159b685c68b` on `development`, the reviewed documentation-consolidation stage. This second stage changes storage and current retrieval routes only; no EV, conclusion, runtime acceptance or canonical original changes.
+
+### Exact generated-package move set
+
+For exactly the 27 names below, substitute only the directory prefix:
+
+```text
+research/derived/<exact-name>/<unchanged-relative-file>
+ -> research/archive/derived/<exact-name>/<unchanged-relative-file>
+```
+
+```text
+2026-08-29_c1_setcollisiongroup_recursion_safe_extended_gameplay_stability_large_log
+2026-08-30_c1_finalization_source_liveness_safe_setcollisiongroup_extended_gameplay_stability_large_log
+2026-08-30_c1o2p1_player_2h_normal_getup_offense_correlation_large_log
+2026-08-30_c1o2p2_broader_combat_interruption_stability_large_log
+2026-08-30_c1r1e_broad_player_npc_negative_stability_large_log
+2026-08-30_post_enginebridge_unchanged_compact_collision_baseline_large_log
+2026-09-02_power_legitimate_interruption_cleanup_validation_large_log
+2026-09-18_troll_raw55_diagnostic_corrections_control_large_log
+2026-09-20_observation_sabertooth_marker_power_sprint_transition_test_large_log
+2026-09-22_human_fist_marked_unmarked_test2_large_log
+2026.09.14_troll_raw55_sprint_fist_activation_2_large_log
+2026.09.14_troll_raw55_sprint_group_suppression_large_log
+2026.09.15_troll_raw55_double_fist_activation_large_log
+2026.09.15_troll_raw55_normal_prestate_fist_large_log
+2026.09.15_troll_raw55_normal_prestate_rearm_large_log
+2026.09.16_troll_raw55_normal_native_rearm_source_large_log
+2026.09.16_troll_raw55_normal_native_trigger_clear_observation_large_log
+2026.09.16_troll_raw55_normal_native_trigger_clear_suppression_large_log
+2026.09.16_troll_raw55_normal_trigger_state_observation_large_log
+2026.09.17_troll_raw55_normal_marker2_replacement_clear_large_log
+2026.09.17_troll_raw55_permanent_acceptance_large_log
+2026.09.17_troll_raw55_power_repeat_fist_rearm_large_log
+2026.09.17_troll_raw55_sprint_origin_repeat_fist_rearm_large_log
+2026.09.23_stress_collision_test_large_log
+2026.09.24_stresstest_collision_2_large_log
+2026.09.25_newbalance_sabertooth_2_large_log
+2026.09.27_newbalance_stresstest_large_log
+```
+
+All 1,031 files / 63,811,985 bytes move, including every manifest, index, timeline, signal/context extract and all 500 full-source mirror parts in the 20 complete-mirror packages. The other seven packages retain their older signal-context layout; no missing mirror is invented or regenerated. The 27 complete package inventories and directory-tree identities match the source checkpoint after this prefix substitution.
+
+### Exact manual-checkpoint moves
+
+Each original is under `research/derived/`; each destination is under `docs/archive/investigations/`, retaining the filename and historical text unchanged.
+
+| Exact filename / archived destination | Original = archived Git blob | Bytes | Durable conclusion / proof owner |
+|---|---|---:|---|
+| [2026-09-03_power_pierce_marker_validation_checkpoint.md](archive/investigations/2026-09-03_power_pierce_marker_validation_checkpoint.md) | `45f76d9874cb9eb18078d414ef955f3c91ffff37` | 9053 | COLLISION_REFERENCE / ANIMATION_RULES; EV-241–242 |
+| [2026-09-03_simplewhirl_validation_and_target_semantics_checkpoint.md](archive/investigations/2026-09-03_simplewhirl_validation_and_target_semantics_checkpoint.md) | `f21dfefde247ff1ee6c0f12f5325091061f6c27f` | 8996 | COLLISION_REFERENCE / ANIMATION_RULES; EV-217–220, superseding closure EV-243 |
+| [2026-09-04_simplewhirl_stateposition_and_target_semantics_closure.md](archive/investigations/2026-09-04_simplewhirl_stateposition_and_target_semantics_closure.md) | `a2849b817daad20c3c3244cdd3a3c45a75204d8a` | 4858 | COLLISION_REFERENCE / ANIMATION_RULES; EV-243 |
+
+The three manual files total 22,907 bytes. The September 3 SimpleWhirl checkpoint's then-OPEN wording is historical; the September 4 closure and EV-243 own the accepted SP1/native-targeting decision. Detailed observations, compatibility limits and rejected hypotheses remain recoverable through these checkpoints and exact EVs, rather than becoming a second current feature specification.
+
+### Preservation and recovery checks
+
+- Frozen before/after inventory comparison covers all 1,034 moved files: identical relative paths, modes, Git blob SHAs and byte counts after only the approved path substitution. No file was re-encoded, normalized, trimmed or regenerated. All other existing archive/ledger contents and canonical originals retain their source-checkpoint identities.
+- All 1,004 manifest-listed outputs exist at their new locations. All 500 full-source index rows retain complete contiguous line-range coverage. Bounded manifest → index → exact mirror/context-part recovery succeeds for all 27 packages across both generator formats.
+- A preexisting metadata limit is preserved: the 500 mirror-index `Bytes` values exceed the pinned Git blob sizes by exactly one byte per indexed source line. The indexes and parts are unchanged from the source checkpoint. Preservation counts above use actual Git blob lengths; recovery uses filenames and source-line ranges, not those historical size fields.
+- All 27 `SourceFileName` / `SourceBytes` pairs resolve uniquely to unchanged canonical originals in `research/archive/`. Every recorded source SHA256 has valid format. Actual raw-source SHA256 recomputation and package regeneration equivalence were **NOT PERFORMED**; name/size resolution and unchanged Git identities do not independently authenticate the recorded raw SHA256.
+- Keep manifest `SourceInput` spellings unchanged, whether relative `research/raw/...`, backslash paths or absolute workstation paths. Use the exact `SourceFileName` basename to locate the canonical archived original; use this frozen-set prefix rule for former derived package paths. Earlier raw-to-archive moves remain covered by the prior entries here. For a historical relative reference inside a manual checkpoint, resolve against its original location at the pinned source checkpoint, then apply the relevant migration. Direct links inside frozen history may retain old paths.
+
+Current recovery starts from the current reference → [EVIDENCE_INDEX](EVIDENCE_INDEX.md) → exact EV, then the specific package/checkpoint only when needed. [research/derived/README](../research/derived/README.md) remains the current new/open-package entry point; POP-07 and its generators continue to create new packages in `research/derived/`, not cold storage. This record does not authorize later cleanup, research-tool/build-default changes or the independent main comparison.

@@ -1,7 +1,7 @@
 # Research Source Intake and Provenance Map
 
 **Status:** Current research-layer usage map  
-**Updated:** 2026-09-19
+**Updated:** 2026-10-08
 
 <!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
 
@@ -25,8 +25,12 @@ research/archive/
 = source artifacts whose reusable conclusions/disposition are already represented canonically
 
 research/derived/
-= deterministic retrieval/analysis aids
+= new/open deterministic retrieval/analysis packages (POP-07 output)
 = never a replacement for canonical raw/archive source artifacts
+
+research/archive/derived/
+= completed derived packages preserved unchanged for targeted cold retrieval
+= retrieval aids, distinct from the canonical originals in research/archive/
 ```
 
 `research/raw/Keep.txt` preserves the intake directory when no active artifact is present.
@@ -71,7 +75,7 @@ Use these instead of maintaining a per-log historical table here:
 | current established collision conclusion | `docs/COLLISION_REFERENCE.md` |
 | exact proof / evidence status | `docs/EVIDENCE_INDEX.md` → exact current/archived Evidence Ledger |
 | evidence-ledger storage ranges | `docs/EVIDENCE_INDEX.md`; exactly one active ledger remains under `docs/`, closed volumes under `docs/archive/evidence/` |
-| deliberate raw/archive path move | `docs/EVIDENCE_PATH_MIGRATIONS.md` |
+| deliberate raw/derived/archive path move | [EVIDENCE_PATH_MIGRATIONS](../docs/EVIDENCE_PATH_MIGRATIONS.md) |
 | evidence closure / archive procedure | POP-06 in `docs/PROJECT_OPERATING_PROCEDURES.md` |
 | knowledge owner/update trigger after a result | `docs/KNOWLEDGE_MAINTENANCE.md` + `docs/KNOWLEDGE_REGISTRY.md` |
 | large-log deterministic reduction | POP-07 + `tools/log_evidence/README.md` |
@@ -97,7 +101,7 @@ current raw state
 
 An artifact remains in raw while unprocessed, intentionally retained for an active comparison, or explicitly KEEP RAW pending provenance/disposition reconciliation. Do not infer archive permission merely from a closed mechanism conclusion. Storage notes in `docs/EVIDENCE_INDEX.md` route explicit preservation states; deliberate later moves are traced by `docs/EVIDENCE_PATH_MIGRATIONS.md`.
 
-For large archived logs, routine retrieval should begin with the canonical EV and committed `research/derived/` package when one exists. Small CORE logs may be read directly from archive. The archive is opened only when exact source verification is needed beyond maintained evidence.
+For large archived logs, begin with the canonical EV and, when deeper verification is needed, the committed derived package. New/open packages use `research/derived/`; the approved completed set uses [`research/archive/derived/`](archive/derived/) with unchanged names/layout. [EVIDENCE_PATH_MIGRATIONS](../docs/EVIDENCE_PATH_MIGRATIONS.md#2026-10-08--completed-derived-evidence-archival) resolves former paths. Small CORE logs may be read directly from archive. Open canonical source only for a concrete verification need beyond the maintained evidence and package.
 
 ---
 
@@ -120,7 +124,7 @@ Historical ledger rows may still spell the raw intake path that was correct when
 
 ## 6. Derived Material
 
-`research/derived/` may contain deterministic checkpoints, timelines, indexes or extracts for large source artifacts.
+`research/derived/` holds new/open generated packages; `research/archive/derived/` preserves the completed set's manifests, timelines, indexes, extracts and source mirrors. Closed manual analysis checkpoints belong in `docs/archive/investigations/`, with their old paths recoverable through the migration map.
 
 Requirements:
 

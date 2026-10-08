@@ -9,7 +9,7 @@
 
 <!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
 
-## Current gate — Normal Chat review of documentation consolidation
+## Current gate — Normal Chat review of completed derived-evidence archival
 
 Collision, Speed, Raise, Movement and narrow player bad-block protection remain CLOSED/PASS. First-release checkpoint review EV-455, quick documentation review EV-456 and stable promotion EV-457 are complete. No feature/research task is active.
 
@@ -18,9 +18,9 @@ Protected stable baseline: `main @ 08a0bd8fcf42173088e233e09b706a80da882070`.
 Accepted production DLL from EV-454 final smoke (recorded provenance, not remeasured here):
 `SHA256 9FD6962146DD8BC7A723B57C0DE9DF4F550BF18E236F71FC79791B1A0ECCCEE9`.
 
-The two read-only audits and User/Normal Chat decision review led to the first approved documentation-only maintenance stage, entered at `development @ fb61c6bedf84bae239610b2c37c205580a7fc63f`. This stage consolidates collision knowledge and corrects bounded stale routes; it changes no production source/configuration/build/runtime behavior. Its commit is the current development documentation-consolidation checkpoint; BETWEEN_CHATS and the Work handoff identify review details.
+The first documentation-consolidation stage was reviewed at `development @ 2149a21e827c27a741d5291a4f5b1159b685c68b`. The second approved stage starts there and moves exactly 27 completed derived packages plus three manual checkpoints unchanged, with minimal retrieval-route maintenance. Its published commit is the current development archival checkpoint; BETWEEN_CHATS and the Work handoff identify review details. Production source/configuration/build/runtime behavior is unchanged.
 
-**Immediate responsibility:** Normal Chat reviews the published documentation diff against the frozen contract before accepting this stage. Do not launch further maintenance, the independent main comparison, new runtime tests or main promotion from this pointer.
+**Immediate responsibility:** Normal Chat reviews the complete archival diff, every-file blob preservation and retrieval/static checks against the frozen contract before accepting this stage. Do not launch further maintenance, the independent main comparison, new runtime tests or main promotion from this pointer.
 
 The open sequence remains owned by [POST_RELEASE_AUDIT_PREPARATION.md](work/active/POST_RELEASE_AUDIT_PREPARATION.md). It stays active pending review and later decisions; the whole post-release audit cycle is not closed.
 
@@ -34,7 +34,7 @@ The open sequence remains owned by [POST_RELEASE_AUDIT_PREPARATION.md](work/acti
 | Exact engine/hook fact | [SOURCE_HOOK_GUIDE](SOURCE_HOOK_GUIDE.md) local subsection. |
 | Proof / preserved historical path | [EVIDENCE_INDEX](EVIDENCE_INDEX.md) → exact EV; [path migrations](EVIDENCE_PATH_MIGRATIONS.md) for moved originals. |
 
-Active evidence ledger: `EVIDENCE_LEDGER_455_ONWARD.md`; no new EV is created for editorial maintenance. The seven original collision documents and pre-change DESIGN are archived content-identically with source identities in the migration map. Routine feature re-entry requires no archived investigation.
+Active evidence ledger: `EVIDENCE_LEDGER_455_ONWARD.md`; no new EV is created for storage maintenance. [The archival migration record](EVIDENCE_PATH_MIGRATIONS.md#2026-10-08--completed-derived-evidence-archival) owns recovery of former package/checkpoint paths. The seven collision snapshots and pre-change DESIGN remain preserved from the reviewed first stage. Routine feature re-entry starts from current owners and source.
 
 ## Still frozen
 
