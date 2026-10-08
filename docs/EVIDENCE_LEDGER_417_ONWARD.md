@@ -1852,3 +1852,44 @@ Runtime result:
 Disposition:
 - **PASS — standalone acceptance gate CLOSED.**
 - production G3AB integration may copy this exact minimum only.
+
+
+### EV-454 — Production bad-block integration + final release-candidate smoke PASS
+
+Production source:
+`development @ 65a87e4e792e3da631856ae341df713742aac0db`
+
+Production DLL:
+`Script_G3AnimationBehaviors.dll`
+`SHA256 9FD6962146DD8BC7A723B57C0DE9DF4F550BF18E236F71FC79791B1A0ECCCEE9`
+
+Integrated mechanism:
+- `EngineBridge` remains sole production hook owner;
+- exact player timeout seam `Script_Game +0x633BF`;
+- live/current DurationPressedMSecs getter called once;
+- only player factual QuickAttackR(4), QuickAttackL(5), WhirlAttack(10) during Hit with raw>2500 returns 2500;
+- no logging, persistent state, INI option, NPC scope or collision-guardian coupling.
+
+Runtime fixture:
+- integrated production G3AB ON;
+- standalone protector removed;
+- New Balance unchanged;
+- AttackCollision unchanged/present;
+- all bad-block research/control/exclusion products absent.
+
+User runtime smoke:
+- ordinary gameplay looked normal;
+- repeated Quick and full-Whirl bad-skip attempts did not reproduce bad skip;
+- 2H Normal Speed override changed successfully;
+- 2H Normal / Quick / Whirl Raise enabled successfully;
+- 2H Normal / Quick Movement distance changed successfully;
+- 1H Normal Speed set to 1.0 and intended NPC contact still occurred with authored collision markers active.
+
+Interpretation:
+- production integration preserves the EV-453 protection result;
+- representative Speed, Raise and Movement behavior remained functional;
+- the 1H Normal hit provides a useful marker-collision regression sanity check in the user's known fast-animation fixture, but does not replace the dedicated collision proof corpus.
+
+Disposition:
+- **PASS — BAD-BLOCK FEATURE CLOSED FOR FIRST RELEASE.**
+- first-release candidate is ready for final checkpoint review/promotion decision.

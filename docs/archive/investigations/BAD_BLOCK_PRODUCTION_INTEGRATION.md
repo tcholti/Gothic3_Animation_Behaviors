@@ -1,6 +1,6 @@
 # Bad Block Skip — Production Integration
 
-**Status:** ACTIVE  
+**Status:** CLOSED — production integration + final release-candidate smoke PASS / EV-454  
 **Mode:** bounded production source integration  
 **Frozen by:** User + Normal Chat, 2026-10-08  
 **Launch base:** `development @ db9463bc341f5d7be367f74ff5631a80b294d154`  
@@ -110,3 +110,36 @@ Deployment:
 
 Runtime status:
 **FINAL RELEASE-CANDIDATE SMOKE PENDING.**
+
+
+## Final result — EV-454
+
+Production source checkpoint:
+`development @ 65a87e4e792e3da631856ae341df713742aac0db`
+
+Production binary:
+`Script_G3AnimationBehaviors.dll`
+`SHA256 9FD6962146DD8BC7A723B57C0DE9DF4F550BF18E236F71FC79791B1A0ECCCEE9`
+
+Final release-candidate runtime smoke:
+- production G3AB with integrated bad-block protection ON;
+- standalone protector removed;
+- New Balance unchanged;
+- AttackCollision unchanged/present;
+- no old bad-block research/control/exclusion products live.
+
+User observations:
+- ordinary gameplay looked normal;
+- repeated Quick and full-Whirl bad-skip attempts did not reproduce the failure;
+- 2H Normal Speed was changed and behaved correctly;
+- 2H Normal, Quick and Whirl Raise were enabled and behaved correctly;
+- 2H Normal and Quick Movement distance was changed and behaved correctly;
+- 1H Normal Speed was changed to 1.0 and attacks still produced intended NPC contact with the user's authored collision markers active.
+
+Collision interpretation:
+the 1H Normal result is a useful production smoke for marker-driven collision because, in the user's current fast authored animation setup, the unmarked/native timing is known to be too fast to connect reliably while the tested marked attack did connect. Treat this as a regression sanity confirmation, not as a new universal proof replacing the dedicated collision evidence.
+
+Result:
+**PASS — PRODUCTION BAD-BLOCK INTEGRATION AND FINAL RELEASE-CANDIDATE SMOKE CLOSED.**
+
+Bad-block work is finished for the first release. Reopen only on contradictory reproducible evidence.

@@ -30,7 +30,7 @@ raw UseType-only profile identity = SUPERSEDED EV-406 / ADR-0011
 separation profile identity = PASS EV-406; resolved animation-set identity selected
 human bare Fist Speed calibration = Normal B=1.0 / Power B=1.0; native Quick does not exist and is intentionally omitted
 ADR-0011 implementation candidate = ba3e76549eff5c7fdfc2d165ec976e640ef9c24c / four-file boundary PASS
-CURRENT = stable main EV-447; EV-449–EV-450 player protector = CLOSED/PASS; EV-451/452 exclusions = PASS; EV-453 standalone acceptance = PASS; production integration @ 65a87e4 DEPLOYED; FINAL SMOKE PENDING
+CURRENT = first-release candidate; EV-454 production bad-block integration + final smoke = CLOSED/PASS; ACTIVE = first-release checkpoint review; main remains FROZEN
 accepted AddRaise sequencing source = bc46dcf7d22305c4d9d4f99fc5f5a1075ef726bd / independent Normal Chat review PASS / runtime sequencing PASS EV-411–EV-412
 Raise direction continuation = CLOSED/PASS EV-427; EV-430 completes representative Normal / Quick R+L / pose-changing Quick / full Whirl coverage including partial Raise-asset profiles
 phase-speed rule = custom AddRaise reuses composed Hit speed; native Power Raise preserves live phase base (e.g. 1.5*M) and applies configured Power ratio on top
@@ -52,39 +52,27 @@ Canonical reusable engine lookup:
 
 The completed preservation-biased repository audit and Work result are archived under `docs/archive/investigations/`. Its accepted RH-01–RH-13 maintenance is represented in the durable owners; RH-14–RH-17 were KEEP/no-action. The three previously retained Sprint-probe logs were positively reconciled during EV-397/EV-398 maintenance and archived byte-identically; path migration is recorded in `EVIDENCE_PATH_MIGRATIONS.md`.
 
-## Immediate continuation — lean diagnostics-free bad-block protector
-
-Closed first-release scope:
-- EV-449–EV-450: protect player QuickAttackR(4), QuickAttackL(5), WhirlAttack(10), factual Hit, raw>2500 with branch-local return 2500.
-- EV-451: keep Pierce/Action11 and Hack/Action14 excluded.
-- EV-452: keep true Finishing/Action15 excluded.
-
-Important EV-452 limit:
-true Action15 was repeatedly exercised and did not reproduce bad skip, but the timeout observer never saw factual Action15 Hit at `Script_Game +0x633BF`. This supports exclusion but does not prove a native Finishing guard.
+## Immediate continuation — first-release checkpoint review
 
 Active task:
-`docs/work/active/BAD_BLOCK_LEAN_STANDALONE_ACCEPTANCE.md`
+`docs/work/active/FIRST_RELEASE_CHECKPOINT_REVIEW.md`
 
-Candidate product:
-`Script_G3AB_BadBlockProtector.dll`
+Bad-block closure:
+- EV-449–EV-450: player Action4/5/10 factual-Hit branch-local deferral causally proven.
+- EV-451–EV-452: Pierce/Hack/true Finishing remain excluded.
+- EV-453: diagnostics-free standalone accepted after >30 deliberate reproduction attempts.
+- EV-454: same minimum integrated into production G3AB; final release-candidate smoke PASS.
 
-The proven EV-450 mechanism is now implemented as the lean diagnostics-free standalone protector at `development @ bc7d341abd71dc064e6be6faf88d51dff6d62eb4`. Built/live SHA256: `6A04B4AB4529EF2C7FD6BEB6450572BD504AF188FB3BD45FBCFD116E5AB5A03A`. The acceptance fixture is deployed, but runtime acceptance has not started yet.
+Current production bad-block source:
+`development @ 65a87e4e792e3da631856ae341df713742aac0db`
 
-The lean protector must retain only:
-```text
-native/current DurationPressedMSecs getter called exactly once
+Accepted production DLL from final smoke:
+`SHA256 9FD6962146DD8BC7A723B57C0DE9DF4F550BF18E236F71FC79791B1A0ECCCEE9`
 
-if raw > 2500
-AND actor == player
-AND factual Action in {QuickAttackR(4), QuickAttackL(5), WhirlAttack(10)}
-AND phase == Hit
--> return 2500
+Bad-block work is CLOSED for first release. Do not reopen it without contradictory reproducible evidence.
 
-otherwise
--> return raw
-```
-
-Remove all research loggers, A/B mode, diagnostic episode state and exclusion-observer code. No NPC work. No persistent gameplay state. No production G3AB edit until the standalone lean acceptance passes.
+Next responsibility is read-only release checkpoint review:
+reconcile current `development` against frozen `main`, verify shipping/release purity and current documentation, then return READY or the smallest concrete blocker. Promotion to `main` requires explicit User + Normal Chat decision.
 
 
 EV-406 closes the separation identity probe. Shared resolved assets intentionally share Speed profiles; separated request-time animation tokens select independent profiles. Rapier proves raw UseType alone is insufficient, while Zombie+Axe proves family and animation-token dimensions compose.
