@@ -1,14 +1,14 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.
-**Updated:** 2026-10-09 — independent comparison accepted; two minor drifts corrected; audit closed
+**Updated:** 2026-10-09 — reviewed maintenance promoted to main; development active
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
 Repository: `tcholti/Gothic3_Animation_Behaviors`
 Working branch: `development`
-Protected first-release comparison baseline: `main @ 08a0bd8fcf42173088e233e09b706a80da882070`
-Do-not-modify backup: `Backup @ 08a0bd8fcf42173088e233e09b706a80da882070` — created and verified identical to `main` on 2026-10-09; ordinary Git branch, not enforced/protected.
+Stable integration: `main` at the deliberately promoted post-release maintenance checkpoint; verify its live HEAD.
+Do-not-modify first-release safeguard: `Backup @ 08a0bd8fcf42173088e233e09b706a80da882070` — identical to pre-promotion `main`, preserved unchanged; unprotected ordinary branch.
 
 **Completed/reviewed maintenance checkpoints:**
 
@@ -21,6 +21,8 @@ Do-not-modify backup: `Backup @ 08a0bd8fcf42173088e233e09b706a80da882070` — cr
 
 **Independent audit accepted:** Work reported **zero blocking/material loss**, supported by its provenance/retrieval checks. Normal Chat confirmed the two minor documentation findings and corrected `PROJECT_PIPELINE.md`'s obsolete gate and `SESSION_ENTRYPOINT.md`'s tool-target count. No new EV, source, build or runtime change.
 
-**Next:** Await User decision for subsequent features or any separate, explicitly approved promotion to `main`. `Backup` remains frozen/do-not-modify. Do not build, deploy, run Gothic 3, merge/promote, or start Work from this pointer alone.
+**Promotion:** Stable `main` fast-forwards to the reviewed post-release maintenance checkpoint by explicit User decision. The six maintenance stages, independent audit and two minor wording corrections are closed. This supplies no new gameplay/runtime evidence; `Backup` remains unchanged.
+
+**Next:** Continue feature/research work on `development` only after a newly bounded User-selected task. Do not build, deploy, run Gothic 3, change `Backup` or automatically re-promote `main` from this pointer.
 
 The closed [audit preparation and original boundaries](archive/investigations/POST_RELEASE_AUDIT_PREPARATION_PRE_CLOSURE_2026-10-09.md) remain retrievable as history; `SESSION_ENTRYPOINT.md` owns the current gate. All six implementation stages and the post-maintenance reconciliation are accepted.

@@ -9,16 +9,16 @@
 
 <!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
 
-## Current gate — post-release maintenance/audit reconciled; next User decision
+## Current gate — maintenance promoted to main; development continues
 
 Collision, Speed, Raise, Movement and narrow player bad-block protection remain CLOSED/PASS. First-release checkpoint review EV-455, quick documentation review EV-456 and stable promotion EV-457 are complete. No feature/research task is active.
 
-Protected stable baseline: `main @ 08a0bd8fcf42173088e233e09b706a80da882070`.
+Stable integration: `main` holds the reviewed 2026-10-09 post-maintenance checkpoint. Frozen first-release safeguard: `Backup @ 08a0bd8fcf42173088e233e09b706a80da882070`. Verify live branch refs at startup.
 
 Accepted production DLL from EV-454 final smoke (recorded provenance, not remeasured here):
 `SHA256 9FD6962146DD8BC7A723B57C0DE9DF4F550BF18E236F71FC79791B1A0ECCCEE9`.
 
-The first documentation-consolidation stage was reviewed and accepted at `development @ 2149a21e827c27a741d5291a4f5b1159b685c68b`. The second, archival-only stage was published at `975c7e2a1b17b47133a19f8091f158956a7de6b1` and independently reviewed in Normal Chat on 2026-10-08: all 27 moved package subtrees have matching original Git tree identities; all three manual checkpoint blobs match; all 462 pre-existing canonical archive entries are unchanged. Work reported manifest/retrieval/static validation PASS, with a historical mirror-index byte-count discrepancy preserved rather than silently corrected. This review does not assert independently recomputed raw-source SHA256 or runtime validation. Both maintenance stages are accepted as reviewed checkpoints. Production source/configuration/build/runtime behavior is unchanged.
+Maintenance provenance: collision-document consolidation `2149a21e827c27a741d5291a4f5b1159b685c68b` and derived-evidence archival `975c7e2a1b17b47133a19f8091f158956a7de6b1` were independently reviewed. All 27 package trees and three manual checkpoints were Git-identity-preserved; the historical mirror-index byte-count discrepancy remains unchanged. Work-reported retrieval/static checks passed; raw-source SHA256 and runtime were not revalidated.
 
 The third bounded documentation stage, **Practical Knowledge & Engineering Principles**, was approved from `development @ 6d224946490e424a91d5109d883a9fdb04595503`. It adds concise user/agent usability checks, current-question and decision navigation, a raw8 plain-language lead, targeted engineering-principle review and truthful retained-tool descriptions. The engineering guide, individual ADRs, source/tools/prototypes/configuration and preserved evidence are unchanged. The published third-stage checkpoint is `development @ 2f13fecf95d14d1819a64eaf233705be696ca1b8`, independently reviewed and accepted in Normal Chat on 2026-10-09. Review confirmed the exact nine-document scope, all twelve ADR entries, native-versus-persistent raw8 accuracy, targeted engineering-principle link and retained research-tool descriptions. ENGINEERING_GUIDE, individual ADRs, source, configuration, CMake and evidence remain unchanged. Work reports full link/validator PASS; Normal Chat independently checked the important new targets and relevant source contracts without re-running the whole validator.
 
@@ -28,11 +28,13 @@ KA-10 Optional Research Build Defaults was published at `development @ 4cd3c2d9e
 
 KA-12 accepted: `development @ b462ec839f972a172a4325f9d69216468c0bafce` was independently reviewed on 2026-10-09. Only the five assigned files changed. The validator now covers repository-local file/directory links; Markdown anchors, numeric-section validation, lifecycle checks and CI are unchanged. Work reports 148 current links and 16 controlled fixture checks PASS; the complete tests were not rerun in Normal Chat. Protected CMake, source, tools, prototypes, engineering principles and evidence are untouched.
 
-**Backup:** `Backup @ 08a0bd8fcf42173088e233e09b706a80da882070` was created directly from and verified identical to `main` (zero differences). Keep both untouched; `Backup` is a normal branch without enforced protection.
+**Backup:** `Backup @ 08a0bd8fcf42173088e233e09b706a80da882070` preserves the exact pre-maintenance first-release state, verified identical to `main` before promotion. Keep Backup untouched; it has no enforced protection. Later `main` promotions need explicit User approval.
 
 **Independent comparison concluded:** Work compared `main @ 08a0bd8fcf42173088e233e09b706a80da882070` with reviewed `development @ dbea364042833142c49569e61f77c5969cd96964` and reported **zero blocking/material semantic loss** and two minor documentation drifts: the stale `PROJECT_PIPELINE.md` review gate and inaccurate six-target inventory. Normal Chat confirmed and corrected both in this closure transaction. Work's extensive preservation/retrieval checks were not all independently rerun; no new runtime facts were established.
 
-**Immediate responsibility:** The six approved maintenance stages and independent semantic-loss reconciliation are complete. Await User direction for later feature work or a deliberately authorized `development`→`main` promotion. Do not build/run Gothic 3 or modify `main`/`Backup` without separate approval.
+**Promotion:** On 2026-10-09 the User approved fast-forward promotion of the reviewed post-release maintenance state to `main`. This is a **repository knowledge/integration checkpoint**, not new Gothic 3 runtime proof. `development` remains the active working branch; no new feature task is currently frozen.
+
+**Immediate responsibility:** Resume bounded work on `development` when the User selects it. Follow the engineering/feature-development method. Do not modify `Backup`, build/run Gothic 3 or promote `main` again without a separate gate.
 
 The completed audit plan is preserved as [cold provenance](archive/investigations/POST_RELEASE_AUDIT_PREPARATION_PRE_CLOSURE_2026-10-09.md). Its earlier ACTIVE/review-pending language is historical; this entrypoint owns the current state. Evidence archive recovery remains in [EVIDENCE_PATH_MIGRATIONS](EVIDENCE_PATH_MIGRATIONS.md).
 

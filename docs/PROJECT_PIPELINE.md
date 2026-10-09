@@ -85,7 +85,7 @@ The public/integration DLL keeps the name `Script_G3AnimationBehaviors.dll` thro
 
 Do not create `feature/raise-attack-speed` for the current cycle. The earlier collision-specific branch progression was superseded on 2026-09-27 by ADR-0006 after the collision core was migrated into the production target. Historical branch names remain valid provenance and are not retroactively renamed.
 
-Stable promotion is deliberate. The first-release promotion gate was reached after Collision, Speed, Raise, Movement, the narrow bad-block protection, assembled runtime smoke, EV-455 checkpoint review and EV-456 quick documentation review all closed/PASS. The accepted first-release checkpoint is now `main @ 08a0bd8fcf42173088e233e09b706a80da882070`.
+Stable promotion is deliberate. The first-release promotion gate was reached after Collision, Speed, Raise, Movement, the narrow bad-block protection, assembled runtime smoke, EV-455 checkpoint review and EV-456 quick documentation review all closed/PASS. That historical first-release checkpoint was `main @ 08a0bd8fcf42173088e233e09b706a80da882070` and remains preserved unchanged on `Backup`. The user-approved 2026-10-09 promotion advances stable `main` to the reviewed post-release maintenance checkpoint, with further feature work remaining on `development`.
 
 ---
 
@@ -264,7 +264,7 @@ From the C1-era research onward:
 - do not create a new decimal prototype version merely because another Chat edited the code;
 - do not let prototype/research numbering or temporary target names silently define the eventual public `Script_G3AnimationBehaviors` release version.
 
-The production integration target is `Script_G3AnimationBehaviors`. The first-release feature cycle is CLOSED/PASS and promoted to stable `main @ 08a0bd8fcf42173088e233e09b706a80da882070`; later adopted systems continue on `development` one bounded responsibility at a time.
+The production integration target is `Script_G3AnimationBehaviors`. The first-release feature cycle is CLOSED/PASS; its historical `08a0bd8fcf42173088e233e09b706a80da882070` checkpoint remains on `Backup`. Current stable `main` incorporates the deliberately promoted post-release maintenance state; later adopted systems continue on `development` one bounded responsibility at a time.
 
 Public/stable release versioning should be decided deliberately at the stable-integration/release stage.
 

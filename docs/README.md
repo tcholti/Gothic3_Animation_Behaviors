@@ -140,7 +140,7 @@ An interrupted-Chat recovery is not automatically a formal audit. POP-11 first r
 
 ### Backup safeguard
 
-`Backup` is a deliberately retained, do-not-modify branch created on 2026-10-09 at the exact first-release `main @ 08a0bd8fcf42173088e233e09b706a80da882070`. It is not a new working branch or an immutable/protected tag. The independent audit continues to compare `main` with the reviewed `development` checkpoint; neither the comparison nor later promotion must advance `Backup`.
+`Backup` is a deliberately retained, do-not-modify branch created on 2026-10-09 at the exact first-release `main @ 08a0bd8fcf42173088e233e09b706a80da882070`. It is not a new working branch or an immutable/protected tag. The independent post-maintenance comparison completed with no material semantic loss. The subsequent deliberate promotion advances `main`, never `Backup`.
 
 ### Historical collision branch
 

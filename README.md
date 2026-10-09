@@ -7,7 +7,7 @@ General Gothic 3 animation-behavior research and implementation for configurable
 ## Branches
 
 - **`development`** — current active development/research/integration branch. It contains the newest implementation, current project state, and latest evidence.
-- **`main`** — stable integration and reusable Gothic 3 knowledge baseline. It now holds the accepted first-release checkpoint at `08a0bd8fcf42173088e233e09b706a80da882070`; future promotions from `development` remain deliberate rather than automatic.
+- **`main`** — deliberately promoted stable integration and reusable knowledge baseline. The reviewed post-release maintenance checkpoint was promoted here on 2026-10-09; later promotions from `development` remain deliberate, not automatic. The prior first-release commit is preserved on `Backup`.
 - **`Backup`** — do-not-modify first-release safeguard created 2026-10-09 from `main @ 08a0bd8fcf42173088e233e09b706a80da882070`. It is an ordinary unprotected Git branch; never advance it during work, comparison or promotion.
 - **`docs/collision-source-evidence`** — historical collision-development provenance. Ordinary new work no longer continues there.
 
