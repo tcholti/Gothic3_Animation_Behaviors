@@ -2,7 +2,7 @@
 
 **Status:** Active project knowledge-maintenance authority  
 **Version:** 2.1  
-**Updated:** 2026-10-08
+**Updated:** 2026-10-09
 
 <!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
 
@@ -142,6 +142,8 @@ The current owner(s), with targeted source lookup, should answer:
 - **Chat / development agent:** Can I reach the owning source, invariants, safe workflow and relevant rationale/proof from the current contract, with a targeted route to the established engineering principles, without recreating discovery history?
 
 Practical knowledge should be easy to find, easy to understand, and safe to build upon. Documentation should reduce the work needed, not just store its history. If either route fails, repair the smallest existing owner or link; preserve specialist authority and [ENGINEERING_GUIDE](ENGINEERING_GUIDE.md) as the principle owner.
+
+**Operational principle — Understand quickly. Modify safely. Preserve deeply. Avoid unnecessary complexity.** Apply this as a four-part test: reach a concise current answer without reopening discovery; locate the correct owner and invariants before changing anything; keep deep rationale and evidence retrievable without making them compulsory reading; and prefer the minimum sufficient documentation and implementation structure. This summarizes existing knowledge-maintenance and [engineering](ENGINEERING_GUIDE.md) rules; it does not replace or weaken either authority.
 
 Use **progressive retrieval**:
 
