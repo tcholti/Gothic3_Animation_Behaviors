@@ -6,7 +6,7 @@ from __future__ import annotations
 import html
 import re
 from pathlib import Path
-from urllib.parse import unquote
+from urllib.parse import unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[2]
 DOCS = ROOT / "docs"
@@ -61,7 +61,7 @@ TEMP_ROOT_PATTERN = re.compile(
     re.IGNORECASE,
 )
 ACTIVE_LEDGER_PATTERN = re.compile(r"EVIDENCE_LEDGER_\d+_ONWARD\.md$")
-MD_LINK_PATTERN = re.compile(r"\[[^\]]*\]\(([^)]+\.md(?:#[^)]+)?)\)")
+MD_LINK_PATTERN = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
 EXPLICIT_HTML_ID_PATTERN = re.compile(
     r"<(?:a|span)\b[^>]*\bid\s*=\s*['\"]([^'\"]+)['\"][^>]*>",
     re.IGNORECASE,
@@ -434,7 +434,7 @@ def main() -> int:
         text = read(p)
         for raw_target in MD_LINK_PATTERN.findall(text):
             target, separator, raw_fragment = raw_target.partition("#")
-            if not target or "://" in target or target.startswith("mailto:"):
+            if not target or urlsplit(target).scheme or target.startswith("//"):
                 continue
             resolved = (p.parent / target).resolve()
             try:
@@ -449,7 +449,7 @@ def main() -> int:
                     f"broken Markdown link: {p.relative_to(ROOT)} -> {target}"
                 )
                 continue
-            if separator:
+            if separator and resolved.is_file() and resolved.suffix.lower() == ".md":
                 fragment = unquote(raw_fragment)
                 anchors = anchor_cache.setdefault(
                     resolved, markdown_anchors(read(resolved))

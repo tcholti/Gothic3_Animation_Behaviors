@@ -1,7 +1,7 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-10-09 — KA-10 independently reviewed/accepted; KA-12 next
+**Updated:** 2026-10-09 — KA-12 implemented; independent Normal Chat review pending
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
@@ -20,6 +20,6 @@ KA-11 accepted at `0288c3fc5d39c2e9ed02d3b978bf203c8fcff0f1`, independently revi
 
 KA-10 is accepted at `4cd3c2d9e04ecf484bb7939f697649f693de5f30` (Normal Chat review 2026-10-09). Both root CMake research-group defaults are now `OFF`, and exact before/after CMake inspection found no other CMake changes; six diagnostic tool targets, both FrameCollisionTest twins and optional DEEP mode are preserved. Production remains unconditional. Source/tools/prototypes/evidence subtree identities are unchanged. README/POP-02 explain opt-in and cached-value caveats. Work reports link/validator PASS; configure/build/runtime were not attempted.
 
-**Next:** KA-12 is the next User-approved direction. Prepare and execute it only as a separately frozen bounded validator/knowledge-maintenance task. No KA-12 implementation is part of the accepted KA-10 commit. ENGINEERING_GUIDE, individual ADRs, production source/configuration/DLLs, tools/prototypes, all other CMake files and prior evidence remain unchanged. Configure, build and Gothic 3 runtime: NOT ATTEMPTED; no new EV or runtime fact.
+**Next:** Normal Chat independently reviews KA-12, approved from `820298ebc81f212fd30936a4cd00b8607c8ca876` and implemented in the commit containing this update (full SHA/results in Work handoff). Existing-validator local file/directory coverage is extended; Markdown/numeric/lifecycle checks and CI remain intact. No further Work is authorized. Protected source, research tools, configuration, CMake and evidence are unchanged; no new EV. Configure/build/runtime: NOT ATTEMPTED.
 
-[POST_RELEASE_AUDIT_PREPARATION.md](work/active/POST_RELEASE_AUDIT_PREPARATION.md) remains ACTIVE. The overall audit/reconciliation remains open; the first five maintenance stages are accepted and KA-12 remains a separate next task. After final approved maintenance is reviewed, the independent `main` versus reviewed `development` semantic loss audit and final Normal Chat reconciliation remain mandatory, separately launched tasks. Do not start them or promote main from this handoff.
+[POST_RELEASE_AUDIT_PREPARATION.md](work/active/POST_RELEASE_AUDIT_PREPARATION.md) remains ACTIVE. The first five maintenance stages are accepted; KA-12 review is pending. The independent `main` versus reviewed `development` semantic loss audit and final Normal Chat reconciliation remain mandatory, separately launched tasks after review. Do not start them or promote main from this handoff.

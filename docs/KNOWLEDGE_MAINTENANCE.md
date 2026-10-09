@@ -406,7 +406,7 @@ It checks at minimum:
 - required rule/procedure authorities route to this lifecycle;
 - current Markdown files use the permitted `docs/`, `docs/decisions/`, or `docs/work/active/` topology;
 - every allowlisted permanent `docs/*.md` file has a recognizable `KNOWLEDGE_REGISTRY.md` route;
-- ordinary/current Markdown file links and fragments resolve;
+- ordinary/current inline links to repository-local files and directories resolve; Markdown-file fragments are checked, while non-Markdown fragments are not validated;
 - numeric `FILE.md §N` / `FILE.md §N.M` routes resolve to matching numbered headings;
 - required archive/work directories exist.
 

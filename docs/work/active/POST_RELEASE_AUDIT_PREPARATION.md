@@ -1,6 +1,6 @@
 # Post-Release Repository Audit Preparation
 
-**Status:** ACTIVE — five stages reviewed/accepted; KA-12 next separately, independent comparison pending
+**Status:** ACTIVE — five stages reviewed/accepted; KA-12 review and independent comparison pending
 **Mode:** Normal Chat review / staged post-release maintenance
 **Stable comparison baseline:** `main @ 08a0bd8fcf42173088e233e09b706a80da882070`  
 **Working branch:** `development`
@@ -22,7 +22,7 @@ KA-11 historical INI/Movement-seed archival was approved from `development @ 266
 
 KA-10 Optional Research Build Defaults was approved from `development @ ed88e73e2bb884d0aa83199510b9b069cf2e6e69`, published as `4cd3c2d9e04ecf484bb7939f697649f693de5f30` and independently reviewed/accepted 2026-10-09. Exact CMake diff changes only the two research-group defaults to `OFF`; all research targets, diagnostic variants and protected subtree identities are preserved, production remains unconditional. README/POP-02 explain opt-ins and cached values. Static proof only; configure/build/runtime not attempted.
 
-**Current gate: User-approved KA-12 direction, separately frozen before implementation.** The accepted KA-10 stage is closed; KA-12 will only extend the existing validator/maintenance routes within a bounded Work brief, not start automatically. Retained-tool descriptions do not authorize tool/build changes. The independent `main` comparison still follows final reviewed maintenance as its own bounded task. Do not begin further implementation, feature work, runtime tests or the independent comparison from this pointer. `main` remains protected at `08a0bd8fcf42173088e233e09b706a80da882070`; production source/configuration, all other CMake files and evidence are unchanged; no new EV or runtime fact.
+**Current gate: independent Normal Chat review of KA-12.** Approved from `development @ 820298ebc81f212fd30936a4cd00b8607c8ca876`, KA-12 is implemented in the commit containing this update; the Work handoff supplies its full SHA and static/self-test results. The existing validator now checks local file/directory links, preserving Markdown anchors, numeric sections, lifecycle rules and CI. Only its source, one §12 coverage bullet and continuation notes change. Do not begin further maintenance, feature work, runtime tests or the independent comparison here. That comparison still requires its own task after review. `main` remains protected at `08a0bd8fcf42173088e233e09b706a80da882070`; production source/configuration, research tools/prototypes, CMake, principles and evidence are unchanged; no new EV or runtime fact.
 
 This document remains ACTIVE because later authorized maintenance decisions and the mandatory independent `main` versus post-maintenance `development` loss-detection/reconciliation are unfinished. Normal Chat owns final closure/archive of this document only after that sequence has concluded.
 
@@ -64,7 +64,7 @@ This phase protects useful context and historical/operational material that a st
 
 ### Phase 4 — Work approved maintenance implementation
 
-The documentation consolidation, derived-evidence archival, Practical Knowledge & Engineering Principles, KA-11 archival and KA-10 optional research builds stages are completed/reviewed. KA-12 is next separately; further Work requires a newly frozen scope.
+The first five stages are completed/reviewed. Separately approved KA-12 is implemented and awaits independent Normal Chat review; further Work requires a newly frozen scope.
 
 That task may implement **only the approved audit maintenance** on `development`.
 
@@ -72,7 +72,7 @@ Do not modify stable `main`.
 
 ### Phase 5 — Normal Chat post-audit review
 
-The first five stages have been independently reviewed at the checkpoints recorded above. Review the separately bounded KA-12 implementation before advancing.
+The first five stages have been independently reviewed at the checkpoints recorded above. Independently review the completed KA-12 implementation before advancing.
 
 The final post-maintenance development checkpoint must be explicit before the independent comparison task.
 
