@@ -9,7 +9,7 @@
 
 <!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
 
-## Current gate — KA-10 implemented; independent Normal Chat review pending
+## Current gate — KA-10 reviewed/accepted; prepare separately bounded KA-12
 
 Collision, Speed, Raise, Movement and narrow player bad-block protection remain CLOSED/PASS. First-release checkpoint review EV-455, quick documentation review EV-456 and stable promotion EV-457 are complete. No feature/research task is active.
 
@@ -24,9 +24,9 @@ The third bounded documentation stage, **Practical Knowledge & Engineering Princ
 
 KA-11 historical configuration/Movement-seed archival was implemented at `development @ 0288c3fc5d39c2e9ed02d3b978bf203c8fcff0f1` and independently reviewed/accepted in Normal Chat on 2026-10-09. Both original archives have identical Git blob identities; the Recover-cancellation and exact-pause bodies match their prior versions with headings renumbered; completed Movement was removed from the future list. [KA-11 path migrations](EVIDENCE_PATH_MIGRATIONS.md#ka-11-historical-configuration-and-movement-seed) records exact recovery. Shipping INI, current DESIGN/SOURCE_HOOK owners, engineering principles, tools, prototypes and CMake remain unchanged. Work reports full links/static validator PASS; those checks were not independently rerun.
 
-KA-10 Optional Research Build Defaults was approved from `development @ ed88e73e2bb884d0aa83199510b9b069cf2e6e69` and is implemented in the commit containing this update; the Work handoff supplies its full checkpoint SHA. Only the two root CMake option defaults change to `OFF`, with minimum README/POP-02 instructions for opt-in research and retained cache values. All existing targets, tool/prototype sources and diagnostic configurations are preserved. Validation is static only; no configure, build or runtime execution was attempted. Independent Normal Chat review is pending.
+KA-10 Optional Research Build Defaults was published at `development @ 4cd3c2d9e04ecf484bb7939f697649f693de5f30` and independently reviewed/accepted in Normal Chat on 2026-10-09. Only two root CMake option defaults change to `OFF`; production remains unconditional and the six diagnostic tool targets, two collision twins, deep-diagnostic setting, tool/prototype source and protected Git subtrees remain unchanged. README/POP-02 now document deliberate opt-ins and existing-cache behavior. Work reports full link/knowledge validation PASS; Normal Chat verified exact CMake equivalence and Git tree identities, but did not configure, build or run Gothic 3.
 
-**Immediate responsibility:** Independently review the bounded KA-10 commit in Normal Chat. KA-12 is next by User direction, under its own separately frozen task after KA-10 review; it is not started or authorized by this handoff. After final maintenance and review, launch the separately bounded independent `main`→`development` semantic loss-detection task and reconcile any genuine loss. Do not build, run Gothic 3, start unassigned Work, or promote `main` from this pointer.
+**Immediate responsibility:** KA-12 is the next User-approved maintenance direction, but only under a fresh, separately bounded Work brief after reviewing the existing validator. No KA-12 implementation is in progress. After KA-12 review, launch the separate independent `main`→`development` semantic loss-detection task and reconcile genuine loss. Do not build, run Gothic 3, start other Work, or promote `main` from this pointer.
 
 The open sequence remains owned by [POST_RELEASE_AUDIT_PREPARATION.md](work/active/POST_RELEASE_AUDIT_PREPARATION.md). It stays active for remaining User decisions, eventual maintenance review and the independent comparison/reconciliation; the whole post-release audit cycle is not closed.
 

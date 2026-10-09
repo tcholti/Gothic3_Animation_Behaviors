@@ -1,7 +1,7 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-10-09 — KA-10 implemented; independent Normal Chat review pending
+**Updated:** 2026-10-09 — KA-10 independently reviewed/accepted; KA-12 next
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
@@ -18,8 +18,8 @@ Third stage: **Practical Knowledge & Engineering Principles**, approved from `6d
 
 KA-11 accepted at `0288c3fc5d39c2e9ed02d3b978bf203c8fcff0f1`, independently reviewed 2026-10-09. The historical conceptual INI and complete pre-edit Future Investigations snapshot match their source blobs; the two remaining parked investigations retain identical bodies (only headings renumbered). [KA-11 path migrations](EVIDENCE_PATH_MIGRATIONS.md#ka-11-historical-configuration-and-movement-seed) preserves retrieval. Shipping INI, DESIGN/SOURCE_HOOK, ENGINEERING_GUIDE, CMake and retained tools are unchanged. Work reports full link/knowledge-validator PASS; not independently rerun.
 
-KA-10 was approved from `ed88e73e2bb884d0aa83199510b9b069cf2e6e69` and is implemented in the commit containing this update; the Work handoff supplies its full checkpoint SHA. The two root CMake option defaults are now `OFF`; all target definitions and tool/prototype sources/configurations are unchanged. README/POP-02 explain research opt-ins and retained cache values. Static verification only; no configuration/build/runtime proof is claimed. Independent Normal Chat review is pending.
+KA-10 is accepted at `4cd3c2d9e04ecf484bb7939f697649f693de5f30` (Normal Chat review 2026-10-09). Both root CMake research-group defaults are now `OFF`, and exact before/after CMake inspection found no other CMake changes; six diagnostic tool targets, both FrameCollisionTest twins and optional DEEP mode are preserved. Production remains unconditional. Source/tools/prototypes/evidence subtree identities are unchanged. README/POP-02 explain opt-in and cached-value caveats. Work reports link/validator PASS; configure/build/runtime were not attempted.
 
-**Next:** Normal Chat independently reviews KA-10. KA-12 is next by User direction but needs a separate frozen task after that review; no further feature/Work task is authorized here. ENGINEERING_GUIDE, individual ADRs, production source/configuration/DLLs, tools/prototypes, all other CMake files and prior evidence remain unchanged. Configure, build and Gothic 3 runtime: NOT ATTEMPTED; no new EV or runtime fact.
+**Next:** KA-12 is the next User-approved direction. Prepare and execute it only as a separately frozen bounded validator/knowledge-maintenance task. No KA-12 implementation is part of the accepted KA-10 commit. ENGINEERING_GUIDE, individual ADRs, production source/configuration/DLLs, tools/prototypes, all other CMake files and prior evidence remain unchanged. Configure, build and Gothic 3 runtime: NOT ATTEMPTED; no new EV or runtime fact.
 
-[POST_RELEASE_AUDIT_PREPARATION.md](work/active/POST_RELEASE_AUDIT_PREPARATION.md) remains ACTIVE. The overall audit/reconciliation remains open; the first four maintenance stages are accepted and KA-10 review is pending. KA-12 remains a separate next task. After final approved maintenance is reviewed, the independent `main` versus reviewed `development` semantic loss audit and final Normal Chat reconciliation remain mandatory, separately launched tasks. Do not start them or promote main from this handoff.
+[POST_RELEASE_AUDIT_PREPARATION.md](work/active/POST_RELEASE_AUDIT_PREPARATION.md) remains ACTIVE. The overall audit/reconciliation remains open; the first five maintenance stages are accepted and KA-12 remains a separate next task. After final approved maintenance is reviewed, the independent `main` versus reviewed `development` semantic loss audit and final Normal Chat reconciliation remain mandatory, separately launched tasks. Do not start them or promote main from this handoff.
