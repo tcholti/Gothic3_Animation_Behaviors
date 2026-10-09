@@ -42,6 +42,7 @@ Do **not** blindly follow the old `NEXT` pointer. Start here and enter **Recover
 
 Only broaden when the current responsibility requires it:
 
+- [Find current behavior, settings, decisions or a research utility](docs/README.md#3-retrieval-by-question) — use the existing question lookup for a quick answer, then follow only the relevant deeper route.
 - [Project charter and knowledge map](docs/README.md) — highest Gothic-specific authority beneath CAM; use for project purpose, long-term direction, authority topology, formal-audit preflight, or one-time subsystem orientation.
 - [Collision reference](docs/COLLISION_REFERENCE.md) — single accepted collision working contract, source map, diagnosis and reopening; use before evidence for settled questions.
 - [Evidence index](docs/EVIDENCE_INDEX.md) — route proof-sensitive questions to exact EV ranges and provenance only when needed.
@@ -111,23 +112,17 @@ Script_G3AB_BadBlockProtector / Script_G3AB_BadBlockResearch*
 = non-shipping research/acceptance tools retained for provenance and controlled reproduction
 = not required alongside the production DLL after EV-454
 
-Script_SpeedCalibrationProbe
-= standalone diagnostics-only speed calibration tool
-= observes proven Speed caller sites and returns live values unchanged
-= retained reusable native-calibration tool
-
 Script_SpeedSprintProbe
 = diagnostics-only causal probe retained for provenance/reproduction of the closed Sprint/Power transport question
 
 Script_SpeedIdentityProbe
 = diagnostics-only family/profile identity probe retained for provenance/reproduction
 
-Script_CombatMoveLogger
-= independent generic CombatMove / animation-speed diagnostic tool
-
-Script_FrameCollisionBehaviorTest / Script_FrameCollisionTest
-= historical collision-only twins retained for controlled reproduction; omit current Speed/Raise/Movement/integrated bad-block and cannot certify the full assembled production DLL
 ```
+
+- [Script_FrameCollisionTest sources](prototypes/Script_FrameCollisionTest/) retain three configurations: diagnostics-free `Script_FrameCollisionBehaviorTest`; diagnostic `Script_FrameCollisionTest` with deep diagnostics OFF by default; and that diagnostic target with `FRAME_COLLISION_ENABLE_DEEP_DIAGNOSTICS=ON` for retained deep probes. These collision-only twins omit current Speed/Raise/Movement/integrated bad-block and cannot certify the full assembled production DLL.
+- [Script_SpeedCalibrationProbe](tools/Script_SpeedCalibrationProbe/) is a reusable diagnostic speed observation/calibration helper: it records live compatible speed plus factual action/phase and resolved animation identity, returning speeds unchanged. Logged live speed does not automatically equal authored `BaseSpeed`; production `Script_G3AnimationBehaviors.dll` must be absent because caller-site hooks overlap. A future standalone public diagnostic DLL requires separate design, testing and release acceptance.
+- [Script_CombatMoveLogger](tools/Script_CombatMoveLogger/) retains player CombatMove and playback-speed diagnostics as a starting point for future jump/unique-animation, animation-mixing or climbing research. It is not a universal animation-playback logger; coverage of those future mechanisms requires investigation. Its CombatMove/speed hooks may interfere with other DLLs, so coexistence requires proof.
 
 Runtime diagnostic/release products that hook the same Gothic surfaces must be treated as mutually exclusive unless a task explicitly proves coexistence safe. Renaming a script DLL while leaving it inside Gothic's `scripts` directory is **not** a reliable disable method; excluded DLLs must be physically moved or removed from that folder.
 

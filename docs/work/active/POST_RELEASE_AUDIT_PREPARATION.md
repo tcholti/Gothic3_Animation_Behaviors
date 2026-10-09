@@ -1,13 +1,13 @@
 # Post-Release Repository Audit Preparation
 
-**Status:** ACTIVE — two approved maintenance stages implemented and reviewed; remaining decisions/comparison pending
+**Status:** ACTIVE — two maintenance stages reviewed; third documentation stage implemented, Normal Chat review pending
 **Mode:** Normal Chat review / staged post-release maintenance
 **Stable comparison baseline:** `main @ 08a0bd8fcf42173088e233e09b706a80da882070`  
 **Working branch:** `development`
 
 ## Purpose
 
-Track the deliberately staged post-release repository/knowledge-maintenance sequence. User priorities, two read-only audits and Normal Chat/User review have completed the pre-implementation gates for the first bounded documentation-consolidation task. The first-release main checkpoint remains the protected baseline.
+Track the deliberately staged post-release repository/knowledge-maintenance sequence. User priorities, two read-only audits and Normal Chat/User review led to two accepted preservation-first stages and the third approved Practical Knowledge & Engineering Principles documentation task. The first-release main checkpoint remains the protected baseline.
 
 ## Immediate responsibility
 
@@ -16,7 +16,9 @@ Two approved preservation-first stages are implemented and independently reviewe
 - Documentation consolidation: `development @ 2149a21e827c27a741d5291a4f5b1159b685c68b` — one maintained COLLISION_REFERENCE, complete archived former-authority/pre-change DESIGN snapshots, and corrected ownership/navigation. The original archive identities are recorded in EVIDENCE_PATH_MIGRATIONS.
 - Completed derived-evidence archival: `development @ 975c7e2a1b17b47133a19f8091f158956a7de6b1` — 27 unchanged package subtrees and three unchanged manual checkpoints moved to preserved archives. Independent Git subtree/blob comparison confirms the complete frozen moved set and 462 unchanged pre-existing canonical archive entries; Work reports manifest, retrieval and structural checks passing. The historical mirror-index byte-count discrepancy remains a known limitation, not permission to rewrite provenance.
 
-**Current gate: PAUSED / User decision needed.** KA-10 research build defaults/tool classification, KA-11 historical INI/Movement seed, and optional KA-12 automation are not yet authorized. They may be chosen, bounded or deferred separately at next continuation. Do not begin new implementation, feature work or runtime tests from this pointer. `main` remains protected at `08a0bd8fcf42173088e233e09b706a80da882070`; no production source/configuration/build behavior or new EV was changed in these stages.
+Third stage implemented: **Practical Knowledge & Engineering Principles**, frozen from `development @ 6d224946490e424a91d5109d883a9fdb04595503`. It changes only existing documentation usability/navigation, ADR effective-status routing, raw8 explanation, the targeted engineering-review connection and retained-tool descriptions. The published checkpoint is the commit containing this state update; its full remote SHA is in the Work handoff. ENGINEERING_GUIDE and every individual ADR remain unchanged.
+
+**Current gate: Normal Chat independent review of the third stage.** Work stops after this bounded publication. KA-10 CMake/research build-default changes, KA-11 historical INI/Movement seed and broader optional KA-12 automation remain separate, unauthorised stages. Retained-tool descriptions here do not authorize tool/build changes. Do not begin further implementation, feature work, runtime tests or the independent comparison from this pointer. `main` remains protected at `08a0bd8fcf42173088e233e09b706a80da882070`; no production source/configuration/build behavior or new EV changed.
 
 This document remains ACTIVE because later authorized maintenance decisions and the mandatory independent `main` versus post-maintenance `development` loss-detection/reconciliation are unfinished. Normal Chat owns final closure/archive of this document only after that sequence has concluded.
 
@@ -58,7 +60,7 @@ This phase protects useful context and historical/operational material that a st
 
 ### Phase 4 — Work approved maintenance implementation
 
-The first documentation-consolidation and second derived-evidence archival stages are completed/reviewed. Any additional Work stage needs its own frozen scope after Normal Chat/User decisions.
+The first documentation-consolidation and second derived-evidence archival stages are completed/reviewed. The third Practical Knowledge & Engineering Principles documentation stage is implemented under its own approved frozen scope and awaits review. Any additional Work stage needs its own frozen scope after Normal Chat/User decisions.
 
 That task may implement **only the approved audit maintenance** on `development`.
 
@@ -66,7 +68,7 @@ Do not modify stable `main`.
 
 ### Phase 5 — Normal Chat post-audit review
 
-Both completed stages have been independently reviewed at the checkpoints recorded above. Review any later approved stages before advancing.
+The first two stages have been independently reviewed at the checkpoints recorded above. Review the third documentation stage and any later approved stages before advancing.
 
 The final post-maintenance development checkpoint must be explicit before the independent comparison task.
 

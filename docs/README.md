@@ -296,8 +296,14 @@ Ordinary documentation history belongs in Git; historical Git content never over
 
 ## 3. Retrieval by Question
 
+Start with a current explanation or setting. Source, invariants and exact proof are deeper routes for the question that needs them, not a pre-reading assignment.
+
 | Question | Start here | Broaden only if needed |
 |---|---|---|
+| What does the mod do, and what are its limits? | [Raise, speed and movement](DESIGN.md#3-raise-speed-and-movement); [player attack protection](DESIGN.md#9-attackcontinuationprotection); [collision scope](COLLISION_REFERENCE.md#1-accepted-scope-and-exclusions) | the relevant behavior subsection or [animation authoring rules](ANIMATION_RULES.md) §§9–11 |
+| How do I configure an attack? | [Shipping INI settings and examples](../src/Script_G3AnimationBehaviors/Ini/G3AnimationBehaviors.ini) | DESIGN §§2–3 for profile/setting meaning; ANIMATION_RULES §5.1 for Raise assets |
+| Why did we choose this design? | [Decision topics and effective status](decisions/README.md) → the relevant decision | current DESIGN / COLLISION_REFERENCE for what applies now; evidence only if a factual premise is disputed |
+| Where is a reusable research utility? | [Retained tools and their limits](../README.md#current-build-products-and-tools) → the linked source directory | exact POP for an authorized operation; investigate coverage/hook compatibility before reuse |
 | Why does project exist / what is authority hierarchy? | this `README.md` §0 | owning specialist authority after charter role is clear |
 | What are we doing now? | `SESSION_ENTRYPOINT.md` | `BETWEEN_CHATS.md` for exact transient continuation |
 | Previous Chat died before handoff; what now? | root `README.md` **Start Here** | follow its Recovery Lock route into POP-11; then this charter §0 + `KNOWLEDGE_REGISTRY.md` + `KNOWLEDGE_MAINTENANCE.md` + recent durable tail; POP-10 only if contradiction gate fires |
@@ -316,14 +322,13 @@ Ordinary documentation history belongs in Git; historical Git content never over
 | Current raw8 / raw55 contract? | `COLLISION_REFERENCE.md` §4 | corresponding source; hook guide §§4–5; EV for proof |
 | Collision symptom / diagnostics? | `COLLISION_REFERENCE.md` §6 | release architecture for general policy; source + specific EV |
 | Collision validation / reopening? | `COLLISION_REFERENCE.md` §7 | release architecture §8 and exact POP; SESSION for active gate |
-| Is engine claim proven? | `EVIDENCE_INDEX.md` | exact ledger → raw/source |
+| Is an engine claim proven? | [EVIDENCE_INDEX](EVIDENCE_INDEX.md) | exact ledger → raw/source only for the specific proof question |
 | Where did an archived evidence file move? | `EVIDENCE_PATH_MIGRATIONS.md` | exact historical EV/commit when needed |
 | Native cleanup callsite? | `SOURCE_HOOK_GUIDE.md` §3 | relevant EV; archived cleanup map only for exact historical stacks |
 | Animation token/UseType/action/pose? | `ANIMATION_INDEX.md` | exact Rules section |
 | Exact animation exists? | animation-name data | catalog/rules for interpretation |
 | Family/fixture/source note? | `ANIMATION_INDEX.md` | Catalog |
-| Gothic source/API/hook? | `SOURCE_HOOK_GUIDE.md` | SDK/reference/binary/evidence |
-| Why was a significant architectural/project choice made? | `docs/decisions/` ADRs | current architecture/reference; evidence only when factual premise/provenance matters |
+| Where is an exact engine/API/hook fact? | [SOURCE_HOOK_GUIDE](SOURCE_HOOK_GUIDE.md) → the relevant subsection | exact SDK/reference/binary region or EV when verification requires it |
 | Why did an older technical workaround/behavior exist when no ADR owns the rationale? | current reference/architecture → `EVIDENCE_INDEX.md` | exact EV/provenance; Git history/raw/archive only if chronology/wording matters |
 
 ### Subsystem Orientation Routes

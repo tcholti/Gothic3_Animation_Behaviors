@@ -203,6 +203,8 @@ If the answer is unclear, return to design rather than placing the logic in the 
 
 ## 9. Review Checklist Before a Feature Becomes Permanent
 
+Apply the established [ENGINEERING_GUIDE](ENGINEERING_GUIDE.md) principles selectively, especially §§2–7,10,14. Read the sections relevant to the changed responsibility; the guide remains the owner of those principles.
+
 Normal Chat / design review should be able to answer:
 
 1. What factual native mechanism did the probe establish?
@@ -213,8 +215,9 @@ Normal Chat / design review should be able to answer:
 6. Can the temporary probe be deleted completely?
 7. Did experiment-only state or diagnostics leak into production?
 8. Are existing stable feature modules unchanged unless their responsibility genuinely expanded?
-9. Does the production implementation contain only evidence-backed complexity?
-10. Are broad/final tests being run **after** this production candidate exists?
+9. Does the feature solve the invariant with the smallest sufficient, elegant structure and real modular ownership, reusing native mechanisms where suitable?
+10. Are extra state, hooks, fallback layers and exceptions earned by evidence, while native behavior and proven paths remain protected?
+11. Are broad/final tests being run **after** this production candidate exists?
 
 If the probe cannot be deleted without breaking the production behavior, the promotion is incomplete.
 

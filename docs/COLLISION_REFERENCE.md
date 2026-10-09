@@ -58,6 +58,8 @@ These windows do not normalize Gothic character-hit policy. SimpleWhirl remains 
 
 ### 4.1 Raw8 — persistent opportunity, separate timing
 
+Native generic-human raw8 time-gates an attempt and sets its attempt latch before the remaining contact checks finish, so a miss can still spend that native attempt. An accepted G3AB FIST instead creates or refreshes one logical pending opportunity: it rearms after native misses until an exact matching native contact-resolution dispatch consumes it, or execution end/replacement/invalid identity safely retires it. Timing permission is a separate helper; pending does not mean continuous checking or a permanent hitbox, and contact dispatch does not guarantee HP damage.
+
 The execution record binds exact actor instance, monotonic C1, factual raw8 source and SPU. First marked ownership closes native permission (`SPU+0x164 = 1`). Accepted FIST confirms latch `0`, opens or refreshes **one** pending opportunity and retires prior timing state; opportunities never stack.
 
 After the untouched native CombatMove, a matching pending opportunity/ordinal still present without exact contact can rearm latch `1 → 0`, with readback. A native miss leaves it pending. FullStop itself is not terminal authority.

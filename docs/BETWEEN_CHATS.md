@@ -1,7 +1,7 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-10-08 — derived-evidence archival independently reviewed; no new Work task authorized
+**Updated:** 2026-10-09 — Practical Knowledge & Engineering Principles implemented; Normal Chat review next
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
@@ -9,12 +9,13 @@ Repository: `tcholti/Gothic3_Animation_Behaviors`
 Active branch: `development`
 Protected stable main: `08a0bd8fcf42173088e233e09b706a80da882070`
 
-The reviewed first documentation-consolidation checkpoint is `2149a21e827c27a741d5291a4f5b1159b685c68b`. The second approved maintenance stage starts there: 27 completed packages move unchanged from `research/derived/<name>/` to `research/archive/derived/<same-name>/`, and three closed manual checkpoints move unchanged to `docs/archive/investigations/`. [EVIDENCE_PATH_MIGRATIONS](EVIDENCE_PATH_MIGRATIONS.md#2026-10-08--completed-derived-evidence-archival) records the exact set, source identities and historical-path recovery. Current COLLISION_REFERENCE/ANIMATION_RULES and exact EVs retain knowledge/proof ownership.
+Accepted maintenance checkpoints:
 
-All 1,031 package files (63,811,985 bytes) and three manual files (22,907 bytes) retain exact Git blob identity; manifests and internal layouts are unchanged. Canonical originals, research/raw, prior archives/ledgers, production code, shipping INI, CMake, tools, prototypes, submodules, accepted DLL and main remain protected. Build/game/runtime validation was not performed. Storage changes establish no new EV or runtime acceptance.
+- Documentation consolidation: `2149a21e827c27a741d5291a4f5b1159b685c68b` — one maintained collision reference; original knowledge preserved in dated snapshots.
+- Completed derived-evidence archival: `975c7e2a1b17b47133a19f8091f158956a7de6b1` — independently reviewed: all 27 package trees, three checkpoint blobs and 462 prior canonical archive entries match. Work reported retrieval/static PASS; historical mirror-index size discrepancies remain preserved. No raw SHA256 rehash or regeneration claim. [Path migrations](EVIDENCE_PATH_MIGRATIONS.md) owns recovery.
 
-No feature/research task is active. [POST_RELEASE_AUDIT_PREPARATION.md](work/active/POST_RELEASE_AUDIT_PREPARATION.md) remains ACTIVE as the owner of the unfinished staged sequence. SESSION_ENTRYPOINT and this bridge own the pause/next decision gate.
+Third stage: **Practical Knowledge & Engineering Principles**, approved from `6d224946490e424a91d5109d883a9fdb04595503`. It adds two concise usability perspectives, an existing-owner question lookup, all twelve decision links/status qualifications, a raw8 lead, a targeted ENGINEERING_GUIDE review connection and truthful retained-tool capability/limit descriptions. This commit is the published third-stage checkpoint; the Work handoff supplies the full remote SHA.
 
-**Reviewed checkpoint:** `development @ 975c7e2a1b17b47133a19f8091f158956a7de6b1` ACCEPTED for this archival stage. Independent Normal Chat Git verification: all 27 package subtree identities match the source checkpoint, the three manual checkpoint blob identities match, and all 462 prior canonical archive entries are unchanged. Work's 1,004 manifest outputs, 500 mirror-index ranges, canonical source-name/size retrieval and validator checks are reported PASS, not independently rerun here. One historical mirror-index byte-count inconsistency is retained; no raw-source SHA256 rehash or regeneration was performed. No new runtime fact/EV.
+**Next:** Normal Chat independently reviews the third-stage documentation diff against the frozen brief and static/navigation checks. Work stops here. ENGINEERING_GUIDE, individual ADRs, production source/configuration, tools/prototypes/CMake/DLLs and all evidence remain unchanged. Build/game/runtime validation was NOT ATTEMPTED; no new EV or runtime fact.
 
-**Next only with User authorization:** decide KA-10 (research build defaults/tool classification), KA-11 (historical INI/Movement seed), and optional KA-12 automation as separate bounded stages, or explicitly defer them. After the final approved maintenance checkpoint is reviewed, run the separate independent `main` versus reviewed `development` semantic loss audit and reconcile genuine findings. No Work task, runtime work or `main` promotion is currently authorized. For interrupted context, recover from root README/POP-11 before acting.
+[POST_RELEASE_AUDIT_PREPARATION.md](work/active/POST_RELEASE_AUDIT_PREPARATION.md) remains ACTIVE. The overall audit/reconciliation is open. KA-10 research build defaults, KA-11 historical INI/Movement seed and broader optional KA-12 automation require separate authorization. After approved maintenance is reviewed, the independent `main` versus reviewed `development` semantic loss audit and final Normal Chat reconciliation remain mandatory, separately launched tasks. Do not start them or promote main from this handoff.

@@ -136,6 +136,13 @@ The current owner(s), with targeted source lookup, should answer:
 5. **Why the unusual decisions?** Only rationale needed to avoid repeating a known mistake, with an ADR or archived explanation when depth is necessary.
 6. **Where is the proof?** A specific index/EV/archive route for unresolved questions or contradiction checks, not a mandatory history-reading sequence.
 
+**Practical usability / work-enablement acceptance:** Try an ordinary question from each perspective using the existing routes:
+
+- **User:** Can I find and understand current behavior, configuration, decisions and limitations in plain language, before reading research?
+- **Chat / development agent:** Can I reach the owning source, invariants, safe workflow and relevant rationale/proof from the current contract, with a targeted route to the established engineering principles, without recreating discovery history?
+
+Practical knowledge should be easy to find, easy to understand, and safe to build upon. Documentation should reduce the work needed, not just store its history. If either route fails, repair the smallest existing owner or link; preserve specialist authority and [ENGINEERING_GUIDE](ENGINEERING_GUIDE.md) as the principle owner.
+
 Use **progressive retrieval**:
 
 ```text
