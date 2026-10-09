@@ -1,6 +1,6 @@
 # Post-Release Repository Audit Preparation
 
-**Status:** ACTIVE — three stages reviewed/accepted; KA-11 review, remaining User decisions and independent comparison pending
+**Status:** ACTIVE — four stages reviewed/accepted; KA-10/KA-12 decisions and independent comparison pending
 **Mode:** Normal Chat review / staged post-release maintenance
 **Stable comparison baseline:** `main @ 08a0bd8fcf42173088e233e09b706a80da882070`  
 **Working branch:** `development`
@@ -18,9 +18,9 @@ Two approved preservation-first stages are implemented and independently reviewe
 
 Third stage reviewed/accepted: **Practical Knowledge & Engineering Principles**, frozen from `development @ 6d224946490e424a91d5109d883a9fdb04595503`, published as `2f13fecf95d14d1819a64eaf233705be696ca1b8`. It improves existing user/agent navigation, the twelve-ADR status index, plain-language raw8 explanation, engineering-review connection and accurate retained-tool descriptions. Independent Normal Chat review found no blocking problem; full link/validator PASS is Work-reported, with important routes/source claims checked independently. ENGINEERING_GUIDE and every individual ADR remain unchanged.
 
-KA-11 historical INI/Movement-seed archival was separately approved from `development @ 266ef970be17caff721aaac7987ba787e29e1e18` and implemented in the commit containing this update; the Work handoff supplies the full checkpoint SHA. [KA-11 path migrations](../../EVIDENCE_PATH_MIGRATIONS.md#ka-11-historical-configuration-and-movement-seed) records byte-identical archives of the conceptual INI and full pre-edit Future Investigations document. The completed Movement seed leaves the current future list; the two unresolved bodies remain unchanged and PARKED / NON-ACTIVE. Current shipping INI and Movement authorities remain unchanged.
+KA-11 historical INI/Movement-seed archival was approved from `development @ 266ef970be17caff721aaac7987ba787e29e1e18` and published at `0288c3fc5d39c2e9ed02d3b978bf203c8fcff0f1`. Independently reviewed/accepted 2026-10-09: both complete originals match their archived Git blobs; the remaining Recover/timeout-pause research bodies are identical apart from heading numbers. [KA-11 path migrations](../../EVIDENCE_PATH_MIGRATIONS.md#ka-11-historical-configuration-and-movement-seed) owns retrieval. Current shipping INI and Movement authorities are unchanged; Work-reported link/validator checks passed, not independently rerun.
 
-**Current gate: independent Normal Chat review of KA-11.** KA-10 CMake/research build defaults and broader optional KA-12 automation remain separate, not yet authorized. Retained-tool descriptions do not authorize tool/build changes. The independent `main` comparison still follows final reviewed maintenance as its own bounded task. Do not begin further implementation, feature work, runtime tests or the independent comparison from this pointer. `main` remains protected at `08a0bd8fcf42173088e233e09b706a80da882070`; no production source/configuration/build behavior or new EV changed.
+**Current gate: User decision on remaining maintenance.** KA-10 CMake/research build defaults and broader optional KA-12 automation remain separate, not yet authorized. Retained-tool descriptions do not authorize tool/build changes. The independent `main` comparison still follows final reviewed maintenance as its own bounded task. Do not begin further implementation, feature work, runtime tests or the independent comparison from this pointer. `main` remains protected at `08a0bd8fcf42173088e233e09b706a80da882070`; no production source/configuration/build behavior or new EV changed.
 
 This document remains ACTIVE because later authorized maintenance decisions and the mandatory independent `main` versus post-maintenance `development` loss-detection/reconciliation are unfinished. Normal Chat owns final closure/archive of this document only after that sequence has concluded.
 
@@ -62,7 +62,7 @@ This phase protects useful context and historical/operational material that a st
 
 ### Phase 4 — Work approved maintenance implementation
 
-The first documentation-consolidation, second derived-evidence archival and third Practical Knowledge & Engineering Principles documentation stages are completed/reviewed. Separately approved KA-11 is implemented and awaits independent Normal Chat review. Any further Work stage needs its own frozen scope after Normal Chat/User decisions.
+The documentation consolidation, derived-evidence archival, Practical Knowledge & Engineering Principles and KA-11 archival stages are completed/reviewed. Any further Work stage needs its own frozen scope after Normal Chat/User decisions.
 
 That task may implement **only the approved audit maintenance** on `development`.
 
@@ -70,7 +70,7 @@ Do not modify stable `main`.
 
 ### Phase 5 — Normal Chat post-audit review
 
-The first three stages have been independently reviewed at the checkpoints recorded above. KA-11 review is pending; review it and any later approved stages before advancing.
+All four completed stages have been independently reviewed at the checkpoints recorded above. Review any later approved stages before advancing.
 
 The final post-maintenance development checkpoint must be explicit before the independent comparison task.
 
