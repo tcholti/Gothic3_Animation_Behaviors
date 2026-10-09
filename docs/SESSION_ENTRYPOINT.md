@@ -9,7 +9,7 @@
 
 <!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
 
-## Current gate — KA-12 implemented; independent Normal Chat review pending
+## Current gate — six maintenance stages accepted; Backup saved; independent comparison next
 
 Collision, Speed, Raise, Movement and narrow player bad-block protection remain CLOSED/PASS. First-release checkpoint review EV-455, quick documentation review EV-456 and stable promotion EV-457 are complete. No feature/research task is active.
 
@@ -26,7 +26,11 @@ KA-11 historical configuration/Movement-seed archival was implemented at `develo
 
 KA-10 Optional Research Build Defaults was published at `development @ 4cd3c2d9e04ecf484bb7939f697649f693de5f30` and independently reviewed/accepted in Normal Chat on 2026-10-09. Only two root CMake option defaults change to `OFF`; production remains unconditional and the six diagnostic tool targets, two collision twins, deep-diagnostic setting, tool/prototype source and protected Git subtrees remain unchanged. README/POP-02 now document deliberate opt-ins and existing-cache behavior. Work reports full link/knowledge validation PASS; Normal Chat verified exact CMake equivalence and Git tree identities, but did not configure, build or run Gothic 3.
 
-**Immediate responsibility:** Independently review KA-12 in Normal Chat. Approved from `820298ebc81f212fd30936a4cd00b8607c8ca876`, the commit containing this update extends the existing validator to local file/directory links; Markdown anchors, numeric sections, lifecycle rules and CI remain intact. The Work handoff supplies the full checkpoint SHA and static/self-test results. No further Work is authorized here. The independent `main`→`development` loss-detection audit remains a separate task after review. Do not build, run Gothic 3 or promote `main`.
+KA-12 accepted: `development @ b462ec839f972a172a4325f9d69216468c0bafce` was independently reviewed on 2026-10-09. Only the five assigned files changed. The validator now covers repository-local file/directory links; Markdown anchors, numeric-section validation, lifecycle checks and CI are unchanged. Work reports 148 current links and 16 controlled fixture checks PASS; the complete tests were not rerun in Normal Chat. Protected CMake, source, tools, prototypes, engineering principles and evidence are untouched.
+
+**Backup:** `Backup @ 08a0bd8fcf42173088e233e09b706a80da882070` was created directly from and verified identical to `main` (zero differences). Keep both untouched; `Backup` is a normal branch without enforced protection.
+
+**Immediate responsibility:** Prepare a separate, read-only independent semantic knowledge-loss comparison of the fixed `main` first-release baseline against the final reviewed `development` checkpoint (the latest state after this maintenance note). Report findings for Normal Chat reconciliation before considering edits. No comparison has been launched. No build/runtime, unassigned implementation, or promotion of `main`/`Backup` is authorized.
 
 The open sequence remains owned by [POST_RELEASE_AUDIT_PREPARATION.md](work/active/POST_RELEASE_AUDIT_PREPARATION.md). It stays active for remaining User decisions, eventual maintenance review and the independent comparison/reconciliation; the whole post-release audit cycle is not closed.
 

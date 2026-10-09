@@ -138,6 +138,10 @@ An interrupted-Chat recovery is not automatically a formal audit. POP-11 first r
 
 `main` is the last deliberately promoted stable integration and reusable Gothic 3 knowledge baseline. It is not advanced by ordinary current development commits. Promotion from `development` remains deliberate rather than automatic.
 
+### Backup safeguard
+
+`Backup` is a deliberately retained, do-not-modify branch created on 2026-10-09 at the exact first-release `main @ 08a0bd8fcf42173088e233e09b706a80da882070`. It is not a new working branch or an immutable/protected tag. The independent audit continues to compare `main` with the reviewed `development` checkpoint; neither the comparison nor later promotion must advance `Backup`.
+
 ### Historical collision branch
 
 `docs/collision-source-evidence` is retained as historical collision-development provenance. Ordinary new work no longer continues there.
