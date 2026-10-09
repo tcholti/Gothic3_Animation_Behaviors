@@ -1,7 +1,7 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-10-09 — KA-11 reviewed and accepted; next User decision
+**Updated:** 2026-10-09 — KA-10 implemented; independent Normal Chat review pending
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
@@ -18,6 +18,8 @@ Third stage: **Practical Knowledge & Engineering Principles**, approved from `6d
 
 KA-11 accepted at `0288c3fc5d39c2e9ed02d3b978bf203c8fcff0f1`, independently reviewed 2026-10-09. The historical conceptual INI and complete pre-edit Future Investigations snapshot match their source blobs; the two remaining parked investigations retain identical bodies (only headings renumbered). [KA-11 path migrations](EVIDENCE_PATH_MIGRATIONS.md#ka-11-historical-configuration-and-movement-seed) preserves retrieval. Shipping INI, DESIGN/SOURCE_HOOK, ENGINEERING_GUIDE, CMake and retained tools are unchanged. Work reports full link/knowledge-validator PASS; not independently rerun.
 
-**Next:** Await User authorization or deferral for KA-10 and optional KA-12 as separate tasks. No feature/Work task is active. ENGINEERING_GUIDE, individual ADRs, production source/configuration, tools/prototypes/CMake/DLLs and prior evidence remain unchanged. Build and Gothic 3 runtime: NOT ATTEMPTED; no new EV or runtime fact.
+KA-10 was approved from `ed88e73e2bb884d0aa83199510b9b069cf2e6e69` and is implemented in the commit containing this update; the Work handoff supplies its full checkpoint SHA. The two root CMake option defaults are now `OFF`; all target definitions and tool/prototype sources/configurations are unchanged. README/POP-02 explain research opt-ins and retained cache values. Static verification only; no configuration/build/runtime proof is claimed. Independent Normal Chat review is pending.
 
-[POST_RELEASE_AUDIT_PREPARATION.md](work/active/POST_RELEASE_AUDIT_PREPARATION.md) remains ACTIVE. The overall audit/reconciliation remains open; KA-11 has been independently reviewed. KA-10 research build defaults and broader optional KA-12 automation require separate authorization. After final approved maintenance is reviewed, the independent `main` versus reviewed `development` semantic loss audit and final Normal Chat reconciliation remain mandatory, separately launched tasks. Do not start them or promote main from this handoff.
+**Next:** Normal Chat independently reviews KA-10. KA-12 is next by User direction but needs a separate frozen task after that review; no further feature/Work task is authorized here. ENGINEERING_GUIDE, individual ADRs, production source/configuration/DLLs, tools/prototypes, all other CMake files and prior evidence remain unchanged. Configure, build and Gothic 3 runtime: NOT ATTEMPTED; no new EV or runtime fact.
+
+[POST_RELEASE_AUDIT_PREPARATION.md](work/active/POST_RELEASE_AUDIT_PREPARATION.md) remains ACTIVE. The overall audit/reconciliation remains open; the first four maintenance stages are accepted and KA-10 review is pending. KA-12 remains a separate next task. After final approved maintenance is reviewed, the independent `main` versus reviewed `development` semantic loss audit and final Normal Chat reconciliation remain mandatory, separately launched tasks. Do not start them or promote main from this handoff.

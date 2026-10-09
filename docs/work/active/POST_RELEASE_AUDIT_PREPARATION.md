@@ -1,6 +1,6 @@
 # Post-Release Repository Audit Preparation
 
-**Status:** ACTIVE — four stages reviewed/accepted; KA-10/KA-12 decisions and independent comparison pending
+**Status:** ACTIVE — four stages reviewed/accepted; KA-10 review pending, KA-12 next separately, independent comparison pending
 **Mode:** Normal Chat review / staged post-release maintenance
 **Stable comparison baseline:** `main @ 08a0bd8fcf42173088e233e09b706a80da882070`  
 **Working branch:** `development`
@@ -20,7 +20,9 @@ Third stage reviewed/accepted: **Practical Knowledge & Engineering Principles**,
 
 KA-11 historical INI/Movement-seed archival was approved from `development @ 266ef970be17caff721aaac7987ba787e29e1e18` and published at `0288c3fc5d39c2e9ed02d3b978bf203c8fcff0f1`. Independently reviewed/accepted 2026-10-09: both complete originals match their archived Git blobs; the remaining Recover/timeout-pause research bodies are identical apart from heading numbers. [KA-11 path migrations](../../EVIDENCE_PATH_MIGRATIONS.md#ka-11-historical-configuration-and-movement-seed) owns retrieval. Current shipping INI and Movement authorities are unchanged; Work-reported link/validator checks passed, not independently rerun.
 
-**Current gate: User decision on remaining maintenance.** KA-10 CMake/research build defaults and broader optional KA-12 automation remain separate, not yet authorized. Retained-tool descriptions do not authorize tool/build changes. The independent `main` comparison still follows final reviewed maintenance as its own bounded task. Do not begin further implementation, feature work, runtime tests or the independent comparison from this pointer. `main` remains protected at `08a0bd8fcf42173088e233e09b706a80da882070`; no production source/configuration/build behavior or new EV changed.
+KA-10 Optional Research Build Defaults was separately approved from `development @ ed88e73e2bb884d0aa83199510b9b069cf2e6e69` and implemented in the commit containing this update; the Work handoff supplies the full checkpoint SHA. The two root CMake defaults change to `OFF`; all research targets, tool/prototype implementations and diagnostic variants are preserved. README/POP-02 explain opt-in groups and unchanged cached values. Verification is static only; configure/build/runtime execution was not authorized or attempted.
+
+**Current gate: independent Normal Chat review of KA-10.** KA-12 is next by User direction, with separate frozen scope after this review; it has not started. Retained-tool descriptions do not authorize tool/build changes. The independent `main` comparison still follows final reviewed maintenance as its own bounded task. Do not begin further implementation, feature work, runtime tests or the independent comparison from this pointer. `main` remains protected at `08a0bd8fcf42173088e233e09b706a80da882070`; production source/configuration, all other CMake files and evidence are unchanged; no new EV or runtime fact.
 
 This document remains ACTIVE because later authorized maintenance decisions and the mandatory independent `main` versus post-maintenance `development` loss-detection/reconciliation are unfinished. Normal Chat owns final closure/archive of this document only after that sequence has concluded.
 
@@ -62,7 +64,7 @@ This phase protects useful context and historical/operational material that a st
 
 ### Phase 4 — Work approved maintenance implementation
 
-The documentation consolidation, derived-evidence archival, Practical Knowledge & Engineering Principles and KA-11 archival stages are completed/reviewed. Any further Work stage needs its own frozen scope after Normal Chat/User decisions.
+The documentation consolidation, derived-evidence archival, Practical Knowledge & Engineering Principles and KA-11 archival stages are completed/reviewed. KA-10 is implemented and awaits independent Normal Chat review. KA-12 is next separately after that review; any further Work stage needs its own frozen scope after Normal Chat/User decisions.
 
 That task may implement **only the approved audit maintenance** on `development`.
 
@@ -70,7 +72,7 @@ Do not modify stable `main`.
 
 ### Phase 5 — Normal Chat post-audit review
 
-All four completed stages have been independently reviewed at the checkpoints recorded above. Review any later approved stages before advancing.
+The first four stages have been independently reviewed at the checkpoints recorded above. Review KA-10 next, then any separately approved KA-12 implementation before advancing.
 
 The final post-maintenance development checkpoint must be explicit before the independent comparison task.
 

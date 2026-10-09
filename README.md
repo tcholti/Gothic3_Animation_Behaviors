@@ -91,15 +91,23 @@ Initialize the pinned submodules with:
 git submodule update --init --recursive
 ```
 
-Configure the project for Gothic 3's required 32-bit target:
+Configure the project for Gothic 3's required 32-bit target. A new/clean configuration includes only the production DLL target `Script_G3AnimationBehaviors`; `G3AB_BUILD_PROTOTYPES` and `G3AB_BUILD_TOOLS` default to `OFF`:
 
 ```powershell
 cmake -S . -B build -G "Visual Studio 17 2022" -A Win32
 ```
 
+Research groups are independent opt-ins: `-DG3AB_BUILD_PROTOTYPES=ON` includes the collision research twins; `-DG3AB_BUILD_TOOLS=ON` includes the diagnostic tools. Enable the group required by the frozen task (both shown here); the production target remains included:
+
+```powershell
+cmake -S . -B build -G "Visual Studio 17 2022" -A Win32 -DG3AB_BUILD_PROTOTYPES=ON -DG3AB_BUILD_TOOLS=ON
+```
+
+These defaults apply to new/clean configurations. Existing `build/` trees retain cached option values, which may still be `ON`; inspect both options in `build/CMakeCache.txt` and deliberately reconfigure with the desired `ON`/`OFF` flags when needed. Exact target selection, build and deployment procedures remain in [POP-02/03](docs/PROJECT_OPERATING_PROCEDURES.md#4-pop-02--build-only).
+
 ## Current Build Products and Tools
 
-The root CMake project currently exposes these relevant DLL targets:
+The root CMake project retains these DLL targets; research targets require the corresponding opt-ins above:
 
 ```text
 Script_G3AnimationBehaviors

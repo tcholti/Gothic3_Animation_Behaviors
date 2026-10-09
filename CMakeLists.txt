@@ -9,8 +9,8 @@ project(
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-option(G3AB_BUILD_PROTOTYPES "Build experimental animation-behavior prototypes" ON)
-option(G3AB_BUILD_TOOLS "Build project diagnostic tools" ON)
+option(G3AB_BUILD_PROTOTYPES "Build experimental animation-behavior prototypes" OFF)
+option(G3AB_BUILD_TOOLS "Build project diagnostic tools" OFF)
 
 add_subdirectory(thirdparty/gothic3sdk)
 include(${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/gothic3sdk/cmake/Setup.cmake)

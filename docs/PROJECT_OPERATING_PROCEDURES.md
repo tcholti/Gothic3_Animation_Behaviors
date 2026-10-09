@@ -234,6 +234,10 @@ The final SHA is the synchronization proof. If `--ff-only` refuses because the l
 
 Use after required source review when a local runtime binary is needed.
 
+**Precondition:** the configured build tree must include the selected targets before using `--target`. In new/clean configurations, `G3AB_BUILD_PROTOTYPES` and `G3AB_BUILD_TOOLS` default to `OFF`; `Script_G3AnimationBehaviors` remains included. Collision research twins require `-DG3AB_BUILD_PROTOTYPES=ON`; diagnostic tools require `-DG3AB_BUILD_TOOLS=ON`. Use the [root configuration instructions](../README.md#build-dependencies) to include the required group before the exact build commands below.
+
+Existing build trees retain cached option values; the new source defaults do not override a cached `ON`. Inspect both options in `build/CMakeCache.txt` and deliberately reconfigure with the needed `ON`/`OFF` flags. Do not assume an existing tree has adopted the clean defaults.
+
 ### Canonical rule
 
 ```text
