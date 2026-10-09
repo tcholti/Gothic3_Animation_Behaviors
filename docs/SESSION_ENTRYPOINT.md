@@ -9,7 +9,7 @@
 
 <!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
 
-## Current gate — six maintenance stages accepted; Backup saved; independent comparison next
+## Current gate — post-release maintenance/audit reconciled; next User decision
 
 Collision, Speed, Raise, Movement and narrow player bad-block protection remain CLOSED/PASS. First-release checkpoint review EV-455, quick documentation review EV-456 and stable promotion EV-457 are complete. No feature/research task is active.
 
@@ -24,15 +24,17 @@ The third bounded documentation stage, **Practical Knowledge & Engineering Princ
 
 KA-11 historical configuration/Movement-seed archival was implemented at `development @ 0288c3fc5d39c2e9ed02d3b978bf203c8fcff0f1` and independently reviewed/accepted in Normal Chat on 2026-10-09. Both original archives have identical Git blob identities; the Recover-cancellation and exact-pause bodies match their prior versions with headings renumbered; completed Movement was removed from the future list. [KA-11 path migrations](EVIDENCE_PATH_MIGRATIONS.md#ka-11-historical-configuration-and-movement-seed) records exact recovery. Shipping INI, current DESIGN/SOURCE_HOOK owners, engineering principles, tools, prototypes and CMake remain unchanged. Work reports full links/static validator PASS; those checks were not independently rerun.
 
-KA-10 Optional Research Build Defaults was published at `development @ 4cd3c2d9e04ecf484bb7939f697649f693de5f30` and independently reviewed/accepted in Normal Chat on 2026-10-09. Only two root CMake option defaults change to `OFF`; production remains unconditional and the six diagnostic tool targets, two collision twins, deep-diagnostic setting, tool/prototype source and protected Git subtrees remain unchanged. README/POP-02 now document deliberate opt-ins and existing-cache behavior. Work reports full link/knowledge validation PASS; Normal Chat verified exact CMake equivalence and Git tree identities, but did not configure, build or run Gothic 3.
+KA-10 Optional Research Build Defaults was published at `development @ 4cd3c2d9e04ecf484bb7939f697649f693de5f30` and independently reviewed/accepted in Normal Chat on 2026-10-09. Only two root CMake option defaults change to `OFF`; production remains unconditional and six tool directories defining eight DLL targets, two collision twins, deep-diagnostic setting, tool/prototype source and protected Git subtrees remain unchanged. README/POP-02 now document deliberate opt-ins and existing-cache behavior. Work reports full link/knowledge validation PASS; Normal Chat verified exact CMake equivalence and Git tree identities, but did not configure, build or run Gothic 3.
 
 KA-12 accepted: `development @ b462ec839f972a172a4325f9d69216468c0bafce` was independently reviewed on 2026-10-09. Only the five assigned files changed. The validator now covers repository-local file/directory links; Markdown anchors, numeric-section validation, lifecycle checks and CI are unchanged. Work reports 148 current links and 16 controlled fixture checks PASS; the complete tests were not rerun in Normal Chat. Protected CMake, source, tools, prototypes, engineering principles and evidence are untouched.
 
 **Backup:** `Backup @ 08a0bd8fcf42173088e233e09b706a80da882070` was created directly from and verified identical to `main` (zero differences). Keep both untouched; `Backup` is a normal branch without enforced protection.
 
-**Immediate responsibility:** Prepare a separate, read-only independent semantic knowledge-loss comparison of the fixed `main` first-release baseline against the final reviewed `development` checkpoint (the latest state after this maintenance note). Report findings for Normal Chat reconciliation before considering edits. No comparison has been launched. No build/runtime, unassigned implementation, or promotion of `main`/`Backup` is authorized.
+**Independent comparison concluded:** Work compared `main @ 08a0bd8fcf42173088e233e09b706a80da882070` with reviewed `development @ dbea364042833142c49569e61f77c5969cd96964` and reported **zero blocking/material semantic loss** and two minor documentation drifts: the stale `PROJECT_PIPELINE.md` review gate and inaccurate six-target inventory. Normal Chat confirmed and corrected both in this closure transaction. Work's extensive preservation/retrieval checks were not all independently rerun; no new runtime facts were established.
 
-The open sequence remains owned by [POST_RELEASE_AUDIT_PREPARATION.md](work/active/POST_RELEASE_AUDIT_PREPARATION.md). It stays active for remaining User decisions, eventual maintenance review and the independent comparison/reconciliation; the whole post-release audit cycle is not closed.
+**Immediate responsibility:** The six approved maintenance stages and independent semantic-loss reconciliation are complete. Await User direction for later feature work or a deliberately authorized `development`→`main` promotion. Do not build/run Gothic 3 or modify `main`/`Backup` without separate approval.
+
+The completed audit plan is preserved as [cold provenance](archive/investigations/POST_RELEASE_AUDIT_PREPARATION_PRE_CLOSURE_2026-10-09.md). Its earlier ACTIVE/review-pending language is historical; this entrypoint owns the current state. Evidence archive recovery remains in [EVIDENCE_PATH_MIGRATIONS](EVIDENCE_PATH_MIGRATIONS.md).
 
 ## Smallest technical routes
 

@@ -53,7 +53,7 @@ main
 development
 = sole active general development / research / integration branch
 = continues from the promoted Collision + Speed + Raise + Movement stable baseline
-= continues beyond the accepted first-release promotion (EV-457); documentation consolidation is pending Normal Chat review on development
+= continues beyond the accepted first-release promotion (EV-457); current gate and maintenance status belong to docs/SESSION_ENTRYPOINT.md
 = intended to remain subsystem-neutral for later targeting/climbing/other adopted systems
 
 docs/collision-source-evidence
