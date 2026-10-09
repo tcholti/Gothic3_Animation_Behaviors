@@ -9,7 +9,7 @@
 
 <!-- KNOWLEDGE_LIFECYCLE_ROUTE: docs/KNOWLEDGE_MAINTENANCE.md -->
 
-## Current gate — three documentation/archival stages reviewed; next User decision
+## Current gate — KA-11 implemented; independent Normal Chat review pending
 
 Collision, Speed, Raise, Movement and narrow player bad-block protection remain CLOSED/PASS. First-release checkpoint review EV-455, quick documentation review EV-456 and stable promotion EV-457 are complete. No feature/research task is active.
 
@@ -22,7 +22,9 @@ The first documentation-consolidation stage was reviewed and accepted at `develo
 
 The third bounded documentation stage, **Practical Knowledge & Engineering Principles**, was approved from `development @ 6d224946490e424a91d5109d883a9fdb04595503`. It adds concise user/agent usability checks, current-question and decision navigation, a raw8 plain-language lead, targeted engineering-principle review and truthful retained-tool descriptions. The engineering guide, individual ADRs, source/tools/prototypes/configuration and preserved evidence are unchanged. The published third-stage checkpoint is `development @ 2f13fecf95d14d1819a64eaf233705be696ca1b8`, independently reviewed and accepted in Normal Chat on 2026-10-09. Review confirmed the exact nine-document scope, all twelve ADR entries, native-versus-persistent raw8 accuracy, targeted engineering-principle link and retained research-tool descriptions. ENGINEERING_GUIDE, individual ADRs, source, configuration, CMake and evidence remain unchanged. Work reports full link/validator PASS; Normal Chat independently checked the important new targets and relevant source contracts without re-running the whole validator.
 
-**Immediate responsibility:** Await a new User decision for separately bounded KA-10 research build-default/tool-classification work, KA-11 historical configuration/Movement seed, or optional KA-12 automation; none is authorized by this handoff. After approved maintenance and review, launch the independent `main`→`development` semantic loss-detection task and reconcile any genuine loss. Do not build, run Gothic 3, start unassigned Work, or promote `main` from this pointer.
+KA-11 historical configuration/Movement-seed archival was approved from `development @ 266ef970be17caff721aaac7987ba787e29e1e18` and is implemented in the commit containing this update; its full checkpoint SHA is supplied in the Work handoff. The obsolete conceptual INI and full pre-edit Future Investigations snapshot are preserved byte-identically; [KA-11 path migrations](EVIDENCE_PATH_MIGRATIONS.md#ka-11-historical-configuration-and-movement-seed) records exact paths, blobs and current owners. The two unresolved investigation bodies remain unchanged and PARKED / NON-ACTIVE. Shipping configuration, current Movement authorities and protected material are unchanged. Independent Normal Chat review is pending.
+
+**Immediate responsibility:** Independently review the bounded KA-11 commit in Normal Chat. KA-10 research build-default/tool-classification work and optional KA-12 automation still require separate User decisions; no further Work is authorized by this handoff. After final approved maintenance and review, launch the separately bounded independent `main`→`development` semantic loss-detection task and reconcile any genuine loss. Do not build, run Gothic 3, start unassigned Work, or promote `main` from this pointer.
 
 The open sequence remains owned by [POST_RELEASE_AUDIT_PREPARATION.md](work/active/POST_RELEASE_AUDIT_PREPARATION.md). It stays active for remaining User decisions, eventual maintenance review and the independent comparison/reconciliation; the whole post-release audit cycle is not closed.
 

@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Deferred Future Investigations
 
 **Status:** PARKED / NON-ACTIVE  
-**Updated:** 2026-10-09
+**Updated:** 2026-10-08
 
 ## Purpose
 
@@ -9,11 +9,49 @@ Park potentially useful investigation ideas that are **not current architecture,
 
 Opening this file does not reopen a subsystem or change the current validation gate. If an item is deliberately activated later, first recover the smallest relevant source/evidence route and create a bounded research responsibility under the normal feature-development method.
 
-Implemented Movement is CLOSED/PASS under EV-440–EV-445; use [DESIGN §3 Movement](DESIGN.md#movement) and [SOURCE_HOOK_GUIDE §3B](SOURCE_HOOK_GUIDE.md#3b-attack-movement--displacement-mechanism). Its retired research seed is preserved in the [KA-11 path-migration record](EVIDENCE_PATH_MIGRATIONS.md#ka-11-historical-configuration-and-movement-seed), not this future-work list.
+---
+
+## 1. New Balance combat-move distance override — RESOLVED / PRODUCTION-INTEGRATED
+
+**Closure:** EV-440–EV-445
+**Current architecture:** `docs/DESIGN.md §3 Movement`
+**Hook/mechanism lookup:** `docs/SOURCE_HOOK_GUIDE.md §3B`
+
+This item is no longer a future investigation. The historical text below is retained as the original research seed and should not be read as current state.
+
+### Why it was parked
+
+Native Gothic 3 attack travel can be influenced by the movement/distance number encoded in an animation filename. New Balance currently also controls combat-move travel in code, so animation-authored distance and New Balance behavior may disagree. There is no current plan to change this; it is recorded only so the mechanism does not need to be rediscovered if the question ever matters.
+
+### Proven starting point
+
+Jackydima source repository:
+
+```text
+Jackydima/gothic3sdk
+scripts/Script_NewBalance/
+```
+
+Start with:
+
+- `CallHook.cpp` — `CombatMoveScale()` and `Hook_CombatMoveScale`.
+  - The current code normalizes `m_DirectionVec`, discarding its incoming magnitude, then scales it from `GetCombatMoveLength(...) / animationTime * ATTACK_REACH_MULTIPLIER`.
+- `FunctionHook.cpp` — `GetCombatMoveLength()`.
+  - Current New Balance assigns action-based combat travel lengths and applies a combat-skill range multiplier.
+- `FunctionHook.cpp` — `GetAnimationSpeedModifier()`.
+  - New Balance separately changes combat animation speed, so travel and playback timing must be considered together.
+- `SharedConfig.cpp` / `Script_NewBalance.cpp` — `ATTACK_REACH_MULTIPLIER` / `AttackReachMultiplier`.
+- Useful history anchor: commit `33624cb6105cc1cfba989f5a2bfa774234fcce4f` — `Script_Newbalance: Update Combatmovelength for Combat moves`.
+
+### If ever reopened
+
+Begin with a small native-vs-New-Balance A/B using the **same unchanged animation asset** and measure actual actor displacement during the attack. Only then decide whether filename-authored distance should be restored, combined with New Balance scaling, exposed as configuration, or left alone.
+
+Keep this independent from authored collision timing/source ownership unless evidence later proves a real coupling.
 
 ---
 
-## 1. New Balance Recover cancellation / premature Recover exit
+## 2. New Balance Recover cancellation / premature Recover exit
 
 ### Why it is parked
 
@@ -80,7 +118,7 @@ Do not assume the no-input symptom and the known forced-recovery-cancel feature 
 ---
 
 
-## 2. Exact block-timeout pause during attacks
+## 3. Exact block-timeout pause during attacks
 
 ### Why it is parked
 
@@ -125,4 +163,4 @@ If NPC overlap matters, the smallest next evidence step is the already-specified
 
 ## Boundaries
 
-The unresolved items in this file are **optional future research only**. They do not change `CollisionLifecycleGuard`/C1-R1 and do not reopen or redefine the production-closed first-release bad-block protection.
+The unresolved items in this file are **optional future research only**. They do not change `CollisionLifecycleGuard`/C1-R1 and do not reopen or redefine the production-closed first-release bad-block protection. The Movement item above is retained only as a historical seed because that investigation is already resolved and production-integrated.

@@ -1,7 +1,7 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.  
-**Updated:** 2026-10-09 — Practical Knowledge & Engineering Principles reviewed/accepted; next User decision
+**Updated:** 2026-10-09 — KA-11 implemented; independent Normal Chat review pending
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
@@ -16,6 +16,8 @@ Accepted maintenance checkpoints:
 
 Third stage: **Practical Knowledge & Engineering Principles**, approved from `6d224946490e424a91d5109d883a9fdb04595503`. It adds two concise usability perspectives, an existing-owner question lookup, all twelve decision links/status qualifications, a raw8 lead, a targeted ENGINEERING_GUIDE review connection and truthful retained-tool capability/limit descriptions. Published as `2f13fecf95d14d1819a64eaf233705be696ca1b8`. Normal Chat independently reviewed and accepted the nine-document scope, twelve ADR links/status qualifications, raw8 explanation, engineering-review checklist and retained-tool/CMake limitations. Work reports 131 link/anchor checks and the knowledge validator passed; full validation was not rerun independently.
 
-**Next:** No feature or Work task is authorized. Ask User to separately decide or defer KA-10, KA-11 and optional KA-12. ENGINEERING_GUIDE, individual ADRs, production source/configuration, tools/prototypes/CMake/DLLs and all evidence remain unchanged. Build/game/runtime validation was NOT ATTEMPTED; no new EV or runtime fact.
+KA-11 was approved from `266ef970be17caff721aaac7987ba787e29e1e18` and is implemented in the commit containing this update; the Work handoff supplies its full checkpoint SHA. [KA-11 path migrations](EVIDENCE_PATH_MIGRATIONS.md#ka-11-historical-configuration-and-movement-seed) records the byte-identical conceptual INI archive and full PRE_KA11 Future Investigations snapshot. Current Future Investigations retains the two unresolved bodies unchanged, renumbered §1–2 and still PARKED / NON-ACTIVE. Current shipping INI and DESIGN/SOURCE_HOOK Movement owners are unchanged. This checkpoint awaits independent Normal Chat review.
 
-[POST_RELEASE_AUDIT_PREPARATION.md](work/active/POST_RELEASE_AUDIT_PREPARATION.md) remains ACTIVE. The overall audit/reconciliation is open. KA-10 research build defaults, KA-11 historical INI/Movement seed and broader optional KA-12 automation require separate authorization. After approved maintenance is reviewed, the independent `main` versus reviewed `development` semantic loss audit and final Normal Chat reconciliation remain mandatory, separately launched tasks. Do not start them or promote main from this handoff.
+**Next:** Normal Chat independently reviews KA-11; no further feature or Work task is authorized. User still decides or defers KA-10 and optional KA-12 separately. ENGINEERING_GUIDE, individual ADRs, production source/configuration, tools/prototypes/CMake/DLLs and all pre-existing evidence remain unchanged. Build and Gothic 3 runtime: NOT ATTEMPTED; no new EV or runtime fact.
+
+[POST_RELEASE_AUDIT_PREPARATION.md](work/active/POST_RELEASE_AUDIT_PREPARATION.md) remains ACTIVE. The overall audit/reconciliation is open; KA-11 is implemented but not yet independently reviewed. KA-10 research build defaults and broader optional KA-12 automation require separate authorization. After final approved maintenance is reviewed, the independent `main` versus reviewed `development` semantic loss audit and final Normal Chat reconciliation remain mandatory, separately launched tasks. Do not start them or promote main from this handoff.

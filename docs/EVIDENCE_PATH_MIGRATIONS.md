@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Path Migrations
 
 **Status:** Canonical provenance-path lookup  
-**Updated:** 2026-10-08
+**Updated:** 2026-10-09
 
 ## Purpose
 
@@ -663,3 +663,20 @@ The three manual files total 22,907 bytes. The September 3 SimpleWhirl checkpoin
 - Keep manifest `SourceInput` spellings unchanged, whether relative `research/raw/...`, backslash paths or absolute workstation paths. Use the exact `SourceFileName` basename to locate the canonical archived original; use this frozen-set prefix rule for former derived package paths. Earlier raw-to-archive moves remain covered by the prior entries here. For a historical relative reference inside a manual checkpoint, resolve against its original location at the pinned source checkpoint, then apply the relevant migration. Direct links inside frozen history may retain old paths.
 
 Current recovery starts from the current reference → [EVIDENCE_INDEX](EVIDENCE_INDEX.md) → exact EV, then the specific package/checkpoint only when needed. [research/derived/README](../research/derived/README.md) remains the current new/open-package entry point; POP-07 and its generators continue to create new packages in `research/derived/`, not cold storage. This record does not authorize later cleanup, research-tool/build-default changes or the independent main comparison.
+
+---
+
+## KA-11 historical configuration and Movement seed
+
+**Archived:** 2026-10-09. **Frozen source checkpoint:** `development @ 266ef970be17caff721aaac7987ba787e29e1e18`.
+
+| Original path at the frozen checkpoint | Preserved archive | Original = archived Git blob | Mode | Bytes |
+|---|---|---|---|---:|
+| `config/G3AnimationBehaviors.ini` | [G3AnimationBehaviors_PROVISIONAL_CONFIG_2026-08-30.ini](archive/investigations/G3AnimationBehaviors_PROVISIONAL_CONFIG_2026-08-30.ini) | `86742c0194145cd628542bd6eea4eacef3794f0e` | `100644` | 5134 |
+| `docs/FUTURE_INVESTIGATIONS.md` (complete pre-edit snapshot, including resolved §1) | [FUTURE_INVESTIGATIONS_PRE_KA11_2026-10-09.md](archive/investigations/FUTURE_INVESTIGATIONS_PRE_KA11_2026-10-09.md) | `ef544851c55fb036917e3e80aa45dc3d7381fc13` | `100644` | 7434 |
+
+Both archives preserve every original byte, mode and Git blob identity. The obsolete conceptual INI's original path was retired only after its archive was verified. The Future Investigations path remains current with only the two unresolved, PARKED / NON-ACTIVE seeds; Recover cancellation is now §1 and exact block-timeout pause §2. Their bodies are unchanged. The full snapshot preserves the completed Movement seed, all causal source pointers and original boundaries exactly.
+
+These archives are cold provenance, **not current operational instructions**. Historical relative references retain their original spelling: resolve them in the original location at the frozen checkpoint, then apply this map or the earlier migration entries. For former `config/G3AnimationBehaviors.ini`, retrieve the archived conceptual schema above; for former `docs/FUTURE_INVESTIGATIONS.md` §1, retrieve the full PRE_KA11 snapshot, not current §1.
+
+Current settings belong to the unchanged [shipping INI](../src/Script_G3AnimationBehaviors/Ini/G3AnimationBehaviors.ini). Implemented Movement remains CLOSED/PASS under EV-440–EV-445, owned by [DESIGN §3 Movement](DESIGN.md#movement) and [SOURCE_HOOK_GUIDE §3B](SOURCE_HOOK_GUIDE.md#3b-attack-movement--displacement-mechanism). This storage change adds no architecture, runtime fact or new EV.
