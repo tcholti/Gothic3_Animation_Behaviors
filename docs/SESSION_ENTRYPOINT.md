@@ -13,7 +13,7 @@
 
 User-proven symptom: different 2H Hack and Finishing animation content produces a brief Hack-only leg-pose discontinuity at Recover; identical content does not, and true Finishing executions remain normal. Alfinos shows Hack Raise/Hit/Recover. **Do not reopen asset existence or established action/speed separation.**
 
-`docs/work/active/HACK_TRANSITION_BLEND_INVESTIGATION.md` owns the current task. **EV-458:** 3/3 Hack14 transitions play native Finishing Recover before routed Hack Recover; 2/2 true Finishing15 controls replay the same Recover. Same-tick ordering and visible 3/3 leg discontinuity are confirmed; exact rendered-pose mechanism remains unmeasured. Raw log archived. **Now:** separate causal suppression probe built and deployed as the only live G3AB DLL; release DLL held safely outside `scripts`. Startup/gameplay untested. Follow active task POP-03/04 gates. Only `development` may change; no production fix selected. Preserve animations, `main`, `Backup`.
+`docs/work/active/HACK_TRANSITION_BLEND_INVESTIGATION.md` owns the current task. **EV-458:** 3/3 Hack14 transitions play native Finishing Recover before routed Hack Recover; 2/2 true Finishing15 controls replay the same Recover. Same-tick ordering and visible 3/3 leg discontinuity are confirmed; exact rendered-pose mechanism remains unmeasured. Raw log archived. **Now:** separate causal suppression probe built and deployed as the only live G3AB DLL; release DLL held safely outside `scripts`. Startup PASS; the causal 3-Hack gameplay test is pending. Follow active task POP-03/04 gates. Only `development` may change; no production fix selected. Preserve animations, `main`, `Backup`.
 
 ## Previous gate — maintenance promoted to main (closed 2026-10-09)
 
