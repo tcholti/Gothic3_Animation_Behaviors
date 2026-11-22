@@ -2,6 +2,9 @@
 
 #include <g3sdk/Engine/animation/ge_visualanimation_ps.h>
 #include <g3sdk/Engine/animation/ge_wrapper_emfx2actor.h>
+#ifdef G3AB_HACK_RECOVER_CAUSAL_PROBE
+#include <g3sdk/Engine/animation/ge_animationadmin.h>
+#endif
 #include <windows.h>
 
 #include <atomic>
@@ -19,6 +22,14 @@ std::FILE *g_log = nullptr;
 std::mutex g_logMutex;
 std::atomic<DWORD> g_captureUntil{0};
 std::atomic<DWORD> g_lastTick{0};
+#ifdef G3AB_HACK_RECOVER_CAUSAL_PROBE
+// The engine owner for the regular Hack Raise/Hit resource queries, retained
+// only on the same thread until the immediately following Recover.
+thread_local eCAnimationAdmin *g_hackAnimationAdmin = nullptr;
+thread_local eEResourceCacheBehavior g_hackCacheBehavior =
+    eEResourceCacheBehavior_Immediate;
+thread_local ScopedRecoverCausalProbe *g_activeRecoverScope = nullptr;
+#endif
 
 void Log(char const *format, ...)
 {
@@ -96,6 +107,89 @@ eCVisualAnimation_PS *PlayerAnimation()
 }
 } // namespace
 
+#ifdef G3AB_HACK_RECOVER_CAUSAL_PROBE
+void RememberHackAnimationAdmin(eCAnimationAdmin *admin, GEInt cacheBehavior,
+                                bool factualHackPlayer)
+{
+    if (!factualHackPlayer || admin == nullptr)
+        return;
+    g_hackAnimationAdmin = admin;
+    g_hackCacheBehavior =
+        static_cast<eEResourceCacheBehavior>(cacheBehavior);
+}
+
+ScopedRecoverCausalProbe::ScopedRecoverCausalProbe(
+    eCEntity *actor, bool factualHack)
+    : m_actor(actor), m_factualHack(factualHack && actor != nullptr),
+      m_firstPrimarySeen(false), m_previous(g_activeRecoverScope)
+{
+    g_activeRecoverScope = this;
+}
+
+ScopedRecoverCausalProbe::~ScopedRecoverCausalProbe()
+{
+    g_activeRecoverScope = m_previous;
+}
+
+bool SuppressFirstNativeFinishingRecover(
+    eCVisualAnimation_PS *animation, GEInt motionSlot)
+{
+    ScopedRecoverCausalProbe *const scope = g_activeRecoverScope;
+    if (scope == nullptr || !scope->m_factualHack
+        || scope->m_firstPrimarySeen || motionSlot != 0
+        || animation == nullptr || animation->GetEntity() != scope->m_actor)
+        return false;
+
+    // Even a rejected first PlayMotion consumes this scope. A later unrelated
+    // call must never become an accidental suppression candidate.
+    scope->m_firstPrimarySeen = true;
+    static char const expectedFirstMotion[] =
+        "Hero_Parade_None_2H_P1_FinishingAttack_Recover_N_Fwd_00_%_00_P0_0.xmot";
+    static char const expectedHackResource[] =
+        "Hero_Parade_None_2H_P1_HackAttack_Recover_N_Fwd_00_.fxm";
+
+    auto const primarySlot =
+        static_cast<eCWrapper_emfx2Actor::eEMotionType>(0);
+    char const *const descriptorName =
+        animation->GetMotionDesc(primarySlot).GetMotionFilename().GetText();
+    if (descriptorName == nullptr
+        || std::strcmp(descriptorName, expectedFirstMotion) != 0)
+    {
+        Log("%lu CAUSAL_FALLBACK reason=first_motion_mismatch actual=%s",
+            static_cast<unsigned long>(::GetTickCount()),
+            descriptorName != nullptr ? descriptorName : "<null>");
+        return false;
+    }
+    if (g_hackAnimationAdmin == nullptr)
+    {
+        Log("%lu CAUSAL_FALLBACK reason=no_animation_admin",
+            static_cast<unsigned long>(::GetTickCount()));
+        return false;
+    }
+
+    // Positive engine resource lookup is mandatory. If Hack Recover is not
+    // available, let the first native Finishing Recover play normally.
+    // The later production routing lookup remains unchanged.
+    bCString const candidate(expectedHackResource);
+    eCResourceDataEntity *const resource =
+        g_hackAnimationAdmin->QueryMotionDataEntity(
+            candidate, g_hackCacheBehavior);
+    if (resource == nullptr)
+    {
+        Log("%lu CAUSAL_FALLBACK reason=hack_recover_unavailable",
+            static_cast<unsigned long>(::GetTickCount()));
+        return false;
+    }
+
+    Log("%lu CAUSAL_SUPPRESS_FIRST_NATIVE_FINISHING "
+        "action=14 motion=%s candidate=%s resource=%p",
+        static_cast<unsigned long>(::GetTickCount()),
+        descriptorName, expectedHackResource,
+        static_cast<void *>(resource));
+    return true;
+}
+#endif
+
 void Initialize()
 {
     std::lock_guard<std::mutex> lock(g_logMutex);
@@ -103,9 +197,15 @@ void Initialize()
         return;
     if (fopen_s(&g_log, "G3AB_HackTransitionProbe.log", "w") != 0)
         return;
+#ifdef G3AB_HACK_RECOVER_CAUSAL_PROBE
+    std::fprintf(g_log,
+        "G3AB HACK RECOVER CAUSAL PROBE - 2H fixture first native "
+        "Finishing Recover suppression, build 1\n");
+#else
     std::fprintf(g_log,
         "G3AB HACK TRANSITION DIAGNOSTIC — full production source plus "
         "observation-only hooks, build 1\n");
+#endif
     std::fflush(g_log);
 }
 

@@ -386,6 +386,12 @@ QueryCombatMoveMotionResource_FrameCollisionTest(
 {
 #ifdef G3AB_HACK_TRANSITION_PROBE
     gEAction const action = GetCombatMoveFactualAction(a_pSPU);
+#ifdef G3AB_HACK_RECOVER_CAUSAL_PROBE
+    G3AB::HackTransitionProbe::RememberHackAnimationAdmin(
+        a_pAnimationAdmin, static_cast<GEInt>(a_CacheBehavior),
+        action == gEAction_HackAttack && a_pSPU != nullptr
+            && IsPlayerEntity(a_pSPU->GetSelfEntity()));
+#endif
     eCResourceDataEntity *const routedResource =
         AttackMotionRouting::QueryOptionalSubstitution(
             action, a_pAnimationAdmin, a_ResourceName, a_CacheBehavior);
@@ -653,6 +659,16 @@ static void GE_STDCALL HackProbePlayMotion(
     if (isPlayer)
         G3AB::HackTransitionProbe::ObserveMotion(
             "PLAY_BEFORE", animation, static_cast<GEInt>(motionType));
+#ifdef G3AB_HACK_RECOVER_CAUSAL_PROBE
+    if (isPlayer
+        && G3AB::HackTransitionProbe::SuppressFirstNativeFinishingRecover(
+            animation, static_cast<GEInt>(motionType)))
+    {
+        G3AB::HackTransitionProbe::ObserveMotion(
+            "PLAY_SUPPRESSED", animation, static_cast<GEInt>(motionType));
+        return;
+    }
+#endif
     Hook_HackProbePlayMotion.GetOriginalFunction(&HackProbePlayMotion)(
         motionType, motionDesc);
     if (isPlayer)
@@ -684,6 +700,11 @@ static void GE_STDCALL HackProbeStartRecover(gCScriptProcessingUnit *spu)
     if (isPlayer)
         G3AB::HackTransitionProbe::ObserveRecoverBoundary(
             "BEFORE", spu->GetSelfEntity());
+#ifdef G3AB_HACK_RECOVER_CAUSAL_PROBE
+    G3AB::HackTransitionProbe::ScopedRecoverCausalProbe causalScope(
+        isPlayer ? spu->GetSelfEntity() : nullptr,
+        isPlayer && GetCombatMoveFactualAction(spu) == gEAction_HackAttack);
+#endif
     Hook_HackProbeStartRecover.GetOriginalFunction(&HackProbeStartRecover)(spu);
     if (isPlayer)
         G3AB::HackTransitionProbe::ObserveRecoverBoundary(
