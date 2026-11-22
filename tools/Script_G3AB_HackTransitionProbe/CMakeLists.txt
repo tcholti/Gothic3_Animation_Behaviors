@@ -30,6 +30,20 @@ target_include_directories(Script_G3AB_HackRecoverCausalProbe PRIVATE "${G3AB_PR
 target_link_libraries(Script_G3AB_HackRecoverCausalProbe PRIVATE g3sdk::SDK)
 target_gothic_script_options(Script_G3AB_HackRecoverCausalProbe)
 target_compile_definitions(Script_G3AB_HackRecoverCausalProbe PRIVATE G3AB_HACK_TRANSITION_PROBE=1 G3AB_HACK_RECOVER_CAUSAL_PROBE=1)
+
+# Separate research twin: forced absence at the existing Recover resource
+# callsite after a verified outgoing player 2H Hack Hit. No asset edits.
+add_library(Script_G3AB_HackMissingRecoverProbe SHARED
+    ${G3AB_HACK_TRANSITION_PROBE_SOURCES}
+    HackMissingRecoverProbe.cpp
+    HackMissingRecoverProbe.h)
+target_include_directories(Script_G3AB_HackMissingRecoverProbe PRIVATE
+    "${G3AB_PROD_SOURCE}" "${CMAKE_CURRENT_SOURCE_DIR}")
+target_link_libraries(Script_G3AB_HackMissingRecoverProbe PRIVATE g3sdk::SDK)
+target_gothic_script_options(Script_G3AB_HackMissingRecoverProbe)
+target_compile_definitions(Script_G3AB_HackMissingRecoverProbe PRIVATE
+    G3AB_HACK_TRANSITION_PROBE=1 G3AB_HACK_MISSING_RECOVER_PROBE=1)
+
 target_link_libraries(Script_G3AB_HackTransitionProbe PRIVATE g3sdk::SDK)
 target_gothic_script_options(Script_G3AB_HackTransitionProbe)
 target_compile_definitions(Script_G3AB_HackTransitionProbe PRIVATE G3AB_HACK_TRANSITION_PROBE=1)

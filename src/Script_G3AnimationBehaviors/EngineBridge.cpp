@@ -15,6 +15,9 @@
 #ifdef G3AB_HACK_TRANSITION_PROBE
 #include "HackTransitionProbe.h"
 #endif
+#ifdef G3AB_HACK_MISSING_RECOVER_PROBE
+#include "HackMissingRecoverProbe.h"
+#endif
 #ifdef FRAME_COLLISION_DIAGNOSTICS
 #include "CollisionDiagnostics.h"
 #endif
@@ -384,6 +387,20 @@ QueryCombatMoveMotionResource_FrameCollisionTest(
     bCString const &a_ResourceName,
     eEResourceCacheBehavior a_CacheBehavior)
 {
+#ifdef G3AB_HACK_MISSING_RECOVER_PROBE
+    // The temporary research-only token was opened by the actual outgoing
+    // Hack Hit at StartRecover. This simulates absent Hack Recover without
+    // touching the user's installed animations or production behavior.
+    if (G3AB::HackMissingRecoverProbe::ForceMissingRecover(
+            a_pSPU, a_pSPU != nullptr ? a_pSPU->GetSelfEntity() : nullptr,
+            GetCombatMoveFactualAction(a_pSPU), a_ResourceName))
+    {
+        G3AB::HackTransitionProbe::ObserveResourceQuery(
+            static_cast<GEInt>(gEAction_HackAttack),
+            a_ResourceName.GetText(), false, nullptr, true);
+        return nullptr;
+    }
+#endif
 #ifdef G3AB_HACK_TRANSITION_PROBE
     gEAction const action = GetCombatMoveFactualAction(a_pSPU);
 #ifdef G3AB_HACK_RECOVER_CAUSAL_PROBE
@@ -659,6 +676,15 @@ static void GE_STDCALL HackProbePlayMotion(
     if (isPlayer)
         G3AB::HackTransitionProbe::ObserveMotion(
             "PLAY_BEFORE", animation, static_cast<GEInt>(motionType));
+#ifdef G3AB_HACK_MISSING_RECOVER_PROBE
+    if (isPlayer && G3AB::HackMissingRecoverProbe::SuppressFirstFinishing(
+            animation, static_cast<GEInt>(motionType)))
+    {
+        G3AB::HackTransitionProbe::ObserveMotion(
+            "PLAY_SUPPRESSED", animation, static_cast<GEInt>(motionType));
+        return;
+    }
+#endif
 #ifdef G3AB_HACK_RECOVER_CAUSAL_PROBE
     if (isPlayer
         && G3AB::HackTransitionProbe::SuppressFirstNativeFinishingRecover(
@@ -700,6 +726,11 @@ static void GE_STDCALL HackProbeStartRecover(gCScriptProcessingUnit *spu)
     if (isPlayer)
         G3AB::HackTransitionProbe::ObserveRecoverBoundary(
             "BEFORE", spu->GetSelfEntity());
+#ifdef G3AB_HACK_MISSING_RECOVER_PROBE
+    G3AB::HackMissingRecoverProbe::RecoverScope ownedRecoverScope(
+        spu, isPlayer ? spu->GetSelfEntity() : nullptr,
+        isPlayer && GetCombatMoveFactualAction(spu) == gEAction_HackAttack);
+#endif
 #ifdef G3AB_HACK_RECOVER_CAUSAL_PROBE
     G3AB::HackTransitionProbe::ScopedRecoverCausalProbe causalScope(
         isPlayer ? spu->GetSelfEntity() : nullptr,

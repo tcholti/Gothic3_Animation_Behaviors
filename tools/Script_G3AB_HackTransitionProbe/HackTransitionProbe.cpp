@@ -197,7 +197,11 @@ void Initialize()
         return;
     if (fopen_s(&g_log, "G3AB_HackTransitionProbe.log", "w") != 0)
         return;
-#ifdef G3AB_HACK_RECOVER_CAUSAL_PROBE
+#ifdef G3AB_HACK_MISSING_RECOVER_PROBE
+    std::fprintf(g_log,
+        "G3AB HACK MISSING RECOVER CAUSAL PROBE - owned custom Hack Hit, "
+        "suppress first Finishing and force null Recover resource, build 1\n");
+#elif defined(G3AB_HACK_RECOVER_CAUSAL_PROBE)
     std::fprintf(g_log,
         "G3AB HACK RECOVER CAUSAL PROBE - 2H fixture first native "
         "Finishing Recover suppression, build 1\n");
@@ -207,6 +211,13 @@ void Initialize()
         "observation-only hooks, build 1\n");
 #endif
     std::fflush(g_log);
+}
+
+void LogResearchEvent(char const *event, char const *detail)
+{
+    Log("%lu %s detail=%s", static_cast<unsigned long>(::GetTickCount()),
+        event != nullptr ? event : "<null>",
+        detail != nullptr ? detail : "<null>");
 }
 
 bool IsTracking()

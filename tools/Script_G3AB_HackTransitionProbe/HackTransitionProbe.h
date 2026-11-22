@@ -17,6 +17,8 @@ void ObserveMotion(char const *event, eCVisualAnimation_PS *animation,
 void ObserveRecoverBoundary(char const *event, eCEntity *actor);
 void ObserveTick();
 bool IsTracking();
+// Shared trace transport for isolated research-only causal modules.
+void LogResearchEvent(char const *event, char const *detail);
 
 #ifdef G3AB_HACK_RECOVER_CAUSAL_PROBE
 void RememberHackAnimationAdmin(eCAnimationAdmin *admin, GEInt cacheBehavior,
