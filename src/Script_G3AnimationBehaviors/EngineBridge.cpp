@@ -15,7 +15,7 @@
 #ifdef G3AB_HACK_TRANSITION_PROBE
 #include "HackTransitionProbe.h"
 #endif
-#ifdef G3AB_HACK_MISSING_RECOVER_PROBE
+#if defined(G3AB_HACK_MISSING_RECOVER_PROBE) || defined(G3AB_HACK_RECOVER_REAL_ASSET_PROBE)
 #include "HackMissingRecoverProbe.h"
 #endif
 #ifdef FRAME_COLLISION_DIAGNOSTICS
@@ -391,7 +391,7 @@ QueryCombatMoveMotionResource_FrameCollisionTest(
     // The temporary research-only token was opened by the actual outgoing
     // Hack Hit at StartRecover. This simulates absent Hack Recover without
     // touching the user's installed animations or production behavior.
-    if (G3AB::HackMissingRecoverProbe::ForceMissingRecover(
+    if (G3AB::HackMissingRecoverProbe::ConsumeOwnedRecoverRequest(
             a_pSPU, a_pSPU != nullptr ? a_pSPU->GetSelfEntity() : nullptr,
             GetCombatMoveFactualAction(a_pSPU), a_ResourceName))
     {
@@ -399,6 +399,30 @@ QueryCombatMoveMotionResource_FrameCollisionTest(
             static_cast<GEInt>(gEAction_HackAttack),
             a_ResourceName.GetText(), false, nullptr, true);
         return nullptr;
+    }
+#endif
+#ifdef G3AB_HACK_RECOVER_REAL_ASSET_PROBE
+    // Research twin with production-shaped routing: use the actual engine
+    // Hack Recover resource lookup. Never synthesize a missing result.
+    // Once the outgoing custom Hack Hit has established ownership, do not
+    // fall back to Finishing Recover for this one Recover request.
+    if (G3AB::HackMissingRecoverProbe::ConsumeOwnedRecoverRequest(
+            a_pSPU, a_pSPU != nullptr ? a_pSPU->GetSelfEntity() : nullptr,
+            GetCombatMoveFactualAction(a_pSPU), a_ResourceName))
+    {
+        eCResourceDataEntity *const hackRecover =
+            AttackMotionRouting::QueryOptionalSubstitution(
+                gEAction_HackAttack, a_pAnimationAdmin,
+                a_ResourceName, a_CacheBehavior);
+        G3AB::HackTransitionProbe::LogResearchEvent(
+            hackRecover != nullptr ? "REAL_ASSET_HACK_RECOVER_FOUND"
+                                   : "REAL_ASSET_HACK_RECOVER_NOT_FOUND",
+            a_ResourceName.GetText());
+        G3AB::HackTransitionProbe::ObserveResourceQuery(
+            static_cast<GEInt>(gEAction_HackAttack),
+            a_ResourceName.GetText(), hackRecover != nullptr,
+            hackRecover, true);
+        return hackRecover;
     }
 #endif
 #ifdef G3AB_HACK_TRANSITION_PROBE
@@ -676,7 +700,7 @@ static void GE_STDCALL HackProbePlayMotion(
     if (isPlayer)
         G3AB::HackTransitionProbe::ObserveMotion(
             "PLAY_BEFORE", animation, static_cast<GEInt>(motionType));
-#ifdef G3AB_HACK_MISSING_RECOVER_PROBE
+#if defined(G3AB_HACK_MISSING_RECOVER_PROBE) || defined(G3AB_HACK_RECOVER_REAL_ASSET_PROBE)
     if (isPlayer && G3AB::HackMissingRecoverProbe::SuppressFirstFinishing(
             animation, static_cast<GEInt>(motionType)))
     {
@@ -726,7 +750,7 @@ static void GE_STDCALL HackProbeStartRecover(gCScriptProcessingUnit *spu)
     if (isPlayer)
         G3AB::HackTransitionProbe::ObserveRecoverBoundary(
             "BEFORE", spu->GetSelfEntity());
-#ifdef G3AB_HACK_MISSING_RECOVER_PROBE
+#if defined(G3AB_HACK_MISSING_RECOVER_PROBE) || defined(G3AB_HACK_RECOVER_REAL_ASSET_PROBE)
     G3AB::HackMissingRecoverProbe::RecoverScope ownedRecoverScope(
         spu, isPlayer ? spu->GetSelfEntity() : nullptr,
         isPlayer && GetCombatMoveFactualAction(spu) == gEAction_HackAttack);

@@ -197,7 +197,11 @@ void Initialize()
         return;
     if (fopen_s(&g_log, "G3AB_HackTransitionProbe.log", "w") != 0)
         return;
-#ifdef G3AB_HACK_MISSING_RECOVER_PROBE
+#ifdef G3AB_HACK_RECOVER_REAL_ASSET_PROBE
+    std::fprintf(g_log,
+        "G3AB HACK RECOVER REAL ASSET PROBE - custom Hack Hit, native Hack "
+        "resource lookup, first wrong Finishing suppression, build 1\n");
+#elif defined(G3AB_HACK_MISSING_RECOVER_PROBE)
     std::fprintf(g_log,
         "G3AB HACK MISSING RECOVER CAUSAL PROBE - owned custom Hack Hit, "
         "suppress first Finishing and force null Recover resource, build 1\n");

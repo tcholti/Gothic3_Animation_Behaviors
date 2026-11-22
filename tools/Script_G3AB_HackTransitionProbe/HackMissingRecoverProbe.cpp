@@ -104,8 +104,8 @@ bool SuppressFirstFinishing(eCVisualAnimation_PS *animation, GEInt motionSlot)
     return true;
 }
 
-bool ForceMissingRecover(gCScriptProcessingUnit *spu, eCEntity *actor,
-                         gEAction factualAction, bCString const &resourceName)
+bool ConsumeOwnedRecoverRequest(gCScriptProcessingUnit *spu, eCEntity *actor,
+                                gEAction factualAction, bCString const &resourceName)
 {
     if (g_pending.spu == nullptr || !g_pending.firstSuppressed)
         return false;
@@ -124,8 +124,13 @@ bool ForceMissingRecover(gCScriptProcessingUnit *spu, eCEntity *actor,
     // Consume before the native continuation; a reentrant query must never
     // receive a second synthetic missing-resource answer.
     g_pending = {};
+#ifdef G3AB_HACK_RECOVER_REAL_ASSET_PROBE
+    HackTransitionProbe::LogResearchEvent(
+        "REAL_ASSET_PROBE_OWNED_RECOVER_REQUEST", name);
+#else
     HackTransitionProbe::LogResearchEvent(
         "MISSING_PROBE_FORCE_NULL_RECOVER_RESOURCE", name);
+#endif
     return true;
 }
 } // namespace G3AB::HackMissingRecoverProbe

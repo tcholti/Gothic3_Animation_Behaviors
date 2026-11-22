@@ -13,7 +13,7 @@
 
 User-proven symptom: different 2H Hack and Finishing animation content produces a brief Hack-only leg-pose discontinuity at Recover; identical content does not, and true Finishing executions remain normal. Alfinos shows Hack Raise/Hit/Recover. **Do not reopen asset existence or established action/speed separation.**
 
-Current task: `docs/work/active/HACK_TRANSITION_BLEND_INVESTIGATION.md`. EV-458/459 proved wrong first Finishing Recover and successful player-2H suppression. **New research-only forced-missing `.fxm` probe build/deployment/startup PASS; gameplay not tested.** It observes real outgoing custom Hack Hit, suppresses the first native Finishing Recover, and forces the later exact Recover request to return null. **Next:** startup gate, then controlled in-game idle/Finishing observation. Not equivalent to physically absent `.xmot`; no production fix. Preserve release DLL, animations, `main`, `Backup`.
+Current task: `docs/work/active/HACK_TRANSITION_BLEND_INVESTIGATION.md`. EV-458/459 proved wrong first Finishing Recover and successful player-2H suppression. **EV-460:** forced-null probe rejected after runtime, original release DLL restored. Replacement real-asset routing probe compiled; **not deployed/loaded**. Startup and two-stage actual asset-present/physically absent tests pending. It observes real outgoing custom Hack Hit, suppresses the first native Finishing Recover, and forces the later exact Recover request to return null. **Next:** startup gate, then controlled in-game idle/Finishing observation. Not equivalent to physically absent `.xmot`; no production fix. Preserve release DLL, animations, `main`, `Backup`.
 
 ## Previous gate — maintenance promoted to main (closed 2026-10-09)
 

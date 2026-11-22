@@ -171,6 +171,7 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | final Hack interruption/transition robustness (prior asset fixture) | EV-422 |
 | Hack14 Recover native-first Finishing PlayMotion then routed Hack Recover; 2H visual discontinuity | EV-458 |
 | Scoped first native Finishing Recover suppression removes player 2H Hack visual glitch 3/3; true Finishing unchanged 2/2 | EV-459 |
+| Simulated-null Hack Recover probe invalid: 1/4 scoped suppression, abnormal missing Recover playback including Action15 controls; user rejected as unrealistic | EV-460 |
 | Raise/Speed/Hack final runtime acceptance closure | EV-422 |
 | dual Fwd Normal + P0/P1 Quick generated Raise asset runtime validation | EV-423 |
 | dual P3 Quick Raise/Hit route non-observation | EV-423 |

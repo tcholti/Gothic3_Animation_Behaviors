@@ -26,8 +26,8 @@ class RecoverScope
 };
 
 bool SuppressFirstFinishing(eCVisualAnimation_PS *animation, GEInt motionSlot);
-// True means the exact owned Recover request was deliberately returned null.
-// This simulates a missing engine resource, without touching installed assets.
-bool ForceMissingRecover(gCScriptProcessingUnit *spu, eCEntity *actor,
-                         gEAction factualAction, bCString const &resourceName);
+// Consume and match only the first exact Recover resource request of the
+// same real custom-Hack-Hit execution. The caller decides how to resolve it.
+bool ConsumeOwnedRecoverRequest(gCScriptProcessingUnit *spu, eCEntity *actor,
+                                gEAction factualAction, bCString const &resourceName);
 } // namespace G3AB::HackMissingRecoverProbe
