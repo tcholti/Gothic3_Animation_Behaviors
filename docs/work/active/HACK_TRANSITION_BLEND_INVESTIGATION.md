@@ -1,6 +1,6 @@
 # Hack / Finishing Recover transition investigation
 
-**Status:** ACTIVE — EV-460 forced-null test rejected; EV-461 real-asset Run A PASS (3 Hacks + 3 genuine Finishing), Run B with manually absent Hack Recover pending. No production fix approved.
+**Status:** ACTIVE — EV-461 all-assets Run A PASS; EV-462 genuinely missing Hack Recover Run B FAIL, including absent genuine Finishing Recover. Original release DLL restored; baseline control with unchanged missing Hack asset next. No production fix approved.
 **Branch:** `development` only. **Opened:** 2026-11-22.
 
 ## User-established visual behavior
@@ -153,7 +153,7 @@ This is an extension of **existing Hack asset routing**, not a new animation sta
 
 ## Replacement research step — real engine Hack Recover asset lookup (2026-11-22)
 
-**Status: SOURCE + RELEASE BUILD + DEPLOYMENT + MAIN-MENU STARTUP + RUN A GAMEPLAY PASS; RUN B PENDING.** This supersedes the forced-null test EV-460, not EV-459's accepted positive-asset intervention. The User requires production-shaped resource routing with two deliberate runs using exactly the same DLL: Hack Recover exists for run 1; User manually removes the actual corresponding Hack Recover asset **after game exit** for run 2. Do not remove/change the User's assets on the assistant's behalf.
+**Status: HISTORICAL TWO-RUN RESEARCH COMPLETED — Run A PASS (EV-461), Run B FAIL (EV-462).** This supersedes the forced-null test EV-460, not EV-459's accepted positive-asset intervention. The User requires production-shaped resource routing with two deliberate runs using exactly the same DLL: Hack Recover exists for run 1; User manually removes the actual corresponding Hack Recover asset **after game exit** for run 2. Do not remove/change the User's assets on the assistant's behalf.
 
 **Target:** `tools/Script_G3AB_HackTransitionProbe/Script_G3AB_HackRecoverRealAssetProbe.dll` (same full production-source list plus the isolated research class and logger), build flag `G3AB_HACK_RECOVER_REAL_ASSET_PROBE=1`. Compiled Release DLL: **491,520 bytes, SHA256 `9F0C2E8D37B2A32F628DD486A4721AD0669C0E15A5D1CFEDE4AEF852E1277A22`**. No production code path changes after preprocessing; no new permanent subsystem/INI. Existing observation-only, EV-459 causal and invalid EV-460 targets remain separately selectable.
 
@@ -170,3 +170,9 @@ This is an extension of **existing Hack asset routing**, not a new animation sta
 4. After data capture and evidence review, restore the accepted release DLL as the only live G3AB product, confirm SHA; preserve the diagnostic outside game. User restores their original Recover asset manually (never overwrite or reconstruct it from memory). Document exact observations and make production decision separately.
 
 **Hard boundaries:** no game animation/INI edits by the assistant, no silent native Finishing suppression for Action15, no fake resource-null, no automatic promotion, no duplicate hook owners, no unrelated source refactors, `main` and `Backup` protected. If Run A has EV-460-like missing Finishing Recover or the positive Hack Recover route fails, stop; this experimental route is not yet safe for Run B.
+
+## EV-462 missing-asset Run B failure and original-release control (2026-11-22)
+
+**Run B does not meet acceptance:** Same DLL as successful EV-461, but User removed loose 2H Hack Recover `.xmot`. Actual Hack resource query returned null once; no later Hack Recover `PLAY_AFTER`. Four Hack14 Recover entries were seen, but only first reached first-play suppression/resource request. Two actual Finishing15 executions logged native Raise/Hit and StartRecover, but **neither** requested nor played Finishing Recover, even though native Finishing Recover loose `.xmot` is present. User saw missing Finishing Recover. No Action15 suppression event was logged. Canonical raw `research/archive/2026-11-22_hack_recover_real_asset_runB_missing_hack_finishing_regression.log`, SHA256 `3CD6DFAC3D01228C51EC2D8E4F315EE6F27B31D4EC320C27397B257E4ADE6108`; EV-462 in evidence ledger owns full counts and interpretation.
+
+**Recovery state:** Gothic3.exe closed; original release DLL restored/hash-checked as sole live G3AB DLL. Research twin stored outside game. The **User's loose Hack Recover remains absent**, native loose Finishing Recover exists; assistant did not edit animation assets. **Next decisive experiment:** fresh launch, **original release DLL, still-missing Hack Recover**. Genuine Finishing before any Hack; one Hack; genuine Finishing afterward. Observe Recover and ability to resume attacks. Since no probe is installed this is visual evidence, not an instrumented trace. If both Finishing controls work, revisit the diagnostic's influence; if initial Finishing already fails, investigate native asset/resource dependency; if only post-Hack fails, investigate cross-attack state. Stop on abnormality. Never infer that native fallback is safe or create a production fix before the baseline differentiates.
