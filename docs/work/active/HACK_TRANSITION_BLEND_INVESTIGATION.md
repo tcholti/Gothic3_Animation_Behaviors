@@ -1,36 +1,29 @@
-# Hack / Finishing transition — narrow diagnostic investigation
+# Hack / Finishing Recover transition investigation
 
-**Status:** ACTIVE — diagnostic DLL deployed with POP-03 SHA/inventory PASS; startup and behavioral runtime tests not yet performed.
-**Branch:** `development` (not `main` or `Backup`).
-**Opened:** 2026-11-22.
-**Purpose:** Determine whether the visible brief leg pose change at the Hack Hit→Recover boundary comes from a Finishing motion/pose or from native blending of the actual Hack resources. No production fix is selected.
+**Status:** ACTIVE — first runtime evidence EV-458 analyzed and archived; native-first Recover ordering confirmed; no correction selected.
+**Branch:** `development` only. **Opened:** 2026-11-22.
 
-## Established input (User runtime observations)
-- The actor has separate 2H Hack Raise/Hit/Recover and separate Finishing assets; all exist in `Data/_compiledAnimation`.
-- If Hack and Finishing resource contents are identical despite separate names/markers, the visual problem disappears.
-- With different motion content, ordinary Hack briefly moves legs oddly near Recover; true Finishing executions have no problem.
-- Alfinos reports Hack Raise, Hit and Recover, not a Finishing motion, during the reproduced attack.
-- Recover phase assets are not universally required for Gothic 3 attack execution; do not assume a missing Recover file.
-- The User's installed first-release G3AB DLL SHA256 is `9FD6962146DD8BC7A723B57C0DE9DF4F550BF18E236F71FC79791B1A0ECCCEE9`; production binary has not been changed.
+## User-established visual behavior
+- Separate 2H Hack Raise/Hit/Recover and separate true Finishing execution animations all exist. Files intentionally differ and only Hack assets contain authored collision markers.
+- Visually distinct Hack and Finishing animation content produces a very brief unnatural leg motion at Hack Hit→Recover. Identical animation content with different names/markers removes it. True Finishing executions are visually normal even with divergent Hack assets.
+- Alfinos reports Hack Raise, Hit and Recover, but does not expose the intermediate native Recover motion. Recover animation files are not universal prerequisites; missing-asset speculation is excluded by inspection.
+- Visual recurrence during the specific EV-458 capture has not been explicitly reported by the User; the earlier controlled visual comparisons are the observation base.
 
-## Narrow source fact / distinction
-- `AttackMotionRouting::QueryOptionalSubstitution` substitutes existing `_HackAttack_` resource data for factual Action14's native `_FinishingAttack_` lookup. Original requested name and native action remain independent facts. No claim yet that a Finishing motion is actually blended.
-- Prior EV-399 / EV-422 confirmed speed separation and transition sanity in their tested fixtures, but did not exercise the new pose-divergence case.
-- The first causal question is what motion resource/slots, target weights and blend facts Gothic reports during the immediate transition.
+## Confirmed first diagnostic result — EV-458
+- Runtime fixture: 3 factual Hack/Action14 + 2 true knocked-down-opponent Finishing/Action15 executions, with the different 2H assets installed.
+- In each factual Hack, `sAICombatMoveStartRecover` first plays primary **FinishingAttack Recover** at time 0, **before** the later CombatMove resource query selects the existing **HackAttack Recover** and plays it. All three cases show the identical ordering and clock tick.
+- In both factual Finishing executions, native StartRecover plays Finishing Recover first and the later native resource query plays Finishing Recover again; there is no change of animation content.
+- This is **confirmed motion invocation/selection order**, not proof that the transient Finishing motion contributed a rendered frame, bone pose or measurable nonzero blending interval. That final causal link remains for a narrowly isolated test.
+- Archival proof: `research/archive/2026-11-22_hack_transition_player2h_three_hack_two_executions.log` (SHA256 `C8C8B583EC76A69FA6EB595E2C77B36116DE2F9EF1BB6E4A04A4752A0A005632`). Evidence ledger EV-458 owns run details and limits; SOURCE_HOOK_GUIDE owns engine seam fact.
 
-## Diagnostic build contract
-- Research-only target: `tools/Script_G3AB_HackTransitionProbe/`, opt-in via `G3AB_BUILD_TOOLS=ON`.
-- Compiles the same source modules as `Script_G3AnimationBehaviors`, with `G3AB_HACK_TRANSITION_PROBE` conditional observation hooks; disabled production path retains original behavior.
-- Observes player Action14/15 resource requests/results, motion Play/Stop, StartRecover boundary, and a short (~3s) tick window of the five motion slots. Log: `G3AB_HackTransitionProbe.log` in Gothic 3 runtime root.
-- Diagnostics do not change routing policy, speed/movement, markers or gameplay decisions. Do not co-load this DLL with production or other G3AB research DLLs.
-- Local Release diagnostic build PASS (2026-11-22), SHA256: `A8FF8B4CE8A78F07FD05FA73A8C09983FC4E97EEA8975150CE2394114824918E`. This is build identity, not runtime acceptance.
-- Deployment 2026-11-22: Gothic3.exe confirmed closed; original installed release DLL SHA256 `9FD6962146DD8BC7A723B57C0DE9DF4F550BF18E236F71FC79791B1A0ECCCEE9` moved, unchanged, to `E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\2.For AI to store\G3AB_HackTransition_2026-11-22\Script_G3AnimationBehaviors.dll`. Diagnostic copied to live `scripts` and verified exactly one G3AB runtime DLL, built/live SHA256 identical. **DIAGNOSTIC DEPLOYMENT PASS**. Startup log `G3AB_HackTransitionProbe.log` not yet created as of deployment verification; start game only to main menu for first load check.
+## Diagnostic and live installation
+- Observation-only full-production source twin: `tools/Script_G3AB_HackTransitionProbe/`, built as `Script_G3AB_HackTransitionProbe.dll` with opt-in diagnostic flag; target SHA256 `A8FF8B4CE8A78F07FD05FA73A8C09983FC4E97EEA8975150CE2394114824918E`.
+- Startup/load and first runtime log PASS; no diagnostic DLL remains installed. Release `Script_G3AnimationBehaviors.dll` was restored to live `scripts` after the test, verified sole G3AB product with accepted SHA256 `9FD6962146DD8BC7A723B57C0DE9DF4F550BF18E236F71FC79791B1A0ECCCEE9`.
+- Diagnostic and preserved release copies are held in `E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\2.For AI to store\G3AB_HackTransition_2026-11-22`. Installed animations, INI and third-party DLLs unchanged.
 
-## Frozen next runtime procedure
-1. User closes Gothic 3 normally; do not modify live DLLs while the process is running.
-2. Move the currently installed release DLL to a safe location **outside** `scripts`; deploy only `Script_G3AB_HackTransitionProbe.dll`. Preserve third-party New Balance and AttackCollision DLLs. Require exactly one G3AB project DLL and matching built/live SHA256 (POP-03). Verify startup banner/load at main menu first (POP-04); failure means restore production, stop.
-3. Load the existing save with **different** 2H Hack and Finishing animations installed and execute ~3 regular Hack attacks, noting whether the brief leg movement occurs. Do not alter animation or INI files.
-4. Preserve the exact raw log under `research/raw/` via POP-05/06; inspect whether any Finishing resource/motion, secondary layer, altered target weight, or unexplained pose interpolation appears across Hit→Recover. If no clue, make the next hypothesis explicit rather than forcing a fix.
-5. Restore the known release DLL after the test; do not publish/ship the probe DLL.
+## Next bounded research question
+How can the initial Finishing Recover motion in factual Hack/Action14 be prevented from influencing the pose **before** the routed Hack Recover, without breaking the native Recover lifecycle, valid asset fallback, Action15 executions, other combat actions, Speed/Movement/collision or one-hook-owner safety?
 
-**Stop conditions:** game startup/load failure; unexpected DLL coexistence; missing log banner; incorrect resource hook behavior; game crash; effect on normal combat. No change to `main` or `Backup` without separate approval.
+Start read-only with native `Game+0x16E360` StartRecover and `Engine+0x30860` high PlayMotion call paths, requested/resource descriptor lifecycle, and existing `AttackMotionRouting` selection. Use the project's DLL/binary reference and SDK only as required. Compare plausible narrow interventions (first-motion substitution versus suppressing redundant initial motion) and recommend a single minimal, reversible causal probe; **do not apply a production fix yet**.
+
+**Stop conditions:** unresolved action ownership, missing Hack Recover fallback semantics, altered true Finishing behavior, cross-actor/global hook interference, changed collision/Speed/Movement, unsupported pointer lifetime, or broader hook replacement. Keep `main` and `Backup` untouched. Review proposed options before any intervention build/deploy.

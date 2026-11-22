@@ -185,6 +185,8 @@ It is the production Power Raise composition caller; it is separate from the 12 
 | `ProcessScript` | `Game +0x16F120` | generic dispatcher, not attack ownership |
 | `AISetState` | `Game +0x164320` | destructive state replacement; C1 finalizes after original returns |
 
+**Recover native-first ordering (EV-458, 2026-11-22):** For 2H factual Hack/Action14, `sAICombatMoveStartRecover` plays an initial **FinishingAttack Recover** as primary motion before the later CombatMove resource query substitutes the existing **HackAttack Recover** and plays it again. Observed 3/3 Hack trials with distinct animation content. Genuine Finishing/Action15 similarly plays its Finishing Recover twice without changing resource content (2/2). This is a confirmed same-tick motion-ordering fact, **not** proof of a measurable rendered-pose duration. Cause of the user-observed leg discontinuity is strongly suggested but not yet causally intervened. No production correction is approved; see the active Hack transition task.
+
 ### Trigger / TouchDamage
 
 | Purpose | Module + RVA | Meaning |

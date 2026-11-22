@@ -1,7 +1,7 @@
 # Gothic 3 Animation Behaviors — Evidence Index
 
 **Status:** Compact evidence-routing index  
-**Updated:** 2026-10-08
+**Updated:** 2026-11-22
 
 ## Purpose
 
@@ -168,7 +168,8 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | Hack standard zero-stamina native/compatible control | EV-422 |
 | New Balance alternative zero-stamina policy preservation on Hack | EV-422 |
 | final Hack/Finishing isolation with unique + shared animation assets | EV-422 |
-| final Hack interruption/transition robustness | EV-422 |
+| final Hack interruption/transition robustness (prior asset fixture) | EV-422 |
+| Hack14 Recover native-first Finishing PlayMotion then routed Hack Recover; 2H visual discontinuity | EV-458 |
 | Raise/Speed/Hack final runtime acceptance closure | EV-422 |
 | dual Fwd Normal + P0/P1 Quick generated Raise asset runtime validation | EV-423 |
 | dual P3 Quick Raise/Hit route non-observation | EV-423 |

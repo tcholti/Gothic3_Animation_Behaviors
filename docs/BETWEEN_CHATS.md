@@ -8,7 +8,7 @@
 Repository: `tcholti/Gothic3_Animation_Behaviors`
 Working branch: `development`
 Stable integration: `main` at the deliberately promoted post-release maintenance checkpoint; verify its live HEAD.
-Do-not-modify first-release safeguard: `Backup @ 08a0bd8fcf42173088e233e09b706a80da882070` — identical to pre-promotion `main`, preserved unchanged; unprotected ordinary branch.
+Do-not-modify first-release safeguard: `Backup @ 08a0bd8fcf42173088e233e09b706a80da882070` — identical to pre-promotion `main`, preserved unchanged; User has configured branch protection (verify the live ruleset before any deliberate replacement).
 
 **Completed/reviewed maintenance checkpoints:**
 
@@ -23,6 +23,6 @@ Do-not-modify first-release safeguard: `Backup @ 08a0bd8fcf42173088e233e09b706a8
 
 **Promotion:** Stable `main` fast-forwards to the reviewed post-release maintenance checkpoint by explicit User decision. The six maintenance stages, independent audit and two minor wording corrections are closed. This supplies no new gameplay/runtime evidence; `Backup` remains unchanged.
 
-**Current active task:** `docs/work/active/HACK_TRANSITION_BLEND_INVESTIGATION.md`. User found Hack-only brief Hit→Recover leg pose discontinuity with visually distinct Hack/Finishing assets; Alfinos selects Hack Recover. A full-production observation-only diagnostic target was built locally and statically validated; runtime deployment has not happened. Gothic 3 was closed, original release DLL safely moved to the User's `2.For AI to store/G3AB_HackTransition_2026-11-22` folder, and the diagnostic was deployed to `scripts` with POP-03 inventory/SHA PASS. Startup/load gate is next: launch game to main menu, verify `G3AB_HackTransitionProbe.log` banner; only after that run controlled Hack/Finishing transition tests. Restore release DLL after test. Preserve `main`, `Backup`, installed animations and the release DLL. No gameplay fix is accepted yet.
+**Current active task:** `docs/work/active/HACK_TRANSITION_BLEND_INVESTIGATION.md`. EV-458: 3/3 factual Hack14 Recover transitions first `PlayMotion` a native **Finishing Recover** inside StartRecover, then route-select and play **Hack Recover**; 2/2 true Finishing15 controls initially play and then re-play Finishing Recover. All events share an integer-ms tick; rendered-pose involvement is not yet directly proven. Original log is byte-identically archived; raw intake is clean. **Release DLL restored and sole live G3AB product**; diagnostic copied outside the game into the User's designated holding folder. Next task: bounded **read-only** analysis of how to avoid the first Finishing Recover during Hack, preserving native fallback, Action15, Speed/Movement/collision and hook ownership. No production fix selected. `main`, `Backup` and animation files remain unchanged.
 
 The closed [audit preparation and original boundaries](archive/investigations/POST_RELEASE_AUDIT_PREPARATION_PRE_CLOSURE_2026-10-09.md) remain retrievable as history; `SESSION_ENTRYPOINT.md` owns the current gate. All six implementation stages and the post-maintenance reconciliation are accepted.

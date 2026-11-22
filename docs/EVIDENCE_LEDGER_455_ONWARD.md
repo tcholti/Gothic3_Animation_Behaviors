@@ -97,3 +97,20 @@ Disposition:
 - **PASS — FIRST-RELEASE STABLE CHECKPOINT PROMOTED TO MAIN.**
 - `main @ 08a0bd8fcf42173088e233e09b706a80da882070` is the trusted pre-audit baseline.
 - future review/audit work continues on `development` only.
+
+### EV-458 — Hack Recover starts native Finishing before Hack resource replacement (2026-11-22)
+
+Fixture: real Gothic 3 game, release-equivalent `Script_G3AB_HackTransitionProbe.dll` observation twin (build SHA256 `A8FF8B4CE8A78F07FD05FA73A8C09983FC4E97EEA8975150CE2394114824918E`), user-authored *different* 2H Hack and Finishing Raise/Hit/Recover files, New Balance/AttackCollision left installed. User performed **three factual Hack/Action14 attacks** followed by **two actual Finishing/Action15 executions of knocked-down opponents**. Game exited normally.
+
+Canonical source: `research/archive/2026-11-22_hack_transition_player2h_three_hack_two_executions.log` (675 lines / 114,182 bytes; SHA256 `C8C8B583EC76A69FA6EB595E2C77B36116DE2F9EF1BB6E4A04A4752A0A005632`; raw unchanged, published first at `development @ d14603c7aa5472e5c14b81f955d55f1922c4af75`, then archived byte-identically).
+
+Observed independently in all three Hack instances (event clock 679102031, 679108343, 679114359):
+- `sAICombatMoveStartRecover` begins with primary **Hack Hit** at final time 0.4800; native Recover start **plays primary Finishing Recover** (`PLAY_AFTER`, slot 0, time 0.0000). The `RECOVER_BOUNDARY AFTER` snapshot still identifies Finishing Recover.
+- **Only afterward** the resource query for factual Action14 requests a Finishing-named Recover and the G3AB router returns a **Hack** resource; a second `PlayMotion` sets primary **Hack Recover** (time 0.0000). This ordering occurs 3/3. All observations at each boundary share the same integer-millisecond timestamp; do not infer a measured nonzero time interval.
+- Corresponding original Recover resources are present; no missing-Hack-Recover fallback was involved. The diagnostic only exposed slot 0 in these snapshots (target weight 1.0, blend mode 1, intro/extro 0.2000). It does not directly measure final rendered bones or transient internal blend weights.
+
+Control in the two genuine executions (clock 679138750, 679143000): factual Action15 similarly starts **Finishing Recover**, then a native Finishing resource lookup occurs, followed by another **Finishing Recover** `PlayMotion`. Thus the native-first sequence is not unique to Hack, but the **content-changing** Finishing-to-Hack Recover replacement is. This is consistent with the User's prior visual A/B results: different animation content causes a very brief Hack-only leg movement; identical Hack/Finishing contents do not; true Finishing executions look correct. Whether the movement visibly reproduced in this *particular* captured run was not explicitly reported.
+
+Interpretation: **CONFIRMED native-first Recover motion ordering and Hack-specific content-changing second playback**, strongly implicated in the leg-pose discontinuity. **NOT YET PROVEN:** that the first motion is actually sampled/rendered or held for a nonzero blend interval; this requires a narrowly isolated causal intervention or more direct pose observation. No production behavior or animation files were changed and no fix accepted.
+
+Disposition: **NEW CANONICAL EVIDENCE — ARCHIVED PROVENANCE**. Immediate next research: determine a minimum safe way to prevent the first Finishing Recover pose from affecting factual Hack while preserving Action15, absent-Hack-resource native fallback, the Recover lifecycle, collision/Speed/Movement and shared hook ownership.
