@@ -13,7 +13,7 @@
 
 User-proven symptom: different 2H Hack and Finishing animation content produces a brief Hack-only leg-pose discontinuity at Recover; identical content does not, and true Finishing executions remain normal. Alfinos shows Hack Raise/Hit/Recover. **Do not reopen asset existence or established action/speed separation.**
 
-Current work: `docs/work/active/HACK_TRANSITION_BLEND_INVESTIGATION.md`. **EV-458:** wrong first Finishing Recover causes 2H Hack visual glitch. **EV-459:** scoped suppression eliminates it 3/3; true Finishing15 native 2/2. Logs archived; original release DLL restored. Proposed minimal `AttackMotionRouting` policy with one `EngineBridge` hook owner. **Next:** prove safe early resource-admin access and generic motion-to-resource naming; do not implement until reviewed. Only `development` changes. Preserve animations, `main`, `Backup`.
+Current work: `docs/work/active/HACK_TRANSITION_BLEND_INVESTIGATION.md`. **EV-458:** wrong first Finishing Recover causes 2H Hack visual glitch. **EV-459:** scoped suppression eliminates it 3/3; true Finishing15 native 2/2. Logs archived; original release DLL restored. Static production contract frozen in the active task: reuse `AttackMotionRouting` for resource checks, single `EngineBridge` hook owner. SDK module registry and 2H `.xmot`→`.fxm` mapping preflights passed. **Next:** bounded source implementation and focused runtime verification; production not yet accepted. Only `development` changes. Preserve animations, `main`, `Backup`.
 
 ## Previous gate — maintenance promoted to main (closed 2026-10-09)
 
