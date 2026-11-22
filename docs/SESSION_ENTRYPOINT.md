@@ -13,7 +13,7 @@
 
 User-proven symptom: different 2H Hack and Finishing animation content produces a brief Hack-only leg-pose discontinuity at Recover; identical content does not, and true Finishing executions remain normal. Alfinos shows Hack Raise/Hit/Recover. **Do not reopen asset existence or established action/speed separation.**
 
-Active task: `docs/work/active/HACK_TRANSITION_BLEND_INVESTIGATION.md`. EV-459/461 research positive PASS; EV-462 no-fallback FAIL; EV-463 original native fallback PASS. Production candidate built/deployed; startup PASS; **EV-464 requested 3 Hack + 3 true Finishing: User reports no visual glitches (focused 2H PASS).** EV-465 Staff complete-custom-Hack visual PASS; User clarified Recover files removed *after* gameplay. Current loose 2H/Staff Hack Recover absent, Raise/Hit present; missing-Recover test next. Wider regression pending. Exact 2H README draft outside repo; see active task. Protect assets, `main`, `Backup`.
+Active task: `docs/work/active/HACK_TRANSITION_BLEND_INVESTIGATION.md`. EV-459/461 research positive PASS; EV-462 no-fallback FAIL; EV-463 original native fallback PASS. Production candidate built/deployed; startup PASS; **EV-464 requested 3 Hack + 3 true Finishing: User reports no visual glitches (focused 2H PASS).** EV-465 Staff complete-custom-Hack visual PASS; User clarified Recover files removed *after* gameplay. EV-466 missing-Recover native fallback and genuine Finishing visual PASS for both 2H/Staff. Next Test 2: all custom Hack files absent; Test 3: distinct complete sets. Full acceptance pending. Exact 2H README draft outside repo; see active task. Protect assets, `main`, `Backup`.
 
 ## Previous gate — maintenance promoted to main (closed 2026-10-09)
 

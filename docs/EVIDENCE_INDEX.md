@@ -177,6 +177,7 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | Original release with Hack Recover absent: Hack fallback to Finishing Recover 3/3 and genuine Finishing Recover 3/3; rejects experimental null-resource policy | EV-463 |
 | Production candidate + present custom Hack Recover: requested 3 Hack + 3 genuine Finishing, User observed no visual glitches; no diagnostic log, wider regressions open | EV-464 |
 | Staff complete-custom-Hack visual PASS; User clarified Recover present during gameplay and removed afterward; routing not instrumented | EV-465 |
+| Production candidate missing custom Hack Recover: native Finishing Recover fallback and true Finishing visually PASS for 2H + Staff; no fresh diagnostic log | EV-466 |
 | Raise/Speed/Hack final runtime acceptance closure | EV-422 |
 | dual Fwd Normal + P0/P1 Quick generated Raise asset runtime validation | EV-423 |
 | dual P3 Quick Raise/Hit route non-observation | EV-423 |
