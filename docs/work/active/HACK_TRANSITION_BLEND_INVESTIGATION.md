@@ -37,3 +37,45 @@
 
 
 **Stop conditions:** unresolved action ownership, missing Hack Recover fallback semantics, altered true Finishing behavior, cross-actor/global hook interference, changed collision/Speed/Movement, unsupported pointer lifetime, or broader hook replacement. Keep `main` and `Backup` untouched. Review proposed options before any intervention build/deploy.
+
+## Production design review — simplicity / module ownership (2026-11-22)
+
+**Status: PROPOSED, NOT FROZEN.** This review is read-only for shipping code. It follows project charter `docs/README.md` A0, `ENGINEERING_GUIDE.md` sections 2.1/2.3/4.1/5–7/9/11/13–16, `FEATURE_DEVELOPMENT_METHOD.md` sections 2/5/7–9, `WORK_IMPLEMENTATION_PROTOCOL.md` sections 4–9, and `SOURCE_HOOK_GUIDE.md` sections 3/7–8. EV-458 and EV-459 are factual evidence, not blanket production authorization.
+
+### Target invariant / boundary
+
+When the **factual** CombatMove action is Hack14 and a corresponding Hack Recover asset is positively available, the first Recover primary motion must **not** be native Finishing Recover. The existing later CombatMove routing must still play the correct Hack Recover. If no custom Hack Recover is available, native Recover remains untouched; true Finishing15 is always native. No side effects on other actors/actions, collision, speed, movement, attack continuation or cleanup.
+
+This is an extension of **existing Hack asset routing**, not a new animation state machine, speed/blending correction or general-purpose animation manager.
+
+### Preferred small architecture (conditional on preflight)
+
+1. **Permanent owner:** extend `src/Script_G3AnimationBehaviors/AttackMotionRouting.{h,cpp}` with a narrow decision such as `ShouldSkipNativeFirstRecover(...)` (name illustrative). Reuse the existing factual Action14 and resource-name substitution semantics. The module owns the reason to skip; it does not own hooks, logging or game lifecycle.
+2. **Transport only:** `EngineBridge` is the **sole owner** of the physical `Game+0x16E360` StartRecover and `Engine+0x30860` high PlayMotion intercepts if this two-hook approach survives preflight. The former supplies a **synchronous, per-thread/stack-scope** context (SPU, factual Action14, exact actor and Recover boundary); the latter delegates only the **first primary PlayMotion in that context** and either calls the original or skips the single proven wrong invocation. Do not introduce always-on actor tracking, per-frame polling, timers or unrelated state.
+3. **Candidate identity:** use Gothic native action/actor/Recover facts first; the pre-play descriptor established in EV-459 is a possible source of the actual first Finishing Recover animation name. Match the **correct generalized native filename contract** (not the probe's exact `Hero_None_2H` string); derive or obtain the corresponding Hack *resource* through the same engine naming/lookup semantics as the existing router. Do **not** infer a universal `.fxm` name by stripping `.xmot` suffixes until the mapping is proved for the relevant asset variants.
+4. **Positive fallback gate:** skip the native playback only if the exact corresponding Hack Recover resource can be resolved **before** the wrong PlayMotion. No-resource, unsupported naming, unproven context, missing admin or failed lookup means **call the original native PlayMotion**. No cached success from a different actor/attack/phase.
+5. **Production cleanup:** build this into the release target without probe flags. Keep EV-459's hardcoded name, persistent animation-admin pointer, event logs, Tick hooks, diagnostic StopMotion interception and temporary causal policy completely out of production. Do not add an INI switch for correcting existing accepted routing semantics unless a separate user-facing choice is justified.
+
+**Why two potential hooks?** EV-459 showed the first wrong PlayMotion occurs **within** StartRecover, while the existing `Game+0x16B10C` resource query is later and cannot prevent that first playback. One hook can identify the exact factual Recover scope; the second can intercept the wrong PlayMotion. Compare any *proven* narrower single call-site possibility against this, but do not prefer a brittle binary patch solely to reduce hook count. Existing deep/causal diagnostic hooks use the same addresses: production and optional diagnostics must **not** independently install competing physical owners; the bridge should share one transport/observation path or keep incompatible diagnostic configurations mutually exclusive.
+
+### Alternatives, not parallel implementations
+
+- **A — scoped skip (preferred):** EV-459 demonstrated success; minimal new behavior, preserves native lifecycle and later routing. Costs at most one small permanent decision plus a synchronous scope and two native hook boundaries. Remaining risks: safely obtain the current engine animation-admin/resource context; prove the generic filename/resource correspondence; avoid same-address hook conflict.
+- **B — substitute Hack on the first native playback:** might also prevent the wrong pose, but would play Hack Recover twice and may change native side effects; not needed by EV-459 and presently **not preferred**.
+- **C — rewrite native StartRecover's earlier resource/filename or single-call-site patch:** potentially fewer hooks but requires new precise binary provenance and compatibility proof, may depend on fragile internal offsets; consider only if A cannot meet its gates cleanly. No implementation authority given.
+- **D — adjust blend rates / delay motion / generic post-fix pose correction:** treats symptoms, adds unrelated behavior, and is **not warranted**.
+
+### Two evidence gaps before freezing production code
+
+1. **Valid early resource check without stale state.** The probe retained a thread-local `eCAnimationAdmin*` from a *prior* CombatMove resource query. SDK `ge_animationadmin.h` exposes `QueryMotionDataEntity`, but inspected Engine/Script headers did not surface an established public `GetAnimationAdmin` accessor. Research a per-invocation native/SDK way to acquire the correct admin/cache behavior at StartRecover (or a proven, bounded/context-safe alternative). If not established, **stop and return options**; do not convert the probe's borrowed pointer into an unverified permanent cache.
+2. **Exact generalized candidate mapping.** Current `AttackMotionRouting` receives a native `.fxm` request and replaces `_FinishingAttack_` with `_HackAttack_` before looking it up. The earlier PlayMotion exposes a `.xmot` descriptor. Prove the common naming relationship for 2H, Staff, relevant directions/variations and applicable modded actors before using the descriptor to construct a candidate. If that contract is not reliable, find the native source that already owns the request name rather than write a filename heuristic.
+
+### Minimal eventual validation (after approved production implementation)
+
+- Positive: visually distinct player 2H Hack, three attacks, no Finishing first playback and direct Hack Recover; genuine knocked-down-opponent Finishing, at least two, remains native.
+- Native fallback: no matching custom Hack Recover -> original first native Recover plays; no stuck attack or altered cleanup. Test using an isolated controlled fixture, not an accidental destructive edit of the user's live animation files.
+- Generality: tested Staff Hack and additional supported actors/animations as available; unsupported families/other actions unchanged. Cover NPC Hack if factual route is confirmed, not by extrapolation from the player.
+- Integration: rapid repetition, Recover interruption, New Balance/AttackCollision compatibility, collision markers/hit counts, speed, movement and bad-block protection remain stable; old production build is the comparison.
+- Source/static: one bridge hook owner per RVA, no diagnostic dependency, exactly one conceptual change, native-call parity, no stale pointers; then controlled build/deploy, focused runtime acceptance, and **only afterward** broad production regression.
+
+**Review recommendation:** adopt A as the **working design direction**, but do not freeze or implement production until the two explicit early-availability/naming preflights are resolved and the User reviews the final contract. The objective is a concise invariant enforced at the first authoritative Recover event, not a growing set of exceptional rules.
