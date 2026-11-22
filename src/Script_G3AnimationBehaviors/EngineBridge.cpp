@@ -78,6 +78,13 @@ static mCCallHook Hook_SpeedModifierCall_4DF1F;
 static mCCallHook Hook_PlayerBadBlockDuration;
 static mCCaller Call_GetAnimationSpeedModifier;
 
+// Research targets already own these RVAs for observation. The production
+// correction owns them only in the production/integration build.
+#if !defined(FRAME_COLLISION_DIAGNOSTICS_DEEP) && !defined(G3AB_HACK_TRANSITION_PROBE)
+static mCFunctionHook Hook_HackRecoverPlayMotion;
+static mCFunctionHook Hook_HackRecoverStartRecover;
+#endif
+
 static GEU32 const PlayerBadBlockDurationCallRva = 0x633BF;
 static GEU32 const PlayerBadBlockDurationGetterSlotRva = 0xE4990;
 static GEU32 const PlayerBadBlockTimeoutMSecs = 2500;
@@ -364,6 +371,59 @@ static gEAction GetCombatMoveFactualAction(
     GEU8 const *const bytes = reinterpret_cast<GEU8 const *>(a_pSPU);
     return *reinterpret_cast<gEAction const *>(bytes + 0x154);
 }
+
+#if !defined(FRAME_COLLISION_DIAGNOSTICS_DEEP) && !defined(G3AB_HACK_TRANSITION_PROBE)
+// Synchronous native StartRecover scope. No per-attack token survives the
+// original call, and a nested Recover restores its parent scope.
+struct HackRecoverScope
+{
+    HackRecoverScope *previous;
+    eCEntity *actor;
+    bool factualHack;
+    bool firstPrimarySeen;
+};
+
+static thread_local HackRecoverScope *g_pHackRecoverScope = nullptr;
+
+static void GE_STDCALL HackRecoverPlayMotion(
+    eCWrapper_emfx2Actor::eEMotionType motionType,
+    eCWrapper_emfx2Motion::eSMotionDesc *motionDesc)
+{
+    eCVisualAnimation_PS *const animation =
+        Hook_HackRecoverPlayMotion.GetSelf<eCVisualAnimation_PS *>();
+    HackRecoverScope *const scope = g_pHackRecoverScope;
+    if (scope != nullptr && scope->factualHack && !scope->firstPrimarySeen
+        && motionType == static_cast<eCWrapper_emfx2Actor::eEMotionType>(0)
+        && animation != nullptr && animation->HasActor()
+        && animation->GetEntity() == scope->actor)
+    {
+        // Consume the first primary playback before the resource query,
+        // so an engine callback or nested PlayMotion cannot suppress twice.
+        scope->firstPrimarySeen = true;
+        if (AttackMotionRouting::HasMatchingHackRecoverForFinishingMotion(
+                animation->GetMotionDesc(motionType).GetMotionFilename()))
+            return;
+    }
+
+    Hook_HackRecoverPlayMotion.GetOriginalFunction(&HackRecoverPlayMotion)(
+        motionType, motionDesc);
+}
+
+static void GE_STDCALL HackRecoverStartRecover(
+    gCScriptProcessingUnit *spu)
+{
+    HackRecoverScope scope = {
+        g_pHackRecoverScope,
+        spu != nullptr ? spu->GetSelfEntity() : nullptr,
+        GetCombatMoveFactualAction(spu) == gEAction_HackAttack,
+        false
+    };
+    g_pHackRecoverScope = &scope;
+    Hook_HackRecoverStartRecover.GetOriginalFunction(
+        &HackRecoverStartRecover)(spu);
+    g_pHackRecoverScope = scope.previous;
+}
+#endif
 
 using GetAniNameFunction = void (__thiscall *)(
     gCScriptProcessingUnit *, bCString &, eCEntity *, gEAction,
@@ -1466,6 +1526,16 @@ void FrameCollision::EngineBridge::InstallHooks()
         .Prepare(RVA_Game(0x668D0), &EntityOnDamage_FrameCollisionTest)
         .ThisCall()
         .Hook();
+
+#if !defined(FRAME_COLLISION_DIAGNOSTICS_DEEP) && !defined(G3AB_HACK_TRANSITION_PROBE)
+    Hook_HackRecoverPlayMotion
+        .Prepare(RVA_Engine(0x30860), &HackRecoverPlayMotion,
+                 mCBaseHook::mEHookType_ThisCall)
+        .Hook();
+    Hook_HackRecoverStartRecover
+        .Prepare(RVA_Game(0x16E360), &HackRecoverStartRecover)
+        .Hook();
+#endif
 
 #ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
     gSScript const *onTickScript = GetScriptAdminExt().GetScript("OnTick");

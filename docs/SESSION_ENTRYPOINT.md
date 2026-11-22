@@ -13,7 +13,7 @@
 
 User-proven symptom: different 2H Hack and Finishing animation content produces a brief Hack-only leg-pose discontinuity at Recover; identical content does not, and true Finishing executions remain normal. Alfinos shows Hack Raise/Hit/Recover. **Do not reopen asset existence or established action/speed separation.**
 
-Active task: `docs/work/active/HACK_TRANSITION_BLEND_INVESTIGATION.md`. EV-459/461 PASS with Hack Recover present. EV-462 experimental missing-Hack path FAIL: missing resource and genuine Finishing Recover absent. **EV-463 original-release missing-Hack control PASS:** 3 Hacks use native Finishing Recover fallback, 3 genuine Finishers recover normally. Thus absent Hack asset alone is not the regression; experimental no-fallback/null path rejected. Next: narrowly scope positive-resource-gated correction; any missing-Hack-to-idle behavior requires separate native-lifecycle research. Original release DLL sole live product, verified. User's loose Hack Recover still absent. Do not change `main`, `Backup`, assets.
+Active task: `docs/work/active/HACK_TRANSITION_BLEND_INVESTIGATION.md`. EV-459/461 positive Hack Recover correction PASS; EV-462 no-fallback path FAIL; EV-463 original native fallback PASS. **Small generalized production candidate built; not deployed or runtime accepted.** See active task for hash, guards, and test. Release DLL remains sole live product. User's loose Hack Recover is still absent; restore from backup for positive-asset game test. Uploaded public README will get exact 2H phase examples only after fix passes. Protect assets, `main`, `Backup`.
 
 ## Previous gate — maintenance promoted to main (closed 2026-10-09)
 
