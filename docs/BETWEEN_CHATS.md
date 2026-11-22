@@ -1,7 +1,7 @@
 # Between Chats
 
 **Purpose:** exact continuation pointer; replace, do not accumulate.
-**Updated:** 2026-10-09 — reviewed maintenance promoted to main; development active
+**Updated:** 2026-11-22 — Hack transition diagnostic research on development
 
 > After abrupt/max-context recovery, start at root `README.md` and apply POP-11 before trusting this bridge.
 
@@ -23,6 +23,6 @@ Do-not-modify first-release safeguard: `Backup @ 08a0bd8fcf42173088e233e09b706a8
 
 **Promotion:** Stable `main` fast-forwards to the reviewed post-release maintenance checkpoint by explicit User decision. The six maintenance stages, independent audit and two minor wording corrections are closed. This supplies no new gameplay/runtime evidence; `Backup` remains unchanged.
 
-**Next:** Continue feature/research work on `development` only after a newly bounded User-selected task. Do not build, deploy, run Gothic 3, change `Backup` or automatically re-promote `main` from this pointer.
+**Current active task:** `docs/work/active/HACK_TRANSITION_BLEND_INVESTIGATION.md`. User found Hack-only brief Hit→Recover leg pose discontinuity with visually distinct Hack/Finishing assets; Alfinos selects Hack Recover. A full-production observation-only diagnostic target was built locally and statically validated; runtime deployment has not happened. Gothic 3 is still running with its release DLL; wait until it is closed before POP-03 diagnostic deployment and controlled runtime test. Preserve `main`, `Backup`, installed animations and the release DLL. No gameplay fix is accepted yet.
 
 The closed [audit preparation and original boundaries](archive/investigations/POST_RELEASE_AUDIT_PREPARATION_PRE_CLOSURE_2026-10-09.md) remain retrievable as history; `SESSION_ENTRYPOINT.md` owns the current gate. All six implementation stages and the post-maintenance reconciliation are accepted.

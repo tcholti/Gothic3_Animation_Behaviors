@@ -12,6 +12,9 @@
 #include "Raw8FistCollision.h"
 #include "RuntimeClock.h"
 
+#ifdef G3AB_HACK_TRANSITION_PROBE
+#include "HackTransitionProbe.h"
+#endif
 #ifdef FRAME_COLLISION_DIAGNOSTICS
 #include "CollisionDiagnostics.h"
 #endif
@@ -97,6 +100,12 @@ static mCFunctionHook Hook_StopMotion;
 static mCFunctionHook Hook_AICombatMoveStartRecover;
 static mCFunctionHook Hook_AIFullStop;
 #endif
+#ifdef G3AB_HACK_TRANSITION_PROBE
+static mCFunctionHook Hook_HackProbePlayMotion;
+static mCFunctionHook Hook_HackProbeStopMotion;
+static mCFunctionHook Hook_HackProbeStartRecover;
+static mCFunctionHook Hook_HackProbeOnTick;
+#endif
 
 struct RunScriptFunctionScope
 {
@@ -128,7 +137,7 @@ GetRunScriptFunctionScopeIdentity(RunScriptFunctionScope *scope)
 }
 #endif
 
-#ifdef FRAME_COLLISION_DIAGNOSTICS_DEEP
+#if defined(FRAME_COLLISION_DIAGNOSTICS_DEEP) || defined(G3AB_HACK_TRANSITION_PROBE)
 static bool IsPlayerEntity(eCEntity *instance)
 {
     Entity player = Entity::GetPlayer();
@@ -375,6 +384,29 @@ QueryCombatMoveMotionResource_FrameCollisionTest(
     bCString const &a_ResourceName,
     eEResourceCacheBehavior a_CacheBehavior)
 {
+#ifdef G3AB_HACK_TRANSITION_PROBE
+    gEAction const action = GetCombatMoveFactualAction(a_pSPU);
+    eCResourceDataEntity *const routedResource =
+        AttackMotionRouting::QueryOptionalSubstitution(
+            action, a_pAnimationAdmin, a_ResourceName, a_CacheBehavior);
+    if (routedResource != nullptr)
+    {
+        G3AB::HackTransitionProbe::ObserveResourceQuery(
+            static_cast<GEInt>(action), a_ResourceName.GetText(), true,
+            routedResource,
+            a_pSPU != nullptr && IsPlayerEntity(a_pSPU->GetSelfEntity()));
+        return routedResource;
+    }
+    eCResourceDataEntity *const nativeResource =
+        a_pAnimationAdmin->QueryMotionDataEntity(
+            a_ResourceName, a_CacheBehavior);
+    G3AB::HackTransitionProbe::ObserveResourceQuery(
+        static_cast<GEInt>(action), a_ResourceName.GetText(), false,
+        nativeResource,
+        a_pSPU != nullptr && IsPlayerEntity(a_pSPU->GetSelfEntity()));
+    return nativeResource;
+#else
+    // Production path intentionally remains byte-for-byte the original source.
     eCResourceDataEntity *const routedResource =
         AttackMotionRouting::QueryOptionalSubstitution(
             GetCombatMoveFactualAction(a_pSPU), a_pAnimationAdmin,
@@ -384,6 +416,7 @@ QueryCombatMoveMotionResource_FrameCollisionTest(
 
     return a_pAnimationAdmin->QueryMotionDataEntity(
         a_ResourceName, a_CacheBehavior);
+#endif
 }
 
 static GELPVoid StartEffect_FrameCollisionTest(
@@ -605,6 +638,67 @@ static void GE_STDCALL AICombatMoveStartRecover_FrameCollisionTest(
     if (shouldLog)
         CollisionDiagnosticsDeep::LogCombatMoveStartRecoverBoundary(
             actor, "END");
+}
+#endif
+
+#ifdef G3AB_HACK_TRANSITION_PROBE
+static void GE_STDCALL HackProbePlayMotion(
+    eCWrapper_emfx2Actor::eEMotionType motionType,
+    eCWrapper_emfx2Motion::eSMotionDesc *motionDesc)
+{
+    eCVisualAnimation_PS *const animation =
+        Hook_HackProbePlayMotion.GetSelf<eCVisualAnimation_PS *>();
+    bool const isPlayer =
+        animation != nullptr && IsPlayerEntity(animation->GetEntity());
+    if (isPlayer)
+        G3AB::HackTransitionProbe::ObserveMotion(
+            "PLAY_BEFORE", animation, static_cast<GEInt>(motionType));
+    Hook_HackProbePlayMotion.GetOriginalFunction(&HackProbePlayMotion)(
+        motionType, motionDesc);
+    if (isPlayer)
+        G3AB::HackTransitionProbe::ObserveMotion(
+            "PLAY_AFTER", animation, static_cast<GEInt>(motionType));
+}
+
+static void GE_STDCALL HackProbeStopMotion(
+    eCWrapper_emfx2Actor::eEMotionType motionType, GEFloat blendTime)
+{
+    eCVisualAnimation_PS *const animation =
+        Hook_HackProbeStopMotion.GetSelf<eCVisualAnimation_PS *>();
+    bool const isPlayer =
+        animation != nullptr && IsPlayerEntity(animation->GetEntity());
+    if (isPlayer)
+        G3AB::HackTransitionProbe::ObserveMotion(
+            "STOP_BEFORE", animation, static_cast<GEInt>(motionType), blendTime);
+    Hook_HackProbeStopMotion.GetOriginalFunction(&HackProbeStopMotion)(
+        motionType, blendTime);
+    if (isPlayer)
+        G3AB::HackTransitionProbe::ObserveMotion(
+            "STOP_AFTER", animation, static_cast<GEInt>(motionType), blendTime);
+}
+
+static void GE_STDCALL HackProbeStartRecover(gCScriptProcessingUnit *spu)
+{
+    bool const isPlayer =
+        spu != nullptr && IsPlayerEntity(spu->GetSelfEntity());
+    if (isPlayer)
+        G3AB::HackTransitionProbe::ObserveRecoverBoundary(
+            "BEFORE", spu->GetSelfEntity());
+    Hook_HackProbeStartRecover.GetOriginalFunction(&HackProbeStartRecover)(spu);
+    if (isPlayer)
+        G3AB::HackTransitionProbe::ObserveRecoverBoundary(
+            "AFTER", spu->GetSelfEntity());
+}
+
+static GEInt GE_STDCALL HackProbeOnTick(
+    gCScriptProcessingUnit *spu, GELPVoid self,
+    GELPVoid other, GEInt args)
+{
+    GEInt const result =
+        Hook_HackProbeOnTick.GetOriginalFunction(&HackProbeOnTick)(
+            spu, self, other, args);
+    G3AB::HackTransitionProbe::ObserveTick();
+    return result;
 }
 #endif
 
@@ -1097,6 +1191,9 @@ static GEInt GE_STDCALL OnTick_FrameCollisionTest(
 void FrameCollision::EngineBridge::InstallHooks()
 {
     GetScriptAdmin().LoadScriptDLL("Script_Game.dll");
+#ifdef G3AB_HACK_TRANSITION_PROBE
+    G3AB::HackTransitionProbe::Initialize();
+#endif
 
     GEU32 const badBlockDurationSlotAddress =
         RVA_ScriptGame(PlayerBadBlockDurationGetterSlotRva);
@@ -1324,5 +1421,23 @@ void FrameCollision::EngineBridge::InstallHooks()
         .Prepare(RVA_Game(0x164430), &AIFullStop_FrameCollisionTest)
         .ThisCall()
         .Hook();
+#endif
+#ifdef G3AB_HACK_TRANSITION_PROBE
+    Hook_HackProbePlayMotion
+        .Prepare(RVA_Engine(0x30860), &HackProbePlayMotion,
+                 mCBaseHook::mEHookType_ThisCall)
+        .Hook();
+    Hook_HackProbeStopMotion
+        .Prepare(RVA_Engine(0x30980), &HackProbeStopMotion,
+                 mCBaseHook::mEHookType_ThisCall)
+        .Hook();
+    Hook_HackProbeStartRecover
+        .Prepare(RVA_Game(0x16E360), &HackProbeStartRecover)
+        .Hook();
+    gSScript const *const hackProbeOnTick =
+        GetScriptAdminExt().GetScript("OnTick");
+    if (hackProbeOnTick != nullptr)
+        Hook_HackProbeOnTick.Hook(
+            hackProbeOnTick->m_funcScript, &HackProbeOnTick);
 #endif
 }
