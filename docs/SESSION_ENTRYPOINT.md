@@ -13,7 +13,7 @@
 
 User-proven symptom: different 2H Hack and Finishing animation content produces a brief Hack-only leg-pose discontinuity at Recover; identical content does not, and true Finishing executions remain normal. Alfinos shows Hack Raise/Hit/Recover. **Do not reopen asset existence or established action/speed separation.**
 
-Active task: `docs/work/active/HACK_TRANSITION_BLEND_INVESTIGATION.md`. EV-459/461 research positive PASS; EV-462 no-fallback FAIL; EV-463 original native fallback PASS. Production candidate built/deployed; startup PASS; **EV-464 requested 3 Hack + 3 true Finishing: User reports no visual glitches (focused 2H PASS).** EV-465 Staff complete-custom-Hack visual PASS; User clarified Recover files removed *after* gameplay. EV-466 missing-Recover and EV-467 no-Hack-files fallback PASS for 2H/Staff. Next Test 3: complete distinct Hack/Finishing sets. Full release acceptance pending. Exact 2H README draft outside repo; see active task. Protect assets, `main`, `Backup`.
+Active task: `docs/work/active/HACK_TRANSITION_BLEND_INVESTIGATION.md`. EV-459/461 research positive PASS; EV-462 no-fallback FAIL; EV-463 original native fallback PASS. Production candidate built/deployed; startup PASS; **EV-464 requested 3 Hack + 3 true Finishing: User reports no visual glitches (focused 2H PASS).** EV-465 Staff complete-custom-Hack visual PASS; User clarified Recover files removed *after* gameplay. EV-466 missing-Recover and EV-467 no-Hack-files fallback PASS for 2H/Staff; EV-468 confirms distinct-set case already tested in EV-464/465. **Six-case matrix COMPLETE/PASS; no repeat needed.** Next: release decision/packaging, not gameplay. Public README draft outside repo; see active task. Protect assets, `main`, `Backup`.
 
 ## Previous gate — maintenance promoted to main (closed 2026-10-09)
 
@@ -40,7 +40,7 @@ KA-12 accepted: `development @ b462ec839f972a172a4325f9d69216468c0bafce` was ind
 
 **Promotion:** On 2026-10-09 the User approved fast-forward promotion of the reviewed post-release maintenance state to `main`. This is a **repository knowledge/integration checkpoint**, not new Gothic 3 runtime proof. `development` remains the active working branch; no new feature task was frozen at that historical checkpoint.
 
-**Immediate responsibility:** User's three-case 2H+Staff matrix after EV-464: missing Hack Recover, no custom Hack files, distinct Hack/Finishing; see active task for fixtures, controls and Staff prerequisite. Preserve candidate/assets/`main`/`Backup`; main promotion needs separate approval.
+**Immediate responsibility:** Scoped 2H+Staff matrix closed EV-468; review release/integration packaging when User approves. Preserve candidate, assets, `main` and `Backup`; main promotion needs separate approval.
 
 The completed audit plan is preserved as [cold provenance](archive/investigations/POST_RELEASE_AUDIT_PREPARATION_PRE_CLOSURE_2026-10-09.md). Its earlier ACTIVE/review-pending language is historical; this entrypoint owns the current state. Evidence archive recovery remains in [EVIDENCE_PATH_MIGRATIONS](EVIDENCE_PATH_MIGRATIONS.md).
 
