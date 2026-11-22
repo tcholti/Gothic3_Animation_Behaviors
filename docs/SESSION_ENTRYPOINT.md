@@ -40,7 +40,7 @@ KA-12 accepted: `development @ b462ec839f972a172a4325f9d69216468c0bafce` was ind
 
 **Promotion:** On 2026-10-09 the User approved fast-forward promotion of the reviewed post-release maintenance state to `main`. This is a **repository knowledge/integration checkpoint**, not new Gothic 3 runtime proof. `development` remains the active working branch; no new feature task was frozen at that historical checkpoint.
 
-**Immediate responsibility:** Review remaining release-readiness gates after EV-464 focused visual PASS; preserve the candidate, assets, `main` and `Backup`. Do not promote `main` without separate approval.
+**Immediate responsibility:** User's three-case 2H+Staff matrix after EV-464: missing Hack Recover, no custom Hack files, distinct Hack/Finishing; see active task for fixtures, controls and Staff prerequisite. Preserve candidate/assets/`main`/`Backup`; main promotion needs separate approval.
 
 The completed audit plan is preserved as [cold provenance](archive/investigations/POST_RELEASE_AUDIT_PREPARATION_PRE_CLOSURE_2026-10-09.md). Its earlier ACTIVE/review-pending language is historical; this entrypoint owns the current state. Evidence archive recovery remains in [EVIDENCE_PATH_MIGRATIONS](EVIDENCE_PATH_MIGRATIONS.md).
 
