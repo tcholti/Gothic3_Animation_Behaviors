@@ -176,6 +176,7 @@ The archived pre-compression index remains at `archive/evidence/EVIDENCE_INDEX_2
 | Real-asset missing-Hack Run B failure: genuine Finishing Recover absent too; original release baseline required | EV-462 |
 | Original release with Hack Recover absent: Hack fallback to Finishing Recover 3/3 and genuine Finishing Recover 3/3; rejects experimental null-resource policy | EV-463 |
 | Production candidate + present custom Hack Recover: requested 3 Hack + 3 genuine Finishing, User observed no visual glitches; no diagnostic log, wider regressions open | EV-464 |
+| Staff follow-up user-reported visual PASS; post-test loose custom Staff Hack Recover absent, full positive fixture unconfirmed | EV-465 |
 | Raise/Speed/Hack final runtime acceptance closure | EV-422 |
 | dual Fwd Normal + P0/P1 Quick generated Raise asset runtime validation | EV-423 |
 | dual P3 Quick Raise/Hit route non-observation | EV-423 |
