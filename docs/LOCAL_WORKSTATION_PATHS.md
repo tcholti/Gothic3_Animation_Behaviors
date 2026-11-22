@@ -1,7 +1,7 @@
 # Local Workstation Paths
 
 **Status:** Workstation-specific operational reference  
-**Updated:** 2026-09-18
+**Updated:** 2026-11-22
 
 ## Purpose
 
@@ -17,11 +17,17 @@ Record the User's current Windows paths for Gothic 3 development and testing. Th
 | Gothic / mod INI directory | `E:\SteamLibrary\steamapps\common\Gothic 3\Ini` |
 | Unpacked custom animation directory | `E:\SteamLibrary\steamapps\common\Gothic 3\Data\_compiledAnimation` |
 | G3 Animation Behaviors repository | `E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\Gothic3_Animation_Behaviors` |
+| User-designated temporary/backup files outside game and repository | `E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\2.For AI to store` |
+| DLL / binary reference | `E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\Gothic3_Binary_Reference` |
+| Standalone Gothic 3 SDK | `E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\gothic3sdk` |
+| Jackydima SDK (older snapshot) | `E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\jackydima-gothic3sdk-current` |
+| SDK examples | `E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\gothic3sdk-examples` |
 | User save/options/crash-log directory | `C:\Users\Tamerlan\Documents\Gothic3` |
 
 ## Operational rules
 
 - Do not derive the installed Gothic 3 runtime root by walking upward from the repository path.
+- Store temporary files and retained backups that must be kept outside both the repository and the game folder under the User-designated `2.For AI to store` directory (use a named subfolder). Do not put renamed backup DLLs inside the live `scripts` directory.
 - `E:\Mods\1.Game Files\Gothic 3\Modkit\Gothic 3\Gothic3.exe` is a separate Modkit copy, not the runtime used for these tests.
 - `E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 Edit (world)\Gothic 3\Gothic3.exe` is a separate editor/tool copy, not the runtime used for these tests.
 - **Deploy `Script_FrameCollisionTest.dll` / `Script_FrameCollisionBehaviorTest.dll` only to the runtime mod-script DLL directory `E:\SteamLibrary\steamapps\common\Gothic 3\scripts`, never to the Gothic 3 runtime/game root.**

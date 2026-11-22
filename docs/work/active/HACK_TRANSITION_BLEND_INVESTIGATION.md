@@ -1,6 +1,6 @@
 # Hack / Finishing transition — narrow diagnostic investigation
 
-**Status:** ACTIVE — diagnostic source built; runtime test not yet performed.
+**Status:** ACTIVE — diagnostic DLL deployed with POP-03 SHA/inventory PASS; startup and behavioral runtime tests not yet performed.
 **Branch:** `development` (not `main` or `Backup`).
 **Opened:** 2026-11-22.
 **Purpose:** Determine whether the visible brief leg pose change at the Hack Hit→Recover boundary comes from a Finishing motion/pose or from native blending of the actual Hack resources. No production fix is selected.
@@ -24,6 +24,7 @@
 - Observes player Action14/15 resource requests/results, motion Play/Stop, StartRecover boundary, and a short (~3s) tick window of the five motion slots. Log: `G3AB_HackTransitionProbe.log` in Gothic 3 runtime root.
 - Diagnostics do not change routing policy, speed/movement, markers or gameplay decisions. Do not co-load this DLL with production or other G3AB research DLLs.
 - Local Release diagnostic build PASS (2026-11-22), SHA256: `A8FF8B4CE8A78F07FD05FA73A8C09983FC4E97EEA8975150CE2394114824918E`. This is build identity, not runtime acceptance.
+- Deployment 2026-11-22: Gothic3.exe confirmed closed; original installed release DLL SHA256 `9FD6962146DD8BC7A723B57C0DE9DF4F550BF18E236F71FC79791B1A0ECCCEE9` moved, unchanged, to `E:\Mods\1.Game Files\Gothic 3\Tools\Gothic 3 making scripts\2.For AI to store\G3AB_HackTransition_2026-11-22\Script_G3AnimationBehaviors.dll`. Diagnostic copied to live `scripts` and verified exactly one G3AB runtime DLL, built/live SHA256 identical. **DIAGNOSTIC DEPLOYMENT PASS**. Startup log `G3AB_HackTransitionProbe.log` not yet created as of deployment verification; start game only to main menu for first load check.
 
 ## Frozen next runtime procedure
 1. User closes Gothic 3 normally; do not modify live DLLs while the process is running.
